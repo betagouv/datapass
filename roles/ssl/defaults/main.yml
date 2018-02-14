@@ -1,0 +1,2 @@
+dhparam_path: /etc/nginx/ssl/dhparams.pem
+dhparam_path_2048: /etc/nginx/ssl/dhparams2048.pem

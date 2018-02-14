@@ -1,0 +1,4 @@
+#- src: git@gogs.sgmap.fr:ansible/bootstrap.git
+  #scm: git
+- src: https://github.com/thefinn93/ansible-letsencrypt
+- src: https://github.com/geerlingguy/ansible-role-nodejs

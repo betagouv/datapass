@@ -1,0 +1,46 @@
+- name: initialize
+  file:
+    path: /opt/apps/{{app_name}}/
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: unarchive new version  {{app_name}}-{{ app_version }}
+  unarchive:
+    copy: no
+    src: "https://github.com/pknoth/{{app_name}}/archive/{{ app_version }}.tar.gz"
+    dest: /opt/apps/{{app_name}}/
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: install gem dependencies
+  bundler:
+    state: present
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+
+  # - name: Precompile assets
+  #   shell: bundle exec rake assets:precompile RAILS_ENV=production
+  #   args:
+  #     chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+  #   become: "{{ app_user }}"
+
+- name: create and migrate db
+  shell: |
+    bundle exec rake db:create db:migrate RAILS_ENV=production PG_USER={{ back_pg_user }} PG_PASSWORD={{ back_pg_password }} PG_DB={{ back_pg_db }} DEVISE_SECRET={{ devise_secret }}
+  args:
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+  become_user: "{{ app_user }}"
+
+- name: link new version
+  file:
+    force: yes
+    state: link
+    src: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+    path: /opt/apps/{{ app_name }}/{{ app_name }}
+    owner: "{{ app_user }}"
+
+- name: restart service
+  service:
+    name: "{{ app_name }}"
+    enabled: yes
+    state: restarted

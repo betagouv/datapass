@@ -1,0 +1,89 @@
+- include: install-ruby.yml
+
+- name: install postgresql
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - postgresql
+    - python-psycopg2
+
+- name: create back db
+  postgresql_db:
+    name: "{{ back_pg_db }}"
+  become_user: postgres
+
+- name: create back user
+  postgresql_user:
+    name: "{{ back_pg_user }}"
+    password: "{{ back_pg_password }}"
+    role_attr_flags: SUPERUSER
+  become_user: postgres
+
+- name: ensure app_user group exists
+  group:
+    name: "{{ app_user }}"
+    state: present
+
+- name: ensure app_user user exists
+  user:
+    name: "{{ app_user }}"
+    group: "{{ app_user }}"
+    state: present
+
+- name: copy configuration file for front
+  template:
+    src: front.conf.j2
+    dest: /etc/dgfip-contractualization-front.conf
+
+- name: copy configuration file for back
+  template:
+    src: back.conf.j2
+    dest: /etc/dgfip-contractualization-back.conf
+
+- name: copy configuration file for oauth
+  template:
+    src: oauth.conf.j2
+    dest: /etc/dgfip-contractualization-oauth.conf
+
+- name: copy systemd file for front
+  template:
+    src: front.service.j2
+    dest: /etc/systemd/system/dgfip-contractualization-front.service
+
+- name: copy systemd file for back
+  template:
+    src: back.service.j2
+    dest: /etc/systemd/system/dgfip-contractualization-back.service
+
+- name: copy systemd file for oauth
+  template:
+    src: oauth.service.j2
+    dest: /etc/systemd/system/dgfip-contractualization-oauth.service
+
+- name: restart services
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - dgfip-contractualization-front
+    - dgfip-contractualization-back
+    - dgfip-contractualization-oauth
+
+- name: enable services
+  shell: |
+    systemctl enable {{ item }}
+  with_items:
+    - dgfip-contractualization-front.service
+    - dgfip-contractualization-back.service
+    - dgfip-contractualization-oauth.service
+
+- name: configure nginx
+  template:
+    src: 84.39.49.146.conf.j2
+    dest: /etc/nginx/sites-enabled/84.39.49.146
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted

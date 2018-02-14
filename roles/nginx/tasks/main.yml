@@ -1,0 +1,10 @@
+- name: install nginx
+  apt: name=nginx state=present
+  tags: nginx
+
+- name: Template nginx conf
+  template: src=default.conf.j2 dest={{ nginx_path }}/nginx.conf
+  notify:
+  - check nginx conf
+  - restart nginx
+  tags: nginx

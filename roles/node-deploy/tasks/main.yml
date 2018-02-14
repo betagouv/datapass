@@ -1,0 +1,33 @@
+---
+- name: initialize
+  shell: >
+    mkdir -p /opt/apps/{{app_name}}/
+
+- name: unarchive new version  {{app_name}}-{{ app_version }}
+  unarchive:
+    copy: no
+    src: "https://github.com/pknoth/{{app_name}}/archive/{{ app_version }}.tar.gz"
+    dest: /opt/apps/{{app_name}}/
+
+- name: install node dependencies
+  shell: npm install --prod
+  args:
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+
+- name: build app
+  shell: npm run-script build
+  args:
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+
+- name: link new version
+  file:
+    force: yes
+    state: link
+    src: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+    path: /opt/apps/{{ app_name }}/{{ app_name }}
+
+- name: restart service
+  service:
+    name: "{{ app_name }}"
+    enabled: yes
+    state: restarted

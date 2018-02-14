@@ -1,0 +1,18 @@
+[Unit]
+Description=Dgfip Contractualization front
+After=network-online.target
+
+[Service]
+Type=simple
+
+User={{ app_user }}
+Group={{ app_user }}
+
+EnvironmentFile=/etc/dgfip-contractualization-front.conf
+ExecStart=/opt/apps/dgfip-contractualization-front/dgfip-contractualization-front/bin/www
+
+Restart=on-failure
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

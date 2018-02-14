@@ -1,0 +1,3 @@
+dependencies:
+  - role: ansible-role-nodejs
+    nodejs_version: 8.x

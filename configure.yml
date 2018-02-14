@@ -1,0 +1,6 @@
+- hosts: apps
+  become: true
+  roles:
+    - nginx
+    - ssl
+    - configure
