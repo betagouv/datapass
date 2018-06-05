@@ -1,0 +1,7 @@
+- hosts: courtier
+  become: true
+  roles:
+    - back-deploy
+  vars:
+    app_name: api-particulier-courtier-back
+    app_version: signup

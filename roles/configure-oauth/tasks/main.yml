@@ -1,0 +1,66 @@
+- include: install-ruby.yml
+
+- name: install npm
+  apt:
+    name: nodejs
+- name: install yarn
+  shell: npm install yarn -g
+
+- name: install postgresql
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - postgresql
+    - python-psycopg2
+
+- name: create oauth db
+  postgresql_db:
+    name: "{{ oauth_pg_db }}"
+  become_user: postgres
+
+- name: create oauth user
+  postgresql_user:
+    name: "{{ oauth_pg_user }}"
+    password: "{{ oauth_pg_password }}"
+    role_attr_flags: SUPERUSER
+  become_user: postgres
+
+- name: ensure app_user group exists
+  group:
+    name: "{{ app_user }}"
+    state: present
+
+- name: ensure app_user user exists
+  user:
+    name: "{{ app_user }}"
+    group: "{{ app_user }}"
+    state: present
+
+- name: copy configuration file for oauth
+  template:
+    src: oauth.conf.j2
+    dest: /etc/api-particulier-courtier-oauth.conf
+
+- name: copy systemd file for oauth
+  template:
+    src: oauth.service.j2
+    dest: /etc/systemd/system/api-particulier-courtier-oauth.service
+
+- name: restart services
+  service:
+    name: api-particulier-courtier-oauth
+    state: restarted
+
+- name: enable services
+  shell: systemctl enable api-particulier-courtier-oauth.service
+
+- name: configure nginx
+  template:
+    src: oauth.api.gouv.fr.conf.j2
+    dest: /etc/nginx/sites-enabled/oauth.api.gouv.fr
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted

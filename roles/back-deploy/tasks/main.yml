@@ -1,0 +1,42 @@
+- name: initialize
+  file:
+    path: /opt/apps/{{app_name}}/
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: unarchive new version  {{app_name}}-{{ app_version }}
+  unarchive:
+    copy: no
+    src: "https://github.com/betagouv/{{app_name}}/archive/{{ app_version }}.tar.gz"
+    dest: /opt/apps/{{app_name}}/
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+
+- name: install gem dependencies
+  shell: bundle install
+  args:
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+
+- name: create and migrate db
+  shell: |
+    bundle exec rake db:migrate RAILS_ENV=production PG_USER={{ back_pg_user }} PG_PASSWORD={{ back_pg_password }} PG_DB={{ back_pg_db }} DEVISE_SECRET={{ devise_secret }}
+  args:
+    chdir: /opt/apps/{{ app_name }}/{{ app_name }}-{{ app_version }}
+  become_user: "{{ app_user }}"
+  environment:
+    DISABLE_DATABASE_ENVIRONMENT_CHECK: 1
+
+- name: link new version
+  file:
+    force: yes
+    state: link
+    src: /opt/apps/api-particulier-courtier-back/signup.api.gouv.fr-back-{{ app_version }}
+    path: /opt/apps/{{ app_name }}/{{ app_name }}
+    owner: "{{ app_user }}"
+
+- name: restart service
+  service:
+    name: "{{ app_name }}"
+    enabled: yes
+    state: restarted

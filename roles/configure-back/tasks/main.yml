@@ -1,0 +1,61 @@
+- include: install-ruby.yml
+
+- name: install postgresql
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - postgresql
+    - python-psycopg2
+
+- name: create back db
+  postgresql_db:
+    name: "{{ back_pg_db }}"
+  become_user: postgres
+
+- name: create back user
+  postgresql_user:
+    name: "{{ back_pg_user }}"
+    password: "{{ back_pg_password }}"
+    role_attr_flags: SUPERUSER
+  become_user: postgres
+
+- name: ensure app_user group exists
+  group:
+    name: "{{ app_user }}"
+    state: present
+
+- name: ensure app_user user exists
+  user:
+    name: "{{ app_user }}"
+    group: "{{ app_user }}"
+    state: present
+
+- name: copy configuration file for back
+  template:
+    src: back.conf.j2
+    dest: /etc/api-particulier-courtier-back.conf
+
+- name: copy systemd file for back
+  template:
+    src: back.service.j2
+    dest: /etc/systemd/system/api-particulier-courtier-back.service
+
+- name: restart services
+  service:
+    name: api-particulier-courtier-back
+    state: restarted
+
+- name: enable services
+  shell: |
+    systemctl enable api-particulier-courtier-back.service
+
+- name: configure nginx
+  template:
+    src: courtier.particulier.api.gouv.fr.conf.j2
+    dest: /etc/nginx/sites-enabled/courtier.particulier.api.gouv.fr
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted

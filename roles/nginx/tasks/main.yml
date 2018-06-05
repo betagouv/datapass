@@ -4,7 +4,13 @@
 
 - name: Template nginx conf
   template: src=default.conf.j2 dest={{ nginx_path }}/nginx.conf
-  notify:
-  - check nginx conf
-  - restart nginx
   tags: nginx
+
+- name: Template https-redirect conf
+  template: src=https-redirect.conf.j2 dest={{ nginx_path }}/sites-enabled/default
+  tags: nginx
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted

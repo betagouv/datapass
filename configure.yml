@@ -1,6 +1,5 @@
-- hosts: apps
+- hosts: courtier
   become: true
   roles:
-    - nginx
     - ssl
-    - configure
+    - configure-oauth
