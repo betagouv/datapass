@@ -1,3 +1,6 @@
-front_port: 4200
 back_port: 3000
-oauth_port: 3001
+secret_key_base: 3eb2f607525cea7c70d1ee1dab712a88a1f80896cb493f5a7e44948aab334e5542d1a2b31dd93f41370915acb949a6b68f0c49c3aeff5ef49982aadfb5afff19
+
+back_pg_user: back
+back_pg_password: back
+back_pg_db: signup-back

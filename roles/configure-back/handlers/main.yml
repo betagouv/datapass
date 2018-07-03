@@ -1,0 +1,10 @@
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: restart service
+  service:
+    name: signup.api.gouv.fr-back
+    state: restarted
+

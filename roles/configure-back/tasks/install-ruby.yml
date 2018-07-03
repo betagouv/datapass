@@ -15,5 +15,6 @@
     - libsqlite3-dev
     - libpq-dev
 - name: Install bundler
-  shell: >
-    gem install bundler
+  gem:
+    name: bundler
+    state: present
