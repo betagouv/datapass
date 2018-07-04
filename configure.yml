@@ -1,5 +1,9 @@
-- hosts: courtier
+- hosts: oauth
   become: true
   roles:
-    - ssl
     - configure-oauth
+
+- hosts: back
+  become: true
+  roles:
+    - configure-back

@@ -4,4 +4,3 @@
   notify: restart nginx
   args:
     creates: "{{nginx_path}}/ssl/{{ssl_certificate_host}}.crt"
-

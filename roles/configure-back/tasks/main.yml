@@ -60,11 +60,12 @@
 - name: enable services
   systemd:
     name: signup.api.gouv.fr-back
+    daemon_reload: yes
     enabled: true
     state: started
 
 - name: configure nginx
   template:
-    src: courtier.particulier.api.gouv.fr.conf.j2
-    dest: /etc/nginx/sites-enabled/courtier.particulier.api.gouv.fr
+    src: back.signup.api.gouv.fr.conf.j2
+    dest: /etc/nginx/sites-enabled/back.signup.api.gouv.fr
   notify: restart nginx

@@ -61,6 +61,7 @@
   systemd:
     name: signup.api.gouv.fr-oauth
     enabled: true
+    daemon_reload: yes
     state: started
 
 - name: configure nginx

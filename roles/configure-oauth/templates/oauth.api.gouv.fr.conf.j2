@@ -1,9 +1,9 @@
 server {
   listen   443 ;
-  server_name     {{ oauth_ssl_certificate_host }};
+  server_name     {{ oauth_host }};
   ssl on;
-  ssl_certificate {{ api_particulier_oauth_cert_path }};
-  ssl_certificate_key {{ api_particulier_oauth_key_path }};
+  ssl_certificate {{ oauth_cert_path }};
+  ssl_certificate_key {{ oauth_key_path }};
   ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
   add_header Strict-Transport-Security "max-age=15552000" always;
 
