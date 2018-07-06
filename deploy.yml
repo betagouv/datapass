@@ -1,0 +1,15 @@
+- hosts: back
+  become: true
+  tasks:
+    - name: deploy back
+      script: ./scripts/deploy.sh signup.api.gouv.fr-back
+      tags:
+        - back
+
+- hosts: oauth
+  become: true
+  tasks:
+    - name: deploy oauth
+      script: ./scripts/deploy.sh signup.api.gouv.fr-oauth
+      tags:
+        - oauth

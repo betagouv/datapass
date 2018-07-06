@@ -1,7 +1,0 @@
----
-
-- hosts: apps
-  become: true
-  roles:
-    - node-deploy
-
