@@ -4,3 +4,4 @@ dependencies:
   - role: ssl
     vars:
       ssl_certificate_host: "{{ oauth_host }}"
+  - role: nginx

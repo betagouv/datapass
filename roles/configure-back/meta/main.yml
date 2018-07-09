@@ -4,3 +4,4 @@ dependencies:
   - role: ssl
     vars:
       ssl_certificate_host: "{{ back_host }}"
+  - role: nginx

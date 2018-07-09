@@ -8,8 +8,9 @@ Type=simple
 User={{ app_user }}
 Group={{ app_user }}
 
+WorkingDirectory=/opt/apps/signup.api.gouv.fr-oauth/current
 EnvironmentFile=/etc/signup.api.gouv.fr-oauth.conf
-ExecStart=/opt/apps/signup.api.gouv.fr-oauth/current/bin/www
+ExecStart=/usr/local/bin/bundle exec puma -C ./config/puma.rb
 
 Restart=on-failure
 TimeoutStopSec=30

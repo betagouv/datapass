@@ -5,6 +5,11 @@
       script: ./scripts/deploy.sh signup.api.gouv.fr-back
       tags:
         - back
+      become_user: "{{ app_user }}"
+    - name: restart service
+      service:
+        name: signup.api.gouv.fr-back
+        state: restarted
 
 - hosts: oauth
   become: true
@@ -13,3 +18,8 @@
       script: ./scripts/deploy.sh signup.api.gouv.fr-oauth
       tags:
         - oauth
+      become_user: "{{ app_user }}"
+    - name: restart service
+      service:
+        name: signup.api.gouv.fr-back
+        state: restarted
