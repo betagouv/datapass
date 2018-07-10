@@ -1,25 +1,26 @@
 - hosts: back
-  become: true
+  vars:
+    ansible_user: "{{ app_user }}"
   tasks:
     - name: deploy back
-      script: ./scripts/deploy.sh signup.api.gouv.fr-back
+      script: ./scripts/deploy.sh signup-back
       tags:
         - back
-      become_user: "{{ app_user }}"
-    - name: restart service
-      service:
-        name: signup.api.gouv.fr-back
-        state: restarted
 
 - hosts: oauth
-  become: true
+  vars:
+    ansible_user: "{{ app_user }}"
   tasks:
     - name: deploy oauth
-      script: ./scripts/deploy.sh signup.api.gouv.fr-oauth
+      script: ./scripts/deploy.sh signup-oauth
       tags:
         - oauth
-      become_user: "{{ app_user }}"
-    - name: restart service
-      service:
-        name: signup.api.gouv.fr-oauth
-        state: restarted
+
+- hosts: front
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
+    - name: deploy front
+      script: ./scripts/deploy.sh signup-front
+      tags:
+        - front

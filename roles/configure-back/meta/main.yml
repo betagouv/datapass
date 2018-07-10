@@ -1,7 +1,0 @@
-dependencies:
-  - role: ansible-role-nodejs
-    nodejs_version: 8.x
-  - role: ssl
-    vars:
-      ssl_certificate_host: "{{ back_host }}"
-  - role: nginx

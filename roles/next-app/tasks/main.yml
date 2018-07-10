@@ -1,0 +1,47 @@
+---
+- name: install yarn # TODO move yarn installation to somewhere else
+  npm:
+    name: yarn
+    global: yes
+    state: present
+
+- name: create app directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+  with_items:
+    - /opt/apps
+    - "/opt/apps/{{app_service_name}}"
+
+- name: copy configuration file
+  template:
+    src: service.conf.j2
+    dest: "/etc/{{app_service_name}}.conf"
+  notify: "restart service {{app_service_name}}"
+
+- name: copy systemd file
+  template:
+    src: app.service.j2
+    dest: "/etc/systemd/system/{{app_service_name}}.service"
+  notify: "restart service {{app_service_name}}"
+
+- name: enable services
+  systemd:
+    name: "{{app_service_name}}"
+    daemon_reload: yes
+    enabled: true
+
+- lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: "{{app_user}} ALL=NOPASSWD: /bin/systemctl restart {{app_service_name}}"
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: configure nginx
+  template:
+    src: server.conf.j2
+    dest: "/etc/nginx/sites-enabled/{{app_service_name}}"
+  notify: restart nginx
+

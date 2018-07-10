@@ -1,2 +1,6 @@
+.vagrant
+ansible_modules
+
+.idea
 *.retry
 *.swp

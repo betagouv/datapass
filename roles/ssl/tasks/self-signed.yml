@@ -1,6 +1,6 @@
 ---
-- name: Generate self-signed certificates for {{ ssl_certificate_host }}
-  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ ssl_certificate_host }}" -days 3650 -keyout {{nginx_path}}/ssl/{{ssl_certificate_host}}.key -out {{nginx_path}}/ssl/{{ssl_certificate_host}}.crt -extensions v3_ca
+- name: Generate self-signed certificates for {{ server_name }}
+  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ server_name }}" -days 3650 -keyout {{nginx_path}}/ssl/{{server_name}}.key -out {{nginx_path}}/ssl/{{server_name}}.crt -extensions v3_ca
   notify: restart nginx
   args:
-    creates: "{{nginx_path}}/ssl/{{ssl_certificate_host}}.crt"
+    creates: "{{nginx_path}}/ssl/{{server_name}}.crt"

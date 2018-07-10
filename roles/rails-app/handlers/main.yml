@@ -1,0 +1,15 @@
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+# TODO dynamically generate these handlers
+- name: "restart service signup-back"
+  service:
+    name: signup-back
+    state: restarted
+
+- name: "restart service signup-oauth"
+  service:
+    name: signup-oauth
+    state: restarted
