@@ -7,36 +7,25 @@
     - nginx
     - role: ansible-role-nodejs
       nodejs_version: 8.x
-    - role: zzet.rbenv
-      rbenv:
-        env: user
-        version: v1.1.1
-        default_ruby: 2.4.2
-        rubies:
-          - version: 2.4.2
-      rbenv_owner: "{{ app_user }}"
-      rbenv_group: "{{ app_user }}"
-      rbenv_users:
-        - "{{ app_user }}"
-      rbenv_extra_depends:
-        - libpq-dev
-        - libmagick++-dev
+    - ruby
 
 - hosts: back
   become: true
   roles:
     - ssl
-    - rails-app
+    - role: rails-app
+      tags: back
 
 - hosts: oauth
   become: true
   roles:
     - ssl
-    - rails-app
+    - role: rails-app
+      tags: oauth
 
 - hosts: front
   become: true
   roles:
     - ssl
-    - next-app
-
+    - role: next-app
+      tags: front

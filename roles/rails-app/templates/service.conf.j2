@@ -1,16 +1,35 @@
 RAILS_ENV=production
-SECRET_KEY_BASE={{ secret_key_base }}
+SERVER_NAME={{ inventory_hostname }}
 PORT={{ app_port }}
+
+FRONT_HOST={{ front_host }}
+BACK_HOST={{ back_host }}
+OAUTH_REDIRECT_URI={{ oauth_redirect_uri }}
+OAUTH_HOST={{ oauth_host }}
+
+DEVISE_SECRET={{ devise_secret }}
+SECRET_KEY_BASE={{ secret_key_base }}
+
 PG_USER={{ pg_user }}
 PG_PASSWORD={{ pg_password }}
 PG_DATABASE={{ pg_database }}
-DEVISE_SECRET={{ devise_secret }}
+
+{% if france_connect_host is defined %}
+FRANCE_CONNECT_HOST={{ france_connect_host }}
+{% endif %}
+{% if france_connect_client_id is defined %}
 FRANCE_CONNECT_CLIENT_ID={{ france_connect_client_id }}
 FRANCE_CONNECT_CLIENT_SECRET={{ france_connect_client_secret }}
+{% endif %}
+
 RESOURCE_PROVIDER_CLIENT_ID={{ resource_provider_client_id }}
 RESOURCE_PROVIDER_CLIENT_SECRET={{ resource_provider_client_secret }}
+
+{% if mailjet_api_key is defined %}
 MAILJET_API_KEY={{ mailjet_api_key }}
 MAILJET_SECRET_KEY={{ mailjet_secret_key }}
+{% endif %}
+
 {% if admin_login is defined %}
 ADMIN_LOGIN={{ admin_login }}
 ADMIN_PASSWORD={{ admin_password }}

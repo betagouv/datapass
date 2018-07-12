@@ -40,17 +40,17 @@ if [ -e Gemfile ]; then
     eval "$(rbenv init -)"
     bundler install
     eval "$(rbenv init -)" # needed at first install to put rails binary in ~/.rbenv/shims
-    RAILS_ENV=production rails db:migrate
+    rails db:migrate
+    rails db:seed
 fi
 
-# TODO
+# TODO precompile in production environment (do not config.assets.compile = true in production)
 #if [ -d app/assets ]; then
 #   echo 'Precompile assets'
 #   export $(cat ${CONFIG_PATH} | xargs) && rails assets:precompile
 #fi
 
 if [ -e package.json ]; then
-    # unsafe-perm: see https://github.com/nodejs/node-gyp/issues/454#issuecomment-58792114
     npm i
     npm run build
 fi
