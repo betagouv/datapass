@@ -99,9 +99,10 @@ Then grant the user by modifying the user in the database:
 
 ```postgres-sql
 select * from account_types;
-update users set account_type_id = <id of the wanted account_type> where email='email.of.the.admin@email.com';
+update users set account_type_id = 4 where email='raphael.dubigny@beta.gouv.fr';
 ```
 
+The user must then logout and login again.
 
 ## Generate Secret Key Base
 
