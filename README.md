@@ -14,14 +14,14 @@ Dépôt ansible pour déployer SignUp, l'application d'enrollement à API Partic
 
 ### Dependencies setup
 
-See https://gitlab.incubateur.net/pkn/api-particulier-ansible#dependencies-setup
+See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#dependencies-setup
 
 ### Signup local provisioning
 
 Clone the repo:
 
 ```bash
-git clone --recursive git@gitlab.incubateur.net:pkn/signup-ansible.git
+git clone --recursive git@gitlab.incubateur.net:beta.gouv.fr/signup-ansible.git
 ```
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
@@ -72,17 +72,36 @@ Go to https://signup-development.api.gouv.fr/ . Sign in as particulier@domain.us
 
 ## Deploy to staging
 
-## Provisioning
+### Provisioning
+
+See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure-staging-instance
+
+### Deployment
+
+See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#deploy-staging-instance
+
+### Create admin user
+
+Connect to the staging server:
 
 ```bash
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/staging/hosts configure.yml
+ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr
 ```
 
-## Deployment
+Connect to the database:
 
 ```bash
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/staging/hosts deploy.yml
+sudo su - postgres
+psql signup-oauth
 ```
+
+Then grant the user by modifying the user in the database:
+
+```postgres-sql
+select * from account_types;
+update users set account_type_id = <id of the wanted account_type> where email='email.of.the.admin@email.com';
+```
+
 
 ## Generate Secret Key Base
 

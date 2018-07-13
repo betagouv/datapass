@@ -1,10 +1,4 @@
 ---
 allow_duplicates: yes
 dependencies:
-  - when: "ssl_strategy == 'certbot'"
-    role: ansible-letsencrypt
-    letsencrypt_email: contact@particulier.api.gouv.fr
-    letsencrypt_cert_domains:
-      - "{{ server_name }}"
-    letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
   - nginx
