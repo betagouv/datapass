@@ -80,15 +80,28 @@ See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure
 
 See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#deploy-staging-instance
 
-```bash
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/staging/hosts configure.yml
-```
+### Create admin user
 
-## Deployment
+Connect to the staging server:
 
 ```bash
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/staging/hosts deploy.yml
+ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr
 ```
+
+Connect to the database:
+
+```bash
+sudo su - postgres
+psql signup-oauth
+```
+
+Then grant the user by modifying the user in the database:
+
+```postgres-sql
+select * from account_types;
+update users set account_type_id = <id of the wanted account_type> where email='email.of.the.admin@email.com';
+```
+
 
 ## Generate Secret Key Base
 
