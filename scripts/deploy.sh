@@ -4,33 +4,36 @@ set -e
 set -x
 
 {
+logPrefix(){
+  echo "$(date --iso-8601=seconds) - $APP_NAME -"
+}
+
 if [ -z $1 ]; then
-    echo "$(date --iso-8601=seconds) - Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh api-particulier"
+    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh api-particulier"
     exit 1
 fi
 
 APP_NAME=$1
 APP_VERSION=master
-# TODO mutualise prefix generation + mutualise deployment script with api-particulier
-echo "$(date --iso-8601=seconds) - $APP_NAME - Deploying $APP_NAME..."
+echo "$(logPrefix) Deploying $APP_NAME..."
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Preparing installation..."
+echo "$(logPrefix) Preparing installation..."
 ROOT_PATH=/opt/apps
 APP_PATH=${ROOT_PATH}/${APP_NAME}
 TIMESTAMP=$(date +'%Y%m%d%H%M%S')
 RELEASES_PATH=${APP_PATH}/releases/${TIMESTAMP}
 mkdir -p ${APP_PATH}/releases
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Fetching archive..."
+echo "$(logPrefix) Fetching archive..."
 cd ${APP_PATH}
 curl -f -L https://github.com/betagouv/${APP_NAME}/archive/${APP_VERSION}.tar.gz --output ${APP_NAME}-${APP_VERSION}.tar.gz
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Unpacking..."
+echo "$(logPrefix) Unpacking..."
 tar -xzf ${APP_NAME}-${APP_VERSION}.tar.gz
 mv ${APP_NAME}-${APP_VERSION}/ ${RELEASES_PATH}
 rm ${APP_NAME}-${APP_VERSION}.tar.gz
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Installing..."
+echo "$(logPrefix) Installing..."
 cd ${RELEASES_PATH}
 export $(cat /etc/${APP_NAME}.conf | xargs)
 
@@ -55,20 +58,20 @@ if [ -e package.json ]; then
     npm run build
 fi
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Linking new deployment..."
+echo "$(logPrefix) Linking new deployment..."
 if [ -h ${APP_PATH}/current ]; then
     rm ${APP_PATH}/current
 fi
 ln -s ${RELEASES_PATH} ${APP_PATH}/current
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Restarting service..."
+echo "$(logPrefix) Restarting service..."
 sudo /bin/systemctl restart ${APP_NAME}
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Removing old releases..."
+echo "$(logPrefix) Removing old releases..."
 cd ${APP_PATH}/releases
 ls -t . | tail -n +6 | xargs rm -rf
 
-echo "$(date --iso-8601=seconds) - $APP_NAME - Deployment of $APP_NAME successfully completed!"
+echo "$(logPrefix) Deployment of $APP_NAME successfully completed!"
 
 exit 0
 } > /opt/apps/apps-deployment.log
