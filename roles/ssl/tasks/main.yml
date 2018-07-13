@@ -19,3 +19,12 @@
 
 - include: self-signed.yml
   when: ssl_strategy == 'self-signed'
+
+- include_role:
+    name: ansible-letsencrypt
+  vars:
+    letsencrypt_email: contact@particulier.api.gouv.fr
+    letsencrypt_cert_domains:
+      - "{{ server_name }}"
+    letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
+  when: ssl_strategy == 'certbot'

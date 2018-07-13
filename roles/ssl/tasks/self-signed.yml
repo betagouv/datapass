@@ -1,6 +1,12 @@
 ---
+- name: Ensure webroot exists
+  file:
+    path: "/etc/letsencrypt/live/{{ server_name }}"
+    state: directory
+
 - name: Generate self-signed certificates for {{ server_name }}
-  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ server_name }}" -days 3650 -keyout {{nginx_path}}/ssl/{{server_name}}.key -out {{nginx_path}}/ssl/{{server_name}}.crt -extensions v3_ca
-  notify: restart nginx
+  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ server_name }}" -days 3650 -keyout /etc/letsencrypt/live/{{ server_name }}/privkey.pem -out /etc/letsencrypt/live/{{ server_name }}/fullchain.pem -extensions v3_ca
   args:
-    creates: "{{nginx_path}}/ssl/{{server_name}}.crt"
+    creates: "/etc/letsencrypt/live/{{ server_name }}/fullchain.pem"
+  notify:
+    - restart nginx
