@@ -1,7 +1,0 @@
-- hosts: courtier
-  become: true
-  roles:
-    - rails-deploy
-  vars:
-    app_name: api-particulier-courtier-oauth
-    app_version: signup

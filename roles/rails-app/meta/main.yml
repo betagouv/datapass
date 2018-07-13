@@ -1,0 +1,5 @@
+---
+dependencies:
+  - app-user
+  - nginx
+  - ruby

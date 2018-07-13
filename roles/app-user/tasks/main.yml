@@ -1,0 +1,11 @@
+---
+- name: ensure app_user group exists
+  group:
+    name: "{{ app_user }}"
+    state: present
+
+- name: ensure app_user user exists
+  user:
+    name: "{{ app_user }}"
+    group: "{{ app_user }}"
+    state: present

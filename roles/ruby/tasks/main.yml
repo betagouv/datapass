@@ -1,0 +1,17 @@
+- name: Install ruby with rbenv
+  include_role:
+    name: zzet.rbenv
+  vars:
+    rbenv:
+      env: user
+      version: v1.1.1
+      default_ruby: 2.4.2
+      rubies:
+        - version: 2.4.2
+    rbenv_owner: "{{ app_user }}"
+    rbenv_group: "{{ app_user }}"
+    rbenv_users:
+      - "{{ app_user }}"
+    rbenv_extra_depends:
+      - libpq-dev
+      - libmagick++-dev

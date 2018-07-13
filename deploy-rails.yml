@@ -1,7 +1,0 @@
-- hosts: oauth
-  become: true
-  roles:
-    - rails-deploy
-  vars:
-    app_name: api-particulier-courtier-oauth
-    app_version: master

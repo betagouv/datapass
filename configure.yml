@@ -1,5 +1,31 @@
-- hosts: courtier
+- hosts: apps
+  become: true
+  roles:
+    - app-user
+    - role: team-ssh-keys
+      tags: team-ssh-keys
+    - nginx
+    - role: ansible-role-nodejs
+      nodejs_version: 8.x
+    - ruby
+
+- hosts: back
   become: true
   roles:
     - ssl
-    - configure-oauth
+    - role: rails-app
+      tags: back
+
+- hosts: oauth
+  become: true
+  roles:
+    - ssl
+    - role: rails-app
+      tags: oauth
+
+- hosts: front
+  become: true
+  roles:
+    - ssl
+    - role: next-app
+      tags: front

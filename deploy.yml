@@ -1,0 +1,26 @@
+- hosts: back
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
+    - name: deploy back
+      script: ./scripts/deploy.sh signup-back
+      tags:
+        - back
+
+- hosts: oauth
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
+    - name: deploy oauth
+      script: ./scripts/deploy.sh signup-oauth
+      tags:
+        - oauth
+
+- hosts: front
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
+    - name: deploy front
+      script: ./scripts/deploy.sh signup-front
+      tags:
+        - front
