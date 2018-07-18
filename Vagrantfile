@@ -5,10 +5,15 @@ vms = {
   :signup =>
   {
     :ip => '192.168.56.125',
-    :alternate_ips => [],
     :memory => '1024',
     :autostart => true,
     :name => 'signup-development',
+    :synced_folders =>
+      [
+        {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},
+        {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"},
+        {:host => "./signup-oauth", :guest => "/opt/apps/signup-oauth/current"}
+      ]
   }
 }
 
@@ -21,6 +26,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision 'shell', inline: <<-SHELL
     sudo mkdir -p /home/vagrant/.ssh -m 700
     sudo echo '#{ssh_pubkey}' >> /home/vagrant/.ssh/authorized_keys
+  SHELL
+
+  # see https://github.com/hashicorp/vagrant/issues/9222
+  config.vm.provision 'shell', run: 'always', inline: <<-SHELL
+    sudo sed -i '/^auto enp0s3/c\#auto enp0s3/' /etc/network/interfaces
+    sudo sed -i '/^iface enp0s3 inet dhcp/c\#iface enp0s3 inet dhcp/' /etc/network/interfaces
+    sudo sed -i '/^pre-up sleep 2/c\#pre-up sleep 2/' /etc/network/interfaces
   SHELL
 
   config.ssh.insert_key = false
@@ -39,6 +51,10 @@ Vagrant.configure("2") do |config|
       configvm.vm.provider 'virtualbox' do |vb|
         vb.memory = vm[:memory] || '512'
         vb.name = vm[:name]
+      end
+
+      vm[:synced_folders].each do |folders|
+        configvm.vm.synced_folder folders[:host], folders[:guest], type: "nfs", create: true
       end
     end
   end

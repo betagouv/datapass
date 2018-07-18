@@ -22,6 +22,9 @@ Clone the repo:
 
 ```bash
 git clone --recursive git@gitlab.incubateur.net:beta.gouv.fr/signup-ansible.git
+cd signup-ansible/
+git submodule foreach git fetch
+git submodule foreach git pull origin master
 ```
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
@@ -43,32 +46,78 @@ Then run:
 ansible-galaxy install -r requirements.yml
 vagrant up
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts configure.yml
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts deploy.yml
 ```
 
-You can now add fixtures data in your apps:
+### Development deployment
+
+Deploy the application manually:
 
 ```bash
 vagrant ssh
 sudo su - signup
-export $(cat /etc/signup-oauth.conf | xargs)
-cd /opt/apps/signup-oauth/current
-rails db:fixtures:load
-export $(cat /etc/signup-back.conf | xargs)
+
 cd /opt/apps/signup-back/current
+export $(cat /etc/signup-back.conf | xargs)
+bundler install
+eval "$(rbenv init -)"
+rails db:migrate
+rails db:seed
 rails db:fixtures:load
+sudo systemctl restart signup-back
+
+cd /opt/apps/signup-oauth/current
+export $(cat /etc/signup-oauth.conf | xargs)
+bundler install
+rails db:migrate
+rails db:seed
+rails db:fixtures:load
+sudo systemctl restart signup-oauth
+
+cd /opt/apps/signup-front/current
+export $(cat /etc/signup-front.conf | xargs)
+npm i
+npm run build
+sudo systemctl restart signup-front
 ```
 
-For development environement, you will have to sync your project folder with the vagrant and deploy the application manually (coming soon).
+To enable reload on file change on signup-front:
+
+```bash
+vagrant ssh
+sudo systemctl stop signup-front
+sudo su - signup
+cd /opt/apps/signup-front/current
+export $(cat /etc/signup-front.conf | xargs)
+npm run dev -- -p 3002
+```
+
+To enable reload on file change on signup-back:
+
+```bash
+vagrant ssh
+sudo systemctl stop signup-back
+sudo su - signup
+cd /opt/apps/signup-back/current
+export $(cat /etc/signup-back.conf | xargs)
+RAILS_ENV=development rails s
+```
+
+### Production-like deployment
+
+For development purpose you may want to have a local iso-production application running. You can do it by running the deployment script instead of processing to a development deployment:
+
+```bash
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts deploy.yml
+```
 
 ### Test your installation
 
 In your browser, go to https://oauth.signup-development.api.gouv.fr/oauth/applications , enter the credentials (admin:admin).
-You should see the oauth2 dashboard with the registered *back-development* application.
+You should see the oauth2 dashboard with the registered *signup.api.gouv* application.
 
 Go to https://back.signup-development.api.gouv.fr/api/enrollments . You should see a error message: "Vous n'êtes pas autorisé à accéder à cette API".
 
-Go to https://signup-development.api.gouv.fr/ . Sign in as particulier@domain.user:password . You should see the enrollment list.
+Go to https://signup-development.api.gouv.fr/ . Sign in as particulier@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/signup-oauth/blob/6b3a8369933b8c9527ca8b4d60b4cc6bcc594fed/test/fixtures/users.yml)
 
 ## Deploy to staging
 
