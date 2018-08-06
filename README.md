@@ -103,6 +103,7 @@ RAILS_ENV=development rails s
 ```
 
 We use prettier on this project. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html .
+You might want to increase the file watcher in both the host and the guest: https://webpack.js.org/configuration/watch/#not-enough-watchers .
 
 ### Production-like deployment
 
