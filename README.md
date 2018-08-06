@@ -102,6 +102,8 @@ export $(cat /etc/signup-back.conf | xargs)
 RAILS_ENV=development rails s
 ```
 
+We use prettier on this project. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html .
+
 ### Production-like deployment
 
 For development purpose you may want to have a local iso-production application running. You can do it by running the deployment script instead of processing to a development deployment:
