@@ -27,5 +27,5 @@
   become: true
   roles:
     - ssl
-    - role: next-app
+    - role: node-app
       tags: front

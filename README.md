@@ -88,7 +88,7 @@ sudo systemctl stop signup-front
 sudo su - signup
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
-npm run dev -- -p 3002
+npm run dev
 ```
 
 To enable reload on file change on signup-back:
