@@ -14,18 +14,24 @@
   roles:
     - ssl
     - role: rails-app
-      tags: back
+      tags:
+        - back
+        - app-config
 
 - hosts: oauth
   become: true
   roles:
     - ssl
     - role: rails-app
-      tags: oauth
+      tags:
+        - oauth
+        - app-config
 
 - hosts: front
   become: true
   roles:
     - ssl
     - role: node-app
-      tags: front
+      tags:
+        - front
+        - app-config
