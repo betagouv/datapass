@@ -2,6 +2,8 @@
 
 Dépôt ansible pour déployer SignUp, l'application d'enrollement à API Particulier
 
+![Signup](screenshot-signup.jpg)
+
 ## Development dependencies
 
 - VirtualBox \^5.2.10
