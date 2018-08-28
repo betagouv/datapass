@@ -4,8 +4,8 @@ Dépôt ansible pour déployer SignUp, l'application d'enrollement à API Partic
 
 ## Development dependencies
 
-- VirtualBox ^5.2.10
-- Vagrant ^2.1.1
+- VirtualBox \^5.2.10
+- Vagrant \^2.1.1
 - NFS
 - Ansible 2.5.0
 - dnspython
