@@ -4,19 +4,19 @@ Dépôt ansible pour déployer SignUp, l'application d'enrollement à API Partic
 
 ![Signup](screenshot-signup.jpg)
 
-## Development dependencies
-
-- VirtualBox \^5.2.10
-- Vagrant \^2.1.1
-- NFS
-- Ansible 2.5.0
-- dnspython
 
 ## Install
 
 ### Dependencies setup
 
-See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#dependencies-setup
+- [VirtualBox \^5.2.10](https://www.virtualbox.org)
+- [Vagrant \^2.1.1](https://www.vagrantup.com)
+- NFS
+- [Ansible 2.5.0](https://www.ansible.com/) or `brew install ansible` (this may take a while)
+- dnspython
+
+For more information, see https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#dependencies-setup
+(if this goes to a `404`, ask a teammate to allow your profile on the project.)
 
 ### Signup local provisioning
 
@@ -31,7 +31,7 @@ git submodule foreach git pull origin master
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
 
-Ask a team mate for the password. Put it in `~/.ssh/ansible_vault`.
+Ask a teammate for the password. Put it in `submodule`.
 
 Add the following hosts in `/etc/hosts`:
 
@@ -42,22 +42,26 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.125 oauth.signup-development.api.gouv.fr
 ```
 
-Then run:
-
+Then install ansible dependencies: 
 ```bash
-ansible-galaxy install -r requirements.yml
-vagrant up
+ansible-galaxy install -r requirements.yml # install `ansible roles`: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
+```
+
+Then configure your virtual machine: 
+```bash
+vagrant up # This can take a while, go make a loaf of bread or something
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts configure.yml
 ```
 
 ### Development deployment
 
-Deploy the application manually:
+Deploy the application manually inside the virtual machine:
 
 ```bash
 vagrant ssh
 sudo su - signup
 
+# Installs the backend
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
 bundler install
@@ -67,6 +71,7 @@ rails db:seed
 rails db:fixtures:load
 sudo systemctl restart signup-back
 
+# Installs the Oauth server
 cd /opt/apps/signup-oauth/current
 export $(cat /etc/signup-oauth.conf | xargs)
 bundler install
@@ -75,14 +80,18 @@ rails db:seed
 rails db:fixtures:load
 sudo systemctl restart signup-oauth
 
+# Installs the front end
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
 npm i
 npm run build
 sudo systemctl restart signup-front
+
+exit
+exit
 ```
 
-To enable reload on file change on signup-front:
+If you want to enable reload on file change on signup-front:
 
 ```bash
 vagrant ssh
@@ -93,7 +102,7 @@ export $(cat /etc/signup-front.conf | xargs)
 npm run dev
 ```
 
-To enable reload on file change on signup-back:
+If you want to enable reload on file change on signup-back:
 
 ```bash
 vagrant ssh
@@ -104,8 +113,11 @@ export $(cat /etc/signup-back.conf | xargs)
 RAILS_ENV=development rails s
 ```
 
-We use prettier on this project. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html .
-You might want to increase the file watcher in both the host and the guest: https://webpack.js.org/configuration/watch/#not-enough-watchers .
+If you experience trouble reloading, you might want to increase the file watcher limit in both the host and the guest: https://webpack.js.org/configuration/watch/#not-enough-watchers .
+
+Finally, we use the [`prettier`](https://prettier.io) linter. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
+
+#### If you are using macOS, the /etc/hosts file will not be automatically added to the `virtual box`, you will need to add them by hand.
 
 ### Production-like deployment
 
@@ -117,12 +129,12 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/host
 
 ### Test your installation
 
-In your browser, go to https://oauth.signup-development.api.gouv.fr/oauth/applications , enter the credentials (admin:admin).
+In your browser, go to https://oauth.signup-development.api.gouv.fr/oauth/applications, enter the credentials (admin:admin).
 You should see the oauth2 dashboard with the registered *signup.api.gouv* application.
 
-Go to https://back.signup-development.api.gouv.fr/api/enrollments . You should see a error message: "Vous n'êtes pas autorisé à accéder à cette API".
+Go to https://back.signup-development.api.gouv.fr/api/enrollments. You should see a error message: "Vous n'êtes pas autorisé à accéder à cette API".
 
-Go to https://signup-development.api.gouv.fr/ . Sign in as particulier@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/signup-oauth/blob/6b3a8369933b8c9527ca8b4d60b4cc6bcc594fed/test/fixtures/users.yml)
+Go to https://signup-development.api.gouv.fr/. Sign in as particulier@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/signup-oauth/blob/6b3a8369933b8c9527ca8b4d60b4cc6bcc594fed/test/fixtures/users.yml)
 
 ## Deploy to staging
 
