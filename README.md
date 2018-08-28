@@ -31,7 +31,7 @@ git submodule foreach git pull origin master
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
 
-Ask a teammate for the password. Put it in `submodule`.
+Ask a teammate for the password. Put it in `~/.ssh/ansible_vault`.
 
 Add the following hosts in `/etc/hosts`:
 
@@ -43,6 +43,7 @@ Add the following hosts in `/etc/hosts`:
 ```
 
 Then install ansible dependencies: 
+
 ```bash
 ansible-galaxy install -r requirements.yml # install `ansible roles`: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
 ```
@@ -80,7 +81,7 @@ rails db:seed
 rails db:fixtures:load
 sudo systemctl restart signup-oauth
 
-# Installs the front end
+# Installs the frontend
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
 npm i
@@ -117,7 +118,7 @@ If you experience trouble reloading, you might want to increase the file watcher
 
 Finally, we use the [`prettier`](https://prettier.io) linter. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
-#### If you are using macOS, the /etc/hosts file will not be automatically added to the `virtual box`, you will need to add them by hand.
+#### If you are using macOS, the host's `/etc/hosts` configuration file may not take effect in the guest machine. You might need to also alter the guest machine's `/etc/hosts`.
 
 ### Production-like deployment
 
