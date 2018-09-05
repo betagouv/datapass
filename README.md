@@ -169,6 +169,12 @@ select * from account_types;
 update users set account_type_id = 4 where email='raphael.dubigny@beta.gouv.fr';
 ```
 
+Disconnect from this database, then update signup-back:
+```postgres-sql
+psql signup-back
+update users set provider = 'api_particulier' where email='raphael.dubigny@beta.gouv.fr';
+```
+
 The user must then logout and login again.
 
 ## Generate Secret Key Base
