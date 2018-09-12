@@ -181,3 +181,8 @@ The user must then logout and login again.
 ## Generate Secret Key Base
 
 See https://stackoverflow.com/a/34350507/2590861 .
+
+## Configue Matomo (ex Piwik)
+
+To follow the usage of the project, we use a Matomo instances hosted [here](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
+The production configuration can be found in `./inventories/production/group_vars/front.yml`
