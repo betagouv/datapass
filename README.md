@@ -27,6 +27,7 @@ git clone --recursive git@gitlab.incubateur.net:beta.gouv.fr/signup-ansible.git
 cd signup-ansible/
 git submodule foreach git fetch
 git submodule foreach git pull origin master
+git submodule foreach git checkout master
 ```
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
