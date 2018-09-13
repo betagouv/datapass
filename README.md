@@ -146,7 +146,29 @@ See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure
 
 ### Deployment
 
-See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#deploy-staging-instance
+#### Deploy staging instance
+
+Use the following command to deploy front, back & oauth:
+```bash
+ansible-playbook -i inventories/staging/hosts deploy.yml
+```
+
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, oauth):
+```bash
+ansible-playbook -i inventories/staging/hosts deploy.yml -t <app_name>
+```
+
+#### Deploy production instance
+
+Use the following command to deploy front, back &oauth:
+```bash
+ansible-playbook -i inventories/production/hosts deploy.yml
+```
+
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, oauth):
+```bash
+ansible-playbook -i inventories/production/hosts deploy.yml -t <app_name>
+```
 
 ### Create admin user
 
