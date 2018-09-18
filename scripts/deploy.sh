@@ -47,11 +47,10 @@ if [ -e Gemfile ]; then
     rails db:seed
 fi
 
-# TODO precompile in production environment (do not config.assets.compile = true in production)
-#if [ -d app/assets ]; then
-#   echo 'Precompile assets'
-#   export $(cat ${CONFIG_PATH} | xargs) && rails assets:precompile
-#fi
+if [ -d app/assets ]; then
+    echo "$(logPrefix) Precompiling assets..."
+    rails assets:precompile
+fi
 
 if [ -e package.json ]; then
     npm i
