@@ -1,0 +1,81 @@
+---
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+- name: add mongo official repository
+  apt_repository:
+    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse
+    state: present
+
+- name: Install mongodb-org packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - mongodb-org=4.0.4
+    - mongodb-org-server=4.0.4
+    - mongodb-org-shell=4.0.4
+    - mongodb-org-mongos=4.0.4
+    - mongodb-org-tools=4.0.4
+
+- name: enable mongod services
+  systemd:
+    name: mongod
+    enabled: true
+    state: started
+
+- name: install pip
+  apt:
+    name: python-pip
+
+- name: install pymongo
+  pip:
+    name: pymongo==3.7.2
+
+- name: add mongo admin user
+  mongodb_user:
+    database: admin
+    name: "{{mongo_admin_user}}"
+    password: "{{mongo_admin_password}}"
+    roles:
+      - db: admin
+        role: userAdminAnyDatabase
+      - readWriteAnyDatabase
+    state: present
+  register: command_result
+  # this task will fail after the first play: admin user is created then we enable authentication
+  ignore_errors: yes
+
+# enable authentication after creating first user
+- name: configure mongodb
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+  notify:
+  - restart mongod
+
+# the 3 following tasks are not idempotent
+- name: add mongo readwrite user
+  mongodb_user:
+    login_user: "{{mongo_admin_user}}"
+    login_password: "{{mongo_admin_password}}"
+    database: "{{mongo_database}}"
+    name: "{{mongo_readwrite_user}}"
+    password: "{{mongo_readwrite_password}}"
+    roles: readWrite
+    state: present
+
+- name: add mongo readonly user
+  mongodb_user:
+    login_user: "{{mongo_admin_user}}"
+    login_password: "{{mongo_admin_password}}"
+    database: "{{mongo_database}}"
+    name: "{{mongo_readonly_user}}"
+    password: "{{mongo_readonly_password}}"
+    roles: read
+    state: present
+
+# note that mongo will only create the index once even if we execute the createIndex function multiple times
+- name: add index in mongo
+  shell: "/usr/bin/mongo localhost:27017/{{mongo_database}} -u {{mongo_readwrite_user}} -p {{mongo_readwrite_password}} --eval 'db.{{mongo_database}}.createIndex({ provider: 1, client_id: 1 })'"

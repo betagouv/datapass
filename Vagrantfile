@@ -2,8 +2,7 @@
 # vi: set ft=ruby :
 
 vms = {
-  :signup =>
-  {
+  signup: {
     :ip => '192.168.56.125',
     :memory => '1024',
     :autostart => true,
@@ -13,6 +12,16 @@ vms = {
         {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},
         {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"},
         {:host => "./signup-oauth", :guest => "/opt/apps/signup-oauth/current"}
+      ]
+  },
+  'api-scopes': {
+    :ip => '192.168.56.126',
+    :memory => '512',
+    :autostart => true,
+    :name => 'scopes-development',
+    :synced_folders =>
+      [
+        {:host => "./api-scopes", :guest => "/opt/apps/api-scopes/current"}
       ]
   }
 }
