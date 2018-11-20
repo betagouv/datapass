@@ -66,13 +66,23 @@
     roles: readWrite
     state: present
 
-- name: add mongo readonly user
+- name: add mongo api-scopes user
   mongodb_user:
     login_user: "{{mongo_admin_user}}"
     login_password: "{{mongo_admin_password}}"
     database: "{{mongo_database}}"
-    name: "{{mongo_readonly_user}}"
-    password: "{{mongo_readonly_password}}"
+    name: "{{mongo_api_scopes_user}}"
+    password: "{{mongo_api_scopes_password}}"
+    roles: read
+    state: present
+
+- name: add mongo api-particulier user
+  mongodb_user:
+    login_user: "{{mongo_admin_user}}"
+    login_password: "{{mongo_admin_password}}"
+    database: "{{mongo_database}}"
+    name: "{{mongo_api_particulier_user}}"
+    password: "{{mongo_api_particulier_password}}"
     roles: read
     state: present
 

@@ -38,9 +38,9 @@ PIWIK_SITE_ID={{ piwik_site_id }}
 {% if mongo_database is defined %}
 MONGO_DATABASE={{ mongo_database }}
 {% endif %}
-{% if mongo_readonly_user is defined %}
-MONGO_READONLY_USER={{ mongo_readonly_user }}
+{% if mongo_api_scopes_user is defined %}
+MONGO_API_SCOPES_USER={{ mongo_api_scopes_user }}
 {% endif %}
-{% if mongo_readonly_password is defined %}
-MONGO_READONLY_PASSWORD={{ mongo_readonly_password }}
+{% if mongo_api_scopes_password is defined %}
+MONGO_API_SCOPES_PASSWORD={{ mongo_api_scopes_password }}
 {% endif %}
