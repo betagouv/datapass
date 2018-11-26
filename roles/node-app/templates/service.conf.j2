@@ -19,6 +19,9 @@ OAUTH_REDIRECT_URI={{ oauth_redirect_uri }}
 {% if back_host is defined %}
 BACK_HOST={{ back_host }}
 {% endif %}
+{% if api_particulier_host is defined %}
+API_PARTICULIER_HOST={{ api_particulier_host }}
+{% endif %}
 {% if france_connect_authorize_uri is defined %}
 FRANCE_CONNECT_AUTHORIZE_URI={{ france_connect_authorize_uri }}
 {% endif %}
@@ -35,12 +38,18 @@ PIWIK_URL={{ piwik_url }}
 PIWIK_SITE_ID={{ piwik_site_id }}
 {% endif %}
 
-{% if mongo_database is defined %}
-MONGO_DATABASE={{ mongo_database }}
+{% if api_scopes_domain_name is defined %}
+API_SCOPES_DOMAIN_NAME={{ api_scopes_domain_name }}
 {% endif %}
-{% if mongo_api_scopes_user is defined %}
-MONGO_API_SCOPES_USER={{ mongo_api_scopes_user }}
+{% if api_scopes_database_name is defined %}
+API_SCOPES_DATABASE_NAME={{ api_scopes_database_name }}
 {% endif %}
-{% if mongo_api_scopes_password is defined %}
-MONGO_API_SCOPES_PASSWORD={{ mongo_api_scopes_password }}
+{% if api_scopes_database_port is defined %}
+API_SCOPES_DATABASE_PORT={{ api_scopes_database_port }}
+{% endif %}
+{% if api_scopes_api_scopes_user is defined %}
+API_SCOPES_API_SCOPES_USER={{ api_scopes_api_scopes_user }}
+{% endif %}
+{% if api_scopes_api_scopes_password is defined %}
+API_SCOPES_API_SCOPES_PASSWORD={{ api_scopes_api_scopes_password }}
 {% endif %}

@@ -34,3 +34,19 @@ MAILJET_SECRET_KEY={{ mailjet_secret_key }}
 ADMIN_LOGIN={{ admin_login }}
 ADMIN_PASSWORD={{ admin_password }}
 {% endif %}
+
+{% if api_scopes_domain_name is defined %}
+API_SCOPES_DOMAIN_NAME={{ api_scopes_domain_name }}
+{% endif %}
+{% if api_scopes_database_name is defined %}
+API_SCOPES_DATABASE_NAME={{ api_scopes_database_name }}
+{% endif %}
+{% if api_scopes_database_port is defined %}
+API_SCOPES_DATABASE_PORT={{ api_scopes_database_port }}
+{% endif %}
+{% if api_scopes_readwrite_user is defined %}
+API_SCOPES_READWRITE_USER={{ api_scopes_readwrite_user }}
+{% endif %}
+{% if api_scopes_readwrite_password is defined %}
+API_SCOPES_READWRITE_PASSWORD={{ api_scopes_readwrite_password }}
+{% endif %}
