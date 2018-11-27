@@ -25,6 +25,14 @@ FRANCE_CONNECT_CLIENT_SECRET={{ france_connect_client_secret }}
 RESOURCE_PROVIDER_CLIENT_ID={{ resource_provider_client_id }}
 RESOURCE_PROVIDER_CLIENT_SECRET={{ resource_provider_client_secret }}
 
+{% if api_particulier_host is defined %}
+API_PARTICULIER_HOST={{ api_particulier_host }}
+{% endif %}
+{% if api_particulier_api_key is defined %}
+API_PARTICULIER_API_KEY={{ api_particulier_api_key }}
+{% endif %}
+
+
 {% if mailjet_api_key is defined %}
 MAILJET_API_KEY={{ mailjet_api_key }}
 MAILJET_SECRET_KEY={{ mailjet_secret_key }}
