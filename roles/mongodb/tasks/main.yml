@@ -55,6 +55,9 @@
   notify:
   - restart mongod
 
+# restart mongo now so it can be accessed via hostname by the following tasks
+- meta: flush_handlers
+
 # the 3 following tasks are not idempotent
 - name: add mongo readwrite user
   mongodb_user:
