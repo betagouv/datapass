@@ -37,6 +37,9 @@ API_PARTICULIER_API_KEY={{ api_particulier_api_key }}
 MAILJET_API_KEY={{ mailjet_api_key }}
 MAILJET_SECRET_KEY={{ mailjet_secret_key }}
 {% endif %}
+{% if do_not_send_mail is defined %}
+DO_NOT_SEND_MAIL=True
+{% endif %}
 
 {% if admin_login is defined %}
 ADMIN_LOGIN={{ admin_login }}
