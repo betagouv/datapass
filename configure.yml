@@ -23,10 +23,10 @@
       server_name: "{{ back_domain_name }}"
       app_port: 3000
       pg_user: back
-      pg_password: back
+      pg_password: "{{ back_pg_password }}"
       pg_database: signup-back
-      devise_secret: 06ac0ccb5e1b76536486de079bd6adab7b1873ac2d3a841dad9bb5ab76e9653f1ffa728a22ef577457f77f2582ac8f75a2873d5ba18628a0ecfafc4002268b15
-      secret_key_base: 3eb2f607525cea7c70d1ee1dab712a88a1f80896cb493f5a7e44948aab334e5542d1a2b31dd93f41370915acb949a6b68f0c49c3aeff5ef49982aadfb5afff19
+      devise_secret: "{{ back_devise_secret }}"
+      secret_key_base: "{{ back_secret_key_base }}"
       tags:
       - back
       - app-config
@@ -35,12 +35,12 @@
       server_name: "{{ oauth_domain_name }}"
       app_port: 3001
       pg_user: oauth
-      pg_password: oauth
+      pg_password: "{{ oauth_pg_password }}"
       pg_database: signup-oauth
-      devise_secret: ce7765fb7649c36464583d3b07655f0593c8a23be63240e8c6dabfd0ee7a913540714d9f36fccd6114614c74ce12972b5a8781d87b1aadc8e71b9d72a575f621
-      secret_key_base: 7f728782e63b0f8d11210fc6d3f046ee32019a398105694f6c74df4976fa1ebac627b9fbed6e9ab24ba726a33649d4b2534f4b5c944e51a206b04902a39ece79
-      admin_login: admin
-      admin_password: admin
+      devise_secret: "{{ oauth_devise_secret }}"
+      secret_key_base: "{{ oauth_secret_key_base }}"
+      admin_login: "{{ oauth_admin_user }}"
+      admin_password: "{{ oauth_admin_password }}"
       tags:
       - oauth
       - app-config
