@@ -12,6 +12,12 @@ vms = {
         {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},
         {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"},
         {:host => "./signup-oauth", :guest => "/opt/apps/signup-oauth/current"}
+      ],
+    :services_to_start =>
+      [
+        "signup-front",
+        "signup-back",
+        "signup-oauth"
       ]
   },
   'api-scopes': {
@@ -22,6 +28,10 @@ vms = {
     :synced_folders =>
       [
         {:host => "./api-scopes", :guest => "/opt/apps/api-scopes/current"}
+      ],
+    :services_to_start =>
+      [
+        "api-scopes",
       ]
   }
 }
@@ -64,6 +74,18 @@ Vagrant.configure("2") do |config|
 
       vm[:synced_folders].each do |folders|
         configvm.vm.synced_folder folders[:host], folders[:guest], type: "nfs", create: true
+      end
+
+      # We need to start the services here as the first start failed because it
+      # was triggered before the shared folder are mounted
+      vm[:services_to_start].each do |service|
+        configvm.trigger.after :up do |trigger|
+          trigger.info = "Starting #{service}..."
+          trigger.run_remote = {inline: "sudo systemctl start #{service}"}
+          # this command will fail on first installation since the service is not configured yet
+          # we ignore error for smoother installation
+          trigger.on_error = :continue
+        end
       end
     end
   end
