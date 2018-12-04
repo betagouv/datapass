@@ -1,4 +1,4 @@
-- hosts: apps
+- hosts: signup,api-scopes
   become: true
   roles:
     - app-user
@@ -7,31 +7,61 @@
     - nginx
     - role: ansible-role-nodejs
       nodejs_version: 8.x
+
+- hosts: signup
+  become: true
+  roles:
     - ruby
-
-- hosts: back
-  become: true
-  roles:
-    - ssl
+    - role: ssl
+      server_name: "{{ oauth_domain_name }}"
+    - role: ssl
+      server_name: "{{ back_domain_name }}"
+    - role: ssl
+      server_name: "{{ front_domain_name }}"
     - role: rails-app
+      app_service_name: signup-back
+      server_name: "{{ back_domain_name }}"
+      app_port: 3000
+      pg_user: back
+      pg_password: "{{ back_pg_password }}"
+      pg_database: signup-back
+      devise_secret: "{{ back_devise_secret }}"
+      secret_key_base: "{{ back_secret_key_base }}"
       tags:
-        - back
-        - app-config
-
-- hosts: oauth
-  become: true
-  roles:
-    - ssl
+      - back
+      - app-config
     - role: rails-app
+      app_service_name: signup-oauth
+      server_name: "{{ oauth_domain_name }}"
+      app_port: 3001
+      pg_user: oauth
+      pg_password: "{{ oauth_pg_password }}"
+      pg_database: signup-oauth
+      devise_secret: "{{ oauth_devise_secret }}"
+      secret_key_base: "{{ oauth_secret_key_base }}"
+      admin_login: "{{ oauth_admin_user }}"
+      admin_password: "{{ oauth_admin_password }}"
       tags:
-        - oauth
-        - app-config
-
-- hosts: front
-  become: true
-  roles:
-    - ssl
+      - oauth
+      - app-config
     - role: node-app
+      app_service_name: signup-front
+      server_name: "{{ front_domain_name }}"
+      app_port: 3002
       tags:
-        - front
+      - front
+      - app-config
+
+- hosts: api-scopes
+  become: true
+  roles:
+    - role: ssl
+      server_name: "{{ api_scopes_domain_name }}"
+    - mongodb
+    - role: node-app
+      app_service_name: api-scopes
+      server_name: "{{ api_scopes_domain_name }}"
+      app_port: 3000
+      tags:
+        - api-scopes
         - app-config

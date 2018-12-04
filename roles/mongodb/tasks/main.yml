@@ -1,0 +1,94 @@
+---
+- name: Add an apt key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+- name: add mongo official repository
+  apt_repository:
+    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse
+    state: present
+
+- name: Install mongodb-org packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - mongodb-org=4.0.4
+    - mongodb-org-server=4.0.4
+    - mongodb-org-shell=4.0.4
+    - mongodb-org-mongos=4.0.4
+    - mongodb-org-tools=4.0.4
+
+- name: enable mongod services
+  systemd:
+    name: mongod
+    enabled: true
+    state: started
+
+- name: install pip
+  apt:
+    name: python-pip
+
+- name: install pymongo
+  pip:
+    name: pymongo==3.7.2
+
+- name: add mongo admin user
+  mongodb_user:
+    database: admin
+    name: "{{api_scopes_admin_user}}"
+    password: "{{api_scopes_admin_password}}"
+    roles:
+      - db: admin
+        role: userAdminAnyDatabase
+      - readWriteAnyDatabase
+    state: present
+  register: command_result
+  # this task will fail after the first play: admin user is created then we enable authentication
+  ignore_errors: yes
+
+# enable authentication after creating first user
+- name: configure mongodb
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+  notify:
+  - restart mongod
+
+# restart mongo now so it can be accessed via hostname by the following tasks
+- meta: flush_handlers
+
+# the 3 following tasks are not idempotent
+- name: add mongo readwrite user
+  mongodb_user:
+    login_user: "{{api_scopes_admin_user}}"
+    login_password: "{{api_scopes_admin_password}}"
+    database: "{{api_scopes_database_name}}"
+    name: "{{api_scopes_readwrite_user}}"
+    password: "{{api_scopes_readwrite_password}}"
+    roles: readWrite
+    state: present
+
+- name: add mongo api-scopes user
+  mongodb_user:
+    login_user: "{{api_scopes_admin_user}}"
+    login_password: "{{api_scopes_admin_password}}"
+    database: "{{api_scopes_database_name}}"
+    name: "{{api_scopes_api_scopes_user}}"
+    password: "{{api_scopes_api_scopes_password}}"
+    roles: read
+    state: present
+
+- name: add mongo api-particulier user
+  mongodb_user:
+    login_user: "{{api_scopes_admin_user}}"
+    login_password: "{{api_scopes_admin_password}}"
+    database: "{{api_scopes_database_name}}"
+    name: "{{api_scopes_api_particulier_user}}"
+    password: "{{api_scopes_api_particulier_password}}"
+    roles: read
+    state: present
+
+# note that mongo will only create the index once even if we execute the createIndex function multiple times
+- name: add index in mongo
+  shell: "/usr/bin/mongo {{api_scopes_domain_name}}:{{api_scopes_database_port}}/{{api_scopes_database_name}} -u {{api_scopes_readwrite_user}} -p {{api_scopes_readwrite_password}} --eval 'db.{{api_scopes_database_name}}.createIndex({ provider: 1, client_id: 1 })'"

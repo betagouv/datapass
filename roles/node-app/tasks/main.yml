@@ -14,6 +14,15 @@
   with_items:
     - /opt/apps
     - "/opt/apps/{{app_service_name}}"
+    - "/var/log/{{app_service_name}}"
+
+- name: Ensure log file exists
+  file:
+    path: "{{ access_log_path }}"
+    state: touch
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: 0644
 
 - name: copy configuration file
   template:
@@ -38,6 +47,11 @@
     state: present
     line: "{{app_user}} ALL=NOPASSWD: /bin/systemctl restart {{app_service_name}}"
     validate: '/usr/sbin/visudo -cf %s'
+
+- name: enable logrotate
+  template:
+    src: logrotate-conf.j2
+    dest: "/etc/logrotate.d/{{app_service_name}}"
 
 - name: configure nginx
   template:
