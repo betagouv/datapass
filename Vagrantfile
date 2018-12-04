@@ -81,10 +81,9 @@ Vagrant.configure("2") do |config|
       vm[:services_to_start].each do |service|
         configvm.trigger.after :up do |trigger|
           trigger.info = "Starting #{service}..."
-          trigger.run_remote = {inline: "sudo systemctl start #{service}"}
           # this command will fail on first installation since the service is not configured yet
           # we ignore error for smoother installation
-          trigger.on_error = :continue
+          trigger.run_remote = {inline: "sudo systemctl start #{service} || echo 'if it is your first installation ignore the error above'"}
         end
       end
     end
