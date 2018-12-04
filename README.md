@@ -155,7 +155,7 @@ RAILS_ENV=development rails s
 
 signup-oauth:
 ```bash
-vagrant ssh
+vagrant ssh signup
 sudo systemctl stop signup-oauth
 sudo su - signup
 cd /opt/apps/signup-oauth/current
