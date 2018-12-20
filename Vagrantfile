@@ -33,6 +33,20 @@ vms = {
       [
         "api-scopes",
       ]
+  },
+  'api-auth': {
+    :ip => '192.168.56.127',
+    :memory => '512',
+    :autostart => true,
+    :name => 'auth-development',
+    :synced_folders =>
+      [
+        {:host => "./api-auth", :guest => "/opt/apps/api-auth/current"}
+      ],
+    :services_to_start =>
+      [
+        "api-auth",
+      ]
   }
 }
 

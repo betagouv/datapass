@@ -1,0 +1,19 @@
+- name: install postgresql
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+  - postgresql
+  - python-psycopg2
+
+- name: create postgresql user
+  postgresql_user:
+    name: "{{ pg_user }}"
+    password: "{{ pg_password }}"
+  become_user: postgres
+
+- name: create db
+  postgresql_db:
+    name: "{{ pg_database }}"
+    owner: "{{ pg_user }}"
+  become_user: postgres

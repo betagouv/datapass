@@ -1,55 +1,6 @@
 NODE_ENV={{ node_env }}
 ACCESS_LOG_PATH={{ access_log_path }}
 
-{% if oauth_me_uri is defined %}
-OAUTH_ME_URI={{ oauth_me_uri }}
-{% endif %}
-{% if oauth_client_id is defined %}
-OAUTH_CLIENT_ID={{ oauth_client_id }}
-{% endif %}
-{% if oauth_host is defined %}
-OAUTH_HOST={{ oauth_host }}
-{% endif %}
-{% if oauth_authorize_uri is defined %}
-OAUTH_AUTHORIZE_URI={{ oauth_authorize_uri }}
-{% endif %}
-{% if oauth_redirect_uri is defined %}
-OAUTH_REDIRECT_URI={{ oauth_redirect_uri }}
-{% endif %}
-{% if back_host is defined %}
-BACK_HOST={{ back_host }}
-{% endif %}
-{% if api_particulier_host is defined %}
-API_PARTICULIER_HOST={{ api_particulier_host }}
-{% endif %}
-{% if france_connect_authorize_uri is defined %}
-FRANCE_CONNECT_AUTHORIZE_URI={{ france_connect_authorize_uri }}
-{% endif %}
-{% if france_connect_create_service_provider_uri is defined %}
-FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI={{ france_connect_create_service_provider_uri }}
-{% endif %}
-{% if france_connect_me_uri is defined %}
-FRANCE_CONNECT_ME_URI={{ france_connect_me_uri }}
-{% endif %}
-{% if piwik_url is defined %}
-PIWIK_URL={{ piwik_url }}
-{% endif %}
-{% if piwik_site_id is defined %}
-PIWIK_SITE_ID={{ piwik_site_id }}
-{% endif %}
-
-{% if api_scopes_domain_name is defined %}
-API_SCOPES_DOMAIN_NAME={{ api_scopes_domain_name }}
-{% endif %}
-{% if api_scopes_database_name is defined %}
-API_SCOPES_DATABASE_NAME={{ api_scopes_database_name }}
-{% endif %}
-{% if api_scopes_database_port is defined %}
-API_SCOPES_DATABASE_PORT={{ api_scopes_database_port }}
-{% endif %}
-{% if api_scopes_api_scopes_user is defined %}
-API_SCOPES_API_SCOPES_USER={{ api_scopes_api_scopes_user }}
-{% endif %}
-{% if api_scopes_api_scopes_password is defined %}
-API_SCOPES_API_SCOPES_PASSWORD={{ api_scopes_api_scopes_password }}
-{% endif %}
+{% for key,value in env_var.items() %}
+{{key}}={{value}}
+{% endfor %}

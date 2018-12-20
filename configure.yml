@@ -1,4 +1,4 @@
-- hosts: signup,api-scopes
+- hosts: signup,api-scopes,api-auth
   become: true
   roles:
     - app-user
@@ -18,6 +18,12 @@
       server_name: "{{ back_domain_name }}"
     - role: ssl
       server_name: "{{ front_domain_name }}"
+    - role: postgres
+      pg_user: back
+      pg_password: "{{ back_pg_password }}"
+      pg_database: signup-back
+      tags:
+      - back
     - role: rails-app
       app_service_name: signup-back
       server_name: "{{ back_domain_name }}"
@@ -30,6 +36,12 @@
       tags:
       - back
       - app-config
+    - role: postgres
+      pg_user: oauth
+      pg_password: "{{ oauth_pg_password }}"
+      pg_database: signup-oauth
+      tags:
+      - oauth
     - role: rails-app
       app_service_name: signup-oauth
       server_name: "{{ oauth_domain_name }}"
@@ -48,6 +60,17 @@
       app_service_name: signup-front
       server_name: "{{ front_domain_name }}"
       app_port: 3002
+      env_var:
+        OAUTH_AUTHORIZE_URI: "{{ oauth_authorize_uri }}"
+        OAUTH_ME_URI: "{{ oauth_me_uri }}"
+        OAUTH_HOST: "{{ oauth_host }}"
+        BACK_HOST: "{{ back_host }}"
+        API_PARTICULIER_HOST: "{{ api_particulier_host }}"
+        FRANCE_CONNECT_AUTHORIZE_URI: "{{ france_connect_authorize_uri }}"
+        FRANCE_CONNECT_ME_URI: "{{ france_connect_me_uri }}"
+        FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI: "{{ france_connect_create_service_provider_uri }}"
+        PIWIK_URL: "{{ piwik_url | default('') }}"
+        PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
       tags:
       - front
       - app-config
@@ -62,6 +85,43 @@
       app_service_name: api-scopes
       server_name: "{{ api_scopes_domain_name }}"
       app_port: 3000
+      env_var:
+        API_SCOPES_DOMAIN_NAME: "{{ api_scopes_domain_name }}"
+        API_SCOPES_DATABASE_NAME: "{{ api_scopes_database_name }}"
+        API_SCOPES_DATABASE_PORT: "{{ api_scopes_database_port }}"
+        API_SCOPES_API_SCOPES_USER: "{{ api_scopes_api_scopes_user }}"
+        API_SCOPES_API_SCOPES_PASSWORD: "{{ api_scopes_api_scopes_password }}"
       tags:
         - api-scopes
+        - app-config
+
+- hosts: api-auth
+  become: true
+  roles:
+    - role: ssl
+      server_name: "{{ api_auth_domain_name }}"
+    - role: postgres
+      pg_user: api-auth
+      pg_password: "{{ api_auth_pg_password }}"
+      pg_database: api-auth
+    - role: redis
+      tags: redis
+    - role: node-app
+      app_service_name: api-auth
+      server_name: "{{ api_auth_domain_name }}"
+      app_port: 3000
+      env_var:
+        PGUSER: api-auth
+        PGPASSWORD: "{{ api_auth_pg_password }}"
+        PGDATABASE: api-auth
+        PGPORT: 5432
+        DATABASE_URL: "postgres://api-auth:{{ api_auth_pg_password }}@127.0.0.1:5432/api-auth"
+        MAILJET_API_KEY: "{{ mailjet_api_key }}"
+        MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
+        API_AUTH_HOST: "https://{{ api_auth_domain_name }}"
+        DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
+        SESSION_COOKIE_SECRET: "{{ session_cookie_secret }}"
+        OIDC_PAIRWISE_IDENTIFIER_SALT: "{{ oidc_pairwise_identifier_salt }}"
+      tags:
+        - api-auth
         - app-config

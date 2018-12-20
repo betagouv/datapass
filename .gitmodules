@@ -10,3 +10,6 @@
 [submodule "api-scopes"]
 	path = api-scopes
 	url = git@github.com:betagouv/api-scopes.git
+[submodule "api-auth"]
+	path = api-auth
+	url = git@github.com:betagouv/api-auth.git
