@@ -12,3 +12,7 @@
   service:
     name: api-scopes
     state: restarted
+- name: "restart service api-auth"
+  service:
+    name: api-auth
+    state: restarted

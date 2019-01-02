@@ -73,4 +73,4 @@ ls -t . | tail -n +6 | xargs rm -rf
 echo "$(logPrefix) Deployment of $APP_NAME successfully completed!"
 
 exit 0
-} > /opt/apps/apps-deployment.log
+} >> /opt/apps/apps-deployment.log

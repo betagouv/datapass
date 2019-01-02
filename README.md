@@ -49,6 +49,9 @@ Add the following hosts in `/etc/hosts`:
 
 192.168.56.126 scopes-development.particulier-infra.api.gouv.fr
 192.168.56.126 scopes-development.api.gouv.fr
+
+192.168.56.127 auth-development.particulier-infra.api.gouv.fr
+192.168.56.127 auth-development.api.gouv.fr
 ```
 
 Then install ansible dependencies: 
@@ -110,11 +113,24 @@ sudo su - api-scopes
 cd /opt/apps/api-scopes/current
 export $(cat /etc/api-scopes.conf | xargs)
 npm i
+npm run build
 sudo systemctl restart api-scopes
 exit
 exit
 ```
 
+Deploy API OIDC Provider:
+```bash
+vagrant ssh api-auth
+sudo su - api-auth
+cd /opt/apps/api-auth/current
+export $(cat /etc/api-auth.conf | xargs)
+npm i
+npm run build
+sudo systemctl restart api-auth
+exit
+exit
+```
 
 ### Test your installation
 
@@ -170,6 +186,16 @@ sudo systemctl stop api-scopes
 sudo su - api-scopes
 cd /opt/apps/api-scopes/current
 export $(cat /etc/api-scopes.conf | xargs)
+npm start
+```
+
+api-auth:
+```bash
+vagrant ssh api-auth
+sudo systemctl stop api-auth
+sudo su - api-auth
+cd /opt/apps/api-auth/current
+export $(cat /etc/api-auth.conf | xargs)
 npm start
 ```
 
