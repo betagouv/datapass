@@ -23,3 +23,12 @@
     script: ./scripts/deploy.sh api-scopes
     tags:
     - api-scopes
+
+- hosts: api-auth
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
+  - name: deploy api-auth
+    script: ./scripts/deploy.sh api-auth
+    tags:
+    - api-auth
