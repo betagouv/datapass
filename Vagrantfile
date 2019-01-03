@@ -10,14 +10,12 @@ vms = {
     :synced_folders =>
       [
         {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},
-        {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"},
-        {:host => "./signup-oauth", :guest => "/opt/apps/signup-oauth/current"}
+        {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"}
       ],
     :services_to_start =>
       [
         "signup-front",
-        "signup-back",
-        "signup-oauth"
+        "signup-back"
       ]
   },
   'api-scopes': {

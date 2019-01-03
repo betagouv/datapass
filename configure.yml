@@ -11,9 +11,8 @@
 - hosts: signup
   become: true
   roles:
-    - ruby
-    - role: ssl
-      server_name: "{{ oauth_domain_name }}"
+    - role: ruby
+      tags: ruby
     - role: ssl
       server_name: "{{ back_domain_name }}"
     - role: ssl
@@ -35,26 +34,6 @@
       secret_key_base: "{{ back_secret_key_base }}"
       tags:
       - back
-      - app-config
-    - role: postgres
-      pg_user: oauth
-      pg_password: "{{ oauth_pg_password }}"
-      pg_database: signup-oauth
-      tags:
-      - oauth
-    - role: rails-app
-      app_service_name: signup-oauth
-      server_name: "{{ oauth_domain_name }}"
-      app_port: 3001
-      pg_user: oauth
-      pg_password: "{{ oauth_pg_password }}"
-      pg_database: signup-oauth
-      devise_secret: "{{ oauth_devise_secret }}"
-      secret_key_base: "{{ oauth_secret_key_base }}"
-      admin_login: "{{ oauth_admin_user }}"
-      admin_password: "{{ oauth_admin_password }}"
-      tags:
-      - oauth
       - app-config
     - role: node-app
       app_service_name: signup-front

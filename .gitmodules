@@ -4,9 +4,6 @@
 [submodule "signup-back"]
 	path = signup-back
 	url = git@github.com:betagouv/signup-back.git
-[submodule "signup-oauth"]
-	path = signup-oauth
-	url = git@github.com:betagouv/signup-oauth.git
 [submodule "api-scopes"]
 	path = api-scopes
 	url = git@github.com:betagouv/api-scopes.git
