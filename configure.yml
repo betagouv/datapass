@@ -11,7 +11,8 @@
 - hosts: signup
   become: true
   roles:
-    - ruby
+    - role: ruby
+      tags: ruby
     - role: ssl
       server_name: "{{ back_domain_name }}"
     - role: ssl

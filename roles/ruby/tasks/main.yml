@@ -15,3 +15,4 @@
     rbenv_extra_depends:
       - libpq-dev
       - libmagick++-dev
+    default_gems_file: 'roles/ruby/files/default-gems'
