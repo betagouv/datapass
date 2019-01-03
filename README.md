@@ -8,7 +8,7 @@ Ces scripts ansible permettent de gérer :
 
 - signup.api.gouv.fr : l'application de contractualisation des APIs de api.gouv.fr
 - scopes.api.gouv.fr : le référentiel des périmètres de données autorisés par signup
-- oauth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
+- auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
 
 ## Install
 
@@ -45,7 +45,6 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.125 signup-development.particulier-infra.api.gouv.fr
 192.168.56.125 signup-development.api.gouv.fr
 192.168.56.125 back.signup-development.api.gouv.fr
-192.168.56.125 oauth.signup-development.api.gouv.fr
 
 192.168.56.126 scopes-development.particulier-infra.api.gouv.fr
 192.168.56.126 scopes-development.api.gouv.fr
@@ -60,20 +59,22 @@ Then install ansible dependencies:
 ansible-galaxy install -r requirements.yml # install `ansible roles`: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
 ```
 
+> **If you are using macOS.**
+> The host's `/etc/hosts` configuration file may not take effect in the guest machines.
+> You might need to also alter the guest machine's `/etc/hosts` after running vagrant up.
+
 Then configure your virtual machine: 
 ```bash
-vagrant up # This can take a while, go make a loaf of bread or something
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts configure.yml
+vagrant up
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts configure.yml # This can take a while, go make a loaf of bread or something
 ```
 
 ### Development deployment
 
-Deploy the application manually inside the virtual machine:
+Deploy Signup backend:
 ```bash
 vagrant ssh signup
 sudo su - signup
-
-# Installs the backend
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
 bundler install
@@ -82,29 +83,22 @@ rails db:migrate
 rails db:seed
 rails db:fixtures:load
 sudo systemctl restart signup-back
+exit
+exit
+```
 
-# Installs the Oauth server
-cd /opt/apps/signup-oauth/current
-export $(cat /etc/signup-oauth.conf | xargs)
-bundler install
-rails db:migrate
-rails db:seed
-rails db:fixtures:load
-sudo systemctl restart signup-oauth
-
-# Installs the frontend
+Deploy Signup frontend:
+```bash
+vagrant ssh signup
+sudo su - signup
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
 npm i
 npm run build
 sudo systemctl restart signup-front
-
 exit
 exit
 ```
-
-> **If you are using macOS.**
-> The host's `/etc/hosts` configuration file may not take effect in the guest machine. You might need to also alter the guest machine's `/etc/hosts`.
 
 Deploy API Scopes:
 ```bash
@@ -119,7 +113,7 @@ exit
 exit
 ```
 
-Deploy API OIDC Provider:
+Deploy API Auth:
 ```bash
 vagrant ssh api-auth
 sudo su - api-auth
@@ -127,6 +121,8 @@ cd /opt/apps/api-auth/current
 export $(cat /etc/api-auth.conf | xargs)
 npm i
 npm run build
+ # load fixtures
+psql postgresql://api-auth:api-auth@127.0.0.1:5432/api-auth -f fixtures.sql
 sudo systemctl restart api-auth
 exit
 exit
@@ -134,12 +130,7 @@ exit
 
 ### Test your installation
 
-In your browser, go to https://oauth.signup-development.api.gouv.fr/oauth/applications, enter the credentials (admin:admin).
-You should see the oauth2 dashboard with the registered *signup.api.gouv* & *api-particulier-auth* applications.
-
-Go to https://back.signup-development.api.gouv.fr/api/enrollments. You should see a error message: "Vous n'êtes pas autorisé à accéder à cette API".
-
-Go to https://signup-development.api.gouv.fr/. Sign in as service_provider@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/signup-oauth/blob/6b3a8369933b8c9527ca8b4d60b4cc6bcc594fed/test/fixtures/users.yml)
+Go to https://signup-development.api.gouv.fr/. Sign in as service_provider@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](TODO commit link to credential list)
 
 > if you want to install API Particulier, you may now resume on [testing API Particulier installation](https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#test-the-local-installation).
 
@@ -166,16 +157,6 @@ sudo systemctl stop signup-back
 sudo su - signup
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
-RAILS_ENV=development rails s
-```
-
-signup-oauth:
-```bash
-vagrant ssh signup
-sudo systemctl stop signup-oauth
-sudo su - signup
-cd /opt/apps/signup-oauth/current
-export $(cat /etc/signup-oauth.conf | xargs)
 RAILS_ENV=development rails s
 ```
 
@@ -217,61 +198,78 @@ See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure
 
 #### Deploy staging instance
 
-Use the following command to deploy front, back & oauth:
+Use the following command to deploy signup-front, signup-back, api-scopes & api-auth:
 ```bash
 ansible-playbook -i inventories/staging/hosts deploy.yml
 ```
 
-Use the following command to deploy <app_name> only (app_name can be one of : front, back, oauth):
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-scopes, api-auth):
 ```bash
 ansible-playbook -i inventories/staging/hosts deploy.yml -t <app_name>
 ```
 
 #### Deploy production instance
 
-Use the following command to deploy front, back &oauth:
+Use the following command to deploy signup-front, signup-back, api-scopes & api-auth:
 ```bash
 ansible-playbook -i inventories/production/hosts deploy.yml
 ```
 
-Use the following command to deploy <app_name> only (app_name can be one of : front, back, oauth):
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-scopes, api-auth):
 ```bash
 ansible-playbook -i inventories/production/hosts deploy.yml -t <app_name>
 ```
 
-## Create admin user
+## Create admin user on staging
+
+> NB: the procedure is the same on the production environment
 
 Connect to the staging server:
-
 ```bash
 ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr
 ```
 
 Connect to the database:
-
 ```bash
-sudo su - postgres
-psql signup-oauth
+sudo su - api-auth
+psql -U api-auth -d api-auth -W -h 127.0.0.1
+# get the password from ansible vault
 ```
 
 Then grant the user by modifying the user in the database:
-
 ```postgres-sql
-select * from account_types;
-update users set account_type_id = 4 where email='raphael.dubigny@beta.gouv.fr';
+update users set legacy_account_type = 'api_particulier' where email='raphael.dubigny@beta.gouv.fr';
 ```
 
-Disconnect from this database, then update signup-back:
-```postgres-sql
-psql signup-back
-update users set provider = 'api_particulier' where email='raphael.dubigny@beta.gouv.fr';
-```
+legacy_account_type can be 'franceconnect' or 'dgfip'. More values are available [here](https://github.com/betagouv/signup-back/blob/1bd0da6c82d7a368d62283a236e4bb057c4c69d3/app/models/enrollment.rb#L17).
 
 The user must then logout and login again.
 
-## Generate Secret Key Base or Oauth Client ID & Secret
+## Enable login to new application to login via api-auth on staging
 
-See https://stackoverflow.com/a/34350507/2590861 .
+To enable login to a new application via api-auth, you must declare the application as a new oidc client.
+
+> NB: the procedure is the same on the production environment
+
+Connect to the staging server:
+```bash
+ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr
+```
+
+Connect to the database:
+```bash
+sudo su - api-auth
+psql -U api-auth -d api-auth -W -h 127.0.0.1
+# get the password from ansible vault
+```
+
+Then grant the user by modifying the user in the database:
+```postgres-sql
+INSERT INTO oidc_clients (name, client_id, client_secret, redirect_uris)
+VALUES ('application_name', 'client_id', 'client_secret', '{"https://redirect.uri/callback"}');
+```
+
+Here is a suggestion on how to generate client_id and client_secret: https://stackoverflow.com/a/34350507/2590861 .
 
 ## Configue Matomo (ex Piwik)
 

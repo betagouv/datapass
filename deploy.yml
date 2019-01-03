@@ -6,10 +6,6 @@
     script: ./scripts/deploy.sh signup-back
     tags:
     - back
-  - name: deploy oauth
-    script: ./scripts/deploy.sh signup-oauth
-    tags:
-    - oauth
   - name: deploy front
     script: ./scripts/deploy.sh signup-front
     tags:
