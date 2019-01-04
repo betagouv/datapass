@@ -122,7 +122,7 @@ export $(cat /etc/api-auth.conf | xargs)
 npm i
 npm run build
  # load fixtures
-psql postgresql://api-auth:api-auth@127.0.0.1:5432/api-auth -f fixtures.sql
+npm run load-fixtures
 sudo systemctl restart api-auth
 exit
 exit
