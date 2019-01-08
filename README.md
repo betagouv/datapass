@@ -226,7 +226,7 @@ ansible-playbook -i inventories/production/hosts deploy.yml -t <app_name>
 
 Connect to the staging server:
 ```bash
-ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr
+ssh ubuntu@auth-staging.particulier-infra.api.gouv.fr
 ```
 
 Connect to the database:
