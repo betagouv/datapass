@@ -91,4 +91,4 @@
 
 # note that mongo will only create the index once even if we execute the createIndex function multiple times
 - name: add index in mongo
-  shell: "/usr/bin/mongo {{api_scopes_domain_name}}:{{api_scopes_database_port}}/{{api_scopes_database_name}} -u {{api_scopes_readwrite_user}} -p {{api_scopes_readwrite_password}} --eval 'db.{{api_scopes_database_name}}.createIndex({ provider: 1, client_id: 1 })'"
+  shell: "/usr/bin/mongo {{api_scopes_domain_name}}:{{api_scopes_database_port}}/{{api_scopes_database_name}} -u {{api_scopes_readwrite_user}} -p {{api_scopes_readwrite_password}} --eval 'db.{{api_scopes_database_name}}.createIndex({ provider: 1, signup_id: 1 })'"

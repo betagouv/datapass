@@ -89,7 +89,8 @@
   roles:
     - role: ssl
       server_name: "{{ api_scopes_domain_name }}"
-    - mongodb
+    - role: mongodb
+      tags: mongodb
     - role: node-app
       app_service_name: api-scopes
       server_name: "{{ api_scopes_domain_name }}"
