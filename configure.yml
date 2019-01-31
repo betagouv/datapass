@@ -46,7 +46,6 @@
         PG_DATABASE: "{{ pg_database }}"
         SIGNUP_OAUTH_CLIENT_ID: "{{ signup_oauth_client_id }}"
         SIGNUP_OAUTH_CLIENT_SECRET: "{{ signup_oauth_client_secret }}"
-        ENABLE_REGISTER_FRANCECONNECT_ENROLLMENT: "{{ enable_register_franceconnect_enrollment }}"
         FRANCECONNECT_PARTICULIER_HOST: "{{ franceconnect_particulier_host }}"
         FRANCECONNECT_PARTICULIER_API_KEY: "{{ franceconnect_particulier_api_key }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
