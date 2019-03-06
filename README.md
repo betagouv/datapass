@@ -287,3 +287,20 @@ mongo scopes-development.api.gouv.fr:27017/scopes -u signup -p signup --eval "db
 ```
 
 Then, you can query this entry with `curl -k -H 'x-provider: api-particulier' https://scopes-development.api.gouv.fr/api/scopes/12`.
+
+## Troubleshooting
+
+### Certificates needs renewal
+
+The ssl certificates are configured by ansible.
+The certificates are managed letsencrypt's certbot service (except for the development environement).
+If the certificate appears out of date, the issue might be that the services that use the certificates
+have not been properly restarted. To restart them can run the 'configuration' playbook like so:
+
+```bash
+ansible-playbook -i inventories/staging/hosts configure.yml -t ssl --limit <app_name>
+```
+
+`app_name` can be one of: 'api-auth', 'api-scopes', 'signup-back' or 'signup-front'.
+
+If this does not work you can start restarting the nginx service on the server with `sudo systemctl restart nginx`.

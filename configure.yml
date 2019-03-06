@@ -15,8 +15,10 @@
       tags: ruby
     - role: ssl
       server_name: "{{ back_domain_name }}"
+      tags: ssl
     - role: ssl
       server_name: "{{ front_domain_name }}"
+      tags: ssl
     - role: postgres
       pg_user: back
       pg_password: "{{ back_pg_password }}"
@@ -82,6 +84,7 @@
   roles:
     - role: ssl
       server_name: "{{ api_scopes_domain_name }}"
+      tags: ssl
     - role: mongodb
       tags: mongodb
     - role: node-app
@@ -103,6 +106,7 @@
   roles:
     - role: ssl
       server_name: "{{ api_auth_domain_name }}"
+      tags: ssl
     - role: postgres
       pg_user: api-auth
       pg_password: "{{ api_auth_pg_password }}"
