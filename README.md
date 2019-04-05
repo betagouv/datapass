@@ -238,12 +238,10 @@ psql -U api-auth -d api-auth -W -h 127.0.0.1
 
 Then grant the user by modifying the user in the database:
 ```postgres-sql
-update users set legacy_account_type = 'api_particulier' where email='raphael.dubigny@beta.gouv.fr';
+update users set roles = array_append(roles, 'api_particulier') where email='raphael.dubigny@beta.gouv.fr';
 ```
 
-legacy_account_type can be 'franceconnect' or 'dgfip'. More values are available [here](https://github.com/betagouv/signup-back/blob/1bd0da6c82d7a368d62283a236e4bb057c4c69d3/app/models/enrollment.rb#L17).
-
-The user must then logout and login again.
+The new role can also be 'franceconnect' or 'dgfip'. More values are available [here](https://github.com/betagouv/signup-back/blob/1bd0da6c82d7a368d62283a236e4bb057c4c69d3/app/models/enrollment.rb#L17).
 
 ## Enable login to new application to login via api-auth on staging
 
