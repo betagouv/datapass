@@ -93,7 +93,7 @@ vagrant ssh signup
 sudo su - signup
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
-npm i
+NODE_ENV=development npm i
 npm run build
 sudo systemctl restart signup-front
 exit
@@ -130,7 +130,7 @@ exit
 
 ### Test your installation
 
-Go to https://signup-development.api.gouv.fr/. Sign in as service_provider@domain.user:password . You should see the enrollment list. Note that other credentials can be found [here](TODO commit link to credential list)
+Go to https://signup-development.api.gouv.fr/. Sign in as user@test:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql)
 
 > if you want to install API Particulier, you may now resume on [testing API Particulier installation](https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#test-the-local-installation).
 
