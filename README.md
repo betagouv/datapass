@@ -302,3 +302,14 @@ ansible-playbook -i inventories/staging/hosts configure.yml -t ssl --limit <app_
 `app_name` can be one of: 'api-auth', 'api-scopes', 'signup-back' or 'signup-front'.
 
 If this does not work you can start restarting the nginx service on the server with `sudo systemctl restart nginx`.
+
+## SSH configuration shortcut
+
+To avoid hitting `ssh ubuntu@signup-staging.particulier-infra.api.gouv.fr` but `ssh signup-staging` instead,
+add the following lines to your `~/.ssh/config` file:
+
+```
+Host *-production *-staging *-development *-test
+    Hostname %h.particulier-infra.api.gouv.fr
+    User ubuntu
+```
