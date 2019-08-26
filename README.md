@@ -53,7 +53,7 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.127 auth-development.api.gouv.fr
 ```
 
-Then install ansible dependencies: 
+Then install ansible dependencies:
 
 ```bash
 ansible-galaxy install -r requirements.yml # install `ansible roles`: https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
@@ -62,8 +62,13 @@ ansible-galaxy install -r requirements.yml # install `ansible roles`: https://do
 > **If you are using macOS.**
 > The host's `/etc/hosts` configuration file may not take effect in the guest machines.
 > You might need to also alter the guest machine's `/etc/hosts` after running vagrant up.
+> Connect to each guest machine
+```bash
+vagrant ssh [vm-name]
+```
+> And copy your hosts to `/etc/hosts`
 
-Then configure your virtual machine: 
+Then configure your virtual machine:
 ```bash
 vagrant up
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/hosts configure.yml # This can take a while, go make a loaf of bread or something
