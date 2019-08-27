@@ -135,7 +135,9 @@ exit
 
 ### Test your installation
 
-Go to https://signup-development.api.gouv.fr/. Sign in as user@test:password . You should see the enrollment list. Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql)
+Go to https://signup-development.api.gouv.fr/. Sign in as `user@test` with the password `password`.
+Specify, `13002526500013` as a siret. Then, you should see the enrollment list.
+Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
 
 > if you want to install API Particulier, you may now resume on [testing API Particulier installation](https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#test-the-local-installation).
 
