@@ -187,6 +187,11 @@ export $(cat /etc/api-auth.conf | xargs)
 npm start
 ```
 
+Optional, you can also run api-auth in debug mode:
+```
+DEBUG=oidc-provider:* npm start
+```
+
 ### Production-like deployment
 
 For development purpose you may want to have a local iso-production application running. You can do it by running the deployment script instead of processing to a development deployment:
