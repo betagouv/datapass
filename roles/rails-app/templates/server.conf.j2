@@ -7,7 +7,8 @@ server {
   ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
   add_header Strict-Transport-Security "max-age=15552000" always;
 
-  add_header 'Access-Control-Allow-Origin' '*' always;
+  add_header 'Access-Control-Allow-Origin' '{{ front_host }}' always;
+  add_header 'Access-Control-Allow-Credentials' 'true' always;
 
   ssl_prefer_server_ciphers on;
   ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4";
@@ -24,9 +25,10 @@ server {
     client_max_body_size 10m;
 
     if ($request_method = 'OPTIONS') {
-      add_header 'Access-Control-Allow-Origin' '*';
+      add_header 'Access-Control-Allow-Origin' '{{ front_host }}';
       add_header 'Access-Control-Allow-Methods' 'GET,POST,PUT,PATCH,DELETE,OPTIONS';
       add_header 'Access-Control-Allow-Headers' 'Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+      add_header 'Access-Control-Allow-Credentials' 'true';
 
       # Tell client that this pre-flight info is valid for 20 days
       add_header 'Access-Control-Max-Age' 1728000;
