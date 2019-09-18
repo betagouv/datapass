@@ -47,7 +47,6 @@
         PORT: "{{ app_port }}"
         FRONT_HOST: "{{ front_host }}"
         BACK_HOST: "{{ back_host }}"
-        OAUTH_REDIRECT_URI: "{{ oauth_redirect_uri }}"
         OAUTH_HOST: "{{ oauth_host }}"
         DEVISE_SECRET: "{{ devise_secret }}"
         SECRET_KEY_BASE: "{{ secret_key_base }}"
@@ -78,8 +77,6 @@
       server_name: "{{ front_domain_name }}"
       app_port: 3002
       env_var:
-        OAUTH_AUTHORIZE_URI: "{{ oauth_authorize_uri }}"
-        OAUTH_ME_URI: "{{ oauth_me_uri }}"
         OAUTH_HOST: "{{ oauth_host }}"
         BACK_HOST: "{{ back_host }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
