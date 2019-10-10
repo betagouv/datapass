@@ -77,7 +77,7 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/host
 > **If you are using macOS Catalina 10.15**
 > Vagrant encounters the following error :
 > `NFS is reporting that your exports file is invalid`
-> You must change your source folder as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
+> You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
 
 ### Development deployment
 
