@@ -295,7 +295,6 @@ shred -u -z backup.sql
 
 Generate a private key with the following commands, replace ENV and PASSWORD params:
 ```
-cd public_keys/<ENV>
 export HOME="$(mktemp -d)"
 cat >foo <<EOF
 %echo Generating a default key
