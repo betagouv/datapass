@@ -12,6 +12,8 @@
 - name: Install mongodb-org packages
   apt:
     name: "{{ item }}"
+    update_cache: true
+    cache_valid_time: 86400
   with_items:
     - mongodb-org=4.0.4
     - mongodb-org-server=4.0.4
@@ -28,6 +30,8 @@
 - name: install pip
   apt:
     name: python-pip
+    update_cache: true
+    cache_valid_time: 86400
 
 - name: install pymongo
   pip:

@@ -260,6 +260,75 @@ update users set roles = array_append(roles, 'api_particulier') where email='rap
 
 The new role can also be 'franceconnect' or 'api_impot_particulier'. More values are available [here](https://github.com/betagouv/signup-back/tree/master/app/models/enrollment).
 
+## Restore database backup
+
+First, get the backup file from ovh cloud. Mind that as we use OVH cold storage, this could take up to 24h.
+
+Second, get the private key to decrypt the backup file:
+```
+export HOME="$(mktemp -d)"
+gpg2 --import < apigouvfr-<ENV>-gpg.priv.asc # ask the password to Raphaël
+```
+
+Third, decrypt the backup file:
+```
+gpg2 --decrypt --output backup.sql <backup_filename>.sql.pgp # same password as previous command
+```
+
+Then push the `backup.sql` file on the server with sftp.
+
+Once it's on the remote server, delete your local copy of the different generated files with:
+```
+shred -u -z backup.sql *.sql.pgp
+```
+
+Eventually, on the destination server, import the data:
+```
+sudo mv backup.sql <BACKUP_USER_HOME>
+sudo chown <BACKUP_USER>:<BACKUP_USER> <BACKUP_USER_HOME>/backup.sql
+sudo su - <BACKUP_USER>
+pg_restore --clean --schema=public --dbname=<DATABASE_NAME> backup.sql
+shred -u -z backup.sql
+```
+
+## Generate new gpg key for database backup
+
+Generate a private key with the following commands, replace ENV and PASSWORD params:
+```
+cd public_keys/<ENV>
+export HOME="$(mktemp -d)"
+cat >foo <<EOF
+%echo Generating a default key
+Key-Type: default
+Key-Length: 4096
+Subkey-Type: default
+Subkey-Length: 4096
+Name-Real: apigouvfr-<ENV>
+Name-Email: apigouvfr-<ENV>@example.com
+Expire-Date: 0
+Passphrase: <PASSWORD>
+%commit
+%echo done
+EOF
+gpg2 --batch --generate-key foo
+shred -u -z foo
+# from https://lists.gnupg.org/pipermail/gnupg-users/2016-September/056735.html
+gpg2 --armor --export apigouvfr-<ENV> > public_keys/<ENV>/backup_gpg_key.pub.asc
+gpg2 --armor --export-secret-keys apigouvfr-<ENV> > apigouvfr-<ENV>-gpg.priv.asc
+```
+
+Put the `apigouvfr-<ENV>-gpg.priv.asc` file and its password in a safe place.
+
+Vault the `public_keys/<ENV>/backup_gpg_key.pub.asc` with:
+```
+ansible-vault encrypt public_keys/<ENV>/backup_gpg_key.pub.asc
+```
+
+Deploy the new key with:
+```
+ansible-playbook -i inventories/<ENV>/hosts configure.yml -t database-backup
+```
+
 ## Enable login to new application to login via api-auth on staging
 
 To enable login to a new application via api-auth, you must declare the application as a new oidc client.

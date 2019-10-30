@@ -33,6 +33,10 @@
       pg_user: back
       pg_password: "{{ back_pg_password }}"
       pg_database: signup-back
+    - role: database-backup
+      backup_user: postgres
+      database_name: signup-back
+      tags: database-backup
     - role: rails-app
       app_service_name: signup-back
       server_name: "{{ back_domain_name }}"
@@ -118,6 +122,10 @@
       pg_user: api-auth
       pg_password: "{{ api_auth_pg_password }}"
       pg_database: api-auth
+    - role: database-backup
+      backup_user: api-auth
+      database_name: api-auth
+      tags: database-backup
     - role: redis
       tags: redis
     - role: node-app

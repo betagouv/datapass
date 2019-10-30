@@ -1,13 +1,21 @@
 - name: install nginx
-  apt: name=nginx state=present
+  apt:
+    name: nginx
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
   tags: nginx
 
 - name: Template nginx conf
-  template: src=default.conf.j2 dest={{ nginx_path }}/nginx.conf
+  template:
+    src: default.conf.j2
+    dest: "{{ nginx_path }}/nginx.conf"
   tags: nginx
 
 - name: Template https-redirect conf
-  template: src=https-redirect.conf.j2 dest={{ nginx_path }}/sites-enabled/default
+  template:
+    src: https-redirect.conf.j2
+    dest: "{{ nginx_path }}/sites-enabled/default"
   tags: nginx
 
 - name: restart nginx

@@ -2,6 +2,7 @@
   apt:
     name: "{{ item }}"
     update_cache: true
+    cache_valid_time: 86400
   with_items:
   - postgresql
   - python-psycopg2
