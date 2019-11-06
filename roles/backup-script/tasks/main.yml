@@ -76,16 +76,33 @@
 
 - name: install backup script
   template:
-    dest: "~/{{ database_name }}-backup.sh"
+    dest: "~/{{ store_identifier | basename }}-backup.sh"
     src: backup.sh.j2
     mode: 0700
   become: yes
   become_user: "{{ backup_user }}"
+  vars:
+    backup_params:
+      postgresql:
+        command: "pg_dump --clean --format=custom"
+        backup_file_prefix: "pg_dump_"
+        backup_file_extension: "sql"
+      file:
+        command: "tar --create --gzip --absolute-names"
+        backup_file_prefix: "archive_"
+        backup_file_extension: "tar.gz"
 
 - name: setup scheduled backup with crontask
   cron:
     name: "{{ openstack_container_name }}"
     minute: "0"
+    weekday: "{{ label_to_weekday_dict[frequency] }}"
     hour: "2" # the job should run every days at 2 AM
     user: "{{ backup_user }}"
-    job: "./{{ database_name }}-backup.sh >> {{ database_name }}-backup.log 2>&1"
+    job: "./{{ store_identifier | basename }}-backup.sh >> {{ store_identifier | basename }}-backup.log 2>&1"
+  vars:
+    label_to_weekday_dict:
+      weekly: "0"
+      daily: "*"
+  become: yes
+  become_user: "{{ backup_user }}"

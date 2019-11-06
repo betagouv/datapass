@@ -1,2 +1,0 @@
-openstack_container_name: "{{ database_name }}-{{ inventory_dir | basename }}-backup"
-gpg_recipient: "apigouvfr-{{ inventory_dir | basename }}"

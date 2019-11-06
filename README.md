@@ -272,7 +272,7 @@ gpg2 --import < apigouvfr-<ENV>-gpg.priv.asc # ask the password to Raphaël
 
 Third, decrypt the backup file:
 ```
-gpg2 --decrypt --output backup.sql <backup_filename>.sql.pgp # same password as previous command
+gpg2 --decrypt --output backup.<sql OU tar.gz> <backup_filename>.pgp # same password as previous command
 ```
 
 Then push the `backup.sql` file on the server with sftp.
@@ -282,13 +282,26 @@ Once it's on the remote server, delete your local copy of the different generate
 shred -u -z backup.sql *.sql.pgp
 ```
 
-Eventually, on the destination server, import the data:
+On the destination server, move the archive:
 ```
 sudo mv backup.sql <BACKUP_USER_HOME>
 sudo chown <BACKUP_USER>:<BACKUP_USER> <BACKUP_USER_HOME>/backup.sql
 sudo su - <BACKUP_USER>
+```
+
+If it is a file backup, do:
+```
+tar -xf backup.tar.gz --directory=/
+```
+
+If it is a postgresql backup, do:
+```
 pg_restore --clean --schema=public --dbname=<DATABASE_NAME> backup.sql
-shred -u -z backup.sql
+```
+
+Eventually, erase the archive:
+```
+shred -u -z backup.<sql OU tar.gz>
 ```
 
 ## Generate new gpg key for database backup
@@ -325,7 +338,7 @@ ansible-vault encrypt public_keys/<ENV>/backup_gpg_key.pub.asc
 
 Deploy the new key with:
 ```
-ansible-playbook -i inventories/<ENV>/hosts configure.yml -t database-backup
+ansible-playbook -i inventories/<ENV>/hosts configure.yml -t backup-script
 ```
 
 ## Enable login to new application to login via api-auth on staging

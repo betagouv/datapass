@@ -5,16 +5,16 @@ set -e
 logPrefix(){
   echo "$(date --iso-8601=seconds) - {{ openstack_container_name }} -"
 }
-DATABASE_NAME={{ database_name }}
+STORE_IDENTIFIER={{ store_identifier | basename }}
 
-echo "$(logPrefix) Backing up database $DATABASE_NAME..."
+echo "$(logPrefix) Backing up $STORE_IDENTIFIER..."
 
-echo "$(logPrefix) Creating encrypted dump of database $DATABASE_NAME..."
+echo "$(logPrefix) Creating encrypted dump of $STORE_IDENTIFIER..."
 TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-BACKUP_FILE_NAME=pg_dump_${DATABASE_NAME}_${TIMESTAMP}.sql.pgp
+BACKUP_FILE_NAME={{ backup_params[backup_type].backup_file_prefix }}${STORE_IDENTIFIER}_${TIMESTAMP}.{{ backup_params[backup_type].backup_file_extension }}.pgp
 TEMP_PATH=/tmp/${BACKUP_FILE_NAME}
 
-pg_dump --clean --format=custom {{ database_name }} | gpg2 --recipient {{ gpg_recipient }} --encrypt --always-trust --output ${TEMP_PATH}
+{{ backup_params[backup_type].command }} {{ store_identifier }} | gpg2 --recipient {{ gpg_recipient }} --encrypt --always-trust --output ${TEMP_PATH}
 
 echo "$(logPrefix) Uploading backup file to remote server..."
 export OS_AUTH_URL="{{ openstack_auth_url }}"
@@ -29,4 +29,4 @@ export OS_REGION_NAME="{{ openstack_region_name }}"
 echo "$(logPrefix) Erasing local copy of backup file..."
 shred -u -z ${TEMP_PATH}
 
-echo "$(logPrefix) Database $DATABASE_NAME successfully backed up!"
+echo "$(logPrefix) $STORE_IDENTIFIER successfully backed up!"

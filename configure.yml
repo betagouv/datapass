@@ -33,10 +33,18 @@
       pg_user: back
       pg_password: "{{ back_pg_password }}"
       pg_database: signup-back
-    - role: database-backup
+    - role: backup-script
       backup_user: postgres
-      database_name: signup-back
-      tags: database-backup
+      store_identifier: signup-back
+      backup_type: postgresql
+      frequency: daily
+      tags: backup-script
+    - role: backup-script
+      backup_user: signup
+      store_identifier: /opt/apps/signup-back/uploads
+      frequency: weekly
+      backup_type: file
+      tags: backup-script
     - role: rails-app
       app_service_name: signup-back
       server_name: "{{ back_domain_name }}"
@@ -122,10 +130,12 @@
       pg_user: api-auth
       pg_password: "{{ api_auth_pg_password }}"
       pg_database: api-auth
-    - role: database-backup
+    - role: backup-script
       backup_user: api-auth
-      database_name: api-auth
-      tags: database-backup
+      store_identifier: api-auth
+      backup_type: postgresql
+      frequency: daily
+      tags: backup-script
     - role: redis
       tags: redis
     - role: node-app
