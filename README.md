@@ -37,7 +37,7 @@ git submodule foreach git checkout master
 
 Some sensitive information are encrypted in ansible's vault. To read it you will need to set the vault password.
 
-Ask a teammate for the password. Put it in `~/.ssh/ansible_vault`.
+Ask a teammate for the password. Put it in `~/.ssh/signup_ansible_vault`.
 
 Add the following hosts in `/etc/hosts`:
 

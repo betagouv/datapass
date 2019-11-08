@@ -73,8 +73,8 @@
         API_PARTICULIER_API_KEY: "{{ api_particulier_api_key }}"
         API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         API_ENTREPRISE_API_KEY: "{{ api_entreprise_api_key }}"
-        MAILJET_API_KEY: "{{ mailjet_api_key }}"
-        MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
+        MAILJET_API_KEY: "{{ signup_mailjet_api_key }}"
+        MAILJET_SECRET_KEY: "{{ signup_mailjet_secret_key }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
         API_SCOPES_DOMAIN_NAME: "{{ api_scopes_domain_name }}"
         API_SCOPES_DATABASE_NAME: "{{ api_scopes_database_name }}"
@@ -148,8 +148,8 @@
         PGDATABASE: api-auth
         PGPORT: 5432
         DATABASE_URL: "postgres://api-auth:{{ api_auth_pg_password }}@127.0.0.1:5432/api-auth"
-        MAILJET_API_KEY: "{{ mailjet_api_key }}"
-        MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
+        MAILJET_API_KEY: "{{ api_auth_mailjet_api_key }}"
+        MAILJET_SECRET_KEY: "{{ api_auth_mailjet_secret_key }}"
         API_AUTH_HOST: "https://{{ api_auth_domain_name }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
         SESSION_COOKIE_SECRET: "{{ session_cookie_secret }}"
