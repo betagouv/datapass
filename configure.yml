@@ -6,13 +6,13 @@
       tags: team-ssh-keys
     - nginx
 
-- hosts: signup,api-scopes
+- hosts: api-scopes
   become: true
   roles:
     - role: ansible-role-nodejs
       nodejs_version: 8.x
 
-- hosts: api-auth
+- hosts: signup,api-auth
   become: true
   roles:
     - role: ansible-role-nodejs

@@ -1,9 +1,3 @@
-- name: install yarn
-  npm:
-    name: yarn
-    global: yes
-    state: present
-
 - name: create app directory
   file:
     path: "{{ item }}"

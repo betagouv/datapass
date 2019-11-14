@@ -1,10 +1,4 @@
 ---
-- name: install yarn # TODO move yarn installation to somewhere else
-  npm:
-    name: yarn
-    global: yes
-    state: present
-
 - name: create app directory
   file:
     path: "{{ item }}"
