@@ -22,6 +22,9 @@
   template:
     src: service.conf.j2
     dest: "/etc/{{app_service_name}}.conf"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: 0400
   notify: "restart service {{app_service_name}}"
 
 - name: copy systemd file
