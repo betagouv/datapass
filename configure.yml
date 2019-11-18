@@ -76,11 +76,6 @@
         MAILJET_API_KEY: "{{ signup_mailjet_api_key }}"
         MAILJET_SECRET_KEY: "{{ signup_mailjet_secret_key }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
-        API_SCOPES_DOMAIN_NAME: "{{ api_scopes_domain_name }}"
-        API_SCOPES_DATABASE_NAME: "{{ api_scopes_database_name }}"
-        API_SCOPES_DATABASE_PORT: "{{ api_scopes_database_port }}"
-        API_SCOPES_READWRITE_USER: "{{ api_scopes_readwrite_user }}"
-        API_SCOPES_READWRITE_PASSWORD: "{{ api_scopes_readwrite_password }}"
       tags:
       - back
       - app-config
