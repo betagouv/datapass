@@ -18,20 +18,6 @@ vms = {
         "signup-back"
       ]
   },
-  'api-scopes': {
-    :ip => '192.168.56.126',
-    :memory => '512',
-    :autostart => true,
-    :name => 'scopes-development',
-    :synced_folders =>
-      [
-        {:host => "./api-scopes", :guest => "/opt/apps/api-scopes/current"}
-      ],
-    :services_to_start =>
-      [
-        "api-scopes",
-      ]
-  },
   'api-auth': {
     :ip => '192.168.56.127',
     :memory => '512',

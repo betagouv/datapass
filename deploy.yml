@@ -11,15 +11,6 @@
     tags:
     - back
 
-- hosts: api-scopes
-  vars:
-    ansible_user: "{{ app_user }}"
-  tasks:
-  - name: deploy api-scopes
-    script: ./scripts/deploy.sh api-scopes
-    tags:
-    - api-scopes
-
 - hosts: api-auth
   vars:
     ansible_user: "{{ app_user }}"

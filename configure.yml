@@ -1,16 +1,10 @@
-- hosts: signup,api-scopes,api-auth
+- hosts: signup,api-auth
   become: true
   roles:
     - app-user
     - role: team-ssh-keys
       tags: team-ssh-keys
     - nginx
-
-- hosts: api-scopes
-  become: true
-  roles:
-    - role: ansible-role-nodejs
-      nodejs_version: 8.x
 
 - hosts: signup,api-auth
   become: true
@@ -92,28 +86,6 @@
       tags:
       - front
       - app-config
-
-- hosts: api-scopes
-  become: true
-  roles:
-    - role: ssl
-      server_name: "{{ api_scopes_domain_name }}"
-      tags: ssl
-    - role: mongodb
-      tags: mongodb
-    - role: node-app
-      app_service_name: api-scopes
-      server_name: "{{ api_scopes_domain_name }}"
-      app_port: 3000
-      env_var:
-        API_SCOPES_DOMAIN_NAME: "{{ api_scopes_domain_name }}"
-        API_SCOPES_DATABASE_NAME: "{{ api_scopes_database_name }}"
-        API_SCOPES_DATABASE_PORT: "{{ api_scopes_database_port }}"
-        API_SCOPES_API_SCOPES_USER: "{{ api_scopes_api_scopes_user }}"
-        API_SCOPES_API_SCOPES_PASSWORD: "{{ api_scopes_api_scopes_password }}"
-      tags:
-        - api-scopes
-        - app-config
 
 - hosts: api-auth
   become: true

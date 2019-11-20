@@ -7,7 +7,6 @@ Dépôt ansible pour déployer les services [api.gouv.fr](https://api.gouv.fr).
 Ces scripts ansible permettent de gérer :
 
 - signup.api.gouv.fr : l'application de contractualisation des APIs de api.gouv.fr
-- scopes.api.gouv.fr : le référentiel des périmètres de données autorisés par signup
 - auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
 
 ## Install
@@ -45,9 +44,6 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.125 signup-development.particulier-infra.api.gouv.fr
 192.168.56.125 signup-development.api.gouv.fr
 192.168.56.125 back.signup-development.api.gouv.fr
-
-192.168.56.126 scopes-development.particulier-infra.api.gouv.fr
-192.168.56.126 scopes-development.api.gouv.fr
 
 192.168.56.127 auth-development.particulier-infra.api.gouv.fr
 192.168.56.127 auth-development.api.gouv.fr
@@ -110,19 +106,6 @@ exit
 exit
 ```
 
-Deploy API Scopes:
-```bash
-vagrant ssh api-scopes
-sudo su - api-scopes
-cd /opt/apps/api-scopes/current
-export $(cat /etc/api-scopes.conf | xargs)
-npm i
-npm run build
-sudo systemctl restart api-scopes
-exit
-exit
-```
-
 Deploy API Auth:
 ```bash
 vagrant ssh api-auth
@@ -172,16 +155,6 @@ export $(cat /etc/signup-back.conf | xargs)
 RAILS_ENV=development rails s
 ```
 
-api-scopes:
-```bash
-vagrant ssh api-scopes
-sudo systemctl stop api-scopes
-sudo su - api-scopes
-cd /opt/apps/api-scopes/current
-export $(cat /etc/api-scopes.conf | xargs)
-npm start
-```
-
 api-auth:
 ```bash
 vagrant ssh api-auth
@@ -215,24 +188,24 @@ See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure
 
 #### Deploy staging instance
 
-Use the following command to deploy signup-front, signup-back, api-scopes & api-auth:
+Use the following command to deploy signup-front, signup-back & api-auth:
 ```bash
 ansible-playbook -i inventories/staging/hosts deploy.yml
 ```
 
-Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-scopes, api-auth):
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-auth):
 ```bash
 ansible-playbook -i inventories/staging/hosts deploy.yml -t <app_name>
 ```
 
 #### Deploy production instance
 
-Use the following command to deploy signup-front, signup-back, api-scopes & api-auth:
+Use the following command to deploy signup-front, signup-back & api-auth:
 ```bash
 ansible-playbook -i inventories/production/hosts deploy.yml
 ```
 
-Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-scopes, api-auth):
+Use the following command to deploy <app_name> only (app_name can be one of : front, back, api-auth):
 ```bash
 ansible-playbook -i inventories/production/hosts deploy.yml -t <app_name>
 ```
@@ -372,18 +345,6 @@ Here is a suggestion on how to generate client_id and client_secret: https://sta
 To follow the usage of the project, we use a Matomo instances hosted [here](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
 The production configuration can be found in `./inventories/production/group_vars/front.yml`
 
-## Play with API Scopes
-
-As there is no fixtures in API Scopes' database, we detail here the way to add some.
-
-You create an entry with the following commands:
-```bash
-vagrant ssh api-scopes
-mongo scopes-development.api.gouv.fr:27017/scopes -u signup -p signup --eval "db.scopes.insert({client_id: '12',provider:'api-particulier',scopes:['dgfip_avis_imposition', 'dgfip_adresse'],signup_id: '1'})"
-```
-
-Then, you can query this entry with `curl -k -H 'x-provider: api-particulier' https://scopes-development.api.gouv.fr/api/scopes/12`.
-
 ## Troubleshooting
 
 ### Certificates needs renewal
@@ -397,7 +358,7 @@ have not been properly restarted. To restart them can run the 'configuration' pl
 ansible-playbook -i inventories/staging/hosts configure.yml -t ssl --limit <app_name>
 ```
 
-`app_name` can be one of: 'api-auth', 'api-scopes', 'signup-back' or 'signup-front'.
+`app_name` can be one of: 'api-auth', 'signup-back' or 'signup-front'.
 
 If this does not work you can start restarting the nginx service on the server with `sudo systemctl restart nginx`.
 

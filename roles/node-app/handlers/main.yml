@@ -8,10 +8,6 @@
   service:
     name: signup-front
     state: restarted
-- name: "restart service api-scopes"
-  service:
-    name: api-scopes
-    state: restarted
 - name: "restart service api-auth"
   service:
     name: api-auth
