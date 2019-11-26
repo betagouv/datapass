@@ -5,8 +5,20 @@
     state: directory
 
 - name: Generate self-signed certificates for {{ server_name }}
-  command: openssl req -new -nodes -x509 -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ server_name }}" -days 3650 -keyout /etc/letsencrypt/live/{{ server_name }}/privkey.pem -out /etc/letsencrypt/live/{{ server_name }}/fullchain.pem -extensions v3_ca
+  shell: >
+    openssl
+    req
+    -new
+    -nodes
+    -x509
+    -subj "/C=FR/ST=Paris/L=Paris/O=IT/CN={{ server_name }}"
+    -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{ server_name }}\nextendedKeyUsage = serverAuth, clientAuth, codeSigning, emailProtection"))
+    -days 365
+    -keyout /etc/letsencrypt/live/{{ server_name }}/privkey.pem
+    -out /etc/letsencrypt/live/{{ server_name }}/fullchain.pem
+    -extensions SAN
   args:
+    executable: /bin/bash
     creates: "/etc/letsencrypt/live/{{ server_name }}/fullchain.pem"
   notify:
     - restart nginx
