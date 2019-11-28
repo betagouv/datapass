@@ -78,7 +78,6 @@
       server_name: "{{ front_domain_name }}"
       app_port: 3002
       env_var:
-        OAUTH_HOST: "{{ oauth_host }}"
         BACK_HOST: "{{ back_host }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
         PIWIK_URL: "{{ piwik_url | default('') }}"
