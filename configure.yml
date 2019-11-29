@@ -4,11 +4,8 @@
     - app-user
     - role: team-ssh-keys
       tags: team-ssh-keys
-    - nginx
-
-- hosts: signup,api-auth
-  become: true
-  roles:
+    - role: nginx
+      tags: nginx
     - role: ansible-role-nodejs
       nodejs_version: 12.x
 

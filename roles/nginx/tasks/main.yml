@@ -4,21 +4,23 @@
     state: present
     update_cache: true
     cache_valid_time: 86400
-  tags: nginx
 
 - name: Template nginx conf
   template:
     src: default.conf.j2
     dest: "{{ nginx_path }}/nginx.conf"
-  tags: nginx
+  notify: restart nginx
 
 - name: Template https-redirect conf
   template:
     src: https-redirect.conf.j2
     dest: "{{ nginx_path }}/sites-enabled/default"
-  tags: nginx
+  notify: restart nginx
 
-- name: restart nginx
-  service:
-    name: nginx
-    state: restarted
+- name: configure blacklisted ips
+  template:
+    src: blockips.conf.j2
+    dest: /etc/nginx/conf.d/blockips.conf
+  vars:
+    ips: "{{ blacklisted_ips | default([]) }}"
+  notify: restart nginx

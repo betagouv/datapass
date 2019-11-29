@@ -39,7 +39,8 @@
     daemon_reload: yes
     enabled: true
 
-- lineinfile:
+- name: allow app user to restart app
+  lineinfile:
     path: /etc/sudoers
     state: present
     line: "{{app_user}} ALL=NOPASSWD: /bin/systemctl restart {{app_service_name}}"
@@ -55,4 +56,3 @@
     src: server.conf.j2
     dest: "/etc/nginx/sites-enabled/{{app_service_name}}"
   notify: restart nginx
-
