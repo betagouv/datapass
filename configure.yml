@@ -77,6 +77,7 @@
       env_var:
         BACK_HOST: "{{ back_host }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
+        API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         PIWIK_URL: "{{ piwik_url | default('') }}"
         PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
       tags:
