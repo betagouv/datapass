@@ -62,6 +62,7 @@
         FRANCECONNECT_PARTICULIER_API_KEY: "{{ franceconnect_particulier_api_key }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
         API_PARTICULIER_API_KEY: "{{ api_particulier_api_key }}"
+        USE_API_ENTREPRISE_REGISTERER: "{{ use_api_entreprise_registerer | default('') }}"
         API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         API_ENTREPRISE_API_KEY: "{{ api_entreprise_api_key }}"
         MAILJET_API_KEY: "{{ signup_mailjet_api_key }}"
@@ -77,7 +78,6 @@
       env_var:
         BACK_HOST: "{{ back_host }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
-        API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         PIWIK_URL: "{{ piwik_url | default('') }}"
         PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
       tags:
