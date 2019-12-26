@@ -339,6 +339,12 @@ VALUES ('application_name', 'client_id', 'client_secret', '{"https://redirect.ur
 
 Here is a suggestion on how to generate client_id and client_secret: https://stackoverflow.com/a/34350507/2590861 .
 
+Oidc clients are loaded at api-auth service startup. Restart the api-auth service to enable your new client:
+
+```bash
+sudo systemctl restart api-auth
+```
+
 ## Configue Matomo (ex Piwik)
 
 To follow the usage of the project, we use a Matomo instances hosted [here](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
