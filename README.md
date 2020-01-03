@@ -87,8 +87,24 @@ bundler install
 eval "$(rbenv init -)"
 rails db:migrate
 rails db:seed
-rails db:fixtures:load
 sudo systemctl restart signup-back
+exit
+exit
+```
+
+Load fixtures in Signup back:
+```bash
+vagrant ssh signup
+sudo su - postgres
+psql -d signup-back -c 'ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "enrollments" DISABLE TRIGGER ALL;'
+exit
+sudo su - signup
+cd /opt/apps/signup-back/current
+export $(cat /etc/signup-back.conf | xargs)
+rails db:fixtures:load
+exit
+sudo su - postgres
+psql -d signup-back -c 'ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "enrollments" ENABLE TRIGGER ALL;'
 exit
 exit
 ```
@@ -125,8 +141,6 @@ exit
 
 Go to https://signup-development.api.gouv.fr/. Sign in as `user@test` with the password `password`. Then, you should see the enrollment list.
 Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
-
-> if you want to install API Particulier, you may now resume on [testing API Particulier installation](https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#test-the-local-installation).
 
 ### Run app manually (optional)
 
