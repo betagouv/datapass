@@ -19,7 +19,7 @@ Ces scripts ansible permettent de gérer :
 - [Ansible 2.5.0](https://www.ansible.com/) or `brew install ansible` (this may take a while)
 - dnspython
 
-For more information, see https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#dependencies-setup
+For more information, see https://gitlab.com/etalab/api.gouv.fr/api-particulier-ansible#dependencies-setup
 (if this goes to a `404`, ask a teammate to allow your profile on the project.)
 
 ### Signup local provisioning
@@ -27,7 +27,7 @@ For more information, see https://gitlab.incubateur.net/beta.gouv.fr/api-particu
 Clone the repo:
 
 ```bash
-git clone --recursive git@gitlab.incubateur.net:beta.gouv.fr/signup-ansible.git
+git clone --recursive git@gitlab.com:etalab/api.gouv.fr/signup-ansible.git
 cd signup-ansible/
 git submodule foreach git fetch
 git submodule foreach git pull origin master
@@ -195,7 +195,7 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventories/development/host
 
 ### Provisioning
 
-See https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible#configure-staging-instance
+See https://gitlab.com/etalab/api.gouv.fr/api-particulier-ansible#configure-staging-instance
 
 ### Deployment
 
