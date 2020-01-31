@@ -24,3 +24,5 @@
   vars:
     ips: "{{ blacklisted_ips | default([]) }}"
   notify: restart nginx
+
+- meta: flush_handlers

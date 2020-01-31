@@ -4,6 +4,8 @@
     - app-user
     - role: team-ssh-keys
       tags: team-ssh-keys
+    - role: ufw
+      tags: ufw
     - role: nginx
       tags: nginx
     - role: ansible-role-nodejs
@@ -11,6 +13,8 @@
 
 - hosts: signup
   become: true
+  vars:
+    app_service_name: www
   roles:
     - role: ruby
       tags: ruby
