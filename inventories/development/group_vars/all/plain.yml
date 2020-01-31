@@ -1,0 +1,4 @@
+ansible_user: vagrant
+ssl_strategy: self-signed
+disable_backup: True
+team_ssh_keys: []

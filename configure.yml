@@ -34,12 +34,14 @@
       backup_type: postgresql
       frequency: daily
       tags: backup-script
+      when: disable_backup is not defined
     - role: backup-script
       backup_user: signup
       store_identifier: /opt/apps/signup-back/uploads
       frequency: weekly
       backup_type: file
       tags: backup-script
+      when: disable_backup is not defined
     - role: rails-app
       app_service_name: signup-back
       server_name: "{{ back_domain_name }}"
@@ -62,11 +64,13 @@
         PG_DATABASE: "{{ pg_database }}"
         SIGNUP_OAUTH_CLIENT_ID: "{{ signup_oauth_client_id }}"
         SIGNUP_OAUTH_CLIENT_SECRET: "{{ signup_oauth_client_secret }}"
-        FRANCECONNECT_PARTICULIER_HOST: "{{ franceconnect_particulier_host }}"
-        FRANCECONNECT_PARTICULIER_API_KEY: "{{ franceconnect_particulier_api_key }}"
+        DISABLE_API_PARTICULIER_BRIDGE: "{{ disable_api_particulier_bridge | default('') }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
         API_PARTICULIER_API_KEY: "{{ api_particulier_api_key }}"
-        USE_API_ENTREPRISE_REGISTERER: "{{ use_api_entreprise_registerer | default('') }}"
+        DISABLE_FRANCECONNECT_BRIDGE: "{{ disable_franceconnect_bridge | default('') }}"
+        FRANCECONNECT_PARTICULIER_HOST: "{{ franceconnect_particulier_host }}"
+        FRANCECONNECT_PARTICULIER_API_KEY: "{{ franceconnect_particulier_api_key }}"
+        DISABLE_API_ENTREPRISE_BRIDGE: "{{ disable_api_entreprise_bridge | default('') }}"
         API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         API_ENTREPRISE_API_KEY: "{{ api_entreprise_api_key }}"
         MAILJET_API_KEY: "{{ signup_mailjet_api_key }}"
@@ -104,6 +108,7 @@
       backup_type: postgresql
       frequency: daily
       tags: backup-script
+      when: disable_backup is not defined
     - role: redis
       tags: redis
     - role: node-app
