@@ -54,7 +54,7 @@
 - name: Copy local public key to remote
   copy:
     dest: "~/.gnupg/tmp_public_key"
-    src: "public_keys/{{ inventory_dir | basename }}/backup_gpg_key.pub.asc"
+    src: "{{ inventory_dir }}/../../public_keys/{{ inventory_dir | basename }}/backup_gpg_key.pub.asc"
     mode: 0700
   become: yes
   become_user: "{{ backup_user }}"
