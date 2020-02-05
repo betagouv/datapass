@@ -187,6 +187,7 @@ ansible-playbook -i inventories/development deploy.yml
 
 [![architecture](https://docs.google.com/drawings/d/e/2PACX-1vRQgClO24uIMZMY-7DZCqz2QqaaDUjepysMv2zHEY4hrOkgGTz8FFXBMxNnNR-uD3F-ZknXHeHbksCj/pub?w=960&h=903)](https://docs.google.com/drawings/d/1rJl6g-BFKO--4EWmbSgn3Wq7H8LCxDUvey_xlN-3Sp4/edit?usp=sharing)
 
+
 ## Troubleshooting
 
 ### Unable to join organization on development environment
@@ -198,3 +199,18 @@ You can fix this in api-auth database with:
 ```postgres-sql
 SELECT setval('organizations_id_seq', 3);
 ```
+
+### Sync vagrant ruby env with host dev tools
+
+You may want to connect your local dev tools with remote ruby env (ex: setup remote ruby interpreter in rubymine).
+
+Add your vagrant insecure public key from:
+
+```bash
+vagrant ssh signup
+cat ~/.ssh/authorized_keys
+```
+
+in: `/home/signup/.ssh/authorized_keys`
+
+Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.4.2/bin/ruby`
