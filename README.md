@@ -213,3 +213,25 @@ cat ~/.ssh/authorized_keys
 in: `/home/signup/.ssh/authorized_keys`
 
 Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.4.2/bin/ruby`
+
+### React dev tools keep disconnecting
+
+Add the following lines in `/etc/nginx/sites-enabled/signup-front` at the end of the `location /` section :
+
+```
+    # the following two timeout rules fix CRA WDS disconnects after 60s
+    proxy_read_timeout 86400s;
+    proxy_send_timeout 86400s;
+```
+
+See this issue on github : https://github.com/facebook/create-react-app/issues/8203#issuecomment-571605090
+
+### Slow hot reloading in signup-front
+
+If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the signup VM:
+
+```shell script
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+More details here: https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers
