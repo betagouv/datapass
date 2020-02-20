@@ -2,7 +2,7 @@
 
 Dépôt ansible pour déployer les services [api.gouv.fr](https://api.gouv.fr).
 
-![Signup](screenshot-signup.jpg)
+![Signup](screenshot-signup.png)
 
 Ces scripts ansible permettent de gérer :
 
