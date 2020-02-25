@@ -1,13 +1,117 @@
 # Signup
 
-Dépôt ansible pour déployer les services [api.gouv.fr](https://api.gouv.fr).
+L'outils de gestion des habilitations administratives.
 
 ![Signup](screenshot-signup.png)
 
-Ces scripts ansible permettent de gérer :
+## Contexte
 
-- signup.api.gouv.fr : l'application de contractualisation des APIs de api.gouv.fr
+Plusieurs ministères mettent en œuvre des API et des API managers. Les outils du marché permettent
+de donner accès aux éléments techniques d’une ou plusieurs API mais ne gèrent pas la phase
+d’habilitation.
+
+De plus, les administrations utilisent souvent, pour un même service, plusieurs API. L’utilisation
+d’un outil interministériel leur permet une cohérence de la procédure d’habilitation et la
+centralisation de leurs demandes.
+
+Ces constats ont amené la DINUM a créer, d’abord pour ses propres besoins, puis pour plusieurs
+ministères un outils d’habilitation spécifique aux demandes d’accès à des API.
+
+## Fonctionnalités de Signup
+
+Pour le demandeur :
+
+- centralisation des habilitations d’une organisation à plusieurs API
+- sélection les périmètres de données (scope) dans chaque API
+- information du DPO et du responsable de traitement lors de la validation d’une demande
+- gestion du renouvellement des habilitations
+- permet d’accéder aux APIm avec le même compte que celui utilisé pour demander l’accès au Signup
+- permet une automatisation de la délivrance des tokens avec interaction vers l’API management des ministères
+
+Pour le validateur :
+
+- les utilisateurs sont prévenus par mail pour chaque nouvelle demande
+- automatisation de la création des comptes d’accès aux API Manager
+- automatisation de la création des tokens grâce par interaction avec les API Manager
+- publication des autorisation délivrées
+- pilotage de l’activité (tableau de bord statistique) 
+- affichage public des fournisseurs de service autorisés
+
+## Raccorder son service à Signup
+
+Si vous délivrez un service qui requiert une habilitation juridique (ex: API délivrant des données
+à caractère personnel) vous pouvez utiliser Signup pour la gestion de vos habilitations. Signup
+remplace les conventionnements bipartites ou tripartites entre administrations et de ce fait
+participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
+jeton d'accès n'est pas pris en charge par Signup, seule la gestion de l'habilitation en amont
+l'est.
+
+La première étape du raccordement est de prendre contact avec notre équipe par mail à
+contact@api.gouv.fr.
+
+Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond au mieux
+à votre service. Par exemple, nous établirons ensemble si il y a besoin de proposer une granularité
+d'accès ou un bloc RGPD si vous exposez des données sensibles.
+
+A partir d'élément communs, nous développons et déployons un formulaire sur mesure. Voici la liste
+des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de Signup) :
+
+1. dans le frontend
+    1. description de l'organisation du formulaire (création de src/pages/NameOfApi.js)
+    2. url du formulaire sur le domaine signup.api.gouv.fr (src/App.js)
+    3. label à afficher pour le service dans la vue liste (src/lib/api.js)
+    4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/utils.js L~38)
+2. dans le backend
+    1. définition du format et du type des données hors tronc commun (création de
+    app/policies/enrollment/<name_of_api>_policy.rb)
+    2. définitions de règles de validation supplémentaires et des messages d'erreurs spécifiques
+    (création de app/models/enrollment/<name_of_api>.rb)
+    3. configuration du label de service et de l'adresse email pour les notifications mail émises
+    depuis Signup. À noter, que l'envoi par Signup via une adresse email administré par vous fait
+    l'object d'une procédure de validation effectuée par notre équipe dans l'outils mailjet
+    (app/mailers/enrollment_mailer.rb)
+    4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
+    développeur dans l'API Manager via appel HTTP directement sur votre API Manager)
+    (app/models/enrollment.rb L51)
+
+Enfin, nous définirons ensemble les modalités de validation de vos demandes habilitations.
+Plusieurs méthodes sont envisageables :
+
+- Le producteur de données délègue intégralement la validation des accès à la DINUM
+- La DINUM valide les demandes dites passantes (cas d'usage prédéfinis) et soumet à validation du
+fournisseur les autres cas
+- Le producteur valide les demandes de manière autonome
+
+## Tester Signup
+
+Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
+de Signup, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
+https://signup-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
+https://signup-staging.api.gouv.fr/api-particulier).
+
+Vous pouvez vous créer un compte utilisateur en entrant n'importe quel numéro SIRET.
+
+Vous pouvez également utiliser les comptes de tests suivants :
+
+- validateur api-particulier :
+    - identifiant : api-particulier@yopmail.com
+    - mot de passe : api-particulier@yopmail.com
+- utilisateur sans droits d'administration :
+    - identifiant : user@yopmail.com
+    - mot de passe : user@yopmail.com
+
+À noter que les email reçus sur les adresse en yopmail.com sont accessibles sur : http://yopmail.com/ .
+
+## Contenu de ce dépôt de code
+
+Ce dépôt de code contient les scripts de configuration et de déploiement pour
+déployer les services :
+
+- signup.api.gouv.fr
 - auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
+
+En outre, il vous permet d'instancier un environnement de développement local pour ces services.
+Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
 ## Install
 
