@@ -1,6 +1,6 @@
 # Signup
 
-L'outils de gestion des habilitations administratives.
+L'outil de gestion des habilitations administratives.
 
 ![Signup](screenshot-signup.png)
 
