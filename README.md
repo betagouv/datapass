@@ -82,6 +82,21 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur valide les demandes de manière autonome
 
+## Devenir administrateur de son service dans Signup
+
+Dans Signup il y a deux types d'utilisateurs, les demandeurs, qui viennent déposer leur demande, et
+les administrateurs, qui peuvent les valider, les refuser ou demander des modifications. Les
+administrateurs voient, en plus de leurs propres demandes, toutes les demandes déposées pour leur
+service. Les administrateurs ont une page d'acceuil différente des demandeurs. Cette page d'acceuil
+ajoute notamment des fonction de recherche et de filtre des demandes qui ne sont pas disponibles
+aux demandeurs.
+
+Pour devenir administrateur il faut :
+
+1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
+2. rejoindre l'organisation que l'on représente en renseignant le numéro SIRET de l'organization
+3. envoyer une demande écrite à signup@api.gouv.fr
+
 ## Tester Signup
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
