@@ -94,7 +94,7 @@ aux demandeurs.
 Pour devenir administrateur il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
-2. rejoindre l'organisation que l'on représente en renseignant le numéro SIRET de l'organization
+2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
 3. envoyer une demande écrite à signup@api.gouv.fr
 
 ## Tester Signup
