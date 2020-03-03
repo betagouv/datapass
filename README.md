@@ -142,8 +142,8 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 Clone the repo:
 
 ```bash
-git clone --recursive git@gitlab.com:etalab/api.gouv.fr/signup-ansible.git
-cd signup-ansible/
+git clone --recursive git@gitlab.com:etalab/api.gouv.fr/signup.git
+cd signup/
 git submodule foreach git fetch
 git submodule foreach git pull origin master
 git submodule foreach git checkout master
