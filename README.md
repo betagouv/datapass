@@ -60,7 +60,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     1. description de l'organisation du formulaire (création de src/pages/NameOfApi.js)
     2. url du formulaire sur le domaine signup.api.gouv.fr (src/App.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
-    4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/utils.js L~38)
+    4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
 2. dans le backend
     1. définition du format et du type des données hors tronc commun (création de
     app/policies/enrollment/<name_of_api>_policy.rb)
@@ -115,7 +115,7 @@ Vous pouvez également utiliser les comptes de tests suivants :
     - identifiant : user@yopmail.com
     - mot de passe : user@yopmail.com
 
-À noter que les email reçus sur les adresse en yopmail.com sont accessibles sur : http://yopmail.com/ .
+À noter que les emails reçus sur les adresses en yopmail.com sont accessibles sur : http://yopmail.com/ .
 
 ## Contenu de ce dépôt de code
 
