@@ -39,6 +39,8 @@ Pour le validateur :
 
 ## Raccorder son service à Signup
 
+### Définition des besoins
+
 Si vous délivrez un service qui requiert une habilitation juridique (ex: API délivrant des données
 à caractère personnel) vous pouvez utiliser Signup pour la gestion de vos habilitations. Signup
 remplace les conventionnements bipartites ou tripartites entre administrations et de ce fait
@@ -52,6 +54,8 @@ contact@api.gouv.fr.
 Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond au mieux
 à votre service. Par exemple, nous établirons ensemble si il y a besoin de proposer une granularité
 d'accès ou un bloc RGPD si vous exposez des données sensibles.
+
+### Déploiement du formulaire
 
 A partir d'élément communs, nous développons et déployons un formulaire sur mesure. Voici la liste
 des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de Signup) :
@@ -73,6 +77,8 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
     développeur dans l'API Manager via appel HTTP directement sur votre API Manager)
     (app/models/enrollment.rb L51)
+
+### Traitement des demandes
 
 Enfin, nous définirons ensemble les modalités de validation de vos demandes habilitations.
 Plusieurs méthodes sont envisageables :
