@@ -6,36 +6,33 @@ L'outil de gestion des habilitations administratives.
 
 ## Contexte
 
-Plusieurs ministères mettent en œuvre des API et des API managers. Les outils du marché permettent
-de donner accès aux éléments techniques d’une ou plusieurs API mais ne gèrent pas la phase
-d’habilitation.
+D'une part, toutes les administrations (ministères, opérateurs, collectivités, ...) produisent des API pour exposer leurs ressources (données ou traitements). Une partie de ces administrations utilise des gestionnaires d'API (API manager en anglais) pour centraliser l'exposition de leurs ressources. Les outils du marché permettent de donner accès aux éléments techniques d’une ou plusieurs API mais ne gèrent pas la phase d’habilitation.
 
-De plus, les administrations utilisent souvent, pour un même service, plusieurs API. L’utilisation
-d’un outil interministériel leur permet une cohérence de la procédure d’habilitation et la
+D'autre part, les administrations consomment souvent plusieurs API (de différents producteurs) pour mettre en oeuvre un téléservice ou une nouvelle démarche. L’utilisation d’un outil interministériel leur permet une cohérence de la procédure d’habilitation et la
 centralisation de leurs demandes.
 
-Ces constats ont amené la DINUM a créer, d’abord pour ses propres besoins, puis pour plusieurs
-ministères un outils d’habilitation spécifique aux demandes d’accès à des API.
+Ces constats ont amené la DINUM à créer, d’abord pour ses propres besoins, puis pour plusieurs
+ministères un outil d’habilitation spécifique aux demandes d’accès à des API.
 
 ## Fonctionnalités de Signup
 
 Pour le demandeur :
 
 - centralisation des habilitations d’une organisation à plusieurs API
-- sélection les périmètres de données (scope) dans chaque API
+- sélection des périmètres de données (scope) dans chaque API
 - information du DPO et du responsable de traitement lors de la validation d’une demande
 - gestion du renouvellement des habilitations
-- permet d’accéder aux APIm avec le même compte que celui utilisé pour demander l’accès au Signup
-- permet une automatisation de la délivrance des tokens avec interaction vers l’API management des ministères
+- accès aux APIm avec le même compte que celui utilisé pour demander l’accès au Signup (SSO)
+- automatisation de la délivrance des tokens grâce à une interaction vers l’API Manager des administrations
 
 Pour le validateur :
 
-- les utilisateurs sont prévenus par mail pour chaque nouvelle demande
+- notification par mail des utilisateurs validateurs lors de chaque nouvelle demande
 - automatisation de la création des comptes d’accès aux API Manager
-- automatisation de la création des tokens grâce par interaction avec les API Manager
-- publication des autorisation délivrées
-- pilotage de l’activité (tableau de bord statistique) 
-- affichage public des fournisseurs de service autorisés
+- automatisation de la création des tokens grâce à une interaction avec les API Manager
+- publication des habilitations délivrées
+- pilotage de l’activité (tableau de bord avec statistique) 
+- affichage public des entités autorisées à accès à des API dans le cadre d'une démarche
 
 ## Raccorder son service à Signup
 
@@ -45,15 +42,15 @@ Si vous délivrez un service qui requiert une habilitation juridique (ex: API d�
 à caractère personnel) vous pouvez utiliser Signup pour la gestion de vos habilitations. Signup
 remplace les conventionnements bipartites ou tripartites entre administrations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
-jeton d'accès n'est pas pris en charge par Signup, seule la gestion de l'habilitation en amont
-l'est.
+jeton d'accès n'est pas pris en charge directement par Signup, c'est l'API Manger qui s'en charge.
+Seule la gestion de l'habilitation en amont est gérée par Signup.
 
 La première étape du raccordement est de prendre contact avec notre équipe par mail à
 contact@api.gouv.fr.
 
-Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond au mieux
+Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond le mieux
 à votre service. Par exemple, nous établirons ensemble si il y a besoin de proposer une granularité
-d'accès ou un bloc RGPD si vous exposez des données sensibles.
+d'accès aux données ou un bloc RGPD si vous exposez des données personnelles.
 
 ### Déploiement du formulaire
 
@@ -80,13 +77,13 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
 
 ### Traitement des demandes
 
-Enfin, nous définirons ensemble les modalités de validation de vos demandes habilitations.
+Enfin, nous définirons ensemble les modalités de validation de vos demandes d'habilitation.
 Plusieurs méthodes sont envisageables :
 
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 - La DINUM valide les demandes dites passantes (cas d'usage prédéfinis) et soumet à validation du
 fournisseur les autres cas
-- Le producteur valide les demandes de manière autonome
+- Le producteur valide toutes les demandes de manière autonome
 
 ## Devenir administrateur de son service dans Signup
 
