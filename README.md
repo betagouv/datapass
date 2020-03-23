@@ -19,16 +19,16 @@ ministères un outil d’habilitation spécifique aux demandes d’accès à des
 
 ## Fonctionnalités de Signup
 
-Pour le demandeur :
+Pour le demandeur d'accès :
 
-- centralisation des habilitations pour les adminstration à plusieurs API (et pour tout autre type d'organisation, aussi bien publique que privée)
-- permet d’accéder aux API Managers avec le même compte que celui utilisé pour demander l’accès au Signup
+- centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d'organisation, aussi bien publique que privée)
+- permet d’accéder aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil Signup
 - gestion du renouvellement des habilitations
 - sélection des périmètres de données (scopes) dans chaque API
 - permet une automatisation de la délivrance des tokens avec interaction vers l’API manager de votre organisation
 - notification par mail du Délégué à la protection des données et du responsable de traitement de votre organisation lors de la validation d’une demande
 
-Pour le valideur :
+Pour le valideur de la demande d'accès :
 
 - notification par mail à chaque nouvelle
 - automatisation de la création des comptes d’accès aux API Manager
@@ -41,8 +41,8 @@ Pour le valideur :
 ### Définition des besoins
 
 Si vous délivrez un service qui requiert une habilitation (ex: API délivrant des données
-à caractère personnel) vous pouvez utiliser Signup pour la gestion des habilitations nécessaire à l'accès aux « données ». Signup
-remplace les conventionnements bipartites ou tripartites entre organisations et de ce fait
+à caractère personnel) vous pouvez utiliser Signup pour la gestion des habilitations nécessaires à l'accès aux « données ». Signup
+remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
 jeton d'accès n'est pas pris en charge par Signup, seule la gestion de l'habilitation en amont
 l'est.
