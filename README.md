@@ -15,7 +15,7 @@ d’un outil interministériel leur permet une cohérence de la procédure d’h
 centralisation de leurs demandes.
 
 Ces constats ont amené la DINUM a créer, d’abord pour ses propres besoins, puis pour plusieurs
-ministères un outils d’habilitation spécifique aux demandes d’accès à des API.
+ministères un outil d’habilitation spécifique aux demandes d’accès à des API.
 
 ## Fonctionnalités de Signup
 
