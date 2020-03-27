@@ -30,3 +30,5 @@ franceconnect_particulier_api_key: ''
 disable_api_entreprise_bridge: True
 api_entreprise_host: ''
 api_entreprise_api_key: ''
+disable_api_impot_particulier_bridge: True
+disable_api_droits_cnam_bridge: True
