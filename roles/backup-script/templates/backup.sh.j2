@@ -18,6 +18,7 @@ TEMP_PATH=/tmp/${BACKUP_FILE_NAME}
 
 echo "$(logPrefix) Uploading backup file to remote server..."
 export OS_AUTH_URL="{{ openstack_auth_url }}"
+export OS_IDENTITY_API_VERSION="{{ openstack_identity_api_version }}"
 export OS_TENANT_ID="{{ openstack_tenant_id }}"
 export OS_TENANT_NAME="{{ openstack_tenant_name }}"
 export OS_USERNAME="{{ openstack_username }}"
