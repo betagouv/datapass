@@ -24,7 +24,7 @@ export OS_USERNAME="{{ openstack_username }}"
 export OS_PASSWORD="{{ openstack_password }}"
 export OS_REGION_NAME="{{ openstack_region_name }}"
 
-/usr/local/bin/swift upload {{ openstack_container_name }} ${TEMP_PATH} --object-name ${BACKUP_FILE_NAME} -V 2
+/usr/local/bin/swift upload {{ openstack_container_name }} ${TEMP_PATH} --object-name ${BACKUP_FILE_NAME}
 
 echo "$(logPrefix) Erasing local copy of backup file..."
 shred -u -z ${TEMP_PATH}
