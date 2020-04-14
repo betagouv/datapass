@@ -20,6 +20,8 @@ Ces constats ont amené la DINUM à créer, d’abord pour ses propres besoins, 
 ministères un outil d’habilitation spécifique aux demandes d’accès à des API. Cet outils est appelé
 Signup.
 
+Le code de cet outil est [ouvert](https://guides.etalab.gouv.fr/logiciels/#clarifier-quels-degres-d-ouverture-pour-les-codes-sources).
+
 ## Fonctionnalités de Signup
 
 Pour le demandeur d'accès aux « données » :
