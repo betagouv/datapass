@@ -4,9 +4,5 @@ node_env: production
 api_auth_domain_name: auth-development.api.gouv.fr
 api_auth_pg_password: api-auth
 
-api_auth_mailjet_api_key: ''
-api_auth_mailjet_secret_key: ''
-do_not_send_mail: True
-
 session_cookie_secret: 'gVxf0KQrjF1rTRPuOucti2cRcok4D5SCzm7oXmPyXS5UEgYz'
 oidc_pairwise_identifier_salt: 'kMYMRjUiHwV4VNnQq1rPKBQPQjZv29Zzls6QiZu1FYPAEhjN'
