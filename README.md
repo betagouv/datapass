@@ -341,7 +341,7 @@ cat ~/.ssh/authorized_keys
 
 in: `/home/signup/.ssh/authorized_keys`
 
-Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.4.2/bin/ruby`
+Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.7.1/bin/ruby`
 
 NB: if you want to run rubocop, you might need to install standardrb `gem install standardrb`.
 

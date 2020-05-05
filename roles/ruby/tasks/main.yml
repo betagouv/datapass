@@ -5,9 +5,9 @@
     rbenv:
       env: user
       version: v1.1.1
-      default_ruby: 2.4.2
+      default_ruby: 2.7.1
       rubies:
-        - version: 2.4.2
+        - version: 2.7.1
     rbenv_owner: "{{ app_user }}"
     rbenv_group: "{{ app_user }}"
     rbenv_users:

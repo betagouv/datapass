@@ -52,6 +52,7 @@
       devise_secret: "{{ back_devise_secret }}"
       secret_key_base: "{{ back_secret_key_base }}"
       env_var:
+        RUBYOPT: "'-W0'"
         SERVER_NAME: "{{ inventory_hostname }}"
         PORT: "{{ app_port }}"
         FRONT_HOST: "{{ front_host }}"
