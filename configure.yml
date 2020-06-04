@@ -126,6 +126,7 @@
         DATABASE_URL: "postgres://api-auth:{{ api_auth_pg_password }}@127.0.0.1:5432/api-auth"
         MAILJET_API_KEY: "{{ mailjet_api_key }}"
         MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
+        SENDINBLUE_API_KEY: "{{ sendinblue_api_key }}"
         API_AUTH_HOST: "https://{{ api_auth_domain_name }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
         SESSION_COOKIE_SECRET: "{{ session_cookie_secret }}"

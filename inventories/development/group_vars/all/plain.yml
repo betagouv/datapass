@@ -6,3 +6,4 @@ team_ssh_keys: []
 do_not_send_mail: True
 mailjet_api_key: ''
 mailjet_secret_key: ''
+sendinblue_api_key: ''
