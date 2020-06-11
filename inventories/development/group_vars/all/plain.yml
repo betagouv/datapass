@@ -1,6 +1,7 @@
 ansible_user: vagrant
 ssl_strategy: self-signed
 disable_backup: True
+api_gouv_host: https://api.gouv.fr
 team_ssh_keys: []
 
 do_not_send_mail: True

@@ -91,6 +91,7 @@
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
         PIWIK_URL: "{{ piwik_url | default('') }}"
         PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
+        API_GOUV_HOST: "{{ api_gouv_host }}"
       tags:
       - front
       - app-config
