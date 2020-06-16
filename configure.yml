@@ -78,6 +78,7 @@
         DISABLE_API_DROITS_CNAM_BRIDGE: "{{ disable_api_droits_cnam_bridge | default('') }}"
         MAILJET_API_KEY: "{{ mailjet_api_key }}"
         MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
+        SENDINBLUE_API_KEY: "{{ sendinblue_api_key }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
       tags:
       - back
