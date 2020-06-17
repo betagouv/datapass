@@ -6,6 +6,7 @@ server {
   ssl_certificate_key /etc/letsencrypt/live/{{ server_name }}/privkey.pem;
   ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
   add_header Strict-Transport-Security "max-age=15552000" always;
+  add_header X-Frame-Options "DENY";
 
   add_header 'Access-Control-Allow-Origin' '{{ front_host }}' always;
   add_header 'Access-Control-Allow-Credentials' 'true' always;
