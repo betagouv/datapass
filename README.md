@@ -1,4 +1,4 @@
-# Signup
+# Data Pass (anciennement Signup)
 
 L'outil de gestion des habilitations administratives.
 
