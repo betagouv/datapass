@@ -17,6 +17,8 @@
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
     mode: 0644
+    access_time: preserve
+    modification_time: preserve
 
 - name: copy configuration file
   template:

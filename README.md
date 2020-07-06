@@ -145,7 +145,7 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 - [VirtualBox \^5.2.10](https://www.virtualbox.org)
 - [Vagrant \^2.1.1](https://www.vagrantup.com)
 - NFS
-- [Ansible 2.5.0](https://www.ansible.com/)
+- [Ansible 2.9.10](https://www.ansible.com/)
 
 ### Signup local provisioning
 
