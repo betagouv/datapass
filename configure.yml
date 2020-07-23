@@ -1,4 +1,4 @@
-- hosts: signup,api-auth
+- hosts: datapass,api-auth
   become: true
   roles:
     - app-user
@@ -11,7 +11,7 @@
     - role: ansible-role-nodejs
       nodejs_version: 12.x
 
-- hosts: signup
+- hosts: datapass
   become: true
   vars:
     app_service_name: www
@@ -23,6 +23,9 @@
       tags: ssl
     - role: ssl
       server_name: "{{ front_domain_name }}"
+      tags: ssl
+    - role: ssl
+      server_name: "{{ former_front_domain_name }}"
       tags: ssl
     - role: postgres
       pg_user: back
@@ -63,8 +66,8 @@
         PG_USER: "{{ pg_user }}"
         PG_PASSWORD: "{{ pg_password }}"
         PG_DATABASE: "{{ pg_database }}"
-        SIGNUP_OAUTH_CLIENT_ID: "{{ signup_oauth_client_id }}"
-        SIGNUP_OAUTH_CLIENT_SECRET: "{{ signup_oauth_client_secret }}"
+        DATAPASS_OAUTH_CLIENT_ID: "{{ datapass_oauth_client_id }}"
+        DATAPASS_OAUTH_CLIENT_SECRET: "{{ datapass_oauth_client_secret }}"
         DISABLE_API_PARTICULIER_BRIDGE: "{{ disable_api_particulier_bridge | default('') }}"
         API_PARTICULIER_HOST: "{{ api_particulier_host }}"
         API_PARTICULIER_API_KEY: "{{ api_particulier_api_key }}"
@@ -93,9 +96,18 @@
         PIWIK_URL: "{{ piwik_url | default('') }}"
         PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
         API_GOUV_HOST: "{{ api_gouv_host }}"
+      permanent_redirect_rules:
+        - source_pattern: '= /api-impot-particulier'
+          destination_path: '/api-impot-particulier-fc-sandbox'
+        - source_pattern: '= /api-impot-particulier-step2'
+          destination_path: '/api-impot-particulier-fc-production'
       tags:
       - front
       - app-config
+    - role: domain-redirection
+      former_domain: "{{ former_front_domain_name }}"
+      current_domain: "{{ front_domain_name }}"
+      tags: domain-redirection
 
 - hosts: api-auth
   become: true

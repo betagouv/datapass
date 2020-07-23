@@ -10,10 +10,10 @@
 
 - name: Install dependent packages.
   pip:
-    name: "{{ item }}"
-  with_items:
-    - python-swiftclient==3.8.1
-    - python-keystoneclient==3.22.0
+    name:
+      - python-swiftclient==3.10.0
+      - python-keystoneclient==3.22.0
+    extra_args: "--no-cache-dir" # fixes "AssertionError: zipp>=0.5 .dist-info directory not found"
 
 # from https://github.com/vkill/ansible-role-gpg_key/blob/c5ed54c6eb15873831bb91d5128af20560b8b25d/tasks/common.yml
 - name: "Ensure ~/.gnupg config directory exists with right permissions"

@@ -1,4 +1,4 @@
-- hosts: signup
+- hosts: datapass
   vars:
     ansible_user: "{{ app_user }}"
   tasks:

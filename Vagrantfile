@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 vms = {
-  signup: {
+  datapass: {
     :ip => '192.168.56.125',
     :memory => '1024',
     :autostart => true,
-    :name => 'signup-development',
+    :name => 'datapass-development',
     :synced_folders =>
       [
         {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},

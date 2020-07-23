@@ -2,7 +2,7 @@
 
 L'outil de gestion des habilitations administratives.
 
-![Signup](screenshot-signup.png)
+![Data Pass](screenshot-datapass.png)
 
 ## Contexte
 
@@ -18,16 +18,16 @@ leur permet une cohérence de la procédure d’habilitation et la centralisatio
 
 Ces constats ont amené la DINUM à créer, d’abord pour ses propres besoins, puis pour plusieurs
 ministères un outil d’habilitation spécifique aux demandes d’accès à des API. Cet outils est appelé
-Signup.
+Data Pass.
 
 Le code de cet outil est [ouvert](https://guides.etalab.gouv.fr/logiciels/#clarifier-quels-degres-d-ouverture-pour-les-codes-sources).
 
-## Fonctionnalités de Signup
+## Fonctionnalités de Data Pass
 
 Pour le demandeur d'accès aux « données » :
 
 - centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d'organisation, aussi bien publique que privée)
-- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil Signup (SSO)
+- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil Data Pass (SSO)
 - gestion du renouvellement des habilitations
 - sélection des périmètres de données (scopes) dans chaque API
 - automatisation de la délivrance des tokens grâce à une interaction vers l’API Manager de votre organisation
@@ -38,19 +38,19 @@ Pour le valideur de la demande d'accès aux « données » :
 - notification par mail à chaque nouvelle demande d'un demandeur
 - automatisation de la création des comptes d’accès aux API Manager
 - automatisation de la création des tokens grâce à une interaction avec les API Manager
-- publication des habilitations validées sur https://signup.api.gouv.fr/public conformément au RGPD
-- pilotage de l’activité/tableau de bord statistique : https://signup.api.gouv.fr/stats
+- publication des habilitations validées sur https://datapass.api.gouv.fr/public conformément au RGPD
+- pilotage de l’activité/tableau de bord statistique : https://datapass.api.gouv.fr/stats
 
-## Raccorder son service à Signup
+## Raccorder son service à Data Pass
 
 ### Définition des besoins
 
 Si vous délivrez un service qui requiert une habilitation (ex: API délivrant des données
-à caractère personnel) vous pouvez utiliser Signup pour la gestion des habilitations nécessaires à l'accès aux « données ». Signup
+à caractère personnel) vous pouvez utiliser Data Pass pour la gestion des habilitations nécessaires à l'accès aux « données ». Data Pass
 remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
-jeton d'accès n'est pas pris en charge directement par Signup, c'est l'API manager qui s'en charge.
-Seule la gestion de l'habilitation en amont est gérée par Signup.
+jeton d'accès n'est pas pris en charge directement par Data Pass, c'est l'API manager qui s'en charge.
+Seule la gestion de l'habilitation en amont est gérée par Data Pass.
 
 La première étape du raccordement est de prendre contact avec notre équipe par mail à
 contact@api.gouv.fr.
@@ -62,11 +62,11 @@ d'accès aux données ou un bloc RGPD si vous exposez des données personnelles.
 ### Déploiement du formulaire
 
 A partir d'élément communs, nous développons et déployons un formulaire sur mesure. Voici la liste
-des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de Signup) :
+des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de Data Pass) :
 
 1. dans le frontend
     1. description de l'organisation du formulaire (création de src/pages/NameOfApi.js)
-    2. url du formulaire sur le domaine signup.api.gouv.fr (src/App.js)
+    2. url du formulaire sur le domaine datapass.api.gouv.fr (src/App.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
 2. dans le backend
@@ -75,7 +75,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     2. définitions de règles de validation supplémentaires et des messages d'erreurs spécifiques
     (création de app/models/enrollment/<name_of_api>.rb)
     3. configuration du label de service et de l'adresse email pour les notifications mail émises
-    depuis Signup. À noter, que l'envoi par Signup via une adresse email administré par vous fait
+    depuis Data Pass. À noter, que l'envoi par Data Pass via une adresse email administré par vous fait
     l'object d'une procédure de validation effectuée par notre équipe dans l'outils mailjet
     (app/mailers/enrollment_mailer.rb)
     4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
@@ -92,9 +92,9 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
-## Devenir administrateur de son service dans Signup
+## Devenir administrateur de son service dans Data Pass
 
-Dans Signup il y a deux types d'utilisateurs, les demandeurs, qui viennent déposer leur demande, et
+Dans Data Pass il y a deux types d'utilisateurs, les demandeurs, qui viennent déposer leur demande, et
 les administrateurs, qui peuvent les valider, les refuser ou demander des modifications. Les
 administrateurs voient, en plus de leurs propres demandes, toutes les demandes déposées pour leur
 service. Les administrateurs ont une page d'acceuil différente des demandeurs. Cette page d'acceuil
@@ -105,14 +105,14 @@ Pour devenir administrateur il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
 2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
-3. envoyer une demande écrite à signup@api.gouv.fr
+3. envoyer une demande écrite à datapass@api.gouv.fr
 
-## Tester Signup
+## Tester Data Pass
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
-de Signup, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
-https://signup-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
-https://signup-staging.api.gouv.fr/api-particulier).
+de Data Pass, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
+https://datapass-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
+https://datapass-staging.api.gouv.fr/api-particulier).
 
 Vous pouvez vous créer un compte utilisateur en entrant n'importe quel numéro SIRET.
 
@@ -132,7 +132,7 @@ Vous pouvez également utiliser les comptes de tests suivants :
 Ce dépôt de code contient les scripts de configuration et de déploiement pour
 déployer les services :
 
-- signup.api.gouv.fr
+- datapass.api.gouv.fr
 - auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
 
 En outre, il vous permet d'instancier un environnement de développement local pour ces services.
@@ -147,13 +147,13 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 - NFS
 - [Ansible 2.9.10](https://www.ansible.com/)
 
-### Signup local provisioning
+### Data Pass local provisioning
 
 Clone the repo:
 
 ```bash
-git clone --recursive git@gitlab.com:etalab/api.gouv.fr/signup.git
-cd signup/
+git clone --recursive git@gitlab.com:etalab/api.gouv.fr/datapass.git
+cd datapass/
 git submodule foreach git fetch
 git submodule foreach git pull origin master
 git submodule foreach git checkout master
@@ -162,9 +162,9 @@ git submodule foreach git checkout master
 Add the following hosts in `/etc/hosts`:
 
 ```text
-192.168.56.125 signup-development.particulier-infra.api.gouv.fr
-192.168.56.125 signup-development.api.gouv.fr
-192.168.56.125 back.signup-development.api.gouv.fr
+192.168.56.125 datapass-development.particulier-infra.api.gouv.fr
+192.168.56.125 datapass-development.api.gouv.fr
+192.168.56.125 back.datapass-development.api.gouv.fr
 
 192.168.56.127 auth-development.particulier-infra.api.gouv.fr
 192.168.56.127 auth-development.api.gouv.fr
@@ -198,9 +198,9 @@ ansible-playbook -i inventories/development configure.yml # This can take a whil
 
 ### Development deployment
 
-Deploy Signup backend:
+Deploy Data Pass backend:
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 sudo su - signup
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
@@ -213,9 +213,9 @@ exit
 exit
 ```
 
-Load fixtures in Signup back:
+Load fixtures in Data Pass back:
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 sudo su - postgres
 psql -d signup-back -c 'ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "enrollments" DISABLE TRIGGER ALL;'
 exit
@@ -230,9 +230,9 @@ exit
 exit
 ```
 
-Deploy Signup frontend:
+Deploy Data Pass frontend:
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 sudo su - signup
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
@@ -260,14 +260,14 @@ exit
 
 ### Test your installation
 
-Go to https://signup-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `password`. Then, you should see the enrollment list.
+Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `password`. Then, you should see the enrollment list.
 Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
 
 ### Run the apps in interactive mode (optional)
 
 If you want to launch interactively signup-front:
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 sudo systemctl stop signup-front
 sudo su - signup
 cd /opt/apps/signup-front/current
@@ -281,7 +281,7 @@ Note that, we use the [`prettier`](https://prettier.io) linter for signup-front.
 
 signup-back:
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 sudo systemctl stop signup-back
 sudo su - signup
 cd /opt/apps/signup-back/current
@@ -341,7 +341,7 @@ You may want to connect your local dev tools with remote ruby env (ex: setup rem
 Add your vagrant insecure public key from:
 
 ```bash
-vagrant ssh signup
+vagrant ssh datapass
 cat ~/.ssh/authorized_keys
 ```
 
@@ -365,7 +365,7 @@ See this issue on github : https://github.com/facebook/create-react-app/issues/8
 
 ### Slow hot reloading in signup-front
 
-If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the signup VM:
+If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the datapass VM:
 
 ```shell script
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
