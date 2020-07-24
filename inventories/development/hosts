@@ -1,5 +1,5 @@
-[signup]
-signup-development.particulier-infra.api.gouv.fr
+[datapass]
+datapass-development.particulier-infra.api.gouv.fr
 
 [api-auth]
 auth-development.particulier-infra.api.gouv.fr
