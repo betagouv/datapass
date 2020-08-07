@@ -20,8 +20,8 @@ datapass_oauth_client_id: 82546188522214c3577d35c283ce8842786649b35a026a9d449080
 datapass_oauth_client_secret: 1ff180ba922fbbbb4cf6fe0d3e82efadaa48a14de454a2137e2d656aac5e97c4
 
 disable_api_particulier_bridge: True
-api_particulier_host: ''
-api_particulier_api_key: ''
+portail_api_gouv_fr_host: ''
+portail_api_gouv_fr_api_key: ''
 disable_franceconnect_bridge: True
 franceconnect_particulier_host: ''
 franceconnect_particulier_api_key: ''
