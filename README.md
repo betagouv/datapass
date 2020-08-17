@@ -118,7 +118,10 @@ Vous pouvez vous créer un compte utilisateur en entrant n'importe quel numéro 
 
 Vous pouvez également utiliser les comptes de tests suivants :
 
-- validateur api-particulier :
+- validateur API Entreprise :
+    - identifiant : api-entreprise@yopmail.com
+    - mot de passe : api-entreprise@yopmail.com
+- validateur API Particulier :
     - identifiant : api-particulier@yopmail.com
     - mot de passe : api-particulier@yopmail.com
 - utilisateur sans droits d'administration :
