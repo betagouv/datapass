@@ -8,7 +8,7 @@ L'outil de gestion des habilitations administratives.
 
 D'une part, toutes les administrations (ministères, opérateurs, collectivités, ...) produisent des
 API pour exposer leurs ressources (données ou traitements). Une partie de ces administrations
-utilise des gestionnaires d'API (API manager en anglais) pour centraliser l'exposition de leurs
+utilisent des gestionnaires d'API (API manager en anglais) pour centraliser l'exposition de leurs
 ressources. Les outils du marché permettent de donner accès aux éléments techniques d’une ou
 plusieurs API mais ne gèrent pas la phase d’habilitation.
 
