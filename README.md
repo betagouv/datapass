@@ -92,16 +92,21 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
-## Devenir administrateur de son service dans Data Pass
+## Devenir instructeur ou rapporteur de son service dans Data Pass
 
-Dans Data Pass il y a deux types d'utilisateurs, les demandeurs, qui viennent déposer leur demande, et
-les administrateurs, qui peuvent les valider, les refuser ou demander des modifications. Les
-administrateurs voient, en plus de leurs propres demandes, toutes les demandes déposées pour leur
-service. Les administrateurs ont une page d'acceuil différente des demandeurs. Cette page d'acceuil
-ajoute notamment des fonction de recherche et de filtre des demandes qui ne sont pas disponibles
+Dans Data Pass, il y a trois types d'utilisateurs :
+
+- **les demandeurs :** ils viennent déposer leur demande d'accès, ils ont
+- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu'ils ont à charge. Les
+instructeurs voient, en plus de leurs propres demandes, toutes les demandes déposées pour leur
+service. Les instructeurs ont une page d'accueil différente des demandeurs. Cette page d'accueil
+ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas disponibles
 aux demandeurs.
+- **les rapporteurs :** ils ont la même visibilité sur les demandes que les instructeurs mais il ne peuvent ni valider,
+ni refuser, ni demander de modification. De plus, il ne sont pas notifié par mail lorsqu'une nouvelle
+demande est déposée.
 
-Pour devenir administrateur il faut :
+Pour devenir instructeur ou rapporteur pour un type de demande il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
 2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
@@ -118,13 +123,13 @@ Vous pouvez vous créer un compte utilisateur en entrant n'importe quel numéro 
 
 Vous pouvez également utiliser les comptes de tests suivants :
 
-- validateur API Entreprise :
+- instructeur API Entreprise :
     - identifiant : api-entreprise@yopmail.com
     - mot de passe : api-entreprise@yopmail.com
-- validateur API Particulier :
+- instructeur API Particulier :
     - identifiant : api-particulier@yopmail.com
     - mot de passe : api-particulier@yopmail.com
-- utilisateur sans droits d'administration :
+- utilisateur sans droits :
     - identifiant : user@yopmail.com
     - mot de passe : user@yopmail.com
 
