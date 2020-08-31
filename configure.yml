@@ -72,7 +72,7 @@
         PORTAIL_API_GOUV_FR_HOST: "{{ portail_api_gouv_fr_host }}"
         PORTAIL_API_GOUV_FR_API_KEY: "{{ portail_api_gouv_fr_api_key }}"
         DISABLE_FRANCECONNECT_BRIDGE: "{{ disable_franceconnect_bridge | default('') }}"
-        FRANCECONNECT_PARTICULIER_HOST: "{{ franceconnect_particulier_host }}"
+        FRANCECONNECT_PARTICULIER_HOST: "{{ franceconnect_particulier_host }}"
         FRANCECONNECT_PARTICULIER_API_KEY: "{{ franceconnect_particulier_api_key }}"
         DISABLE_API_ENTREPRISE_BRIDGE: "{{ disable_api_entreprise_bridge | default('') }}"
         API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
