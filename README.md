@@ -71,6 +71,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     2. url du formulaire sur le domaine datapass.api.gouv.fr (src/App.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
+    5. [optionnel] template d'email de reponse personnalisés (src/lib/enrollment-mailer-templates.js)
 2. dans le backend
     1. définition du format et du type des données hors tronc commun (création de
     app/policies/enrollment/<name_of_api>_policy.rb)
@@ -83,6 +84,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
     développeur dans l'API Manager via appel HTTP directement sur votre API Manager)
     (app/models/enrollment.rb L51)
+    5. [optionnel] template d'email de réponse personnalisés
 
 ### Traitement des demandes
 
