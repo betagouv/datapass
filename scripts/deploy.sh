@@ -53,6 +53,11 @@ if [ -d app/assets ]; then
 fi
 
 if [ -e package.json ]; then
+    PREVIOUS_NODE_MODULE_PATH=$(ls -r -d ${APP_PATH}/releases/* | tail -n +2 | head -n 1)/node_modules
+    if [ -d "$PREVIOUS_NODE_MODULE_PATH" ]; then
+      echo "$(logPrefix) Copying node modules from previous release..."
+      cp -r $PREVIOUS_NODE_MODULE_PATH node_modules
+    fi
     npm i
     npm run build
 fi
@@ -68,7 +73,7 @@ sudo /bin/systemctl restart ${APP_NAME}
 
 echo "$(logPrefix) Removing old releases..."
 cd ${APP_PATH}/releases
-ls -t . | tail -n +6 | xargs rm -rf
+ls . | sort -r | tail -n +6 | xargs rm -rf
 
 echo "$(logPrefix) Deployment of $APP_NAME successfully completed!"
 
