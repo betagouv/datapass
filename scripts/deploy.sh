@@ -9,7 +9,7 @@ logPrefix(){
 }
 
 if [ -z $1 ]; then
-    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh api-particulier"
+    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh signup-front"
     exit 1
 fi
 
