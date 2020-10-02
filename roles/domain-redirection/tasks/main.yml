@@ -1,5 +1,5 @@
 - name: configure nginx
   template:
     src: server.conf.j2
-    dest: "/etc/nginx/sites-enabled/{{ former_domain }}"
+    dest: "/etc/nginx/sites-enabled/{{ alternative_domain }}"
   notify: restart nginx

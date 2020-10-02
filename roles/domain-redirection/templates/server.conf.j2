@@ -1,9 +1,9 @@
 server {
   listen 443 ;
-  server_name {{ former_domain }};
+  server_name {{ alternative_domain }};
   ssl on;
-  ssl_certificate /etc/letsencrypt/live/{{ former_domain }}/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/{{ former_domain }}/privkey.pem;
+  ssl_certificate /etc/letsencrypt/live/{{ alternative_domain }}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{ alternative_domain }}/privkey.pem;
   ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
   add_header Strict-Transport-Security "max-age=15552000" always;
   add_header X-Frame-Options "DENY";
