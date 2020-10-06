@@ -38,5 +38,9 @@ server {
 
       return 204;
     }
+
+    if ($request_uri ~ ^/api/stats(.*)$) {
+      add_header 'Access-Control-Allow-Origin' '*' always;
+    }
   }
 }
