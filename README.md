@@ -1,6 +1,6 @@
 # Data Pass (anciennement Signup)
 
-L'outil de gestion des habilitations administratives.
+L'outil de gestion des habilitations juridiques pour les API à accès restreint.
 
 ![Data Pass](screenshot-datapass.png)
 
