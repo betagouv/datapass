@@ -96,21 +96,27 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
-## Devenir instructeur ou rapporteur de son service dans Data Pass
+## Les roles dans Data Pass
 
-Dans Data Pass, il y a trois types d'utilisateurs :
+Dans Data Pass, il y a différents types d'utilisateurs :
 
-- **les demandeurs :** ils viennent déposer leur demande d'accès, ils ont
-- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu'ils ont à charge. Les
-instructeurs voient, en plus de leurs propres demandes, toutes les demandes déposées pour leur
-service. Les instructeurs ont une page d'accueil différente des demandeurs. Cette page d'accueil
-ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas disponibles
-aux demandeurs.
-- **les rapporteurs :** ils ont la même visibilité sur les demandes que les instructeurs mais il ne peuvent ni valider,
-ni refuser, ni demander de modification. De plus, il ne sont pas notifié par mail lorsqu'une nouvelle
-demande est déposée.
+- **les demandeurs :** ils viennent déposer leur demande d'accès, ils n'ont accès qu'a leur demandes.
+- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu'ils
+ont à charge.
+- **les rapporteurs :** ils voient, en plus de leurs propres demandes, toutes les demandes déposées pour
+leur service.
+- **les abonnés :** ils reçoivent une notification par mail à chaque fois qu'un demandeur dépose une
+nouvelle demande pour leur service.
 
-Pour devenir instructeur ou rapporteur pour un type de demande il faut :
+Ces types sont combinables pour débloquer plus ou moins de fonctionnalités : par exemple un utilisateur qui
+serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d'une nouvelle
+demande pour cette API et peut consulter la demande en question. Pour autant, il ne peut pas la valider.
+
+À noter que les instructeurs, rapporteurs et abonnés ont une page d'accueil différente des demandeurs.
+Cette page d'accueil ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas
+disponibles aux demandeurs.
+
+Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
 2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
