@@ -96,6 +96,11 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
+### Interfaçage entre Data Pass et un API Manager
+
+[![Diagramme de flux](https://docs.google.com/drawings/d/e/2PACX-1vSFtKMTR1-NNUWa3Edd9Pnji4MSwhBLkaO2nq7t7B_kGerTSkWz7CzcxQ8FHArLviX0kZEzua5xd7Su/pub?w=2338&h=924)](https://docs.google.com/drawings/d/1FUd7ko-7GkMyy_JwqLBtjswQO_lycUg3591WRZSx8hw/edit?usp=sharing)
+
+
 ## Les roles dans Data Pass
 
 Dans Data Pass, il y a différents types d'utilisateurs :
