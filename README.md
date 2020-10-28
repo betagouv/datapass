@@ -52,10 +52,12 @@ Si vous délivrez un service qui requiert une habilitation (ex: API délivrant d
 remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
 jeton d'accès n'est pas pris en charge directement par Data Pass, c'est l'API manager qui s'en charge.
-Seule la gestion de l'habilitation en amont est gérée par Data Pass.
+Seule la gestion de l'habilitation juridique en amont est gérée par Data Pass.
 
 La première étape du raccordement est de prendre contact avec notre équipe par mail à
 contact@api.gouv.fr.
+
+Nous vous recommanderons ensuite de réfléchir à une publication d'une fiche descriptive de votre API sur api.gouv.fr ([plus d'infos](https://public.3.basecamp.com/p/NtuWxsR6qk5spyEXRtzA5piP)).
 
 Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond le mieux
 à votre service. Par exemple, nous établirons ensemble si il y a besoin de proposer une granularité
