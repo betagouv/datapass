@@ -47,11 +47,6 @@ if [ -e Gemfile ]; then
     rails db:seed
 fi
 
-if [ -d app/assets ]; then
-    echo "$(logPrefix) Precompiling assets..."
-    rails assets:precompile
-fi
-
 if [ -e package.json ]; then
     PREVIOUS_NODE_MODULE_PATH=$(ls -r -d ${APP_PATH}/releases/* | tail -n +2 | head -n 1)/node_modules
     if [ -d "$PREVIOUS_NODE_MODULE_PATH" ]; then
