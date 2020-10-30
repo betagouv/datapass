@@ -211,14 +211,16 @@ vagrant up
 > The host's `/etc/hosts` configuration file may not take effect in the guest machines.
 > You might need to also alter the guest machine's `/etc/hosts` after running vagrant up.
 > Connect to each guest machine
+
 ```bash
-# [vm-name] : datapass and authapi-auth
+# [vm-name] : datapass and api-auth
 vagrant ssh [vm-name]
 ```
+
 > And copy your hosts to `/etc/hosts`
 
 Then provision the VM
-```
+```bash
 ansible-playbook -i inventories/development configure.yml # This can take a while, go make a loaf of bread or something
 ```
 
