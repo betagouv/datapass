@@ -201,18 +201,26 @@ Then install ansible dependencies:
 ansible-galaxy install -r requirements.yml
 ```
 
+
+Then configure your virtual machine :
+```bash
+vagrant up
+```
+
 > **If you are using macOS.**
 > The host's `/etc/hosts` configuration file may not take effect in the guest machines.
 > You might need to also alter the guest machine's `/etc/hosts` after running vagrant up.
 > Connect to each guest machine
+
 ```bash
+# [vm-name] : datapass and api-auth
 vagrant ssh [vm-name]
 ```
+
 > And copy your hosts to `/etc/hosts`
 
-Then configure your virtual machine:
+Then provision the VM
 ```bash
-vagrant up
 ansible-playbook -i inventories/development configure.yml # This can take a while, go make a loaf of bread or something
 ```
 
