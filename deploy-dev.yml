@@ -1,0 +1,36 @@
+- hosts: datapass
+  tasks:
+  - name: deploy front
+    become: yes
+    become_user: "{{ app_user }}"
+    script: ./scripts/deploy-dev.sh signup-front
+    tags:
+    - front
+  - name: enable altering postgres tables
+    become: yes
+    become_user: postgres
+    command: psql -d signup-back -c 'ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "enrollments" DISABLE TRIGGER ALL;'
+    ignore_errors: yes # at first run, these tables may not exist yet
+    tags:
+    - back
+  - name: deploy back
+    become: yes
+    become_user: "{{ app_user }}"
+    script: ./scripts/deploy-dev.sh signup-back
+    tags:
+    - back
+  - name: disable altering postgres tables
+    become: yes
+    become_user: postgres
+    command: psql -d signup-back -c 'ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "enrollments" ENABLE TRIGGER ALL;'
+    tags:
+    - back
+
+- hosts: api-auth
+  tasks:
+  - name: deploy api-auth
+    become: yes
+    become_user: "{{ app_user }}"
+    script: ./scripts/deploy-dev.sh api-auth
+    tags:
+    - api-auth
