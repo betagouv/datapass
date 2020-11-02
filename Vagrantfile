@@ -4,7 +4,7 @@
 vms = {
   datapass: {
     :ip => '192.168.56.125',
-    :memory => '1024',
+    :memory => '2048',
     :autostart => true,
     :name => 'datapass-development',
     :synced_folders =>
@@ -51,6 +51,24 @@ Vagrant.configure("2") do |config|
     sudo sed -i '/^iface enp0s3 inet dhcp/c\#iface enp0s3 inet dhcp/' /etc/network/interfaces
     sudo sed -i '/^pre-up sleep 2/c\#pre-up sleep 2/' /etc/network/interfaces
   SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "configure.yml"
+    ansible.inventory_path = "inventories/development"
+
+    roles_file = 'requirements.yml'
+
+    if File.exist?(roles_file) && !Psych.load_file(roles_file).equal?(nil)
+      ansible.galaxy_role_file = roles_file
+      ansible.galaxy_roles_path = 'ansible_modules'
+      ansible.galaxy_command = 'ansible-galaxy install -r %{role_file} --roles-path=%{roles_path}'
+    end
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "deploy-dev.yml"
+    ansible.inventory_path = "inventories/development"
+  end
 
   config.ssh.insert_key = false
 

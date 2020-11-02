@@ -195,16 +195,9 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.127 auth-development.api.gouv.fr
 ```
 
-Then install ansible dependencies:
-
+Then create and configure your virtual machine:
 ```bash
-ansible-galaxy install -r requirements.yml
-```
-
-
-Then configure your virtual machine :
-```bash
-vagrant up
+vagrant up # This can take a while, go make a loaf of bread or something
 ```
 
 > **If you are using macOS.**
@@ -219,86 +212,21 @@ vagrant ssh [vm-name]
 
 > And copy your hosts to `/etc/hosts`
 
-Then provision the VM
-```bash
-ansible-playbook -i inventories/development configure.yml # This can take a while, go make a loaf of bread or something
-```
-
 > **If you are using macOS Catalina 10.15**
 > Vagrant encounters the following error :
 > `NFS is reporting that your exports file is invalid`
 > You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
 
-### Development deployment
-
-Deploy Data Pass backend:
-```bash
-vagrant ssh datapass
-sudo su - signup
-cd /opt/apps/signup-back/current
-export $(cat /etc/signup-back.conf | xargs)
-bundler install
-eval "$(rbenv init -)"
-rails db:migrate
-rails db:seed
-sudo systemctl restart signup-back
-exit
-exit
-```
-
-Load fixtures in Data Pass back:
-```bash
-vagrant ssh datapass
-sudo su - postgres
-psql -d signup-back -c 'ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "enrollments" DISABLE TRIGGER ALL;'
-exit
-sudo su - signup
-cd /opt/apps/signup-back/current
-export $(cat /etc/signup-back.conf | xargs)
-rails db:fixtures:load
-exit
-sudo su - postgres
-psql -d signup-back -c 'ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "enrollments" ENABLE TRIGGER ALL;'
-exit
-exit
-```
-
-Deploy Data Pass frontend:
-```bash
-vagrant ssh datapass
-sudo su - signup
-cd /opt/apps/signup-front/current
-export $(cat /etc/signup-front.conf | xargs)
-NODE_ENV=development npm i
-npm run build
-sudo systemctl restart signup-front
-exit
-exit
-```
-
-Deploy API Auth:
-```bash
-vagrant ssh api-auth
-sudo su - api-auth
-cd /opt/apps/api-auth/current
-export $(cat /etc/api-auth.conf | xargs)
-npm i
-npm run build
- # load fixtures
-npm run load-fixtures
-sudo systemctl restart api-auth
-exit
-exit
-```
-
 ### Test your installation
 
 Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `password`. Then, you should see the enrollment list.
-Note that other credentials can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
+Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
+To connect with these accounts always use the password `password`.
 
 ### Run the apps in interactive mode (optional)
 
-If you want to launch interactively signup-front:
+#### Signup Front
+
 ```bash
 vagrant ssh datapass
 sudo systemctl stop signup-front
@@ -312,7 +240,8 @@ If you experience trouble reloading, you might want to increase the file watcher
 
 Note that, we use the [`prettier`](https://prettier.io) linter for signup-front. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
-signup-back:
+#### Signup Back
+
 ```bash
 vagrant ssh datapass
 sudo systemctl stop signup-back
@@ -322,7 +251,8 @@ export $(cat /etc/signup-back.conf | xargs)
 RAILS_ENV=development rails s
 ```
 
-api-auth:
+#### API Auth
+
 ```bash
 vagrant ssh api-auth
 sudo systemctl stop api-auth
