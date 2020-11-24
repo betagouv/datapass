@@ -9,8 +9,14 @@ vms = {
     :name => 'datapass-development',
     :synced_folders =>
       [
-        {:host => "./signup-back", :guest => "/opt/apps/signup-back/current"},
-        {:host => "./signup-front", :guest => "/opt/apps/signup-front/current"}
+        {
+          :host => "./signup-back",
+          :guest => "/opt/apps/signup-back/current"
+        },
+        {
+          :host => "./signup-front",
+          :guest => "/opt/apps/signup-front/current"
+        }
       ],
     :services_to_start =>
       [
@@ -25,7 +31,10 @@ vms = {
     :name => 'auth-development',
     :synced_folders =>
       [
-        {:host => "./api-auth", :guest => "/opt/apps/api-auth/current"}
+        {
+          :host => "./api-auth",
+          :guest => "/opt/apps/api-auth/current"
+        }
       ],
     :services_to_start =>
       [
@@ -91,6 +100,7 @@ Vagrant.configure("2") do |config|
       vm[:synced_folders].each do |folders|
         configvm.vm.synced_folder folders[:host], folders[:guest], type: "nfs", create: true
       end
+      configvm.vm.synced_folder ".", "/vagrant", disabled: true
 
       # We need to start the services here as the first start failed because it
       # was triggered before the shared folder are mounted

@@ -335,3 +335,21 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 ```
 
 More details here: https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers
+
+You can also de-sync non source folder:
+
+```bash
+vagrant ssh datapass
+sudo -u signup mkdir -p /home/signup/vagrant_node_modules
+sudo -u signup mkdir -p /opt/apps/signup-front/current/node_modules
+sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_node_modules /opt/apps/signup-front/current/node_modules
+sudo -u signup mkdir -p /home/signup/vagrant_build
+sudo -u signup mkdir -p /opt/apps/signup-front/current/build
+sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_build /opt/apps/signup-front/current/build
+exit
+vagrant ssh api-auth
+sudo -u signup mkdir -p /home/api-auth/vagrant_node_modules
+sudo -u signup mkdir -p /opt/apps/api-auth/current/node_modules
+sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/api-auth/vagrant_node_modules /opt/apps/api-auth/current/node_modules
+exit
+```
