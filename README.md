@@ -219,9 +219,8 @@ vagrant ssh [vm-name]
 
 ### Test your installation
 
-Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `password`. Then, you should see the enrollment list.
+Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `user@yopmail.com`. Then, you should see the enrollment list.
 Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
-To connect with these accounts always use the password `password`.
 
 ### Run the apps in interactive mode (optional)
 
