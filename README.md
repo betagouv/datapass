@@ -347,8 +347,8 @@ sudo -u signup mkdir -p /opt/apps/signup-front/current/build
 sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_build /opt/apps/signup-front/current/build
 exit
 vagrant ssh api-auth
-sudo -u signup mkdir -p /home/api-auth/vagrant_node_modules
-sudo -u signup mkdir -p /opt/apps/api-auth/current/node_modules
+sudo -u api-auth mkdir -p /home/api-auth/vagrant_node_modules
+sudo -u api-auth mkdir -p /opt/apps/api-auth/current/node_modules
 sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/api-auth/vagrant_node_modules /opt/apps/api-auth/current/node_modules
 exit
 ```
