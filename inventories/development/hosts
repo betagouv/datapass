@@ -1,4 +1,7 @@
-[datapass]
+[datapass-front]
+datapass-development.particulier-infra.api.gouv.fr
+
+[datapass-back]
 datapass-development.particulier-infra.api.gouv.fr
 
 [api-auth]

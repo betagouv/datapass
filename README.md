@@ -241,16 +241,17 @@ cd signup-front
 npm i
 ```
 
-Provision your VM accordingly:
+Provision your virtual machine accordingly:
 
 ```
 ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:4000"
 ```
 
 > **If you are using Chrome**
-> Enable samesite cookies
+> Enable samesite cookies inside the Data Pass virtual machine
 
 ```
+vagrant ssh datapass
 sudo su -
 vim /etc/nginx/sites-enabled/signup-back
 ```
@@ -278,7 +279,7 @@ systemctl restart nginx
 Start the app in the interactive mode:
 
 ```
-npm run local-dev
+npm run dev
 ```
 
 ##### In your host machine (optional)
@@ -291,7 +292,7 @@ sudo systemctl stop signup-front
 sudo su - signup
 cd /opt/apps/signup-front/current
 export $(cat /etc/signup-front.conf | xargs)
-npm run dev
+npm run dev-in-vm
 ```
 
 ##### Front end linter
@@ -386,7 +387,7 @@ See this issue on github : https://github.com/facebook/create-react-app/issues/8
 
 ### Slow hot reloading in signup-front in the virtual machine
 
-If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the datapass VM:
+If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the datapass virtual machine:
 
 ```shell script
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

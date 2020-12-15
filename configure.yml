@@ -1,4 +1,4 @@
-- hosts: datapass,api-auth
+- hosts: datapass-front,datapass-back,api-auth
   become: true
   roles:
     - app-user
@@ -8,24 +8,20 @@
       tags: ufw
     - role: nginx
       tags: nginx
+
+- hosts: datapass-front,api-auth
+  become: true
+  roles:
     - role: ansible-role-nodejs
       nodejs_version: 12.x
 
-- hosts: datapass
+- hosts: datapass-back
   become: true
-  vars:
-    app_service_name: www
   roles:
     - role: ruby
       tags: ruby
     - role: ssl
       server_name: "{{ back_domain_name }}"
-      tags: ssl
-    - role: ssl
-      server_name: "{{ front_domain_name }}"
-      tags: ssl
-    - role: ssl
-      server_name: "{{ former_front_domain_name }}"
       tags: ssl
     - role: postgres
       pg_user: back
@@ -87,6 +83,16 @@
       tags:
       - back
       - app-config
+
+- hosts: datapass-front
+  become: true
+  roles:
+    - role: ssl
+      server_name: "{{ front_domain_name }}"
+      tags: ssl
+    - role: ssl
+      server_name: "{{ former_front_domain_name }}"
+      tags: ssl
     - role: node-app
       app_service_name: signup-front
       server_name: "{{ front_domain_name }}"

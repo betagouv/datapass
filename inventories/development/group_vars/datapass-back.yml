@@ -1,7 +1,5 @@
 app_user: signup
-node_env: production
 
-former_front_domain_name: signup-development.api.gouv.fr
 front_domain_name: datapass-development.api.gouv.fr
 front_host: "https://{{ front_domain_name }}"
 back_domain_name: back.datapass-development.api.gouv.fr

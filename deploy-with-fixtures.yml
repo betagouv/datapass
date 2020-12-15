@@ -1,4 +1,4 @@
-- hosts: datapass
+- hosts: datapass-front
   tasks:
   - name: deploy front
     become: yes
@@ -6,6 +6,9 @@
     script: ./scripts/deploy-dev.sh signup-front
     tags:
     - front
+
+- hosts: datapass-back
+  tasks:
   - name: enable altering postgres tables
     become: yes
     become_user: postgres

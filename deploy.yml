@@ -1,4 +1,4 @@
-- hosts: datapass
+- hosts: datapass-front
   vars:
     ansible_user: "{{ app_user }}"
   tasks:
@@ -6,6 +6,11 @@
     script: ./scripts/deploy.sh signup-front
     tags:
     - front
+
+- hosts: datapass-back
+  vars:
+    ansible_user: "{{ app_user }}"
+  tasks:
   - name: deploy back
     script: ./scripts/deploy.sh signup-back
     tags:
