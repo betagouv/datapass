@@ -1,4 +1,4 @@
-# Data Pass (anciennement Signup)
+# Data Pass
 
 L'outil de gestion des habilitations juridiques pour les données à accès restreint.
 
