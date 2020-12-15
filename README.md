@@ -241,16 +241,10 @@ cd signup-front
 npm i
 ```
 
-Start the app in the interactive mode:
-
-```
-npm run local-dev
-```
-
 Provision your VM accordingly:
 
 ```
-ansible-playbook -i ../datapass-secrets/inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:4000"
+ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:4000"
 ```
 
 > **If you are using Chrome**
@@ -279,6 +273,12 @@ vim /etc/nginx/sites-enabled/signup-back
 
 ```
 systemctl restart nginx
+```
+
+Start the app in the interactive mode:
+
+```
+npm run local-dev
 ```
 
 ##### In your host machine (optional)
