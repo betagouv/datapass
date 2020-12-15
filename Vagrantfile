@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "deploy-with-fixtures.yml"
+    ansible.playbook = "deploy-dev.yml"
     ansible.inventory_path = "inventories/development"
   end
 
