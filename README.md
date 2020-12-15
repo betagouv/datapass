@@ -222,9 +222,68 @@ vagrant ssh [vm-name]
 Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `user@yopmail.com`. Then, you should see the enrollment list.
 Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
 
-### Run the apps in interactive mode (optional)
+### Run the apps in interactive / development mode (optional)
 
 #### Signup Front
+
+##### On your host machine (recommended)
+
+## Standalone install
+
+Dependencies setup:
+
+- nodejs ^12.18
+
+Install npm dependencies:
+
+```
+cd signup-front
+npm i
+```
+
+Start the app in the interactive mode:
+
+```
+npm run local-dev
+```
+
+Provision your VM accordingly:
+
+```
+ansible-playbook -i ../datapass-secrets/inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:4000"
+```
+
+> **If you are using Chrome**
+> Enable samesite cookies
+
+```
+sudo su -
+vim /etc/nginx/sites-enabled/signup-back
+```
+
+> add the `proxy_cookie_path` directive like so
+
+```
+  [...]
+  location / {
+    proxy_pass http://localhost:3000;
+    [...]
+    proxy_cache_bypass $http_upgrade;
+    proxy_cookie_path / "/; secure; HttpOnly; SameSite=none";
+
+    client_max_body_size 10m;
+    [...]
+```
+
+> reload nginx
+
+```
+systemctl restart nginx
+```
+
+##### In your host machine (optional)
+
+This method has slower hot reloading but a configuration closer to the production.
 
 ```bash
 vagrant ssh datapass
@@ -235,7 +294,7 @@ export $(cat /etc/signup-front.conf | xargs)
 npm run dev
 ```
 
-If you experience trouble reloading, you might want to increase the file watcher limit in both the host and the guest: https://webpack.js.org/configuration/watch/#not-enough-watchers .
+##### Front end linter
 
 Note that, we use the [`prettier`](https://prettier.io) linter for signup-front. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
@@ -325,7 +384,7 @@ Add the following lines in `/etc/nginx/sites-enabled/signup-front` at the end of
 
 See this issue on github : https://github.com/facebook/create-react-app/issues/8203#issuecomment-571605090
 
-### Slow hot reloading in signup-front
+### Slow hot reloading in signup-front in the virtual machine
 
 If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the datapass VM:
 
@@ -333,7 +392,7 @@ If you experience slow hot reloading in interactive mode for signup-front, execu
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
-More details here: https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers
+More details here: https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers and https://webpack.js.org/configuration/watch/#not-enough-watchers
 
 You can also de-sync non source folder:
 
@@ -345,10 +404,12 @@ sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_node_modu
 sudo -u signup mkdir -p /home/signup/vagrant_build
 sudo -u signup mkdir -p /opt/apps/signup-front/current/build
 sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_build /opt/apps/signup-front/current/build
+sudo systemctl restart signup-front
 exit
 vagrant ssh api-auth
 sudo -u api-auth mkdir -p /home/api-auth/vagrant_node_modules
 sudo -u api-auth mkdir -p /opt/apps/api-auth/current/node_modules
 sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/api-auth/vagrant_node_modules /opt/apps/api-auth/current/node_modules
+sudo systemctl restart api-auth
 exit
 ```
