@@ -1,8 +1,8 @@
-# Data Pass
+# DataPass
 
 L'outil de gestion des habilitations juridiques pour les données à accès restreint.
 
-![Data Pass](screenshot-datapass.png)
+![DataPass](screenshot-datapass.png)
 
 ## Contexte
 
@@ -20,16 +20,16 @@ Doivent-elles signer des conventions avec chacune des administrations productric
 
 La DINUM simplifie radicalement ce processus. Dans un premier temps, elle a travaillé sur la mise en place d’un cadre juridique commun pour harmoniser et fluidifier les relations entre fournisseurs de données et fournisseurs de service. C’est la mise en place de l’article de la section [« Échange de données entre administrations » (L114-8 et suivants) du CRPA](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=EA87CA618644F6B9C1A66E4468F81BFD.tplgfr38s_3?idSectionTA=LEGISCTA000031367410&cidTexte=LEGITEXT000031366350&dateTexte=20161009).
 
-Dans un deuxième temps, la DINUM a mis en place un outil pour faciliter cette mise en relation entre fournisseur et consommateur : Data Pass. Cet outil s’adresse aux ayants droits qui souhaiteraient exploiter des données à caractère personnel. Data Pass délivre des habilitations, à travers un parcours simple, standardisé et conforme, pour accéder à l’ensemble des données protégées produites par l’État.
+Dans un deuxième temps, la DINUM a mis en place un outil pour faciliter cette mise en relation entre fournisseur et consommateur : DataPass. Cet outil s’adresse aux ayants droits qui souhaiteraient exploiter des données à caractère personnel. DataPass délivre des habilitations, à travers un parcours simple, standardisé et conforme, pour accéder à l’ensemble des données protégées produites par l’État.
 
 Le code de cet outil est [ouvert](https://guides.etalab.gouv.fr/logiciels/#clarifier-quels-degres-d-ouverture-pour-les-codes-sources).
 
-## Fonctionnalités de Data Pass
+## Fonctionnalités de DataPass
 
 Pour le demandeur d'accès aux « données » :
 
 - centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d'organisation, aussi bien publique que privée)
-- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil Data Pass (SSO)
+- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil DataPass (SSO)
 - gestion du renouvellement des habilitations
 - sélection des périmètres de données (scopes) dans chaque API
 - automatisation de la délivrance des tokens grâce à une interaction vers l’API Manager de votre organisation
@@ -43,16 +43,16 @@ Pour le valideur de la demande d'accès aux « données » :
 - publication des habilitations validées sur https://datapass.api.gouv.fr/public conformément au RGPD
 - pilotage de l’activité/tableau de bord statistique : https://datapass.api.gouv.fr/stats
 
-## Raccorder son service à Data Pass
+## Raccorder son service à DataPass
 
 ### Définition des besoins
 
 Si vous délivrez un service qui requiert une habilitation (ex: API délivrant des données
-à caractère personnel) vous pouvez utiliser Data Pass pour la gestion des habilitations nécessaires à l'accès aux « données ». Data Pass
+à caractère personnel) vous pouvez utiliser DataPass pour la gestion des habilitations nécessaires à l'accès aux « données ». DataPass
 remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
-jeton d'accès n'est pas pris en charge directement par Data Pass, c'est l'API manager qui s'en charge.
-Seule la gestion de l'habilitation juridique en amont est gérée par Data Pass.
+jeton d'accès n'est pas pris en charge directement par DataPass, c'est l'API manager qui s'en charge.
+Seule la gestion de l'habilitation juridique en amont est gérée par DataPass.
 
 La première étape du raccordement est de prendre contact avec notre équipe par mail à
 contact@api.gouv.fr.
@@ -66,7 +66,7 @@ d'accès aux données ou un bloc RGPD si vous exposez des données personnelles.
 ### Déploiement du formulaire
 
 A partir d'élément communs, nous développons et déployons un formulaire sur mesure. Voici la liste
-des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de Data Pass) :
+des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de DataPass) :
 
 1. dans le frontend
     1. description de l'organisation du formulaire (création de src/pages/NameOfApi.js)
@@ -80,7 +80,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     2. définitions de règles de validation supplémentaires et des messages d'erreurs spécifiques
     (création de app/models/enrollment/<name_of_api>.rb)
     3. configuration du label de service et de l'adresse email pour les notifications mail émises
-    depuis Data Pass. À noter, que l'envoi par Data Pass via une adresse email administré par vous fait
+    depuis DataPass. À noter, que l'envoi par DataPass via une adresse email administré par vous fait
     l'object d'une procédure de validation effectuée par notre équipe dans l'outils mailjet
     (app/mailers/enrollment_mailer.rb)
     4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
@@ -98,14 +98,14 @@ Plusieurs méthodes sont envisageables :
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
-### Interfaçage entre Data Pass et un API Manager
+### Interfaçage entre DataPass et un API Manager
 
 [![Diagramme de flux](https://docs.google.com/drawings/d/e/2PACX-1vSFtKMTR1-NNUWa3Edd9Pnji4MSwhBLkaO2nq7t7B_kGerTSkWz7CzcxQ8FHArLviX0kZEzua5xd7Su/pub?w=2338&h=924)](https://docs.google.com/drawings/d/1FUd7ko-7GkMyy_JwqLBtjswQO_lycUg3591WRZSx8hw/edit?usp=sharing)
 
 
-## Les roles dans Data Pass
+## Les roles dans DataPass
 
-Dans Data Pass, il y a différents types d'utilisateurs :
+Dans DataPass, il y a différents types d'utilisateurs :
 
 - **les demandeurs :** ils viennent déposer leur demande d'accès, ils n'ont accès qu'a leur demandes.
 - **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu'ils
@@ -129,10 +129,10 @@ Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut 
 2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
 3. envoyer une demande écrite à datapass@api.gouv.fr
 
-## Tester Data Pass
+## Tester DataPass
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
-de Data Pass, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
+de DataPass, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
 https://datapass-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
 https://datapass-staging.api.gouv.fr/api-particulier).
 
@@ -172,7 +172,7 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 - NFS
 - [Ansible 2.9.10](https://www.ansible.com/)
 
-### Data Pass local provisioning
+### DataPass local provisioning
 
 Clone the repo:
 
@@ -248,7 +248,7 @@ ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datap
 ```
 
 > **If you are using Chrome**
-> Enable samesite cookies inside the Data Pass virtual machine
+> Enable samesite cookies inside the DataPass virtual machine
 
 ```
 vagrant ssh datapass
@@ -284,7 +284,7 @@ npm run dev
 
 ##### In your host machine (optional)
 
-This method has slower hot reloading but a configuration closer to the production.
+This method has slower hot reloading but use a more production-like configuration.
 
 ```bash
 vagrant ssh datapass
