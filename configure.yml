@@ -107,6 +107,8 @@
           destination_path: '/api-impot-particulier-fc-sandbox'
         - source_pattern: '= /api-impot-particulier-step2'
           destination_path: '/api-impot-particulier-fc-production'
+        - source_pattern: '~ ^/le-taxi/([0-9]+)'
+          destination_path: '/authorization-request/$1'
       tags:
       - front
       - app-config

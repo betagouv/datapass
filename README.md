@@ -132,7 +132,7 @@ Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut 
 ## Tester DataPass
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
-de DataPass, vous pouvez utiliser notre plateforme de staging. Cette plateforme est disponible ici :
+de DataPass, vous pouvez utiliser notre plateforme de « staging ». Cette plateforme est disponible ici :
 https://datapass-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
 https://datapass-staging.api.gouv.fr/api-particulier).
 
