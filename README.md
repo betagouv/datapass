@@ -74,6 +74,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
     5. [optionnel] template d'email de reponse personnalisés (src/lib/enrollment-mailer-templates.js)
+    6. [optionnel] une page de présentation hors connection
 2. dans le backend
     1. définition du format et du type des données hors tronc commun (création de
     app/policies/enrollment/<name_of_api>_policy.rb)
@@ -371,7 +372,7 @@ in: `/home/signup/.ssh/authorized_keys`
 
 Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.7.1/bin/ruby`
 
-NB: if you want to run rubocop, you might need to install standardrb `gem install standardrb`.
+NB: if you want to run rubocop, you might need to install standardrb `gem install standardrb` on your guest machine.
 
 ### React dev tools keep disconnecting
 
