@@ -32,14 +32,14 @@ Pour le demandeur d'accès aux « données » :
 - accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil DataPass (SSO)
 - gestion du renouvellement des habilitations
 - sélection des périmètres de données (scopes) dans chaque API
-- automatisation de la délivrance des tokens grâce à une interaction vers l’API Manager de votre organisation
+- automatisation de la délivrance des jetons grâce à une interaction vers l’API Manager de votre organisation
 - notification par mail du Délégué à la protection des données et du responsable de traitement de votre organisation lors de la validation d’une demande
 
-Pour le valideur de la demande d'accès aux « données » :
+Pour l’instructeur de la demande d'accès aux « données » :
 
 - notification par mail à chaque nouvelle demande d'un demandeur
 - automatisation de la création des comptes d’accès aux API Manager
-- automatisation de la création des tokens grâce à une interaction avec les API Manager
+- automatisation de la création des jetons grâce à une interaction avec les API Manager
 - publication des habilitations validées sur https://datapass.api.gouv.fr/public conformément au RGPD
 - pilotage de l’activité/tableau de bord statistique : https://datapass.api.gouv.fr/stats
 
@@ -47,7 +47,7 @@ Pour le valideur de la demande d'accès aux « données » :
 
 ### Définition des besoins
 
-Si vous délivrez un service qui requiert une habilitation (ex: API délivrant des données
+Si vous délivrez un service qui requiert une habilitation (ex : API délivrant des données
 à caractère personnel) vous pouvez utiliser DataPass pour la gestion des habilitations nécessaires à l'accès aux « données ». DataPass
 remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
@@ -60,12 +60,12 @@ contact@api.gouv.fr.
 Nous vous recommanderons ensuite de réfléchir à une publication d'une fiche descriptive de votre API sur api.gouv.fr ([plus d'infos](https://public.3.basecamp.com/p/NtuWxsR6qk5spyEXRtzA5piP)).
 
 Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond le mieux
-à votre service. Par exemple, nous établirons ensemble si il y a besoin de proposer une granularité
+à votre service. Par exemple, nous établirons ensemble s’il y a besoin de proposer une granularité
 d'accès aux données ou un bloc RGPD si vous exposez des données personnelles.
 
 ### Déploiement du formulaire
 
-A partir d'élément communs, nous développons et déployons un formulaire sur mesure. Voici la liste
+À partir d'éléments communs, nous développons et déployons un formulaire sur mesure. Voici la liste
 des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de DataPass) :
 
 1. dans le frontend
@@ -73,21 +73,21 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     2. url du formulaire sur le domaine datapass.api.gouv.fr (src/App.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
-    5. [optionnel] template d'email de reponse personnalisés (src/lib/enrollment-mailer-templates.js)
+    5. [optionnel] modèle d'email de reponses personnalisés (src/lib/enrollment-mailer-templates.js)
     6. [optionnel] une page de présentation hors connection
 2. dans le backend
     1. définition du format et du type des données hors tronc commun (création de
     app/policies/enrollment/<name_of_api>_policy.rb)
     2. définitions de règles de validation supplémentaires et des messages d'erreurs spécifiques
     (création de app/models/enrollment/<name_of_api>.rb)
-    3. configuration du label de service et de l'adresse email pour les notifications mail émises
+    3. configuration du label de service et de l'adresse email pour les notifications mails émises
     depuis DataPass. À noter, que l'envoi par DataPass via une adresse email administré par vous fait
-    l'object d'une procédure de validation effectuée par notre équipe dans l'outils mailjet
+    l’object d'une procédure de validation effectuée par notre équipe dans l'outil mailjet
     (app/mailers/enrollment_mailer.rb)
     4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
     développeur dans l'API Manager via appel HTTP directement sur votre API Manager)
     (app/models/enrollment.rb L51)
-    5. [optionnel] template d'email de réponse personnalisés
+    5. [optionnel] modèle d'email de réponse personnalisés
 
 ### Traitement des demandes
 
@@ -151,7 +151,7 @@ Vous pouvez également utiliser les comptes de tests suivants :
     - identifiant : user@yopmail.com
     - mot de passe : user@yopmail.com
 
-À noter que les emails reçus sur les adresses en yopmail.com sont accessibles sur : http://yopmail.com/ .
+À noter que les emails reçus sur les adresses en yopmail.com sont accessibles sur : http://yopmail.com/.
 
 ## Contenu de ce dépôt de code
 
@@ -388,7 +388,7 @@ See this issue on github : https://github.com/facebook/create-react-app/issues/8
 
 ### Slow hot reloading in signup-front in the virtual machine
 
-If you experience slow hot reloading in interactive mode for signup-front, execute this on your host AND on the datapass virtual machine:
+If you experience slow hot reloading in the interactive mode for signup-front, execute this on your host AND on the datapass virtual machine:
 
 ```shell script
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
