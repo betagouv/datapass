@@ -14,7 +14,7 @@ TIMESTAMP=$(date +'%Y%m%d%H%M%S')
 BACKUP_FILE_NAME={{ backup_params[backup_type].backup_file_prefix }}${STORE_IDENTIFIER}_${TIMESTAMP}.{{ backup_params[backup_type].backup_file_extension }}.pgp
 TEMP_PATH=/tmp/${BACKUP_FILE_NAME}
 
-{{ backup_params[backup_type].command }} {{ store_identifier }} | gpg2 --recipient {{ gpg_recipient }} --encrypt --always-trust --output ${TEMP_PATH}
+{{ backup_params[backup_type].command }} {{ store_identifier }} | gpg2 --recipient {{ gpg_recipient }} --encrypt --always-trust --output ${TEMP_PATH}
 
 echo "$(logPrefix) Uploading backup file to remote server..."
 export OS_AUTH_URL="{{ openstack_auth_url }}"
