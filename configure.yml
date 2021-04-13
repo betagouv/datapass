@@ -153,7 +153,6 @@
         API_AUTH_HOST: "https://{{ api_auth_domain_name }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
         SESSION_COOKIE_SECRET: "{{ session_cookie_secret }}"
-        OIDC_PAIRWISE_IDENTIFIER_SALT: "{{ oidc_pairwise_identifier_salt }}"
       tags:
         - api-auth
         - app-config

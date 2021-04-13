@@ -5,4 +5,3 @@ api_auth_domain_name: auth-development.api.gouv.fr
 api_auth_pg_password: api-auth
 
 session_cookie_secret: 'gVxf0KQrjF1rTRPuOucti2cRcok4D5SCzm7oXmPyXS5UEgYz'
-oidc_pairwise_identifier_salt: 'kMYMRjUiHwV4VNnQq1rPKBQPQjZv29Zzls6QiZu1FYPAEhjN'
