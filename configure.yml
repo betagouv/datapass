@@ -60,6 +60,7 @@
         DEVISE_SECRET: "{{ devise_secret }}"
         SECRET_KEY_BASE: "{{ secret_key_base }}"
         RGPD_CONTACT_ERROR_HOOK_ID: "{{ rgpd_contact_error_hook_id }}"
+        SENTRY_DSN: "{{ sentry_dsn | default('') }}"
         PG_USER: "{{ pg_user }}"
         PG_PASSWORD: "{{ pg_password }}"
         PG_DATABASE: "{{ pg_database }}"
