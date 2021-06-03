@@ -1,6 +1,6 @@
 # DataPass
 
-L'outil de gestion des habilitations juridiques pour les données à accès restreint.
+L’outil de gestion des habilitations juridiques pour les données à accès restreint.
 
 ![DataPass](screenshot-datapass.png)
 
@@ -26,18 +26,18 @@ Le code de cet outil est [ouvert](https://guides.etalab.gouv.fr/logiciels/#clari
 
 ## Fonctionnalités de DataPass
 
-Pour le demandeur d'accès aux « données » :
+Pour le demandeur d’accès aux « données » :
 
-- centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d'organisation, aussi bien publique que privée)
-- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l'outil DataPass (SSO)
+- centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d’organisation, aussi bien publique que privée)
+- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l’outil DataPass (SSO)
 - gestion du renouvellement des habilitations
 - sélection des périmètres de données (scopes) dans chaque API
 - automatisation de la délivrance des jetons grâce à une interaction vers l’API Manager de votre organisation
 - notification par mail du Délégué à la protection des données et du responsable de traitement de votre organisation lors de la validation d’une demande
 
-Pour l’instructeur de la demande d'accès aux « données » :
+Pour l’instructeur de la demande d’accès aux « données » :
 
-- notification par mail à chaque nouvelle demande d'un demandeur
+- notification par mail à chaque nouvelle demande d’un demandeur
 - automatisation de la création des comptes d’accès aux API Manager
 - automatisation de la création des jetons grâce à une interaction avec les API Manager
 - publication des habilitations validées sur https://datapass.api.gouv.fr/public conformément au RGPD
@@ -48,54 +48,54 @@ Pour l’instructeur de la demande d'accès aux « données » :
 ### Définition des besoins
 
 Si vous délivrez un service qui requiert une habilitation (ex : API délivrant des données
-à caractère personnel) vous pouvez utiliser DataPass pour la gestion des habilitations nécessaires à l'accès aux « données ». DataPass
+à caractère personnel) vous pouvez utiliser DataPass pour la gestion des habilitations nécessaires à l’accès aux « données ». DataPass
 remplace les conventionnements multipartites entre organisations et de ce fait
 participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
-jeton d'accès n'est pas pris en charge directement par DataPass, c'est l'API manager qui s'en charge.
-Seule la gestion de l'habilitation juridique en amont est gérée par DataPass.
+jeton d’accès n’est pas pris en charge directement par DataPass, c'est l’API manager qui s’en charge.
+Seule la gestion de l’habilitation juridique en amont est gérée par DataPass.
 
 La première étape du raccordement est de prendre contact avec notre équipe par mail à
 contact@api.gouv.fr.
 
-Nous vous recommanderons ensuite de réfléchir à une publication d'une fiche descriptive de votre API sur api.gouv.fr ([plus d'infos](https://public.3.basecamp.com/p/NtuWxsR6qk5spyEXRtzA5piP)).
+Nous vous recommanderons ensuite de réfléchir à une publication d’une fiche descriptive de votre API sur api.gouv.fr ([plus d’infos](https://public.3.basecamp.com/p/NtuWxsR6qk5spyEXRtzA5piP)).
 
-Ensuite nous établirons ensemble le contenu du formulaire d'habilitation qui correspond le mieux
+Ensuite nous établirons ensemble le contenu du formulaire d’habilitation qui correspond le mieux
 à votre service. Par exemple, nous établirons ensemble s’il y a besoin de proposer une granularité
-d'accès aux données ou un bloc RGPD si vous exposez des données personnelles.
+d’accès aux données ou un bloc RGPD si vous exposez des données personnelles.
 
 ### Déploiement du formulaire
 
-À partir d'éléments communs, nous développons et déployons un formulaire sur mesure. Voici la liste
+À partir d’éléments communs, nous développons et déployons un formulaire sur mesure. Voici la liste
 des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de DataPass) :
 
 1. dans le frontend
-    1. description de l'organisation du formulaire (création de src/pages/NameOfApi.js)
+    1. description de l’organisation du formulaire (création de src/pages/NameOfApi.js)
     2. url du formulaire sur le domaine datapass.api.gouv.fr (src/App.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
-    5. [optionnel] modèle d'email de reponses personnalisés (src/lib/enrollment-mailer-templates.js)
     6. [optionnel] une page de présentation hors connection
 2. dans le backend
     1. définition du format et du type des données hors tronc commun (création de
     app/policies/enrollment/<name_of_api>_policy.rb)
-    2. définitions de règles de validation supplémentaires et des messages d'erreurs spécifiques
+    2. définitions de règles de validation supplémentaires et des messages d’erreurs spécifiques
     (création de app/models/enrollment/<name_of_api>.rb)
-    3. configuration du label de service et de l'adresse email pour les notifications mails émises
-    depuis DataPass. À noter, que l'envoi par DataPass via une adresse email administré par vous fait
-    l’object d'une procédure de validation effectuée par notre équipe dans l'outil mailjet
+TODO update this
+    3. configuration du label de service et de l’adresse email pour les notifications mails émises
+    depuis DataPass. À noter, que l’envoi par DataPass via une adresse email administrée par vous fait
+    l’object d’une procédure de validation effectuée par notre équipe dans l’outil mailjet
     (app/mailers/enrollment_mailer.rb)
-    4. [optionnel] définition d'une action spécifique post validation (ex : création d'un espace
-    développeur dans l'API Manager via appel HTTP directement sur votre API Manager)
+    4. [optionnel] définition d’une action spécifique post validation (ex : création d’un espace
+    développeur dans l’API Manager via appel HTTP directement sur votre API Manager)
     (app/models/enrollment.rb L51)
-    5. [optionnel] modèle d'email de réponse personnalisés
+    5. [optionnel] modèle d’email de réponse personnalisés
 
 ### Traitement des demandes
 
-Enfin, nous définirons ensemble les modalités de validation de vos demandes d'habilitations.
+Enfin, nous définirons ensemble les modalités de validation de vos demandes d’habilitations.
 Plusieurs méthodes sont envisageables :
 
 - Le producteur valide toutes les demandes de manière autonome
-- La DINUM valide les demandes dites passantes (cas d'usage prédéfinis) et soumet à validation du
+- La DINUM valide les demandes dites passantes (cas d’usage prédéfinis) et soumet à validation du
 fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
@@ -106,28 +106,28 @@ fournisseur les autres cas
 
 ## Les roles dans DataPass
 
-Dans DataPass, il y a différents types d'utilisateurs :
+Dans DataPass, il y a différents types d’utilisateurs :
 
-- **les demandeurs :** ils viennent déposer leur demande d'accès, ils n'ont accès qu'a leur demandes.
-- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu'ils
+- **les demandeurs :** ils viennent déposer leur demande d’accès, ils n’ont accès qu’a leur demandes.
+- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu’ils
 ont à charge.
 - **les rapporteurs :** ils voient, en plus de leurs propres demandes, toutes les demandes déposées pour
 leur service.
-- **les abonnés :** ils reçoivent une notification par mail à chaque fois qu'un demandeur dépose une
+- **les abonnés :** ils reçoivent une notification par mail à chaque fois qu’un demandeur dépose une
 nouvelle demande pour leur service.
 
 Ces types sont combinables pour débloquer plus ou moins de fonctionnalités : par exemple un utilisateur qui
-serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d'une nouvelle
+serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d’une nouvelle
 demande pour cette API et peut consulter la demande en question. Pour autant, il ne peut pas la valider.
 
-À noter que les instructeurs, rapporteurs et abonnés ont une page d'accueil différente des demandeurs.
-Cette page d'accueil ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas
+À noter que les instructeurs, rapporteurs et abonnés ont une page d’accueil différente des demandeurs.
+Cette page d’accueil ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas
 disponibles aux demandeurs.
 
 Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
-2. rejoindre l'organisation que l'on représente en renseignant son numéro SIRET
+2. rejoindre l’organisation que l’on représente en renseignant son numéro SIRET
 3. envoyer une demande écrite à datapass@api.gouv.fr
 
 ## Tester DataPass
@@ -137,7 +137,7 @@ de DataPass, vous pouvez utiliser notre plateforme de « staging ». Cette plate
 https://datapass-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
 https://datapass-staging.api.gouv.fr/api-particulier).
 
-Vous pouvez vous créer un compte utilisateur en entrant n'importe quel numéro SIRET.
+Vous pouvez vous créer un compte utilisateur en entrant n’importe quel numéro SIRET.
 
 Vous pouvez également utiliser les comptes de tests suivants :
 
@@ -161,7 +161,7 @@ déployer les services :
 - datapass.api.gouv.fr
 - auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
 
-En outre, il vous permet d'instancier un environnement de développement local pour ces services.
+En outre, il vous permet d’instancier un environnement de développement local pour ces services.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
 ## Install
