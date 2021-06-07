@@ -79,11 +79,10 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
     app/policies/enrollment/<name_of_api>_policy.rb)
     2. définitions de règles de validation supplémentaires et des messages d’erreurs spécifiques
     (création de app/models/enrollment/<name_of_api>.rb)
-TODO update this
     3. configuration du label de service et de l’adresse email pour les notifications mails émises
     depuis DataPass. À noter, que l’envoi par DataPass via une adresse email administrée par vous fait
     l’object d’une procédure de validation effectuée par notre équipe dans l’outil mailjet
-    (app/mailers/enrollment_mailer.rb)
+    (config/data_providers.yml)
     4. [optionnel] définition d’une action spécifique post validation (ex : création d’un espace
     développeur dans l’API Manager via appel HTTP directement sur votre API Manager)
     (app/models/enrollment.rb L51)
