@@ -161,3 +161,15 @@
       tags:
         - api-auth
         - app-config
+
+- hosts: api-auth
+  become: true
+  roles:
+    - role: app-user
+      app_user: retool
+      tags: retool
+    - role: team-ssh-keys
+      app_user: retool
+      team_ssh_keys:
+        - "{{ retool_ssh_key }}"
+      tags: retool
