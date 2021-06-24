@@ -70,7 +70,7 @@ des informations à déterminer ensemble (ainsi que les fichiers à modifier dan
 
 1. dans le frontend
     1. description de l’organisation du formulaire (création de src/pages/NameOfApi.js)
-    2. url du formulaire sur le domaine datapass.api.gouv.fr (src/App.js)
+    2. url du formulaire sur le domaine datapass.api.gouv.fr (src/Routes.js)
     3. label à afficher pour le service dans la vue liste (src/lib/api.js)
     4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
     6. [optionnel] une page de présentation hors connection
