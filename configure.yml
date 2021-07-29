@@ -168,9 +168,11 @@
   roles:
     - role: app-user
       app_user: retool
+      when: retool_ssh_key is defined
       tags: retool
     - role: team-ssh-keys
       app_user: retool
       team_ssh_keys:
         - "{{ retool_ssh_key }}"
+      when: retool_ssh_key is defined
       tags: retool
