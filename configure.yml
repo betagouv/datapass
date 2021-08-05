@@ -20,6 +20,8 @@
   roles:
     - role: ruby
       tags: ruby
+    - role: redis
+      tags: redis
     - role: ssl
       server_name: "{{ back_domain_name }}"
       tags: ssl
