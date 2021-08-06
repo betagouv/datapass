@@ -8,3 +8,8 @@
   service:
     name: signup-back
     state: restarted
+
+- name: "restart service sidekiq-signup-back"
+  service:
+    name: sidekiq-signup-back
+    state: restarted
