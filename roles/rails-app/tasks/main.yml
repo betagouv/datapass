@@ -17,11 +17,17 @@
     mode: 0400
   notify: "restart service {{app_service_name}}"
 
-- name: copy systemd file
+- name: copy puma systemd file
   template:
     src: app.service.j2
     dest: "/etc/systemd/system/{{app_service_name}}.service"
   notify: "restart service {{app_service_name}}"
+
+- name: copy sidekiq systemd file
+  template:
+    src: sidekiq.service.j2
+    dest: "/etc/systemd/system/sidekiq-{{app_service_name}}.service"
+  notify: "restart service sidekiq-{{app_service_name}}"
 
 - name: enable services
   systemd:
