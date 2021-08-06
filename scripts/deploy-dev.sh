@@ -75,6 +75,9 @@ echo "$(logPrefix) Linking new deployment..."
 
 echo "$(logPrefix) Restarting service..."
 sudo /bin/systemctl restart ${APP_NAME}
+if [ -e Gemfile ]; then
+    sudo /bin/systemctl restart sidekiq-${APP_NAME}
+fi
 
 echo "$(logPrefix) Removing old releases..."
 
