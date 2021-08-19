@@ -67,6 +67,7 @@ echo "$(logPrefix) Restarting service..."
 sudo /bin/systemctl restart ${APP_NAME}
 
 if [ -e Gemfile ]; then
+    echo "$(logPrefix) Restarting sidekiq service..."
     sudo /bin/systemctl restart sidekiq-${APP_NAME}
 fi
 
