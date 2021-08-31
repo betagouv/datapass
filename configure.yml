@@ -77,6 +77,8 @@
         DISABLE_API_ENTREPRISE_BRIDGE: "{{ disable_api_entreprise_bridge | default('') }}"
         API_ENTREPRISE_HOST: "{{ api_entreprise_host }}"
         API_ENTREPRISE_API_KEY: "{{ api_entreprise_api_key }}"
+        API_ENTREPRISE_WEBHOOK_URL: "{{ api_entreprise_webhook_url }}"
+        API_ENTREPRISE_VERIFY_TOKEN: "{{ api_entreprise_verify_token }}"
         DISABLE_AIDANTS_CONNECT_BRIDGE: "{{ disable_aidants_connect_bridge | default('') }}"
         AIDANTS_CONNECT_HOST: "{{ aidants_connect_host }}"
         AIDANTS_CONNECT_API_KEY: "{{ aidants_connect_api_key }}"

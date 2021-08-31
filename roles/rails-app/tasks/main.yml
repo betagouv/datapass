@@ -41,6 +41,12 @@
     line: "{{app_user}} ALL=NOPASSWD: /bin/systemctl restart {{app_service_name}}"
     validate: '/usr/sbin/visudo -cf %s'
 
+- lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: "{{app_user}} ALL=NOPASSWD: /bin/systemctl restart sidekiq-{{app_service_name}}"
+    validate: '/usr/sbin/visudo -cf %s'
+
 - name: configure nginx
   template:
     src: server.conf.j2
