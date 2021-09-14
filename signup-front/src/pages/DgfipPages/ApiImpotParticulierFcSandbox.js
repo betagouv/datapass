@@ -18,7 +18,11 @@ import {
   DemarcheDescription,
   DonneesFootnote,
 } from './api-impot-particulier-common';
-import { contacts, DonneesDescription, SuiteDescription } from './common';
+import {
+  contacts,
+  DonneesDescription,
+  SuiteDescription,
+} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 

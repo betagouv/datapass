@@ -10,7 +10,10 @@ import DonneesSection from '../../components/organisms/form-sections/deprecated/
 import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import { contacts, SuiteDescription } from './common';
+import {
+  contacts,
+  SuiteDescription,
+} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import Quote from '../../components/atoms/inputs/Quote';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 

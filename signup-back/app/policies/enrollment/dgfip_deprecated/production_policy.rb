@@ -1,4 +1,4 @@
-class Enrollment::Dgfip::ProductionPolicy < EnrollmentPolicy
+class Enrollment::DgfipDeprecated::ProductionPolicy < EnrollmentPolicy
   def permitted_attributes
     res = []
 
@@ -8,6 +8,9 @@ class Enrollment::Dgfip::ProductionPolicy < EnrollmentPolicy
       :previous_enrollment_id,
       :fondement_juridique_title,
       :fondement_juridique_url,
+      :data_recipients,
+      :data_retention_period,
+      :data_retention_comment,
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
       documents_attributes: [
         :attachment,

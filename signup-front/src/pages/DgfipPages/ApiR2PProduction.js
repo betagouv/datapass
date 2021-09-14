@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
-import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
+import HomologationSecuriteSection from '../../components/organisms/form-sections/deprecated/dgfip-sections/HomologationSecuriteSection';
+import RecetteFonctionnelleSection from '../../components/organisms/form-sections/deprecated/dgfip-sections/RecetteFonctionnelleSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
+import VolumetrieSection from '../../components/organisms/form-sections/deprecated/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
-} from './common';
+} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const target_api = 'api_r2p_production';

@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
-import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
-import {
-  DemarcheDescriptionProduction as DemarcheDescription,
-  PreviousEnrollmentDescription,
-} from './common';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
 
 const target_api = 'api_mire_production';
 const steps = ['api_mire_sandbox', target_api];
@@ -25,12 +21,11 @@ const ApiMireProduction = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    PreviousEnrollmentDescription={PreviousEnrollmentDescription}
-    DemarcheDescription={DemarcheDescription}
+    PreviousEnrollmentDescription={() => null}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
+    <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection doInitializeDemandeur={true} />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[200, 1000]} />
