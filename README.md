@@ -177,11 +177,7 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 Clone the repo:
 
 ```bash
-git clone --recursive git@github.com:betagouv/datapass.git
-cd datapass/
-git submodule foreach git fetch
-git submodule foreach git pull origin master
-git submodule foreach git checkout master
+git clone git@github.com:betagouv/datapass.git
 ```
 
 Add the following hosts in `/etc/hosts`:
