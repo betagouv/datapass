@@ -1,0 +1,46 @@
+# keep these email addresses synchronised with the corresponding addresses in api-auth/scripts/fixtures.sql
+user:
+  email: user@yopmail.com
+
+api_particulier_instructor:
+  email: api-particulier@yopmail.com
+  roles:
+    - api_particulier:instructor
+    - api_particulier:reporter
+    - api_particulier:subscriber
+
+franceconnect_instructor:
+  email: franceconnect@yopmail.com
+  roles:
+    - franceconnect:instructor
+    - franceconnect:reporter
+    - franceconnect:subscriber
+    - api_impot_particulier_fc_sandbox:reporter
+
+api_entreprise_instructor:
+  email: api-entreprise@yopmail.com
+  roles:
+    - api_entreprise:instructor
+    - api_entreprise:reporter
+    - api_entreprise:subscriber
+
+api_impot_particulier_instructor:
+  email: api-impot-particulier@yopmail.com
+  roles:
+    - api_impot_particulier_fc_sandbox:instructor
+    - api_impot_particulier_fc_sandbox:reporter
+    - api_impot_particulier_fc_sandbox:subscriber
+    - api_impot_particulier_fc_production:instructor
+    - api_impot_particulier_fc_production:reporter
+    - api_impot_particulier_fc_production:subscriber
+    - api_impot_particulier_sandbox:instructor
+    - api_impot_particulier_sandbox:reporter
+    - api_impot_particulier_sandbox:subscriber
+    - api_impot_particulier_production:instructor
+    - api_impot_particulier_production:reporter
+    - api_impot_particulier_production:subscriber
+
+administrator:
+  email: datapass@yopmail.com
+  roles:
+    - administrator

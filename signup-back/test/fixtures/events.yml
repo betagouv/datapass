@@ -1,0 +1,87 @@
+event_draft_1:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 1.days.ago.to_s(:db) %>
+  updated_at: <%= 1.days.ago.to_s(:db) %>
+  name: "created"
+event_draft_2:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 1.hours.ago.to_s(:db) %>
+  updated_at: <%= 1.hours.ago.to_s(:db) %>
+  name: "updated"
+  diff:
+    dpo_id:
+      - null
+      - 1
+    dpo_family_name:
+      - "Abitbol"
+      - "Test"
+    dpo_given_name:
+      - "George"
+      - "User"
+    updated_at:
+      - <%= 1.days.ago.to_s(:db) %>
+      - <%= 1.hours.ago.to_s(:db) %>
+    dpo_phone_number:
+      - null
+      - "0123456789"
+
+event_validated_1:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 2.days.ago.to_s(:db) %>
+  updated_at: <%= 2.days.ago.to_s(:db) %>
+  name: "created"
+event_validated_2:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 2.days.ago.to_s(:db) %>
+  updated_at: <%= 2.days.ago.to_s(:db) %>
+  name: "submitted"
+event_validated_3:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
+  created_at: <%= 1.hours.ago.to_s(:db) %>
+  updated_at: <%= 1.hours.ago.to_s(:db) %>
+  name: "validated"
+
+event_refused_1:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 3.days.ago.to_s(:db) %>
+  updated_at: <%= 3.days.ago.to_s(:db) %>
+  name: "created"
+event_refused_2:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 3.days.ago.to_s(:db) %>
+  updated_at: <%= 3.days.ago.to_s(:db) %>
+  name: "submitted"
+event_refused_3:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
+  created_at: <%= 1.hours.ago.to_s(:db) %>
+  updated_at: <%= 1.hours.ago.to_s(:db) %>
+  name: "refused"
+  comment: "Vous n'êtes pas éligible.\nN'hésitez pas à consulter nos autres API sur : https://api.gouv.fr"
+
+event_asked_for_modification_1:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_asked_for_modification) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 4.days.ago.to_s(:db) %>
+  updated_at: <%= 4.days.ago.to_s(:db) %>
+  name: "created"
+event_asked_for_modification_2:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_asked_for_modification) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  created_at: <%= 4.days.ago.to_s(:db) %>
+  updated_at: <%= 4.days.ago.to_s(:db) %>
+  name: "submitted"
+event_asked_for_modification_3:
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_asked_for_modification) %>
+  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
+  created_at: <%= 1.hours.ago.to_s(:db) %>
+  updated_at: <%= 1.hours.ago.to_s(:db) %>
+  name: "asked_for_modification"
+  comment: "Merci de nous indiquer la durée de conservation des données."

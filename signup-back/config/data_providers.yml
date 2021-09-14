@@ -1,0 +1,234 @@
+---
+shared:
+  mailer: &shared_mailer
+    send_application: &shared_send_application_mailer
+      subject: "Nous avons bien reçu votre demande d’accès"
+    validate_application: &shared_validate_application_mailer
+      subject: "Votre demande a été validée"
+    review_application: &shared_review_application_mailer
+      subject: "Votre demande requiert des modifications"
+    refuse_application: &shared_refuse_application_mailer
+      subject: "Votre demande a été refusée"
+    notify_application_sent: &shared_notify_application_sent_mailer
+      subject: "Nouvelle demande sur DataPass"
+    create_application: &shared_create_application_mailer
+      subject: "Votre demande a été enregistrée"
+    notify: &shared_notify_mailer
+      subject: "Vous avez un nouveau message concernant votre demande"
+
+franceconnect:
+  label: FranceConnect
+  support_email: support.partenaires@franceconnect.gouv.fr
+  mailer: *shared_mailer
+
+api_particulier:
+  label: API Particulier
+  support_email: contact@particulier.api.gouv.fr
+  mailer: *shared_mailer
+
+api_impot_particulier_sandbox:
+  label: API Impôt particulier (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_impot_particulier_production:
+  label: API Impôt particulier (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_sandbox:
+  label: API Impôt particulier (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_production:
+  label: API Impôt particulier (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_r2p_sandbox:
+  label: API R2P (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_r2p_production:
+  label: API R2P (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ficoba_sandbox:
+  label: API FICOBA (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ficoba_production:
+  label: API FICOBA (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_droits_cnam:
+  label: API Droits CNAM
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_entreprise:
+  label: API Entreprise
+  api_manager_label: dashboard API Entreprise
+  support_email: support@entreprise.api.gouv.fr
+  mailer:
+    <<: *shared_mailer
+    create_application:
+      subject: "💾 Le brouillon de votre demande a bien été enregistré"
+    send_application:
+      subject: "📬 Votre demande a bien été reçue par API Entreprise"
+    review_application:
+      subject: "✒️ Votre demande requiert des modifications"
+    validate_application:
+      subject: "✅ Votre demande d’accès à l'API Entreprise a été validée"
+    refuse_application:
+      subject: "🚫 Votre demande d’accès à l’API Entreprise a été refusée"
+
+preuve_covoiturage:
+  label: Registre de preuve de covoiturage
+  support_email: contact@covoiturage.beta.gouv.fr
+  mailer: *shared_mailer
+
+le_taxi_clients:
+  label: le.Taxi
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+le_taxi_chauffeurs:
+  label: le.Taxi
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+cartobio:
+  label: CartoBio
+  support_email: cartobio@beta.gouv.fr
+  mailer: *shared_mailer
+
+aidants_connect:
+  label: Aidants Connect
+  support_email: contact@aidantsconnect.beta.gouv.fr
+  mailer: *shared_mailer
+
+api_service_national:
+  label: API Service National
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_statut_etudiant:
+  label: API Statut étudiant
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_hermes_sandbox:
+  label: API Hermes (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_hermes_production:
+  label: API Hermes (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+hubee:
+  label: Hubee
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_pro_sante_connect:
+  label: API Pro Santé Connect
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_indemnites_journalieres_cnam:
+  label: API Indemnités Journalières (CNAM)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_e_contacts_sandbox:
+  label: API E-Contacts (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_e_contacts_production:
+  label: API E-Contacts (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_opale_sandbox:
+  label: API OPALE (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_opale_production:
+  label: API OPALE (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_mire_sandbox:
+  label: API MIRE (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_mire_production:
+  label: API MIRE (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ocfi_sandbox:
+  label: API OCFI (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ocfi_production:
+  label: API OCFI (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_e_pro_sandbox:
+  label: API E-PRO (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_e_pro_production:
+  label: API E-PRO (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_robf_sandbox:
+  label: API ROBF (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_robf_production:
+  label: API ROBF (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_cpr_pro_sandbox:
+  label: API CPR PRO - ADELIE (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_cpr_pro_production:
+  label: API CPR PRO - ADELIE (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_infinoe_sandbox:
+  label: API INFINOE (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_infinoe_production:
+  label: API INFINOE (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_declaration_auto_entrepreneur:
+  label: API Tierce Déclaration auto-entrepreneur
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
