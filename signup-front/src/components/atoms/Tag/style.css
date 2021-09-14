@@ -1,0 +1,28 @@
+.fr-tag.secondary {
+  background-color: var(--g400);
+  color: var(--black);
+}
+
+.fr-tag.info {
+  background: var(--info);
+  color: var(--w);
+}
+
+.fr-tag.success {
+  background: var(--success);
+  color: var(--w);
+}
+
+.fr-tag.warning {
+  background: #ff6f4c;
+  color: var(--w);
+}
+
+.fr-tag.danger {
+  background: var(--error);
+  color: var(--w);
+}
+
+.fr-tag + .fr-tag {
+  margin-left: 1em;
+}

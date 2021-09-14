@@ -1,0 +1,22 @@
+{
+  "default": {
+    "label": "",
+    "about": "",
+    "state": {
+      "intitule": "",
+      "description": "",
+      "fondement_juridique_title": "",
+      "fondement_juridique_url": ""
+    }
+  },
+  "exemple": {
+    "label": "CertDc - Certificat de Décès",
+    "about": "",
+    "state": {
+      "intitule": "CertDc - Certificat de Décès",
+      "description": "Ce service donne la possibilité de recevoir par voie électronique le volet administratif du certificat de décès lorsque le médecin rédige le certificat de décès au moyen de l’application « CertDc ».",
+      "fondement_juridique_title": "Décret du 21 avril 2017 relatif aux certificats de décès ; Article 78 du Code civil pour la déclaration de décès",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/loda/id/LEGIARTI000034459398/2017-04-24/ ; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033460895/"
+    }
+  }
+}

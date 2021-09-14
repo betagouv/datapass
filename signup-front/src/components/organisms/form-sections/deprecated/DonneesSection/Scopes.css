@@ -1,0 +1,16 @@
+.scope_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scope_item {
+  flex: 0 0 300px;
+}
+
+.scope_comment {
+  color: var(--g700);
+  font-size: smaller;
+  margin-left: 2rem;
+  margin-top: 0;
+  line-height: 1em;
+}

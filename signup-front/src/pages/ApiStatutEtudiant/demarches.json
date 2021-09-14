@@ -1,0 +1,43 @@
+{
+  "default": {
+    "label": "Demande Libre",
+    "state": {
+      "scopes": {
+        "ine": false,
+        "identite": false,
+        "inscription_statut_etudiant": false,
+        "inscription_autre_statuts": false,
+        "admission": false,
+        "etablissement": false
+      }
+    }
+  },
+  "aide_etudiants": {
+    "label": "Aide financière aux étudiants proposée par les collectivités territoriales",
+    "state": {
+      "scopes": {
+        "identite": true,
+        "inscription_statut_etudiant": true
+      }
+    }
+  },
+  "allocation_logement": {
+    "label": "Allocation logement",
+    "state": {
+      "scopes": {
+        "identite": true,
+        "inscription_statut_etudiant": true
+      }
+    }
+  },
+  "transport_etudiants": {
+    "label": "Délivrance de titre de transport pour les étudiants",
+    "state": {
+      "scopes": {
+        "identite": true,
+        "inscription_statut_etudiant": true,
+        "etablissement": true
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.loader-container:not(.small) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container.small {
+  display: inline-flex;
+}
+
+.loader-container > .message {
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.loader-container .loader {
+  border: 7px solid #c9d3df;
+  border-top-color: #53657d;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 750ms linear infinite;
+}
+
+.loader-container.small .loader {
+  border-width: 3px;
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

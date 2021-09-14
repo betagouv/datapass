@@ -1,0 +1,68 @@
+.helper {
+  cursor: help;
+  vertical-align: text-bottom;
+  margin: 0 4px;
+}
+
+.helper > svg {
+  vertical-align: middle;
+}
+
+/*CSS tooltip is heavily inspired from https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346*/
+[tooltip] {
+  position: relative;
+}
+
+[tooltip]::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  z-index: 99;
+  opacity: 0;
+}
+
+[tooltip]::after {
+  content: attr(tooltip);
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) translateY(-100%);
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.2em;
+  font-weight: normal;
+  min-width: 130px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 4px 4px;
+  z-index: 99;
+  opacity: 0;
+}
+
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+  opacity: 1;
+}
+
+[tooltip]:focus,
+[tooltip]:focus::after,
+[tooltip]:focus::before {
+  outline: 0;
+}
+
+[tooltip].tooltip-controlled:hover::after,
+[tooltip].tooltip-controlled:hover::before {
+  opacity: 0;
+}
+
+[tooltip].tooltip-controlled.tooltip-opened::after,
+[tooltip].tooltip-controlled.tooltip-opened::before {
+  opacity: 1;
+}

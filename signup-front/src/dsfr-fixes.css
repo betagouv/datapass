@@ -1,0 +1,14 @@
+/* put here rules to fix dsfr stylesheets */
+
+/* fix DSFR spacing */
+.fr-sidemenu {
+  padding-right: 1em;
+}
+
+.fr-sidemenu__inner {
+  padding: 0 1rem 0 0.25rem;
+}
+
+.fr-sidemenu__inner {
+  background: var(--beige);
+}
