@@ -1,0 +1,91 @@
+.panel > .login-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em auto;
+}
+
+@media (max-width: 550px) {
+  .panel > .login-buttons {
+    flex-direction: column;
+  }
+}
+
+.login-buttons-or {
+  margin: 1em;
+}
+
+.call-to-action {
+  margin-bottom: 3em;
+}
+
+.next-steps,
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 30px 0 15px;
+}
+
+.timeline {
+  margin: 0 0 50px;
+  align-items: center;
+}
+
+.next-steps > div,
+.timeline > div {
+  width: 24%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.timeline > div {
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.timeline > div > .time-indication {
+  font-style: italic;
+  position: absolute;
+  width: 90px;
+  right: -45px;
+  background-color: #fff;
+  z-index: 5;
+  padding: 0 5px;
+}
+
+.timeline > div:before,
+.timeline > div:after {
+  content: '';
+  height: 3px;
+  width: 50%;
+  background-color: var(--blue);
+  opacity: 0.15;
+}
+
+.timeline > div:first-of-type:before,
+.timeline > div:last-of-type:after {
+  opacity: 0;
+}
+
+.timeline .step {
+  height: 7px;
+  width: 7px;
+  border-radius: 15px;
+  background-color: var(--blue);
+}
+
+.next-steps svg {
+  fill: var(--blue);
+}
+
+.next-steps .prepare > ul {
+  padding: 10px;
+  margin: 0;
+}

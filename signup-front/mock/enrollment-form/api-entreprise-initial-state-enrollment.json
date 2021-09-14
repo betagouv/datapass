@@ -1,0 +1,40 @@
+{
+  "scopes": [],
+	"errors": [],
+	"enrollment": {
+		"fournisseur_de_donnees": "api-entreprise",
+		"scopes": {},
+		"acl": {
+			"send_application": true
+		},
+		"contacts": [{
+				"id": "dpo",
+				"heading": "Délégué à la protection des données",
+				"description": "https://www.cnil.fr/fr/designation-dpo"
+			},
+			{
+				"id": "responsable_traitement",
+				"heading": "Responsable de traitement"
+			},
+      {
+        "id": "metier",
+        "heading": "Responsable métier"
+      },
+			{
+				"id": "technique",
+				"heading": "Responsable technique"
+			}
+		],
+		"siret": "",
+		"demarche": {
+			"intitule": "",
+			"description": "",
+			"fondement_juridique": ""
+		},
+		"donnees": {
+			"conservation": "",
+			"destinataires": ""
+		},
+		"validation_de_convention": false
+	}
+}

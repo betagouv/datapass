@@ -1,0 +1,40 @@
+.activity-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.event-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-icon {
+  width: 3em;
+  padding: 0.5em 0;
+}
+
+.event-content {
+  flex: 1 100%;
+  padding: 0.5em 0;
+}
+
+.event-item + .event-item > .event-content {
+  border-top: 1px solid var(--g400);
+}
+
+.event-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-date {
+  color: var(--g600);
+}
+
+.event-comment {
+  background-color: white;
+  margin-top: 0.4em;
+  white-space: pre-line;
+  padding: 1em;
+}

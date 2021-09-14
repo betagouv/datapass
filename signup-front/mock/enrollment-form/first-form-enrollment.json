@@ -1,0 +1,62 @@
+{
+  "enrollment": {
+    "updated_at": "2019-05-14T14:55:21.751Z",
+    "created_at": "2019-05-14T14:53:28.053Z",
+    "id": 1009616291,
+    "target_api": "franceconnect",
+    "linked_franceconnect_enrollment_id": null,
+    "cgu_approved": true,
+    "scopes": {
+      "email": false,
+      "gender": true,
+      "openid": true,
+      "birthdate": false,
+      "birthplace": false,
+      "given_name": false,
+      "family_name": false,
+      "birthcountry": true
+    },
+    "contacts": [
+      {
+        "id": "dpo",
+        "nom": "user",
+        "email": "user@test",
+        "heading": "Délégué à la protection des données",
+        "phone_number": "a"
+      }
+    ],
+    "siret": "83951732300011",
+    "status": "pending",
+    "linked_token_manager_id": null,
+    "additional_content": {
+      "has_alternative_authentication_methods": true
+    },
+    "intitule": "Nom du fournisseur de service",
+    "description": "Description du service",
+    "fondement_juridique_title": "a",
+    "fondement_juridique_url": "a",
+    "data_recipients": "a",
+    "data_retention_period": 37,
+    "data_retention_comment": "a",
+    "user": {
+      "id": 380070526,
+      "email": "franceconnect@test",
+      "created_at": "2019-04-18T14:57:48.669Z",
+      "updated_at": "2019-04-18T14:57:48.672Z",
+      "roles": ["franceconnect"],
+      "uid": "5002",
+      "email_verified": true
+    },
+    "documents": [
+      {
+        "id": 1,
+        "created_at": "2019-05-14T14:55:21.742Z",
+        "updated_at": "2019-05-14T14:55:21.742Z",
+        "attachment": {
+          "url": "/uploads/document/legal_basis/attachment/1/baseline-help-24px__2_.svg"
+        },
+        "type": "Document::LegalBasis"
+      }
+    ]
+  }
+}

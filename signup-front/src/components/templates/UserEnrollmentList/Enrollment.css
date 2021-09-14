@@ -1,0 +1,57 @@
+.enrollment {
+  width: 100%;
+  background-color: var(--w);
+}
+
+.enrollment-header {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 1px solid var(--g400);
+}
+
+.enrollment-header .fs {
+  display: flex;
+  align-items: center;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.enrollment-header .fs img {
+  height: 40px;
+  margin: 0 0.5em;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: wrap;
+}
+
+.intitule {
+  font-weight: 600;
+  font-size: large;
+  margin-right: 1em;
+}
+
+.creation {
+  font-size: small;
+}
+
+.description {
+  font-style: italic;
+}
+
+.enrollment-body {
+  padding: 1em;
+}
+
+.enrollment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+}

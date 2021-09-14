@@ -1,0 +1,108 @@
+/* page is full screen when loading */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+}
+
+#root {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* add grey notification */
+.notification.grey {
+  background-color: #e6ecf3;
+  border-color: #748191;
+}
+
+/* add check mark in steps-form */
+.steps-form li.check-mark::before {
+  content: '\2713';
+  font-weight: bold;
+}
+
+/* customise steps-form spacing */
+.steps-form {
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+/* add warning in steps-form */
+.steps-form li.warning::before {
+  border-color: var(--orange);
+  color: var(--w);
+  background-color: var(--orange);
+}
+
+.steps-form li.warning.active::before {
+  border-color: var(--orange);
+  color: var(--orange);
+  background-color: var(--w);
+}
+
+.steps-form li.warning::after {
+  background-color: var(--orange);
+}
+
+@media (max-width: 749px) {
+  .steps-form > li > div {
+    justify-content: flex-end;
+    text-align: initial;
+    width: initial;
+    padding: 0 0 1em 0;
+  }
+
+  .steps-form > li {
+    margin: auto;
+    width: 80%;
+  }
+}
+
+/* full width container */
+.full-width-container {
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 1rem 0;
+  margin: 0 auto;
+}
+
+/* layout full page */
+.layout-full-page {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* handle modal layout */
+.modal__backdrop {
+  display: flex;
+}
+
+.fr-modal__body {
+  max-width: 50em;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* define datapass blue */
+:root {
+  --datapass-blue: #0959b6;
+}

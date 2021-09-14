@@ -1,0 +1,64 @@
+.expandable-quote {
+  background-color: #f0f8ff;
+  color: var(--datapass-blue);
+  border-radius: 3px;
+}
+
+.expandable-quote-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.expandable-quote-header svg {
+  flex-grow: 0;
+}
+
+.expandable-quote-header div {
+  padding: 0 0.5rem;
+  flex-grow: 10;
+}
+
+.expandable-quote-content {
+  overflow: hidden;
+  max-height: 0;
+  padding: 0 2rem;
+  transition: max-height 0.15s ease-out, padding-top 0.15s ease-out,
+    padding-bottom 0.15s ease-out;
+}
+
+.expandable-quote.expanded .expandable-quote-content {
+  border-top: 1px solid var(--datapass-blue);
+  max-height: 500px;
+  padding: 1rem 2rem;
+  transition: max-height 0.25s ease-out, padding-top 0.25s ease-out,
+    padding-bottom 0.25s ease-out;
+  overflow-y: auto;
+}
+
+.expandable-quote.expanded.large .expandable-quote-content {
+  max-height: 800px;
+}
+
+@media all and (max-width: 1248px) {
+  .expandable-quote.expanded .expandable-quote-content {
+    max-height: 600px;
+  }
+
+  .expandable-quote.expanded.large .expandable-quote-content {
+    max-height: 1000px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .expandable-quote.expanded .expandable-quote-content {
+    max-height: 800px;
+  }
+
+  .expandable-quote.expanded.large .expandable-quote-content {
+    max-height: 1200px;
+  }
+}

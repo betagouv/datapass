@@ -1,0 +1,142 @@
+{
+  "default": {
+    "label": "Demande libre",
+    "about": "https://entreprise.api.gouv.fr/use_cases/autres/",
+    "state": {
+      "intitule": "",
+      "description": "",
+      "fondement_juridique_title": "",
+      "data_recipients": "",
+      "scopes": {
+        "entreprises": false,
+        "etablissements": false,
+        "extraits_rcs": false,
+        "associations": false,
+        "documents_association": false,
+        "actes_inpi": false,
+        "conventions_collectives": false,
+        "entreprises_artisanales": false,
+        "effectifs_acoss": false,
+        "eori_douanes": false,
+        "exercices": false,
+        "bilans_inpi": false,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": false,
+        "attestations_sociales": false,
+        "attestations_agefiph": false,
+        "msa_cotisations": false,
+        "probtp": false,
+        "fntp_carte_pro": false,
+        "certificat_cnetp": false,
+        "certificat_agence_bio": false,
+        "certificat_rge_ademe": false,
+        "qualibat": false,
+        "certificat_opqibi": false,
+        "extrait_court_inpi": false
+      }
+    }
+  },
+  "marches_publics": {
+    "label": "Marchés publics",
+    "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": true,
+        "effectifs_acoss": true,
+        "exercices": true,
+        "bilans_inpi": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": true,
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_agence_bio": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
+    }
+  },
+  "aides_publiques": {
+    "label": "Aides et subventions publiques",
+    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "entreprises_artisanales": true,
+        "exercices": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true
+      }
+    }
+  },
+  "covid_19": {
+    "label": "Aide d'urgence régionale Covid-19 aux TPE",
+    "about": "https://entreprise.api.gouv.fr/use_cases/covid_19/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "effectifs_acoss": true
+      }
+    }
+  },
+  "preremplissage": {
+    "label": "Pré-remplissage d'un formulaire",
+    "about": "https://entreprise.api.gouv.fr/use_cases/preremplissage/",
+    "state": {
+      "description": "Merci d'indiquer si le formulaire ou l'interface qui utilisera le pré-remplissage API Entreprise est :\n- en accès libre,\n- ou après authentification préalable, c'est à dire uniquement accessible à l'utilisateur concerné ou l'agent habilité à voir ces données.\n\nLes données protégées ne peuvent pas être exposées sur un formulaire librement accessible. Si le formulaire est en accès libre, seules les données ouvertes peuvent être utilisées pour le pré-remplissage. L'ensemble de ces éléments est synthétisé sur  https://entreprise.api.gouv.fr/use_cases/preremplissage/",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "entreprises_artisanales": true
+      }
+    }
+  },
+  "detection_fraude": {
+    "label": "Détection de la fraude",
+    "about": "https://entreprise.api.gouv.fr/use_cases/detection_fraude/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "actes_inpi": true,
+        "effectifs_acoss": true,
+        "eori_douanes": true,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": true,
+        "liasse_fiscale": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true
+      }
+    }
+  },
+  "editeur": {
+    "label": "Spécifique aux éditeurs",
+    "about": "https://entreprise.api.gouv.fr/use_cases/editeurs/",
+    "state": {
+      "fondement_juridique_title": "Loi ou décret ou arrêté ...",
+      "intitule": "Nom de votre solution et cas d’usage (marchés publics, aides publiques ...)",
+      "description": "Dans l’objectif de traiter votre demande plus rapidement, nous vous remercions d’indiquer : à quel type d’acteur public s’adresse votre solution logicielle ; le nombre d’acteurs publics que vous avez déjà comme clients ; le cadre d’usage de votre outil (marchés publics, aides publiques ...), ce qu’il permet précisément de faire pour les utilisateurs ; et qui consommera la donnée. N’hésitez pas à nous transmettre une URL de votre solution ou tout lien vers un page explicative.",
+      "data_recipients": "Agents publics, usagers (entreprise ou association) ; service spécifique d’une administration ..."
+    }
+  }
+}

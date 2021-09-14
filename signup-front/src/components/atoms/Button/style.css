@@ -1,0 +1,34 @@
+.fr-btn.secondary {
+  background: var(--g600);
+  color: var(--w);
+}
+
+.fr-btn.info {
+  background: var(--info);
+  color: var(--w);
+}
+
+.fr-btn.success {
+  background: var(--success);
+  color: var(--w);
+}
+
+.fr-btn.warning {
+  background: #ff6f4c;
+  color: var(--w);
+}
+
+.fr-btn.danger {
+  background: var(--error);
+  color: var(--w);
+}
+
+.fr-btn.light {
+  background: var(--w);
+  color: black;
+}
+
+:root:not([data-fr-theme='dark' i]) .fr-btn {
+  --color-hover: rgba(217, 217, 217, 0.5);
+  --color-active: rgba(172, 172, 172, 0.5);
+}

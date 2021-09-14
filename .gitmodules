@@ -1,7 +1,3 @@
-[submodule "signup-front"]
-	path = signup-front
-	url = git@github.com:betagouv/signup-front.git
-	branch = master
 [submodule "api-auth"]
 	path = api-auth
 	url = git@github.com:betagouv/api-auth.git

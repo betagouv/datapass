@@ -1,0 +1,23 @@
+{
+  "default": {
+    "label": "Demande Libre",
+    "state": {
+      "fondement_juridique_title": "",
+      "fondement_juridique_url": ""
+    }
+  },
+  "inscription-examens": {
+    "label": "Inscription à un concours ou un examen (hors permis de conduire)",
+    "state": {
+      "fondement_juridique_title": "Article L114-6 du code du service national",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021960309/"
+    }
+  },
+  "status-service-national": {
+    "label": "Accès à un statut exigeant d’être en règle avec les obligations de service national",
+    "state": {
+      "fondement_juridique_title": "Article L111-3 du code du service national",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024042593/"
+    }
+  }
+}

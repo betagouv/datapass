@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="googlebot" content="noindex,nofollow" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/favicons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="mask-icon"
+      href="%PUBLIC_URL%/favicons/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+
+    <title>
+      DataPass - gestion des habilitations juridiques pour les données à accès
+      restreint
+    </title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+        document.write(
+          '<script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.js"><\/script>'
+        );
+        document.write(
+          '<script src="https://unpkg.com/url-polyfill@1.0.14/url-polyfill.js"><\/script>'
+        );
+        document.write(
+          '<script src="https://unpkg.com/stickyfilljs@2.1.0/dist/stickyfill.min.js"><\/script>'
+        );
+      }
+    </script>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <script type="text/javascript">
+      window.onerror = function(e) {
+        document.write(
+          '<div>' +
+            'Une erreur est survenue. ' +
+            'Merci de réessayer ultérieurement.' +
+            '</div>' +
+            '<div>' +
+            "Vous pouvez également essayer d'utiliser un autre navigateur (ex: Firefox ou Chrome)." +
+            '</div>' +
+            '<div>' +
+            "N'hésitez pas à nous signaler cette erreur à " +
+            '<a href="mailto:contact@api.gouv.fr?subject=Erreur%20sur%20datapass.api.gouv.fr">contact@api.gouv.fr</a>.' +
+            '</div>' +
+            "<div>Voici le détail de l'erreur :</div>" +
+            '<pre>' +
+            JSON.stringify(e, null, 2) +
+            '</pre>'
+        );
+      };
+    </script>
+    <div id="root"></div>
+  </body>
+</html>

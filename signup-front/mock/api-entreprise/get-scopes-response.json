@@ -1,0 +1,69 @@
+[{
+	"id": "b34d951f-559e-4374-832e-ecd210467de1",
+	"name": "Attestation AGEFIPH",
+	"code": "attestations_agefiph"
+}, {
+	"id": "cdbc5d85-c42e-4714-85a9-b7722a3943dc",
+	"name": "Attestation Fiscale",
+	"code": "attestations_fiscales"
+}, {
+	"id": "17ea7121-cc76-42f0-bef3-1512da6f0ecd",
+	"name": "Attestation Sociale",
+	"code": "attestations_sociales"
+}, {
+	"id": "1fccafbd-bff1-4ad5-a4de-535e1b4c25f5",
+	"name": "Certificat CNETP",
+	"code": "certificat_cnetp"
+}, {
+	"id": "79916597-e719-400a-a4e4-0160267fde42",
+	"name": "Association",
+	"code": "associations"
+}, {
+	"id": "45c956f1-8ba7-4d30-a0a0-d748c623ab8d",
+	"name": "Certificat OPQIBI",
+	"code": "certificat_opqibi"
+}, {
+	"id": "ccd4c3bf-6ea5-45a3-9c6b-76314dfd169a",
+	"name": "Document association",
+	"code": "documents_association"
+}, {
+	"id": "ea918360-055b-4877-ad72-5494fc3478ea",
+	"name": "INSEE Etablissement",
+	"code": "etablissements"
+}, {
+	"id": "35cf0844-48f1-4a51-85e1-5c48aaa98463",
+	"name": "INSEE Entreprise",
+	"code": "entreprises"
+}, {
+	"id": "994c533f-e4d3-4b31-95f1-fc258078020a",
+	"name": "Extrait INPI",
+	"code": "extrait_court_inpi"
+}, {
+	"id": "f7181804-ed1e-4ce9-a5a6-683449b6f777",
+	"name": "Extrait RCS",
+	"code": "extraits_rcs"
+}, {
+	"id": "e2832c88-2a8f-43e8-8b70-60eaa48741fa",
+	"name": "Exercice",
+	"code": "exercices"
+}, {
+	"id": "f4410413-7f95-4cc3-a61c-075e18cbccdd",
+	"name": "Liasse fiscale",
+	"code": "liasse_fiscale"
+}, {
+	"id": "fb2fd633-679a-4e94-b192-9c6f96093354",
+	"name": "Carte Pro FNTP",
+	"code": "fntp_carte_pro"
+}, {
+	"id": "9d2b052a-bd0f-4d99-a0df-fa2fa5550666",
+	"name": "Certificat Qualibat",
+	"code": "qualibat"
+}, {
+	"id": "9a1fb7c8-399d-4332-b87b-5376da4eaba8",
+	"name": "Certificat PROBTP",
+	"code": "probtp"
+}, {
+	"id": "c1c6594e-f19f-40ae-912e-d63439a2b0b3",
+	"name": "Cotisation MSA",
+	"code": "msa_cotisations"
+}]

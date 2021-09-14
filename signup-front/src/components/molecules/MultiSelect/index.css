@@ -1,0 +1,66 @@
+.multiselect-dropdown-button {
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 0 7px;
+  font-weight: 400;
+  height: 43px;
+  line-height: 43px;
+  /* Source: https://material.io/tools/icons/?icon=arrow_drop_down&style=baseline */
+  background: #fff
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 10l5 5 5-5z"/></svg>')
+    no-repeat top 0.55em right 0;
+  text-align: start;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multiselect-dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.multiselect-dropdown-content {
+  display: block;
+  position: absolute;
+  min-width: 160px;
+  max-height: 500px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  right: 0;
+  z-index: 1001;
+  padding: 1px 0;
+  background-color: #fff;
+  text-align: left;
+  /* the following rules are taken from Chrome stylesheet for native select element */
+  align-items: flex-start;
+  border: 1px inset gray;
+  border-radius: initial;
+  overflow-x: hidden;
+  overflow-y: auto;
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  content: '\00a0\00a0\00a0\00a0';
+}
+
+.multiselect-dropdown-item {
+  line-height: initial !important;
+  font-weight: normal;
+  display: block;
+  padding: 0 2px 1px 2px;
+  white-space: nowrap;
+  min-height: 1.2em;
+}
+
+/* extra rules to fix conflicts with ReactTable stylesheets */
+.ReactTable .rt-th {
+  overflow: inherit !important;
+}
+.ReactTable .rt-thead.-filters input[type='checkbox']:checked {
+  background-color: var(--bf500);
+}

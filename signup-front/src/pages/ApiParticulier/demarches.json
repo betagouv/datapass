@@ -1,0 +1,399 @@
+{
+  "default": {
+    "label": "Demande Libre",
+    "about": "https://api.gouv.fr/les-api/api-particulier",
+    "state": {
+      "intitule": "",
+      "description": "",
+      "data_recipients": "",
+      "data_retention_period": "",
+      "fondement_juridique_title": "",
+      "fondement_juridique_url": "",
+      "scopes": {
+        "dgfip_declarant1_nom": false,
+        "dgfip_declarant1_nom_naissance": false,
+        "dgfip_declarant1_prenoms": false,
+        "dgfip_declarant1_date_naissance": false,
+        "dgfip_declarant2_nom": false,
+        "dgfip_declarant2_nom_naissance": false,
+        "dgfip_declarant2_prenoms": false,
+        "dgfip_declarant2_date_naissance": false,
+        "dgfip_date_recouvrement": false,
+        "dgfip_date_etablissement": false,
+        "dgfip_adresse_fiscale_taxation": false,
+        "dgfip_adresse_fiscale_annee": false,
+        "dgfip_nombre_parts": false,
+        "dgfip_nombre_personnes_a_charge": false,
+        "dgfip_situation_familiale": false,
+        "dgfip_revenu_brut_global": false,
+        "dgfip_revenu_imposable": false,
+        "dgfip_impot_revenu_net_avant_corrections": false,
+        "dgfip_montant_impot": false,
+        "dgfip_revenu_fiscal_reference": false,
+        "dgfip_annee_impot": false,
+        "dgfip_annee_revenus": false,
+        "dgfip_erreur_correctif": false,
+        "dgfip_situation_partielle": false,
+        "cnaf_quotient_familial": false,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false,
+        "pole_emploi_identite": false,
+        "pole_emploi_contact": false,
+        "pole_emploi_adresse": false,
+        "pole_emploi_inscription": false
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "",
+          "phone_number": ""
+        }
+      ]
+    }
+  },
+  "abelium": {
+    "label": "Tarification des services liés à l'enfance avec Abelium",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des loisirs",
+      "description": "Le logiciel Domino 'Web permet la facturation des prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est réalisé selon un ou plusieurs critères suivants : en fonction des revenus des familles, en fonction de leur quotient familial.\nModule DIABOLO (Gestion des structures enfance, restauration, périscolaire, extrascolaire et jeunesse), le calcul du tarif des consommations (tarif repas, tarif de l’accueil périscolaire, tarif demi-journée ou journée ALSH, etc.) est lié soit au montant du quotient familial soit au revenu de la famille (Revenu brut global).\nAbelium Collectivités accompagne le demandeur lors de la mise en place de la demande des informations sur l'application API.",
+      "data_recipients": "Agents du service",
+      "data_retention_period": 60,
+      "fondement_juridique_title": "Joindre en pièce jointe la délibération",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "agora-plus": {
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec l'éditeur AgoraPlus",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes)",
+      "description": "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Les allocataires\n  - Les revenus déclarés aux différents organisme\n  - Adresse du foyer\n Nous sommes accompagnés par Agora.",
+      "data_recipients": "Adresse du foyer",
+      "data_retention_period": 12,
+      "fondement_juridique_title": "En pièce jointe la délibération du conseil municipal ou la nature du texte qui justifie l'accès aux données",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "projet@agoraplus.fr",
+          "phone_number": "0184160095"
+        }
+      ]
+    }
+  },
+  "arpege-concerto": {
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec l’editeur Arpège",
+    "about": "https://api.gouv.fr/les-api/api-particulier",
+    "state": {
+      "intitule": "Récupération du Quotient Familial et des Impôts pour les services Petite Enfance et Périscolaire",
+      "description": "Notre commune module la facturation des services liés à la petite enfance et à l’enfance en fonction des QF et des revenus. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel Concerto, édité par la Société Arpège.",
+      "data_recipients": "Agents instructeurs des dossiers d’inscription en multi-accueil, Agents instructeurs des dossiers au guichet unique, Agents instructeurs des dossiers d’inscription en accueil périscolaire",
+      "data_retention_period": 12,
+      "fondement_juridique_title": "Préciser ici les délibérations tarifaires qui détaillent les modalités de calcul des services petite enfance et périscolaire. ",
+      "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "bl-enfance-berger-levrault": {
+    "label": "Tarification activités enfance et petite enfance avec l'éditeur Berger Levrault",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs",
+      "description": "La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault.",
+      "data_recipients": "Agent de la collectivité ( ou association) en charge de l’inscription des familles ou en charge de la facturation des activités, agent du service guichet unique.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "En pièce jointe la délibération ou la nature du texte qui justifie l'accès aux données",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": false,
+        "cnaf_adresse": true
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "enfance.mes@berger-levrault.com",
+          "phone_number": "0561395284"
+        }
+      ]
+    }
+  },
+  "cantine-de-france": {
+    "label": "Quotient familial pour la cantine et garderie avec Cantine de France",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Récupération du Quotient Familial ainsi que les informations administratives (CAF et Impôts) pour les services Cantine et Garderie",
+      "description": "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\n\nLa consommation se fait le cadre de l'utilisation du logiciel Cantine de France de la société Jdéalise.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "contact@jdealise.fr",
+          "phone_number": "0972473612"
+        }
+      ]
+    }
+  },
+  "ccas": {
+    "label": "Dématérialisation de l'instruction des dossiers dans un CCAS",
+    "about": "https://api.gouv.fr/guides/ccas",
+    "state": {
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "ccas-arpege": {
+    "label": "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur Arpège",
+    "about": "https://api.gouv.fr/guides/ccas",
+    "state": {
+      "intitule": "Récupération du Quotient Familial et des Impôts pour les aides sociales facultatives et les services à la personne du CCAS",
+      "description": "Le CCAS de notre commune module le montant des aides octroyées aux usagers en difficulté en fonction du QF.\nLe prix des services à la personne pour les aînés et personnes en situation de handicap est calculé en fonction de l’impôt sur le revenu.\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\nNous utilisons le logiciel Sonate édité par la Société Arpège.",
+      "data_recipients": "agents instructeurs des demandes d'aides, agents instructeurs des demandes d'inscriptions aux services à la personne, ...",
+      "data_retention_period": 12,
+      "fondement_juridique_title": "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision.",
+      "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "ccas-up": {
+    "label": "Dématérialisation de l’instruction des dossiers dans un CCAS avec l’editeur UP",
+    "about": "https://api.gouv.fr/guides/ccas",
+    "state": {
+      "intitule": "Service d’actions sociales du CCAS",
+      "description": "Les agents sociaux de la collectivité (CCAS) instruisent des dossiers de demande d'aides légales et/ou facultatives.\nDans ce contexte, ils ont besoin de connaître la composition familiale et la situation financière du foyer du demandeur : état civil (nom prénom date de naissance), structure familiale (nom prénom date de naissance des enfants et parents), adresse du foyer, quotient familial calculé par la CAF et les données fiscales de la DGFIP.\nToutes ces informations leur permettent de vérifier les conditions d'éligibilité aux aides sociales.\nAinsi, dans une volonté de simplification de la démarche pour les citoyens et agents, nous souhaitons exploiter les données déjà connues de l’API Particulier.\nPour cela, la collectivité utilise la solution Millésime édité par la société Cityzen du groupe Up.",
+      "data_recipients": "Agents instructeurs des demandes d’aides et des demandes d’inscription.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Article L. 312-1 et Article R123-5 du code de l'action sociale et des familles. Article L114-8 et Article R. 114-9-3 du code des relations entre le public et l’administration.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    }
+  },
+  "city-family-mushroom-software": {
+    "label": "Tarification des services de la petite enfance avec l'éditeur Mushroom Software",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturations des crèches, du périscolaire, du scolaire et de l’extrascolaire",
+      "description": "La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\nNous utilisons la solution CityFamily de Mushroom Software.",
+      "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Délibération de la commune au format PDF en pièce jointe",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "technique@mushroom-software.com",
+          "phone_number": "0674577622"
+        }
+      ]
+    }
+  },
+  "entrouvert-publik": {
+    "label": "Tarification de la restauration scolaire avec la solution Publik",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "intitule": "Calcul du prix du repas pour un enfant scolarisé",
+      "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
+      "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
+      "data_retention_period": 11,
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "jvs-parascol": {
+    "label": "Facturation des familles pour les services périscolaires et loisirs JVS-MAIRISTEM",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "intitule": "Facturation des familles pour les services périscolaires et loisirs",
+      "description": "La commune/la structure intercommunale est chargée de la gestion de la facturation des services liés à l'Enfance.\nDans ce cadre, elle a besoin de récupérer des informations concernant la famille et ses éléments de revenus et de quotient familial.\nAfin d'avoir des informations fiables sur ces points et pour éviter de réclamer certains justificatifs, l'utilisation d'API Particulier semble adaptée.\nLe logiciel utilisé est Parascol, édité par JVS-MAIRISTEM.\nL'Espace Famille, proposé en complément de Parascol, permet aux familles (entre autres mises à jour de leur dossier ou inscription) de déclarer leurs ressources et calculer leur quotient familial, sans avoir à se déplacer en mairie. Là encore, l'utilisation d'API Particulier représente un véritable plus pour les familles.",
+      "data_recipients": "Agents instructeurs des dossiers d’inscription (périscolaire, multi-accueil, guichet unique)",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Déposer en pièce jointe votre délibération ou document justifiant de la finalité des données demandées",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    }
+  },
+  "pass-famille": {
+    "label": "Pass Famille",
+    "about": "https://api.gouv.fr/guides/portail-famille-pass-famille",
+    "state": {}
+  },
+  "petite-enfance": {
+    "label": "Inscriptions à la crèche",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {}
+  },
+  "tarif-restauration-scolaire": {
+    "label": "Tarification de la restauration scolaire",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "tarif-activite-periscolaire": {
+    "label": "Tarification des activités périscolaires et municipales",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "civil-enfance-ciril-group": {
+    "label": "Facturation des activités du portail famille avec la solution Civil Enfance de l'éditeur Ciril Group",
+    "about": "https://api.gouv.fr/guides/portail-famille",
+    "state": {
+      "intitule": "Déclaration et calcul du quotient familial pour la facturation des activités du portail famille",
+      "description": "Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]",
+      "data_recipients": "Agents de la collectivité en charge des services enfance, petite enfance et jeunesse de la ville.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_date_recouvrement": true,
+        "dgfip_date_etablissement": true,
+        "dgfip_adresse_fiscale_taxation": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true,
+        "dgfip_revenu_brut_global": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_impot": true,
+        "dgfip_annee_revenus": true,
+        "dgfip_erreur_correctif": true,
+        "dgfip_situation_partielle": true,
+        "cnaf_quotient_familial": true
+      }
+    }
+  },
+  "nfi-grc": {
+    "label": "Gestion de la relation client sur le portail famille de l'éditeur Nord France Informatique",
+    "about": "https://api.gouv.fr/guides/portail-famille",
+    "state": {
+      "intitule": "Gestion de la relation client sur le portail famille",
+      "description": "Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI).",
+      "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Délibération de la commune au format PDF en pièce jointe",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    }
+  },
+  "teamnet": {
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec Teamnet",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées",
+      "description": "Le télé-service de déclaration des revenus est accessible sur le Portail Familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer.",
+      "data_recipients": "Agents instructeurs qui gèrent la facturation des prestations de la Petite Enfance, du Scolaire et de l'extra-scolaire",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Préciser la référence et le texte et de la délibération au format PDF vous autorisant à traiter les données.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
+  },
+  "waigeo": {
+    "label": "Tarification des services liés à l'enfance avec la solution MyPérischool de l'éditeur Waigéo",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.",
+      "description": "Ce service permet aux familles de déclarer leurs ressources et de bénéficier d'une tarification en fonction de leur situation.\nMypérischool permet la facturation des prestations liées à la restauration scolaire, les activités périscolaires, les garderies et les centres de loisirsLa tarification se base sur le quotient familial récupéré auprès de la CNAF ou sur les revenus des familles récupérés directement auprès des services fiscaux à travers l'avis d'imposition.",
+      "data_recipients": "Agents de la collectivité en charge des services enfance et jeunesse de la ville.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      },
+      "team_members": [
+        {
+          "type": "responsable_technique",
+          "tmp_id": "tmp_technique",
+          "email": "technique@waigeo.fr",
+          "phone_number": "0970805210"
+        }
+      ]
+    }
+  }
+}

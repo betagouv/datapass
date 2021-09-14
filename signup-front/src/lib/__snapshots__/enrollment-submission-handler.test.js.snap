@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When submitting the enrollment form with the destroy action calls the delete endpoint 1`] = `
+Object {
+  "errorMessages": Array [],
+  "redirectToHome": true,
+  "successMessages": Array [],
+}
+`;
+
+exports[`When submitting the enrollment form with the notify action calls for the enrollment state update 1`] = `
+Object {
+  "errorMessages": Array [],
+  "redirectToHome": true,
+  "successMessages": Array [],
+}
+`;
+
+exports[`When submitting the enrollment form with the update action calls the update endpoint 1`] = `
+Object {
+  "errorMessages": Array [],
+  "redirectToHome": false,
+  "successMessages": Array [
+    "Votre demande a été sauvegardée.",
+  ],
+}
+`;
+
+exports[`When submitting the enrollment form with the update action displays an error if update fails 1`] = `
+Object {
+  "errorMessages": Array [
+    "Une erreur inconnue est survenue. Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.",
+  ],
+  "redirectToHome": false,
+  "successMessages": Array [],
+}
+`;

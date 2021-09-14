@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormActionButtonList lists button to display from enrollment acl 1`] = `
+Array [
+  "notify",
+  "update",
+  "send_application",
+  "refuse_application",
+]
+`;
