@@ -1,0 +1,9 @@
+Bonjour <%= "#{@user.given_name} #{@user.family_name}" %>,
+
+Votre demande d’habilitation n°<%= @enrollment.id %> a bien été validée ✅ par notre service juridique !
+Votre clé d’accès a été créée 🔑 et est disponible dans votre tableau de bord à l’adresse suivante https://dashboard.entreprise.api.gouv.fr/login
+
+Pour consulter cette demande, veuillez cliquer sur le lien suivant <%= @url %> .
+
+À bientôt 👋,
+<%= @instructor.given_name %> pour API Entreprise
