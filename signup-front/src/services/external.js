@@ -1,8 +1,13 @@
 import httpClient from '../lib/http-client';
 import { memoize } from 'lodash';
-import { RateLimiter } from 'limiter';
+import rateLimit from 'axios-rate-limit';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+
+const rateLimitedHttpClient = rateLimit(httpClient, {
+  maxRequests: 2,
+  perMilliseconds: 300,
+});
 
 function getOrganizationActivityDetails(NafCode) {
   return httpClient
@@ -16,19 +21,7 @@ export const getCachedOrganizationActivityDetails = memoize(
   getOrganizationActivityDetails
 );
 
-const limiter = new RateLimiter(2, 300);
-
-function asyncRemoveTokens(count, rateLimiter) {
-  return new Promise((resolve, reject) => {
-    rateLimiter.removeTokens(count, (error, remainingRequests) => {
-      if (error) return reject(error);
-      resolve(remainingRequests);
-    });
-  });
-}
-
 const getOrganizationInformation = async (siret) => {
-  await asyncRemoveTokens(1, limiter);
   const {
     data: {
       etablissement: {
@@ -51,7 +44,7 @@ const getOrganizationInformation = async (siret) => {
         },
       },
     },
-  } = await httpClient.get(
+  } = await rateLimitedHttpClient.get(
     `https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/${siret}`
   );
 
