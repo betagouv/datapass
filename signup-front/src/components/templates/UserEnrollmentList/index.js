@@ -9,7 +9,7 @@ import Enrollment from './Enrollment';
 import Button from '../../atoms/Button';
 import ButtonGroup from '../../molecules/ButtonGroup';
 
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+const API_GOUV_HOST = process.env.VITE_API_GOUV_HOST;
 
 const UserEnrollmentList = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);

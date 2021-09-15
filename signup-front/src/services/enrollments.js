@@ -2,7 +2,7 @@ import jsonToFormData from '../lib/json-form-data';
 import httpClient from '../lib/http-client';
 import { hashToQueryParams } from '../lib';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });

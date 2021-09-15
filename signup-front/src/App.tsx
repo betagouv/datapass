@@ -1,6 +1,5 @@
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import PiwikReactRouter from 'piwik-react-router';
 
 import './App.css';
 import './template-data-gouv-fixes.css';
@@ -13,15 +12,18 @@ import { UserStore, UserContext } from './components/organisms/UserContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
 
-const history = createBrowserHistory();
+let history = createBrowserHistory();
 
-const piwik = PiwikReactRouter({
-  url: process.env.REACT_APP_PIWIK_URL,
-  siteId: process.env.REACT_APP_PIWIK_SITE_ID,
-});
+if (process.env.PROD) {
+  const piwik = require('piwik-react-router')({
+    url: process.env.VITE_PIWIK_URL,
+    siteId: process.env.VITE_PIWIK_SITE_ID,
+  });
+  history = piwik.connectToHistory(history);
+}
 
 const App = () => (
-  <Router history={piwik.connectToHistory(history)}>
+  <Router history={history}>
     <UserStore>
       <div className="page">
         <Header />

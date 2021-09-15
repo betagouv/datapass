@@ -9,7 +9,7 @@ import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment
 import ENROLLMENTS from '../../mock/api/get-user-enrollments-response.json';
 import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment.json';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 describe('getEnrollments', () => {
   describe('When there is a response', () => {

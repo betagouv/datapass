@@ -2,7 +2,7 @@ import httpClient from '../lib/http-client';
 import { memoize } from 'lodash';
 import rateLimit from 'axios-rate-limit';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 const rateLimitedHttpClient = rateLimit(httpClient, {
   maxRequests: 2,

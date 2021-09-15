@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils';
 import App from './App';
 import nock from 'nock';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 let container: HTMLDivElement;
 

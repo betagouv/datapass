@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 export const UserContext = React.createContext();
 

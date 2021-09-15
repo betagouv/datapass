@@ -2,7 +2,7 @@ import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
 import { resetUserContext } from '../components/organisms/UserContext';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 axios.defaults.adapter = httpAdapter;
 

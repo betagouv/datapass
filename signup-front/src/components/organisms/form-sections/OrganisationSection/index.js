@@ -12,7 +12,7 @@ import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import Button from '../../../atoms/Button';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 

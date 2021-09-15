@@ -1,6 +1,6 @@
 import React from 'react';
 
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+const API_GOUV_HOST = process.env.VITE_API_GOUV_HOST;
 
 const Footer = () => (
   <footer className="fr-footer" role="contentinfo" id="footer">

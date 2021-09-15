@@ -1,7 +1,7 @@
 import { hashToQueryParams } from '../lib';
 import httpClient from '../lib/http-client';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 export function getUsers({ usersWithRolesOnly = true }) {
   const queryParam = hashToQueryParams({

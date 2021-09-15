@@ -7,7 +7,7 @@ import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcS
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import Button from '../../atoms/Button';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {

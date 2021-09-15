@@ -25,7 +25,7 @@ import ListHeader from '../molecules/ListHeader';
 import Button from '../atoms/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
 
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+const API_GOUV_HOST = process.env.VITE_API_GOUV_HOST;
 
 const getInboxes = (user) => ({
   primary: {

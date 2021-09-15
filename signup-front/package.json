@@ -7,11 +7,11 @@
     "node": ">=12.18.3 <14"
   },
   "scripts": {
-    "start": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && serve -l 3002 -s build",
-    "dev": "export $(cat signup-front.conf | sed 's/^/REACT_APP_/') && PORT=4000 react-scripts start",
-    "dev-with-remote-backend": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && REACT_APP_BACK_HOST=https://back.datapass-test.api.gouv.fr PORT=4000 react-scripts start",
-    "dev-in-vm": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && BROWSER=none CHOKIDAR_USEPOLLING=true PORT=3002 react-scripts start",
-    "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
+    "start": "export $(cat /etc/signup-front.conf | sed 's/^/VITE_/') && serve -l 3002 -s build",
+    "dev": "vite",
+    "dev-with-remote-backend": "VITE_BACK_HOST=https://back.datapass-test.api.gouv.fr vite",
+    "dev-in-vm": "vite --port 3002 --host",
+    "build": "vite build",
     "test-dev": "react-scripts test",
     "test": "CI=true react-scripts test",
     "eject": "react-scripts eject",
@@ -56,12 +56,15 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^6.0.0",
+    "@vitejs/plugin-react-refresh": "^1.3.6",
     "husky": "^0.14.3",
     "jest-mock-extended": "^1.0.15",
     "nock": "^13.0.11",
     "pretty-quick": "^1.11.0",
     "react-axe": "^3.5.3",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "source-map-explorer": "^2.5.2",
+    "vite": "^2.5.7"
   },
   "browserslist": [
     ">0.2%",

@@ -6,7 +6,7 @@ import ConfirmationModal from '../organisms/ConfirmationModal';
 import httpClient from '../../lib/http-client';
 import Button from '../atoms/Button';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const BACK_HOST = process.env.VITE_BACK_HOST;
 
 // NB: please keep this limit in sync with the limit in nginx signup-back configuration
 const FILE_SIZE_LIMIT_IN_MB = 10;
