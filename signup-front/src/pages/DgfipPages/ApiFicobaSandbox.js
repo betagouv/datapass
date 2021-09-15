@@ -2,28 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import DgfipRgpdAgreement from '../../components/organisms/form-sections/deprecated/DonneesSection/DgfipRgpdAgreement';
-import TextSection from '../../components/organisms/form-sections/TextSection';
-import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
-import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import {
-  contacts,
-  SuiteDescription,
-} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
-import Quote from '../../components/atoms/inputs/Quote';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
+import { additionalTermsOfUse } from './common';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
-
-DgfipRgpdAgreement.propTypes = {
-  additional_content: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-};
-
-const groupTitle = 'Sélectionnez les modalités d’accès à l’API :';
 
 const availableScopes = [
   {
@@ -47,35 +34,33 @@ const availableScopes = [
     value: 'dgfip_ficoba_date',
     label: 'Date',
   },
+];
+
+const accessModes = [
   {
-    value: 'dgfip_acces_ficoba_iban',
+    id: 'acces_ficoba_iban',
     label: 'via IBAN',
-    groupTitle,
   },
   {
-    value: 'dgfip_acces_ficoba_spi',
+    id: 'acces_ficoba_spi',
     label: 'via le Numéro fiscal (SPI)',
-    groupTitle,
   },
   {
-    value: 'dgfip_acces_ficoba_siren',
+    id: 'acces_ficoba_siren',
     label: 'via SIREN/SIRET',
-    groupTitle,
   },
   {
-    value: 'dgfip_acces_ficoba_personne_physique',
+    id: 'acces_ficoba_personne_physique',
     label: 'via personne physique',
-    groupTitle,
   },
   {
-    value: 'dgfip_acces_ficoba_personne_morale',
+    id: 'acces_ficoba_personne_morale',
     label: 'via personne morale',
-    groupTitle,
   },
 ];
 
 export const DonneesDescription = () => (
-  <Quote>
+  <>
     <p>
       L’API FICOBA restituant des éléments sensibles (comptes bancaires du
       titulaire et/ou du co-titulaire, éléments relatifs à l’état civil et au
@@ -116,11 +101,11 @@ export const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-  </Quote>
+  </>
 );
 
 export const CadreJuridiqueDescription = () => (
-  <Quote>
+  <>
     <p>
       L’accès au dispositif API FICOBA est soumis à deux conditions
       cumulatives :
@@ -142,7 +127,7 @@ export const CadreJuridiqueDescription = () => (
       être autorisé à demander et exploiter les données fiscales dans le cadre
       de l’exercice de ses missions.
     </p>
-  </Quote>
+  </>
 );
 
 const target_api = 'api_ficoba_sandbox';
@@ -166,21 +151,22 @@ const ApiFicobaSandbox = ({
       },
     ]}
   >
+    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
     <DescriptionSection />
-    <MiseEnOeuvreSection initialContacts={contacts} />
     <DonneesSection
-      availableScopes={availableScopes}
-      AdditionalRgpdAgreement={DgfipRgpdAgreement}
       DonneesDescription={DonneesDescription}
+      availableScopes={availableScopes}
+      accessModes={accessModes}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <CguSection cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf" />
-    <TextSection title="" id="TextSection">
-      <SuiteDescription />
-    </TextSection>
+    <ÉquipeSection />
+    <CguSection
+      cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf"
+      additionalTermsOfUse={additionalTermsOfUse}
+    />
   </Form>
 );
 
