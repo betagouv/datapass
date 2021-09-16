@@ -9,7 +9,13 @@
     - role: nginx
       tags: nginx
 
-- hosts: datapass-front,api-auth
+- hosts: datapass-front
+  become: true
+  roles:
+    - role: ansible-role-nodejs
+      nodejs_version: 16.x
+
+- hosts: api-auth
   become: true
   roles:
     - role: ansible-role-nodejs
@@ -94,8 +100,8 @@
         SENDINBLUE_API_KEY: "{{ sendinblue_api_key }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
       tags:
-      - back
-      - app-config
+        - back
+        - app-config
 
 - hosts: datapass-front
   become: true
@@ -116,15 +122,15 @@
         PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
         API_GOUV_HOST: "{{ api_gouv_host }}"
       permanent_redirect_rules:
-        - source_pattern: '= /api-impot-particulier'
-          destination_path: '/api-impot-particulier-fc-sandbox'
-        - source_pattern: '= /api-impot-particulier-step2'
-          destination_path: '/api-impot-particulier-fc-production'
-        - source_pattern: '~ ^/le-taxi/([0-9]+)'
-          destination_path: '/authorization-request/$1'
+        - source_pattern: "= /api-impot-particulier"
+          destination_path: "/api-impot-particulier-fc-sandbox"
+        - source_pattern: "= /api-impot-particulier-step2"
+          destination_path: "/api-impot-particulier-fc-production"
+        - source_pattern: "~ ^/le-taxi/([0-9]+)"
+          destination_path: "/authorization-request/$1"
       tags:
-      - front
-      - app-config
+        - front
+        - app-config
     - role: domain-redirection
       alternative_domain: "{{ former_front_domain_name }}"
       current_domain: "{{ front_domain_name }}"
