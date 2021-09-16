@@ -228,7 +228,7 @@ Note that test instructor emails can be found [here](https://github.com/betagouv
 
 Dependencies setup:
 
-- nodejs ^12.18
+- nodejs ^16.9
 
 Install npm dependencies:
 
