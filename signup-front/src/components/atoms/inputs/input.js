@@ -13,6 +13,7 @@ export const Input = ({
   disabled,
   onChange,
   ariaLabel,
+  required,
   ...rest
 }) => {
   // id will be set once when the component initially renders, but never again
@@ -23,6 +24,7 @@ export const Input = ({
     <div className="form__group">
       <label htmlFor={id}>
         {label}
+        {required && ' *'}
         {helper && <Helper title={helper} />}
       </label>
       <input
@@ -34,6 +36,7 @@ export const Input = ({
         readOnly={disabled}
         value={value}
         aria-label={ariaLabel}
+        required={required}
         {...rest}
       />
       {meta && (

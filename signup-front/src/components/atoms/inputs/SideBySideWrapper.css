@@ -15,6 +15,7 @@
 
 .form-col {
   flex-grow: 1;
+  width: 50%;
 }
 
 .form-col + .form-col {
@@ -24,6 +25,10 @@
 @media all and (max-width: 549px) {
   .form-row {
     flex-direction: column;
+  }
+
+  .form-col {
+    width: inherit;
   }
 
   .form-col + .form-col {

@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import './Contact.css';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import EmailInput from '../../../../atoms/inputs/EmailInput';
 import TelInput from '../../../../atoms/inputs/TelInput';
 import { withUser } from '../../../UserContext';
 import FrontHandIcon from '../../../../atoms/icons/front-hand';
 import Button from '../../../../atoms/Button';
+import SideBySideWrapper from '../../../../atoms/inputs/SideBySideWrapper';
 
 export const Contact = ({
   index,
@@ -102,28 +102,24 @@ export const Contact = ({
           )}
         {typeof given_name !== 'undefined' &&
           typeof family_name !== 'undefined' && (
-            <div className="form-row">
-              <div className="form-col">
-                <TextInput
-                  label="Prénom"
-                  name={`team_members[${index}].given_name`}
-                  value={given_name}
-                  disabled={disabled}
-                  onChange={onChange}
-                  ariaLabel={`Prénom du ${heading}`}
-                />
-              </div>
-              <div className="form-col">
-                <TextInput
-                  label="Nom"
-                  name={`team_members[${index}].family_name`}
-                  value={family_name}
-                  disabled={disabled}
-                  onChange={onChange}
-                  ariaLabel={`Nom du ${heading}`}
-                />
-              </div>
-            </div>
+            <SideBySideWrapper>
+              <TextInput
+                label="Prénom"
+                name={`team_members[${index}].given_name`}
+                value={given_name}
+                disabled={disabled}
+                onChange={onChange}
+                ariaLabel={`Prénom du ${heading}`}
+              />
+              <TextInput
+                label="Nom"
+                name={`team_members[${index}].family_name`}
+                value={family_name}
+                disabled={disabled}
+                onChange={onChange}
+                ariaLabel={`Nom du ${heading}`}
+              />
+            </SideBySideWrapper>
           )}
         {emailDescription}
         <EmailInput

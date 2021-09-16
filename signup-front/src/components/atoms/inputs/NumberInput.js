@@ -10,6 +10,7 @@ export const NumberInput = ({
   value = null,
   disabled,
   onChange,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -19,6 +20,7 @@ export const NumberInput = ({
     <div className="form__group">
       <label htmlFor={id}>
         {label}
+        {required && ' *'}
         {helper && <Helper title={helper} />}
       </label>
       <input
@@ -30,6 +32,7 @@ export const NumberInput = ({
         id={id}
         disabled={disabled}
         value={value}
+        required={required}
       />
       {meta && (
         <small className="card__meta">

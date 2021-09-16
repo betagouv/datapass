@@ -3,15 +3,17 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import TextInput from '../../../atoms/inputs/TextInput';
 import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
-import Quote from '../../../atoms/inputs/Quote';
 import OrWrapper from '../../../atoms/inputs/OrWrapper';
 import FileInput from '../../../molecules/FileInput';
-import RadioInput from '../../../atoms/inputs/RadioInput';
-import YesNoRadioInput from '../../../atoms/inputs/YesNoRadioInput';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import SelectInput from '../../../atoms/inputs/SelectInput';
+import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
+import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
+import Input from '../../../atoms/inputs/input';
 
-const SECTION_LABEL = 'Structure';
+const SECTION_LABEL = 'La structure';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const StructureSection = () => {
@@ -22,17 +24,20 @@ export const StructureSection = () => {
       intitule = '',
       siret,
       description = '',
+      type_projet = '',
+      volumetrie_approximative = '',
       documents = [],
       documents_attributes = [],
       additional_content: {
-        organization_type = '',
         organization_address = '',
         organization_postal_code = '',
         organization_city = '',
         organization_website = '',
         associated_public_organisation = '',
-        participation_reseau = null,
-        nom_reseau = '',
+        label_france_services = false,
+        label_fabrique_territoires = false,
+        recrutement_conseiller_numerique = false,
+        participation_reseau = false,
       },
     },
   } = useContext(FormContext);
@@ -85,22 +90,15 @@ export const StructureSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Description de votre structure</h2>
-      <Quote>
+      <h2>La description de la structure qui servira de lieu d’accueil</h2>
+      <ExpandableQuote title="Comment remplir cette section ?">
         <p>
-          <WarningEmoji /> Attention : 1 structure = 1 lieu d’accueil. Merci de
-          remplir une demande d’habilitation par lieu d’accueil.
+          <WarningEmoji /> Attention : 1 structure = 1 lieu d’accueil.
+          <br />
+          Merci de remplir une demande d’habilitation par lieu d’accueil.
         </p>
-      </Quote>
-      <TextInput
-        label="Nom de la structure"
-        meta="Cette information peut être rendue publique."
-        name="intitule"
-        value={intitule}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <RadioInput
+      </ExpandableQuote>
+      <SelectInput
         label="Type de structure"
         options={[
           { id: 'ccas', label: 'CCAS' },
@@ -131,73 +129,77 @@ export const StructureSection = () => {
           },
           { id: 'independant', label: 'Indépendant' },
         ]}
-        name="additional_content.organization_type"
-        value={organization_type}
+        name="type_projet"
+        value={type_projet}
         disabled={disabled}
         onChange={onChange}
+        useOtherOption={true}
+        required
       />
       <TextInput
-        label="Adresse de la structure"
+        label="Nom"
+        meta="Cette information peut être rendue publique."
+        name="intitule"
+        value={intitule}
+        disabled={disabled}
+        onChange={onChange}
+        required
+      />
+      <TextInput
+        label="Adresse"
         name="additional_content.organization_address"
         value={organization_address}
         disabled={disabled}
         onChange={onChange}
+        required
       />
+      <SideBySideWrapper>
+        <TextInput
+          label="Code postal"
+          name="additional_content.organization_postal_code"
+          value={organization_postal_code}
+          disabled={disabled}
+          onChange={onChange}
+          maxLength={5}
+          required
+        />
+        <TextInput
+          label="Ville"
+          name="additional_content.organization_city"
+          value={organization_city}
+          disabled={disabled}
+          onChange={onChange}
+          required
+        />
+      </SideBySideWrapper>
       <TextInput
-        label="Code postal de la structure"
-        name="additional_content.organization_postal_code"
-        value={organization_postal_code}
-        disabled={disabled}
-        onChange={onChange}
-        maxLength={5}
-      />
-      <TextInput
-        label="Ville de la structure"
-        name="additional_content.organization_city"
-        value={organization_city}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <YesNoRadioInput
-        label={
-          <>
-            Participez-vous à un réseau régional ou local (ex : PIMMS, EPN,
-            etc.) ?
-          </>
-        }
-        name="additional_content.participation_reseau"
-        value={participation_reseau}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <TextInput
-        label="Si oui, lequel ?"
-        name="additional_content.nom_reseau"
-        value={nom_reseau}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <TextAreaInput
-        label="Description des missions de votre structure"
-        name="description"
-        value={description}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <TextInput
-        label="Site web de votre structure"
+        label="Site internet"
         name="additional_content.organization_website"
         value={organization_website}
         disabled={disabled}
         onChange={onChange}
       />
-      <Quote>
-        <p>
-          Si vous travaillez avec une administration ou un établissement publics
-          (prestation, délégation de service public, subvention publique, etc.),
-          merci de renseigner l’un des champs suivants :
-        </p>
-      </Quote>
+      <TextAreaInput
+        label="Quelles sont les missions de votre structure ?"
+        name="description"
+        value={description}
+        disabled={disabled}
+        onChange={onChange}
+        required
+      />
+      <Input
+        label="Volumétrie approximative"
+        name="volumetrie_approximative"
+        meta="ex: nombre de démarches ou dossiers traités dans l’année"
+        value={volumetrie_approximative}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <div className="form__group">
+        Si vous travaillez avec une administration ou un établissement publics
+        (prestation, délégation de service public, subvention publique, etc.),
+        merci de renseigner l’un des champs suivants :
+      </div>
       <OrWrapper>
         <TextInput
           label="Renseigner l’administration avec laquelle vous travaillez"
@@ -215,6 +217,38 @@ export const StructureSection = () => {
           onChange={onChange}
         />
       </OrWrapper>
+      <h3>Autres caractéristiques de la structure</h3>
+      <div className="form__group">
+        Quels labels ou missions sont liés à votre structure ?
+      </div>
+      <CheckboxInput
+        label="Label France Services"
+        name="additional_content.label_france_services"
+        value={label_france_services}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <CheckboxInput
+        label="Label Fabrique des Territoires"
+        name="additional_content.label_fabrique_territoires"
+        value={label_fabrique_territoires}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <CheckboxInput
+        label="Recrutement des Conseillers Numériques"
+        name="additional_content.recrutement_conseiller_numerique"
+        value={recrutement_conseiller_numerique}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <CheckboxInput
+        label="Réseau EPN (Établissements Publics Numériques)"
+        name="additional_content.participation_reseau"
+        value={participation_reseau}
+        disabled={disabled}
+        onChange={onChange}
+      />
     </ScrollablePanel>
   );
 };

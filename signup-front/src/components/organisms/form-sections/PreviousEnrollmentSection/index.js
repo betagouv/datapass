@@ -8,7 +8,7 @@ import { getUserValidatedEnrollments } from '../../../../services/enrollments';
 import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
 import Quote from '../../../atoms/inputs/Quote';
-import Select from '../../../atoms/inputs/Select';
+import SelectInput from '../../../atoms/inputs/SelectInput';
 
 const PreviousEnrollmentSection = ({
   steps,
@@ -158,7 +158,7 @@ const PreviousEnrollmentSection = ({
             !isUserEnrollmentLoading &&
             !isValidatedEnrollmentsLoading && (
               <>
-                <Select
+                <SelectInput
                   label={
                     <>
                       Nom de la démarche{' '}

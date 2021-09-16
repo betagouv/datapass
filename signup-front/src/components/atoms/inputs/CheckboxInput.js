@@ -9,6 +9,7 @@ export const CheckboxInput = ({
   value = null,
   disabled,
   onChange,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -23,6 +24,7 @@ export const CheckboxInput = ({
         type="checkbox"
         name={name}
         id={id}
+        required={required}
       />
       <label htmlFor={id} className="label-inline">
         {label}

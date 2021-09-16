@@ -7,6 +7,7 @@ export const YesNoRadioInput = ({
   value = null,
   disabled,
   onChange,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -24,7 +25,10 @@ export const YesNoRadioInput = ({
   return (
     <div className="form__group">
       <fieldset>
-        <legend>{label}</legend>
+        <legend>
+          {label}
+          {required && ' *'}
+        </legend>
         <>
           <input
             type="radio"
@@ -34,6 +38,7 @@ export const YesNoRadioInput = ({
             checked={value === true}
             onChange={onYesNoChange}
             disabled={disabled ? 'disabled' : false}
+            required={required}
           />
           <label htmlFor={`${id}_true`} className="label-inline">
             oui

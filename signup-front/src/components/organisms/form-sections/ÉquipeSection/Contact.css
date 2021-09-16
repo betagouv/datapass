@@ -20,41 +20,25 @@
   .contact-list {
     flex-direction: column;
   }
+
   .contact-item {
     flex-basis: 50%;
   }
 }
 
-/* side by side input field */
-.form-row {
+.contact-item.add-card {
+  border: 2px dashed var(--g600);
+  min-height: 500px;
+  cursor: pointer;
   display: flex;
-  justify-content: space-between;
-  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--g600);
 }
 
-.form__group + .form-row {
-  margin-top: 2em;
-}
-
-.form-row + .form__group {
-  margin-top: 2em;
-}
-
-.form-col {
-  flex-grow: 1;
-}
-
-.form-col + .form-col {
-  margin-left: 2em;
-}
-
-@media all and (max-width: 549px) {
-  .form-row {
-    flex-direction: column;
-  }
-
-  .form-col + .form-col {
-    margin-left: inherit;
-    margin-top: 2em;
-  }
+.add-card:hover {
+  background-color: var(--g100);
 }

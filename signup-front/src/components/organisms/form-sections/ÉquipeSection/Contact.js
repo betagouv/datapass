@@ -7,7 +7,13 @@ import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
 import Button from '../../../atoms/Button';
-import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
+import {
+  isEmailValid,
+  isIndividualEmailAddress,
+  isValidMobilePhoneNumber,
+  isValidPhoneNumber,
+} from '../../../../lib';
+import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 
 export const Contact = ({
   heading,
@@ -18,7 +24,9 @@ export const Contact = ({
   email = '',
   phone_number = '',
   job = '',
+  displayIndividualEmailLabel = false,
   displayMobilePhoneLabel = false,
+  contactByEmailOnly = false,
   disabled,
   onChange,
   user = {},
@@ -78,32 +86,28 @@ export const Contact = ({
             </div>
           )}
 
-        <div className="form-row">
-          <div className="form-col">
-            <TextInput
-              label="Prénom *"
-              name={`team_members[${index}].given_name`}
-              value={given_name}
-              disabled={disabled}
-              onChange={onChange}
-              ariaLabel={`Prénom du ${heading}`}
-              required
-            />
-          </div>
-          <div className="form-col">
-            <TextInput
-              label="Nom *"
-              name={`team_members[${index}].family_name`}
-              value={family_name}
-              disabled={disabled}
-              onChange={onChange}
-              ariaLabel={`Nom du ${heading}`}
-              required
-            />
-          </div>
-        </div>
+        <SideBySideWrapper>
+          <TextInput
+            label="Prénom"
+            name={`team_members[${index}].given_name`}
+            value={given_name}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Prénom du ${heading}`}
+            required
+          />
+          <TextInput
+            label="Nom"
+            name={`team_members[${index}].family_name`}
+            value={family_name}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Nom du ${heading}`}
+            required
+          />
+        </SideBySideWrapper>
         <TextInput
-          label="Poste occupé *"
+          label="Poste occupé"
           name={`team_members[${index}].job`}
           value={job}
           disabled={disabled}
@@ -113,7 +117,11 @@ export const Contact = ({
         />
         <h4>Pour joindre cette personne</h4>
         <EmailInput
-          label="Email *"
+          label={
+            displayIndividualEmailLabel
+              ? 'Email individuel et nominatif'
+              : 'Email'
+          }
           name={`team_members[${index}].email`}
           value={email}
           disabled={disabled}
@@ -121,21 +129,30 @@ export const Contact = ({
           ariaLabel={`Email du ${heading}`}
           required
         />
-        <TelInput
-          label={
-            displayMobilePhoneLabel
-              ? 'Numéro de téléphone mobile *'
-              : 'Numéro de téléphone *'
-          }
-          name={`team_members[${index}].phone_number`}
-          value={phone_number}
-          disabled={disabled}
-          onChange={onChange}
-          ariaLabel={`Numéro de téléphone ${
-            displayMobilePhoneLabel ? 'mobile ' : ''
-          }du ${heading}`}
-          required
-        />
+        {displayIndividualEmailLabel &&
+          isEmailValid(email) &&
+          !isIndividualEmailAddress(email) && (
+            <div className="notification error">
+              Merci d’utiliser un email nominatif.
+            </div>
+          )}
+        {!contactByEmailOnly && (
+          <TelInput
+            label={
+              displayMobilePhoneLabel
+                ? 'Numéro de téléphone mobile'
+                : 'Numéro de téléphone'
+            }
+            name={`team_members[${index}].phone_number`}
+            value={phone_number}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Numéro de téléphone ${
+              displayMobilePhoneLabel ? 'mobile ' : ''
+            }du ${heading}`}
+            required
+          />
+        )}
         {displayMobilePhoneLabel &&
           isValidPhoneNumber(phone_number) &&
           !isValidMobilePhoneNumber(phone_number) && (

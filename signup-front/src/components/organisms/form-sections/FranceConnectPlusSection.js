@@ -68,6 +68,7 @@ export const FranceConnectPlusSection = () => {
         value={eidas_level}
         disabled={disabled}
         onChange={onChange}
+        required
         useOtherOption={false}
       />
     </ScrollablePanel>
