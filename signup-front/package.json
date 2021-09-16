@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=12.18.3 <14"
+    "node": ">=16"
   },
   "scripts": {
     "start": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && serve -l 3002 -s build",
