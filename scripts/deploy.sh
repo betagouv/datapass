@@ -63,9 +63,11 @@ if [ -e package.json ]; then
     PREVIOUS_NODE_MODULE_PATH=$(ls -r -d ${APP_PATH}/releases/* | tail -n +2 | head -n 1)/node_modules
     if [ -d "$PREVIOUS_NODE_MODULE_PATH" ]; then
       echo "$(logPrefix) Copying node modules from previous release..."
-      cp -r $PREVIOUS_NODE_MODULE_PATH node_modules
+      rsync -a $PREVIOUS_NODE_MODULE_PATH node_modules
     fi
     npm i
+    export GENERATE_SOURCEMAP=false
+    export DISABLE_ESLINT_PLUGIN=true
     npm run build
 fi
 
