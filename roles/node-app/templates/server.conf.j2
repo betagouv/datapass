@@ -13,6 +13,9 @@ server {
   ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4";
 
   location / {
+{% if serve_frontend_from_nginx is defined %}
+    root /opt/apps/{{app_service_name}}/current/build;
+{% else %}
     proxy_pass http://localhost:{{ app_port }};
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
@@ -22,6 +25,7 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_cache_bypass $http_upgrade;
     proxy_redirect off;
+{% endif %}
   }
 {% if permanent_redirect_rules is defined %}
 {% for redirect_rule in permanent_redirect_rules %}

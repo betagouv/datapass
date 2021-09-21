@@ -114,6 +114,7 @@
       tags: ssl
     - role: node-app
       app_service_name: signup-front
+      serve_frontend_from_nginx: true
       server_name: "{{ front_domain_name }}"
       app_port: 3002
       env_var:
