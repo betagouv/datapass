@@ -9,11 +9,23 @@ logPrefix(){
 }
 
 if [ -z $1 ]; then
-    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh signup-front"
+    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
+    exit 1
+fi
+
+if [ -z $2 ]; then
+    echo "$(logPrefix) Error: You must provide the github access token as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
+    exit 1
+fi
+
+if [ -z $3 ]; then
+    echo "$(logPrefix) Error: You must provide the target environment as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
     exit 1
 fi
 
 APP_NAME=$1
+GITHUB_ACCESS_TOKEN=$2
+TARGET_ENV=$3
 APP_VERSION=master
 echo "$(logPrefix) Deploying $APP_NAME..."
 
@@ -26,29 +38,26 @@ mkdir -p ${APP_PATH}/releases
 
 echo "$(logPrefix) Fetching archive..."
 cd ${APP_PATH}
-curl -f -L https://github.com/betagouv/datapass/archive/${APP_VERSION}.tar.gz --output datapass-${APP_VERSION}.tar.gz
+LAST_COMMIT=$(curl -s https://api.github.com/repos/betagouv/datapass/commits/$APP_VERSION | jq -r ".sha // empty")
+
+if [ -z $LAST_COMMIT ]; then
+    echo "$(logPrefix) Error: $APP_VERSION branch is not present on the repository";
+    exit 1
+fi
+
+ARTIFACT_NAME=${TARGET_ENV}-${LAST_COMMIT}-build
+ARTIFACT_URL=$(curl -s https://api.github.com/repos/betagouv/datapass/actions/artifacts | jq -r --arg ARTIFACT_NAME "$ARTIFACT_NAME" '.artifacts[] | select(.name==$ARTIFACT_NAME).archive_download_url')
+
+if [ -z $ARTIFACT_URL ]; then
+    echo "$(logPrefix) Error: Build artifact is not available (yet?) for commit $LAST_COMMIT";
+    exit 1
+fi
+
+curl -f -L -H "Authorization: token $GITHUB_ACCESS_TOKEN" ${ARTIFACT_URL} --output ${APP_NAME}.zip
 
 echo "$(logPrefix) Unpacking..."
-tar -xzf datapass-${APP_VERSION}.tar.gz
-mv datapass-${APP_VERSION}/${APP_NAME}/ ${RELEASES_PATH}
-rm -rf datapass-${APP_VERSION}/
-rm datapass-${APP_VERSION}.tar.gz
-
-echo "$(logPrefix) Installing..."
-cd ${RELEASES_PATH}
-export $(cat /etc/${APP_NAME}.conf | xargs)
-
-if [ -e package.json ]; then
-    PREVIOUS_NODE_MODULE_PATH=$(ls -r -d ${APP_PATH}/releases/* | tail -n +2 | head -n 1)/node_modules
-    if [ -d "$PREVIOUS_NODE_MODULE_PATH" ]; then
-      echo "$(logPrefix) Copying node modules from previous release..."
-      rsync -a $PREVIOUS_NODE_MODULE_PATH node_modules
-    fi
-    npm i
-    export GENERATE_SOURCEMAP=false
-    export DISABLE_ESLINT_PLUGIN=true
-    npm run build
-fi
+unzip ${APP_NAME}.zip -d ${RELEASES_PATH}
+rm ${APP_NAME}.zip
 
 echo "$(logPrefix) Linking new deployment..."
 if [ -h ${APP_PATH}/current ]; then

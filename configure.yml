@@ -115,11 +115,6 @@
     - role: react-app
       app_service_name: signup-front
       server_name: "{{ front_domain_name }}"
-      env_var:
-        BACK_HOST: "{{ back_host }}"
-        PIWIK_URL: "{{ piwik_url | default('') }}"
-        PIWIK_SITE_ID: "{{ piwik_site_id | default('') }}"
-        API_GOUV_HOST: "{{ api_gouv_host }}"
       permanent_redirect_rules:
         - source_pattern: "= /api-impot-particulier"
           destination_path: "/api-impot-particulier-fc-sandbox"
