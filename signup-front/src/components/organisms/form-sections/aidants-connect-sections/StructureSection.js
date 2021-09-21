@@ -137,7 +137,7 @@ export const StructureSection = () => {
         required
       />
       <TextInput
-        label="Nom"
+        label="Nom de la structure"
         meta="Cette information peut être rendue publique."
         name="intitule"
         value={intitule}
@@ -188,9 +188,8 @@ export const StructureSection = () => {
         required
       />
       <Input
-        label="Volumétrie approximative"
+        label="Nombre de démarches ou dossiers traités dans l’année"
         name="volumetrie_approximative"
-        meta="ex: nombre de démarches ou dossiers traités dans l’année"
         value={volumetrie_approximative}
         disabled={disabled}
         onChange={onChange}
