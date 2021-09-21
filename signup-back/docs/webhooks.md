@@ -91,10 +91,106 @@ Avec:
   a que `Pass` comme valeur
 - `data`, `json`: données ayant à minima les informations de la demande dans la
   clé `pass`, d'autres clés peuvent être présentes.
-  `pass_data` utilise le serializer `WebhookEnrollmentSerializer`, et embarque
+  `pass_data` utilise le serializer
+  [`WebhookEnrollmentSerializer`](../app/serializers/webhook_enrollment_serializer.rb), et embarque
   l'ensemble des événements associé à la demande, ce qui permet de retrouver
   l'initiateur de l'événement (théoriquement il s'agit de la première entrée
   `events`) ;
+
+Un exemple de payloaad pour `pass_data`:
+
+```json
+{
+  // ID technique de la demande DataPass
+  "id": 9001,
+  // Correspond au nom du projet dans l'UI
+  "intitule": "Marché public",
+  // Correspond à la description du projet dans l'UI
+  "description": "Permettre de répondre aux marché public de la ville de Cambrai",
+  // Il s'agit de l'identifiant technique d'un potentiel template
+  "demarche": "marche_public",
+  // Numéro de siret de l'organisation à laquelle le demandeur est associé
+  "siret": "13002526500013",
+  // Status de la demande. Les valeurs peuvent être:
+  // * pending : en attente d'envoi
+  // * sent : demande envoyée
+  // * modification_pending : la demande a été revue par un instructeur et demande des modifications
+  // * validated : demande validée
+  // * refused : demande refusée
+  "status": "pending",
+  // ID de la demande qui a été copié (peut être vide si il s'agit d'une nouvelle demande)
+  "copied_from_enrollment_id": 5432,
+  // ID de la précédente demande
+  "previous_enrollment_id": 2345,
+  // Liste des données associé au service. Cette liste est dynamique en fonction du service cible.
+  "scopes": {
+    "entreprises": true,
+    "exercices": false
+  },
+  // Liste des personnes associées à cette demande.
+  // Cette liste contient systématiquement le demandeur (type 'demandeur')
+  "team_members": [
+    {
+      // ID technique interne de la personne
+      "id": 678,
+      // Email de la personne
+      "email": "technique@cambrai.fr",
+      // Nom de famille de la personne
+      "family_name": "Tech",
+      // Prénom de la personne
+      "given_name": "Nicolas",
+      // Poste de la personne
+      "job": "Directeur technique",
+      // Numéro de téléphone de la personne
+      "phone_number": "0636656565",
+      // Type de contact. Une liste non-exhautive: responsable_technique, responsable_traitement, contact_metier, delegue_protection_donnees, demandeur
+      "type": "responsable_technique",
+      // ID interne issue de l'OAuth api-auth (autorité de connexion sur DataPass)
+      "uid": 23455
+    },
+    {
+      "id": 679,
+      "email": "demandeur@cambrai.fr",
+      "family_name": "Demandeur",
+      "given_name": "Julien",
+      "job": "Responsable des achats",
+      "phone_number": "0636666666",
+      "type": "demandeur",
+      "uid": 26455
+    }
+  ],
+  // Liste de l'intégralité des événements associée à cette demande
+  "events": [
+    {
+      // ID technique interne
+      "id": 6789,
+      // Nom succinct de l'événement. Une liste non exhaustive: created, updated, sent, validated, refused
+      "name": "created",
+      // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de la demande
+      "comment": null,
+      // Date de l'événement
+      "created_at": "2021-09-20 14:41:09 UTC",
+      // Utilisateur ayant initié l'action
+      "user": {
+        // ID technique interne
+        "id": 34987,
+        // ID interne issue de l'OAuth api-auth (autorité de connexion sur DataPass)
+        "uid": 23347,
+        // Email de la personne
+        "email": "technique@cambrai.fr",
+        // Nom de famille de la personne
+        "family_name": "Tech",
+        // Prénom de la personne
+        "given_name": "Nicolas",
+        // Poste de la personne
+        "job": "Directeur technique",
+        // Numéro de téléphone de la personne
+        "phone_number": "0636656565"
+      }
+    }
+  ]
+}
+```
 
 La requête HTTP possède comme `Application-Type` la valeur
 `application/json`
