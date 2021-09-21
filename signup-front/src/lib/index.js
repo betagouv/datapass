@@ -277,6 +277,81 @@ export const findModifiedFields = (
   return modified;
 };
 
+/*
+ * duplicated from : api-auth/src/services/security.js
+ * specifications of this function can be found at
+ * https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet#Email_Address_Validation
+ */
+export const isEmailValid = (email) => {
+  if (!isString(email) || isEmpty(email)) {
+    return false;
+  }
+
+  const parts = email.split('@');
+
+  // Check for presence of at least one @ symbol in the address
+  if (parts.length < 2) {
+    return false;
+  }
+
+  // Ensure the domain is no longer than 255 bytes
+  const domain = parts.pop();
+  if (Buffer.from(domain).length > 255) {
+    return false;
+  }
+
+  // Ensure the local-part (left of the rightmost @ character) is no longer than 64 bytes
+  const localPart = parts.join('');
+  if (Buffer.from(localPart).length > 64) {
+    return false;
+  }
+
+  return true;
+};
+
+export const isIndividualEmailAddress = (email) => {
+  if (!isEmailValid(email)) {
+    return false;
+  }
+
+  const firstEmailPart = email.split('@')[0];
+  const forbiddenEmailWords = [
+    'mairie',
+    'contact',
+    'ville',
+    'bibliotheque',
+    'direction',
+    'services',
+    'ccas',
+    'social',
+    'office',
+    'aidants',
+    'directrice',
+    'msap',
+    'coordination',
+    'famille',
+    'accueil',
+    'info',
+    'numerique',
+    'urbanisme',
+    'mediatheque',
+    'evs',
+    'emploi',
+    'coordinateur',
+    'centre',
+    'commune',
+    'mjc',
+    'welcome',
+    'sg',
+    'asf',
+    'police',
+    'maire',
+    'mds',
+  ];
+
+  return !forbiddenEmailWords.some((w) => firstEmailPart.includes(w));
+};
+
 export const isValidPhoneNumber = (phoneNumber) => {
   if (!isString(phoneNumber)) {
     return false;

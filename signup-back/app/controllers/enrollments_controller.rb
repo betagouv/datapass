@@ -123,12 +123,6 @@ class EnrollmentsController < ApplicationController
   # PATCH/PUT /enrollments/1
   def update
     @enrollment = authorize Enrollment.find(params[:id])
-
-    begin
-      @enrollment.update(permitted_attributes(@enrollment))
-    rescue => e
-      puts "#{e.inspect} e"
-    end
     if @enrollment.update(permitted_attributes(@enrollment))
       @enrollment.events.create(name: "updated", user_id: current_user.id, diff: @enrollment.previous_changes)
       @enrollment.notify_event("updated", user_id: current_user.id, diff: @enrollment.previous_changes)

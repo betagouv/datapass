@@ -9,7 +9,9 @@ import {
   isValidMobilePhoneNumber,
   isValidNAFCode,
   isValidPhoneNumber,
+  isIndividualEmailAddress,
 } from './index';
+import groupEmailAddresses from './group_email_addresses.json';
 
 describe('utils', () => {
   describe('getErrorMessages', () => {
@@ -499,6 +501,33 @@ describe('utils', () => {
     });
     it('should return true for valid phone number with country indicator', () => {
       expect(isValidPhoneNumber('+33 1 23 45 67 89')).toStrictEqual(true);
+    });
+  });
+
+  describe('isIndividualEmailAddress', () => {
+    it('should return false for empty phone number', () => {
+      expect(isIndividualEmailAddress()).toStrictEqual(false);
+    });
+    it('should return false for non string value', () => {
+      expect(isIndividualEmailAddress([])).toStrictEqual(false);
+    });
+    it('should return true for individual email address', () => {
+      expect(
+        isIndividualEmailAddress('michel.michel-evm@orange.fr')
+      ).toStrictEqual(true);
+    });
+    [
+      'michel-michel.centre-social@orange.fr',
+      'i-services.michel@orange.fr',
+    ].forEach((email) => {
+      it(`should return true for ${email}`, () => {
+        expect(isIndividualEmailAddress(email)).toStrictEqual(false);
+      });
+    });
+    groupEmailAddresses.forEach((email) => {
+      it(`should return false for ${email}`, () => {
+        expect(isIndividualEmailAddress(email)).toStrictEqual(false);
+      });
     });
   });
 

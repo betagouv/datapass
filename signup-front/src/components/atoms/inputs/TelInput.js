@@ -10,6 +10,7 @@ export const TelInput = ({
   disabled,
   onChange,
   ariaLabel,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -19,6 +20,7 @@ export const TelInput = ({
     <div className="form__group">
       <label htmlFor={id}>
         {label}
+        {required && ' *'}
         {helper && <Helper title={helper} />}
       </label>
       <input
@@ -30,6 +32,7 @@ export const TelInput = ({
         value={value}
         pattern="\+?(?:[0-9][ -]?){6,14}[0-9]"
         aria-label={ariaLabel}
+        required={required}
       />
     </div>
   );

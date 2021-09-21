@@ -11,6 +11,7 @@ export const TextAreaInput = ({
   disabled,
   onChange,
   rows = 10,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -20,6 +21,7 @@ export const TextAreaInput = ({
     <div className="form__group">
       <label htmlFor={id}>
         {label}
+        {required && ' *'}
         {helper && <Helper title={helper} />}
       </label>
       <textarea
@@ -30,6 +32,7 @@ export const TextAreaInput = ({
         id={id}
         readOnly={disabled}
         value={value}
+        required={required}
       />
     </div>
   );

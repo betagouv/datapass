@@ -5,7 +5,7 @@ import { ScrollablePanel } from '../../../Scrollable';
 import ConfirmationModal from '../../../ConfirmationModal';
 import { findModifiedFields } from '../../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
-import Select from '../../../../atoms/inputs/Select';
+import SelectInput from '../../../../atoms/inputs/SelectInput';
 
 export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
@@ -72,7 +72,7 @@ export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
           </ConfirmationModal>
         )}
         <h2>{title || 'Modèles préremplis'}</h2>
-        <Select
+        <SelectInput
           label={
             body || (
               <>

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import { findIndex, isEmpty } from 'lodash';
+import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { UserContext } from '../../UserContext';
 import useNewTeamMembers from './useNewTeamMembers';
+import ControlPointIcon from '../../../atoms/icons/control-point';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -85,8 +86,8 @@ const ÉquipeSection = ({
     enrollment: { team_members = [] },
   } = useContext(FormContext);
   const { user } = useContext(UserContext);
-  const contactConfiguration = useMemo(
-    () => ({
+  const contactConfiguration = useMemo(() => {
+    const defaultInitialContacts = {
       demandeur: {
         header: 'Demandeur',
         description: getDefaultDemandeurDescription(),
@@ -104,10 +105,13 @@ const ÉquipeSection = ({
         header: 'Responsable technique',
         description: getDefaultResponsableTechniqueDescription(),
       },
-      ...initialContacts,
-    }),
-    [initialContacts]
-  );
+    };
+
+    return chain(defaultInitialContacts)
+      .assign(initialContacts)
+      .pickBy((p) => p)
+      .value();
+  }, [initialContacts]);
 
   const newTeamMembers = useNewTeamMembers({
     user,
@@ -132,6 +136,19 @@ const ÉquipeSection = ({
     newTeamMembers,
   ]);
 
+  const addTeamMemberFactory = (type) => {
+    const tmp_id = uniqueId(`tmp_`);
+    const newTeamMember = { type, tmp_id };
+
+    return () =>
+      onChange({
+        target: {
+          name: 'team_members',
+          value: [...team_members, newTeamMember],
+        },
+      });
+  };
+
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>{title}</h2>
@@ -143,32 +160,61 @@ const ÉquipeSection = ({
       <div className="form__group">
         <div className="contact-list">
           {Object.entries(contactConfiguration).map(
-            ([type, { header, forceDisable, displayMobilePhoneLabel }]) =>
-              team_members
-                .filter(({ type: t }) => t === type)
-                .map(({ id, tmp_id, ...team_member }) => (
-                  <Contact
-                    heading={header}
-                    key={id || tmp_id}
-                    id={id}
-                    index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
-                      if (id) {
-                        // if id is defined match on id field
-                        return i === id;
-                      }
-                      if (tmp_id) {
-                        // if id is not defined and tmp_id is defined
-                        // match on tmp_id
-                        return t_i === tmp_id;
-                      }
-                      return false;
-                    })}
-                    {...team_member}
-                    displayMobilePhoneLabel={displayMobilePhoneLabel}
-                    disabled={forceDisable || disabled}
-                    onChange={onChange}
-                  />
-                ))
+            ([
+              type,
+              {
+                header,
+                forceDisable,
+                displayMobilePhoneLabel,
+                displayIndividualEmailLabel,
+                contactByEmailOnly,
+                multiple,
+              },
+            ]) => (
+              <>
+                {team_members
+                  .filter(({ type: t }) => t === type)
+                  .map(({ id, tmp_id, ...team_member }) => (
+                    <Contact
+                      heading={header}
+                      key={id || tmp_id}
+                      id={id}
+                      index={findIndex(
+                        team_members,
+                        ({ id: i, tmp_id: t_i }) => {
+                          if (id) {
+                            // if id is defined match on id field
+                            return i === id;
+                          }
+                          if (tmp_id) {
+                            // if id is not defined and tmp_id is defined
+                            // match on tmp_id
+                            return t_i === tmp_id;
+                          }
+                          return false;
+                        }
+                      )}
+                      {...team_member}
+                      displayMobilePhoneLabel={displayMobilePhoneLabel}
+                      displayIndividualEmailLabel={displayIndividualEmailLabel}
+                      contactByEmailOnly={contactByEmailOnly}
+                      disabled={forceDisable || disabled}
+                      onChange={onChange}
+                    />
+                  ))}
+                {!disabled && multiple && (
+                  <div
+                    className="card contact-item add-card"
+                    onClick={addTeamMemberFactory(type)}
+                  >
+                    <ControlPointIcon size="50px" />
+                    <div className="add-card-label">
+                      ajouter un {header.toLowerCase()}
+                    </div>
+                  </div>
+                )}
+              </>
+            )
           )}
         </div>
       </div>

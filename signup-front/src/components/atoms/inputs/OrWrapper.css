@@ -1,24 +1,24 @@
-#or-input-form {
+.or-input-form {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-#or-input-form .separator {
+.or-input-form .separator {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#or-input-form .separator span {
+.or-input-form .separator span {
   background-color: var(--lighter-grey);
   border-radius: 4px;
   padding: 5px 10px;
   margin: 10px;
 }
 
-#or-input-form .separator:after,
-#or-input-form .separator:before {
+.or-input-form .separator:after,
+.or-input-form .separator:before {
   background-color: var(--lighter-grey);
   height: 20px;
   width: 2px;
@@ -28,16 +28,16 @@
 }
 
 @media (min-width: 1px) and (max-width: 1000px) {
-  #or-input-form {
+  .or-input-form {
     flex-direction: column;
     align-items: flex-start;
   }
-  #or-input-form .separator {
+  .or-input-form .separator {
     flex-direction: row;
     width: 100%;
   }
-  #or-input-form .separator:after,
-  #or-input-form .separator:before {
+  .or-input-form .separator:after,
+  .or-input-form .separator:before {
     height: 2px;
     width: 20px;
   }

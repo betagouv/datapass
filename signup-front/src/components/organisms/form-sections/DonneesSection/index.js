@@ -94,7 +94,7 @@ const DonneesSection = ({
       )}
       <h3>Comment seront traitées ces données personnelles ?</h3>
       <TextInput
-        label="Destinataires des données *"
+        label="Destinataires des données"
         placeholder={
           '« agents instructeurs des demandes d’aides », « usagers des ' +
           'services publics de la ville », etc.'
@@ -116,7 +116,7 @@ const DonneesSection = ({
         required
       />
       <NumberInput
-        label="Durée de conservation des données en mois *"
+        label="Durée de conservation des données en mois"
         meta={
           <a
             href="https://www.cnil.fr/fr/les-durees-de-conservation-des-donnees"

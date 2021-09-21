@@ -11,7 +11,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import ConfirmationModal from '../../ConfirmationModal';
 import { findModifiedFields } from '../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
-import Select from '../../../atoms/inputs/Select';
+import SelectInput from '../../../atoms/inputs/SelectInput';
 
 export const DemarcheSectionSelect = ({ body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
@@ -75,7 +75,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
             gagner du temps.
           </p>
         )}
-        <Select
+        <SelectInput
           label="Sélectionnez le modèle correspondant à votre projet"
           name="demarche"
           options={Object.keys(demarches).map((demarcheId) => ({

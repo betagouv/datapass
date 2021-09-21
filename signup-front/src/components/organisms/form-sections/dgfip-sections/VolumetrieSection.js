@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Quote from '../../../atoms/inputs/Quote';
-import Select from '../../../atoms/inputs/Select';
+import SelectInput from '../../../atoms/inputs/SelectInput';
 
 const SECTION_LABEL = 'Volumétrie';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -54,7 +54,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
           de réduire ou couper les appels autorisés au fournisseur de service.
         </p>
       </Quote>
-      <Select
+      <SelectInput
         label="Quel est la limitation de debit que vous souhaitez pour votre téléservice ?"
         name="additional_content.volumetrie_appels_par_minute"
         options={options.map((appelsParMinute) => ({
