@@ -66,8 +66,6 @@ if [ -e package.json ]; then
       rsync -a $PREVIOUS_NODE_MODULE_PATH node_modules
     fi
     npm i
-    export GENERATE_SOURCEMAP=false
-    export DISABLE_ESLINT_PLUGIN=true
     npm run build
 fi
 
@@ -77,10 +75,8 @@ if [ -h ${APP_PATH}/current ]; then
 fi
 ln -s ${RELEASES_PATH} ${APP_PATH}/current
 
-if [ -e /etc/systemd/system/${APP_NAME}.service ]; then
-    echo "$(logPrefix) Restarting service..."
-    sudo /bin/systemctl restart ${APP_NAME}
-fi
+echo "$(logPrefix) Restarting service..."
+sudo /bin/systemctl restart ${APP_NAME}
 
 if [ -e Gemfile ]; then
     echo "$(logPrefix) Restarting sidekiq service..."
