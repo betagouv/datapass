@@ -9,14 +9,6 @@
     - /opt/apps
     - "/opt/apps/{{app_service_name}}"
 
-- name: copy configuration file
-  template:
-    src: service.conf.j2
-    dest: "/etc/{{app_service_name}}.conf"
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
-    mode: 0400
-
 - name: configure nginx
   template:
     src: server.conf.j2

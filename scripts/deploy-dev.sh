@@ -73,8 +73,10 @@ echo "$(logPrefix) Linking new deployment..."
 
 
 
-echo "$(logPrefix) Restarting service..."
-sudo /bin/systemctl restart ${APP_NAME}
+if [ -e /etc/systemd/system/${APP_NAME}.service ]; then
+    echo "$(logPrefix) Restarting service..."
+    sudo /bin/systemctl restart ${APP_NAME}
+fi
 if [ -e Gemfile ]; then
     sudo /bin/systemctl restart sidekiq-${APP_NAME}
 fi
