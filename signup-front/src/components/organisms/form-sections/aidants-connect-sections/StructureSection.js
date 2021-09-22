@@ -188,7 +188,7 @@ export const StructureSection = () => {
         required
       />
       <Input
-        label="Nombre de démarches ou dossiers traités dans l’année"
+        label="Nombre de démarches ou dossiers traités par semaine"
         name="volumetrie_approximative"
         value={volumetrie_approximative}
         disabled={disabled}
