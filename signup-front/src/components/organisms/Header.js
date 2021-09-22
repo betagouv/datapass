@@ -5,6 +5,8 @@ import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import { withUser } from './UserContext';
 import { loginUrl } from '../templates/Login';
 
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+
 const Header = ({ user, logout }) => {
   const [displayContactLink, setDisplayContactLink] = useState();
   const [targetApi, setTargetApi] = useState();
@@ -87,6 +89,16 @@ const Header = ({ user, logout }) => {
                     <li>
                       <a className="fr-link fr-fi-calendar-line" href="/admin">
                         Administration
+                      </a>
+                    </li>
+                  )}
+                  {user && user.roles.includes('administrator') && (
+                    <li>
+                      <a
+                        className="fr-link fr-fi-eye-line"
+                        href={`${BACK_HOST}/sidekiq/`}
+                      >
+                        Monitoring
                       </a>
                     </li>
                   )}
