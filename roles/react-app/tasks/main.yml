@@ -1,0 +1,30 @@
+---
+- name: create app directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+  with_items:
+    - /opt/apps
+    - "/opt/apps/{{app_service_name}}"
+
+- name: copy configuration file
+  template:
+    src: service.conf.j2
+    dest: "/etc/{{app_service_name}}.conf"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: 0400
+
+- name: configure nginx
+  template:
+    src: server.conf.j2
+    dest: "/etc/nginx/sites-enabled/{{app_service_name}}"
+  notify: restart nginx
+
+- name: install jq used in react app deploy script
+  apt:
+    name: jq
+    update_cache: true
+    cache_valid_time: 86400

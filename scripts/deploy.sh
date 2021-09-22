@@ -77,8 +77,10 @@ if [ -h ${APP_PATH}/current ]; then
 fi
 ln -s ${RELEASES_PATH} ${APP_PATH}/current
 
-echo "$(logPrefix) Restarting service..."
-sudo /bin/systemctl restart ${APP_NAME}
+if [ -e /etc/systemd/system/${APP_NAME}.service ]; then
+    echo "$(logPrefix) Restarting service..."
+    sudo /bin/systemctl restart ${APP_NAME}
+fi
 
 if [ -e Gemfile ]; then
     echo "$(logPrefix) Restarting sidekiq service..."
