@@ -65,7 +65,7 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
       <Input
         label="Volumétrie approximative"
         name="volumetrie_approximative"
-        meta="ex: nombre de démarches ou dossiers traités dans l’année"
+        meta="nombre de démarches ou dossiers traités dans l’année"
         value={volumetrie_approximative}
         disabled={disabled}
         onChange={onChange}
