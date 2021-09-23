@@ -171,7 +171,7 @@ const ÉquipeSection = ({
                 multiple,
               },
             ]) => (
-              <>
+              <React.Fragment key={type}>
                 {team_members
                   .filter(({ type: t }) => t === type)
                   .map(({ id, tmp_id, ...team_member }) => (
@@ -213,7 +213,7 @@ const ÉquipeSection = ({
                     </div>
                   </div>
                 )}
-              </>
+              </React.Fragment>
             )
           )}
         </div>
