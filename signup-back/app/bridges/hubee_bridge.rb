@@ -92,7 +92,7 @@ class HubeeBridge < ApplicationBridge
     responsable_technique = team_members.find { |team_member| team_member["type"] == "responsable_technique" }
     unless responsable_technique.nil? && responsable_technique["email"].empty?
       delegation_actor = {
-        email: ["email"],
+        email: responsable_technique["email"],
         firstName: responsable_technique["given_name"],
         lastName: responsable_technique["family_name"],
         function: responsable_technique["job"],
