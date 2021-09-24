@@ -33,3 +33,5 @@ rspec_results.html
 
 #OSX
 .DS_Store
+
+.env.local
