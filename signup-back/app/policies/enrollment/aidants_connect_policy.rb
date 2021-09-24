@@ -11,7 +11,7 @@ class Enrollment::AidantsConnectPolicy < EnrollmentPolicy
       :description,
       :type_projet,
       :volumetrie_approximative,
-      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
+      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job, :_destroy],
       documents_attributes: [
         :attachment,
         :type

@@ -27,7 +27,7 @@ class Enrollment < ActiveRecord::Base
   belongs_to :previous_enrollment, class_name: :Enrollment, foreign_key: :previous_enrollment_id, optional: true
 
   has_many :team_members, dependent: :destroy
-  accepts_nested_attributes_for :team_members
+  accepts_nested_attributes_for :team_members, allow_destroy: true
   has_many :users, through: :team_members
 
   state_machine :status, initial: :pending do

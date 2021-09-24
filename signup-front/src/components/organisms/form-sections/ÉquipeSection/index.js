@@ -182,16 +182,31 @@ const ÉquipeSection = ({
   };
 
   const removeTeamMember = (index) => {
+    // if (team_members[index].id) {
+    // Setting type to null will hide the contact but keep it in the list
+    // so we can mark it for destruction.
     onChange({
-      target: {
-        name: 'team_members',
-        value: [
-          ...team_members.slice(0, index),
-          ...team_members.slice(index + 1),
-        ],
-      },
+      target: { name: `team_members[${index}].type`, value: null },
     });
+    // Mark the team_members for destruction. It will be deleted on next PATCH.
+    onChange({
+      target: { name: `team_members[${index}]._destroy`, value: true },
+    });
+    // }
+    // else {
+    //   onChange({
+    //     target: {
+    //       name: 'team_members',
+    //       value: [
+    //         ...team_members.slice(0, index),
+    //         ...team_members.slice(index + 1),
+    //       ],
+    //     },
+    //   });
+    // }
   };
+
+  console.log(team_members, 'team_members');
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -245,7 +260,7 @@ const ÉquipeSection = ({
                       displayIdForAdministrator={displayIdForAdministrator}
                       disabled={forceDisable || disabled}
                       onChange={onChange}
-                      onDelete={multiple && !id && removeTeamMember}
+                      onDelete={multiple && removeTeamMember}
                       onFillWithUserInformation={fillWithUserInformation}
                     />
                   ))}

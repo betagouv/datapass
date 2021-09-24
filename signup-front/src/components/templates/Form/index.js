@@ -23,32 +23,29 @@ export const FormContext = React.createContext();
 
 const enrollmentReducer =
   (demarches = null) =>
-  (previousEnrollment, action) => {
-    if (!isObject(action)) {
+  (previousEnrollment, eventOrFutureEnrollment) => {
+    if (!isObject(eventOrFutureEnrollment)) {
       return previousEnrollment;
     }
 
     // if no action.target, this is a direct state update (network for instance)
     // a direct state update DOES NOT trigger a pre-filled demarche update
-    if (!action.target) {
-      const newEnrollment = action;
-
-      return merge(
-        {},
-        previousEnrollment,
-        omitBy(newEnrollment, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-      );
+    let futureEnrollment = eventOrFutureEnrollment.target
+      ? null
+      : eventOrFutureEnrollment;
+    if (futureEnrollment) {
+      return futureEnrollment;
     }
 
     // if action.target, it means reducer was trigger by an html element (input, select etc.)
     const {
       target: { type = null, checked = null, value: inputValue, name },
-    } = action;
+    } = eventOrFutureEnrollment;
 
     // checkbox elements must be handled specifically as we look for checked and not target
     const value = type === 'checkbox' ? checked : inputValue;
 
-    let futureEnrollment = { ...previousEnrollment };
+    futureEnrollment = { ...previousEnrollment };
     set(futureEnrollment, name, value);
 
     if (demarches && name === 'demarche') {

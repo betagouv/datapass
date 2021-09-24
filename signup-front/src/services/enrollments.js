@@ -25,7 +25,9 @@ export function createOrUpdateEnrollment({
 }) {
   const formattedEnrollment = {
     ...enrollment,
-    team_members_attributes: team_members,
+    team_members_attributes: team_members.filter(
+      ({ id, _destroy }) => id || !_destroy
+    ),
   };
   const serializedEnrollment = serializeEnrollment(formattedEnrollment);
   const config = {

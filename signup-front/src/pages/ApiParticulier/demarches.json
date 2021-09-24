@@ -43,14 +43,14 @@
         "pole_emploi_adresse": false,
         "pole_emploi_inscription": false
       },
-      "team_members": [
-        {
+      "team_members": {
+        "3": {
           "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "",
           "phone_number": ""
         }
-      ]
+      }
     }
   },
   "abelium": {
@@ -386,14 +386,14 @@
         "cnaf_enfants": false,
         "cnaf_adresse": false
       },
-      "team_members": [
-        {
+      "team_members": {
+        "3": {
           "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "technique@waigeo.fr",
           "phone_number": "0970805210"
         }
-      ]
+      }
     }
   }
 }
