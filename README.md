@@ -69,24 +69,24 @@ d’accès aux données ou un bloc RGPD si vous exposez des données personnelle
 des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de DataPass) :
 
 1. dans le frontend
-    1. description de l’organisation du formulaire (création de src/pages/NameOfApi.js)
-    2. url du formulaire sur le domaine datapass.api.gouv.fr (src/Routes.js)
-    3. label à afficher pour le service dans la vue liste (src/lib/api.js)
-    4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
-    6. [optionnel] une page de présentation hors connection
+   1. description de l’organisation du formulaire (création de src/pages/NameOfApi.js)
+   2. url du formulaire sur le domaine datapass.api.gouv.fr (src/Routes.js)
+   3. label à afficher pour le service dans la vue liste (src/lib/api.js)
+   4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
+   5. [optionnel] une page de présentation hors connection
 2. dans le backend
-    1. définition du format et du type des données hors tronc commun (création de
-    app/policies/enrollment/<name_of_api>_policy.rb)
-    2. définitions de règles de validation supplémentaires et des messages d’erreurs spécifiques
-    (création de app/models/enrollment/<name_of_api>.rb)
-    3. configuration du label de service et de l’adresse email pour les notifications mails émises
-    depuis DataPass. À noter, que l’envoi par DataPass via une adresse email administrée par vous fait
-    l’object d’une procédure de validation effectuée par notre équipe dans l’outil mailjet
-    (config/data_providers.yml)
-    4. [optionnel] définition d’une action spécifique post validation (ex : création d’un espace
-    développeur dans l’API Manager via appel HTTP directement sur votre API Manager)
-    (app/models/enrollment.rb L51)
-    5. [optionnel] modèle d’email de réponse personnalisés
+   1. définition du format et du type des données hors tronc commun (création de
+      app/policies/enrollment/<name_of_api>\_policy.rb)
+   2. définitions de règles de validation supplémentaires et des messages d’erreurs spécifiques
+      (création de app/models/enrollment/<name_of_api>.rb)
+   3. configuration du label de service et de l’adresse email pour les notifications mails émises
+      depuis DataPass. À noter, que l’envoi par DataPass via une adresse email administrée par vous fait
+      l’object d’une procédure de validation effectuée par notre équipe dans l’outil mailjet
+      (config/data_providers.yml)
+   4. [optionnel] définition d’une action spécifique post validation (ex : création d’un espace
+      développeur dans l’API Manager via appel HTTP directement sur votre API Manager)
+      (app/models/enrollment.rb L51)
+   5. [optionnel] modèle d’email de réponse personnalisés
 
 ### Traitement des demandes
 
@@ -95,13 +95,12 @@ Plusieurs méthodes sont envisageables :
 
 - Le producteur valide toutes les demandes de manière autonome
 - La DINUM valide les demandes dites passantes (cas d’usage prédéfinis) et soumet à validation du
-fournisseur les autres cas
+  fournisseur les autres cas
 - Le producteur de données délègue intégralement la validation des accès à la DINUM
 
 ### Interfaçage entre DataPass et un API Manager
 
 [![Diagramme de flux](https://docs.google.com/drawings/d/e/2PACX-1vSFtKMTR1-NNUWa3Edd9Pnji4MSwhBLkaO2nq7t7B_kGerTSkWz7CzcxQ8FHArLviX0kZEzua5xd7Su/pub?w=2338&h=924)](https://docs.google.com/drawings/d/1FUd7ko-7GkMyy_JwqLBtjswQO_lycUg3591WRZSx8hw/edit?usp=sharing)
-
 
 ## Les roles dans DataPass
 
@@ -109,11 +108,11 @@ Dans DataPass, il y a différents types d’utilisateurs :
 
 - **les demandeurs :** ils viennent déposer leur demande d’accès, ils n’ont accès qu’a leur demandes.
 - **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu’ils
-ont à charge.
+  ont à charge.
 - **les rapporteurs :** ils voient, en plus de leurs propres demandes, toutes les demandes déposées pour
-leur service.
+  leur service.
 - **les abonnés :** ils reçoivent une notification par mail à chaque fois qu’un demandeur dépose une
-nouvelle demande pour leur service.
+  nouvelle demande pour leur service.
 
 Ces types sont combinables pour débloquer plus ou moins de fonctionnalités : par exemple un utilisateur qui
 serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d’une nouvelle
@@ -141,14 +140,14 @@ Vous pouvez vous créer un compte utilisateur en entrant n’importe quel numér
 Vous pouvez également utiliser les comptes de tests suivants :
 
 - instructeur API Entreprise :
-    - identifiant : api-entreprise@yopmail.com
-    - mot de passe : api-entreprise@yopmail.com
+  - identifiant : api-entreprise@yopmail.com
+  - mot de passe : api-entreprise@yopmail.com
 - instructeur API Particulier :
-    - identifiant : api-particulier@yopmail.com
-    - mot de passe : api-particulier@yopmail.com
+  - identifiant : api-particulier@yopmail.com
+  - mot de passe : api-particulier@yopmail.com
 - utilisateur sans droits :
-    - identifiant : user@yopmail.com
-    - mot de passe : user@yopmail.com
+  - identifiant : user@yopmail.com
+  - mot de passe : user@yopmail.com
 
 À noter que les emails reçus sur les adresses en yopmail.com sont accessibles sur : http://yopmail.com/.
 
@@ -163,16 +162,60 @@ déployer les services :
 En outre, il vous permet d’instancier un environnement de développement local pour ces services.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
-## Install
+## Installation
 
-### Dependencies setup
+### Datapass
 
+#### Dependencies setup
+
+- [Docker](https://www.docker.com/)
+- [Docker compose](https://docs.docker.com/compose/install/)
+- [Ansible 2.9.10](https://www.ansible.com/)
+- [NodeJS >=16](https://nodejs.org/)
+
+#### Local environment
+
+Clone the repo:
+
+```bash
+git clone git@github.com:betagouv/datapass.git
+```
+
+Ask a colleague to give you the backend secrets stored in the `signup-back/.env.local` file.
+
+Then create and configure your backend docker containers:
+
+```bash
+docker-compose up # This can take a while, go make a loaf of bread or something
+```
+
+And finally, you can start the frontend:
+
+```bash
+cd signup-front
+npm install
+npm run dev
+```
+
+#### Test your installation
+
+Go to http://localhost:3000/. Sign in as `user@yopmail.com` with the password `user@yopmail.com`. Then, you should see the enrollment list.
+Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
+
+##### Front end linter
+
+Note that, we use the [`prettier`](https://prettier.io) linter for signup-front. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
+
+### API Auth
+
+#### Dependencies setup
+
+- [Ansible 2.9.10](https://www.ansible.com/)
 - [VirtualBox \^5.2.10](https://www.virtualbox.org)
 - [Vagrant \^2.1.1](https://www.vagrantup.com)
 - NFS
-- [Ansible 2.9.10](https://www.ansible.com/)
 
-### DataPass local provisioning
+#### Local environment
 
 Clone the repo:
 
@@ -183,17 +226,14 @@ git clone git@github.com:betagouv/datapass.git
 Add the following hosts in `/etc/hosts`:
 
 ```text
-192.168.56.125 datapass-development.particulier-infra.api.gouv.fr
-192.168.56.125 datapass-development.api.gouv.fr
-192.168.56.125 back.datapass-development.api.gouv.fr
-
 192.168.56.127 auth-development.particulier-infra.api.gouv.fr
 192.168.56.127 auth-development.api.gouv.fr
 ```
 
 Then create and configure your virtual machine:
+
 ```bash
-vagrant up # This can take a while, go make a loaf of bread or something
+vagrant up api-auth # This can take a while, go make a loaf of bread or something
 ```
 
 > **If you are using macOS.**
@@ -202,8 +242,7 @@ vagrant up # This can take a while, go make a loaf of bread or something
 > Connect to each guest machine
 
 ```bash
-# [vm-name] : datapass and api-auth
-vagrant ssh [vm-name]
+vagrant ssh api-auth
 ```
 
 > And copy your hosts to `/etc/hosts`
@@ -213,100 +252,7 @@ vagrant ssh [vm-name]
 > `NFS is reporting that your exports file is invalid`
 > You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
 
-### Test your installation
-
-Go to https://datapass-development.api.gouv.fr/. Sign in as `user@yopmail.com` with the password `user@yopmail.com`. Then, you should see the enrollment list.
-Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
-
-### Run the apps in interactive / development mode (optional)
-
-#### Signup Front
-
-##### On your host machine (recommended)
-
-## Standalone install
-
-Dependencies setup:
-
-- nodejs ^16.9
-
-Install npm dependencies:
-
-```
-cd signup-front
-npm i
-```
-
-Provision your virtual machine accordingly:
-
-```
-ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:4000"
-```
-
-> **If you are using Chrome**
-> Enable samesite cookies inside the DataPass virtual machine
-
-```
-vagrant ssh datapass
-sudo su -
-vim /etc/nginx/sites-enabled/signup-back
-```
-
-> add the `proxy_cookie_path` directive like so
-
-```
-  [...]
-  location / {
-    proxy_pass http://localhost:3000;
-    [...]
-    proxy_cache_bypass $http_upgrade;
-    proxy_cookie_path / "/; secure; HttpOnly; SameSite=none";
-
-    client_max_body_size 10m;
-    [...]
-```
-
-> reload nginx
-
-```
-systemctl restart nginx
-```
-
-Start the app in the interactive mode:
-
-```
-npm run dev
-```
-
-##### In your host machine (optional)
-
-This method has slower hot reloading but use a more production-like configuration.
-
-```bash
-vagrant ssh datapass
-sudo systemctl stop signup-front
-sudo su - signup
-cd /opt/apps/signup-front/current
-export $(cat /etc/signup-front.conf | xargs)
-npm run dev-in-vm
-```
-
-##### Front end linter
-
-Note that, we use the [`prettier`](https://prettier.io) linter for signup-front. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
-
-#### Signup Back
-
-```bash
-vagrant ssh datapass
-sudo systemctl stop signup-back
-sudo su - signup
-cd /opt/apps/signup-back/current
-export $(cat /etc/signup-back.conf | xargs)
-RAILS_ENV=development rails s
-```
-
-#### API Auth
+#### Interative mode
 
 ```bash
 vagrant ssh api-auth
@@ -318,11 +264,12 @@ npm start
 ```
 
 Optional, you can also run api-auth in debug mode:
+
 ```
 DEBUG=oidc-provider:* npm start
 ```
 
-### Production-like deployment (optional)
+## Production-like deployment (optional)
 
 For development purpose you may want to have a local iso-production application running instead of deployment through NFS. You can do it by running the deployment script instead of processing to a development deployment:
 
@@ -350,63 +297,4 @@ You can fix this in api-auth database with:
 
 ```postgres-sql
 SELECT setval('organizations_id_seq', 3);
-```
-
-### Sync vagrant ruby env with host dev tools
-
-You may want to connect your local dev tools with remote ruby env (ex: setup remote ruby interpreter in rubymine).
-
-Add your vagrant insecure public key from:
-
-```bash
-vagrant ssh datapass
-cat ~/.ssh/authorized_keys
-```
-
-in: `/home/signup/.ssh/authorized_keys`
-
-Then you can use this key to configure ssh connection to: `ssh://signup@192.168.56.125:22/home/signup/.rbenv/versions/2.7.1/bin/ruby`
-
-NB: if you want to run rubocop, you might need to install standardrb `gem install standardrb` on your guest machine.
-
-### React dev tools keep disconnecting
-
-Add the following lines in `/etc/nginx/sites-enabled/signup-front` at the end of the `location /` section :
-
-```
-    # the following two timeout rules fix CRA WDS disconnects after 60s
-    proxy_read_timeout 86400s;
-    proxy_send_timeout 86400s;
-```
-
-See this issue on github : https://github.com/facebook/create-react-app/issues/8203#issuecomment-571605090
-
-### Slow hot reloading in signup-front in the virtual machine
-
-If you experience slow hot reloading in the interactive mode for signup-front, execute this on your host AND on the datapass virtual machine:
-
-```shell script
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
-
-More details here: https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers and https://webpack.js.org/configuration/watch/#not-enough-watchers
-
-You can also de-sync non source folder:
-
-```bash
-vagrant ssh datapass
-sudo -u signup mkdir -p /home/signup/vagrant_node_modules
-sudo -u signup mkdir -p /opt/apps/signup-front/current/node_modules
-sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_node_modules /opt/apps/signup-front/current/node_modules
-sudo -u signup mkdir -p /home/signup/vagrant_build
-sudo -u signup mkdir -p /opt/apps/signup-front/current/build
-sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/signup/vagrant_build /opt/apps/signup-front/current/build
-sudo systemctl restart signup-front
-exit
-vagrant ssh api-auth
-sudo -u api-auth mkdir -p /home/api-auth/vagrant_node_modules
-sudo -u api-auth mkdir -p /opt/apps/api-auth/current/node_modules
-sudo mount -o umask=0022,gid=1001,uid=1001 --bind /home/api-auth/vagrant_node_modules /opt/apps/api-auth/current/node_modules
-sudo systemctl restart api-auth
-exit
 ```
