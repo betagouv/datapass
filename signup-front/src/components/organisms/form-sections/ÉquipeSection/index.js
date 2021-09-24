@@ -136,6 +136,38 @@ const ÉquipeSection = ({
     newTeamMembers,
   ]);
 
+  const displayIdForAdministrator = useMemo(
+    () => user && user.roles.includes('administrator'),
+    [user]
+  );
+
+  const fillWithUserInformation = (index) => {
+    onChange({
+      target: { name: `team_members[${index}].email`, value: user.email },
+    });
+    onChange({
+      target: {
+        name: `team_members[${index}].given_name`,
+        value: user.given_name,
+      },
+    });
+    onChange({
+      target: {
+        name: `team_members[${index}].family_name`,
+        value: user.family_name,
+      },
+    });
+    onChange({
+      target: {
+        name: `team_members[${index}].phone_number`,
+        value: user.phone_number,
+      },
+    });
+    onChange({
+      target: { name: `team_members[${index}].job`, value: user.job },
+    });
+  };
+
   const addTeamMemberFactory = (type) => {
     const tmp_id = uniqueId(`tmp_`);
     const newTeamMember = { type, tmp_id };
@@ -147,6 +179,18 @@ const ÉquipeSection = ({
           value: [...team_members, newTeamMember],
         },
       });
+  };
+
+  const removeTeamMember = (index) => {
+    onChange({
+      target: {
+        name: 'team_members',
+        value: [
+          ...team_members.slice(0, index),
+          ...team_members.slice(index + 1),
+        ],
+      },
+    });
   };
 
   return (
@@ -171,7 +215,7 @@ const ÉquipeSection = ({
                 multiple,
               },
             ]) => (
-              <>
+              <React.Fragment key={type}>
                 {team_members
                   .filter(({ type: t }) => t === type)
                   .map(({ id, tmp_id, ...team_member }) => (
@@ -198,8 +242,11 @@ const ÉquipeSection = ({
                       displayMobilePhoneLabel={displayMobilePhoneLabel}
                       displayIndividualEmailLabel={displayIndividualEmailLabel}
                       contactByEmailOnly={contactByEmailOnly}
+                      displayIdForAdministrator={displayIdForAdministrator}
                       disabled={forceDisable || disabled}
                       onChange={onChange}
+                      onDelete={multiple && !id && removeTeamMember}
+                      onFillWithUserInformation={fillWithUserInformation}
                     />
                   ))}
                 {!disabled && multiple && (
@@ -213,7 +260,7 @@ const ÉquipeSection = ({
                     </div>
                   </div>
                 )}
-              </>
+              </React.Fragment>
             )
           )}
         </div>

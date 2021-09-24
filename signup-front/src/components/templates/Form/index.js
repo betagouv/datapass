@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
+import { get, isObject, omitBy, merge, set } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../../../services/enrollments';
@@ -48,7 +48,8 @@ const enrollmentReducer =
     // checkbox elements must be handled specifically as we look for checked and not target
     const value = type === 'checkbox' ? checked : inputValue;
 
-    let futureEnrollment = zipObjectDeep([`${name}`], [value]);
+    let futureEnrollment = { ...previousEnrollment };
+    set(futureEnrollment, name, value);
 
     if (demarches && name === 'demarche') {
       futureEnrollment = merge(
@@ -59,7 +60,7 @@ const enrollmentReducer =
       );
     }
 
-    return merge({}, previousEnrollment, futureEnrollment);
+    return futureEnrollment;
   };
 
 export const Form = ({

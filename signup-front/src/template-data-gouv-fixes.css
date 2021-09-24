@@ -116,6 +116,11 @@ select {
   margin-bottom: 1em;
 }
 
+/* fix: last child rules matches any last child in any sub element */
+.card__content h3:last-child {
+  margin-bottom: 1em;
+}
+
 /* fix: text-quote inner spacing */
 .text-quote {
   padding-top: 2.5rem;
