@@ -50,7 +50,7 @@ const OrganisationSection = () => {
   useEffect(() => {
     const firstDemandeur =
       !isEmpty(team_members) &&
-      team_members.find(({ type }) => type === 'demandeur');
+      team_members.find((tm) => tm && tm.type === 'demandeur');
     if (firstDemandeur) {
       // note that they might be more than one demandeur
       // for now we just display the first demandeur found

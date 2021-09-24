@@ -12,7 +12,7 @@ export const useNewTeamMembers = ({
         .keys()
         .map((type) => {
           const isMemberAlreadyInitialized = team_members.some(
-            ({ type: t }) => t === type
+            (tm) => tm && tm.type === type
           );
           if (isMemberAlreadyInitialized) {
             return null;

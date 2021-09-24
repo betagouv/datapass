@@ -221,6 +221,7 @@ const ÉquipeSection = ({
             ]) => (
               <React.Fragment key={type}>
                 {team_members
+                  .filter((tm) => tm)
                   .filter(({ type: t }) => t === type)
                   .map(({ id, tmp_id, ...team_member }) => (
                     <Contact
