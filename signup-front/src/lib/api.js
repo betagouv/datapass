@@ -42,6 +42,8 @@ export const TARGET_API_LABELS = {
   api_pro_sante_connect: 'API Pro Santé Connect',
   api_declaration_auto_entrepreneur: 'API Tierce Déclaration auto-entrepreneur',
   api_indemnites_journalieres_cnam: 'API Indemnités Journalières (CNAM)',
+  api_systeme_immatriculation_vehicules:
+    'API Système d’Immatriculation des Véhicules',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -71,6 +73,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'api_pro_sante_connect',
   // 'api_declaration_auto_entrepreneur',
   // 'api_indemnites_journalieres_cnam',
+  // 'api_systeme_immatriculation_vehicules',
 ];
 
 export const API_ICONS = {
