@@ -18,6 +18,7 @@ import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 import Tag from '../../atoms/Tag';
 import statusToButtonType from '../../../lib/status-to-button-type';
 import { withUser } from '../../organisms/UserContext';
+import ContentCopyIcon from '../../atoms/icons/content-copy';
 
 export const FormContext = React.createContext();
 
@@ -189,6 +190,17 @@ export const Form = ({
               </>
             )}
             {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
+            {enrollment.copied_from_enrollment_id && (
+              <Tag
+                href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
+                type="info"
+              >
+                <ContentCopyIcon size={16} color="var(--w)" />
+                <span style={{ marginLeft: '4px' }}>
+                  Copie de n° {enrollment.copied_from_enrollment_id}
+                </span>
+              </Tag>
+            )}
             <Tag type={statusToButtonType[enrollment.status]}>
               {USER_STATUS_LABELS[enrollment.status]}
             </Tag>
