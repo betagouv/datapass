@@ -54,6 +54,7 @@ import ApiCprProSandbox from './pages/DgfipPages/ApiCprProSandbox';
 import ApiCprProProduction from './pages/DgfipPages/ApiCprProProduction';
 import ApiInfinoeSandbox from './pages/DgfipPages/ApiInfinoeSandbox';
 import ApiInfinoeProduction from './pages/DgfipPages/ApiInfinoeProduction';
+import ApiSystemeImmatriculationVehicules from './pages/ApiSystemeImmatriculationVehicules';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -282,6 +283,11 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-indemnites-journalieres-cnam/:enrollmentId?"
         component={ApiIndemnitesJournalieresCnam}
+      />
+
+      <PrivateRoute
+        path="/api-systeme-immatriculation-vehicules/:enrollmentId?"
+        component={ApiSystemeImmatriculationVehicules}
       />
 
       <PrivateRoute
