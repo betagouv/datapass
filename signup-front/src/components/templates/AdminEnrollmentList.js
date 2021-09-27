@@ -17,13 +17,13 @@ import { TARGET_API_LABELS } from '../../lib/api';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../../lib/enrollment';
 
 import ScheduleIcon from '../atoms/icons/schedule';
-import AutorenewIcon from '../atoms/icons/autorenew';
 import { withUser } from '../organisms/UserContext';
 import MultiSelect from '../molecules/MultiSelect';
 import Tag from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
 import Button from '../atoms/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
+import FileCopyIcon from '../atoms/icons/file_copy';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -226,7 +226,13 @@ class AdminEnrollmentList extends React.Component {
           return (
             <span>
               {statusLabel}
-              {isRenewal ? <AutorenewIcon size={16} /> : ''}
+              {isRenewal ? (
+                <span style={{ marginLeft: '4px' }}>
+                  <FileCopyIcon size={16} />
+                </span>
+              ) : (
+                ''
+              )}
             </span>
           );
         }
@@ -234,7 +240,13 @@ class AdminEnrollmentList extends React.Component {
         return (
           <Tag type="warning">
             {statusLabel}
-            {isRenewal ? <AutorenewIcon color="white" size={14} /> : ''}
+            {isRenewal ? (
+              <span style={{ marginLeft: '2px' }}>
+                <FileCopyIcon color="white" size={14} />
+              </span>
+            ) : (
+              ''
+            )}
           </Tag>
         );
       },
