@@ -179,6 +179,7 @@ Clone the repo:
 
 ```bash
 git clone git@github.com:betagouv/datapass.git
+cd datapass
 ```
 
 Ask a colleague to give you the backend secrets stored in the `signup-back/.env.local` file.
