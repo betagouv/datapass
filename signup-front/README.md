@@ -6,7 +6,7 @@
 
 Cette installation utilise le backend disponible sur https://back.datapass-test.api.gouv.fr. L'installation est simple et rapide mais ne permet pas de développements sur le backend.
 
-Installer NodeJs version ^12.18.
+Installer NodeJs version >=16.
 
 Cloner le dépot de code puis installer les dépendances npm :
 

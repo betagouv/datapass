@@ -77,11 +77,8 @@ const Header = ({ user, logout }) => {
                 <ul className="fr-links-group">
                   {displayContactLink && (
                     <li>
-                      <a
-                        className="fr-link fr-fi-mail-line"
-                        href="mailto:contact@api.gouv.fr?subject=Contact%20via%20datapass.api.gouv.fr"
-                      >
-                        Nous contacter
+                      <a className="fr-link fr-fi-question-line" href="/faq">
+                        Aide
                       </a>
                     </li>
                   )}

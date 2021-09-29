@@ -55,6 +55,7 @@ import ApiCprProProduction from './pages/DgfipPages/ApiCprProProduction';
 import ApiInfinoeSandbox from './pages/DgfipPages/ApiInfinoeSandbox';
 import ApiInfinoeProduction from './pages/DgfipPages/ApiInfinoeProduction';
 import ApiSystemeImmatriculationVehicules from './pages/ApiSystemeImmatriculationVehicules';
+import FAQ from './components/templates/Faq';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -68,6 +69,8 @@ export const Routes = ({ user }) => {
       <Route path="/stats/:targetApi?" component={Stats} />
 
       <Route path="/accessibilite" component={Accessibilite} />
+
+      <Route path="/faq" component={FAQ} />
 
       <PrivateRoute
         exact
