@@ -14,7 +14,7 @@ import { sample } from 'lodash';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
-import { EMAILS } from '../../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const contacts = {
   contact_metier: {
@@ -285,7 +285,7 @@ const ApiEntreprise = ({
     demarches={demarches}
     contactInformation={[
       {
-        email: EMAILS.api_entreprise,
+        email: DATA_PROVIDER_CONTACT_EMAILS.api_entreprise,
         label: 'Contact mail',
         subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
       },

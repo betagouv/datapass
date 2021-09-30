@@ -10,7 +10,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { EMAILS } from '../../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const DonneesDescription = () => (
   <>
@@ -251,7 +251,7 @@ const ApiParticulier = ({
     demarches={demarches}
     contactInformation={[
       {
-        email: EMAILS.api_particulier,
+        email: DATA_PROVIDER_CONTACT_EMAILS.api_particulier,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },

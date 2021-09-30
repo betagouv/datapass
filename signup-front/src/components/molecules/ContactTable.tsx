@@ -1,5 +1,5 @@
 import React from 'react';
-import { API_CONTACTS } from '../../lib/api';
+import { DATA_PROVIDER_LABELLED_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const ContactsTable = () => (
   <div className="fr-table">
@@ -9,12 +9,12 @@ const ContactsTable = () => (
         <td>Contact</td>
       </thead>
       <tbody>
-        {API_CONTACTS.map((contact) => (
+        {DATA_PROVIDER_LABELLED_CONTACT_EMAILS.map((contact) => (
           <tr>
-            <td>{contact.name}</td>
+            <td>{contact.label}</td>
             <td>
               <a
-                href={`mailto:${contact.address}?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr`}
+                href={`mailto:${contact.email}?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr`}
               >
                 Écrire à l’équipe
               </a>

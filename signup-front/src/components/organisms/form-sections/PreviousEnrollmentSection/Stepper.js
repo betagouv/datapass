@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TARGET_API_LABELS } from '../../../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-emails';
 
 const Stepper = ({
   steps,
@@ -35,7 +35,7 @@ const Stepper = ({
     <ul className="steps-form">
       {steps.map((e, i) => (
         <li key={e} className={getStepCssClass(i)}>
-          <div>{TARGET_API_LABELS[e]}</div>
+          <div>{DATA_PROVIDER_LABELS[e]}</div>
         </li>
       ))}
       <li className="check-mark">

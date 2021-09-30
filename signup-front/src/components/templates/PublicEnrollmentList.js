@@ -8,9 +8,9 @@ import moment from 'moment';
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
 import { enrollmentListStyle } from '../../lib/enrollment';
 import {
-  TARGET_API_LABELS,
-  TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
-} from '../../lib/api';
+  DATA_PROVIDER_LABELS,
+  DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+} from '../../config/data-provider-emails';
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
@@ -105,7 +105,7 @@ class PublicEnrollmentList extends React.Component {
     },
     {
       Header: 'Fournisseur',
-      accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
+      accessor: ({ target_api }) => DATA_PROVIDER_LABELS[target_api],
       id: 'target_api',
       headerStyle: enrollmentListStyle.header,
       style: {
@@ -145,7 +145,7 @@ class PublicEnrollmentList extends React.Component {
           >
             Toutes les demandes
           </NavLink>
-          {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
             <NavLink
               key={targetApi}
               className="fr-tag secondary"
@@ -153,7 +153,7 @@ class PublicEnrollmentList extends React.Component {
               exact
               to={`/public/${targetApi}`}
             >
-              {TARGET_API_LABELS[targetApi]}
+              {DATA_PROVIDER_LABELS[targetApi]}
             </NavLink>
           ))}
         </ListHeader>

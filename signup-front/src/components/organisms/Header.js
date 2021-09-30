@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
+import {
+  DATA_PROVIDER_ICONS,
+  DATA_PROVIDER_LABELS,
+} from '../../config/data-provider-emails';
 import { withUser } from './UserContext';
 import { loginUrl } from '../templates/Login';
 
@@ -13,11 +16,13 @@ const Header = ({ user, logout }) => {
   let location = useLocation();
 
   useEffect(() => {
-    const targetApiInUrl = Object.keys(TARGET_API_LABELS).find((target_api) => {
-      return window.location.pathname.startsWith(
-        `/${target_api.replace(/_/g, '-')}`
-      );
-    });
+    const targetApiInUrl = Object.keys(DATA_PROVIDER_LABELS).find(
+      (target_api) => {
+        return window.location.pathname.startsWith(
+          `/${target_api.replace(/_/g, '-')}`
+        );
+      }
+    );
 
     setTargetApi(targetApiInUrl);
     setDisplayContactLink(!targetApiInUrl);
@@ -37,17 +42,17 @@ const Header = ({ user, logout }) => {
                     Française
                   </p>
                 </div>
-                {targetApi && !!API_ICONS[targetApi] && (
+                {targetApi && !!DATA_PROVIDER_ICONS[targetApi] && (
                   <div className="fr-header__operator">
                     <img
-                      src={`/images/${API_ICONS[targetApi]}`}
+                      src={`/images/${DATA_PROVIDER_ICONS[targetApi]}`}
                       className="fr-responsive-img"
                       style={{
                         maxHeight: '67px',
                         width: 'auto',
                         maxWidth: '6em',
                       }}
-                      alt={`Logo ${TARGET_API_LABELS[targetApi]}`}
+                      alt={`Logo ${DATA_PROVIDER_LABELS[targetApi]}`}
                     />
                   </div>
                 )}

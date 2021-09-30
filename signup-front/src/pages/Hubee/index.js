@@ -12,7 +12,7 @@ import demarches from './demarches.json';
 import Helper from '../../components/atoms/Helper';
 import { SolutionLogicielleSection } from '../../components/organisms/form-sections/hubee-sections/SolutionLogicielleSection';
 import ExpandableQuote from '../../components/atoms/inputs/ExpandableQuote';
-import { EMAILS } from '../../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const DemarcheDescription = () => (
   <>
@@ -232,7 +232,7 @@ const Hubee = ({
     target_api={target_api}
     contactInformation={[
       {
-        email: EMAILS.hubee,
+        email: DATA_PROVIDER_CONTACT_EMAILS.hubee,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },

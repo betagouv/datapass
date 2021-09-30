@@ -11,7 +11,7 @@ import { ScrollablePanel } from '../../organisms/Scrollable';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import PreviousEnrollmentSection from '../../organisms/form-sections/PreviousEnrollmentSection';
 import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
-import { TARGET_API_LABELS } from '../../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
@@ -133,7 +133,7 @@ export const Form = ({
   }, [enrollmentId, history]);
 
   useEffect(() => {
-    const targetApiLabel = `${TARGET_API_LABELS[target_api]}`;
+    const targetApiLabel = `${DATA_PROVIDER_LABELS[target_api]}`;
     document.title = targetApiLabel;
 
     if (enrollment.id)
@@ -186,7 +186,7 @@ export const Form = ({
             ) : (
               <>
                 <>Vous demandez l’accès à</>
-                <h1>{title || TARGET_API_LABELS[target_api]}</h1>
+                <h1>{title || DATA_PROVIDER_LABELS[target_api]}</h1>
               </>
             )}
             <div className="tag-container">

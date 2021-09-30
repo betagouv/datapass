@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TARGET_API_LABELS } from '../../../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-emails';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';
@@ -95,12 +95,13 @@ const PreviousEnrollmentSection = ({
           <div className="form__group">
             <div className="notification warning">
               <p>
-                Pour demander l’accès à <b>{TARGET_API_LABELS[target_api]}</b>
+                Pour demander l’accès à{' '}
+                <b>{DATA_PROVIDER_LABELS[target_api]}</b>
                 {target_api === 'api_impot_particulier_fc_sandbox' && (
                   <span> en mode FranceConnecté</span>
                 )}
                 , vous devez avoir préalablement obtenu un accès à{' '}
-                <b>{TARGET_API_LABELS[previousTargetApi]}</b>.
+                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
               </p>
               <p>
                 Veuillez{' '}
@@ -111,7 +112,7 @@ const PreviousEnrollmentSection = ({
                   }}
                 >
                   demander votre accès à{' '}
-                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                 </Link>{' '}
                 avant de continuer cette demande.
               </p>
@@ -129,7 +130,7 @@ const PreviousEnrollmentSection = ({
         )}
       {previousTargetApi && (
         <div className="panel">
-          <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+          <h2>Démarche {DATA_PROVIDER_LABELS[previousTargetApi]} associée</h2>
           <Description />
           {!disabled &&
             !isUserEnrollmentLoading &&
@@ -137,11 +138,11 @@ const PreviousEnrollmentSection = ({
               <div className="form__group">
                 <h4>
                   Association à votre demande{' '}
-                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                 </h4>
                 <p>
                   Chargement de vos demandes{' '}
-                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                   ...
                 </p>
               </div>
@@ -150,7 +151,7 @@ const PreviousEnrollmentSection = ({
             <div className="form__group">
               <div className="notification error">
                 Erreur inconnue lors de la récupération de vos demandes{' '}
-                {TARGET_API_LABELS[previousTargetApi]}.
+                {DATA_PROVIDER_LABELS[previousTargetApi]}.
               </div>
             </div>
           )}
@@ -162,7 +163,7 @@ const PreviousEnrollmentSection = ({
                   label={
                     <>
                       Nom de la démarche{' '}
-                      <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                      <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                     </>
                   }
                   helper={
