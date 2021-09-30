@@ -37,7 +37,7 @@
 }
 
 .questions .question-container.open > div {
-  max-height: 500px;
+  max-height: 1000px;
 }
 .questions .open > label:after {
   transform: rotate(-180deg);

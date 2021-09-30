@@ -1,18 +1,30 @@
 import React, { PropsWithChildren, useState } from 'react';
+import ContactsTable from '../molecules/ContactTable';
 import './Faq.css';
 
 const questions = [
   {
-    anchor: 'Hey',
-    title: 'J’ai envie d’envoyer plein de mails de support a Mr Dubigny',
-    body: <>Ouiiiii bien sur allez-y c'est raphael.dubigny@beta.gouv.fr</>,
-  },
-  {
-    anchor: 'test',
-    title: 'Ca, du coup, c’est un test',
+    anchor: 'probleme-demande',
+    title: 'J’ai une question concernant ma demande',
     body: (
       <>
-        hum test, test, test <br />
+        <p>
+          Pour répondre à votre question, vous pouvez contacter l'équipe qui
+          arbitre votre demande :
+        </p>
+        <ContactsTable />
+      </>
+    ),
+  },
+  {
+    anchor: 'contact',
+    title: 'Je ne trouve pas la réponse à ma question',
+    body: (
+      <>
+        Vous pouvez{' '}
+        <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr">
+          nous poser votre question directement.
+        </a>
       </>
     ),
   },
