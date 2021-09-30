@@ -116,3 +116,57 @@ export const API_ICONS = {
   api_declaration_auto_entrepreneur: 'logo-urssaf.png',
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
 };
+
+export const EMAILS = {
+  franceconnect: 'support.partenaires@franceconnect.gouv.fr',
+  hubee: '',
+  aidants_connect: 'contact@aidantsconnect.beta.gouv.fr',
+  ans: 'prosanteconnect.editeurs@esante.gouv.fr',
+  api_particulier: 'contact@particulier.api.gouv.fr',
+  api_entreprise: 'support@entreprise.api.gouv.fr',
+  dgfip: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+  urssaf: 'contact.tiercedeclaration@urssaf.fr',
+  cnam: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
+  le_taxi: 'equipe@le.taxi',
+};
+
+export const API_CONTACTS = [
+  {
+    name: TARGET_API_LABELS.aidants_connect,
+    address: EMAILS.aidants_connect,
+  },
+  { name: TARGET_API_LABELS.hubee, address: EMAILS.hubee },
+  {
+    name: TARGET_API_LABELS.franceconnect,
+    address: EMAILS.franceconnect,
+  },
+  {
+    name: TARGET_API_LABELS.api_pro_sante_connect,
+    address: EMAILS.ans,
+  },
+  {
+    name: TARGET_API_LABELS.api_particulier,
+    address: EMAILS.api_particulier,
+  },
+  {
+    name: TARGET_API_LABELS.api_entreprise,
+    address: EMAILS.api_entreprise,
+  },
+  {
+    name: 'API Impôt particulier, API Recherche des personnes physiques (R2P) ou API Fichier des Comptes Bancaires et Assimilés (FICOBA)',
+    address: EMAILS.dgfip,
+  },
+  {
+    name: TARGET_API_LABELS.api_tiers_de_prestation,
+    address: EMAILS.urssaf,
+  },
+  {
+    name: 'API Indemnités Journalières ou API de droits à l’Assurance Maladie CNAM',
+    address: EMAILS.cnam,
+  },
+  { name: TARGET_API_LABELS.cartobio, address: 'cartobio@beta.gouv.fr' },
+  {
+    name: 'le.Taxi',
+    address: EMAILS.le_taxi,
+  },
+];

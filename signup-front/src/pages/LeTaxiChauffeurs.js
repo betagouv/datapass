@@ -9,6 +9,7 @@ import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecate
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
 import Quote from '../components/atoms/inputs/Quote';
+import { EMAILS } from '../lib/api';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -48,7 +49,7 @@ const LeTaxiChauffeurs = ({
     documentationUrl="https://api.gouv.fr/les-api/le-taxi"
     contactInformation={[
       {
-        email: 'equipe@le.taxi',
+        email: EMAILS.le_taxi,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
