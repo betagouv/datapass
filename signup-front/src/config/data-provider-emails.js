@@ -128,6 +128,7 @@ export const DATA_PROVIDER_CONTACT_EMAILS = {
   urssaf: 'contact.tiercedeclaration@urssaf.fr',
   cnam: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
   le_taxi: 'equipe@le.taxi',
+  api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
 };
 
 export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [

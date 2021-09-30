@@ -9,6 +9,7 @@ import CguSection from '../components/organisms/form-sections/deprecated/CguSect
 import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import Quote from '../components/atoms/inputs/Quote';
 import TextSection from '../components/organisms/form-sections/TextSection';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
 
 const availableScopes = [
   {
@@ -28,7 +29,17 @@ const ApiProSanteConnect = ({
     params: { enrollmentId },
   },
 }) => (
-  <Form enrollmentId={enrollmentId} target_api={target_api}>
+  <Form
+    enrollmentId={enrollmentId}
+    target_api={target_api}
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.api_pro_sante_connect,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
+  >
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />

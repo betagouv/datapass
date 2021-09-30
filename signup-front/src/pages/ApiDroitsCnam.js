@@ -9,6 +9,7 @@ import DonneesPersonnellesSection from '../components/organisms/form-sections/de
 import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -98,6 +99,13 @@ const ApiDroitsCnam = ({
     steps={steps}
     DemarcheDescription={DemarcheDescription}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.cnam,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <OrganisationSection />
     <DescriptionSection />

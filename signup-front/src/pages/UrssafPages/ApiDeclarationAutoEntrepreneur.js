@@ -10,6 +10,7 @@ import PiecesJustificativesSection from '../../components/organisms/form-section
 import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/urssaf-sections/CadreJuridiqueSection';
 import { contacts, DemarcheDescriptionCommon } from './common';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -35,6 +36,13 @@ const ApiDeclarationAutoEntrepreneur = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     DemarcheDescription={DemarcheDescription}
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.urssaf,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <OrganisationSection />
     <DescriptionSection />
