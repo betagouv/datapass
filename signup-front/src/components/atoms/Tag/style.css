@@ -23,6 +23,9 @@
   color: var(--w);
 }
 
-.fr-tag + .fr-tag {
-  margin-left: 1em;
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.5em;
+  row-gap: 0.5em;
 }
