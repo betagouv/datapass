@@ -12,6 +12,7 @@ import demarches from './demarches.json';
 import Helper from '../../components/atoms/Helper';
 import { SolutionLogicielleSection } from '../../components/organisms/form-sections/hubee-sections/SolutionLogicielleSection';
 import ExpandableQuote from '../../components/atoms/inputs/ExpandableQuote';
+import { EMAILS } from '../../lib/api';
 
 const DemarcheDescription = () => (
   <>
@@ -229,6 +230,13 @@ const Hubee = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
+    contactInformation={[
+      {
+        email: EMAILS.hubee,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
     title="Demande d’abonnement à une démarche en ligne"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}

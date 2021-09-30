@@ -119,7 +119,7 @@ export const API_ICONS = {
 
 export const EMAILS = {
   franceconnect: 'support.partenaires@franceconnect.gouv.fr',
-  hubee: '',
+  hubee: 'support@hubee.numerique.gouv.fr',
   aidants_connect: 'contact@aidantsconnect.beta.gouv.fr',
   ans: 'prosanteconnect.editeurs@esante.gouv.fr',
   api_particulier: 'contact@particulier.api.gouv.fr',
