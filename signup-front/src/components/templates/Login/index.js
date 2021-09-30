@@ -1,7 +1,10 @@
 import React from 'react';
 import { hashToQueryParams } from '../../../lib';
 import './index.css';
-import { API_ICONS, TARGET_API_LABELS } from '../../../lib/api';
+import {
+  DATA_PROVIDER_ICONS,
+  DATA_PROVIDER_LABELS,
+} from '../../../config/data-provider-emails';
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
@@ -97,16 +100,17 @@ export const Login = () => {
   );
 
   const isOnNewEnrollmentPage =
-    !!TARGET_API_LABELS[targetApi] && !window.location.pathname.split('/')[2];
+    !!DATA_PROVIDER_LABELS[targetApi] &&
+    !window.location.pathname.split('/')[2];
 
   return (
     <section className="section-grey layout-full-page">
       <div className="container">
         <div className="panel" style={{ textAlign: 'center' }}>
-          {API_ICONS[targetApi] && (
+          {DATA_PROVIDER_ICONS[targetApi] && (
             <img
-              src={`/images/${API_ICONS[targetApi]}`}
-              alt={`Logo ${TARGET_API_LABELS[targetApi]}`}
+              src={`/images/${DATA_PROVIDER_ICONS[targetApi]}`}
+              alt={`Logo ${DATA_PROVIDER_LABELS[targetApi]}`}
               height="90"
             />
           )}

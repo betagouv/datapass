@@ -14,6 +14,7 @@ import {
   PreviousEnrollmentDescription,
 } from './common';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierSandbox';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const target_api = 'api_impot_particulier_production';
 const steps = ['api_impot_particulier_sandbox', target_api];
@@ -30,6 +31,13 @@ const ApiImpotParticulierProduction = ({
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection doInitializeDemandeur={true} />

@@ -13,6 +13,7 @@ import {
   PreviousEnrollmentDescription,
 } from './common';
 import { CadreJuridiqueDescription } from './ApiFicobaSandbox';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const target_api = 'api_ficoba_production';
 const steps = ['api_ficoba_sandbox', target_api];
@@ -29,6 +30,13 @@ const ApiFicobaProduction = ({
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection doInitializeDemandeur={true} />

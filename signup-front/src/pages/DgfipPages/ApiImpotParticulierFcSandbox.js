@@ -20,6 +20,7 @@ import {
 } from './api-impot-particulier-common';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const target_api = 'api_impot_particulier_fc_sandbox';
 const steps = [
@@ -40,6 +41,13 @@ const ApiImpotParticulierFcSandbox = ({
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <OrganisationSection />
     <DemarcheSection />

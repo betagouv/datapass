@@ -21,9 +21,9 @@ import './Stats.css';
 import { USER_STATUS_LABELS } from '../../lib/enrollment';
 import { getAPIStats } from '../../services/stats';
 import {
-  TARGET_API_LABELS,
-  TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
-} from '../../lib/api';
+  DATA_PROVIDER_LABELS,
+  DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+} from '../../config/data-provider-emails';
 
 import Helper from '../atoms/Helper';
 import Loader from '../atoms/Loader';
@@ -78,7 +78,7 @@ export const Stats = ({
       setStats({
         ...result.data,
         enrollment_by_target_api: stackLowUseAndUnpublishedApi(
-          TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+          DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
           result.data.enrollment_by_target_api,
           10
         ),
@@ -108,7 +108,7 @@ export const Stats = ({
           >
             Toutes les APIs
           </NavLink>
-          {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
             <NavLink
               key={targetApi}
               className="fr-tag secondary"
@@ -116,7 +116,7 @@ export const Stats = ({
               exact
               to={`/stats/${targetApi}`}
             >
-              {TARGET_API_LABELS[targetApi]}
+              {DATA_PROVIDER_LABELS[targetApi]}
             </NavLink>
           ))}
         </ListHeader>
@@ -281,7 +281,7 @@ export const Stats = ({
                         value,
                         value === 'others'
                           ? 'Autres'
-                          : TARGET_API_LABELS[value],
+                          : DATA_PROVIDER_LABELS[value],
                         props,
                       ]}
                     />
@@ -292,7 +292,7 @@ export const Stats = ({
                       formatter={(value) =>
                         (value === 'others'
                           ? 'Autres'
-                          : TARGET_API_LABELS[value]
+                          : DATA_PROVIDER_LABELS[value]
                         ).substring(0, 25)
                       }
                     />

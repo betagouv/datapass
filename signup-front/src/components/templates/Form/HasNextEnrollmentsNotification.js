@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { TARGET_API_LABELS } from '../../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
 import { getNextEnrollments } from '../../../services/enrollments';
 
 const formatNextEnrollment = (enrollment) =>
-  `${TARGET_API_LABELS[enrollment.target_api] || enrollment.target_api} : #${
+  `${DATA_PROVIDER_LABELS[enrollment.target_api] || enrollment.target_api} : #${
     enrollment.id
   }`;
 

@@ -13,7 +13,7 @@ import {
   setUrlParamsFromState,
 } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
-import { TARGET_API_LABELS } from '../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../config/data-provider-emails';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../../lib/enrollment';
 
 import ScheduleIcon from '../atoms/icons/schedule';
@@ -178,7 +178,7 @@ class AdminEnrollmentList extends React.Component {
     },
     {
       Header: 'Fournisseur',
-      accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
+      accessor: ({ target_api }) => DATA_PROVIDER_LABELS[target_api],
       id: 'target_api',
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
@@ -193,7 +193,7 @@ class AdminEnrollmentList extends React.Component {
 
             return {
               key: targetApiKey,
-              label: TARGET_API_LABELS[targetApiKey],
+              label: DATA_PROVIDER_LABELS[targetApiKey],
             };
           });
 

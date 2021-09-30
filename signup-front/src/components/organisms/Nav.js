@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { ScrollableLink } from './Scrollable';
 import { goBack } from '../../lib';
-import { TARGET_API_LABELS } from '../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../config/data-provider-emails';
 import { isEmpty } from 'lodash';
 import Button from '../atoms/Button';
 
@@ -31,7 +31,7 @@ const Nav = ({
               email: 'contact@api.gouv.fr',
               label: 'Nous contacter',
               subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-                TARGET_API_LABELS[target_api]
+                DATA_PROVIDER_LABELS[target_api]
               )}`,
             },
           ]

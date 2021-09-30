@@ -7,7 +7,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { EMAILS } from '../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
 
 const initialContacts = {
   demandeur: {
@@ -87,7 +87,7 @@ const AidantsConnect = ({
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"
     contactInformation={[
       {
-        email: EMAILS.aidants_connect,
+        email: DATA_PROVIDER_CONTACT_EMAILS.aidants_connect,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },

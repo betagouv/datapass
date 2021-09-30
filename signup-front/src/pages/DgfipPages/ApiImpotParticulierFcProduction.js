@@ -16,6 +16,7 @@ import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
 } from './common';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 const target_api = 'api_impot_particulier_fc_production';
 const steps = ['franceconnect', 'api_impot_particulier_fc_sandbox', target_api];
@@ -32,6 +33,13 @@ const ApiImpotParticulierFcProduction = ({
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection doInitializeDemandeur={true} />

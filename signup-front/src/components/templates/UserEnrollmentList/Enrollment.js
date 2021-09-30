@@ -7,7 +7,10 @@ import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/Button';
 import Tag from '../../atoms/Tag';
 import statusToButtonType from '../../../lib/status-to-button-type';
-import { TARGET_API_LABELS, API_ICONS } from '../../../lib/api';
+import {
+  DATA_PROVIDER_LABELS,
+  DATA_PROVIDER_ICONS,
+} from '../../../config/data-provider-emails';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 
 const Enrollment = ({
@@ -38,12 +41,12 @@ const Enrollment = ({
     <div className="enrollment">
       <div className="enrollment-header">
         <div className="fs">
-          {TARGET_API_LABELS[target_api]}{' '}
-          {API_ICONS[target_api] && (
+          {DATA_PROVIDER_LABELS[target_api]}{' '}
+          {DATA_PROVIDER_ICONS[target_api] && (
             <div>
               <img
-                src={`/images/${API_ICONS[target_api]}`}
-                alt={`logo ${TARGET_API_LABELS[target_api]}`}
+                src={`/images/${DATA_PROVIDER_ICONS[target_api]}`}
+                alt={`logo ${DATA_PROVIDER_LABELS[target_api]}`}
               />
             </div>
           )}

@@ -1,4 +1,4 @@
-export const TARGET_API_LABELS = {
+export const DATA_PROVIDER_LABELS = {
   api_particulier: 'API Particulier',
   franceconnect: 'FranceConnect',
   api_entreprise: 'API Entreprise',
@@ -46,7 +46,7 @@ export const TARGET_API_LABELS = {
     'API Système d’Immatriculation des Véhicules',
 };
 
-export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
+export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'franceconnect',
   'api_entreprise',
   'api_particulier',
@@ -76,7 +76,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'api_systeme_immatriculation_vehicules',
 ];
 
-export const API_ICONS = {
+export const DATA_PROVIDER_ICONS = {
   api_particulier: 'logo-beta-gouv.svg',
   franceconnect: 'logo-fc-with-label.png',
   api_impot_particulier_sandbox: 'logo-dgfip-with-label.png',
@@ -117,7 +117,7 @@ export const API_ICONS = {
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
 };
 
-export const EMAILS = {
+export const DATA_PROVIDER_CONTACT_EMAILS = {
   franceconnect: 'support.partenaires@franceconnect.gouv.fr',
   hubee: 'support@hubee.numerique.gouv.fr',
   aidants_connect: 'contact@aidantsconnect.beta.gouv.fr',
@@ -128,45 +128,54 @@ export const EMAILS = {
   urssaf: 'contact.tiercedeclaration@urssaf.fr',
   cnam: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
   le_taxi: 'equipe@le.taxi',
+  api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
 };
 
-export const API_CONTACTS = [
+export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [
   {
-    name: TARGET_API_LABELS.aidants_connect,
-    address: EMAILS.aidants_connect,
-  },
-  { name: TARGET_API_LABELS.hubee, address: EMAILS.hubee },
-  {
-    name: TARGET_API_LABELS.franceconnect,
-    address: EMAILS.franceconnect,
+    label: DATA_PROVIDER_LABELS.aidants_connect,
+    email: DATA_PROVIDER_CONTACT_EMAILS.aidants_connect,
   },
   {
-    name: TARGET_API_LABELS.api_pro_sante_connect,
-    address: EMAILS.ans,
+    label: DATA_PROVIDER_LABELS.hubee,
+    email: DATA_PROVIDER_CONTACT_EMAILS.hubee,
   },
   {
-    name: TARGET_API_LABELS.api_particulier,
-    address: EMAILS.api_particulier,
+    label: DATA_PROVIDER_LABELS.franceconnect,
+    email: DATA_PROVIDER_CONTACT_EMAILS.franceconnect,
   },
   {
-    name: TARGET_API_LABELS.api_entreprise,
-    address: EMAILS.api_entreprise,
+    label: DATA_PROVIDER_LABELS.api_pro_sante_connect,
+    email: DATA_PROVIDER_CONTACT_EMAILS.ans,
   },
   {
-    name: 'API Impôt particulier, API Recherche des personnes physiques (R2P) ou API Fichier des Comptes Bancaires et Assimilés (FICOBA)',
-    address: EMAILS.dgfip,
+    label: DATA_PROVIDER_LABELS.api_particulier,
+    email: DATA_PROVIDER_CONTACT_EMAILS.api_particulier,
   },
   {
-    name: TARGET_API_LABELS.api_tiers_de_prestation,
-    address: EMAILS.urssaf,
+    label: DATA_PROVIDER_LABELS.api_entreprise,
+    email: DATA_PROVIDER_CONTACT_EMAILS.api_entreprise,
   },
   {
-    name: 'API Indemnités Journalières ou API de droits à l’Assurance Maladie CNAM',
-    address: EMAILS.cnam,
+    label:
+      'API Impôt particulier, API Recherche des personnes physiques (R2P) ou API Fichier des Comptes Bancaires et Assimilés (FICOBA)',
+    email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
   },
-  { name: TARGET_API_LABELS.cartobio, address: 'cartobio@beta.gouv.fr' },
   {
-    name: 'le.Taxi',
-    address: EMAILS.le_taxi,
+    label: DATA_PROVIDER_LABELS.api_tiers_de_prestation,
+    email: DATA_PROVIDER_CONTACT_EMAILS.urssaf,
+  },
+  {
+    label:
+      'API Indemnités Journalières ou API de droits à l’Assurance Maladie CNAM',
+    email: DATA_PROVIDER_CONTACT_EMAILS.cnam,
+  },
+  {
+    label: DATA_PROVIDER_LABELS.cartobio,
+    email: 'cartobio@beta.gouv.fr',
+  },
+  {
+    label: 'le.Taxi',
+    email: DATA_PROVIDER_CONTACT_EMAILS.le_taxi,
   },
 ];

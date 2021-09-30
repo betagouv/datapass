@@ -12,6 +12,7 @@ import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprec
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -96,6 +97,13 @@ const ApiR2PSandbox = ({
     steps={steps}
     demarches={demarches}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <OrganisationSection />
     <DemarcheSection />

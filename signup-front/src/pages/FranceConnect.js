@@ -12,7 +12,7 @@ import ÉquipeSection, {
 } from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
-import { EMAILS } from '../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
 
 const DonneesDescription = () => (
   <>
@@ -131,7 +131,7 @@ const FranceConnect = ({
     target_api="franceconnect"
     contactInformation={[
       {
-        email: EMAILS.franceconnect,
+        email: DATA_PROVIDER_CONTACT_EMAILS.franceconnect,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },

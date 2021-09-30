@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TARGET_API_LABELS } from '../../../lib/api';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
 import NextSteps from './NextSteps';
 
 const WelcomeMessage = ({
@@ -15,7 +15,7 @@ const WelcomeMessage = ({
         <h3>Bienvenue !</h3>
         <div className="call-to-action">
           {newEnrollmentPageMessage ||
-            `Vous souhaitez connecter votre service en ligne à « ${TARGET_API_LABELS[targetApi]} »`}
+            `Vous souhaitez connecter votre service en ligne à « ${DATA_PROVIDER_LABELS[targetApi]} »`}
           , l’obtention de votre habilitation va se dérouler en 4 étapes :
           <NextSteps targetApi={targetApi} isService={isService} />
           <p>

@@ -9,7 +9,7 @@ import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecate
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
 import Quote from '../components/atoms/inputs/Quote';
-import { EMAILS } from '../lib/api';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -49,7 +49,7 @@ const LeTaxiChauffeurs = ({
     documentationUrl="https://api.gouv.fr/les-api/le-taxi"
     contactInformation={[
       {
-        email: EMAILS.le_taxi,
+        email: DATA_PROVIDER_CONTACT_EMAILS.le_taxi,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
