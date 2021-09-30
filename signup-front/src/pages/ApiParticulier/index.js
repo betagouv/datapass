@@ -10,6 +10,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import { EMAILS } from '../../lib/api';
 
 const DonneesDescription = () => (
   <>
@@ -250,7 +251,7 @@ const ApiParticulier = ({
     demarches={demarches}
     contactInformation={[
       {
-        email: 'contact@particulier.api.gouv.fr',
+        email: EMAILS.api_particulier,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
