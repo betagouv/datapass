@@ -1,0 +1,113 @@
+name: Backend CI
+
+on: [push]
+
+env:
+  CI: true
+  COVERAGE: true
+  RUBY_VERSION: 2.7.3
+  PG_HOST: localhost
+  PG_USER: signup-back
+  PG_PASSWORD: signup-back
+  PG_DATABASE: signup-back-test
+
+jobs:
+  test:
+    name: Tests (RSpec)
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: ./signup-back
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: signup-back
+          POSTGRES_PASSWORD: signup-back
+          POSTGRES_DB: signup-back-test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+      redis:
+        image: redis
+        ports: ["6379:6379"]
+        options: --entrypoint redis-server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+
+      # - name: Setup tmate session (for debugging purpose)
+      #   uses: mxschmitt/action-tmate@v2
+
+      - name: Install postgres client #and imagemagick
+        run: sudo apt-get install libpq-dev #imagemagick
+
+      # - name: Authorize PDF manipulation for imagemagick
+      #   run: |
+      #     sudo grep -v PDF /etc/ImageMagick-6/policy.xml > policy.xml
+      #     sudo cp policy.xml /etc/ImageMagick-6/policy.xml
+
+      - name: Cache Gems
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Bundle install
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundler install --jobs 4 --retry 3
+
+      - name: Create database
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+        run: |
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:schema:load RAILS_ENV=test
+
+      - name: Run tests & publish coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: c520d0a599739b0fb177eb2ecfeaa72792c262af475dfa0a7bcea092fdcd3301
+        with:
+          coverageCommand: bundle exec rspec
+          workingDirectory: signup-back
+
+  lint:
+    name: Linter (StandardRB)
+    runs-on: ubuntu-18.04
+    if: "${{ github.actor != 'dependabot[bot]' }}"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Standardrb linter
+        uses: skelz0r/standardrb-action@features/specify-project-path
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: signup-back
+
+  security:
+    name: Brakeman
+    if: "${{ github.actor != 'dependabot[bot]' }}"
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Brakeman linter action
+        uses: skelz0r/brakeman-linter-action@features/specify-project-path
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: signup-back
