@@ -189,21 +189,23 @@ export const Form = ({
                 <h1>{title || TARGET_API_LABELS[target_api]}</h1>
               </>
             )}
-            {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
-            {enrollment.copied_from_enrollment_id && (
-              <Tag
-                href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
-                type="info"
-              >
-                <FileCopyIcon size={18} color="var(--w)" />
-                <span style={{ marginLeft: '4px' }}>
-                  Copie de n°{enrollment.copied_from_enrollment_id}
-                </span>
+            <div className="tag-container">
+              {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
+              {enrollment.copied_from_enrollment_id && (
+                <Tag
+                  href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
+                  type="info"
+                >
+                  <FileCopyIcon size={18} color="var(--w)" />
+                  <span style={{ marginLeft: '4px' }}>
+                    Copie de n°{enrollment.copied_from_enrollment_id}
+                  </span>
+                </Tag>
+              )}
+              <Tag type={statusToButtonType[enrollment.status]}>
+                {USER_STATUS_LABELS[enrollment.status]}
               </Tag>
-            )}
-            <Tag type={statusToButtonType[enrollment.status]}>
-              {USER_STATUS_LABELS[enrollment.status]}
-            </Tag>
+            </div>
           </div>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
