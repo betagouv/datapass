@@ -14,7 +14,7 @@ const ContactsTable = () => (
             <td>{contact.name}</td>
             <td>
               <a
-                href={`${contact.address}?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr`}
+                href={`mailto:${contact.address}?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr`}
               >
                 Écrire à l’équipe
               </a>
