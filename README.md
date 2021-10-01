@@ -168,8 +168,8 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 
 #### Dependencies setup
 
-- [Docker](https://www.docker.com/)
-- [Docker compose](https://docs.docker.com/compose/install/)
+- [Docker 20.10.8](https://www.docker.com/)
+- [Docker compose 1.29.2](https://docs.docker.com/compose/install/)
 - [Ansible 2.9.10](https://www.ansible.com/)
 - [NodeJS >=16](https://nodejs.org/)
 
@@ -253,7 +253,7 @@ vagrant ssh api-auth
 > `NFS is reporting that your exports file is invalid`
 > You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
 
-#### Interative mode
+#### Interactive mode
 
 ```bash
 vagrant ssh api-auth
