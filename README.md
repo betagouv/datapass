@@ -360,7 +360,7 @@ ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datap
 Start the app in the interactive mode:
 
 ```
-npm run dev-with-local-backend
+REACT_APP_BACK_HOST=https://back.datapass-development.api.gouv.fr npm run dev
 ```
 
 #### Signup Back
