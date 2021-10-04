@@ -164,12 +164,39 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 
 ## Installation
 
-### Datapass
+### DataPass front only
+
+This first installation method use the remote backend available
+at https://back.datapass-test.api.gouv.fr. This is the simplest and fastest
+installation method, but you will not be able to make development on the
+backend.
+
+First, install NodeJs version >=16.
+
+Then, clone the repository and install npm dependencies:
+
+```
+git clone git@github.com:betagouv/datapass.git
+cd datapass/signup-front
+npm i
+```
+
+Last, launch the server:
+
+```
+npm run dev-with-remote-backend
+```
+
+### DataPass back & front with Docker
+
+This installation method use a backend launched locally with docker. This method
+is longer and more complex than the first method, but you will be able to make
+development on the backend.
 
 #### Dependencies setup
 
-- [Docker](https://www.docker.com/)
-- [Docker compose](https://docs.docker.com/compose/install/)
+- [Docker 20.10.8](https://www.docker.com/)
+- [Docker compose 1.29.2](https://docs.docker.com/compose/install/)
 - [Ansible 2.9.10](https://www.ansible.com/)
 - [NodeJS >=16](https://nodejs.org/)
 
@@ -182,7 +209,8 @@ git clone git@github.com:betagouv/datapass.git
 cd datapass
 ```
 
-Ask a colleague to give you the backend secrets stored in the `signup-back/.env.local` file.
+Ask a colleague to give you the backend secrets stored in
+the `signup-back/.env.local` file.
 
 Then create and configure your backend docker containers:
 
@@ -200,14 +228,18 @@ npm run dev
 
 #### Test your installation
 
-Go to http://localhost:3000/. Sign in as `user@yopmail.com` with the password `user@yopmail.com`. Then, you should see the enrollment list.
-Note that test instructor emails can be found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql).
+Go to http://localhost:3000/. Sign in as `user@yopmail.com` with the
+password `user@yopmail.com`. Then, you should see the enrollment list. Note that
+test instructor emails can be
+found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql)
+.
 
-##### Front end linter
+#### Front end linter
 
-Note that, we use the [`prettier`](https://prettier.io) linter for signup-front. Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
+Note that, we use the [`prettier`](https://prettier.io) linter for signup-front.
+Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
-### API Auth
+### API Auth (optional)
 
 #### Dependencies setup
 
@@ -253,7 +285,7 @@ vagrant ssh api-auth
 > `NFS is reporting that your exports file is invalid`
 > You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
 
-#### Interative mode
+#### Interactive mode
 
 ```bash
 vagrant ssh api-auth
@@ -270,9 +302,85 @@ Optional, you can also run api-auth in debug mode:
 DEBUG=oidc-provider:* npm start
 ```
 
-## Production-like deployment (optional)
+### DataPass back & front with Vagrant (optional)
 
-For development purpose you may want to have a local iso-production application running instead of deployment through NFS. You can do it by running the deployment script instead of processing to a development deployment:
+This installation method use a backend launched locally within a Vagrant virtual
+machine. This method is much longer and more complex than the previous ones, but
+it provides a development environment very close to the production environment
+allowing you to both work on provisioning and applications. It is configured to
+run with a local installation of api-auth in a Vagrant virtual machine.
+
+#### Dependencies setup
+
+- [VirtualBox \^5.2.10](https://www.virtualbox.org)
+- [Vagrant \^2.1.1](https://www.vagrantup.com)
+- NFS
+- [Ansible 2.9.10](https://www.ansible.com/)
+
+#### Installation
+
+Clone the repo:
+
+```bash
+git clone git@github.com:betagouv/datapass.git
+```
+
+Add the following hosts in `/etc/hosts`:
+
+```text
+192.168.56.125 datapass-development.particulier-infra.api.gouv.fr
+192.168.56.125 datapass-development.api.gouv.fr
+192.168.56.125 back.datapass-development.api.gouv.fr
+```
+
+Then create and configure your virtual machine:
+
+```bash
+vagrant up datapass # This can take up to 30 minutes
+```
+
+At this point you got a complete environment running. But you may want to run
+the different application interactively.
+
+#### Signup Front in interactive mode
+
+You will run DataPass frontend locally and use the backend in the virtual
+machine.
+
+Additional dependencies setup:
+
+- nodejs ^16.9
+
+Tel your backend to listen from localhost:
+
+```
+ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:3000"
+```
+
+Start the app in the interactive mode:
+
+```
+REACT_APP_BACK_HOST=https://back.datapass-development.api.gouv.fr npm run dev
+```
+
+#### Signup Back
+
+You will run DataPass backend interactively in the virtual machine.
+
+```bash
+vagrant ssh datapass
+sudo systemctl stop signup-back
+sudo su - signup
+cd /opt/apps/signup-back/current
+export $(cat /etc/signup-back.conf | xargs)
+PG_HOST=localhost RAILS_ENV=development rails s
+```
+
+### Production-like deployment (optional)
+
+For development purpose you may want to have a local iso-production application
+running instead of deployment through NFS. You can do it by running the
+deployment script instead of processing to a development deployment:
 
 ```bash
 ansible-playbook -i inventories/development deploy.yml
@@ -292,10 +400,14 @@ ansible-playbook -i inventories/development deploy.yml
 
 ### Unable to join organization on development environment
 
-The incrementation of organization id might not have been done properly when loading fixtures in api-auth database.
+The incrementation of organization id might not have been done properly when
+loading fixtures in api-auth database.
 
 You can fix this in api-auth database with:
 
 ```postgres-sql
 SELECT setval('organizations_id_seq', 3);
 ```
+
+Powered
+by: [<img src="http://www.browserstack.com/images/layout/browserstack-logo-600x315.png" height="100"/>](https://www.browserstack.com/)
