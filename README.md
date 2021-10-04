@@ -166,12 +166,12 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 
 ### DataPass (front only)
 
-Cette installation utilise le backend disponible sur https://back.datapass-test.api.gouv.fr. L’installation est simple
-et rapide mais ne permet pas de développements sur le backend.
+This installation method use the remote backend available at https://back.datapass-test.api.gouv.fr.
+This is a simple and fast installation, but you will not be able to make development on the backend.
 
-Installer NodeJs version >=16.
+First, install NodeJs version >=16.
 
-Cloner le dépôt de code puis installer les dépendances npm :
+Then, clone the repository and install npm dependencies:
 
 ```
 git clone git@github.com:betagouv/datapass.git
@@ -179,7 +179,7 @@ cd datapass/signup-front
 npm i
 ```
 
-Lancer le serveur :
+Last, launch the server:
 
 ```
 npm run dev-with-remote-backend
@@ -187,8 +187,9 @@ npm run dev-with-remote-backend
 
 ### DataPass (back & front)
 
-Cette installation utilise un backend lancé dans docker. L’installation est donc plus longue que la
-première mais permet de faire des développements sur le backend.
+This installation method use a backend launched localy with docker.
+This method is longer and more complex than the first method, but
+you will be able to make development on the backend.
 
 #### Dependencies setup
 
