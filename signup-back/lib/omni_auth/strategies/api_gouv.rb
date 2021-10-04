@@ -22,7 +22,7 @@ module OmniAuth
       end
 
       def callback_url
-        "#{ENV["BACK_HOST"]}/users/auth/api_gouv/callback"
+        "localhost:3000/users/auth/api_gouv/callback"
       end
 
       def authorize_params
