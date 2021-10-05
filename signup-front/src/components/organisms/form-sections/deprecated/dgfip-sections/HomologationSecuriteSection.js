@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import FileInput from '../../../molecules/FileInput';
-import { ScrollablePanel } from '../../Scrollable';
-import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
-import TextInput from '../../../atoms/inputs/TextInput';
-import DateInput from '../../../atoms/inputs/DateInput';
+import FileInput from '../../../../molecules/FileInput';
+import { ScrollablePanel } from '../../../Scrollable';
+import { FormContext } from '../../../../templates/Form';
+import Quote from '../../../../atoms/inputs/Quote';
+import TextInput from '../../../../atoms/inputs/TextInput';
+import DateInput from '../../../../atoms/inputs/DateInput';
 
-const SECTION_LABEL = 'L’homologation de sécurité';
+const SECTION_LABEL = 'Homologation de sécurité';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const HomologationSecuriteSection = () => {
@@ -27,8 +27,8 @@ const HomologationSecuriteSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>L’homologation de sécurité</h2>
-      <ExpandableQuote title="Pourquoi effectuer une homologation de sécurité ?">
+      <h2>Homologation de sécurité</h2>
+      <Quote>
         <p>
           Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche
           d’homologation obligatoire pour les SI relatifs aux échanges entre une
@@ -40,14 +40,13 @@ const HomologationSecuriteSection = () => {
           décision formelle d’homologation (également appelée attestation
           formelle).
         </p>
-      </ExpandableQuote>
+      </Quote>
       <TextInput
         label="Nom de l’autorité d’homologation"
         name="additional_content.autorite_homologation_nom"
         value={autorite_homologation_nom}
         disabled={disabled}
         onChange={onChange}
-        required
       />
       <TextInput
         label="Fonction de l’autorité d’homologation"
@@ -55,7 +54,6 @@ const HomologationSecuriteSection = () => {
         value={autorite_homologation_fonction}
         disabled={disabled}
         onChange={onChange}
-        required
       />
       <DateInput
         label="Date de début de l’homologation"
@@ -63,7 +61,6 @@ const HomologationSecuriteSection = () => {
         value={date_homologation}
         disabled={disabled}
         onChange={onChange}
-        required
       />
       <DateInput
         label="Date de fin de l’homologation"
@@ -71,16 +68,14 @@ const HomologationSecuriteSection = () => {
         value={date_fin_homologation}
         disabled={disabled}
         onChange={onChange}
-        required
       />
       <FileInput
-        label="Décision d’homologation"
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::DecisionHomologation'}
         onChange={onChange}
-        required
+        label={'Décision d’homologation'}
       />
     </ScrollablePanel>
   );

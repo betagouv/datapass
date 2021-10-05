@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { ScrollablePanel } from '../../Scrollable';
-import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
-import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
+import { ScrollablePanel } from '../../../Scrollable';
+import { FormContext } from '../../../../templates/Form';
+import Quote from '../../../../atoms/inputs/Quote';
+import CheckboxInput from '../../../../atoms/inputs/CheckboxInput';
 
-const SECTION_LABEL = 'La recette fonctionnelle';
+const SECTION_LABEL = 'Recette fonctionnelle';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const RecetteFonctionnelleSection = () => {
@@ -18,8 +18,8 @@ const RecetteFonctionnelleSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>La recette fonctionnelle</h2>
-      <ExpandableQuote title="Comment effectuer une recette fonctionnelle ?">
+      <h2>Recette fonctionnelle</h2>
+      <Quote>
         <p>
           La qualification de votre téléservice est obligatoire tant pour votre
           homologation de sécurité ou vos obligations RGPD que pour demander
@@ -44,7 +44,7 @@ const RecetteFonctionnelleSection = () => {
           A l’issue de vos travaux, veuillez attester de la qualification de
           votre téléservice.
         </p>
-      </ExpandableQuote>
+      </Quote>
       <CheckboxInput
         label="J’atteste avoir réalisé une recette fonctionnelle et qualifié mon téléservice."
         name="additional_content.recette_fonctionnelle"

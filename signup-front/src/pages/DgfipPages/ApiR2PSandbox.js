@@ -11,7 +11,11 @@ import CguSection from '../../components/organisms/form-sections/deprecated/CguS
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
-import { contacts, DonneesDescription, SuiteDescription } from './common';
+import {
+  contacts,
+  DonneesDescription,
+  SuiteDescription,
+} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
 
 DgfipRgpdAgreement.propTypes = {

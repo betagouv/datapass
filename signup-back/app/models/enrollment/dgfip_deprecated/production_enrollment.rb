@@ -1,4 +1,4 @@
-class Enrollment::Dgfip::ProductionEnrollment < Enrollment
+class Enrollment::DgfipDeprecated::ProductionEnrollment < Enrollment
   before_save :set_info_from_previous_enrollment, if: :will_save_change_to_previous_enrollment_id?
 
   protected
@@ -19,6 +19,9 @@ class Enrollment::Dgfip::ProductionEnrollment < Enrollment
     # Recette fonctionnelle
     errors[:recette_fonctionnelle] << "Vous devez attester avoir réaliser une recette fonctionnelle avant de continuer" unless additional_content&.fetch("recette_fonctionnelle", false)&.present?
 
+    # Données personnelles
+    rgpd_validation
+
     # Cadre juridique
     cadre_juridique_validation
 
@@ -35,6 +38,5 @@ class Enrollment::Dgfip::ProductionEnrollment < Enrollment
 
     # CGU
     errors[:cgu_approved] << "Vous devez valider les modalités d’utilisation avant de continuer" unless cgu_approved?
-    errors[:dpo_is_informed] << "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer" unless dpo_is_informed?
   end
 end

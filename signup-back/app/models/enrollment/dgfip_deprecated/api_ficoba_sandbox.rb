@@ -1,4 +1,4 @@
-class Enrollment::ApiR2pSandbox < Enrollment::Dgfip::SandboxEnrollment
+class Enrollment::ApiFicobaSandbox < Enrollment::DgfipDeprecated::SandboxEnrollment
   protected
 
   def sent_validation

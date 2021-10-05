@@ -11,7 +11,7 @@ import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
 const SECTION_LABEL = 'Le cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
+const CadreJuridiqueSection = ({ CadreJuridiqueDescription }) => {
   const {
     disabled,
     onChange,
@@ -26,9 +26,11 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
-      <ExpandableQuote title="Comment trouver le cadre juridique ?">
-        <CadreJuridiqueDescription />
-      </ExpandableQuote>
+      {CadreJuridiqueDescription && (
+        <ExpandableQuote title="Comment trouver le cadre juridique ?">
+          <CadreJuridiqueDescription />
+        </ExpandableQuote>
+      )}
       <h3>
         Vous souhaitez accéder, traiter et conserver des données personnelles.
         Quel est le cadre juridique qui autorise votre organisation à accéder à

@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierSandbox < Enrollment::Dgfip::SandboxEnrollment
+class Enrollment::ApiImpotParticulierSandbox < Enrollment::DgfipDeprecated::SandboxEnrollment
   protected
 
   def sent_validation
