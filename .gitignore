@@ -4,3 +4,6 @@ ansible_modules
 .idea
 *.retry
 *.swp
+
+cypress/videos
+cypress/screenshots
