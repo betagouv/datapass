@@ -2,12 +2,12 @@ import React from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import Quote from '../../../atoms/inputs/Quote';
 
-const SECTION_LABEL = 'Licence';
+const SECTION_LABEL = 'Le contrat de licence';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const ContratDeLicenceSection = () => (
   <ScrollablePanel scrollableId={SECTION_ID}>
-    <h2>Contrat de Licence</h2>
+    <h2>{SECTION_LABEL}</h2>
     <Quote>
       <p>
         Suite à la soumission de votre demande via ce formulaire, l’Urssaf va

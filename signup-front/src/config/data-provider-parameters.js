@@ -44,6 +44,7 @@ export const DATA_PROVIDER_LABELS = {
   api_indemnites_journalieres_cnam: 'API Indemnités Journalières (CNAM)',
   api_systeme_immatriculation_vehicules:
     'API Système d’Immatriculation des Véhicules',
+  api_declaration_cesu: 'API Tierce Déclaration CESU',
 };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -115,6 +116,7 @@ export const DATA_PROVIDER_ICONS = {
   api_pro_sante_connect: 'logo-ans.png',
   api_declaration_auto_entrepreneur: 'logo-urssaf.png',
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
+  api_declaration_cesu: 'logo-urssaf.png',
 };
 
 export const DATA_PROVIDER_CONTACT_EMAILS = {

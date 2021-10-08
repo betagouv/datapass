@@ -3,7 +3,17 @@ class Enrollment::ApiDeclarationAutoEntrepreneurPolicy < EnrollmentPolicy
     res = super
 
     res.concat([
-      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job]
+      scopes: [
+        :api040,
+        :api075,
+        :api030,
+        :api031,
+        :api071,
+        :api020,
+        :api050,
+        :api060,
+        :api070
+      ]
     ])
 
     res

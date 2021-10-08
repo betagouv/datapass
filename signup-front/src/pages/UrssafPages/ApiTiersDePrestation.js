@@ -3,28 +3,62 @@ import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/urssaf-sections/CadreJuridiqueSection';
-import { contacts, DemarcheDescriptionCommon } from './common';
-
-const DemarcheDescription = () => (
-  <div className="notification grey">
-    <p>
-      L’API Tiers de prestation permet pour le compte d’un particulier et en
-      qualité de tiers de prestation (prestataire ou mandataire de services à la
-      personne) d’inscrire le particulier au dispositif et de transmettre à
-      l’Urssaf la facturation de ce particulier afin qu’il bénéficie de l’avance
-      immédiate de crédit d’impôt SAP.
-    </p>
-    <DemarcheDescriptionCommon />
-  </div>
-);
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const target_api = 'api_tiers_de_prestation';
+
+const availableScopes = [
+  {
+    value: 'id_client',
+    label: 'Identifiant du client du tiers de prestation',
+    mandatory: true,
+  },
+  {
+    value: 'id_demande_paiement',
+    label: 'Identifiant de la demande de paiement',
+    mandatory: true,
+  },
+  {
+    value: 'demande_paiement',
+    label: 'Informations sur la demande de paiement (montant, acompte, ...)',
+    mandatory: true,
+  },
+  {
+    value: 'num_facture_tiers',
+    label: 'Numéro de la facture',
+    mandatory: true,
+  },
+  {
+    value: 'statut',
+    label: 'Statut de la demande de paiement',
+    mandatory: true,
+  },
+  {
+    value: 'info_rejet',
+    label:
+      'Dans le cadre d’un rejet, les informations complémentaires sur le rejet',
+    mandatory: true,
+  },
+  {
+    value: 'info_virement',
+    label:
+      'Contient des informations complémentaires sur le virement lors que cela est disponible',
+    mandatory: true,
+  },
+];
+
+const CadreJuridiqueDescription = () => (
+  <p>
+    L’Urssaf concède à titre gratuit au demandeur et sur condition d’octroi de
+    l’habilitation, une licence d’utilisation non exclusive du présent service.
+  </p>
+);
 
 const ApiTiersDePrestation = ({
   match: {
@@ -34,17 +68,23 @@ const ApiTiersDePrestation = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    DemarcheDescription={DemarcheDescription}
-    documentationUrl="https://api.gouv.fr/producteurs/urssaf"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.urssaf,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <OrganisationSection />
     <DescriptionSection />
-    <CadreJuridiqueSection />
-    <DonneesPersonnellesSection />
-    <MiseEnOeuvreSection
-      MiseEnOeuvreDescription={() => null}
-      initialContacts={contacts}
+    <DonneesSection availableScopes={availableScopes} />
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+      defaultFondementJuridiqueTitle="Contrat de licence"
+      defaultFondementJuridiqueUrl="non applicable"
     />
+    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection showHabilitationServiceDomicile />
     <ContratDeLicenceSection />
   </Form>

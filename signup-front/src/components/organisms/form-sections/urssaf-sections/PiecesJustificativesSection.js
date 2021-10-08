@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
-import Quote from '../../../atoms/inputs/Quote';
 import FileInput from '../../../molecules/FileInput';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 
-const SECTION_LABEL = 'Pièces justificatives';
+const SECTION_LABEL = 'Les pièces justificatives';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const PiecesJustificativesSection = ({
@@ -18,8 +18,8 @@ export const PiecesJustificativesSection = ({
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Pièces justificatives</h2>
-      <Quote>
+      <h2>{SECTION_LABEL}</h2>
+      <ExpandableQuote title="Pourquoi avons nous besoin de votre attestation fiscale ?">
         <p>
           Afin de vérifier que vous êtes en pleine connaissance de vos
           obligations fiscales (paiement de la TVA et de l’impôt sur le revenu
@@ -27,7 +27,7 @@ export const PiecesJustificativesSection = ({
           attestation fiscale justifiant de la régularité de votre situation
           fiscale.
         </p>
-      </Quote>
+      </ExpandableQuote>
       <FileInput
         disabled={disabled}
         uploadedDocuments={documents}
@@ -38,7 +38,7 @@ export const PiecesJustificativesSection = ({
       />
       {showHabilitationServiceDomicile && (
         <>
-          <Quote>
+          <ExpandableQuote title="Pourquoi avons nous besoin de votre habilitation service à domicile ?">
             <p>
               Afin de vérifier que vous êtes habilité à fournir des prestations
               de services à domicile, merci de joindre un document justifiant
@@ -49,7 +49,7 @@ export const PiecesJustificativesSection = ({
               activités relevant du I de l’article D. 312-6-2 du code de
               l’action sociale et des familles
             </p>
-          </Quote>
+          </ExpandableQuote>
           <FileInput
             disabled={disabled}
             uploadedDocuments={documents}

@@ -56,6 +56,7 @@ import ApiInfinoeSandbox from './pages/DgfipPages/ApiInfinoeSandbox';
 import ApiInfinoeProduction from './pages/DgfipPages/ApiInfinoeProduction';
 import ApiSystemeImmatriculationVehicules from './pages/ApiSystemeImmatriculationVehicules';
 import FAQ from './components/templates/Faq';
+import ApiDeclarationCesu from './pages/UrssafPages/ApiDeclarationCesu';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -269,6 +270,11 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-tiers-de-prestation/:enrollmentId?"
         component={ApiTiersDePrestation}
+      />
+
+      <PrivateRoute
+        path="/api-declaration-cesu/:enrollmentId?"
+        component={ApiDeclarationCesu}
       />
 
       <PrivateRoute
