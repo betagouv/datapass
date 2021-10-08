@@ -10,7 +10,7 @@ import PiecesJustificativesSection from '../../components/organisms/form-section
 import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/urssaf-sections/CadreJuridiqueSection';
 import { contacts, DemarcheDescriptionCommon } from './common';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

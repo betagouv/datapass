@@ -10,7 +10,7 @@ import { enrollmentListStyle } from '../../lib/enrollment';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
-} from '../../config/data-provider-emails';
+} from '../../config/data-provider-parameters';
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';

@@ -10,7 +10,7 @@ import statusToButtonType from '../../../lib/status-to-button-type';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_ICONS,
-} from '../../../config/data-provider-emails';
+} from '../../../config/data-provider-parameters';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 
 const Enrollment = ({

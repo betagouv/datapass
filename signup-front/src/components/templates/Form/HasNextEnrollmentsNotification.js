@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getNextEnrollments } from '../../../services/enrollments';
 
 const formatNextEnrollment = (enrollment) =>

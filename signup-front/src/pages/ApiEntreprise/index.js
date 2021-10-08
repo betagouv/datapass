@@ -14,7 +14,7 @@ import { sample } from 'lodash';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const contacts = {
   contact_metier: {

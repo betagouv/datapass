@@ -10,7 +10,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const DonneesDescription = () => (
   <>

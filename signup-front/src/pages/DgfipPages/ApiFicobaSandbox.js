@@ -15,7 +15,7 @@ import {
   SuiteDescription,
 } from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import Quote from '../../components/atoms/inputs/Quote';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,

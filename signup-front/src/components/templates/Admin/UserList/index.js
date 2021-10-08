@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
 import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';

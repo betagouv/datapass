@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';

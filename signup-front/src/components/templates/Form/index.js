@@ -11,7 +11,7 @@ import { ScrollablePanel } from '../../organisms/Scrollable';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import PreviousEnrollmentSection from '../../organisms/form-sections/PreviousEnrollmentSection';
 import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';

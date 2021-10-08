@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import {
   DATA_PROVIDER_ICONS,
   DATA_PROVIDER_LABELS,
-} from '../../config/data-provider-emails';
+} from '../../config/data-provider-parameters';
 import { withUser } from './UserContext';
 import { loginUrl } from '../templates/Login';
 

@@ -7,12 +7,10 @@ import DescriptionSection from '../components/organisms/form-sections/Descriptio
 import DonneesSection from '../components/organisms/form-sections/DonneesSection';
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
-import ÉquipeSection, {
-  getDefaultResponsableTechniqueDescription,
-} from '../components/organisms/form-sections/ÉquipeSection';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const DonneesDescription = () => (
   <>
@@ -55,14 +53,6 @@ const CadreJuridiqueDescription = () => (
     </ul>
   </>
 );
-
-const contacts = {
-  responsable_technique: {
-    header: 'Responsable technique',
-    description: getDefaultResponsableTechniqueDescription(true),
-    displayMobilePhoneLabel: true,
-  },
-};
 
 export const availableScopes = [
   {
@@ -149,7 +139,7 @@ const FranceConnect = ({
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <ÉquipeSection initialContacts={contacts} />
+    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <CguSection
       cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
       additionalTermsOfUse={[

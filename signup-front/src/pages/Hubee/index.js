@@ -12,7 +12,7 @@ import demarches from './demarches.json';
 import Helper from '../../components/atoms/Helper';
 import { SolutionLogicielleSection } from '../../components/organisms/form-sections/hubee-sections/SolutionLogicielleSection';
 import ExpandableQuote from '../../components/atoms/inputs/ExpandableQuote';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const DemarcheDescription = () => (
   <>

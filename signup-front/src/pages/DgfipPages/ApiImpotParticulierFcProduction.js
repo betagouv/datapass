@@ -16,7 +16,7 @@ import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
 } from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const target_api = 'api_impot_particulier_fc_production';
 const steps = ['franceconnect', 'api_impot_particulier_fc_sandbox', target_api];

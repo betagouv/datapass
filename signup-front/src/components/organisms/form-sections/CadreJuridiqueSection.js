@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
@@ -7,12 +7,18 @@ import FileInput from '../../molecules/FileInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import TextInput from '../../atoms/inputs/TextInput';
 import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
+import { isEmpty } from 'lodash';
 
 const SECTION_LABEL = 'Le cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const CadreJuridiqueSection = ({ CadreJuridiqueDescription }) => {
+const CadreJuridiqueSection = ({
+  CadreJuridiqueDescription,
+  defaultFondementJuridiqueTitle,
+  defaultFondementJuridiqueUrl,
+}) => {
   const {
+    isUserEnrollmentLoading,
     disabled,
     onChange,
     enrollment: {
@@ -22,6 +28,43 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription }) => {
       documents_attributes = [],
     },
   } = useContext(FormContext);
+
+  useEffect(() => {
+    if (
+      defaultFondementJuridiqueTitle &&
+      !isUserEnrollmentLoading &&
+      !disabled &&
+      isEmpty(fondement_juridique_title)
+    ) {
+      onChange({
+        target: {
+          name: 'fondement_juridique_title',
+          value: defaultFondementJuridiqueTitle,
+        },
+      });
+    }
+    if (
+      defaultFondementJuridiqueUrl &&
+      !isUserEnrollmentLoading &&
+      !disabled &&
+      isEmpty(fondement_juridique_url)
+    ) {
+      onChange({
+        target: {
+          name: 'fondement_juridique_url',
+          value: defaultFondementJuridiqueUrl,
+        },
+      });
+    }
+  }, [
+    defaultFondementJuridiqueTitle,
+    defaultFondementJuridiqueUrl,
+    isUserEnrollmentLoading,
+    disabled,
+    onChange,
+    fondement_juridique_title,
+    fondement_juridique_url,
+  ]);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
