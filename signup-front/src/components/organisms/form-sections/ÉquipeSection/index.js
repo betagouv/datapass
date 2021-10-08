@@ -78,6 +78,7 @@ export const getDefaultResponsableTechniqueDescription = (
 const ÉquipeSection = ({
   initialContacts = {},
   title = 'Les personnes impliquées',
+  responsableTechniqueNeedsMobilePhone = false,
 }) => {
   const {
     isUserEnrollmentLoading,
@@ -103,7 +104,10 @@ const ÉquipeSection = ({
       },
       responsable_technique: {
         header: 'Responsable technique',
-        description: getDefaultResponsableTechniqueDescription(),
+        description: getDefaultResponsableTechniqueDescription(
+          responsableTechniqueNeedsMobilePhone
+        ),
+        displayMobilePhoneLabel: responsableTechniqueNeedsMobilePhone,
       },
     };
 
@@ -111,7 +115,7 @@ const ÉquipeSection = ({
       .assign(initialContacts)
       .pickBy((p) => p)
       .value();
-  }, [initialContacts]);
+  }, [initialContacts, responsableTechniqueNeedsMobilePhone]);
 
   const newTeamMembers = useNewTeamMembers({
     user,
