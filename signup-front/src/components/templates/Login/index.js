@@ -4,7 +4,7 @@ import './index.css';
 import {
   DATA_PROVIDER_ICONS,
   DATA_PROVIDER_LABELS,
-} from '../../../config/data-provider-emails';
+} from '../../../config/data-provider-parameters';
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';

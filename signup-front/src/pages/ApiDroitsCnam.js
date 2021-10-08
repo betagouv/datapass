@@ -9,7 +9,7 @@ import DonneesPersonnellesSection from '../components/organisms/form-sections/de
 import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

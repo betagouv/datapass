@@ -23,7 +23,7 @@ import { getAPIStats } from '../../services/stats';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
-} from '../../config/data-provider-emails';
+} from '../../config/data-provider-parameters';
 
 import Helper from '../atoms/Helper';
 import Loader from '../atoms/Loader';

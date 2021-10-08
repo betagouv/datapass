@@ -9,7 +9,7 @@ import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecate
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
 import Quote from '../components/atoms/inputs/Quote';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

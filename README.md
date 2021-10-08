@@ -360,6 +360,7 @@ ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datap
 Start the app in the interactive mode:
 
 ```
+cd signup-front
 REACT_APP_BACK_HOST=https://back.datapass-development.api.gouv.fr npm run dev
 ```
 
@@ -373,7 +374,7 @@ sudo systemctl stop signup-back
 sudo su - signup
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
-PG_HOST=localhost RAILS_ENV=development rails s
+PG_HOST=localhost REDIS_URL=redis://localhost:6379 RAILS_ENV=development rails s
 ```
 
 ### Production-like deployment (optional)

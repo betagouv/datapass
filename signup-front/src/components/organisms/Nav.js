@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { ScrollableLink } from './Scrollable';
 import { goBack } from '../../lib';
-import { DATA_PROVIDER_LABELS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
 import { isEmpty } from 'lodash';
 import Button from '../atoms/Button';
 

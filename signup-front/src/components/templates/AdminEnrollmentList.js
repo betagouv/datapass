@@ -13,7 +13,7 @@ import {
   setUrlParamsFromState,
 } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
-import { DATA_PROVIDER_LABELS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../../lib/enrollment';
 
 import ScheduleIcon from '../atoms/icons/schedule';

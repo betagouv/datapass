@@ -12,7 +12,7 @@ import ÉquipeSection, {
 } from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const DonneesDescription = () => (
   <>

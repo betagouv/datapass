@@ -24,7 +24,7 @@ import {
 } from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import Quote from '../../components/atoms/inputs/Quote';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 export const CadreJuridiqueDescription = () => (
   <Quote>

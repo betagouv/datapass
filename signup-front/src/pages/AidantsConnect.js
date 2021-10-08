@@ -7,7 +7,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-emails';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const initialContacts = {
   demandeur: {

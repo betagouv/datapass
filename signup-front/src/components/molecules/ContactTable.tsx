@@ -1,5 +1,5 @@
 import React from 'react';
-import { DATA_PROVIDER_LABELLED_CONTACT_EMAILS } from '../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELLED_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const ContactsTable = () => (
   <div className="fr-table">

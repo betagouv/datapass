@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-emails';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import NextSteps from './NextSteps';
 
 const WelcomeMessage = ({
