@@ -112,6 +112,8 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
 
         it "includes default validate_application view" do
+          pending "Need to find a new data provider which customize emails"
+
           expect(subject.plain_text_content).to include("#{instructor.given_name} pour API Entreprise")
         end
       end

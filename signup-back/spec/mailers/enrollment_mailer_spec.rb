@@ -73,6 +73,8 @@ RSpec.describe EnrollmentMailer, type: :mailer do
           let(:target_api) { "api_entreprise" }
 
           it "renders custom template" do
+            pending "Need to find a new data provider which customize emails"
+
             expect(mail.body.encoded).to include("Bonjour #{enrollment.demandeurs.first.given_name}")
           end
         end
