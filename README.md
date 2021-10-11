@@ -1,4 +1,4 @@
-# DataPass
+# DataPass [![Frontend build](https://github.com/betagouv/datapass/actions/workflows/front.yml/badge.svg)](https://github.com/betagouv/datapass/actions/workflows/front.yml) [![Backend CI](https://github.com/betagouv/datapass/actions/workflows/back.yml/badge.svg)](https://github.com/betagouv/datapass/actions/workflows/back.yml)
 
 L’outil de gestion des habilitations juridiques pour les données à accès restreint.
 
