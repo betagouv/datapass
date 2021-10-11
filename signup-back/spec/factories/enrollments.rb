@@ -292,10 +292,12 @@ FactoryBot.define do
         Enrollment::AidantsConnect.new(attributes)
       end
 
+      type_projet { "association" }
+
       contacts do
         [
           {
-            id: "contact_metier",
+            id: "responsable_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0626656565",
             job: "Directeur",

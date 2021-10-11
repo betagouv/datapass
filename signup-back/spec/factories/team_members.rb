@@ -16,6 +16,14 @@ FactoryBot.define do
       type { "contact_metier" }
     end
 
+    trait :responsable_metier do
+      initialize_with do
+        TeamMember::ResponsableMetier.new(attributes)
+      end
+
+      type { "responsable_metier" }
+    end
+
     trait :delegue_protection_donnees do
       initialize_with do
         TeamMember::DelegueProtectionDonnees.new(attributes)
