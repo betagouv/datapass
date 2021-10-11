@@ -1,4 +1,8 @@
-Dir[Rails.root.join("app/models/enrollment/dgfip/*")].sort.each do |file|
+Dir[Rails.root.join("app/models/enrollment/dgfip/*.rb")].sort.each do |file|
+  require file
+end
+
+Dir[Rails.root.join("app/models/enrollment/dgfip_deprecated/*.rb")].sort.each do |file|
   require file
 end
 
