@@ -1,14 +1,23 @@
+name: Backend CI
+
+on: [push]
+
 env:
   CI: true
   COVERAGE: true
   RUBY_VERSION: 2.7.3
+  PG_HOST: localhost
+  PG_USER: signup-back
+  PG_PASSWORD: signup-back
+  PG_DATABASE: signup-back-test
 
-name: CI
-on: [push]
 jobs:
   test:
     name: Tests (RSpec)
     runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: ./signup-back
     services:
       postgres:
         image: postgres:latest
@@ -26,11 +35,6 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - name: Dump Github context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -78,19 +82,21 @@ jobs:
           CC_TEST_REPORTER_ID: c520d0a599739b0fb177eb2ecfeaa72792c262af475dfa0a7bcea092fdcd3301
         with:
           coverageCommand: bundle exec rspec
+          workingDirectory: signup-back
 
   lint:
     name: Linter (StandardRB)
-    if: "${{ github.actor != 'dependabot[bot]' }}"
     runs-on: ubuntu-18.04
+    if: "${{ github.actor != 'dependabot[bot]' }}"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Run Standardrb linter
-        uses: amoeba/standardrb-action@v2
+        uses: skelz0r/standardrb-action@features/specify-project-path
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: signup-back
 
   security:
     name: Brakeman
@@ -100,7 +106,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Brakeman
-        uses: devmasx/brakeman-linter-action@v1.0.0
+      - name: Run Brakeman linter action
+        uses: skelz0r/brakeman-linter-action@features/specify-project-path
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: signup-back
