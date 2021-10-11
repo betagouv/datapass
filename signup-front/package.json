@@ -36,7 +36,7 @@
     "flat": "^4.1.0",
     "js-file-download": "^0.4.12",
     "limiter": "^1.1.5",
-    "linkifyjs": "^2.1.8",
+    "linkifyjs": "^3.0.2",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "piwik-react-router": "^0.12.1",
@@ -59,7 +59,7 @@
     "husky": "^0.14.3",
     "jest-mock-extended": "^1.0.15",
     "nock": "^13.0.11",
-    "pretty-quick": "^1.11.0",
+    "pretty-quick": "^3.1.1",
     "react-axe": "^3.5.3",
     "react-test-renderer": "^16.8.6"
   },
