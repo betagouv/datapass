@@ -57,7 +57,7 @@ RSpec.describe StatsController, type: :controller do
         }
       ])
 
-      expect(stats_json["enrollment_by_target_api"]).to eq([
+      expect(stats_json["enrollment_by_target_api"]).to contain_exactly(
         {
           "name" => "franceconnect",
           "count" => 2
@@ -66,9 +66,9 @@ RSpec.describe StatsController, type: :controller do
           "name" => "api_entreprise",
           "count" => 2
         }
-      ])
+      )
 
-      expect(stats_json["enrollment_by_status"]).to eq([
+      expect(stats_json["enrollment_by_status"]).to contain_exactly(
         {
           "name" => "refused",
           "count" => 1
@@ -81,7 +81,7 @@ RSpec.describe StatsController, type: :controller do
           "name" => "validated",
           "count" => 2
         }
-      ])
+      )
     end
   end
 end

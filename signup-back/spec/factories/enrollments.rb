@@ -1,4 +1,8 @@
-Dir[Rails.root.join("app/models/enrollment/dgfip/*")].sort.each do |file|
+Dir[Rails.root.join("app/models/enrollment/dgfip/*.rb")].sort.each do |file|
+  require file
+end
+
+Dir[Rails.root.join("app/models/enrollment/dgfip_deprecated/*.rb")].sort.each do |file|
   require file
 end
 
@@ -288,10 +292,12 @@ FactoryBot.define do
         Enrollment::AidantsConnect.new(attributes)
       end
 
+      type_projet { "association" }
+
       contacts do
         [
           {
-            id: "contact_metier",
+            id: "responsable_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0626656565",
             job: "Directeur",
