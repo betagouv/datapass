@@ -78,9 +78,10 @@ export const Contact = ({
       <div className="card__content">
         <h3>{heading}</h3>
         {description}
-        {(typeof given_name === 'undefined' ||
-          typeof family_name === 'undefined' ||
-          (!given_name && !family_name)) &&
+        {!disabled &&
+          (typeof given_name === 'undefined' ||
+            typeof family_name === 'undefined' ||
+            (!given_name && !family_name)) &&
           !email &&
           (typeof phone_number === 'undefined' || !phone_number) &&
           (typeof job === 'undefined' || !job) && (
