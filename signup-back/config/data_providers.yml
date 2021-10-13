@@ -232,3 +232,13 @@ api_declaration_auto_entrepreneur:
   label: API Tierce Déclaration auto-entrepreneur
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_tiers_de_prestation:
+  label: API Tiers de prestation
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_declaration_cesu:
+  label: API Tierce Déclaration CESU
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer

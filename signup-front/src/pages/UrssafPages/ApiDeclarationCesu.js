@@ -8,59 +8,51 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
-import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import { CadreJuridiqueDescription } from './common';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
-const target_api = 'api_declaration_auto_entrepreneur';
+const target_api = 'api_declaration_cesu';
 
 const availableScopes = [
   {
-    value: 'api040',
-    label: 'Estimation des cotisations sociales',
+    value: 'api_cesu050',
+    label: 'Télédéclaration du salaire',
     mandatory: true,
   },
   {
-    value: 'api075',
-    label:
-      'Récupération de la liste des mandats SEPA rattachés à un compte à partir de son siret ou nir',
+    value: 'api_cesu040',
+    label: 'Obtention du montant estimé des cotisations sociales',
     mandatory: true,
   },
   {
-    value: 'api030',
-    label: 'Notification de mandat de tierce déclaration',
+    value: 'api_cesu030',
+    label: 'Enregistrement de mandat',
     mandatory: true,
   },
   {
-    value: 'api031',
-    label: 'Annulation de mandat de tierce déclaration',
+    value: 'api_cesu031',
+    label: 'Annulation de mandat',
     mandatory: true,
   },
   {
-    value: 'api071',
-    label: 'Révocation d’un mandat SEPA d’un compte',
+    value: 'api_cesu020',
+    label: 'Vérification compte CESU PE',
     mandatory: true,
   },
   {
-    value: 'api020',
-    label: 'Récupération de compte URSSAF AE',
+    value: 'api_cesu021',
+    label: 'Vérification compte CESU SP',
     mandatory: true,
   },
   {
-    value: 'api050',
-    label: 'Télédéclaration de chiffres d’affaires',
-    mandatory: true,
-  },
-  { value: 'api060', label: 'Télépaiement SEPA', mandatory: true },
-  {
-    value: 'api070',
-    label:
-      'Enregistrement d’un mandat SEPA pour un compte identifié par son siret ou nir',
+    value: 'api_cesu010',
+    label: 'Inscription PE au régime CESU',
     mandatory: true,
   },
 ];
 
-const ApiDeclarationAutoEntrepreneur = ({
+const ApiDeclarationCesu = ({
   match: {
     params: { enrollmentId },
   },
@@ -86,11 +78,11 @@ const ApiDeclarationAutoEntrepreneur = ({
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection />
-    <ContratDeLicenceSection />
+    <CguSection cguLink="https://portailapi.urssaf.fr/fr/?option=com_apiportal&view=apitester&usage=api&apitab=licence&apiName=API+Tierce+Declaration+CESU&apiId=05f9521f-25ac-4e48-8f93-447a66bf4aa0&managerId=1&type=rest&apiVersion=1.0.0&menuId=181&renderTool=2&Itemid=181" />
   </Form>
 );
 
-ApiDeclarationAutoEntrepreneur.propTypes = {
+ApiDeclarationCesu.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -98,7 +90,7 @@ ApiDeclarationAutoEntrepreneur.propTypes = {
   }),
 };
 
-ApiDeclarationAutoEntrepreneur.defaultProps = {
+ApiDeclarationCesu.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -106,4 +98,4 @@ ApiDeclarationAutoEntrepreneur.defaultProps = {
   },
 };
 
-export default ApiDeclarationAutoEntrepreneur;
+export default ApiDeclarationCesu;
