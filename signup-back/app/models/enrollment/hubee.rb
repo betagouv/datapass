@@ -12,10 +12,6 @@ class Enrollment::Hubee < Enrollment
 
     team_members_validation("contact_metier", "responsable abonnement", true)
 
-    errors[:nom_application_metier] << "Vous devez renseigner le nom de l’application métier avant de continuer" unless additional_content&.fetch("nom_application_metier", false)&.present?
-    errors[:nom_editeur] << "Vous devez renseigner le nom de l’éditeur avant de continuer" unless additional_content&.fetch("nom_editeur", false)&.present?
-    errors[:numero_version] << "Vous devez renseigner le numéro de version avant de continuer" unless additional_content&.fetch("numero_version", false)&.present?
-
     errors[:cgu_approved] << "Vous devez valider les modalités d’utilisation avant de continuer" unless cgu_approved?
   end
 end
