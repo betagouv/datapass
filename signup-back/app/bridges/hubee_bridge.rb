@@ -90,7 +90,7 @@ class HubeeBridge < ApplicationBridge
     # 3. create subscription
     delegation_actor = nil
     responsable_technique = team_members.find { |team_member| team_member["type"] == "responsable_technique" }
-    unless responsable_technique.nil? || responsable_technique["email"].empty?
+    unless responsable_technique.nil? || !responsable_technique["email"] || responsable_technique["email"].empty?
       delegation_actor = {
         email: responsable_technique["email"],
         firstName: responsable_technique["given_name"],
