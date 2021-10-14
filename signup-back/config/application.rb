@@ -30,6 +30,7 @@ module DataPass
     config.middleware.use ActionDispatch::Session::CookieStore
 
     config.autoload_paths << Rails.root.join("lib")
+    config.autoload_paths << Rails.root.join("db/migrate/concerns")
 
     config.i18n.default_locale = :fr
 

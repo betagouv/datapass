@@ -7,6 +7,7 @@ import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
+import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
 const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -15,6 +16,7 @@ const DonneesSection = ({
   DonneesDescription,
   availableScopes = [],
   AvailableScopesDescription,
+  accessModes,
 }) => {
   const {
     disabled,
@@ -24,6 +26,7 @@ const DonneesSection = ({
       data_recipients = '',
       data_retention_period = '',
       data_retention_comment = '',
+      additional_content = {},
     },
   } = useContext(FormContext);
 
@@ -98,6 +101,21 @@ const DonneesSection = ({
               handleChange={() => null}
             />
           )}
+        </>
+      )}
+      {!isEmpty(accessModes) && (
+        <>
+          <h3>Comment souhaitez-vous accéder à l’API ?</h3>
+          {accessModes.map(({ id, label }) => (
+            <CheckboxInput
+              key={id}
+              label={label}
+              name={`additional_content.${id}`}
+              value={additional_content[id] || false}
+              disabled={disabled}
+              onChange={onChange}
+            />
+          ))}
         </>
       )}
       <h3>Comment seront traitées ces données personnelles ?</h3>
