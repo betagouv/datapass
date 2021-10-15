@@ -14,12 +14,14 @@
   roles:
     - role: ansible-role-nodejs
       nodejs_version: 16.x
+      tags: nodejs
 
 - hosts: api-auth
   become: true
   roles:
     - role: ansible-role-nodejs
       nodejs_version: 12.x
+      tags: nodejs
 
 - hosts: datapass-back
   become: true
