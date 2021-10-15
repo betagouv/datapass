@@ -83,6 +83,7 @@ class AdminEnrollmentList extends React.Component {
     try {
       const newState = getStateFromUrlParams(
         pick(this.state, [
+          'inbox',
           'page',
           'sorted',
           'filtered',
@@ -107,7 +108,9 @@ class AdminEnrollmentList extends React.Component {
       }
     }
 
-    setUrlParamsFromState(pick(this.state, ['page', 'sorted', 'filtered']));
+    setUrlParamsFromState(
+      pick(this.state, ['inbox', 'page', 'sorted', 'filtered'])
+    );
   }
 
   availableAction = new Set([
