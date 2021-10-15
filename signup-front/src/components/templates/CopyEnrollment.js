@@ -5,21 +5,21 @@ import { copyEnrollment } from '../../services/enrollments';
 import { Redirect } from 'react-router-dom';
 import { getErrorMessages } from '../../lib';
 import Loader from '../atoms/Loader';
+import { Linkify } from '../molecules/Linkify';
 
 const CopyEnrollment = ({
   match: {
     params: { enrollmentId },
   },
 }) => {
-  const [copyError, setCopyError] = useState(false);
-  const [alreadyCopiedError, setAlreadyCopiedError] = useState(false);
+  const [copyErrorMessage, setCopyErrorMessage] = useState(null);
   const [copiedEnrollmentId, setCopiedEnrollmentId] = useState(null);
   const [copiedTargetApi, setCopiedTargetApi] = useState(null);
 
   const triggerEnrollmentCopy = async ({ enrollmentId }) => {
     try {
-      setCopyError(false);
-      setAlreadyCopiedError(false);
+      setCopyErrorMessage(null);
+
       const { id, target_api } = await copyEnrollment({
         id: enrollmentId,
       });
@@ -27,14 +27,12 @@ const CopyEnrollment = ({
       setCopiedEnrollmentId(id);
       setCopiedTargetApi(target_api);
     } catch (e) {
-      if (
-        getErrorMessages(e)[0].includes(
-          'Copied from enrollment n’est pas disponible'
-        )
-      ) {
-        setAlreadyCopiedError(true);
+      if (getErrorMessages(e)[0]) {
+        setCopyErrorMessage(getErrorMessages(e)[0]);
       } else {
-        setCopyError(true);
+        setCopyErrorMessage(
+          'Erreur inconnue lors de la copie de la demande d’habilitation.'
+        );
       }
     }
   };
@@ -59,22 +57,13 @@ const CopyEnrollment = ({
     );
   }
 
-  if (copyError) {
+  if (copyErrorMessage) {
     return (
       <section className="section-grey layout-full-page">
         <div className="notification error">
-          Erreur inconnue lors de la copie de la demande d’habilitation.
-        </div>
-      </section>
-    );
-  }
-
-  if (alreadyCopiedError) {
-    return (
-      <section className="section-grey layout-full-page">
-        <div className="notification error">
-          Copie impossible : une copie de cette demande d’habilitation existe
-          déjà.
+          <Linkify
+            message={`Erreur : ${copyErrorMessage} La demande #${enrollmentId} n’a pas été copiée.`}
+          />
         </div>
       </section>
     );

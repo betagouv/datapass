@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { get, isObject, omitBy, merge, set } from 'lodash';
-import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../../../services/enrollments';
 import SubmissionPanel from './SubmissionPanel';
@@ -19,6 +18,7 @@ import Tag from '../../atoms/Tag';
 import statusToButtonType from '../../../lib/status-to-button-type';
 import { withUser } from '../../organisms/UserContext';
 import FileCopyIcon from '../../atoms/icons/file_copy';
+import { Linkify } from '../../molecules/Linkify';
 
 export const FormContext = React.createContext();
 
@@ -283,7 +283,7 @@ export const Form = ({
         </FormContext.Provider>
         {successMessages.map((successMessage) => (
           <div key={successMessage} className="notification success">
-            <Linkify>{successMessage}</Linkify>
+            <Linkify message={successMessage} />
           </div>
         ))}
         {errorMessages.map((errorMessage) => (
@@ -292,7 +292,7 @@ export const Form = ({
             className="notification error"
             style={{ whiteSpace: 'pre-line' }}
           >
-            <Linkify>{errorMessage}</Linkify>
+            <Linkify message={errorMessage} />
           </div>
         ))}
 

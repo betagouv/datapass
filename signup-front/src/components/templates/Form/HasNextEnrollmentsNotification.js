@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getNextEnrollments } from '../../../services/enrollments';
+import { Linkify } from '../../molecules/Linkify';
 
 const formatNextEnrollment = (enrollment) =>
   `${DATA_PROVIDER_LABELS[enrollment.target_api] || enrollment.target_api} : #${
@@ -36,9 +37,7 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
       <ul>
         {nextEnrollments.map((enrollment) => (
           <li key={enrollment.id}>
-            <a href={`/authorization-request/${enrollment.id}`}>
-              Demande {formatNextEnrollment(enrollment)}
-            </a>
+            <Linkify message={`Demande ${formatNextEnrollment(enrollment)}`} />
           </li>
         ))}
       </ul>

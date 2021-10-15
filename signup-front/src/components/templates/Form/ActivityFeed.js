@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
-import * as linkify from 'linkifyjs';
-import ticketPlugin from 'linkifyjs/plugins/ticket';
-import Linkify from 'linkifyjs/react';
 
 import CheckCircleIcon from '../../atoms/icons/check-circle';
 import InfoIcon from '../../atoms/icons/info';
@@ -15,13 +12,7 @@ import NotificationsIcon from '../../atoms/icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../../lib';
 import Button from '../../atoms/Button';
-
-ticketPlugin(linkify);
-const linkifyOptions = {
-  formatHref: {
-    ticket: (href) => '/authorization-request/' + href.substring(1),
-  },
-};
+import { Linkify } from '../../molecules/Linkify';
 
 const eventNameToDisplayableContent = {
   asked_for_modification: {
@@ -97,7 +88,7 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
         </div>
         {comment && (
           <div className="event-comment">
-            <Linkify options={linkifyOptions}>{comment}</Linkify>
+            <Linkify message={comment} />
           </div>
         )}
         {!isEmpty(changelog) && showDiff && (
