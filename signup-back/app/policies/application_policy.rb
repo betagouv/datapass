@@ -1,5 +1,5 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :record, :error_message_key
 
   def self.acl_methods
     (instance_methods - Object.methods).keep_if do |e|

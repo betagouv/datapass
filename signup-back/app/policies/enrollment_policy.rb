@@ -28,9 +28,22 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def copy?
-    (record.validated? || record.refused?) &&
-      user.belongs_to_organization?(record) &&
-      user.is_demandeur?(record)
+    unless record.validated? || record.refused?
+      @error_message_key = :copy_enrollment_is_not_validated_nor_refused
+      return false
+    end
+
+    unless user.is_demandeur?(record)
+      @error_message_key = :copy_user_is_not_demandeur
+      return false
+    end
+
+    unless user.belongs_to_organization?(record)
+      @error_message_key = :copy_user_do_not_belong_to_organization
+      return false
+    end
+
+    true
   end
 
   def send_application?

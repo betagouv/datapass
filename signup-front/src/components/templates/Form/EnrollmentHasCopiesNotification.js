@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getEnrollmentCopies } from '../../../services/enrollments';
 import { isEmpty } from 'lodash';
+import { Linkify } from '../../molecules/Linkify';
 
 const EnrollmentHasCopiesNotification = ({ enrollmentId }) => {
   const [enrollmentCopies, setEnrollmentCopies] = useState(false);
@@ -23,11 +24,9 @@ const EnrollmentHasCopiesNotification = ({ enrollmentId }) => {
 
   return (
     <div className="notification warning">
-      Il existe une copie plus récente de cette demande : la demande{' '}
-      <a href={`/authorization-request/${enrollmentCopyId}`}>
-        #{enrollmentCopyId}
-      </a>
-      .
+      <Linkify
+        message={`Il existe une copie plus récente de cette demande : la demande #${enrollmentCopyId}.`}
+      />
     </div>
   );
 };

@@ -57,9 +57,23 @@ class ApplicationController < ActionController::API
     }
   end
 
-  rescue_from Pundit::NotAuthorizedError do |_|
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    policy = exception.policy
+    error_key = policy.respond_to?(:error_message_key) ? policy.error_message_key : nil
+
+    error_message = case error_key
+    when :copy_enrollment_is_not_validated_nor_refused
+      "Copie impossible, la demande originale n’est ni validée ni refusée."
+    when :copy_user_do_not_belong_to_organization
+      "Copie impossible, la demande originale est déposée au nom d’une organisation à laquelle vous n’appartenez pas."
+    when :copy_user_is_not_demandeur
+      "Copie impossible, vous n’êtes pas le demandeur de la demande originale."
+    else
+      "Vous n’êtes pas autorisé à modifier cette ressource"
+    end
+
     render status: :forbidden, json: {
-      message: "Vous n’êtes pas autorisé à modifier cette ressource"
+      message: error_message
     }
   end
 
@@ -70,8 +84,14 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from ActiveRecord::RecordInvalid do |e|
+    error_message = if e.message.to_s.include? "Copied from enrollment"
+      "Copie impossible, une copie de cette demande d’habilitation existe déjà."
+    else
+      e.message.to_s
+    end
+
     render status: :unprocessable_entity, json: {
-      message: e.message
+      message: error_message
     }
   end
 
