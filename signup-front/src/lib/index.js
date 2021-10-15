@@ -11,6 +11,7 @@ import {
   omitBy,
   forOwn,
   slice,
+  isArray,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -103,7 +104,7 @@ function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
 
     return accumulatorObject;
   }
-  // {contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]]}
+  // {contacts: [[{'name': 'c', email: 'd', work_email: 'a'}], [{'name': 'e', email: 'd'}]]}
   const objectBefore = flatten(fullObjectDiff[0], objectKey);
   const objectAfter = flatten(fullObjectDiff[1], objectKey);
   const objectDiff = mergeWith(
@@ -111,14 +112,14 @@ function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
     objectAfter,
     (valueBefore, valueAfter) => [valueBefore, valueAfter]
   );
-  // {0.name: ['c', 'e'], 0.email: ['d', 'd']}
-  const objectDiffNoUnchanged = omitBy(
+  // {0.name: ['c', 'e'], 0.email: ['d', 'd'], 0.work_email: 'a'}
+  const objectDiffNoUnchangedNoDeprecated = omitBy(
     objectDiff,
-    (value) => value[0] === value[1]
+    (value) => !isArray(value) || value[0] === value[1]
   );
   // {0.name: ['c', 'e']}
   const objectDiffPrefixedKey = mapKeys(
-    objectDiffNoUnchanged,
+    objectDiffNoUnchangedNoDeprecated,
     (value, flatKey) => `${objectKey}.${flatKey}`
   );
   // {contacts.0.name: ['c', 'e']}

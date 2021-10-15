@@ -205,6 +205,7 @@ describe('utils', () => {
           gender: false,
           given_name: true,
           openid: true,
+          deprecated_scope: null,
         },
         {
           birthcountry: false,
