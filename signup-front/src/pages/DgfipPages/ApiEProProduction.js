@@ -29,7 +29,7 @@ const ApiEProProduction = ({
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[500]} />
-    <CguSection cguLink="/docs/cgu_api_e_pro_pcr_prod_2021_v1.0.pdf" />
+    <CguSection cguLink="/docs/cgu_pcr_v1/cgu_api_e_pro_pcr_prod_2021_v1.0.pdf" />
   </Form>
 );
 
