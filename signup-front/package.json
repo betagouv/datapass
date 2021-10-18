@@ -23,7 +23,7 @@
     "@craco/craco": "^6.3.0",
     "@gouvfr/dsfr": "^1.0.0-rc1.0",
     "@justfixnyc/react-aria-modal": "^5.1.2-alpha.0",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.169",
     "@types/node": "^15.3.0",
     "@types/react": "^17.0.5",
