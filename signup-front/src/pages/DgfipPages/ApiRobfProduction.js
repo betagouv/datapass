@@ -28,7 +28,7 @@ const ApiRobfProduction = ({
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[200, 1000]} />
+    <VolumetrieSection options={[500]} />
     <CguSection cguLink="/docs/cgu_api_robf_pcr_prod_2021_v1.0.pdf" />
   </Form>
 );
