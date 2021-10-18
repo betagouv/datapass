@@ -34,7 +34,7 @@ const ApiEProSandbox = ({
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_4_05-05-2021_cdc.pdf"
+      cguLink="/docs/cgu_api_e_pro_pcr_bas_2021_v1.0.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>

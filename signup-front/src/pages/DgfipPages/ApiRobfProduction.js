@@ -29,7 +29,7 @@ const ApiRobfProduction = ({
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[200, 1000]} />
-    <CguSection cguLink="/docs/cgu_api_hermes_production_v1_3_05-05-2021_cdc.pdf" />
+    <CguSection cguLink="/docs/cgu_api_robf_pcr_prod_2021_v1.0.pdf" />
   </Form>
 );
 
