@@ -55,7 +55,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
         </p>
       </Quote>
       <SelectInput
-        label="Quel est la limitation de debit que vous souhaitez pour votre téléservice ?"
+        label="Quelle est la limitation de debit que vous souhaitez pour votre téléservice ?"
         name="additional_content.volumetrie_appels_par_minute"
         options={options.map((appelsParMinute) => ({
           id: appelsParMinute,
