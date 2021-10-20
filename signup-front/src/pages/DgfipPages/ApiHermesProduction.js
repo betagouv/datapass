@@ -8,6 +8,7 @@ import RecetteFonctionnelleSection from '../../components/organisms/form-section
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const target_api = 'api_hermes_production';
 const steps = ['api_hermes_sandbox', target_api];
@@ -23,6 +24,13 @@ const ApiHermesProduction = ({
     steps={steps}
     PreviousEnrollmentDescription={() => null}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />

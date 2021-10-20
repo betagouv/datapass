@@ -10,6 +10,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
 import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const target_api = 'api_ocfi_sandbox';
 const steps = [target_api, 'api_ocfi_production'];
@@ -24,6 +25,13 @@ const ApiOcfiSandbox = ({
     target_api={target_api}
     steps={steps}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
+    contactInformation={[
+      {
+        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
