@@ -77,7 +77,6 @@ export const getDefaultResponsableTechniqueDescription = (
 
 const ÉquipeSection = ({
   initialContacts = {},
-  title = 'Les personnes impliquées',
   responsableTechniqueNeedsMobilePhone = false,
 }) => {
   const {
@@ -199,7 +198,7 @@ const ÉquipeSection = ({
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>{title}</h2>
+      <h2>{SECTION_LABEL}</h2>
       <ExpandableQuote title="Comment renseigner la liste des contacts ?" large>
         {Object.entries(contactConfiguration).map(([type, { description }]) => (
           <p key={type}>{description}</p>
@@ -215,6 +214,7 @@ const ÉquipeSection = ({
                 forceDisable,
                 displayMobilePhoneLabel,
                 displayIndividualEmailLabel,
+                displayGroupEmailLabel,
                 contactByEmailOnly,
                 multiple,
               },
@@ -245,6 +245,7 @@ const ÉquipeSection = ({
                       {...team_member}
                       displayMobilePhoneLabel={displayMobilePhoneLabel}
                       displayIndividualEmailLabel={displayIndividualEmailLabel}
+                      displayGroupEmailLabel={displayGroupEmailLabel}
                       contactByEmailOnly={contactByEmailOnly}
                       displayIdForAdministrator={displayIdForAdministrator}
                       disabled={forceDisable || disabled}

@@ -30,8 +30,7 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
         :entreprises_artisanales,
         :eori_douanes,
         :certificat_agence_bio
-      ],
-      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job]
+      ]
     ])
 
     res

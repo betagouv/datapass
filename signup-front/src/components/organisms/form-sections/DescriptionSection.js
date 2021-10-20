@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
-import PropTypes from 'prop-types';
 import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import FileInput from '../../molecules/FileInput';
@@ -10,7 +9,7 @@ import Input from '../../atoms/inputs/input';
 const SECTION_LABEL = 'Le projet';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
+const DescriptionSection = () => {
   const {
     disabled,
     onChange,
@@ -40,7 +39,6 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
       <TextAreaInput
         label="Description du projet (à quoi va-t-il servir ? qui l’utilisera ?)"
         name="description"
-        placeholder={descriptionPlaceholder}
         value={description}
         disabled={disabled}
         onChange={onChange}
@@ -75,11 +73,5 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
 };
 
 DescriptionSection.sectionLabel = SECTION_LABEL;
-
-DescriptionSection.propTypes = {
-  intitulePlaceholder: PropTypes.string,
-  descriptionPlaceholder: PropTypes.string,
-  descriptionHelper: PropTypes.string,
-};
 
 export default DescriptionSection;

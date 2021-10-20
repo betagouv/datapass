@@ -24,6 +24,7 @@ export const Contact = ({
   phone_number = '',
   job = '',
   displayIndividualEmailLabel = false,
+  displayGroupEmailLabel = false,
   displayMobilePhoneLabel = false,
   contactByEmailOnly = false,
   displayIdForAdministrator = false,
@@ -99,6 +100,8 @@ export const Contact = ({
         label={
           displayIndividualEmailLabel
             ? 'Email individuel et nominatif'
+            : displayGroupEmailLabel
+            ? 'Email générique'
             : 'Email'
         }
         name={`team_members[${index}].email`}
@@ -113,6 +116,13 @@ export const Contact = ({
         !isIndividualEmailAddress(email) && (
           <div className="notification error">
             Merci d’utiliser un email nominatif.
+          </div>
+        )}
+      {displayGroupEmailLabel &&
+        isEmailValid(email) &&
+        isIndividualEmailAddress(email) && (
+          <div className="notification error">
+            Merci d’utiliser une adresse email générique.
           </div>
         )}
       {!contactByEmailOnly && (

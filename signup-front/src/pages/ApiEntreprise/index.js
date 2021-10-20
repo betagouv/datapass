@@ -3,84 +3,50 @@ import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
-import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
-import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
-import { sample } from 'lodash';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
-import Quote from '../../components/atoms/inputs/Quote';
-import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
+import ÉquipeSection, {
+  getDefaultDelegueProtectionDonneesDescription,
+  getDefaultResponsableTraitementDescription,
+} from '../../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
-
-const contacts = {
-  contact_metier: {
-    heading: 'Contact métier',
-    description: (
-      <Quote>
-        <p>
-          Nous contacterons cette personne pour vous avertir de nouvelles
-          fonctionnalités ou d’incidents majeurs sur nos API.
-        </p>
-      </Quote>
-    ),
-    family_name: '',
-    given_name: '',
-    email: '',
-    phone_number: '',
-  },
-  responsable_technique: {
-    heading: 'Contact technique',
-    description: (
-      <Quote>
-        <p>
-          Nous contacterons cette personne pour vous avertir des évolutions
-          techniques, des incidents et de l’expiration des jetons.
-        </p>
-      </Quote>
-    ),
-    family_name: '',
-    given_name: '',
-    // set a key to avoid « each key should have a unique key property »
-    // error when including WarningEmoji alongside text
-    emailDescription: (
-      <Quote>
-        <p>
-          <WarningEmoji key="warning-emoji" /> Vos jetons d’accès expireront
-          tous les 18 mois. Afin de garantir que votre service ne soit pas
-          interrompu, merci de renseigner une adresse email générique afin que
-          nous puissions vous transmettre les nouveaux jetons malgré des aléas
-          de changement de poste, congés ou autre.
-        </p>
-      </Quote>
-    ),
-    email: '',
-    emailPlaceholder: 'contact@nom-organisation.fr',
-    phone_number: '',
-  },
-};
+import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
 
 const DonneesDescription = () => (
-  <Quote>
-    <p>
-      Sélectionner ci-dessous les API qui sont strictement nécessaires pour
-      cette démarche.
-    </p>
-    <p>
-      Vous pouvez trouver une description détaillée de chaque API sur{' '}
-      <a
-        href="https://entreprise.api.gouv.fr/catalogue/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        entreprise.api.gouv.fr
-      </a>
-      .
-    </p>
-  </Quote>
+  <>
+    <p>Vous pouvez vous aider :</p>
+    <ul>
+      <li>
+        du{' '}
+        <a
+          href="https://entreprise.api.gouv.fr/catalogue/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          catalogue de données
+        </a>
+        . Il présente l’ensemble des endpoints disponibles accompagnés d’une
+        documentation fonctionnelle et technique.
+      </li>
+      <li>
+        des{' '}
+        <a
+          href="https://entreprise.api.gouv.fr/cas_usage/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          cas d’usage
+        </a>{' '}
+        proposés par API Entreprise. Nous y décrivons les données utiles. Si
+        votre besoin correspond à l’un de ses cas d’usage, vous pourrez vous
+        appuyez sur le formulaire pré-rempli adéquat.
+      </li>
+    </ul>
+  </>
 );
 
 // NB: this list was manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
@@ -246,33 +212,76 @@ const availableScopes = [
   },
 ];
 
-const intitulePlaceholder = sample([
-  '« Pré-remplissage du formulaire de création de compte des entreprise »',
-  '« Simplification des demandes de subvention de la région »',
-  '« Déclaration d’installation classée pour la protection de l’environnement »',
-]);
-
 const CadreJuridiqueDescription = () => (
-  <Quote>
+  <>
     <p>
-      Pour en savoir plus sur les éléments à fournir pour justifier de votre
-      cadre juridique, vous pouvez vous référer{' '}
-      <a href="https://entreprise.api.gouv.fr/doc/#le-cadre-juridique">
-        cette documentation
-      </a>
-      .
+      L’accès à un endpoint de l’API Entreprise se fait sous réserve que son
+      utilisation soit justifiée. L’accès à la donnée requiert la fourniture
+      d’un cadre juridique précis. Par exemple, si vous êtes une administration
+      centrale, une agence d’État, un opérateur, ou un service déconcentré, il
+      vous faudra transmettre le décret ou l’arrêté justifiant votre demande.
     </p>
-  </Quote>
+    <p>
+      <WarningEmoji /> Attention, quel que soit votre statut, le{' '}
+      <a
+        href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000031366350/2020-12-14/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CRPA (Code des relations entre le public et l’administration)
+      </a>
+      , la{' '}
+      <a
+        href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037307624/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        loi ESSOC (pour un État au service d’une société de confiance)
+      </a>{' '}
+      ou la loi Lemaire (pour une République numérique){' '}
+      <b>ne sont pas suffisants</b> car ils indiquent un principe d’échange qui
+      doit être complété par un cadre juridique précis pour l’utilisation
+      envisagée.
+    </p>
+  </>
 );
 
-const MiseEnOeuvreDescription = () => (
-  <Quote>
-    <p>
-      Afin de pouvoir vous contacter tout au long de votre utilisation d’API
-      Entreprise, merci de renseigner vos informations de contact.
-    </p>
-  </Quote>
-);
+const initialContacts = {
+  demandeur: {
+    header: 'Demandeur',
+    description: (
+      <>
+        <b>Le demandeur</b>, c'est vous, dépose la demande et recevra les accès
+        techniques par mail. Il sera contacté en cas de problème fonctionnel sur
+        votre service.
+      </>
+    ),
+    forceDisable: true,
+  },
+  responsable_traitement: {
+    header: 'Responsable de traitement',
+    description: getDefaultResponsableTraitementDescription(),
+  },
+  delegue_protection_donnees: {
+    header: 'Délégué à la protection des données',
+    description: getDefaultDelegueProtectionDonneesDescription(),
+  },
+  responsable_technique: {
+    header: 'Contact technique',
+    description: (
+      <>
+        <b>Le contact technique</b> sera averti de l’expiration des jetons au
+        bout de 18 mois. Afin de garantir que votre service ne soit pas
+        interrompu, merci de renseigner une adresse email générique, une boite
+        au lettre fonctionnelle, une mailing liste ou une liste de diffusion
+        afin que nous puissions vous transmettre les nouveaux jetons malgré des
+        aléas de changement de poste, congés ou autre. Le contact technique sera
+        également averti des évolutions techniques et des incidents.
+      </>
+    ),
+    displayGroupEmailLabel: true,
+  },
+};
 
 const ApiEntreprise = ({
   match: {
@@ -287,30 +296,22 @@ const ApiEntreprise = ({
       {
         email: DATA_PROVIDER_CONTACT_EMAILS.api_entreprise,
         label: 'Contact mail',
-        subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
-      },
-      {
-        tel: '07 49 88 96 01',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
     ]}
     documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
     <OrganisationSection />
     <DemarcheSection />
-    <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
+    <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection
-      fondementJuridiqueTitlePlaceholder="« loi », « décret », « arrêté », etc."
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <DonneesPersonnellesSection dataRetentionPeriodHelper="durée d'archivage légale liée à la démarche administrative" />
-    <MiseEnOeuvreSection
-      initialContacts={contacts}
-      MiseEnOeuvreDescription={MiseEnOeuvreDescription}
-    />
+    <ÉquipeSection initialContacts={initialContacts} />
     <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
   </Form>
 );
