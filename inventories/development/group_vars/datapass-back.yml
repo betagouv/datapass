@@ -2,6 +2,7 @@ app_user: signup
 
 front_domain_name: datapass-development.api.gouv.fr
 front_host: "https://{{ front_domain_name }}"
+allowed_origins: "{{ front_host }},http://localhost:*"
 back_domain_name: back.datapass-development.api.gouv.fr
 back_host: "https://{{ back_domain_name }}"
 oauth_domain_name: auth-development.api.gouv.fr

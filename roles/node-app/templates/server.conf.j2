@@ -22,6 +22,7 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_cache_bypass $http_upgrade;
     proxy_redirect off;
+    client_max_body_size 10m;
   }
 {% if permanent_redirect_rules is defined %}
 {% for redirect_rule in permanent_redirect_rules %}
