@@ -351,12 +351,6 @@ Additional dependencies setup:
 
 - nodejs ^16.9
 
-Tel your backend to listen from localhost:
-
-```
-ansible-playbook -i ./inventories/development --vault-password-file ~/.ssh/datapass_ansible_vault configure.yml -t back -e "front_host=http://localhost:3000"
-```
-
 Start the app in the interactive mode:
 
 ```

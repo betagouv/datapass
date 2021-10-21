@@ -65,6 +65,7 @@
         SERVER_NAME: "{{ inventory_hostname }}"
         PORT: "{{ app_port }}"
         FRONT_HOST: "{{ front_host }}"
+        ALLOWED_ORIGINS: "{{ allowed_origins }}"
         BACK_HOST: "{{ back_host }}"
         OAUTH_HOST: "{{ oauth_host }}"
         DEVISE_SECRET: "{{ devise_secret }}"
