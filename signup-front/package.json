@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=16"
+    "node": "~16"
   },
   "scripts": {
     "dev": "craco start",
@@ -14,7 +14,8 @@
     "test": "CI=true craco test",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "eslint src/**/*.{js,ts,tsx}"
+    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "start": "serve -s build"
   },
   "keywords": [],
   "author": "",
@@ -63,7 +64,8 @@
     "nock": "^13.0.11",
     "pretty-quick": "^3.1.1",
     "react-axe": "^3.5.3",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "^17.0.2",
+    "serve": "^12.0.1"
   },
   "browserslist": [
     ">0.2%",
