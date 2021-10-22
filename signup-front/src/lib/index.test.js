@@ -216,6 +216,16 @@ describe('utils', () => {
           gender: false,
           given_name: true,
           openid: true,
+          preferred_username: true,
+        },
+      ],
+      additional_content: [
+        {
+          has_alternative_authentication_methods: true,
+        },
+        {
+          eidas_level: '1',
+          has_alternative_authentication_methods: true,
         },
       ],
     };
@@ -230,8 +240,10 @@ describe('utils', () => {
         'Contrat de service pris en application de la convention d\'accès à "Mon Compte ' +
         'Partenaire" (mode gestion déléguée) signés le 11 mai 2017\n\n',
       'Changement du nom du contact 1 de "Raphaël Dubigny2" en "Raphaël Dubigny"',
-      'Changement du champ scopes.birthcountry de "coché" en "décoché"',
-      'Changement du champ scopes.birthdate de "décoché" en "coché"',
+      'Changement du périmètre de données "birthcountry" de "coché" en "décoché"',
+      'Changement du périmètre de données "birthdate" de "décoché" en "coché"',
+      'Changement du périmètre de données "preferred_username" de "décoché" en "coché"',
+      'Changement du champ "additional_content.eidas_level" de "vide" en "1"',
     ];
 
     it('should return changelog for simple string field', () => {
