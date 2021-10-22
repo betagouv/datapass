@@ -12,6 +12,7 @@ import {
   forOwn,
   slice,
   isArray,
+  isUndefined,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -73,31 +74,6 @@ export function isValidNAFCode(provider, NAFcode) {
   return true;
 }
 
-const diffFieldLabels = {
-  cgu_approved: 'de l’approbation des CGU',
-  data_recipients: 'des destinataires des données',
-  data_retention_period: 'de la durée de conservation des données',
-  data_retention_comment:
-    'de la justification de la durée de conservation des données',
-  description: 'de la description',
-  fondement_juridique_title: 'de la référence du cadre juridique',
-  fondement_juridique_url: 'de l’url du cadre juridique',
-  intitule: 'de l’intitulé',
-  dpo_family_name: 'du nom du DPD',
-  dpo_id: 'de l’identifiant du DPD',
-  dpo_phone_number: 'du numéro de téléphone du DPD',
-  responsable_traitement_family_name: 'du nom du responsable de traitement',
-  responsable_traitement_id: 'de l’identifiant du responsable de traitement',
-  responsable_traitement_phone_number:
-    'du numéro de téléphone du responsable de traitement',
-  'contacts.0.nom': 'du nom du contact 1',
-  'contacts.0.email': 'de l’email du contact 1',
-  'contacts.0.phone_number': 'du numéro de téléphone du contact 1',
-  'contacts.1.nom': 'du nom du contact 2',
-  'contacts.1.email': 'de l’email du contact 2',
-  'contacts.1.phone_number': 'du numéro de téléphone du contact 2',
-};
-
 function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
   if (!isObject(fullObjectDiff[0])) {
     accumulatorObject[objectKey] = fullObjectDiff;
@@ -128,22 +104,67 @@ function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
   return accumulatorObject;
 }
 
+const diffFieldLabels = {
+  cgu_approved: 'de l’approbation des CGU',
+  data_recipients: 'des destinataires des données',
+  data_retention_period: 'de la durée de conservation des données',
+  data_retention_comment:
+    'de la justification de la durée de conservation des données',
+  description: 'de la description',
+  fondement_juridique_title: 'de la référence du cadre juridique',
+  fondement_juridique_url: 'de l’url du cadre juridique',
+  intitule: 'de l’intitulé',
+  dpo_family_name: 'du nom du DPD',
+  dpo_id: 'de l’identifiant du DPD',
+  dpo_phone_number: 'du numéro de téléphone du DPD',
+  responsable_traitement_family_name: 'du nom du responsable de traitement',
+  responsable_traitement_id: 'de l’identifiant du responsable de traitement',
+  responsable_traitement_phone_number:
+    'du numéro de téléphone du responsable de traitement',
+  'contacts.0.nom': 'du nom du contact 1',
+  'contacts.0.email': 'de l’email du contact 1',
+  'contacts.0.phone_number': 'du numéro de téléphone du contact 1',
+  'contacts.1.nom': 'du nom du contact 2',
+  'contacts.1.email': 'de l’email du contact 2',
+  'contacts.1.phone_number': 'du numéro de téléphone du contact 2',
+};
+
+const getLabel = (key) => {
+  if (diffFieldLabels[key]) {
+    return diffFieldLabels[key];
+  }
+
+  if (key.startsWith('scopes.')) {
+    return `du périmètre de données "${key.replace('scopes.', '')}"`;
+  }
+
+  return `du champ "${key}"`;
+};
+
+const getDisplayValue = (rawValue) => {
+  if (isBoolean(rawValue)) {
+    return rawValue ? 'coché' : 'décoché';
+  }
+
+  if (isUndefined(rawValue)) {
+    return 'vide';
+  }
+
+  return rawValue;
+};
+
 function changelogFormatTransformer(
   accumulatorArray,
   [valueBefore, valueAfter],
   key
 ) {
-  const label = diffFieldLabels[key] ? diffFieldLabels[key] : 'du champ ' + key;
-  const displayedValueBefore = isBoolean(valueBefore)
-    ? valueBefore
-      ? 'coché'
-      : 'décoché'
-    : valueBefore;
-  const displayedValueAfter = isBoolean(valueAfter)
-    ? valueAfter
-      ? 'coché'
-      : 'décoché'
-    : valueAfter;
+  const label = getLabel(key);
+  let displayedValueBefore = getDisplayValue(valueBefore);
+  const displayedValueAfter = getDisplayValue(valueAfter);
+
+  if (isBoolean(valueAfter) && isUndefined(valueBefore)) {
+    displayedValueBefore = getDisplayValue(false);
+  }
 
   const separator =
     (displayedValueBefore || '').toString().length < 120 ? '"' : '\n\n';
