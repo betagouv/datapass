@@ -93,7 +93,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Standardrb linter
-        uses: skelz0r/standardrb-action@features/specify-project-path
+        uses: amoeba/standardrb-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_PATH: signup-back
@@ -107,7 +107,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Brakeman linter action
-        uses: skelz0r/brakeman-linter-action@features/specify-project-path
+        uses: devmasx/brakeman-linter-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_PATH: signup-back
