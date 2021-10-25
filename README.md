@@ -171,7 +171,7 @@ at https://back.datapass-test.api.gouv.fr. This is the simplest and fastest
 installation method, but you will not be able to make development on the
 backend.
 
-First, install NodeJs version >=16.
+First, install NodeJs version 16.
 
 Then, clone the repository and install npm dependencies:
 
@@ -198,7 +198,7 @@ development on the backend.
 - [Docker 20.10.8](https://www.docker.com/)
 - [Docker compose 1.29.2](https://docs.docker.com/compose/install/)
 - [Ansible 2.9.10](https://www.ansible.com/)
-- [NodeJS >=16](https://nodejs.org/)
+- [NodeJS 16](https://nodejs.org/)
 
 #### Local environment
 
