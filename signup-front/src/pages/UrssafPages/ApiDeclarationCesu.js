@@ -78,7 +78,7 @@ const ApiDeclarationCesu = ({
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection />
-    <CguSection cguLink="https://portailapi.urssaf.fr/fr/?option=com_apiportal&view=apitester&usage=api&apitab=licence&apiName=API+Tierce+Declaration+CESU&apiId=05f9521f-25ac-4e48-8f93-447a66bf4aa0&managerId=1&type=rest&apiVersion=1.0.0&menuId=181&renderTool=2&Itemid=181" />
+    <CguSection cguLink="/docs/cgu_api_td_cesu_v1.pdf" />
   </Form>
 );
 

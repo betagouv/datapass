@@ -86,7 +86,7 @@ const ApiTiersDePrestation = ({
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection showHabilitationServiceDomicile />
-    <ContratDeLicenceSection />
+    <ContratDeLicenceSection cguLink="/docs/cgu_api_tiers_prestation_v1.pdf" />
   </Form>
 );
 
