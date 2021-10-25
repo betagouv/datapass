@@ -57,7 +57,7 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def review_application?
-    record.can_review_application? && user.is_instructor?(record.target_api)
+    record.can_review_application? && record.sent? && user.is_instructor?(record.target_api)
   end
 
   def refuse_application?

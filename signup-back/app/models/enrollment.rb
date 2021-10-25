@@ -52,7 +52,7 @@ class Enrollment < ActiveRecord::Base
     end
 
     event :review_application do
-      transition from: :sent, to: :modification_pending
+      transition from: [:validated, :refused, :sent], to: :modification_pending
     end
 
     event :validate_application do

@@ -1,4 +1,8 @@
 class Enrollment::FranceconnectPolicy < EnrollmentPolicy
+  def review_application?
+    record.can_review_application? && (record.sent? || record.validated? || record.refused?) && user.is_instructor?(record.target_api)
+  end
+
   def permitted_attributes
     res = super
 
