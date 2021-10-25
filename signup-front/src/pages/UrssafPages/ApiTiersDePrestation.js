@@ -10,6 +10,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 
 const target_api = 'api_tiers_de_prestation';
 
@@ -86,7 +87,7 @@ const ApiTiersDePrestation = ({
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection showHabilitationServiceDomicile />
-    <ContratDeLicenceSection cguLink="/docs/cgu_api_tiers_prestation_v1.pdf" />
+    <CguSection cguLink="/docs/cgu_api_tiers_prestation_v1.pdf" />
   </Form>
 );
 
