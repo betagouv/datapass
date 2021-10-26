@@ -8,27 +8,28 @@ class GetMajorityPercentileProcessingTimeInDays < ApplicationService
   # Temps moyen de traitement des demandes
   def call
     query = <<-SQL
-      WITH events_last_submit as (
-        SELECT DISTINCT ON (enrollment_id) *
-        FROM events WHERE name = 'submitted' ORDER BY enrollment_id, created_at DESC
+      WITH selected_enrollments as (
+        SELECT id
+        FROM enrollments
+        WHERE status IN ('validated', 'refused')
+          AND updated_at > CURRENT_DATE - INTERVAL '6 months'
+          AND #{@filter_by_target_api_criteria}
       )
       SELECT TO_CHAR(
         percentile_cont(0.8) WITHIN GROUP (ORDER BY validation_duration ASC),
         'FM999999999'
       )
       FROM (
-        SELECT
-          enrollments.id, events_stop.created_at AS done_at, events_last_submit.created_at AS submitted_at,
-          DATE_PART('days', events_stop.created_at - events_last_submit.created_at) AS validation_duration
-        FROM enrollments
-        INNER JOIN
-          events AS events_stop ON events_stop.enrollment_id = enrollments.id
-          AND events_stop.name IN ('validated', 'refused')
-        INNER JOIN
-          events_last_submit ON events_last_submit.enrollment_id = enrollments.id
-        WHERE status IN ('validated', 'refused')
-        AND events_stop.created_at > CURRENT_DATE - INTERVAL '6 months'
-        AND #{@filter_by_target_api_criteria}
+        SELECT enrollment_id,
+          DATE_PART(
+            'days',
+            MIN(created_at) FILTER (WHERE name IN ('asked_for_modification', 'validated', 'refused')) -
+            MIN(created_at) FILTER (WHERE name IN ('submitted'))
+          ) AS validation_duration
+        FROM events
+          INNER JOIN
+            selected_enrollments ON enrollment_id = selected_enrollments.id
+        GROUP BY enrollment_id
       ) e;
     SQL
 
