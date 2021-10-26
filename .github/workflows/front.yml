@@ -64,10 +64,10 @@ jobs:
     runs-on: ubuntu-18.04
     needs: build
     env:
-      BACK_HOST: http://localhost:3000
-      FRONT_HOST: http://localhost:4000
+      BACK_HOST: http://localhost:3001
+      FRONT_HOST: http://localhost:3000
       OAUTH_HOST: https://auth-test.api.gouv.fr
-      ALLOWED_ORIGINS: http://localhost:4000
+      ALLOWED_ORIGINS: http://localhost:3000
       PG_USER: back
       PG_PASSWORD: back
       PG_HOST: localhost
@@ -135,8 +135,10 @@ jobs:
       - name: Run backend application
         run: bundle exec puma -C ./config/puma.rb &
         working-directory: signup-back
+        env:
+          PORT: 3001
       - name: Run frontend application
-        run: npx serve -s build -p 4000 &
+        run: npx serve -s build -p 3000 &
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
