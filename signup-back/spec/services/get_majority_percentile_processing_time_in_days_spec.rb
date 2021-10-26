@@ -14,14 +14,14 @@ RSpec.describe GetMajorityPercentileProcessingTimeInDays, type: :service do
       enrollment = create(:enrollment, :api_entreprise, :validated, created_at: 40.days.ago)
       create(:event, :created, enrollment: enrollment, created_at: 40.days.ago)
       create(:event, :submitted, enrollment: enrollment, created_at: 40.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 40.days.ago)
+      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 6.days.ago)
       create(:event, :submitted, enrollment: enrollment, created_at: 6.days.ago)
       create(:event, :validated, enrollment: enrollment, created_at: 0.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :refused, created_at: 30.days.ago)
       create(:event, :created, enrollment: enrollment, created_at: 30.days.ago)
       create(:event, :submitted, enrollment: enrollment, created_at: 30.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 30.days.ago)
+      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 4.days.ago)
       create(:event, :submitted, enrollment: enrollment, created_at: 4.days.ago)
       create(:event, :refused, enrollment: enrollment, created_at: 0.days.ago)
     end
