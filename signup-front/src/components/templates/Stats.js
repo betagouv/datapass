@@ -147,7 +147,7 @@ export const Stats = ({
               <div className="card__content">
                 <h3>
                   Temps moyen de traitement des demandes
-                  <Helper title="temps moyen entre la dernière soumission d’une demande jusqu’à sa validation ou son refus sur les 6 derniers mois" />
+                  <Helper title="temps moyen entre la première soumission d’une demande jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
                 </h3>
                 <div className="card__meta">(en jours)</div>
               </div>

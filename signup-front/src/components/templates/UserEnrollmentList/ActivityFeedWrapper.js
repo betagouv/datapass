@@ -40,8 +40,8 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   if (status === 'sent' && majorityPercentileProcessingTimeInDays > 0) {
     return (
       <div className="notification">
-        La majorité des demandes des 6 derniers mois sont traitées en moins de{' '}
-        <b>{majorityPercentileProcessingTimeInDays} jours</b>.
+        La majorité des demandes des 6 derniers mois reçoivent une réponse en
+        moins de <b>{majorityPercentileProcessingTimeInDays} jours</b>.
       </div>
     );
   }
