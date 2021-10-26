@@ -74,22 +74,25 @@ export const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryPa
 
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">
-    <Button
-      outline
-      large
-      href={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
-      referrerPolicy="no-referrer-when-downgrade"
+    <form
+      action={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
+      method="post"
+      style={{ margin: 0 }}
     >
-      {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
-    </Button>
+      <Button outline large type="submit">
+        {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
+      </Button>
+    </form>
     <span className="login-buttons-or">ou</span>
-    <Button
-      large
-      href={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
-      referrerPolicy="no-referrer-when-downgrade"
+    <form
+      action={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
+      method="post"
+      style={{ margin: 0 }}
     >
-      {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
-    </Button>
+      <Button large type="submit">
+        {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
+      </Button>
+    </form>
   </div>
 );
 

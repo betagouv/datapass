@@ -17,9 +17,7 @@ module OmniAuth
 
       uid { raw_info["sub"] }
 
-      info do
-        raw_info
-      end
+      info { raw_info }
 
       def callback_url
         "#{ENV["BACK_HOST"]}/users/auth/api_gouv/callback"

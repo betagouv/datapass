@@ -48,6 +48,13 @@ const Button = ({
       </button>
     );
   }
+  if (type === 'submit') {
+    return (
+      <button type={type} className={className} {...props}>
+        {children}
+      </button>
+    );
+  }
   throw new Error("Please specify either 'href', 'onClick' or 'type' props");
 };
 
