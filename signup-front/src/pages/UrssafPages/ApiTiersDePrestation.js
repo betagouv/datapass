@@ -8,7 +8,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
-import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
 
 const target_api = 'api_tiers_de_prestation';
@@ -86,7 +86,7 @@ const ApiTiersDePrestation = ({
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection showHabilitationServiceDomicile />
-    <ContratDeLicenceSection />
+    <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1.pdf" />
   </Form>
 );
 
