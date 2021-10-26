@@ -34,7 +34,7 @@ RSpec.describe GetMajorityPercentileProcessingTimeInDays, type: :service do
       subject { described_class.new("api_entreprise").call }
 
       it "equals the average processing time" do
-        expect(subject).to eq("6")
+        expect(subject).to eq("32")
       end
     end
 
