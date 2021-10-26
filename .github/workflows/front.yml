@@ -145,3 +145,13 @@ jobs:
           config: chromeWebSecurity=false
           install: false
           working-directory: .
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
