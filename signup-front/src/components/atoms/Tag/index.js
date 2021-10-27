@@ -8,15 +8,14 @@ const Tag = ({ type = '', onClick, href, children, ...props }) => {
     className += ` ${type}`;
   }
 
-  if (!!href) {
+  if (href) {
     return (
       <a className={className} href={href} {...props}>
         {children}
       </a>
     );
   }
-
-  if (!!onClick) {
+  if (onClick) {
     return (
       <button className={className} onClick={onClick} {...props}>
         {children}
