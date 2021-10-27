@@ -121,13 +121,15 @@ const Header = ({ user, logout }) => {
                     </li>
                   ) : (
                     <li>
-                      <a
-                        className="fr-link fr-fi-lock-line"
-                        href={loginUrl}
-                        referrerPolicy="no-referrer-when-downgrade"
+                      <form
+                        action={loginUrl}
+                        method="post"
+                        style={{ cursor: 'pointer' }}
                       >
-                        Se connecter
-                      </a>
+                        <Link icon="lock" type="submit">
+                          Se connecter
+                        </Link>
+                      </form>
                     </li>
                   )}
                 </ul>
