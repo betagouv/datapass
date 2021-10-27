@@ -5,6 +5,7 @@ import { collectionWithKeyToObject } from '../../../../lib';
 import { isEmpty } from 'lodash';
 import { getCachedOrganizationInformationPool } from '../../../../services/external';
 import Button from '../../../atoms/Button';
+import Link from '../../../atoms/Link';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -59,13 +60,13 @@ const OrganizationPrompt = ({
       >
         <div className="fr-modal__body" onClick={(e) => e.stopPropagation()}>
           <div className="fr-modal__header">
-            <button
-              className="fr-link--close fr-link"
+            <Link
+              closeButton
               onClick={() => onClose()}
               aria-label="Conserver l’organisation actuelle"
             >
               Fermer
-            </button>
+            </Link>
           </div>
           <div className="fr-modal__content">
             <h1 className="fr-modal__title">

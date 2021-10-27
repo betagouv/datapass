@@ -66,11 +66,9 @@ export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
   prompt: 'login',
 })}`;
 
-export const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams(
-  {
-    prompt: 'create_account',
-  }
-)}`;
+const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
+  prompt: 'create_account',
+})}`;
 
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">

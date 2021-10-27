@@ -7,6 +7,7 @@ import {
 } from '../../config/data-provider-parameters';
 import { withUser } from './UserContext';
 import { loginUrl } from '../templates/Login';
+import Link from '../atoms/Link';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -82,34 +83,31 @@ const Header = ({ user, logout }) => {
                 <ul className="fr-links-group">
                   {displayContactLink && (
                     <li>
-                      <a className="fr-link fr-fi-question-line" href="/faq">
+                      <Link icon="question" href="/faq">
                         Aide
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {user && user.roles.includes('administrator') && (
                     <li>
-                      <a className="fr-link fr-fi-calendar-line" href="/admin">
+                      <Link icon="calendar" href="/admin">
                         Administration
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {user && user.roles.includes('administrator') && (
                     <li>
-                      <a
-                        className="fr-link fr-fi-eye-line"
-                        href={`${BACK_HOST}/sidekiq/`}
-                      >
+                      <Link icon="eye" href={`${BACK_HOST}/sidekiq/`}>
                         Monitoring
-                      </a>
+                      </Link>
                     </li>
                   )}
                   {user ? (
                     <li>
                       <div className="dropdown">
-                        <a className="fr-link fr-fi-user-line" href="#logout">
+                        <Link icon="user" href="#logout">
                           {user.given_name} {user.family_name}
-                        </a>
+                        </Link>
                         <div className="dropdown-content">
                           <a
                             onClick={logout}
@@ -123,13 +121,15 @@ const Header = ({ user, logout }) => {
                     </li>
                   ) : (
                     <li>
-                      <a
-                        className="fr-link fr-fi-lock-line"
-                        href={loginUrl}
-                        referrerPolicy="no-referrer-when-downgrade"
+                      <form
+                        action={loginUrl}
+                        method="post"
+                        style={{ cursor: 'pointer' }}
                       >
-                        Se connecter
-                      </a>
+                        <Link icon="lock" type="submit">
+                          Se connecter
+                        </Link>
+                      </form>
                     </li>
                   )}
                 </ul>
