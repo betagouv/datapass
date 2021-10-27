@@ -26,11 +26,13 @@ const initialContacts = {
         <b>Le responsable Aidants Connect</b> est en charge de la mise en place
         et du suivi d’Aidants Connect au sein du lieu d’accueil. Il tient
         également à jour la liste des aidants habilités Aidants Connect sur son
-        espace administrateur (à venir). Pour des raisons de sécurité, nous
-        n’acceptons que les adresses emails nominatives et individuelles. Étant
+        espace administrateur (à venir). <b>Pour des raisons de sécurité, nous
+        n’acceptons que les adresses emails nominatives et individuelles</b>. Étant
         un outil homologué par l’Agence Nationale de la Cohésion des
         Territoires, cela est un prérequis pour garantir la sécurité de l’outil
-        et la fiabilité des traces de connexion.
+        et la fiabilité des traces de connexion. <b>Seule une adresse email individuelle, 
+        professionnelle et nominative sera acceptée. Les adresses de type contact@, ccas.ville@, mairie@,
+        direction@, franceservices@ (etc... )ne sont donc pas acceptées.</b> Nous acceptons des adresses emails créées pour l'occasion, qu'importe le fournisseur de messagerie électronique choisi.
       </>
     ),
     displayIndividualEmailLabel: true,
