@@ -12,7 +12,7 @@ jobs:
       matrix:
         include:
           - env: test
-            back_host: http://localhost:3000
+            back_host: http://localhost:3001
             api_gouv_host: https://www-staging.api.gouv.fr
             piwik_url: ""
             piwki_site_id: ""
