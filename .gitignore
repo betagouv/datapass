@@ -2,6 +2,7 @@
 ansible_modules
 
 .idea
+.vscode
 *.retry
 *.swp
 

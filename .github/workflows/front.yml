@@ -142,7 +142,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          config: chromeWebSecurity=false
           install: false
           working-directory: .
       - uses: actions/upload-artifact@v1
