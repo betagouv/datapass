@@ -377,6 +377,12 @@ export const isIndividualEmailAddress = (email) => {
     'police',
     'maire',
     'mds',
+    'espace',
+    'pole',
+    'vielocale',
+    'dgs',
+    'secretariat',
+    'admin',
   ];
 
   return !forbiddenEmailWords.some((w) => firstEmailPart.includes(w));
