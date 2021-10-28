@@ -29,7 +29,7 @@ const DonneesDescription = () => (
         >
           catalogue de données
         </a>
-        . Il présente l’ensemble des endpoints disponibles accompagnés d’une
+        . Il présente l’ensemble des API disponibles accompagnées d’une
         documentation fonctionnelle et technique.
       </li>
       <li>
@@ -41,9 +41,9 @@ const DonneesDescription = () => (
         >
           cas d’usage
         </a>{' '}
-        proposés par API Entreprise. Nous y décrivons les données utiles. Si
-        votre besoin correspond à l’un de ses cas d’usage, vous pourrez vous
-        appuyez sur le formulaire pré-rempli adéquat.
+        proposés par API Entreprise. Nous y décrivons les données utiles par
+        contexte d'utilisation. Si votre besoin correspond à l’un de ces cas
+        d’usage, vous pourrez vous appuyez sur le formulaire pré-rempli adéquat.
       </li>
     </ul>
   </>
@@ -215,11 +215,11 @@ const availableScopes = [
 const CadreJuridiqueDescription = () => (
   <>
     <p>
-      L’accès à un endpoint de l’API Entreprise se fait sous réserve que son
-      utilisation soit justifiée. L’accès à la donnée requiert la fourniture
-      d’un cadre juridique précis. Par exemple, si vous êtes une administration
-      centrale, une agence d’État, un opérateur, ou un service déconcentré, il
-      vous faudra transmettre le décret ou l’arrêté justifiant votre demande.
+      L’accès à l’API Entreprise se fait sous réserve que son utilisation soit
+      justifiée. Chaque donnée requiert la fourniture d’un cadre juridique
+      précis. Par exemple, si vous êtes une administration centrale, une agence
+      d’État, un opérateur, ou un service déconcentré, il vous faudra
+      transmettre le décret ou l’arrêté justifiant votre demande.
     </p>
     <p>
       <WarningEmoji /> Attention, quel que soit votre statut, le{' '}
@@ -251,9 +251,13 @@ const initialContacts = {
     header: 'Demandeur',
     description: (
       <>
-        <b>Le demandeur</b>, c'est vous, dépose la demande et recevra les accès
-        techniques par mail. Il sera contacté en cas de problème fonctionnel sur
-        votre service.
+        <b>Le demandeur</b> est à l'origine de la demande d'habilitation, c'est
+        vous. Si la demande est validée, vous serez responsable de la clé
+        d'accès (token) que vous pourrez copier/coller ou déléguer aux personnes
+        en charge de l'implémentation technique. Vous serez contacté en cas de
+        problèmes fonctionnels sur votre service. Vous serez également averti de
+        l'expiration du jeton intervenant tous les 18 mois, pour vous permettre
+        de renouveler votre demande.
       </>
     ),
     forceDisable: true,
@@ -270,16 +274,34 @@ const initialContacts = {
     header: 'Contact technique',
     description: (
       <>
-        <b>Le contact technique</b> sera averti de l’expiration des jetons au
-        bout de 18 mois. Afin de garantir que votre service ne soit pas
-        interrompu, merci de renseigner une adresse email générique, une boite
-        au lettre fonctionnelle, une mailing liste ou une liste de diffusion
-        afin que nous puissions vous transmettre les nouveaux jetons malgré des
-        aléas de changement de poste, congés ou autre. Le contact technique sera
-        également averti des évolutions techniques et des incidents.
+        <b>Le contact technique</b> est la personne en charge de l'intégration
+        de l'API Entreprise et de sa maintenance dans vos systèmes
+        d'information. Le contact technique sera notifié de l'ensemble des
+        opérations de maintenance et des incidents. Le contact technique sera en
+        copie des notifications d'expiration du jeton.
+        <br />
+        Afin de garantir que votre service ne soit pas interrompu, merci de
+        renseigner une adresse e-mail générique ou liste de diffusion
+        fonctionnelle, afin que ce contact soit permanent et peu influencé par
+        les changements de poste, congés ou autres.
       </>
     ),
     displayGroupEmailLabel: true,
+  },
+  contact_metier: {
+    header: 'Contact métier',
+    description: (
+      <>
+        <b>Le contact métier</b> est la personne en charge des aspects
+        fonctionnels de votre service, elle connaît notamment les données et les
+        informations utiles pour simplifier les démarches des entreprises et des
+        associations. Le contact métier sera notamment informé des nouvelles API
+        disponibles. Il sera également notifié en cas d'incidents majeurs.
+        <br />
+        Si votre service métier a une adresse e-mail générique, n'hésitez pas à
+        renseigner celle-ci.
+      </>
+    ),
   },
 };
 
