@@ -70,7 +70,7 @@ const ApiDeclarationAutoEntrepreneur = ({
     target_api={target_api}
     contactInformation={[
       {
-        email: DATA_PROVIDER_CONTACT_EMAILS.urssaf,
+        email: DATA_PROVIDER_CONTACT_EMAILS.api_declaration_auto_entrepreneur,
         label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
