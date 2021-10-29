@@ -1,4 +1,5 @@
 {
   "chromeWebSecurity": false,
-  "experimentalSessionSupport": true
+  "experimentalSessionSupport": true,
+  "retries": 2
 }
