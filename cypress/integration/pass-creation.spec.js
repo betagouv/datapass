@@ -39,19 +39,19 @@ describe("DataPass", () => {
     cy.contains("user@yopmail.com a créé la demande");
 
     cy.fillField("team_members[1].given_name", "Jean");
-    cy.fillField("team_members[1].family_name", "Castex");
-    cy.fillField("team_members[1].job", "Premier ministre");
-    cy.fillField("team_members[1].email", "jeannot_63@gmail.com");
-    cy.fillField("team_members[1].phone_number", "0624753711");
+    cy.fillField("team_members[1].family_name", "Martin");
+    cy.fillField("team_members[1].job", "Chef");
+    cy.fillField("team_members[1].email", "jeannot_63@mairie-martin.fr");
+    cy.fillField("team_members[1].phone_number", "0606060606");
 
     cy.fillField("team_members[2].given_name", "Jean-Pierre");
     cy.fillField("team_members[2].family_name", "Dépého");
     cy.fillField("team_members[2].job", "Protecteur de la donnée");
     cy.fillField("team_members[2].email", "jp@donnee-protegee.fr");
-    cy.fillField("team_members[2].phone_number", "0624753712");
+    cy.fillField("team_members[2].phone_number", "0606060606");
 
     cy.get(".form__group > button").click();
-    cy.fillField("team_members[3].phone_number", "0624753713");
+    cy.fillField("team_members[3].phone_number", "0606060606");
 
     cy.get('input[name="cgu_approved"]').click();
     cy.get('input[name="dpo_is_informed"]').click();
