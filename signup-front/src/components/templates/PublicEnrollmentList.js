@@ -14,6 +14,7 @@ import {
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
+import { debounce } from 'lodash';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -23,20 +24,9 @@ class PublicEnrollmentList extends React.Component {
       enrollments: [],
       errors: [],
       loading: true,
+      totalPages: 0,
+      page: 0,
     };
-  }
-
-  async componentDidMount() {
-    const enrollments = await getPublicValidatedEnrollments(
-      this.props.match.params.targetApi
-    );
-
-    this.setState({
-      enrollments: enrollments.map((enrollment) => {
-        return enrollment;
-      }),
-      loading: false,
-    });
   }
 
   async componentDidUpdate(prevProps) {
@@ -44,23 +34,38 @@ class PublicEnrollmentList extends React.Component {
       this.props.match.params.targetApi !== prevProps.match.params.targetApi
     ) {
       this.setState({
-        enrollments: [],
-        errors: [],
-        loading: true,
+        page: 0,
       });
 
-      const enrollments = await getPublicValidatedEnrollments(
-        this.props.match.params.targetApi
-      );
-
-      this.setState({
-        enrollments: enrollments.map((enrollment) => {
-          return enrollment;
-        }),
-        loading: false,
-      });
+      await this.onFetchData();
     }
   }
+
+  onFetchData = async () => {
+    this.setState({ loading: true });
+    // Read the state from this.state and not from internally computed react table state
+    // (passed as param of this function) as react table will reset page count to zero
+    // on filter update. This breaks page selection on page load.
+    const { page } = this.state;
+
+    const {
+      enrollments,
+      meta: { total_pages: totalPages },
+    } = await getPublicValidatedEnrollments({
+      targetApi: this.props.match.params.targetApi,
+      page,
+    });
+
+    this.setState({
+      enrollments,
+      totalPages,
+      loading: false,
+    });
+  };
+
+  onPageChange = (newPage) => {
+    this.setState({ page: newPage });
+  };
 
   getColumnConfiguration = () => [
     {
@@ -131,8 +136,16 @@ class PublicEnrollmentList extends React.Component {
     return cellValue;
   };
 
+  // this is a workaround for a react-table issue
+  // see https://github.com/tannerlinsley/react-table/issues/1333#issuecomment-504046261
+  debouncedFetchData = debounce(this.onFetchData, 100);
+
+  componentWillUnmount() {
+    this.debouncedFetchData.cancel();
+  }
+
   render() {
-    const { enrollments, errors, loading } = this.state;
+    const { enrollments, errors, loading, page, totalPages } = this.state;
 
     return (
       <section className="section-grey full-width-container">
@@ -165,14 +178,10 @@ class PublicEnrollmentList extends React.Component {
               </div>
             ))}
             <ReactTable
+              manual
               data={enrollments}
+              pages={totalPages}
               columns={this.getColumnConfiguration()}
-              defaultSorted={[
-                {
-                  id: 'updated_at',
-                  desc: true,
-                },
-              ]}
               getTdProps={(state, rowInfo, column) => ({
                 title: this.getTitle({ column, rowInfo }),
               })}
@@ -185,7 +194,11 @@ class PublicEnrollmentList extends React.Component {
               loading={loading}
               showPageSizeOptions={false}
               pageSize={10}
+              page={page}
+              onPageChange={this.onPageChange}
+              onFetchData={this.debouncedFetchData}
               resizable={false}
+              sortable={false}
               previousText="Précédent"
               nextText="Suivant"
               loadingText="Chargement..."

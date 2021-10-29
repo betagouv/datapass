@@ -89,13 +89,22 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/public
   def public
-    enrollments = Enrollment
+    @enrollments = Enrollment
       .where(status: "validated")
       .order(updated_at: :desc)
 
-    enrollments = enrollments.where(target_api: params.fetch(:target_api, false)) if params.fetch(:target_api, false)
+    @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false)) if params.fetch(:target_api, false)
 
-    render json: enrollments, each_serializer: PublicEnrollmentListSerializer
+    page = params.fetch(:page, "0")
+    size = params.fetch(:size, "10")
+    size = "100" if size.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+
+    render json: @enrollments,
+      each_serializer: PublicEnrollmentListSerializer,
+      meta: pagination_dict(@enrollments),
+      adapter: :json,
+      root: "enrollments"
   end
 
   # POST /enrollments
