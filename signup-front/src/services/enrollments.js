@@ -89,8 +89,16 @@ export function getNextEnrollments(id) {
     .then(({ data: { enrollments: data } }) => data);
 }
 
-export function getPublicValidatedEnrollments(targetApi) {
-  const queryParam = hashToQueryParams({ target_api: targetApi });
+export function getPublicValidatedEnrollments({
+  targetApi,
+  page = null,
+  size = null,
+}) {
+  const queryParam = hashToQueryParams({
+    target_api: targetApi,
+    page,
+    size,
+  });
 
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/public${queryParam}`, {
