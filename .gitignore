@@ -2,5 +2,9 @@
 ansible_modules
 
 .idea
+.vscode
 *.retry
 *.swp
+
+cypress/videos
+cypress/screenshots

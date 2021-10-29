@@ -1,16 +1,21 @@
-name: Frontend build
+name: Frontend CI
 
 on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     defaults:
       run:
         working-directory: signup-front
     strategy:
       matrix:
         include:
+          - env: test
+            back_host: http://localhost:3001
+            api_gouv_host: https://www-staging.api.gouv.fr
+            piwik_url: ""
+            piwki_site_id: ""
           - env: staging
             back_host: https://back.datapass-staging.api.gouv.fr
             api_gouv_host: https://www-staging.api.gouv.fr
@@ -55,3 +60,97 @@ jobs:
           name: ${{ matrix.env }}-${{ github.sha }}-build
           path: |
             signup-front/build
+  quality-control:
+    runs-on: ubuntu-18.04
+    needs: build
+    env:
+      BACK_HOST: http://localhost:3001
+      FRONT_HOST: http://localhost:3000
+      OAUTH_HOST: https://auth-test.api.gouv.fr
+      ALLOWED_ORIGINS: http://localhost:3000
+      PG_USER: back
+      PG_PASSWORD: back
+      PG_HOST: localhost
+      PG_DATABASE: datapass
+      SECRET_KEY_BASE: croute
+      RAILS_ENV: production
+      DATAPASS_OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+      DATAPASS_OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+      postgres:
+        image: postgres:9.5
+        env:
+          POSTGRES_USER: ${{ env.PG_USER }}
+          POSTGRES_PASSWORD: ${{ env.PG_PASSWORD }}
+          POSTGRES_DB: ${{ env.PG_DATABASE }}
+        ports:
+          - 5432:5432
+    defaults:
+      run:
+        working-directory: signup-front
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 2.7.3
+      - name: Install postgres client #and imagemagick
+        run: sudo apt-get install libpq-dev #imagemagick
+      - name: Cache Gems
+        uses: actions/cache@v1
+        with:
+          path: signup-back/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install backend vendors
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundler install --jobs 4 --retry 3
+        working-directory: signup-back
+      - name: Migrate database
+        run: bin/rails db:migrate
+        working-directory: signup-back
+      - name: Seed database
+        run: bin/rails db:seed
+        working-directory: signup-back
+      - name: Retrieve frontend build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: test-${{ github.sha }}-build
+          path: signup-front/build
+      - name: Install Cypress
+        run: npm install cypress
+        working-directory: .
+      - name: Run backend application
+        run: bundle exec puma -C ./config/puma.rb &
+        working-directory: signup-back
+        env:
+          PORT: 3001
+      - name: Run frontend application
+        run: npx serve -s build -p 3000 &
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          working-directory: .
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
