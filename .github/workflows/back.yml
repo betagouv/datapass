@@ -84,30 +84,30 @@ jobs:
           coverageCommand: bundle exec rspec
           workingDirectory: signup-back
 
-  lint:
-    name: Linter (StandardRB)
-    runs-on: ubuntu-18.04
-    if: "${{ github.actor != 'dependabot[bot]' }}"
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # lint:
+  #   name: Linter (StandardRB)
+  #   runs-on: ubuntu-18.04
+  #   if: "${{ github.actor != 'dependabot[bot]' }}"
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Run Standardrb linter
-        uses: amoeba/standardrb-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJECT_PATH: signup-back
+  #     - name: Run Standardrb linter
+  #       uses: amoeba/standardrb-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         PROJECT_PATH: signup-back
 
-  security:
-    name: Brakeman
-    if: "${{ github.actor != 'dependabot[bot]' }}"
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # security:
+  #   name: Brakeman
+  #   if: "${{ github.actor != 'dependabot[bot]' }}"
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Run Brakeman linter action
-        uses: devmasx/brakeman-linter-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJECT_PATH: signup-back
+  #     - name: Run Brakeman linter action
+  #       uses: devmasx/brakeman-linter-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         PROJECT_PATH: signup-back
