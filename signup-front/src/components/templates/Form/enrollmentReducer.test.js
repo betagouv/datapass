@@ -169,41 +169,40 @@ describe('enrollmentReducerFactory', () => {
   describe('enrollmentReducer with demarches', function () {
     const demarches = {
       default: {
-        label: 'Demande Libre',
-        about: 'https://api.gouv.fr/les-api/api-particulier',
         state: {
           intitule: '',
           scopes: {
             dgfip_declarant1_nom: false,
             cnaf_quotient_familial: false,
           },
-          team_members: [
-            {
-              type: 'responsable_technique',
-              tmp_id: 'tmp_technique',
-              email: '',
-            },
-          ],
+        },
+        team_members: {
+          responsable_technique: {
+            email: '',
+          },
         },
       },
-      waigeo: {
-        label:
-          "Tarification des services liés à l'enfance avec la solution MyPérischool de l'éditeur Waigéo",
-        about:
-          'https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire',
+      editeur: {
         state: {
           intitule:
             'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.',
           scopes: {
             cnaf_quotient_familial: true,
           },
-          team_members: [
-            {
-              type: 'responsable_technique',
-              tmp_id: 'tmp_technique',
-              email: 'technique@waigeo.fr',
-            },
-          ],
+        },
+        team_members: {
+          responsable_technique: {
+            email: 'technique@editeur.fr',
+          },
+        },
+      },
+      editeur_without_resp_tech: {
+        state: {
+          intitule:
+            'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.',
+          scopes: {
+            cnaf_quotient_familial: true,
+          },
         },
       },
     };
@@ -215,7 +214,7 @@ describe('enrollmentReducerFactory', () => {
         currentTarget: null,
         target: {
           name: 'demarche',
-          value: 'waigeo',
+          value: 'editeur',
         },
       };
       it('should return an updated intitule', () => {
@@ -240,7 +239,87 @@ describe('enrollmentReducerFactory', () => {
           },
           {
             type: 'responsable_technique',
-            email: 'technique@waigeo.fr',
+            email: 'technique@editeur.fr',
+            tmp_id: 'tmp_34',
+          },
+        ]);
+      });
+    });
+
+    describe('when a demarche with no team_member is selected', () => {
+      const event = {
+        currentTarget: null,
+        target: {
+          name: 'demarche',
+          value: 'editeur_without_resp_tech',
+        },
+      };
+      it('should return the default collection', () => {
+        expect(
+          enrollmentReducer(previousEnrollment, event).team_members
+        ).toEqual([
+          {
+            type: 'demandeur',
+            email: 'datapass@yopmail.com',
+            tmp_id: 'tmp_31',
+          },
+          {
+            type: 'responsable_technique',
+            email: '',
+            tmp_id: 'tmp_34',
+          },
+        ]);
+      });
+    });
+
+    describe('when a demarche is selected on a uninitialized enrollment', () => {
+      const event = {
+        currentTarget: null,
+        target: {
+          name: 'demarche',
+          value: 'editeur',
+        },
+      };
+      it('should return an updated intitule', () => {
+        expect(enrollmentReducer({}, event).intitule).toEqual(
+          'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.'
+        );
+      });
+      it('should return an empty collections', () => {
+        expect(enrollmentReducer({}, event).team_members).toEqual(undefined);
+      });
+    });
+
+    describe('when two demarches are selected successively', () => {
+      const event1 = {
+        currentTarget: null,
+        target: {
+          name: 'demarche',
+          value: 'editeur',
+        },
+      };
+      const event2 = {
+        currentTarget: null,
+        target: {
+          name: 'demarche',
+          value: 'editeur_without_resp_tech',
+        },
+      };
+      it('should return the default collection', () => {
+        expect(
+          enrollmentReducer(
+            enrollmentReducer(previousEnrollment, event1),
+            event2
+          ).team_members
+        ).toEqual([
+          {
+            type: 'demandeur',
+            email: 'datapass@yopmail.com',
+            tmp_id: 'tmp_31',
+          },
+          {
+            type: 'responsable_technique',
+            email: '',
             tmp_id: 'tmp_34',
           },
         ]);

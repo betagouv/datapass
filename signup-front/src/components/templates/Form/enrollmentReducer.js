@@ -1,4 +1,4 @@
-import { cloneDeep, get, isObject, merge, omitBy, set } from 'lodash';
+import { cloneDeep, get, isEmpty, isObject, merge, omitBy, set } from 'lodash';
 
 export const globalUpdate = ({ previousEnrollment, futureEnrollment }) =>
   merge(
@@ -21,11 +21,38 @@ export const eventUpdateFactory =
     set(futureEnrollment, name, value);
 
     if (demarches && name === 'demarche') {
+      const defaultDemarche = get(demarches, 'default', {});
+      const selectedDemarche = get(demarches, value, {});
+
+      let futureTeamMembers = futureEnrollment.team_members;
+      if (
+        !isEmpty(futureEnrollment.team_members) &&
+        !isEmpty(defaultDemarche.team_members)
+      ) {
+        futureTeamMembers = futureEnrollment.team_members.map(
+          (futureTeamMember) => {
+            if (!defaultDemarche.team_members[futureTeamMember.type]) {
+              return futureTeamMember;
+            }
+
+            if (
+              !selectedDemarche.team_members ||
+              !selectedDemarche.team_members[futureTeamMember.type]
+            ) {
+              return defaultDemarche.team_members[futureTeamMember.type];
+            }
+
+            return selectedDemarche.team_members[futureTeamMember.type];
+          }
+        );
+      }
+
       futureEnrollment = merge(
         {},
         futureEnrollment,
-        get(demarches, 'default', {}).state,
-        get(demarches, value, {}).state
+        defaultDemarche.state,
+        selectedDemarche.state,
+        { team_members: futureTeamMembers }
       );
     }
 

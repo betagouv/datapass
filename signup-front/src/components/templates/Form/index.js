@@ -84,9 +84,16 @@ export const Form = ({
       });
 
       if (demarche) {
-        dispatchSetEnrollment({
-          target: { name: 'demarche', value: demarche },
-        });
+        // team_members within demarches needs enrollments team_member
+        // collection to be initialized first. We wait 500ms to ensure
+        // team_members are initialized by ÉquipeSection component.
+        setTimeout(
+          () =>
+            dispatchSetEnrollment({
+              target: { name: 'demarche', value: demarche },
+            }),
+          500
+        );
       }
       setIsUserEnrollmentLoading(false);
     }
