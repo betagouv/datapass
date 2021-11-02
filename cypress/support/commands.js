@@ -1,6 +1,8 @@
 Cypress.Commands.add("login", (email, password) => {
   cy.session([email, password], () => {
-    cy.visit("http://localhost:3001/users/auth/api_gouv?prompt=login"); // Directly visit the backend login page to avoid CORS issues with the cookies "Same-site: lax" policy
+    cy.visit("http://localhost:3001/users/auth/api_gouv?prompt=login", {
+      method: "POST",
+    }); // Directly visit the backend login page to avoid CORS issues with the cookies "Same-site: lax" policy
 
     cy.get('input[name="login"]').type(email);
     cy.get('input[name="password"]').type(password);
