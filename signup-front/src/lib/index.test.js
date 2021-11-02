@@ -438,64 +438,42 @@ describe('utils', () => {
     });
 
     it('should return an array with modified field(s)', () => {
-      expect(
-        findModifiedFields(
+      const demarcheState = {
+        intitule:
+          'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.',
+        description: 'description',
+        scopes: {
+          cnaf_quotient_familial: false,
+          dgfip_declarant1_nom: false,
+        },
+      };
+      const enrollmentState = {
+        acl: {
+          update: true,
+          send_application: true,
+        },
+        status: 'pending',
+        target_api: 'api_particulier',
+        intitule: 'Mon intitulé',
+        scopes: {
+          dgfip_declarant1_nom: false,
+          cnaf_quotient_familial: false,
+        },
+        team_members: [
           {
-            data_recipients: '',
-            data_retention_period: '',
-            description: '',
-            fondement_juridique_title: '',
-            fondement_juridique_url: '',
-            intitule: 'Mon intitulé',
-            scopes: {
-              cnaf_adresse: false,
-              cnaf_allocataires: true,
-              cnaf_enfants: true,
-              cnaf_quotient_familial: true,
-              dgfip_adresse: true,
-              dgfip_avis_imposition: true,
-            },
+            type: 'demandeur',
+            tmp_id: 'tmp_31',
+            email: 'datapass@yopmail.com',
           },
           {
-            acl: {
-              send_application: true,
-              update: true,
-              additional_content: {},
-            },
-            contacts: {
-              contact_metier: {
-                heading: 'Contact métier',
-                email: '',
-                phone_number: '',
-              },
-              responsable_technique: {
-                heading: 'Responsable technique',
-                email: '',
-                phone_number: '',
-              },
-            },
-            data_recipients: '',
-            data_retention_period: '',
-            demarche: 'ccas',
-            description: '',
-            events: [],
-            fondement_juridique_title: '',
-            fondement_juridique_url: '',
-            intitule: 'Portail famille',
-            organization_id: 1,
-            scopes: {
-              cnaf_adresse: false,
-              cnaf_allocataires: true,
-              cnaf_enfants: true,
-              cnaf_quotient_familial: true,
-              dgfip_adresse: true,
-              dgfip_avis_imposition: true,
-            },
-            siret: '21920023500014',
-            target_api: 'api_particulier',
-          }
-        )
-      ).toStrictEqual(['intitule']);
+            type: 'responsable_technique',
+            tmp_id: 'tmp_34',
+          },
+        ],
+      };
+      expect(findModifiedFields(demarcheState, enrollmentState)).toStrictEqual([
+        'intitule',
+      ]);
     });
   });
 
