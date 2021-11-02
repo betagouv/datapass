@@ -42,15 +42,13 @@
         "pole_emploi_contact": false,
         "pole_emploi_adresse": false,
         "pole_emploi_inscription": false
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "",
-          "phone_number": ""
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "",
+        "phone_number": ""
+      }
     }
   },
   "abelium": {
@@ -84,15 +82,13 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
         "cnaf_adresse": true
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "projet@agoraplus.fr",
-          "phone_number": "0184160095"
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "projet@agoraplus.fr",
+        "phone_number": "0184160095"
+      }
     }
   },
   "arpege-concerto": {
@@ -127,15 +123,13 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": false,
         "cnaf_adresse": true
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "enfance.mes@berger-levrault.com",
-          "phone_number": "0561395284"
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "enfance.mes@berger-levrault.com",
+        "phone_number": "0561395284"
+      }
     }
   },
   "cantine-de-france": {
@@ -151,15 +145,13 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
         "cnaf_adresse": true
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "contact@jdealise.fr",
-          "phone_number": "0972473612"
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "contact@jdealise.fr",
+        "phone_number": "0972473612"
+      }
     }
   },
   "ccas": {
@@ -223,15 +215,13 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "technique@mushroom-software.com",
-          "phone_number": "0674577622"
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "technique@mushroom-software.com",
+        "phone_number": "0674577622"
+      }
     }
   },
   "entrouvert-publik": {
@@ -385,15 +375,13 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
-      },
-      "team_members": [
-        {
-          "type": "responsable_technique",
-          "tmp_id": "tmp_technique",
-          "email": "technique@waigeo.fr",
-          "phone_number": "0970805210"
-        }
-      ]
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "email": "technique@waigeo.fr",
+        "phone_number": "0970805210"
+      }
     }
   }
 }

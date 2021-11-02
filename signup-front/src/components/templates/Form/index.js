@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { get, isObject, omitBy, merge, set } from 'lodash';
+import { get } from 'lodash';
 
 import { getUserEnrollment } from '../../../services/enrollments';
 import SubmissionPanel from './SubmissionPanel';
@@ -19,50 +19,9 @@ import statusToButtonType from '../../../lib/status-to-button-type';
 import { withUser } from '../../organisms/UserContext';
 import FileCopyIcon from '../../atoms/icons/file_copy';
 import { Linkify } from '../../molecules/Linkify';
+import { enrollmentReducerFactory } from './enrollmentReducer';
 
 export const FormContext = React.createContext();
-
-const enrollmentReducer =
-  (demarches = null) =>
-  (previousEnrollment, action) => {
-    if (!isObject(action)) {
-      return previousEnrollment;
-    }
-
-    // if no action.target, this is a direct state update (network for instance)
-    // a direct state update DOES NOT trigger a pre-filled demarche update
-    if (!action.target) {
-      const newEnrollment = action;
-
-      return merge(
-        {},
-        previousEnrollment,
-        omitBy(newEnrollment, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-      );
-    }
-
-    // if action.target, it means reducer was trigger by an html element (input, select etc.)
-    const {
-      target: { type = null, checked = null, value: inputValue, name },
-    } = action;
-
-    // checkbox elements must be handled specifically as we look for checked and not target
-    const value = type === 'checkbox' ? checked : inputValue;
-
-    let futureEnrollment = { ...previousEnrollment };
-    set(futureEnrollment, name, value);
-
-    if (demarches && name === 'demarche') {
-      futureEnrollment = merge(
-        {},
-        futureEnrollment,
-        get(demarches, 'default', {}).state,
-        get(demarches, value, {}).state
-      );
-    }
-
-    return futureEnrollment;
-  };
 
 export const Form = ({
   title,
@@ -73,7 +32,6 @@ export const Form = ({
   target_api,
   enrollmentId = null,
   history,
-  user,
   demarches = null,
   children,
   documentationUrl,
@@ -89,19 +47,21 @@ export const Form = ({
     );
   }, [children]);
 
-  const [enrollment, dispatchSetEnrollment] = useReducer(
-    enrollmentReducer(demarches),
-    {
-      acl: {
-        update: true,
-        send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
-      },
-      status: 'pending',
-      events: [],
-      target_api,
-      additional_content: {},
-    }
+  const enrollmentReducer = useMemo(
+    () => enrollmentReducerFactory(demarches),
+    [demarches]
   );
+
+  const [enrollment, dispatchSetEnrollment] = useReducer(enrollmentReducer, {
+    acl: {
+      update: true,
+      send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
+    },
+    status: 'pending',
+    events: [],
+    target_api,
+    additional_content: {},
+  });
 
   useEffect(() => {
     async function fetchUserEnrollment() {
@@ -124,9 +84,16 @@ export const Form = ({
       });
 
       if (demarche) {
-        dispatchSetEnrollment({
-          target: { name: 'demarche', value: demarche },
-        });
+        // team_members within demarches needs enrollments team_member
+        // collection to be initialized first. We wait 500ms to ensure
+        // team_members are initialized by ÉquipeSection component.
+        setTimeout(
+          () =>
+            dispatchSetEnrollment({
+              target: { name: 'demarche', value: demarche },
+            }),
+          500
+        );
       }
       setIsUserEnrollmentLoading(false);
     }

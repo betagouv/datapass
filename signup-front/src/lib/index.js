@@ -13,6 +13,7 @@ import {
   slice,
   isArray,
   isUndefined,
+  isEqual,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -291,7 +292,8 @@ export const findModifiedFields = (
     const value = enrollmentState[key];
     if (
       !isEmpty(initialValue) &&
-      JSON.stringify(initialValue) !== JSON.stringify(value)
+      !isEmpty(value) &&
+      !isEqual(initialValue, value)
     ) {
       modified.push(key);
     }
