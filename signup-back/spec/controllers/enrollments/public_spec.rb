@@ -17,15 +17,15 @@ RSpec.describe EnrollmentsController, "#public", type: :controller do
     let(:target_api) { nil }
 
     it "renders all validated enrollments" do
-      expect(public_enrollments_payload.count).to eq(3)
+      expect(public_enrollments_payload["enrollments"].count).to eq(3)
     end
 
     it "uses the public serializer, which does not contain sensitive information" do
-      expect(public_enrollments_payload.first.keys).not_to include("dpo_email")
+      expect(public_enrollments_payload["enrollments"].first.keys).not_to include("dpo_email")
     end
 
     it "is ordered by last updated date desc" do
-      expect(public_enrollments_payload.map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to eq(%w[
+      expect(public_enrollments_payload["enrollments"].map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to eq(%w[
         newest_franceconnect
         api_entreprise
         old_franceconnect
@@ -37,9 +37,9 @@ RSpec.describe EnrollmentsController, "#public", type: :controller do
     let(:target_api) { "franceconnect" }
 
     it "renders validated enrollments on this target api" do
-      expect(public_enrollments_payload.count).to eq(2)
+      expect(public_enrollments_payload["enrollments"].count).to eq(2)
 
-      expect(public_enrollments_payload.map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to eq(%w[
+      expect(public_enrollments_payload["enrollments"].map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to eq(%w[
         newest_franceconnect
         old_franceconnect
       ])
