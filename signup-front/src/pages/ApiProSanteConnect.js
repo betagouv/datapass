@@ -56,7 +56,7 @@ const ApiProSanteConnect = ({
       title="Coordonnées du référent de votre structure"
       MiseEnOeuvreDescription={() => null}
     />
-    <CguSection cguLink="https://integrateurs-cps.asipsante.fr/pages/cgu-psc" />
+    <CguSection cguLink="https://tech.esante.gouv.fr/outils-services/pro-sante-connect-e-cps/conditions-generale-dutilisation-pro-sante-connect" />
   </Form>
 );
 
