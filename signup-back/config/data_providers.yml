@@ -88,11 +88,6 @@ api_entreprise:
     refuse_application:
       subject: "🚫 Votre demande d’accès à l’API Entreprise a été refusée"
 
-preuve_covoiturage:
-  label: Registre de preuve de covoiturage
-  support_email: contact@covoiturage.beta.gouv.fr
-  mailer: *shared_mailer
-
 le_taxi_clients:
   label: le.Taxi
   support_email: contact@api.gouv.fr

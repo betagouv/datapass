@@ -19,7 +19,6 @@ import AidantsConnect from './pages/AidantsConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import LeTaxiClients from './pages/LeTaxiClients';
 import LeTaxiChauffeurs from './pages/LeTaxiChauffeurs';
-import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import CartoBio from './pages/CartoBio';
 import AgenceBio from './pages/AgenceBio';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
@@ -156,11 +155,6 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/le-taxi-chauffeurs/:enrollmentId?"
         component={LeTaxiChauffeurs}
-      />
-
-      <PrivateRoute
-        path="/preuve-covoiturage/:enrollmentId?"
-        component={PreuveCovoiturage}
       />
 
       <PrivateRoute path="/cartobio/:enrollmentId?" component={CartoBio} />
