@@ -14,5 +14,22 @@ class AidantsConnectBridge < ApplicationBridge
       ENV.fetch("AIDANTS_CONNECT_API_KEY"),
       "Aidants Connect"
     )
+
+    aidants = @enrollment.team_members.filter { |tm| tm.type == "aidant" }
+
+    aidants.each do |team_member|
+      Http.post(
+        "#{ENV.fetch("AIDANTS_CONNECT_HOST")}/datapass_habilitation/",
+        {
+          data_pass_id: @enrollment.id,
+          first_name: team_member.given_name,
+          last_name: team_member.family_name,
+          email: team_member.email,
+          profession: team_member.job
+        },
+        ENV.fetch("AIDANTS_CONNECT_API_KEY"),
+        "Aidants Connect"
+      )
+    end
   end
 end
