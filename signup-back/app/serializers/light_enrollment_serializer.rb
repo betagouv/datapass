@@ -2,9 +2,9 @@ class LightEnrollmentSerializer < ActiveModel::Serializer
   attributes :id, :updated_at, :nom_raison_sociale, :target_api, :status, :demandeurs
 
   attribute :acl do
-    EnrollmentPolicy.acl_methods.map do |method|
-      [method.to_s.delete("?"), EnrollmentPolicy.new(current_user, object).send(method)]
-    end.to_h
+    object.policy.acl_methods.map { |method|
+      [method.to_s.delete("?"), object.policy.new(current_user, object).send(method)]
+    }.to_h
   end
 
   def demandeurs

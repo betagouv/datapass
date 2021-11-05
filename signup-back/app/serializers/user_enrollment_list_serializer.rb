@@ -10,8 +10,8 @@ class UserEnrollmentListSerializer < ActiveModel::Serializer
   has_many :events
 
   attribute :acl do
-    EnrollmentPolicy.acl_methods.map { |method|
-      [method.to_s.delete("?"), EnrollmentPolicy.new(current_user, object).send(method)]
+    object.policy.acl_methods.map { |method|
+      [method.to_s.delete("?"), object.policy.new(current_user, object).send(method)]
     }.to_h
   end
 end

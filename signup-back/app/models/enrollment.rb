@@ -106,6 +106,10 @@ class Enrollment < ActiveRecord::Base
     nil
   end
 
+  def policy
+    Kernel.const_get("Enrollment::#{target_api.classify}Policy")
+  end
+
   def subscribers
     unless DataProvidersConfiguration.instance.exists?(target_api)
       raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: API cible invalide."
