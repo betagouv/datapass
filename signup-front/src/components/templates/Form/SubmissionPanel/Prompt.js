@@ -20,7 +20,7 @@ const Prompt = ({
   const { plain_text_content } = useEmailTemplate(id, selectedAction);
 
   useEffect(() => {
-    if (!input) {
+    if (!input && plain_text_content) {
       setInput(plain_text_content);
     }
   }, [input, plain_text_content]);
