@@ -1,125 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Quote from '../../components/atoms/inputs/Quote';
-import FileInput from '../../components/molecules/FileInput';
-import { FormContext } from '../../components/templates/Form';
-import { isEmpty } from 'lodash';
-import CheckboxInput from '../../components/atoms/inputs/CheckboxInput';
+import { DonneesDescription as CommonDonneesDescription } from './common';
 
-export const DemarcheDescription = () => (
-  <div className="notification grey">
+export const DonneesDescription = () => (
+  <>
+    <CommonDonneesDescription />
     <p>
-      Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l’API Impôt particulier permet
-      l’échange d’informations fiscales, dans le cadre d’un téléservice, entre
-      la DGFiP et une entité administrative ou une entreprise dans le cadre de
-      ses obligations légales et réglementaires pour des missions d’intérêt
-      général. L’usager n’a plus besoin de transmettre les données fiscales déjà
-      transmises à la DGFiP.
+      Pour connaitre les modalités d’appel et de réponse de l’API Impôt
+      particulier ainsi que les données proposées, merci de consulter le
+      document suivant :{' '}
+      <a
+        href="/docs/presentation_de_l_api_impot_particulier_v1_9.pdf"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Présentation de l’API Impôt particulier (PDF)"
+      >
+        Présentation de l’API Impôt particulier (PDF)
+      </a>
+      .
     </p>
-    <p>
-      Ce portail vous permet en qualité de fournisseur de services de demander
-      le raccordement de votre téléservice à l’API Impôt particulier.
-    </p>
-    <p>
-      Pour cela, il vous est demandé de compléter le plus précisément possible
-      les informations demandées dans le formulaire de souscription en ligne, en
-      particulier pour ce qui concerne :
-    </p>
-    <ul>
-      <li>les données nécessaires à la démarche administrative ;</li>
-      <li>la volumétrie de sollicitation de l’API ;</li>
-      <li>le cadre juridique.</li>
-    </ul>
-    <p>
-      Pour faciliter votre raccordement à l’API Impôt particulier, l’accès à un
-      environnement de test (bac à sable) vous sera proposé après validation de
-      cette première étape.
-    </p>
-  </div>
+  </>
 );
-
-export const DonneesFootnote = () => {
-  const {
-    disabled,
-    onChange,
-    enrollment: { documents = [], documents_attributes = [] },
-  } = useContext(FormContext);
-  const [isFileInputExpanded, setFileInputExpanded] = useState(
-    !isEmpty(
-      documents.filter(
-        ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
-      )
-    )
-  );
-
-  useEffect(() => {
-    const hasDocument = !isEmpty(
-      documents.filter(
-        ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
-      )
-    );
-    if (!isFileInputExpanded && hasDocument) {
-      setFileInputExpanded(true);
-    }
-  }, [isFileInputExpanded, documents]);
-
-  return (
-    <>
-      <div className="form__group">
-        <small className="card__meta">
-          <i>
-            <a
-              href="/docs/presentation_de_l_api_impot_particulier_v1_9.pdf"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Document pdf précisant les données proposées"
-            >
-              Ce document
-            </a>{' '}
-            présente les modalités d’appel et de réponse de l’API Impôt
-            particulier, et décrit les données proposées.
-          </i>
-        </small>
-      </div>
-      <Quote>
-        <div style={{ margin: '0 0.5em 2.5rem 0' }}>
-          <b>Expression de besoin spécifique</b>
-          <p>
-            Les partenaires ayant convenu avec la DGFiP un périmètre de données
-            particulier peuvent rattacher leur expression de besoin listant
-            l’ensemble des données strictement nécessaires à leur cas d’usage.
-          </p>
-          <CheckboxInput
-            label="J’ai une expression de besoin spécifique"
-            value={isFileInputExpanded}
-            onChange={() => setFileInputExpanded(!isFileInputExpanded)}
-            disabled={disabled}
-          />
-          {isFileInputExpanded && (
-            <>
-              <p>
-                <i>
-                  Attention : seule l’expression de besoin en données ayant déjà
-                  été partagée avec la DGFiP peut être rattachée à votre
-                  demande.
-                </i>
-              </p>
-              <FileInput
-                label="Joindre l’expression de besoin"
-                mimeTypes="*"
-                disabled={disabled}
-                uploadedDocuments={documents}
-                documentsToUpload={documents_attributes}
-                documentType={'Document::ExpressionBesoinSpecifique'}
-                onChange={onChange}
-              />
-            </>
-          )}
-        </div>
-      </Quote>
-    </>
-  );
-};
 
 export const demarches = {
   default: {
@@ -407,38 +306,3 @@ export const availableScopes = [
     groupTitle: 'Charges déductibles',
   },
 ];
-
-export const CadreJuridiqueDescription = () => (
-  <Quote>
-    <p>
-      Pour pouvoir bénéficier du raccordement à l’API Impôt particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
-    </p>
-    <p>
-      Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
-    </p>
-    <ul>
-      <li>
-        ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
-      </li>
-      <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
-      </li>
-    </ul>
-  </Quote>
-);
-
-export const CguDescription = () => (
-  <Quote>
-    <p>
-      Votre raccordement à l’API Impôt particulier nécessite l’acceptation des
-      conditions générales d’utilisation.
-    </p>
-  </Quote>
-);

@@ -13,6 +13,7 @@ const FILE_SIZE_LIMIT_IN_MB = 10;
 
 const FileInput = ({
   label,
+  meta,
   mimeTypes = '.pdf, application/pdf',
   disabled,
   uploadedDocuments,
@@ -139,6 +140,11 @@ const FileInput = ({
             name={documentType}
             id={id}
           />
+          {meta && (
+            <small className="card__meta">
+              <i>{meta}</i>
+            </small>
+          )}
           {documentsTooLargeError && (
             <div className="notification error">
               La taille des pièces jointes dépasse la taille maximale autorisée
