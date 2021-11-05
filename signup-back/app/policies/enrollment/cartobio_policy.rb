@@ -1,28 +1,49 @@
 class Enrollment::CartobioPolicy < EnrollmentPolicy
+  def create?
+    false
+  end
+
+  def update?
+    false
+  end
+
+  def destroy?
+    false
+  end
+
+  def copy?
+    false
+  end
+
+  def get_email_templates?
+    false
+  end
+
+  def index?
+    false
+  end
+
   def permitted_attributes
-    res = []
+    []
+  end
 
-    res.concat([
-      :cgu_approved,
-      :target_api,
-      :organization_id,
-      :intitule,
-      :description,
-      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
-      documents_attributes: [
-        :attachment,
-        :type
-      ],
-      additional_content: [
-        :location_scopes,
-        :secret_statistique_agreement,
-        :partage_agreement,
-        :protection_agreement,
-        :exhaustivite_agreement,
-        :information_agreement
-      ]
-    ])
+  def send_application?
+    false
+  end
 
-    res
+  def notify?
+    false
+  end
+
+  def validate_application?
+    false
+  end
+
+  def review_application?
+    false
+  end
+
+  def refuse_application?
+    false
   end
 end
