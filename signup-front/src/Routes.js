@@ -20,7 +20,6 @@ import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import LeTaxiClients from './pages/LeTaxiClients';
 import LeTaxiChauffeurs from './pages/LeTaxiChauffeurs';
 import CartoBio from './pages/CartoBio';
-import AgenceBio from './pages/AgenceBio';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 import ApiProSanteConnect from './pages/ApiProSanteConnect';
@@ -158,8 +157,6 @@ export const Routes = ({ user }) => {
       />
 
       <PrivateRoute path="/cartobio/:enrollmentId?" component={CartoBio} />
-
-      <PrivateRoute path="/agence-bio/:enrollmentId?" component={AgenceBio} />
 
       <PrivateRoute
         path="/api-service-national/:enrollmentId?"
