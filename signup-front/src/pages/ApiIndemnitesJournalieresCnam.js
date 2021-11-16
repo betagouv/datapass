@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
-import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const availableScopes = [
   {
     value: 'cnam_PaiementIndemnitesJournalieres',
     label: 'Période indemnisée et montants journaliers',
+    mandatory: true,
   },
 ];
 
 const steps = ['franceconnect', 'api_indemnites_journalieres_cnam'];
+
+const target_api = 'api_indemnites_journalieres_cnam';
 
 const ApiIndemnitesJournalieresCnam = ({
   match: {
@@ -27,7 +29,7 @@ const ApiIndemnitesJournalieresCnam = ({
 }) => (
   <Form
     enrollmentId={enrollmentId}
-    target_api="api_indemnites_journalieres_cnam"
+    target_api={target_api}
     steps={steps}
     contactInformation={[
       {
@@ -41,8 +43,7 @@ const ApiIndemnitesJournalieresCnam = ({
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
     <CadreJuridiqueSection />
-    <DonneesPersonnellesSection />
-    <MiseEnOeuvreSection />
+    <ÉquipeSection />
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
   </Form>
 );
