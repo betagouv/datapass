@@ -130,7 +130,7 @@ jobs:
           name: test-${{ github.sha }}-build
           path: signup-front/build
       - name: Install Cypress
-        run: npm install cypress
+        run: npm install cypress@8
         working-directory: .
       - name: Run backend application
         run: bundle exec puma -C ./config/puma.rb &
