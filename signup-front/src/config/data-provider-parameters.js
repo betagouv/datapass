@@ -130,6 +130,7 @@ export const DATA_PROVIDER_CONTACT_EMAILS = {
   api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
   api_histovec: 'contact@api.gouv.fr',
   api_prestations_sociales: 'contact@apisecu.fr',
+  api_service_national: 'dsnj-api.contact.fct@intradef.gouv.fr',
 };
 
 export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [
@@ -178,5 +179,9 @@ export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [
   {
     label: 'le.Taxi',
     email: DATA_PROVIDER_CONTACT_EMAILS.le_taxi,
+  },
+  {
+    label: DATA_PROVIDER_LABELS.api_service_national,
+    email: DATA_PROVIDER_CONTACT_EMAILS.api_service_national,
   },
 ];
