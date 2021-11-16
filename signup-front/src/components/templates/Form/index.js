@@ -239,7 +239,7 @@ export const Form = ({
         )}
         <FormContext.Provider
           value={{
-            disabled: !enrollment.acl.send_application,
+            disabled: !enrollment.acl.update,
             onChange: dispatchSetEnrollment,
             enrollment,
             isUserEnrollmentLoading,
