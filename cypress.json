@@ -1,5 +1,5 @@
 {
   "chromeWebSecurity": false,
   "experimentalSessionSupport": true,
-  "retries": 2
+  "defaultCommandTimeout": 10000
 }
