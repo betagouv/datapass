@@ -130,12 +130,16 @@ const availableScopes = [
     value: 'bilans_entreprise_bdf',
     label: '3 derniers bilans annuels - Banque de France 🔐',
     groupTitle: 'Informations financières :',
+    triggerWarning: true,
+    warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-bilans_entreprises_bdf',
   },
   {
     value: 'liasse_fiscale',
     label: 'Déclarations de résultat - DGFIP 🔐',
     groupTitle: 'Informations financières :',
+    triggerWarning: true,
+    warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-liasses_fiscales_dgfip',
   },
   {

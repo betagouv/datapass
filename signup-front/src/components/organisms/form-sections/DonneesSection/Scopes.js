@@ -20,6 +20,15 @@ const ModalContent = {
     title: 'Cette donnée n’est pas vérifiée',
     body: 'Elle ne sera transmise que si elle est disponible chez le fournisseur d’identité.',
   },
+  apientreprise_sensitive: {
+    title: 'Avez-vous vraiment besoin de cette donnée ?',
+    body:
+      "Cette donnée est particulièrement sensible, elle n'est pas autorisée dans le cadre des " +
+      '"marchés publics" et "pré-remplissage". Elle peut être autorisée pour certaines ' +
+      '"aides et subventions publiques". ' +
+      "Pour que votre demande d'accès à cette donnée aboutisse, vous devez justifier dans ce formulaire " +
+      "d'un cadre légal adéquat et d'un contexte d'usage attestant de l'utilité de cette donnée pour votre service.",
+  },
 };
 
 const Scopes = ({
