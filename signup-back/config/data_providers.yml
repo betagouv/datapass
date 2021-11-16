@@ -113,11 +113,6 @@ api_service_national:
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
-api_statut_etudiant:
-  label: API Statut étudiant
-  support_email: contact@api.gouv.fr
-  mailer: *shared_mailer
-
 api_hermes_sandbox:
   label: API Hermes (Bac à sable)
   support_email: contact@api.gouv.fr

@@ -29,7 +29,6 @@ import ApiParticulier from './pages/ApiParticulier';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
 import ApiEntreprise from './pages/ApiEntreprise';
 import ApiServiceNational from './pages/ApiServiceNational';
-import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 import ApiTiersDePrestation from './pages/UrssafPages/ApiTiersDePrestation';
 import Hubee from './pages/Hubee';
 import Admin from './components/templates/Admin';
@@ -161,11 +160,6 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-service-national/:enrollmentId?"
         component={ApiServiceNational}
-      />
-
-      <PrivateRoute
-        path="/api-statut-etudiant/:enrollmentId?"
-        component={ApiStatutEtudiant}
       />
 
       <PrivateRoute
