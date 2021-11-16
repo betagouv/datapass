@@ -3,39 +3,13 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
-import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
+import DemarcheSection from '../components/organisms/form-sections/DemarcheSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
-
-const DemarcheDescription = () => (
-  <div className="notification grey">
-    <p>
-      Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l’API Droits CNAM permet de
-      récupérer des informations d’assurance maladie des usagers de façon à leur
-      éviter la transmission d’information papier.
-    </p>
-    <p>
-      Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l’API Droits CNAM.
-    </p>
-    <p>
-      Pour faciliter votre raccordement à l’API Droits CNAM, une{' '}
-      <a
-        href="https://github.com/assurance-maladie-digital/api-droits-fs-exemple-php"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        API de test
-      </a>{' '}
-      est à votre disposition.
-    </p>
-  </div>
-);
 
 const availableScopes = [
   {
@@ -64,27 +38,44 @@ const availableScopes = [
   },
 ];
 
-const useCases = [
-  {
+const demarches = {
+  default: {
+    label: 'Demande Libre',
+    state: {
+      scopes: {
+        cnam_beneficiaires: false,
+        cnam_contrats: false,
+        cnam_caisse: false,
+        cnam_exonerations: false,
+        cnam_medecin_traitant: false,
+        cnam_presence_medecin_traitant: false,
+      },
+    },
+  },
+  etablissement_de_soin: {
     label: 'Établissement de soin',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_exonerations',
-      'cnam_medecin_traitant',
-    ],
+    state: {
+      scopes: {
+        cnam_beneficiaires: true,
+        cnam_caisse: true,
+        cnam_contrats: true,
+        cnam_exonerations: true,
+        cnam_medecin_traitant: true,
+      },
+    },
   },
-  {
+  organisme_complementaire: {
     label: 'Organisme complémentaire',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_presence_medecin_traitant',
-    ],
+    state: {
+      scopes: {
+        cnam_beneficiaires: true,
+        cnam_caisse: true,
+        cnam_contrats: true,
+        cnam_presence_medecin_traitant: true,
+      },
+    },
   },
-];
+};
 
 const steps = ['franceconnect', 'api_droits_cnam'];
 
@@ -96,8 +87,8 @@ const ApiDroitsCnam = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="api_droits_cnam"
+    demarches={demarches}
     steps={steps}
-    DemarcheDescription={DemarcheDescription}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
     contactInformation={[
       {
@@ -108,11 +99,11 @@ const ApiDroitsCnam = ({
     ]}
   >
     <OrganisationSection />
+    <DemarcheSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} useCases={useCases} />
+    <DonneesSection availableScopes={availableScopes} />
     <CadreJuridiqueSection />
-    <DonneesPersonnellesSection />
-    <MiseEnOeuvreSection />
+    <ÉquipeSection />
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
   </Form>
 );
