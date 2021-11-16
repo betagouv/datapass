@@ -17,6 +17,9 @@ export type ActionConfiguration = {
   };
   needsToComputeNextEnrollmentState?: boolean;
   promptForComment?: boolean;
+  createOrUpdate?: boolean;
+  delete?: boolean;
+  redirectToHome?: boolean;
 };
 
 export const userInteractionsConfiguration: {
@@ -30,6 +33,7 @@ export const userInteractionsConfiguration: {
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
+    redirectToHome: true,
   },
   destroy: {
     displayProps: {
@@ -37,6 +41,8 @@ export const userInteractionsConfiguration: {
       icon: 'delete',
       type: 'danger',
     },
+    delete: true,
+    redirectToHome: true,
   },
   update: {
     displayProps: {
@@ -44,6 +50,7 @@ export const userInteractionsConfiguration: {
       icon: 'save',
       type: 'secondary',
     },
+    createOrUpdate: true,
   },
   send_application: {
     displayProps: {
@@ -52,6 +59,8 @@ export const userInteractionsConfiguration: {
       type: 'info',
     },
     needsToComputeNextEnrollmentState: true,
+    createOrUpdate: true,
+    redirectToHome: true,
   },
   refuse_application: {
     displayProps: {
@@ -61,6 +70,7 @@ export const userInteractionsConfiguration: {
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
+    redirectToHome: true,
   },
   review_application: {
     displayProps: {
@@ -70,6 +80,7 @@ export const userInteractionsConfiguration: {
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
+    redirectToHome: true,
   },
   validate_application: {
     displayProps: {
@@ -79,5 +90,6 @@ export const userInteractionsConfiguration: {
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
+    redirectToHome: true,
   },
 };

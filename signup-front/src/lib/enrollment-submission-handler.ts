@@ -28,6 +28,7 @@ export const handleSubmissionAction = async (
 
   try {
     let comment = null;
+    let enrollmentId = enrollment.id;
 
     if (actionConfiguration.promptForComment) {
       try {
@@ -37,9 +38,7 @@ export const handleSubmissionAction = async (
       }
     }
 
-    let enrollmentId = enrollment.id;
-
-    if (enrollment.acl.update) {
+    if (actionConfiguration.createOrUpdate) {
       const newEnrollment = await createOrUpdateEnrollment({
         enrollment,
       });
@@ -49,11 +48,7 @@ export const handleSubmissionAction = async (
       resultMessages.successMessages.push('Votre demande a été sauvegardée.');
     }
 
-    if (action === 'update') {
-      return resultMessages;
-    }
-
-    if (action === 'destroy') {
+    if (actionConfiguration.delete) {
       await deleteEnrollment({ id: enrollmentId });
     }
 
@@ -65,7 +60,9 @@ export const handleSubmissionAction = async (
       });
     }
 
-    resultMessages.redirectToHome = true;
+    if (actionConfiguration.redirectToHome) {
+      resultMessages.redirectToHome = true;
+    }
 
     return resultMessages;
   } catch (error) {
