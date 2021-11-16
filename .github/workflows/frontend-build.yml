@@ -1,4 +1,4 @@
-name: Frontend CI
+name: Frontend build
 
 on:
   push:
@@ -43,8 +43,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - run: npm install
-      - run: npm run lint
-      - run: npm run test
       - run: npm run build
         env:
           REACT_APP_NODE_ENV: production
