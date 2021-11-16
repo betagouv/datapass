@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
-import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import Quote from '../components/atoms/inputs/Quote';
-import TextSection from '../components/organisms/form-sections/TextSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const availableScopes = [
   {
     value: 'idnat',
     label: 'Identifiant national',
+    helper: 'RPPS (ou ADELI)',
   },
   {
     value: 'donnees_sectorielles',
     label: 'Données sectorielles',
+    helper: 'type d’activité (salarié ou libéral) et lieu d’activité',
   },
 ];
 
@@ -43,19 +44,11 @@ const ApiProSanteConnect = ({
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
-    <TextSection title="Le cadre juridique vous autorisant à traiter les données">
-      <Quote>
-        <p>
-          Seules les administrations et les éditeurs de logiciels français qui
-          s’adressent aux professionnels de la santé peuvent avoir accès à l’API
-          Pro Santé Connect.
-        </p>
-      </Quote>
-    </TextSection>
-    <MiseEnOeuvreSection
-      title="Coordonnées du référent de votre structure"
-      MiseEnOeuvreDescription={() => null}
+    <CadreJuridiqueSection
+      defaultFondementJuridiqueTitle="Arrêté du 24 mars 2021"
+      defaultFondementJuridiqueUrl="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043290292"
     />
+    <ÉquipeSection />
     <CguSection cguLink="https://tech.esante.gouv.fr/outils-services/pro-sante-connect-e-cps/conditions-generale-dutilisation-pro-sante-connect" />
   </Form>
 );
