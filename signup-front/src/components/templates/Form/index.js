@@ -227,7 +227,7 @@ export const Form = ({
           {!isUserEnrollmentLoading && enrollment.acl.update && (
             <>
               <div className="notification info">
-                Pensez à sauvegarder régulièrement votre demande en brouillon.
+                Pensez à enregistrer régulièrement vos modifications.
               </div>
               <DemarcheDescription />
             </>
