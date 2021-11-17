@@ -46,10 +46,7 @@ const UserEnrollmentList = ({ history }) => {
             <Button large href={`${API_GOUV_HOST}/datapass/api`}>
               une API
             </Button>
-            <Button
-              large
-              href="https://aidantsconnect.beta.gouv.fr/habilitation"
-            >
+            <Button large href="/aidants-connect">
               Aidants Connect
             </Button>
           </ButtonGroup>
@@ -84,12 +81,19 @@ const UserEnrollmentList = ({ history }) => {
               </>
             ) : (
               <div className="notification">
-                <p>
-                  Vous n’avez aucune demande en cours.{' '}
-                  <a href={`${API_GOUV_HOST}/datapass/api`}>
-                    Faire ma première demande
-                  </a>
-                </p>
+                <p>Vous n’avez aucune demande en cours :</p>
+                <ul>
+                  <li>
+                    <a href={`${API_GOUV_HOST}/datapass/api`}>
+                      Soumettre une demande API
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/aidants-connect">
+                      Soumettre une demande AidantsConnect
+                    </a>
+                  </li>
+                </ul>
               </div>
             )}
           </div>

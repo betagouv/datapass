@@ -1,4 +1,8 @@
 class Enrollment::AidantsConnectPolicy < EnrollmentPolicy
+  def update?
+    super || ((record.sent? || record.validated?) && user.is_instructor?(record.target_api))
+  end
+
   def permitted_attributes
     res = []
 
