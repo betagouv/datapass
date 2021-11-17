@@ -35,8 +35,11 @@
       tags: ssl
     - role: postgres
       pg_user: back
+      pg_reader_user: back-reader
       pg_password: "{{ back_pg_password }}"
+      pg_reader_password: "{{ back_reader_pg_password }}"
       pg_database: signup-back
+      tags: postgres
     - role: backup-script
       backup_user: postgres
       store_identifier: signup-back

@@ -4,8 +4,8 @@
     update_cache: true
     cache_valid_time: 86400
   with_items:
-  - postgresql
-  - python-psycopg2
+    - postgresql
+    - python-psycopg2
 
 - name: create postgresql user
   postgresql_user:
@@ -13,8 +13,26 @@
     password: "{{ pg_password }}"
   become_user: postgres
 
+- name: create postgresql reader user
+  postgresql_user:
+    name: "{{ pg_reader_user }}"
+    password: "{{ pg_reader_password }}"
+  become_user: postgres
+
 - name: create db
   postgresql_db:
     name: "{{ pg_database }}"
     owner: "{{ pg_user }}"
+  become_user: postgres
+
+# This will grant SELECT role to the reader user on future tables, if you run this role on an existing database, you will manually grant the permissions to the existing tables
+- name: grant read privileges to reader user on future tables
+  postgresql_privs:
+    database: "{{ pg_database }}"
+    state: present
+    privs: SELECT
+    type: default_privs
+    objs: TABLES
+    roles: "{{ pg_reader_user }}"
+    grant_option: yes
   become_user: postgres
