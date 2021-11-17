@@ -93,6 +93,7 @@
         AIDANTS_CONNECT_API_KEY: "{{ aidants_connect_api_key }}"
         DISABLE_API_IMPOT_PARTICULIER_BRIDGE: "{{ disable_api_impot_particulier_bridge | default('') }}"
         DISABLE_API_DROITS_CNAM_BRIDGE: "{{ disable_api_droits_cnam_bridge | default('') }}"
+        DISABLE_API_INDEMNITES_JOURNALIERES_CNAM_BRIDGE: "{{ disable_api_indemnites_journalieres_cnam_bridge | default('') }}"
         DISABLE_HUBEE_BRIDGE: "{{ disable_hubee_bridge | default('') }}"
         HUBEE_HOST: "{{ hubee_host }}"
         HUBEE_AUTH_URL: "{{ hubee_auth_url }}"
