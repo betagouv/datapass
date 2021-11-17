@@ -215,27 +215,6 @@ const availableScopes = [
     label: 'Adresse',
     groupTitle: 'CNAF',
   },
-  {
-    value: 'pole_emploi_identite',
-    label: 'Identité',
-    groupTitle: 'Pôle Emploi',
-  },
-  {
-    value: 'pole_emploi_contact',
-    label: 'Données de contact',
-    groupTitle: 'Pôle Emploi',
-  },
-  {
-    value: 'pole_emploi_adresse',
-    label: 'Adresse',
-    groupTitle: 'Pôle Emploi',
-  },
-  {
-    value: 'pole_emploi_inscription',
-    label: 'Inscription',
-    groupTitle: 'Pôle Emploi',
-    helper: 'Données concernant l’inscription de la personne à Pôle Emploi',
-  },
 ];
 
 const target_api = 'api_particulier';

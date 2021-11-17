@@ -37,11 +37,7 @@
         "cnaf_quotient_familial": false,
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
-        "cnaf_adresse": false,
-        "pole_emploi_identite": false,
-        "pole_emploi_contact": false,
-        "pole_emploi_adresse": false,
-        "pole_emploi_inscription": false
+        "cnaf_adresse": false
       }
     },
     "team_members": {
@@ -221,11 +217,7 @@
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
-        "cnaf_adresse": true,
-        "pole_emploi_identite": false,
-        "pole_emploi_contact": false,
-        "pole_emploi_adresse": false,
-        "pole_emploi_inscription": false
+        "cnaf_adresse": true
       }
     }
   },
