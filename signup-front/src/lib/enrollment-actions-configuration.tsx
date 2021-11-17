@@ -46,7 +46,7 @@ export const userInteractionsConfiguration: {
   },
   update: {
     displayProps: {
-      label: 'Sauvegarder le brouillon',
+      label: 'Enregistrer les modifications',
       icon: 'save',
       type: 'secondary',
     },
