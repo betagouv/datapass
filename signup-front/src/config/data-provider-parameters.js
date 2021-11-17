@@ -43,6 +43,7 @@ export const DATA_PROVIDER_LABELS = {
   api_systeme_immatriculation_vehicules:
     'API Système d’Immatriculation des Véhicules',
   api_declaration_cesu: 'API Tierce Déclaration CESU',
+  api_histovec: 'API Historique d’un véhicule',
 };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -113,6 +114,7 @@ export const DATA_PROVIDER_ICONS = {
   api_declaration_auto_entrepreneur: 'logo-urssaf.png',
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
   api_declaration_cesu: 'logo-urssaf.png',
+  api_histovec: 'logo-minint.png',
 };
 
 export const DATA_PROVIDER_CONTACT_EMAILS = {
@@ -128,6 +130,7 @@ export const DATA_PROVIDER_CONTACT_EMAILS = {
   cnam: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
   le_taxi: 'equipe@le.taxi',
   api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
+  api_histovec: 'contact@api.gouv.fr',
 };
 
 export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [
