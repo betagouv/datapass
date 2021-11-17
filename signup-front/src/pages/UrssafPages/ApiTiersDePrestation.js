@@ -85,7 +85,7 @@ const ApiTiersDePrestation = ({
       defaultFondementJuridiqueUrl="non applicable"
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
-    <PiecesJustificativesSection showHabilitationServiceDomicile />
+    <PiecesJustificativesSection />
     <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1.pdf" />
   </Form>
 );

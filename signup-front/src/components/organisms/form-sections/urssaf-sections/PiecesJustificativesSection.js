@@ -19,13 +19,23 @@ export const PiecesJustificativesSection = ({
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>{SECTION_LABEL}</h2>
-      <ExpandableQuote title="Pourquoi avons nous besoin de votre attestation fiscale ?">
+      <ExpandableQuote title="Pourquoi avons nous besoin de votre attestation de régularité fiscale ?">
         <p>
           Afin de vérifier que vous êtes en pleine connaissance de vos
           obligations fiscales (paiement de la TVA et de l’impôt sur le revenu
           ou sur les sociétés selon votre situation), merci de joindre une
           attestation fiscale justifiant de la régularité de votre situation
           fiscale.
+        </p>
+        <p>
+          <a
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Document pdf précisant comment obtenir une attestation de régularité fiscale sur le site impots.gouv.fr"
+            href="https://www.impots.gouv.fr/portail/professionnel/questions/comment-obtenir-une-attestation-de-regularite-fiscale"
+          >
+            Comment obtenir une attestation de régularité fiscale ?
+          </a>
         </p>
       </ExpandableQuote>
       <FileInput
@@ -34,7 +44,7 @@ export const PiecesJustificativesSection = ({
         documentsToUpload={documents_attributes}
         documentType={'Document::AttestationFiscale'}
         onChange={onChange}
-        label={'Attestation fiscale'}
+        label={'Attestation de régularité fiscale'}
       />
       {showHabilitationServiceDomicile && (
         <>
