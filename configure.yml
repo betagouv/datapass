@@ -60,6 +60,11 @@
           user: back-reader
           password: "{{ back_reader_pg_password }}"
           ssl: false
+      metabase_admin:
+        first_name: Metabase
+        last_name: Admin
+        email: contact@api.gouv.fr
+        password: "{{ metabase_admin_password }}"
       tags: metabase
     - role: ssl
       server_name: "metabase.{{ front_domain_name }}"
