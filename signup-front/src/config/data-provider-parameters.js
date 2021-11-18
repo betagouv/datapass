@@ -44,6 +44,7 @@ export const DATA_PROVIDER_LABELS = {
     'API Système d’Immatriculation des Véhicules',
   api_declaration_cesu: 'API Tierce Déclaration CESU',
   api_histovec: 'API Historique d’un véhicule',
+  api_prestations_sociales: 'API prestations sociales',
 };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -131,6 +132,7 @@ export const DATA_PROVIDER_CONTACT_EMAILS = {
   le_taxi: 'equipe@le.taxi',
   api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
   api_histovec: 'contact@api.gouv.fr',
+  api_prestations_sociales: 'contact@apisecu.fr',
 };
 
 export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [

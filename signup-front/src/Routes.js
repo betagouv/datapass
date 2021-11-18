@@ -55,6 +55,7 @@ import ApiSystemeImmatriculationVehicules from './pages/ApiSystemeImmatriculatio
 import FAQ from './components/templates/Faq';
 import ApiDeclarationCesu from './pages/UrssafPages/ApiDeclarationCesu';
 import ApiHistovec from './pages/ApiHistovec';
+import ApiPrestationsSociales from './pages/ApiPrestationsSociales';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -298,6 +299,10 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-histovec/:enrollmentId?"
         component={ApiHistovec}
+      />
+      <PrivateRoute
+        path="/api-prestations-sociales/:enrollmentId?"
+        component={ApiPrestationsSociales}
       />
 
       <PrivateRoute path="/admin" component={Admin} />
