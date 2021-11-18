@@ -331,6 +331,7 @@ Add the following hosts in `/etc/hosts`:
 192.168.56.125 datapass-development.particulier-infra.api.gouv.fr
 192.168.56.125 datapass-development.api.gouv.fr
 192.168.56.125 back.datapass-development.api.gouv.fr
+192.168.56.125 metabase.datapass-development.api.gouv.fr
 ```
 
 Then create and configure your virtual machine:

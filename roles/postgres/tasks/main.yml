@@ -18,6 +18,7 @@
     name: "{{ pg_reader_user }}"
     password: "{{ pg_reader_password }}"
   become_user: postgres
+  when: pg_reader_user is defined
 
 - name: create db
   postgresql_db:
@@ -36,3 +37,4 @@
     roles: "{{ pg_reader_user }}"
     grant_option: yes
   become_user: postgres
+  when: pg_reader_user is defined

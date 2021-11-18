@@ -40,6 +40,36 @@
       pg_reader_password: "{{ back_reader_pg_password }}"
       pg_database: signup-back
       tags: postgres
+    - role: postgres
+      pg_user: metabase
+      pg_password: "{{ metabase_pg_password }}"
+      pg_database: metabase
+      tags: metabase
+    - role: devoinc.openjdk
+      java__install_jdk: true
+      tags: metabase
+    - role: libre_ops.metabase
+      metabase_port: 4000
+      metabase_db_pass: "{{ metabase_pg_password }}"
+      metabase_databases:
+        - name: DataPass
+          engine: postgres
+          dbname: signup-back
+          host: localhost
+          port: 5432
+          user: back-reader
+          password: "{{ back_reader_pg_password }}"
+          ssl: false
+      tags: metabase
+    - role: ssl
+      server_name: "metabase.{{ front_domain_name }}"
+      tags:
+        - ssl
+        - metabase
+    - role: metabase-app
+      app_service_name: metabase
+      server_name: "metabase.{{ front_domain_name }}"
+      tags: metabase
     - role: backup-script
       backup_user: postgres
       store_identifier: signup-back

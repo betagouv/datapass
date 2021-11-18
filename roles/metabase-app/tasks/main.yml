@@ -1,0 +1,6 @@
+---
+- name: configure nginx
+  template:
+    src: server.conf.j2
+    dest: "/etc/nginx/sites-enabled/{{app_service_name}}"
+  notify: restart nginx
