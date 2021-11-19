@@ -1,6 +1,6 @@
 class RgpdMailer < ActionMailer::Base
   def initialize
-    @send_in_blue = SibApiV3Sdk::SMTPApi.new
+    @send_in_blue = SibApiV3Sdk::TransactionalEmailsApi.new
   end
 
   def rgpd_contact_email
