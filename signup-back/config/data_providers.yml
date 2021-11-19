@@ -232,3 +232,13 @@ api_declaration_cesu:
   label: API Tierce Déclaration CESU
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_ensu_dad_sandbox:
+  label: API ENSU DAD (Bac à sable)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ensu_dad_production:
+  label: API ENSU DAD (Production)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer

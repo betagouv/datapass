@@ -57,6 +57,8 @@ import ApiDeclarationCesu from './pages/UrssafPages/ApiDeclarationCesu';
 import ApiHistovec from './pages/ApiHistovec';
 import ApiPrestationsSociales from './pages/ApiPrestationsSociales';
 import ApiPrestationsSocialesFc from './pages/ApiPrestationsSocialesFc';
+import ApiEnsuDadSandbox from './pages/DgfipPages/ApiEnsuDadSandbox';
+import ApiEnsuDadProduction from './pages/DgfipPages/ApiEnsuDadProduction';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -310,6 +312,16 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-prestations-sociales-fc/:enrollmentId?"
         component={ApiPrestationsSocialesFc}
+      />
+
+      <PrivateRoute
+        path="/api-ensu-dad-sandbox/:enrollmentId?"
+        component={ApiEnsuDadSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-ensu-dad-production/:enrollmentId?"
+        component={ApiEnsuDadProduction}
       />
 
       <PrivateRoute path="/admin" component={Admin} />
