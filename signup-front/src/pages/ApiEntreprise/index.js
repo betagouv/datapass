@@ -328,7 +328,7 @@ const ApiEntreprise = ({
     documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
     <OrganisationSection />
-    <DemarcheSection />
+    <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}

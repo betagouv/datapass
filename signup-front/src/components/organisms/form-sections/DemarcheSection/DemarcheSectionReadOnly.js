@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { get, has, isEmpty } from 'lodash';
+import { get, has, isEmpty, find } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import { UserContext } from '../../UserContext';
-import { findModifiedFields } from '../../../../lib';
+import { findModifiedFields, findModifiedScopes } from '../../../../lib';
+import './DemarcheSectionReadOnly.css';
 
-export const DemarcheSectionReadOnly = ({ scrollableId }) => {
+export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
   const { enrollment, demarches } = useContext(FormContext);
+
   const { demarche: selectedDemarcheId } = enrollment;
   const {
     user: { roles },
   } = useContext(UserContext);
 
   const [modifiedFields, setModifiedFields] = useState([]);
+  const [modifiedScopes, setModifiedScopes] = useState([]);
 
   useEffect(() => {
     if (
@@ -20,12 +23,9 @@ export const DemarcheSectionReadOnly = ({ scrollableId }) => {
       demarches[selectedDemarcheId].state &&
       enrollment
     ) {
-      setModifiedFields(
-        findModifiedFields(
-          get(demarches, selectedDemarcheId, {}).state,
-          enrollment
-        )
-      );
+      const demarcheState = get(demarches, selectedDemarcheId, {}).state;
+      setModifiedFields(findModifiedFields(demarcheState, enrollment));
+      setModifiedScopes(findModifiedScopes(demarcheState, enrollment));
     }
   }, [enrollment, selectedDemarcheId, demarches]);
 
@@ -52,6 +52,29 @@ export const DemarcheSectionReadOnly = ({ scrollableId }) => {
                   modifiées.
                 </p>
               )}
+              {!isEmpty(modifiedScopes) && (
+                <div>
+                  <p>
+                    Les scopes suivants ont étés modifiés depuis le modèle
+                    pré-rempli:
+                  </p>
+                  <ul>
+                    {Object.entries(modifiedScopes).map(([key, value]) => {
+                      return (
+                        <li key={key}>
+                          <strong>{valueToLabel(key, availableScopes)}</strong>:
+                          changement vers{' '}
+                          {!value ? (
+                            <span className="text--red">demandé</span>
+                          ) : (
+                            <span className="text--green">ignoré</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
             </>
           ) : (
             <>Cette demande n’a pas utilisé de modèle de pré-remplissage.</>
@@ -60,6 +83,13 @@ export const DemarcheSectionReadOnly = ({ scrollableId }) => {
       </ScrollablePanel>
     </>
   );
+};
+
+const valueToLabel = (key, availableScopes) => {
+  const scope = find(availableScopes, { value: key });
+  if (scope) {
+    return scope.label;
+  }
 };
 
 export default DemarcheSectionReadOnly;
