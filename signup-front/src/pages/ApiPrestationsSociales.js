@@ -79,6 +79,7 @@ const availableScopes = [
 ];
 
 const target_api = 'api_prestations_sociales';
+const steps = ['franceconnect', target_api];
 
 const ApiPrestationsSociales = ({
   match: {
@@ -88,6 +89,7 @@ const ApiPrestationsSociales = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
+    steps={steps}
     contactInformation={[
       {
         email: DATA_PROVIDER_CONTACT_EMAILS.api_prestations_sociales,
