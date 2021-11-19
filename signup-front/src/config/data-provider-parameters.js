@@ -127,7 +127,7 @@ export const DATA_PROVIDER_CONTACT_EMAILS = {
   api_entreprise: 'support@entreprise.api.gouv.fr',
   dgfip: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
   api_declaration_auto_entrepreneur: 'contact.tiercedeclaration@urssaf.fr',
-  urssaf: 'contact.api@urssaf.fr',
+  urssaf: 'habilitation-api@urssaf.fr',
   cnam: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
   le_taxi: 'equipe@le.taxi',
   api_pro_sante_connect: 'prosanteconnect.editeurs@esante.gouv.fr',
