@@ -301,6 +301,19 @@ export const findModifiedFields = (
   return modified;
 };
 
+export const findModifiedScopes = (
+  demarcheState = {},
+  enrollmentState = {}
+) => {
+  if (!findModifiedFields(demarcheState, enrollmentState).includes('scopes')) {
+    return;
+  }
+
+  return omitBy(enrollmentState.scopes, function (v, k) {
+    return demarcheState.scopes[k] === v;
+  });
+};
+
 /*
  * duplicated from : api-auth/src/services/security.js
  */
