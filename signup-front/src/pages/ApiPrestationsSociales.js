@@ -10,7 +10,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
-const DonneesDescription = () => (
+export const DonneesDescription = () => (
   <>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
@@ -38,7 +38,7 @@ const DonneesDescription = () => (
   </>
 );
 
-const CadreJuridiqueDescription = () => (
+export const CadreJuridiqueDescription = () => (
   <>
     <p>
       Pour pouvoir bénéficier du raccordement à l’API prestations sociales, le
@@ -67,7 +67,7 @@ const CadreJuridiqueDescription = () => (
   </>
 );
 
-const availableScopes = [
+export const availableScopes = [
   {
     value: 'beneficiaire_rsa',
     label: 'Bénéficiaire du RSA',
@@ -79,7 +79,6 @@ const availableScopes = [
 ];
 
 const target_api = 'api_prestations_sociales';
-const steps = ['franceconnect', target_api];
 
 const ApiPrestationsSociales = ({
   match: {
@@ -89,7 +88,6 @@ const ApiPrestationsSociales = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     contactInformation={[
       {
         email: DATA_PROVIDER_CONTACT_EMAILS.api_prestations_sociales,
