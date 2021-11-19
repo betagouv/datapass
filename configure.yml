@@ -166,8 +166,6 @@
         API_AUTH_HOST: "https://{{ api_auth_domain_name }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
         SESSION_COOKIE_SECRET: "{{ session_cookie_secret }}"
-        MAILJET_API_KEY: "{{ mailjet_api_key }}"
-        MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
       tags:
         - api-auth
         - app-config
