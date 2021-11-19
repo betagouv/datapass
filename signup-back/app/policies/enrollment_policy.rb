@@ -20,6 +20,7 @@ class EnrollmentPolicy < ApplicationPolicy
 
   def destroy?
     (record.pending? || record.modification_pending?) &&
+      user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
 
