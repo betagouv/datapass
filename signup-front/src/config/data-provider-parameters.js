@@ -46,6 +46,8 @@ export const DATA_PROVIDER_LABELS = {
   api_histovec: 'API Historique d’un véhicule',
   api_prestations_sociales: 'API prestations sociales',
   api_prestations_sociales_fc: 'API prestations sociales (FC)',
+  api_ensu_dad_sandbox: 'API ENSU DAD (Bac à sable)',
+  api_ensu_dad_production: 'API ENSU DAD (Production)',
 };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -109,6 +111,8 @@ export const DATA_PROVIDER_ICONS = {
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
   api_declaration_cesu: 'logo-urssaf.png',
   api_histovec: 'logo-minint.png',
+  api_ensu_dad_sandbox: 'logo-dgfip-with-label.png',
+  api_ensu_dad_production: 'logo-dgfip-with-label.png',
 };
 
 export const DATA_PROVIDER_CONTACT_EMAILS = {
