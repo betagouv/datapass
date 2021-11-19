@@ -45,6 +45,7 @@ export const DATA_PROVIDER_LABELS = {
   api_declaration_cesu: 'API Tierce Déclaration CESU',
   api_histovec: 'API Historique d’un véhicule',
   api_prestations_sociales: 'API prestations sociales',
+  api_prestations_sociales_fc: 'API prestations sociales (FC)',
 };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -65,14 +66,6 @@ export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_ficoba_production',
   'aidants_connect',
   'hubee',
-  // 'api_service_national',
-  // 'api_hermes_sandbox',
-  // 'api_hermes_production',
-  // 'api_tiers_de_prestation',
-  // 'api_pro_sante_connect',
-  // 'api_declaration_auto_entrepreneur',
-  // 'api_indemnites_journalieres_cnam',
-  // 'api_systeme_immatriculation_vehicules',
 ];
 
 export const DATA_PROVIDER_ICONS = {

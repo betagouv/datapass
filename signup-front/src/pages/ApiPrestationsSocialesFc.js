@@ -26,6 +26,7 @@ const ApiPrestationsSociales = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
+    documentationUrl="https://api.gouv.fr/les-api/api-prestations-sociales"
     steps={steps}
     contactInformation={[
       {
