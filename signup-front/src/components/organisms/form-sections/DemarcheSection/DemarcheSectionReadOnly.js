@@ -60,6 +60,9 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
                   </p>
                   <ul>
                     {Object.entries(modifiedScopes).map(([key, value]) => {
+                      console.log('key', key);
+                      console.log('value', value);
+                      console.log('av', availableScopes);
                       return (
                         <li key={key}>
                           <strong>{valueToLabel(key, availableScopes)}</strong>:
@@ -94,6 +97,8 @@ const valueToLabel = (key, availableScopes) => {
   const scope = find(availableScopes, { value: key });
   if (scope) {
     return scope.label;
+  } else {
+    return key;
   }
 };
 
