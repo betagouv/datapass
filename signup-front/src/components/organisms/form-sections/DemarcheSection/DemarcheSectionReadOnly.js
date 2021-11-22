@@ -63,7 +63,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
                       return (
                         <li key={key}>
                           <strong>{valueToLabel(key, availableScopes)}</strong>:
-                          {!value ? (
+                          {value ? (
                             <span className="text--red">
                               {' '}
                               ⚠️ Nouvelle donnée demandée
