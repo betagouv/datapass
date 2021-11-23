@@ -6,5 +6,6 @@ class Enrollment::ApiIndemnitesJournalieresCnam < Enrollment
 
     scopes_validation
     previous_enrollment_id_validation
+    responsable_technique_validation
   end
 end

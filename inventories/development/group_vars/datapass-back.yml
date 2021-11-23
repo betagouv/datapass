@@ -34,6 +34,7 @@ aidants_connect_host: ''
 aidants_connect_api_key: ''
 disable_api_impot_particulier_bridge: True
 disable_api_droits_cnam_bridge: True
+disable_api_indemnites_journalieres_cnam_bridge: True
 disable_hubee_bridge: True
 hubee_host: ''
 hubee_auth_url: ''
