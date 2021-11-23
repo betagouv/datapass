@@ -59,6 +59,8 @@ import ApiPrestationsSociales from './pages/ApiPrestationsSociales';
 import ApiPrestationsSocialesFc from './pages/ApiPrestationsSocialesFc';
 import ApiEnsuDadSandbox from './pages/DgfipPages/ApiEnsuDadSandbox';
 import ApiEnsuDadProduction from './pages/DgfipPages/ApiEnsuDadProduction';
+import ApiIngresNomenclatures from './pages/ApiIngresNomenclatures';
+import ApiIngresNoyau from './pages/ApiIngresNoyau';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -322,6 +324,16 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-ensu-dad-production/:enrollmentId?"
         component={ApiEnsuDadProduction}
+      />
+
+      <PrivateRoute
+        path="/api-ingres-nomenclatures/:enrollmentId?"
+        component={ApiIngresNomenclatures}
+      />
+
+      <PrivateRoute
+        path="/api-ingres-noyau/:enrollmentId?"
+        component={ApiIngresNoyau}
       />
 
       <PrivateRoute path="/admin" component={Admin} />
