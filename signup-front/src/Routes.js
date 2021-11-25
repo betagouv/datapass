@@ -17,8 +17,7 @@ import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import FranceConnect from './pages/FranceConnect';
 import AidantsConnect from './pages/AidantsConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
-import LeTaxiClients from './pages/LeTaxiClients';
-import LeTaxiChauffeurs from './pages/LeTaxiChauffeurs';
+import LeTaxi from './pages/LeTaxi';
 import CartoBio from './pages/CartoBio';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
@@ -152,15 +151,7 @@ export const Routes = ({ user }) => {
         component={ApiEntreprise}
       />
 
-      <PrivateRoute
-        path="/le-taxi-clients/:enrollmentId?"
-        component={LeTaxiClients}
-      />
-
-      <PrivateRoute
-        path="/le-taxi-chauffeurs/:enrollmentId?"
-        component={LeTaxiChauffeurs}
-      />
+      <PrivateRoute path="/le-taxi/:enrollmentId?" component={LeTaxi} />
 
       <PrivateRoute path="/cartobio/:enrollmentId?" component={CartoBio} />
 
