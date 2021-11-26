@@ -4,19 +4,19 @@ import { UserContext } from '../../UserContext';
 import { getCachedOrganizationActivityDetails } from '../../../../services/external';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import { isValidNAFCode } from '../../../../lib';
-import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import Button from '../../../atoms/Button';
+import { Card, CardContainer, CardHead } from '../../../molecules/Card';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const OrganisationSection = () => {
+const OrganisationSection = ({ enableEditorSelection = false }) => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -176,37 +176,34 @@ const OrganisationSection = () => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>L’organisation</h2>
-      <div className="row">
-        <div className="card">
-          <div className="card__content">
-            <h3>Vous êtes :</h3>
-            <div className="organization-title">
-              <span>
-                {personalInformation.given_name}{' '}
-                {personalInformation.family_name}
-              </span>
-              {!disabled && (
-                <Button
-                  title="Modifier mes informations"
-                  outline
-                  icon="edit"
-                  href={`${BACK_HOST}/api/users/personal_information`}
-                />
-              )}
-            </div>
-            <div>
-              {personalInformation.email}
-              <CopyToCliboardButton textToCopy={personalInformation.email} />
-            </div>
-            <div>{personalInformation.phone_number}</div>
-            <div>{personalInformation.job}</div>
+      <CardContainer>
+        <Card>
+          <h3>Vous êtes :</h3>
+          <CardHead>
+            <b>
+              {personalInformation.given_name} {personalInformation.family_name}
+            </b>
+            {!disabled && (
+              <Button
+                title="Modifier mes informations"
+                outline
+                icon="edit"
+                href={`${BACK_HOST}/api/users/personal_information`}
+              />
+            )}
+          </CardHead>
+          <div>
+            {personalInformation.email}
+            <CopyToCliboardButton textToCopy={personalInformation.email} />
           </div>
-        </div>
-        <div className="card">
+          <div>{personalInformation.phone_number}</div>
+          <div>{personalInformation.job}</div>
+        </Card>
+        <Card>
           {isUserEnrollmentLoading || isOrganizationInfoLoading ? (
             <Loader />
           ) : (
-            <div className="card__content">
+            <>
               <h3>Vous faites cette demande pour :</h3>
               {activite && !isValidNAFCode(target_api, activite) && (
                 <div className="form__group">
@@ -230,8 +227,8 @@ const OrganisationSection = () => {
                   </div>
                 </div>
               )}
-              <div className="organization-title">
-                <span>
+              <CardHead>
+                <b>
                   {title || (disabled && nom_raison_sociale)}{' '}
                   <Button
                     title="Plus d’information sur la donnée"
@@ -241,7 +238,7 @@ const OrganisationSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   />
-                </span>
+                </b>
                 {!disabled && (
                   <Button
                     title="faire une demande pour une autre organisation"
@@ -250,7 +247,7 @@ const OrganisationSection = () => {
                     onClick={() => setShowPrompt(true)}
                   />
                 )}
-              </div>
+              </CardHead>
               <div>{adresse}</div>
               <div>
                 {codePostal} {ville}
@@ -260,9 +257,10 @@ const OrganisationSection = () => {
                 Code NAF : {activite}{' '}
                 {activiteLabel ? '- ' + activiteLabel : null}
               </div>
-            </div>
+            </>
           )}
-        </div>
+        </Card>
+        {enableEditorSelection && <Card />}
 
         {!disabled && !isLoading && showPrompt && (
           <OrganizationPrompt
@@ -272,7 +270,7 @@ const OrganisationSection = () => {
             organizations={user.organizations}
           />
         )}
-      </div>
+      </CardContainer>
     </ScrollablePanel>
   );
 };
