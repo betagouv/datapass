@@ -21,7 +21,7 @@ export const TextAreaInput = ({
     <div className="form__group">
       <label htmlFor={id}>
         {label}
-        {required && ' *'}
+        {required && ' *'}
         {helper && <Helper title={helper} />}
       </label>
       <textarea

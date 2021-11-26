@@ -26,7 +26,7 @@ export const RadioInput = ({
         <fieldset>
           <legend style={{ marginBottom: 'var(--space-s)' }}>
             {label}
-            {required && ' *'}
+            {required && ' *'}
           </legend>
           {options.map(({ id: optionId, label: optionLabel }) => (
             <div

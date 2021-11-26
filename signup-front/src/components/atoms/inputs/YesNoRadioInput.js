@@ -27,7 +27,7 @@ export const YesNoRadioInput = ({
       <fieldset>
         <legend>
           {label}
-          {required && ' *'}
+          {required && ' *'}
         </legend>
         <>
           <input
