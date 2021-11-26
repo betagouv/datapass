@@ -29,6 +29,7 @@ import Helper from '../atoms/Helper';
 import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
+import { Card, CardContainer } from '../molecules/Card';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -120,60 +121,56 @@ export const Stats = ({
             </NavLink>
           ))}
         </ListHeader>
-        <div className="column-grid">
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
+        <div>
+          <CardContainer>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>Demandes d’habilitation déposées</h3>
               </div>
-              <div className="card__content card_number">
-                {stats.enrollment_count}
-              </div>
-            </div>
-            <div className="card">
-              <div className="card__content">
+              <div className="stat_card_number">{stats.enrollment_count}</div>
+            </Card>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>Demandes d’habilitation validées</h3>
                 <div className="card__meta">
                   <a href="/public">voir la liste détaillée</a>
                 </div>
               </div>
-              <div className="card__content card_number">
+              <div className="stat_card_number">
                 <div>{stats.validated_enrollment_count}</div>
               </div>
-            </div>
-          </div>
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
+            </Card>
+          </CardContainer>
+          <CardContainer>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>
                   Temps moyen de traitement des demandes
                   <Helper title="temps moyen entre la première soumission d’une demande jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
                 </h3>
                 <div className="card__meta">(en jours)</div>
               </div>
-              <div className="card__content card_number">
+              <div className="stat_card_number">
                 {stats.average_processing_time_in_days}
               </div>
-            </div>
-            <div className="card">
-              <div className="card__content">
+            </Card>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>
                   Pourcentage de demandes nécessitant un aller retour
                   <Helper title="sur les 6 derniers mois" />
                 </h3>
                 <div className="card__meta">(en % des demandes totales)</div>
               </div>
-              <div className="card__content card_number">
-                {stats.go_back_ratio}
-              </div>
-            </div>
-          </div>
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
+              <div className="stat_card_number">{stats.go_back_ratio}</div>
+            </Card>
+          </CardContainer>
+          <CardContainer>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>Demandes d’habilitation déposées</h3>
               </div>
-              <div className="card__content card_graph">
+              <div className="stat_card_graph">
                 <ResponsiveContainer width={'100%'} height={250}>
                   <BarChart data={stats.monthly_enrollment_count}>
                     <XAxis
@@ -223,14 +220,14 @@ export const Stats = ({
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-            </div>
-          </div>
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
+            </Card>
+          </CardContainer>
+          <CardContainer>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>Répartition des demandes par statut</h3>
               </div>
-              <div className="card__content card_graph">
+              <div className="stat_card_graph">
                 <ResponsiveContainer width={'100%'} height={250}>
                   <PieChart>
                     <Pie
@@ -254,14 +251,14 @@ export const Stats = ({
                   </PieChart>
                 </ResponsiveContainer>
               </div>
-            </div>
-          </div>
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
+            </Card>
+          </CardContainer>
+          <CardContainer>
+            <Card className="stat_card">
+              <div className="stat_card_head">
                 <h3>Répartition des demandes par API</h3>
               </div>
-              <div className="card__content card_graph">
+              <div className="stat_card_graph">
                 <ResponsiveContainer width={'100%'} height={450}>
                   <PieChart>
                     <Pie
@@ -299,8 +296,8 @@ export const Stats = ({
                   </PieChart>
                 </ResponsiveContainer>
               </div>
-            </div>
-          </div>
+            </Card>
+          </CardContainer>
         </div>
       </div>
     </section>

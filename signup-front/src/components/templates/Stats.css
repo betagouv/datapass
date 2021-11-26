@@ -1,25 +1,25 @@
-.card .card_graph {
-  min-height: 200px;
-  margin: auto;
-  width: 100%;
+.stat_card {
+  display: flex;
+  flex-direction: column;
 }
 
-.card .card_number {
+.stat_card_head {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.stat_card_number {
+  flex-basis: 0;
+  flex-grow: 1;
   font-size: 80px;
   line-height: 80px;
   color: #1a535c;
-  display: table;
   padding: 0 0 50px 0;
-  margin: auto auto 0 auto;
+  margin: auto;
 }
 
-.column-grid,
-.row-grid {
-  display: grid;
-  grid-gap: var(--space-s);
-}
-
-.row-grid {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  justify-items: stretch;
+.stat_card_graph {
+  min-height: 200px;
+  margin: auto;
+  width: 100%;
 }

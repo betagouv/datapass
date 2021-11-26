@@ -6,7 +6,7 @@ import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { UserContext } from '../../UserContext';
 import useNewTeamMembers from './useNewTeamMembers';
-import ControlPointIcon from '../../../atoms/icons/control-point';
+import { AddCard, CardContainer } from '../../../molecules/Card';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -205,7 +205,7 @@ const ÉquipeSection = ({
         ))}
       </ExpandableQuote>
       <div className="form__group">
-        <div className="contact-list">
+        <CardContainer flex={false}>
           {Object.entries(contactConfiguration).map(
             ([
               type,
@@ -255,20 +255,15 @@ const ÉquipeSection = ({
                     />
                   ))}
                 {!disabled && multiple && (
-                  <div
-                    className="card contact-item add-card"
+                  <AddCard
+                    label={`ajouter un ${header.toLowerCase()}`}
                     onClick={addTeamMemberFactory(type)}
-                  >
-                    <ControlPointIcon size="50px" />
-                    <div className="add-card-label">
-                      ajouter un {header.toLowerCase()}
-                    </div>
-                  </div>
+                  />
                 )}
               </React.Fragment>
             )
           )}
-        </div>
+        </CardContainer>
       </div>
     </ScrollablePanel>
   );
