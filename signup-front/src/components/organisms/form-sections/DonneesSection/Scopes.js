@@ -7,14 +7,22 @@ import Helper from '../../../atoms/Helper';
 
 const ModalContent = {
   rgpd: {
-    title:
-      'Assurez vous de ne pas demander une ou plusieurs données non utiles à vos traitements',
-    body:
-      'Afin de respecter le principe RGPD de minimisation de la circulation des ' +
-      'données personnelles, nous effectuons un contrôle de cohérence entre les ' +
-      'données demandées et l’usage décrit. Une demande non conforme fera ' +
-      'l’objet d’un retour pour rectification, et donc d’un délai ' +
-      'supplémentaire.',
+    title: 'Vous souhaitez ajouter des données',
+    body: (
+      <>
+        <p>
+          Afin de respecter le principe <b>RGPD</b> de minimisation de la
+          circulation des données personnelles, nous effectuons un contrôle de
+          cohérence entre les données demandées et l’usage décrit.
+        </p>
+        <p>
+          <b>
+            Une demande non conforme fera l’objet d’un retour pour
+            rectification, et donc d’un délai supplémentaire.
+          </b>
+        </p>
+      </>
+    ),
   },
   fc_incomplete: {
     title: 'Cette donnée n’est pas vérifiée',
@@ -123,14 +131,8 @@ const Scopes = ({
         <ConfirmationModal
           handleCancel={() => setWarningModalScope(null)}
           handleConfirm={handleWarningModalClose}
-          confirmLabel={`Demander la donnée « ${
-            scopes.find(({ value }) => value === warningModalScope).label
-          } »`}
-          cancelLabel={`Ne pas demander la donnée « ${
-            scopes.find(({ value }) => value === warningModalScope).label
-          } »`}
+          confirmLabel="Ajouter ces données"
           title={ModalContent[warningType].title}
-          type="danger"
         >
           <p>{ModalContent[warningType].body} </p>
         </ConfirmationModal>
