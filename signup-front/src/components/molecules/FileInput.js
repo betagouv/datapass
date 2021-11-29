@@ -152,9 +152,7 @@ const FileInput = ({
           title="Fichier non vérifié"
           handleCancel={() => setShowWarningModal(false)}
           handleConfirm={download}
-          cancelLabel={`Ne pas télécharger le fichier`}
-          confirmLabel={`Télécharger ${uploadedDocument.filename}`}
-          theme="warning"
+          confirmLabel="Télécharger le fichier"
         >
           <p>
             Ce fichier provient d’une source extérieure et n’a pas été vérifié.
