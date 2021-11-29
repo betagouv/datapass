@@ -242,3 +242,8 @@ api_ensu_dad_production:
   label: API ENSU DAD (Production)
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_histovec:
+  label: API Historique d’un véhicule
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
