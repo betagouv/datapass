@@ -121,7 +121,6 @@ const Scopes = ({
             scopes.find(({ value }) => value === warningModalScope).label
           } »`}
           title={ModalContent[warningType].title}
-          type="danger"
         >
           <p>{ModalContent[warningType].body} </p>
         </ConfirmationModal>

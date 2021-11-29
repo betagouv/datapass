@@ -24,8 +24,8 @@ describe("DataPass", () => {
     cy.checkScope("family_name");
     cy.checkScope("given_name");
     cy.checkScope("email");
-    cy.get("button.danger").should("be.visible");
-    cy.get("button.danger").click();
+    cy.get(".fr-modal__footer button.fr-btn:not(.fr-btn--secondary)").should("be.visible");
+    cy.get(".fr-modal__footer button.fr-btn:not(.fr-btn--secondary)").click();
     cy.fillField("data_recipients", "Le testeur");
     cy.fillField("data_retention_period", "12");
     cy.fillField("fondement_juridique_title", "CRPA L114.8", "textarea");

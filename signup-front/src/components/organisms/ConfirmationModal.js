@@ -3,6 +3,7 @@ import AriaModal from '@justfixnyc/react-aria-modal';
 import Button from '../atoms/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
 import Link from '../atoms/Link';
+import { InfoIcon } from '../atoms/icons/fr-fi-icons';
 
 const ConfirmationModal = ({
   handleConfirm,
@@ -11,7 +12,6 @@ const ConfirmationModal = ({
   cancelLabel = 'Annuler',
   title,
   children,
-  type = '',
 }) => (
   <AriaModal
     titleText={title}
@@ -29,7 +29,10 @@ const ConfirmationModal = ({
           </Link>
         </div>
         <div className="fr-modal__content">
-          <h1 className="fr-modal__title">{title}</h1>
+          <h1 className="fr-modal__title">
+            <InfoIcon color="var(--bf500)" />
+            <span style={{ color: 'var(--bf500)' }}>{title}</span>
+          </h1>
           {children}
         </div>
         <div className="fr-modal__footer">
@@ -37,7 +40,7 @@ const ConfirmationModal = ({
             <Button outline large onClick={handleCancel}>
               {cancelLabel}
             </Button>
-            <Button large type={type} onClick={handleConfirm}>
+            <Button large onClick={handleConfirm}>
               {confirmLabel}
             </Button>
           </ButtonGroup>
