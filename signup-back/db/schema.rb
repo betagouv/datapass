@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_141059) do
+ActiveRecord::Schema.define(version: 2021_11_30_140316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_11_16_141059) do
     t.string "date_mise_en_production"
     t.string "volumetrie_approximative"
     t.boolean "dpo_is_informed"
+    t.string "technical_team_type"
+    t.string "technical_team_value"
     t.index ["copied_from_enrollment_id"], name: "index_enrollments_on_copied_from_enrollment_id"
   end
 

@@ -11,12 +11,13 @@ import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import Button from '../../../atoms/Button';
 import { Card, CardContainer, CardHead } from '../../../molecules/Card';
+import TechnicalTeamCard from './TechnicalTeamCard';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const OrganisationSection = ({ enableEditorSelection = false }) => {
+const OrganisationSection = ({ editorList = [] }) => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -260,7 +261,7 @@ const OrganisationSection = ({ enableEditorSelection = false }) => {
             </>
           )}
         </Card>
-        {enableEditorSelection && <Card />}
+        {!isEmpty(editorList) && <TechnicalTeamCard editorList={editorList} />}
 
         {!disabled && !isLoading && showPrompt && (
           <OrganizationPrompt

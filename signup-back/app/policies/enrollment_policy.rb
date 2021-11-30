@@ -89,6 +89,8 @@ class EnrollmentPolicy < ApplicationPolicy
       :data_retention_period,
       :data_retention_comment,
       :demarche,
+      :technical_team_type,
+      :technical_team_value,
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
       documents_attributes: [
         :attachment,
