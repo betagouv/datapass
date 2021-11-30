@@ -1,0 +1,62 @@
+---
+- name: Copy webhook webhooks.json file
+  become: true
+  template:
+    src: templates/webhooks.json.j2
+    dest: "/etc/webhooks.json"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: u=rw,g=r,o=r
+
+- name: check if webhook file already exists (to allow download bypass - necessary if behind firewall)
+  stat:
+    path: /tmp/webhook.tar.gz
+  register: tarball
+
+- name: Download file with check (md5)
+  tags: download
+  get_url:
+    url: "https://github.com/adnanh/webhook/releases/download/{{ webhook_version }}/webhook-linux-amd64.tar.gz"
+    dest: "/tmp/webhook.tar.gz"
+    checksum: "{{ webhook_checksum }}"
+  when: not tarball.stat.exists
+
+- name: Unarchive a file with extra options
+  tags: download
+  become: true
+  unarchive:
+    src: /tmp/webhook.tar.gz
+    dest: /usr/local/bin
+    remote_src: true
+    extra_opts:
+      - --strip-components=1
+
+- name: Install systemd file for webhook
+  template:
+    src: templates/webhook.service.j2
+    dest: /etc/systemd/system/webhook.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Enable and start webhook service
+  service:
+    name: webhook
+    enabled: true
+    state: started
+
+- name: Copy server apps deploy scripts
+  copy:
+    dest: "~/deploy-server-app.sh"
+    src: "{{ inventory_dir }}/../../scripts/deploy-server-app.sh"
+    mode: 0770
+  become: yes
+  become_user: "{{ app_user }}"
+
+- name: Copy static apps deploy scripts
+  copy:
+    dest: "~/deploy-static-app.sh"
+    src: "{{ inventory_dir }}/../../scripts/deploy-static-app.sh"
+    mode: 0770
+  become: yes
+  become_user: "{{ app_user }}"

@@ -188,3 +188,10 @@
         - "{{ retool_ssh_key }}"
       when: retool_ssh_key is defined
       tags: retool
+
+- hosts: datapass-front
+  become: true
+  roles:
+    - role: continuous-deployment
+      when: target_deploy_env is defined
+      tags: continuous-deployment

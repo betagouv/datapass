@@ -1,0 +1,8 @@
+---
+webhook_port: "9000"
+
+webhook_version: "2.7.0"
+webhook_checksum: "md5:8bb63914f4ead672ff43191e91b0249f"
+
+webhook_secret: supersecret
+build_job_name: "build"
