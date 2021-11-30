@@ -10,6 +10,7 @@ FactoryBot.define do
   factory :enrollment do
     status { "pending" }
     intitule { "Intitulé" }
+    technical_team_type { "internal_team" }
 
     trait :pending
 

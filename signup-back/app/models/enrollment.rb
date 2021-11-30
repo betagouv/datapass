@@ -276,6 +276,18 @@ class Enrollment < ActiveRecord::Base
     errors[:previous_enrollment_id] << "Vous devez associer cette demande à une demande Franceconnect validée" unless previous_enrollment_id.present?
   end
 
+  def technical_team_validation
+    unless technical_team_type.present?
+      errors[:technical_team_type] << "Vous devez préciser qui va implémenter l’API avant de continuer"
+    end
+    if technical_team_type == "software_company" && !technical_team_value.present?
+      errors[:technical_team_value] << "Vous devez préciser le nom de l’éditeur avant de continuer"
+    end
+    if technical_team_type == "other" && !technical_team_value.present?
+      errors[:technical_team_value] << "Vous devez préciser qui va implémenter l’API avant de continuer"
+    end
+  end
+
   def sent_validation
     rgpd_validation
     cadre_juridique_validation

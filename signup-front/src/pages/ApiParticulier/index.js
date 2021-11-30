@@ -217,6 +217,28 @@ const availableScopes = [
   },
 ];
 
+const editorList = [
+  { name: 'Arpège', siret: '35142130000036' },
+  { name: 'Abelium Collectivités', siret: '42172024400050' },
+  { name: 'Agora Plus', siret: '48017088500010' },
+  { name: 'Jdéalise', siret: '89255569900016' },
+  { name: 'Berger-Levrault', siret: '75580064600373' },
+  { name: 'Up Citizen', siret: '64204436600069' },
+  { name: 'Ciril GROUP', siret: '30516304000119' },
+  { name: 'Docaposte FAST', siret: '48847870200027' },
+  { name: 'DOCAPOSTE', siret: '49337600800030' },
+  { name: 'Odyssée Informatique', siret: '38812677300026' },
+  { name: 'Technocarte', siret: '38873581300056' },
+  { name: 'Communauté CapDémat', siret: '79529105300010' },
+  { name: 'Nord France Informatique (NFI)', siret: '37996323400032' },
+  { name: 'NUMESIA', siret: '81418189700012' },
+  { name: 'Amiciel', siret: '44884396100021' },
+  {
+    name: 'Société d’assistance et gestion du stationnement (SAGS)',
+    siret: '38933781700065',
+  },
+];
+
 const target_api = 'api_particulier';
 
 const ApiParticulier = ({
@@ -236,7 +258,7 @@ const ApiParticulier = ({
       },
     ]}
   >
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection />
     <DescriptionSection />
     <DonneesSection
