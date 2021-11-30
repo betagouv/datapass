@@ -120,6 +120,42 @@ export const availableScopes = [
   },
 ];
 
+const editorList = [
+  { siret: 'Operis / GNAU', name: 'Operis / GNAU' },
+  { siret: 'Netads/Copler', name: 'Netads/Copler' },
+  { siret: 'Berger Levrault', name: 'Berger Levrault' },
+  { siret: 'Docapost Localeo', name: 'Docapost Localeo' },
+  { siret: 'Entr’ouvert / Publik', name: 'Entr’ouvert / Publik' },
+  { siret: 'MGDIS', name: 'MGDIS' },
+  { siret: 'spl-xdemat', name: 'spl-xdemat' },
+  { siret: 'Arpège', name: 'Arpège' },
+  { siret: '32682006500083', name: 'Sopra Steria' },
+  { siret: '80337757100036', name: 'Cap Collectif' },
+  { siret: '30516304000119', name: 'Ciril GROUP' },
+  { siret: 'Octopus', name: 'Octopus' },
+  { siret: 'AMRF Docapost Localeo', name: 'AMRF Docapost Localeo' },
+  { siret: 'Polyconseil', name: 'Polyconseil' },
+  { siret: 'Un zéro Un', name: 'Un zéro Un' },
+  { siret: 'Numesia', name: 'Numesia' },
+  { siret: 'NetAds', name: 'NetAds' },
+  { siret: 'Berger-Levrault', name: 'Berger-Levrault' },
+  { siret: 'Operis', name: 'Operis' },
+  { siret: 'jway', name: 'jway' },
+  { siret: 'Citopia', name: 'Citopia' },
+  { siret: 'Lanteas', name: 'Lanteas' },
+  { siret: 'Ypok / Ygrc', name: 'Ypok / Ygrc' },
+  { siret: '6tzen', name: '6tzen' },
+  { siret: 'Eridanis', name: 'Eridanis' },
+  { siret: 'Inovagora', name: 'Inovagora' },
+  { siret: 'Ypok', name: 'Ypok' },
+  { siret: 'Telmedia', name: 'Telmedia' },
+  { siret: 'Saiga', name: 'Saiga' },
+  { siret: 'Webgam', name: 'Webgam' },
+  { siret: 'CitizenLab', name: 'CitizenLab' },
+  { siret: 'Acheteza', name: 'Acheteza' },
+  { siret: 'Xapiema', name: 'Xapiema' },
+];
+
 const FranceConnect = ({
   match: {
     params: { enrollmentId },
@@ -138,7 +174,7 @@ const FranceConnect = ({
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}

@@ -4,6 +4,7 @@ class Enrollment::Franceconnect < Enrollment
   def submit_validation
     super
 
+    technical_team_validation
     scopes_validation
     responsable_technique_validation
   end
