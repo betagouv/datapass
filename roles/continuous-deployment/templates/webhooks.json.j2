@@ -1,0 +1,120 @@
+[
+    {
+        "id": "deploy-datapass-backend",
+        "execute-command": "/home/{{ app_user }}/deploy-server-app.sh",
+        "command-working-directory": "/home/{{ app_user }}",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "signup-back"
+            }
+        ],
+        "trigger-rule": {
+            "and": [
+                {
+                    "match": {
+                        "type": "payload-hash-sha1",
+                        "secret": "{{ webhook_secret }}",
+                        "parameter": {
+                            "source": "header",
+                            "name": "X-Hub-Signature"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "value",
+                        "value": "completed",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "action"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "regex",
+                        "regex": "{{ build_job_name }} \\({{ target_deploy_env }}.*",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "check_run.name"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "value",
+                        "value": "master",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "check_run.check_suite.head_branch"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": "deploy-datapass-frontend",
+        "execute-command": "/home/{{ app_user }}/deploy-static-app.sh",
+        "command-working-directory": "/home/{{ app_user }}",
+        "pass-arguments-to-command": [
+            {
+                "source": "string",
+                "name": "signup-front"
+            },
+            {
+                "source": "string",
+                "name": "{{ github_access_token }}"
+            },
+            {
+                "source": "string",
+                "name": "{{ target_deploy_env }}"
+            }
+        ],
+        "trigger-rule": {
+            "and": [
+                {
+                    "match": {
+                        "type": "payload-hash-sha1",
+                        "secret": "{{ webhook_secret }}",
+                        "parameter": {
+                            "source": "header",
+                            "name": "X-Hub-Signature"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "value",
+                        "value": "completed",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "action"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "regex",
+                        "regex": "{{ build_job_name }} \\({{ target_deploy_env }}.*",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "check_run.name"
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "type": "value",
+                        "value": "master",
+                        "parameter": {
+                            "source": "payload",
+                            "name": "check_run.check_suite.head_branch"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]
