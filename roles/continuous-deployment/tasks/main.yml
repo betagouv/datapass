@@ -6,7 +6,7 @@
     dest: "/etc/webhooks.json"
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
-    mode: u=rw,g=r,o=r
+    mode: 0644
 
 - name: check if webhook file already exists (to allow download bypass - necessary if behind firewall)
   stat:
@@ -35,9 +35,9 @@
   template:
     src: templates/webhook.service.j2
     dest: /etc/systemd/system/webhook.service
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: 0400
 
 - name: Enable and start webhook service
   service:
@@ -48,7 +48,7 @@
 - name: Copy server apps deploy scripts
   copy:
     dest: "~/deploy-server-app.sh"
-    src: "{{ inventory_dir }}/../../scripts/deploy-server-app.sh"
+    src: "{{ playbook_dir }}/scripts/deploy-server-app.sh"
     mode: 0770
   become: yes
   become_user: "{{ app_user }}"
@@ -56,7 +56,7 @@
 - name: Copy static apps deploy scripts
   copy:
     dest: "~/deploy-static-app.sh"
-    src: "{{ inventory_dir }}/../../scripts/deploy-static-app.sh"
-    mode: 0770
+    src: "{{ playbook_dir }}/scripts/deploy-static-app.sh"
+    mode: 0700
   become: yes
   become_user: "{{ app_user }}"
