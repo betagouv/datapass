@@ -92,7 +92,6 @@ const demarches = {
         dgfip_IndLep: true,
         dgfip_annee_n_moins_1: true,
         dgfip_annee_n_moins_2: true,
-        dgfip_annee_n_moins_3: true,
         dgfip_acces_spi: true,
         dgfip_acces_etat_civil: true,
       },
