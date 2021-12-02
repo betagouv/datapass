@@ -15,6 +15,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   validate :update_validation
+  validate :sent_validation, on: :send_application
 
   before_save :clean_and_format_scopes
   before_save :set_company_info, if: :will_save_change_to_organization_id?
@@ -32,9 +33,7 @@ class Enrollment < ActiveRecord::Base
 
   state_machine :status, initial: :pending do
     state :pending
-    state :sent do
-      validate :sent_validation
-    end
+    state :sent
     state :modification_pending
     state :validated
     state :refused
@@ -59,7 +58,11 @@ class Enrollment < ActiveRecord::Base
       transition from: :sent, to: :validated
     end
 
-    before_transition all => all do |enrollment, transition|
+    before_transition do |enrollment, transition|
+      enrollment.valid?(transition.event.to_sym)
+    end
+
+    before_transition do |enrollment, transition|
       state_machine_event_to_event_names = {
         notify: "notified",
         send_application: "submitted",
@@ -75,7 +78,7 @@ class Enrollment < ActiveRecord::Base
       )
     end
 
-    before_transition sent: :validated do |enrollment|
+    before_transition from: :sent, to: :validated do |enrollment|
       bridge_enable = !ENV["DISABLE_#{enrollment.target_api.upcase}_BRIDGE"].present?
 
       if bridge_enable && enrollment.bridge

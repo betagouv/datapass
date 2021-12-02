@@ -10,7 +10,6 @@ FactoryBot.define do
   factory :enrollment do
     status { "pending" }
     intitule { "Intitulé" }
-    technical_team_type { "internal_team" }
 
     trait :pending
 
@@ -83,6 +82,7 @@ FactoryBot.define do
       with_delegue_protection_donnees
       with_responsable_traitement
       with_data_retention
+      with_technical_team
 
       cgu_approved { true }
     end
@@ -101,6 +101,14 @@ FactoryBot.define do
         enrollment.fondement_juridique_title ||= "title"
         enrollment.fondement_juridique_url ||= "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
       end
+    end
+
+    trait :with_technical_team do
+      technical_team_type { "internal_team" }
+    end
+
+    trait :technical_team_missing do
+      technical_team_type { nil }
     end
 
     trait :with_delegue_protection_donnees do
