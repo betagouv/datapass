@@ -62,7 +62,7 @@ class Enrollment < ActiveRecord::Base
       enrollment.valid?(transition.event.to_sym)
     end
 
-    before_transition all => all do |enrollment, transition|
+    before_transition do |enrollment, transition|
       state_machine_event_to_event_names = {
         notify: "notified",
         send_application: "submitted",
@@ -78,7 +78,7 @@ class Enrollment < ActiveRecord::Base
       )
     end
 
-    before_transition sent: :validated do |enrollment|
+    before_transition from: :sent, to: :validated do |enrollment|
       bridge_enable = !ENV["DISABLE_#{enrollment.target_api.upcase}_BRIDGE"].present?
 
       if bridge_enable && enrollment.bridge
