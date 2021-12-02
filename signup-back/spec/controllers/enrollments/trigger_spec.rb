@@ -14,6 +14,7 @@ RSpec.describe EnrollmentsController, "#trigger", type: :controller do
       enrollment_status,
       enrollment_api_target,
       :complete,
+      enrollment_technical_team_type,
       organization_kind: :clamart,
       user: user
     )
@@ -21,6 +22,7 @@ RSpec.describe EnrollmentsController, "#trigger", type: :controller do
   let(:user) { create(:user, email_verified: true, organization_kind: :clamart) }
   let(:enrollment_status) { :pending }
   let(:enrollment_api_target) { :franceconnect }
+  let(:enrollment_technical_team_type) { :with_technical_team }
   let(:comment) { nil }
 
   describe "invalid event name" do
@@ -69,6 +71,20 @@ RSpec.describe EnrollmentsController, "#trigger", type: :controller do
 
           context "when enrollment is in pending mode" do
             it { is_expected.to have_http_status(:forbidden) }
+          end
+        end
+
+        context "when technical_team_type is missing" do
+          context "when target_api is franceconnect" do
+            let(:enrollment_technical_team_type) { :technical_team_missing }
+
+            it { is_expected.to have_http_status(:ok) }
+          end
+          context "when target_api is api_particulier" do
+            let(:enrollment_api_target) { :api_particulier }
+            let(:enrollment_technical_team_type) { :technical_team_missing }
+
+            it { is_expected.to have_http_status(:unprocessable_entity) }
           end
         end
       end
@@ -193,6 +209,17 @@ RSpec.describe EnrollmentsController, "#trigger", type: :controller do
 
               context "when comment is present" do
                 it { is_expected.to have_http_status(:ok) }
+              end
+
+              context "when technical_team_type is missing" do
+                let(:user_target_api_instructor) { "api_particulier" }
+                let(:enrollment_api_target) { :api_particulier }
+                let(:enrollment_technical_team_type) { :technical_team_missing }
+
+                it {
+                  allow(ApiParticulierBridge).to receive(:call)
+                  is_expected.to have_http_status(:ok)
+                }
               end
 
               context "when comment is missing" do
