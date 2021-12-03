@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new
     @user.email = params[:email]
-    @user.update_attributes(permitted_attributes(@user))
+    @user.update(permitted_attributes(@user))
     authorize @user
 
     if @user.save
