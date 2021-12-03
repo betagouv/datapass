@@ -1,4 +1,4 @@
-name: Backend CI
+name: Backend CI (Tests, linter and security)
 
 on:
   push:
@@ -79,6 +79,14 @@ jobs:
         run: |
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:schema:load RAILS_ENV=test
+
+      - name: Run StandardRB (linter)
+        run: |
+          bundle exec standardrb
+
+      - name: Run Brakeman (security)
+        run: |
+          bundle exec brakeman
 
       - name: Run tests & publish coverage
         uses: paambaati/codeclimate-action@v2.7.5
