@@ -247,3 +247,13 @@ api_histovec:
   label: API Historique d’un véhicule
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_ingres_nomenclatures:
+  label: API INGRES - Nomenclatures
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_ingres_noyau:
+  label: API INGRES - Noyau
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
