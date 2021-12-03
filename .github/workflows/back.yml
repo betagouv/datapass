@@ -17,7 +17,7 @@ env:
 
 jobs:
   test:
-    name: Run
+    name: Tests (RSpec)
     runs-on: ubuntu-18.04
     defaults:
       run:
