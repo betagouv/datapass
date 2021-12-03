@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
-  config.hosts << 'back.datapass-staging.api.gouv.fr'
+  config.hosts << ENV.fetch("BACK_HOST", "http://localhost").sub(/^https?:\/\//, "")
 
   # Settings specified here will take precedence over those in config/application.rb.
 
