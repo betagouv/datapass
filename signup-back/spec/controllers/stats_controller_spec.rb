@@ -43,11 +43,11 @@ RSpec.describe StatsController, type: :controller do
       expect(stats_json["validated_enrollment_count"]).to eq(2)
 
       expect(stats_json["average_processing_time_in_days"]).to eq("2")
-      expect(stats_json["go_back_ratio"]).to eq(((2.0 / 3) * 100).ceil.to_s)
+      expect(stats_json["go_back_ratio"]).to eq(((2.0 / 3) * 100).ceil)
 
       expect(stats_json["monthly_enrollment_count"]).to eq([
         {
-          "month" => "2021-#{Time.now.strftime("%m")}-01 00:00:00",
+          "month" => "2021-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
           "pending" => 1,
           "modification_pending" => 0,
           "sent" => 0,

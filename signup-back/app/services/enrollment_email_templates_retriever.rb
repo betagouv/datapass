@@ -34,17 +34,17 @@ class EnrollmentEmailTemplatesRetriever
   end
 
   def render_specific_template_without_layout(email_kind)
-    renderer.render(
-      file: "enrollment_mailer/#{enrollment.target_api}/#{email_kind}",
-      layout: false
-    )
+    EmailRenderer.new(
+      "enrollment_mailer/#{enrollment.target_api}/#{email_kind}",
+      variables
+    ).perform
   end
 
   def render_default_template(email_kind)
-    renderer.render(
-      file: "enrollment_mailer/#{email_kind}",
-      layout: false
-    )
+    EmailRenderer.new(
+      "enrollment_mailer/#{email_kind}",
+      variables
+    ).perform
   end
 
   def custom_template_exists?(email_kind)
@@ -53,10 +53,6 @@ class EnrollmentEmailTemplatesRetriever
         "app/views/enrollment_mailer/#{enrollment.target_api}/#{email_kind}.text.erb"
       )
     )
-  end
-
-  def renderer
-    @renderer ||= ActionView::Base.new("app/views", variables)
   end
 
   def variables

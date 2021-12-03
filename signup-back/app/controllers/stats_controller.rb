@@ -54,6 +54,7 @@ class StatsController < ApplicationController
       .connection
       .execute(go_back_ratio_query)
       .getvalue(0, 0)
+      .to_i
 
     # Demandes d’habilitation déposées
     monthly_enrollment_count_query = <<-SQL
@@ -73,7 +74,7 @@ class StatsController < ApplicationController
     monthly_enrollment_count = ActiveRecord::Base
       .connection
       .exec_query(monthly_enrollment_count_query)
-      .to_hash
+      .to_a
 
     # Répartition des demandes par API
     enrollment_by_target_api_query = <<-SQL
@@ -86,7 +87,7 @@ class StatsController < ApplicationController
     enrollment_by_target_api = ActiveRecord::Base
       .connection
       .exec_query(enrollment_by_target_api_query)
-      .to_hash
+      .to_a
 
     # Répartition des demandes par statut
     enrollment_by_status_query = <<-SQL
@@ -98,7 +99,7 @@ class StatsController < ApplicationController
     enrollment_by_status = ActiveRecord::Base
       .connection
       .exec_query(enrollment_by_status_query)
-      .to_hash
+      .to_a
 
     render json: {
       enrollment_count: enrollment_count,
