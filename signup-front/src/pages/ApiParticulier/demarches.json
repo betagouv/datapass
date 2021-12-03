@@ -244,6 +244,23 @@
       }
     }
   },
+  "docaposte-fast": {
+    "label": "Tarification de la restauration scolaire et garderie avec la solution Docaposte Fast",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "intitule": "Récupération du Quotient Familial ainsi que les informations administratives (CAF et Impôts) pour les services Cantine et Garderie",
+      "description": "Notre mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\n - Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\n - Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\n - Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\n - Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\n L’Utilisation de l’API Particulier se fait dans le cadre de l’utilisation du logiciel FAST-Famille  édité par la société DOCAPOSTE-FAST.",
+      "data_recipients": "Agents instructeurs en charge de la tarification et de la facturation des prestations aux familles",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Joindre en pièce jointe la délibération indiquant les barèmes tarifaires",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    }
+  },
   "entrouvert-publik": {
     "label": "Tarification de la restauration scolaire avec la solution Publik",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
