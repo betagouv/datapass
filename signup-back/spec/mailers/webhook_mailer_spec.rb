@@ -28,7 +28,7 @@ RSpec.describe WebhookMailer, type: :mailer do
     let!(:foreign_instructor) { create(:user, roles: ["franceconnect:instructor"]) }
 
     it "sends email to target api instructors, with datapass@api.gouv.fr in cc and from" do
-      expect(mail.to).to eq(api_entreprise_instructors.pluck(:email))
+      expect(mail.to).to contain_exactly(*api_entreprise_instructors.pluck(:email))
 
       expect(mail.from).to eq(["datapass@api.gouv.fr"])
       expect(mail.cc).to eq(["datapass@api.gouv.fr"])
