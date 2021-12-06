@@ -10,7 +10,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   #   inflect.singular /^(ox)en/i, '\1'
   #   inflect.irregular 'person', 'people'
   #   inflect.uncountable %w( fish sheep )
-  inflect.uncountable %w[le_taxi_chauffeurs le_taxi_clients delegue_protection_donnees api_ingres_nomenclatures]
+  inflect.uncountable %w[le_taxi_chauffeurs le_taxi_clients delegue_protection_donnees api_ingres_nomenclatures api_prestations_sociales]
 end
 
 # These inflection rules are supported but not enabled by default:
