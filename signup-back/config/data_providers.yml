@@ -257,3 +257,13 @@ api_ingres_noyau:
   label: API INGRES - Noyau
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_prestations_sociales:
+  label: API prestations sociales
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+api_prestations_sociales_fc:
+  label: API prestations sociales (FC)
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
