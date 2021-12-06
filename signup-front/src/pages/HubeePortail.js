@@ -54,7 +54,7 @@ const HubeePortail = ({
     documentationUrl="https://www.numerique.gouv.fr/dinum/"
   >
     <OrganisationSection />
-    <IntituleInitializerSection value="Abonnement portail HubEE" />
+    <IntituleInitializerSection value="Abonnement au portail HubEE" />
     <DemarcheEnLigneSection />
     <ÉquipeSection initialContacts={initialContacts} />
     <CguSection cguLink="/docs/20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf" />
