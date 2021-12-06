@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     comments = ActiveRecord::Base
       .connection
       .exec_query(comments_query, nil, [[nil, event], [nil, target_api]])
-      .to_hash
+      .to_a
 
     render json: comments
   end
