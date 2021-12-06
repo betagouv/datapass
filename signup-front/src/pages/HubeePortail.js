@@ -19,7 +19,7 @@ const initialContacts = {
     ),
     forceDisable: true,
   },
-  contact_metier: {
+  responsable_metier: {
     header: 'Responsable d’abonnement',
     description: (
       <>

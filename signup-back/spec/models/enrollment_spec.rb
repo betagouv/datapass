@@ -7,7 +7,7 @@ RSpec.describe Enrollment, type: :model do
       api_droits_cnam
       api_impot_particulier_fc_sandbox
       aidants_connect
-      hubee
+      hubee_portail
     ].each do |target_api_trait|
       expect(build(:enrollment, target_api_trait)).to be_valid, "Enrollment #{target_api_trait} factory is not valid"
       expect(build(:enrollment, target_api_trait, :sent)).to be_valid, "Enrollment #{target_api_trait} factory with sent trait is not valid"
@@ -88,11 +88,11 @@ RSpec.describe Enrollment, type: :model do
       end
     end
 
-    context "with hubee as target api" do
-      let(:target_api) { :hubee }
+    context "with hubee_portail as target api" do
+      let(:target_api) { :hubee_portail }
 
       it "runs associated bridge" do
-        expect(HubeeBridge).to receive(:call).with(enrollment)
+        expect(HubeePortailBridge).to receive(:call).with(enrollment)
 
         subject
       end
