@@ -12,13 +12,9 @@ export const DemarcheSection = ({ title, body }) => {
   return (
     <>
       {disabled ? (
-        <DemarcheSectionReadOnly title={title} scrollableId={SECTION_ID} />
+        <DemarcheSectionReadOnly scrollableId={SECTION_ID} />
       ) : (
-        <DemarcheSectionSelect
-          title={title}
-          body={body}
-          scrollableId={SECTION_ID}
-        />
+        <DemarcheSectionSelect scrollableId={SECTION_ID} />
       )}
     </>
   );

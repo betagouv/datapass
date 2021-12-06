@@ -36,7 +36,7 @@ export const DATA_PROVIDER_LABELS = {
   aidants_connect: 'Aidants Connect',
   api_service_national: 'API Service National',
   api_tiers_de_prestation: 'API Tiers de prestation',
-  hubee: 'HubEE',
+  hubee_portail: 'Portail HubEE',
   api_pro_sante_connect: 'API Pro Santé Connect',
   api_declaration_auto_entrepreneur: 'API Tierce Déclaration auto-entrepreneur',
   api_indemnites_journalieres_cnam: 'API Indemnités Journalières (CNAM)',
@@ -69,7 +69,7 @@ export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_ficoba_sandbox',
   'api_ficoba_production',
   'aidants_connect',
-  'hubee',
+  'hubee_portail',
 ];
 
 export const DATA_PROVIDER_ICONS = {
@@ -107,7 +107,7 @@ export const DATA_PROVIDER_ICONS = {
   cartobio: 'logo-cartobio-text.svg',
   aidants_connect: 'aidants-connect_logo.png',
   api_tiers_de_prestation: 'logo-urssaf.png',
-  hubee: 'logo-dinum.png',
+  hubee_portail: 'logo-hubee.png',
   api_pro_sante_connect: 'logo-ans.png',
   api_declaration_auto_entrepreneur: 'logo-urssaf.png',
   api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
@@ -142,7 +142,7 @@ export const DATA_PROVIDER_LABELLED_CONTACT_EMAILS = [
     email: DATA_PROVIDER_CONTACT_EMAILS.aidants_connect,
   },
   {
-    label: DATA_PROVIDER_LABELS.hubee,
+    label: DATA_PROVIDER_LABELS.hubee_portail,
     email: DATA_PROVIDER_CONTACT_EMAILS.hubee,
   },
   {

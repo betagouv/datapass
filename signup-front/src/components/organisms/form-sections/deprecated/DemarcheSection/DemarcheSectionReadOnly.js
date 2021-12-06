@@ -5,7 +5,7 @@ import { ScrollablePanel } from '../../../Scrollable';
 import { UserContext } from '../../../UserContext';
 import { findModifiedFields } from '../../../../../lib';
 
-export const DemarcheSectionReadOnly = ({ title, scrollableId }) => {
+export const DemarcheSectionReadOnly = ({ scrollableId }) => {
   const { enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
   const {
@@ -35,7 +35,7 @@ export const DemarcheSectionReadOnly = ({ title, scrollableId }) => {
   return (
     <>
       <ScrollablePanel scrollableId={scrollableId}>
-        <h2>{title || 'Modèles préremplis'}</h2>
+        <h2>Modèles préremplis</h2>
         <div>
           {hasSelectedDemarche ? (
             <>

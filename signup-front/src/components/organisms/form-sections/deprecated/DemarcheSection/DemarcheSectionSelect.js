@@ -7,7 +7,7 @@ import { findModifiedFields } from '../../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 import SelectInput from '../../../../atoms/inputs/SelectInput';
 
-export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
+export const DemarcheSectionSelect = ({ scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
@@ -71,16 +71,14 @@ export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
             </p>
           </ConfirmationModal>
         )}
-        <h2>{title || 'Modèles préremplis'}</h2>
+        <h2>Modèles préremplis</h2>
         <SelectInput
           label={
-            body || (
-              <>
-                Nous avons identifié plusieurs cas d’usage de cette API. Si
-                votre demande s’inscrit dans un des cas ci-dessous,
-                sélectionnez-le pour gagner du temps.
-              </>
-            )
+            <>
+              Nous avons identifié plusieurs cas d’usage de cette API. Si votre
+              demande s’inscrit dans un des cas ci-dessous, sélectionnez-le pour
+              gagner du temps.
+            </>
           }
           name="demarche"
           options={Object.keys(demarches).map((demarcheId) => ({

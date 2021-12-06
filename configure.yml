@@ -126,6 +126,8 @@
           destination_path: "/api-impot-particulier-fc-production"
         - source_pattern: "~ ^/le-taxi/([0-9]+)"
           destination_path: "/authorization-request/$1"
+        - source_pattern: "~ ^/hubee/([0-9]+)"
+          destination_path: "/hubee-portail/$1"
       tags:
         - front
         - app-config
