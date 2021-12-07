@@ -1,19 +1,3 @@
-export const ADMIN_STATUS_LABELS = {
-  sent: 'À valider',
-  modification_pending: 'Retour',
-  validated: 'Validée',
-  refused: 'Refusée',
-  pending: 'Brouillon',
-};
-
-export const USER_STATUS_LABELS = {
-  pending: 'Brouillon',
-  modification_pending: 'Modifications demandées',
-  sent: 'En cours de validation',
-  validated: 'Validée',
-  refused: 'Refusée',
-};
-
 export const enrollmentListStyle = {
   table: {
     border: 'none',
@@ -49,3 +33,5 @@ export const enrollmentListStyle = {
     borderTop: '1px solid rgba(0,0,0,0.1)',
   },
 };
+
+export default enrollmentListStyle;

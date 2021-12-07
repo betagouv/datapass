@@ -11,7 +11,7 @@ import {
   isValidPhoneNumber,
   isIndividualEmailAddress,
 } from './index';
-import groupEmailAddresses from './group_email_addresses.json';
+import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
 
 describe('utils', () => {
   describe('getErrorMessages', () => {

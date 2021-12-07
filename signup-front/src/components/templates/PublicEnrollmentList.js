@@ -6,7 +6,7 @@ import ReactTable from 'react-table-6';
 import moment from 'moment';
 
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
-import { enrollmentListStyle } from '../../lib/enrollment';
+import enrollmentListStyle from './enrollmentListStyle';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,

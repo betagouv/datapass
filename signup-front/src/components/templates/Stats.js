@@ -18,8 +18,8 @@ import {
 
 import './Stats.css';
 
-import { USER_STATUS_LABELS } from '../../lib/enrollment';
 import { getAPIStats } from '../../services/stats';
+import { USER_STATUS_LABELS } from '../../config/status-parameters';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
