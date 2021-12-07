@@ -142,8 +142,8 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  # PATCH /enrollment/1/trigger
-  def trigger
+  # PATCH /enrollment/1/change_state
+  def change_state
     event = params[:event]
     unless Enrollment.state_machine.events.map(&:name).include?(event.to_sym)
       return render status: :bad_request, json: {

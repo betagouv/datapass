@@ -162,7 +162,7 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function computeNextEnrollmentState({ action, id, comment }) {
+export function changeEnrollmentState({ action, id, comment }) {
   const options = {
     event: action,
   };
@@ -172,7 +172,7 @@ export function computeNextEnrollmentState({ action, id, comment }) {
   }
 
   return httpClient.patch(
-    `${BACK_HOST}/api/enrollments/${id}/trigger`,
+    `${BACK_HOST}/api/enrollments/${id}/change_state`,
     options,
     {
       headers: {

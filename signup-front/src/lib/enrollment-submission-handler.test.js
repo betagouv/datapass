@@ -7,7 +7,7 @@ jest.mock('../services/enrollments');
 import { handleSubmissionAction } from './enrollment-submission-handler';
 // eslint-disable-next-line import/first
 import {
-  computeNextEnrollmentState,
+  changeEnrollmentState,
   deleteEnrollment,
   createOrUpdateEnrollment,
 } from '../services/enrollments';
@@ -36,7 +36,7 @@ describe('When submitting the enrollment form', () => {
         false
       );
 
-      expect(computeNextEnrollmentState).toHaveBeenCalledWith({
+      expect(changeEnrollmentState).toHaveBeenCalledWith({
         action: 'notify',
         comment: userMessage,
         id: enrollment.id,

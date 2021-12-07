@@ -6,7 +6,7 @@ import {
 import {
   createOrUpdateEnrollment,
   deleteEnrollment,
-  computeNextEnrollmentState,
+  changeEnrollmentState,
 } from '../services/enrollments';
 
 export const handleSubmissionAction = async (
@@ -52,8 +52,8 @@ export const handleSubmissionAction = async (
       await deleteEnrollment({ id: enrollmentId });
     }
 
-    if (actionConfiguration.needsToComputeNextEnrollmentState) {
-      await computeNextEnrollmentState({
+    if (actionConfiguration.changeEnrollmentState) {
+      await changeEnrollmentState({
         action,
         id: enrollmentId,
         comment,

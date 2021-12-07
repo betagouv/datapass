@@ -1,8 +1,8 @@
-RSpec.describe EnrollmentsController, "#trigger", type: :controller do
-  subject(:make_request) { trigger_request }
+RSpec.describe EnrollmentsController, "#change_state", type: :controller do
+  subject(:make_request) { change_state_request }
 
-  let(:trigger_request) do
-    patch :trigger, params: {
+  let(:change_state_request) do
+    patch :change_state, params: {
       id: enrollment.id,
       event: event,
       comment: comment
