@@ -46,6 +46,7 @@ import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
 import ApiEnsuDadSandbox from '../pages/DgfipPages/ApiEnsuDadSandbox';
 import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
 import ApiIngres from '../pages/ApiIngres';
+import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 
 type DataProviderParameter = {
   label: string;
@@ -337,6 +338,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: null,
       email: 'api.cisirh@finances.gouv.fr',
       component: ApiIngres,
+    },
+    api_statut_etudiant: {
+      label: 'API Statut étudiant',
+      icon: 'logo-mesri.png',
+      email: 'support-statutetudiant@renater.fr',
+      component: ApiStatutEtudiant,
     },
   };
 
