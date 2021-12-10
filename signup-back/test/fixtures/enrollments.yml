@@ -42,7 +42,7 @@ enrollment_draft:
   <<: *DEFAULTS
   created_at: <%= 1.days.ago.to_s(:db) %>
   updated_at: <%= 1.hours.ago.to_s(:db) %>
-  status: "pending"
+  status: "draft"
 
 enrollment_validated:
   <<: *DEFAULTS
@@ -56,11 +56,11 @@ enrollment_refused:
   updated_at: <%= 1.hours.ago.to_s(:db) %>
   status: "refused"
 
-enrollment_asked_for_modification:
+enrollment_changes_requested:
   <<: *DEFAULTS
   created_at: <%= 4.days.ago.to_s(:db) %>
   updated_at: <%= 1.hours.ago.to_s(:db) %>
-  status: "modification_pending"
+  status: "changes_requested"
 
 <% 1.upto(20) do |i| %>
 enrollment_<%= i %>:
@@ -69,5 +69,5 @@ enrollment_<%= i %>:
   nom_raison_sociale: "Enrollment <%= i %>"
   created_at: <%= 1.days.ago.to_s(:db) %>
   updated_at: <%= 1.hours.ago.to_s(:db) %>
-  status: <%= ["sent", "pending", "validated", "refused"].sample %>
+  status: <%= ["submitted", "draft", "validated", "refused"].sample %>
 <% end %>

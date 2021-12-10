@@ -20,19 +20,19 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
       end
     end
 
-    describe "#created" do
-      subject { instance.created }
+    describe "#create" do
+      subject { instance.create }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "created" }
+        let(:event) { "create" }
       end
     end
 
-    describe "#updated" do
-      subject { instance.updated(diff: "diff", user_id: user.id) }
+    describe "#update" do
+      subject { instance.update(diff: "diff", user_id: user.id) }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "updated" }
+        let(:event) { "update" }
       end
     end
 
@@ -44,36 +44,36 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
       end
     end
 
-    describe "#review_application" do
-      subject { instance.review_application(comment: "comment", current_user: user) }
+    describe "#request_changes" do
+      subject { instance.request_changes(comment: "comment", current_user: user) }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "review_application" }
+        let(:event) { "request_changes" }
       end
     end
 
-    describe "#refuse_application" do
-      subject { instance.refuse_application(comment: "comment", current_user: user) }
+    describe "#refuse" do
+      subject { instance.refuse(comment: "comment", current_user: user) }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "refuse_application" }
+        let(:event) { "refuse" }
       end
     end
 
-    describe "#validate_application" do
-      subject { instance.validate_application(comment: "comment", current_user: user) }
+    describe "#validate" do
+      subject { instance.validate(comment: "comment", current_user: user) }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "validate_application" }
+        let(:event) { "validate" }
       end
     end
   end
 
   describe "emails events" do
-    describe "#team_member_updated" do
+    describe "#team_member_update" do
       let(:enrollment) { create(:enrollment, :api_entreprise, :with_delegue_protection_donnees) }
 
-      subject { instance.team_member_updated(team_member_type: "delegue_protection_donnees") }
+      subject { instance.team_member_update(team_member_type: "delegue_protection_donnees") }
 
       it "delivers an email" do
         expect {

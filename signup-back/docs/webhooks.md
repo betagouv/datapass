@@ -74,11 +74,11 @@ Avec:
   Les valeurs possibles sont:
   - `created`: la demande datapass vient d'être créée ;
   - `updated`: la demande datapass a été mise à jour par le demandeur ;
-  - `send_application`: la demande datapass a été envoyée par le demandeur ;
-  - `refuse_application`: la demande datapass a été refusée par un instructeur ;
-  - `review_application`: la demande datapass a été instruite par un instructeur et
+  - `submit`: la demande datapass a été envoyée par le demandeur ;
+  - `refuse`: la demande datapass a été refusée par un instructeur ;
+  - `request_changes`: la demande datapass a été instruite par un instructeur et
     demande des modifications de la part du demandeur ;
-  - `validate_application`: la demande datapass a été validée par un instructeur ;
+  - `validate`: la demande datapass a été validée par un instructeur ;
   - `notify`: un instructeur a relancé la demande en cours d'édition par le
     demandeur ;
   - `owner_updated`: le demandeur de la demande datapass a été mise à jour
@@ -112,12 +112,12 @@ Un exemple de payloaad pour `pass_data`:
   // Numéro de siret de l'organisation à laquelle le demandeur est associé
   "siret": "13002526500013",
   // Status de la demande. Les valeurs peuvent être:
-  // * pending : en attente d'envoi
-  // * sent : demande envoyée
-  // * modification_pending : la demande a été revue par un instructeur et demande des modifications
+  // * draft : en attente d'envoi
+  // * submitted : demande envoyée
+  // * changes_requested : la demande a été revue par un instructeur et demande des modifications
   // * validated : demande validée
   // * refused : demande refusée
-  "status": "pending",
+  "status": "draft",
   // ID de la demande qui a été copié (peut être vide si il s'agit d'une nouvelle demande)
   "copied_from_enrollment_id": 5432,
   // ID de la précédente demande
@@ -164,8 +164,8 @@ Un exemple de payloaad pour `pass_data`:
     {
       // ID technique interne
       "id": 6789,
-      // Nom succinct de l'événement. Une liste non exhaustive: created, updated, sent, validated, refused
-      "name": "created",
+      // Nom succinct de l'événement. Une liste non exhaustive: create, update, submit, validate, refuse
+      "name": "create",
       // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de la demande
       "comment": null,
       // Date de l'événement
@@ -228,7 +228,7 @@ compute_hub_signature = 'sha256=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new(
 Rack::Utils.secure_compare(hub_signature, compute_hub_signature)
 ```
 
-Lors de l'événement `validate_application`, si votre système répond avec un ID de jeton
+Lors de l'événement `validate`, si votre système répond avec un ID de jeton
 celui-ci sera affecté à la demande.
 
 Le format attendu est au format json:

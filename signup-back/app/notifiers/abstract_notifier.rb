@@ -6,19 +6,19 @@ class AbstractNotifier
   end
 
   # :nocov:
-  def created
+  def create
     fail NotImplementedError
   end
 
-  def updated(diff:, user_id:)
+  def update(diff:, user_id:)
     fail NotImplementedError
   end
 
-  def team_member_updated(team_member_type:)
+  def team_member_update(team_member_type:)
     fail NotImplementedError
   end
 
-  def send_application(comment:, current_user:)
+  def submit(comment:, current_user:)
     fail NotImplementedError
   end
 
@@ -26,15 +26,15 @@ class AbstractNotifier
     fail NotImplementedError
   end
 
-  def review_application(comment:, current_user:)
+  def request_changes(comment:, current_user:)
     fail NotImplementedError
   end
 
-  def refuse_application(comment:, current_user:)
+  def refuse(comment:, current_user:)
     fail NotImplementedError
   end
 
-  def validate_application(comment:, current_user:)
+  def validate(comment:, current_user:)
     fail NotImplementedError
   end
   # :nocov:

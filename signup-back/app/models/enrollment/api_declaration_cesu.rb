@@ -1,7 +1,7 @@
 class Enrollment::ApiDeclarationCesu < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     super
 
     responsable_technique_validation

@@ -22,12 +22,12 @@ Les emails personnalisables envoyés directement depuis le backend de DataPass:
 Par défaut, les emails sont envoyés en fonction du type d'action, la vue
 utilisée est:
 
-* [refuse_application.text.erb](refuse_application.text.erb) pour un refus
-* [review_application.text.erb](review_application.text.erb) pour une demande de modification
-* [validate_application.text.erb](validate_application.text.erb) pour une validaton
-* [create_application.text.erb](create_application.text.erb) pour une création
-* [send_application.text.erb](send_application.text.erb) pour un envoi
-* [validate_application.text.erb](validate_application.text.erb) pour une validaton
+* [refuse.text.erb](refuse.text.erb) pour un refus
+* [request_changes.text.erb](request_changes.text.erb) pour une demande de modification
+* [validate.text.erb](validate.text.erb) pour une validaton
+* [create.text.erb](create.text.erb) pour une création
+* [submit.text.erb](submit.text.erb) pour un envoi
+* [validate.text.erb](validate.text.erb) pour une validaton
 
 L'ensemble de l'email au format text se trouve au sein des fichiers ci-dessus.
 
@@ -44,7 +44,7 @@ particulier, utilisez la méthode décrite ci-dessous.
 2. Créer le fichier correspondant à l'email que vous voulez personnaliser. Par
    exemple, dans le cas d'API Entreprise pour l'email de demande de
    modification, il faut créer le fichier
-   `api_entreprise/review_application.text.erb`
+   `api_entreprise/request_changes.text.erb`
 3. Mettre **l'intégralité** du contenu de l'email, avec l'introduction et la
    signature : cet email sera renvoyé tel quel
 
@@ -53,20 +53,20 @@ fichier [data_providers.yml](../../config/data_providers.yml) sous la clé corre
 votre service.
 
 Par exemple pour API Entreprise, si on modifie seulement le sujet de
-`refuse_application`.
+`refuse`.
 
 ```yaml
 api_entreprise:
   label: API Entreprise
   support_email: support@entreprise.api.gouv.fr
   mailer:
-    send_application: *shared_send_application_mailer
-    validate_application: *shared_validate_application_mailer
-    review_application: *shared_review_application_mailer
-    refuse_application:
+    submit: *shared_submit_mailer
+    validate: *shared_validate_mailer
+    request_changes: *shared_request_changes_mailer
+    refuse:
       subject: "Votre demande pour API Entreprise a été refusée"
-    notify_application_sent: *shared_notify_appication_sent_mailer
-    create_application: *shared_create_application_mailer
+    notify_submitted: *shared_notify_submitted_mailer
+    create: *shared_create_mailer
     notify: *shared_notify_mailer
 ```
 

@@ -7,7 +7,7 @@ RSpec.describe EnrollmentsController, "#copy", type: :controller do
     end
 
     let(:enrollment) { create(:enrollment, :franceconnect, enrollment_status, organization_kind: :clamart, user: enrollment_creator) }
-    let(:enrollment_status) { :pending }
+    let(:enrollment_status) { :draft }
     let(:enrollment_creator) { create(:user, organization_kind: :clamart) }
 
     context "without user" do
@@ -24,8 +24,8 @@ RSpec.describe EnrollmentsController, "#copy", type: :controller do
       context "when user created this enrollment" do
         let(:enrollment_creator) { user }
 
-        context "when enrollment is pending" do
-          let(:enrollment_status) { :pending }
+        context "when enrollment is draft" do
+          let(:enrollment_status) { :draft }
 
           context "when user does not belong to the organization's enrollment" do
             let(:user) { create(:user, organization_kind: :dinum) }

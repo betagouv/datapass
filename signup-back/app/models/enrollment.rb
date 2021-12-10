@@ -15,7 +15,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   validate :update_validation
-  validate :sent_validation, on: :send_application
+  validate :submit_validation, on: :submit
 
   before_save :clean_and_format_scopes
   before_save :set_company_info, if: :will_save_change_to_organization_id?
@@ -31,31 +31,31 @@ class Enrollment < ActiveRecord::Base
   accepts_nested_attributes_for :team_members
   has_many :users, through: :team_members
 
-  state_machine :status, initial: :pending do
-    state :pending
-    state :sent
-    state :modification_pending
+  state_machine :status, initial: :draft, namespace: "status" do
+    state :draft
+    state :submitted
+    state :changes_requested
     state :validated
     state :refused
 
     event :notify do
-      transition modification_pending: same
+      transition changes_requested: same
     end
 
-    event :send_application do
-      transition from: [:pending, :modification_pending], to: :sent
+    event :submit do
+      transition from: [:draft, :changes_requested], to: :submitted
     end
 
-    event :refuse_application do
-      transition from: [:modification_pending, :sent], to: :refused
+    event :refuse do
+      transition from: [:changes_requested, :submitted], to: :refused
     end
 
-    event :review_application do
-      transition from: :sent, to: :modification_pending
+    event :request_changes do
+      transition from: :submitted, to: :changes_requested
     end
 
-    event :validate_application do
-      transition from: :sent, to: :validated
+    event :validate do
+      transition from: :submitted, to: :validated
     end
 
     before_transition do |enrollment, transition|
@@ -63,22 +63,14 @@ class Enrollment < ActiveRecord::Base
     end
 
     before_transition do |enrollment, transition|
-      state_machine_event_to_event_names = {
-        notify: "notified",
-        send_application: "submitted",
-        validate_application: "validated",
-        review_application: "asked_for_modification",
-        refuse_application: "refused"
-      }
-
       enrollment.events.create!(
-        name: state_machine_event_to_event_names[transition.event],
+        name: transition.event.to_s,
         user_id: transition.args[0][:user_id],
         comment: transition.args[0][:comment]
       )
     end
 
-    before_transition from: :sent, to: :validated do |enrollment|
+    before_transition from: :submitted, to: :validated do |enrollment|
       bridge_enable = !ENV["DISABLE_#{enrollment.target_api.upcase}_BRIDGE"].present?
 
       if bridge_enable && enrollment.bridge
@@ -86,10 +78,6 @@ class Enrollment < ActiveRecord::Base
           enrollment
         )
       end
-    end
-
-    event :loop_without_job do
-      transition any => same
     end
   end
 
@@ -159,7 +147,7 @@ class Enrollment < ActiveRecord::Base
 
   def copy(current_user)
     copied_enrollment = dup
-    copied_enrollment.status = :pending
+    copied_enrollment.status = :draft
     copied_enrollment.linked_token_manager_id = nil
     copied_enrollment.copied_from_enrollment = self
     team_members.each do |team_member|
@@ -168,7 +156,7 @@ class Enrollment < ActiveRecord::Base
     end
     copied_enrollment.save!
     copied_enrollment.events.create(
-      name: "copied",
+      name: "copy",
       user_id: current_user.id,
       comment: "Demande d’origine : ##{id}"
     )
@@ -291,7 +279,7 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  def sent_validation
+  def submit_validation
     rgpd_validation
     cadre_juridique_validation
 

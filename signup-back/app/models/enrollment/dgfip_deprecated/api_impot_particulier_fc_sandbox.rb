@@ -1,7 +1,7 @@
 class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::DgfipDeprecated::SandboxEnrollment
   protected
 
-  def sent_validation
+  def submit_validation
     super
 
     # Données

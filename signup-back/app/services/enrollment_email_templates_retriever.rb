@@ -85,9 +85,9 @@ class EnrollmentEmailTemplatesRetriever
   def email_kinds
     %w[
       notify
-      refuse_application
-      review_application
-      validate_application
+      refuse
+      request_changes
+      validate
     ].freeze
   end
 

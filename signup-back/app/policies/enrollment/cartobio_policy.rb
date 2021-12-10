@@ -27,7 +27,7 @@ class Enrollment::CartobioPolicy < EnrollmentPolicy
     []
   end
 
-  def send_application?
+  def submit?
     false
   end
 
@@ -35,15 +35,15 @@ class Enrollment::CartobioPolicy < EnrollmentPolicy
     false
   end
 
-  def validate_application?
+  def validate?
     false
   end
 
-  def review_application?
+  def request_changes?
     false
   end
 
-  def refuse_application?
+  def refuse?
     false
   end
 end

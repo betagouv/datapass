@@ -1,7 +1,7 @@
 class Enrollment::ApiPrestationsSocialesFc < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     super
 
     scopes_validation

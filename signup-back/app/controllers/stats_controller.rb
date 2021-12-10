@@ -4,7 +4,7 @@ class StatsController < ApplicationController
     # Before adding new stat query, beware that before migrations of 2019-04-02
     # - there is no 'updated' event nor 'updated_contacts' event
     # - there was a unique constraint that does not allow multiple event of the same type
-    #   on the same enrollments. Consequently, some submitted and asked_for_modification
+    #   on the same enrollments. Consequently, some submit and request_changes
     #   events are missing in production database.
 
     do_filter_by_target_api = params.permit(:target_api).key?(:target_api)
@@ -43,7 +43,7 @@ class StatsController < ApplicationController
         FROM enrollments
           LEFT JOIN
           events ON events.enrollment_id = enrollments.id
-          AND events.name IN ('created', 'asked_for_modification')
+          AND events.name IN ('create', 'request_changes')
         WHERE enrollments.status IN ('validated', 'refused')
         AND #{filter_by_target_api_criteria}
         AND enrollments.updated_at > CURRENT_DATE - INTERVAL '6 months'
@@ -60,9 +60,9 @@ class StatsController < ApplicationController
     monthly_enrollment_count_query = <<-SQL
       SELECT
         date_trunc('month', created_at) AS month,
-        COUNT(*) filter (where status = 'pending') as pending,
-        COUNT(*) filter (where status = 'modification_pending') as modification_pending,
-        COUNT(*) filter (where status = 'sent') as sent,
+        COUNT(*) filter (where status = 'draft') as draft,
+        COUNT(*) filter (where status = 'changes_requested') as changes_requested,
+        COUNT(*) filter (where status = 'submitted') as submitted,
         COUNT(*) filter (where status = 'validated') as validated,
         COUNT(*) filter (where status = 'refused') as refused,
         COUNT(*) as total

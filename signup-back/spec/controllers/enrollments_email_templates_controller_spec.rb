@@ -5,7 +5,7 @@ RSpec.describe EnrollmentsEmailTemplatesController, type: :controller do
       response
     end
 
-    let(:enrollment) { create(:enrollment, :sent, :franceconnect) }
+    let(:enrollment) { create(:enrollment, :submitted, :franceconnect) }
 
     before do
       login(instructor)

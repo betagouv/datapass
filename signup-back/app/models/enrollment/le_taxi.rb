@@ -1,7 +1,7 @@
 class Enrollment::LeTaxi < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     super
 
     technical_team_validation

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :event do
-    name { "created" }
+    name { "create" }
     user
     enrollment
 
@@ -8,38 +8,38 @@ FactoryBot.define do
       comment { "I like turtles" }
     end
 
-    trait :created
+    trait :create
 
-    trait :updated do
-      name { "updated" }
-
-      with_comment
-    end
-
-    trait :submitted do
-      name { "submitted" }
-    end
-
-    trait :validated do
-      name { "validated" }
+    trait :update do
+      name { "update" }
 
       with_comment
     end
 
-    trait :refused do
-      name { "refused" }
+    trait :submit do
+      name { "submit" }
+    end
+
+    trait :validate do
+      name { "validate" }
 
       with_comment
     end
 
-    trait :notified do
-      name { "notified" }
+    trait :refuse do
+      name { "refuse" }
 
       with_comment
     end
 
-    trait :asked_for_modification do
-      name { "asked_for_modification" }
+    trait :notify do
+      name { "notify" }
+
+      with_comment
+    end
+
+    trait :request_changes do
+      name { "request_changes" }
 
       with_comment
     end

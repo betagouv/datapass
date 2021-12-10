@@ -1,7 +1,7 @@
 class Enrollment::AidantsConnect < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     errors[:siret] << "Vous devez renseigner un SIRET d’organisation valide avant de continuer" unless nom_raison_sociale
     errors[:type_projet] << "Vous devez renseigner le type de la structure avant de continuer" unless type_projet.present?
 

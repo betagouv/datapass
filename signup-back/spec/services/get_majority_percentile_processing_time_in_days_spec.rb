@@ -3,27 +3,27 @@ RSpec.describe GetMajorityPercentileProcessingTimeInDays, type: :service do
     let!(:some_enrollments_for_stats) do
       Timecop.freeze(Time.new(2021, Time.now.month, 30))
 
-      enrollment = create(:enrollment, :franceconnect, :pending)
-      create(:event, :created, enrollment: enrollment)
+      enrollment = create(:enrollment, :franceconnect, :draft)
+      create(:event, :create, enrollment: enrollment)
 
       enrollment = create(:enrollment, :franceconnect, :validated, created_at: 2.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 2.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 2.days.ago)
-      create(:event, :validated, enrollment: enrollment, created_at: 0.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 2.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 2.days.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: 0.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :validated, created_at: 40.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 40.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 40.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 6.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 6.days.ago)
-      create(:event, :validated, enrollment: enrollment, created_at: 0.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 40.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 40.days.ago)
+      create(:event, :request_changes, enrollment: enrollment, created_at: 6.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 6.days.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: 0.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :refused, created_at: 30.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 30.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 30.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 4.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 4.days.ago)
-      create(:event, :refused, enrollment: enrollment, created_at: 0.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 30.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 30.days.ago)
+      create(:event, :request_changes, enrollment: enrollment, created_at: 4.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 4.days.ago)
+      create(:event, :refuse, enrollment: enrollment, created_at: 0.days.ago)
     end
 
     after do

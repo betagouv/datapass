@@ -10,22 +10,22 @@ RSpec.describe Enrollment, type: :model do
       hubee_portail
     ].each do |target_api_trait|
       expect(build(:enrollment, target_api_trait)).to be_valid, "Enrollment #{target_api_trait} factory is not valid"
-      expect(build(:enrollment, target_api_trait, :sent)).to be_valid, "Enrollment #{target_api_trait} factory with sent trait is not valid"
+      expect(build(:enrollment, target_api_trait, :submitted)).to be_valid, "Enrollment #{target_api_trait} factory with submitted trait is not valid"
       expect(build(:enrollment, target_api_trait, :validated)).to be_valid, "Enrollment #{target_api_trait} factory with validated trait is not valid"
 
       begin
-        create(:enrollment, target_api_trait, :sent)
+        create(:enrollment, target_api_trait, :submitted)
       rescue ActiveRecord::RecordInvalid
-        RSpec::Expectations.fail_with("#{target_api_trait} is not a valid trait factory for sent status")
+        RSpec::Expectations.fail_with("#{target_api_trait} is not a valid trait factory for submitted status")
       end
     end
   end
 
-  describe "validate_application transition" do
-    subject { enrollment.validate_application(params) }
+  describe "validate transition" do
+    subject { enrollment.validate_status(params) }
 
     let(:user) { create(:user) }
-    let(:enrollment) { create(:enrollment, target_api, :sent) }
+    let(:enrollment) { create(:enrollment, target_api, :submitted) }
     let(:params) { {user_id: user.id, comment: "whatever"} }
 
     context "with api_particulier as target api" do

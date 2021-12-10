@@ -6,7 +6,7 @@ RSpec.describe EnrollmentsController, "#destroy", type: :controller do
   end
 
   let(:enrollment) { create(:enrollment, :franceconnect, enrollment_status, user: enrollment_creator) }
-  let(:enrollment_status) { :pending }
+  let(:enrollment_status) { :draft }
   let(:enrollment_creator) { create(:user) }
 
   describe "authorization" do
@@ -24,14 +24,14 @@ RSpec.describe EnrollmentsController, "#destroy", type: :controller do
       context "when user created this enrollment" do
         let(:enrollment_creator) { user }
 
-        context "when enrollment is pending" do
-          let(:enrollment_status) { :pending }
+        context "when enrollment is draft" do
+          let(:enrollment_status) { :draft }
 
           it { is_expected.to have_http_status(:ok) }
         end
 
-        context "when enrollment is modification_pending" do
-          let(:enrollment_status) { :modification_pending }
+        context "when enrollment is changes_requested" do
+          let(:enrollment_status) { :changes_requested }
 
           it { is_expected.to have_http_status(:ok) }
         end
@@ -56,7 +56,7 @@ RSpec.describe EnrollmentsController, "#destroy", type: :controller do
   end
 
   describe "destroy" do
-    let(:enrollment_status) { :pending }
+    let(:enrollment_status) { :draft }
     let(:enrollment_creator) { create(:user) }
     let(:user) { enrollment_creator }
 

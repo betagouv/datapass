@@ -20,7 +20,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     )
   end
   let(:user) { create(:user, email_verified: true, organization_kind: :clamart) }
-  let(:enrollment_status) { :pending }
+  let(:enrollment_status) { :draft }
   let(:enrollment_api_target) { :franceconnect }
   let(:enrollment_technical_team_type) { :with_technical_team }
   let(:comment) { nil }
@@ -35,8 +35,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     it { is_expected.to have_http_status(:bad_request) }
   end
 
-  describe "send_application event" do
-    let(:event) { "send_application" }
+  describe "submit event" do
+    let(:event) { "submit" }
 
     before do
       allow_any_instance_of(RefreshUser).to receive(:call).and_return(
@@ -55,12 +55,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         end
 
         context "when user is the enrollment's creator" do
-          context "when enrollment is in pending mode" do
+          context "when enrollment is in draft mode" do
             it { is_expected.to have_http_status(:ok) }
           end
 
-          context "when enrollment is in sent mode" do
-            let(:enrollment_status) { :sent }
+          context "when enrollment is in submitted mode" do
+            let(:enrollment_status) { :submitted }
 
             it { is_expected.to have_http_status(:forbidden) }
           end
@@ -69,7 +69,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         context "when user is not the enrollment's creator" do
           let(:user) { create(:user) }
 
-          context "when enrollment is in pending mode" do
+          context "when enrollment is in draft mode" do
             it { is_expected.to have_http_status(:forbidden) }
           end
         end
@@ -101,7 +101,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         make_request
       end
 
-      it "tracks event as submitted for this enrollment" do
+      it "tracks event as submit for this enrollment" do
         expect {
           make_request
         }.to change { enrollment.events.reload.count }.by(1)
@@ -109,13 +109,13 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         last_enrollment_event = enrollment.events.last
 
         expect(last_enrollment_event.user).to eq(user)
-        expect(last_enrollment_event.name).to eq("submitted")
+        expect(last_enrollment_event.name).to eq("submit")
       end
 
-      it "sets enrollment status to sent" do
+      it "sets enrollment status to submitted" do
         expect {
           make_request
-        }.to change { enrollment.reload.status }.to("sent")
+        }.to change { enrollment.reload.status }.to("submitted")
       end
 
       describe "emails send" do
@@ -123,8 +123,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           create_list(:user, 2, roles: ["franceconnect:subscriber"])
         end
 
-        let(:send_application_email_sample) do
-          File.open(Rails.root.join("app/views/enrollment_mailer/send_application.text.erb")) { |f| f.readline }.chomp[0..30]
+        let(:submit_email_sample) do
+          File.open(Rails.root.join("app/views/enrollment_mailer/submit.text.erb")) { |f| f.readline }.chomp[0..30]
         end
 
         before do
@@ -135,7 +135,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           ActiveJob::Base.queue_adapter = :test
         end
 
-        it "sends last email to target api subscribers to notify a new sent application from user" do
+        it "sends last email to target api subscribers to notify a new submitted enrollment from user" do
           make_request
 
           enrollment_user_email = ActionMailer::Base.deliveries.last
@@ -152,14 +152,14 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           expect(enrollment_user_email).to be_present
 
           expect(enrollment_user_email.to).to eq([enrollment.demandeurs.first.email])
-          expect(enrollment_user_email.body.encoded).to include(send_application_email_sample)
+          expect(enrollment_user_email.body.encoded).to include(submit_email_sample)
         end
       end
     end
   end
 
-  describe "validate_application event" do
-    let(:event) { "validate_application" }
+  describe "validate event" do
+    let(:event) { "validate" }
     let(:comment) { "I like trains" }
 
     before do
@@ -177,12 +177,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         end
 
         context "when user is the enrollment's creator" do
-          context "when enrollment is in pending mode" do
+          context "when enrollment is in draft mode" do
             it { is_expected.to have_http_status(:forbidden) }
           end
 
-          context "when enrollment is in sent mode" do
-            let(:enrollment_status) { :sent }
+          context "when enrollment is in submitted mode" do
+            let(:enrollment_status) { :submitted }
 
             it { is_expected.to have_http_status(:forbidden) }
           end
@@ -191,8 +191,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         context "when user is not the enrollment's creator" do
           let(:user) { create(:user) }
 
-          context "when enrollment is in sent mode" do
-            let(:enrollment_status) { :sent }
+          context "when enrollment is in submitted mode" do
+            let(:enrollment_status) { :submitted }
 
             it { is_expected.to have_http_status(:forbidden) }
           end
@@ -204,8 +204,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           context "when user is an instructor for the enrollment target api" do
             let(:user_target_api_instructor) { "franceconnect" }
 
-            context "when enrollment is in sent mode" do
-              let(:enrollment_status) { :sent }
+            context "when enrollment is in submitted mode" do
+              let(:enrollment_status) { :submitted }
 
               context "when comment is present" do
                 it { is_expected.to have_http_status(:ok) }
@@ -229,8 +229,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
               end
             end
 
-            context "when enrollment is in pending mode" do
-              let(:enrollment_status) { :pending }
+            context "when enrollment is in draft mode" do
+              let(:enrollment_status) { :draft }
 
               it { is_expected.to have_http_status(:forbidden) }
             end
@@ -239,8 +239,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           context "when user is an instructor for another target api" do
             let(:user_target_api_instructor) { "api_entreprise" }
 
-            context "when enrollment is in sent mode" do
-              let(:enrollment_status) { :sent }
+            context "when enrollment is in submitted mode" do
+              let(:enrollment_status) { :submitted }
 
               it { is_expected.to have_http_status(:forbidden) }
             end
@@ -251,7 +251,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
     describe "actions" do
       let(:user) { create(:user, roles: ["#{user_target_api_instructor}:instructor"]) }
-      let(:enrollment_status) { :sent }
+      let(:enrollment_status) { :submitted }
       let(:user_target_api_instructor) { "franceconnect" }
 
       before do
@@ -270,7 +270,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         expect(FranceconnectBridge).to have_received(:call)
       end
 
-      it "tracks event as validated for this enrollment" do
+      it "tracks event as validate for this enrollment" do
         expect {
           make_request
         }.to change { enrollment.events.reload.count }.by(1)
@@ -278,7 +278,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         last_enrollment_event = enrollment.events.last
 
         expect(last_enrollment_event.user).to eq(user)
-        expect(last_enrollment_event.name).to eq("validated")
+        expect(last_enrollment_event.name).to eq("validate")
       end
 
       describe "emails send" do
@@ -315,7 +315,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
   end
 
   describe "refuse_validation event" do
-    let(:event) { "refuse_application" }
+    let(:event) { "refuse" }
     let(:comment) { "comment" }
 
     describe "authorization" do
@@ -329,12 +329,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         end
 
         context "when user is the enrollment's creator" do
-          context "when enrollment is in pending mode" do
+          context "when enrollment is in draft mode" do
             it { is_expected.to have_http_status(:forbidden) }
           end
 
           context "when enrollment is in sent mode" do
-            let(:enrollment_status) { :sent }
+            let(:enrollment_status) { :submitted }
 
             it { is_expected.to have_http_status(:forbidden) }
           end
@@ -343,8 +343,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         context "when user is not the enrollment's creator" do
           let(:user) { create(:user) }
 
-          context "when enrollment is in sent mode" do
-            let(:enrollment_status) { :sent }
+          context "when enrollment is in submitted mode" do
+            let(:enrollment_status) { :submitted }
 
             it { is_expected.to have_http_status(:forbidden) }
           end
@@ -356,14 +356,14 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           context "when user is an instructor for the enrollment target api" do
             let(:user_target_api_instructor) { "franceconnect" }
 
-            context "when enrollment is in sent mode" do
-              let(:enrollment_status) { :sent }
+            context "when enrollment is in submitted mode" do
+              let(:enrollment_status) { :submitted }
 
               it { is_expected.to have_http_status(:ok) }
             end
 
-            context "when enrollment is in pending mode" do
-              let(:enrollment_status) { :pending }
+            context "when enrollment is in draft mode" do
+              let(:enrollment_status) { :draft }
 
               it { is_expected.to have_http_status(:forbidden) }
             end
@@ -372,8 +372,8 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           context "when user is an instructor for another target api" do
             let(:user_target_api_instructor) { "api_entreprise" }
 
-            context "when enrollment is in sent mode" do
-              let(:enrollment_status) { :sent }
+            context "when enrollment is in submitted mode" do
+              let(:enrollment_status) { :submitted }
 
               it { is_expected.to have_http_status(:forbidden) }
             end
@@ -384,7 +384,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
     describe "actions" do
       let(:user) { create(:user, roles: ["#{user_target_api_instructor}:instructor"]) }
-      let(:enrollment_status) { :sent }
+      let(:enrollment_status) { :submitted }
       let(:user_target_api_instructor) { "franceconnect" }
 
       before do
@@ -397,7 +397,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         }.to change { enrollment.reload.status }.to("refused")
       end
 
-      it "tracks event as refused for this enrollment" do
+      it "tracks event as refuse for this enrollment" do
         expect {
           make_request
         }.to change { enrollment.events.reload.count }.by(1)
@@ -405,7 +405,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         last_enrollment_event = enrollment.events.last
 
         expect(last_enrollment_event.user).to eq(user)
-        expect(last_enrollment_event.name).to eq("refused")
+        expect(last_enrollment_event.name).to eq("refuse")
         expect(last_enrollment_event.comment).to eq(comment)
       end
 
@@ -436,7 +436,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
     context "with valid user and enrollment" do
       let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
-      let(:enrollment_status) { :modification_pending }
+      let(:enrollment_status) { :changes_requested }
 
       before do
         login(user)
@@ -465,13 +465,13 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     end
   end
 
-  describe "review_application" do
-    let(:event) { "review_application" }
+  describe "request_changes" do
+    let(:event) { "request_changes" }
     let(:comment) { "comment" }
 
     context "with valid user and enrollment" do
       let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
-      let(:enrollment_status) { :sent }
+      let(:enrollment_status) { :submitted }
 
       before do
         login(user)

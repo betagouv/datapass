@@ -41,6 +41,26 @@
       "note": ""
     },
     {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "70509f1b16d5d768dc52dc23e7a56a49216620479f5da5f0a29f1eb388281fb6",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/enrollments_controller.rb",
+      "line": 185,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "authorize(Enrollment.find(params[:id]), \"#{params[:event]}?\".to_sym).send(\"#{params[:event]}_status\".to_sym, :user_id => current_user.id, :comment => params[:comment])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EnrollmentsController",
+        "method": "change_state"
+      },
+      "user_input": "params[:event]",
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "8592b6a3a71a436db6b921a352a9f0faad7e4e498a2fd81a5944211c6ae2338a",
@@ -81,33 +101,13 @@
       "note": ""
     },
     {
-      "warning_type": "Dangerous Send",
-      "warning_code": 23,
-      "fingerprint": "97ed4295dae3eec7ea2d17e57ddee53b06d4f03b4cce8d03791ff497e8e1da66",
-      "check_name": "Send",
-      "message": "User controlled method execution",
-      "file": "app/controllers/enrollments_controller.rb",
-      "line": 185,
-      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
-      "code": "authorize(Enrollment.find(params[:id]), \"#{params[:event]}?\".to_sym).send(params[:event].to_sym, :user_id => current_user.id, :comment => params[:comment])",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "EnrollmentsController",
-        "method": "change_state"
-      },
-      "user_input": "params[:event].to_sym",
-      "confidence": "High",
-      "note": ""
-    },
-    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "aac97180b952af4721ad5375d2e637a78a4140ac35b1ff82c228d1853570c5c1",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/enrollment.rb",
-      "line": 123,
+      "line": 111,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "User.where(\"'#{target_api}:subscriber' = ANY(roles)\")",
       "render_path": null,
@@ -121,6 +121,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-12-10 15:07:09 +0000",
+  "updated": "2021-12-10 15:16:15 +0000",
   "brakeman_version": "5.1.1"
 }

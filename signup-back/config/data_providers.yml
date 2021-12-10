@@ -1,17 +1,17 @@
 ---
 shared:
   mailer: &shared_mailer
-    send_application: &shared_send_application_mailer
+    submit: &shared_submit_mailer
       subject: "Nous avons bien reçu votre demande d’accès"
-    validate_application: &shared_validate_application_mailer
+    validate: &shared_validate_mailer
       subject: "Votre demande a été validée"
-    review_application: &shared_review_application_mailer
+    request_changes: &shared_request_changes_mailer
       subject: "Votre demande requiert des modifications"
-    refuse_application: &shared_refuse_application_mailer
+    refuse: &shared_refuse_mailer
       subject: "Votre demande a été refusée"
-    notify_application_sent: &shared_notify_application_sent_mailer
+    notify_submitted: &shared_notify_submitted_mailer
       subject: "Nouvelle demande sur DataPass"
-    create_application: &shared_create_application_mailer
+    create: &shared_create_mailer
       subject: "Votre demande a été enregistrée"
     notify: &shared_notify_mailer
       subject: "Vous avez un nouveau message concernant votre demande"
@@ -77,15 +77,15 @@ api_entreprise:
   support_email: support@entreprise.api.gouv.fr
   mailer:
     <<: *shared_mailer
-    create_application:
+    create:
       subject: "💾 Le brouillon de votre demande a bien été enregistré"
-    send_application:
+    submit:
       subject: "📬 Votre demande a bien été reçue par API Entreprise"
-    review_application:
+    request_changes:
       subject: "✒️ Votre demande requiert des modifications"
-    validate_application:
+    validate:
       subject: "✅ Votre demande d’accès à l'API Entreprise a été validée"
-    refuse_application:
+    refuse:
       subject: "🚫 Votre demande d’accès à l’API Entreprise a été refusée"
 
 le_taxi:
