@@ -123,8 +123,8 @@ api_hermes_production:
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
-hubee:
-  label: Hubee
+hubee_portail:
+  label: Portail HubEE
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 

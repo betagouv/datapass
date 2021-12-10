@@ -56,7 +56,7 @@ const publicServicesNAFCodes = [
 
 const validNAFCode = {
   api_particulier: publicServicesNAFCodes,
-  hubee: ['84.11Z'], // Administration publique générale
+  hubee_portail: ['84.11Z'], // Administration publique générale
 };
 
 export function isValidNAFCode(provider, NAFcode) {

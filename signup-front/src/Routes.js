@@ -30,7 +30,7 @@ import UserEnrollmentList from './components/templates/UserEnrollmentList';
 import ApiEntreprise from './pages/ApiEntreprise';
 import ApiServiceNational from './pages/ApiServiceNational';
 import ApiTiersDePrestation from './pages/UrssafPages/ApiTiersDePrestation';
-import Hubee from './pages/Hubee';
+import HubeePortail from './pages/HubeePortail';
 import Admin from './components/templates/Admin';
 import { withUser } from './components/organisms/UserContext';
 import ApiDeclarationAutoEntrepreneur from './pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
@@ -274,7 +274,10 @@ export const Routes = ({ user }) => {
         component={ApiDeclarationAutoEntrepreneur}
       />
 
-      <PrivateRoute path="/hubee/:enrollmentId?" component={Hubee} />
+      <PrivateRoute
+        path="/hubee-portail/:enrollmentId?"
+        component={HubeePortail}
+      />
 
       <PrivateRoute
         path="/api-pro-sante-connect/:enrollmentId?"

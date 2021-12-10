@@ -94,7 +94,7 @@
         DISABLE_API_IMPOT_PARTICULIER_BRIDGE: "{{ disable_api_impot_particulier_bridge | default('') }}"
         DISABLE_API_DROITS_CNAM_BRIDGE: "{{ disable_api_droits_cnam_bridge | default('') }}"
         DISABLE_API_INDEMNITES_JOURNALIERES_CNAM_BRIDGE: "{{ disable_api_indemnites_journalieres_cnam_bridge | default('') }}"
-        DISABLE_HUBEE_BRIDGE: "{{ disable_hubee_bridge | default('') }}"
+        DISABLE_HUBEE_PORTAIL_BRIDGE: "{{ disable_hubee_portail_bridge | default('') }}"
         HUBEE_HOST: "{{ hubee_host }}"
         HUBEE_AUTH_URL: "{{ hubee_auth_url }}"
         HUBEE_CLIENT_ID: "{{ hubee_client_id }}"
@@ -126,6 +126,8 @@
           destination_path: "/api-impot-particulier-fc-production"
         - source_pattern: "~ ^/le-taxi/([0-9]+)"
           destination_path: "/authorization-request/$1"
+        - source_pattern: "~ ^/hubee/([0-9]+)"
+          destination_path: "/hubee-portail/$1"
       tags:
         - front
         - app-config

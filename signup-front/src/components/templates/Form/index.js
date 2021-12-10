@@ -26,7 +26,6 @@ import {
 export const FormContext = React.createContext();
 
 export const Form = ({
-  title,
   DemarcheDescription = () => null,
   location,
   steps = undefined,
@@ -150,14 +149,8 @@ export const Form = ({
               marginBottom: '2em',
             }}
           >
-            {title ? (
-              <h1>{title}</h1>
-            ) : (
-              <>
-                <>Vous demandez l’accès à</>
-                <h1>{title || DATA_PROVIDER_LABELS[target_api]}</h1>
-              </>
-            )}
+            <>Vous demandez l’accès à</>
+            <h1>{DATA_PROVIDER_LABELS[target_api]}</h1>
             <div className="tag-container">
               {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
               {enrollment.copied_from_enrollment_id && (

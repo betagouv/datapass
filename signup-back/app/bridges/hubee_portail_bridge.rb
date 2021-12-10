@@ -1,4 +1,4 @@
-class HubeeBridge < ApplicationBridge
+class HubeePortailBridge < ApplicationBridge
   def call
     email = @enrollment.demandeurs.pluck(:email).first
     phone_number = @enrollment.demandeurs.pluck(:phone_number).first
@@ -46,7 +46,7 @@ class HubeeBridge < ApplicationBridge
       "#{hubee_auth_url}/token",
       {grant_type: "client_credentials", scope: "ADMIN"},
       Base64.strict_encode64("#{client_id}:#{client_secret}"),
-      "HubEE",
+      "Portail HubEE",
       nil,
       "Basic"
     )
@@ -59,7 +59,7 @@ class HubeeBridge < ApplicationBridge
       Http.get(
         "#{api_host}/referential/v1/organizations/SI-#{siret}-#{code_commune}",
         access_token,
-        "HubEE"
+        "Portail HubEE"
       )
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
@@ -80,7 +80,7 @@ class HubeeBridge < ApplicationBridge
             status: "Actif"
           },
           access_token,
-          "HubEE"
+          "Portail HubEE"
         )
       else
         raise
@@ -88,19 +88,7 @@ class HubeeBridge < ApplicationBridge
     end
 
     # 3. create subscription
-    delegation_actor = nil
-    responsable_technique = team_members.find { |team_member| team_member["type"] == "responsable_technique" }
-    unless responsable_technique.nil? || !responsable_technique["email"] || responsable_technique["email"].empty?
-      delegation_actor = {
-        email: responsable_technique["email"],
-        firstName: responsable_technique["given_name"],
-        lastName: responsable_technique["family_name"],
-        function: responsable_technique["job"],
-        phoneNumber: responsable_technique["phone_number"],
-        mobileNumber: nil
-      }
-    end
-    contact_metier = team_members.find { |team_member| team_member["type"] == "contact_metier" }
+    responsable_metier = team_members.find { |team_member| team_member["type"] == "responsable_metier" }
     create_subscription_response = Http.post(
       "#{api_host}/referential/v1/subscriptions",
       {
@@ -118,21 +106,21 @@ class HubeeBridge < ApplicationBridge
         rejectDateTime: nil,
         endDateTime: nil,
         updateDateTime: updated_at.iso8601,
-        delegationActor: delegation_actor,
+        delegationActor: nil,
         rejectionReason: nil,
         status: "Inactif",
         email: email,
         localAdministrator: {
-          email: contact_metier["email"],
-          firstName: contact_metier["given_name"],
-          lastName: contact_metier["family_name"],
-          function: contact_metier["job"],
-          phoneNumber: contact_metier["phone_number"],
+          email: responsable_metier["email"],
+          firstName: responsable_metier["given_name"],
+          lastName: responsable_metier["family_name"],
+          function: responsable_metier["job"],
+          phoneNumber: responsable_metier["phone_number"],
           mobileNumber: nil
         }
       },
       access_token,
-      "HubEE"
+      "Portail HubEE"
     )
 
     create_subscription_response.parse["id"]

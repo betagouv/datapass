@@ -128,10 +128,10 @@ describe('utils', () => {
       expect(isValidNAFCode('dgfip', '62.02A')).toBe(true);
     });
     it('should return true for Commune de bresse vallons', () => {
-      expect(isValidNAFCode('hubee', '84.11Z')).toBe(true);
+      expect(isValidNAFCode('hubee_portail', '84.11Z')).toBe(true);
     });
     it('should return false for Cpam de loire atlantique (cpam)', () => {
-      expect(isValidNAFCode('hubee', '84.30A')).toBe(false);
+      expect(isValidNAFCode('hubee_portail', '84.30A')).toBe(false);
     });
   });
 
