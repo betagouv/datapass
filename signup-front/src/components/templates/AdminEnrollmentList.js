@@ -14,7 +14,8 @@ import {
 } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
 import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
-import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../../lib/enrollment';
+import { ADMIN_STATUS_LABELS } from '../../config/status-parameters';
+import enrollmentListStyle from './enrollmentListStyle';
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import { withUser } from '../organisms/UserContext';

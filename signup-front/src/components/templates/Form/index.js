@@ -13,13 +13,15 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
-import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 import Tag from '../../atoms/Tag';
-import statusToButtonType from '../../../lib/status-to-button-type';
 import { withUser } from '../../organisms/UserContext';
 import FileCopyIcon from '../../atoms/icons/file_copy';
 import { Linkify } from '../../molecules/Linkify';
 import { enrollmentReducerFactory } from './enrollmentReducer';
+import {
+  STATUS_TO_BUTTON_TYPE,
+  USER_STATUS_LABELS,
+} from '../../../config/status-parameters';
 
 export const FormContext = React.createContext();
 
@@ -169,7 +171,7 @@ export const Form = ({
                   </span>
                 </Tag>
               )}
-              <Tag type={statusToButtonType[enrollment.status]}>
+              <Tag type={STATUS_TO_BUTTON_TYPE[enrollment.status]}>
                 {USER_STATUS_LABELS[enrollment.status]}
               </Tag>
             </div>

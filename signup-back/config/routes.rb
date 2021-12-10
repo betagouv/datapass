@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get :user
       end
       member do
-        patch :trigger
+        patch :change_state
         post :copy
         get :copies
         get :next_enrollments

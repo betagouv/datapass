@@ -2,7 +2,7 @@
 
 RSpec.describe EnrollmentsController, "review", type: :controller do
   subject(:review_application) do
-    patch :trigger, params: {
+    patch :change_state, params: {
       id: enrollment.id,
       event: "review_application",
       comment: comment,

@@ -15,7 +15,7 @@ export type ActionConfiguration = {
     icon?: string;
     outline?: boolean;
   };
-  needsToComputeNextEnrollmentState?: boolean;
+  changeEnrollmentState?: boolean;
   promptForComment?: boolean;
   createOrUpdate?: boolean;
   delete?: boolean;
@@ -31,7 +31,7 @@ export const userInteractionsConfiguration: {
       icon: 'mail',
       type: 'secondary',
     },
-    needsToComputeNextEnrollmentState: true,
+    changeEnrollmentState: true,
     promptForComment: true,
     redirectToHome: true,
   },
@@ -58,7 +58,7 @@ export const userInteractionsConfiguration: {
       icon: 'checkbox',
       type: 'info',
     },
-    needsToComputeNextEnrollmentState: true,
+    changeEnrollmentState: true,
     createOrUpdate: true,
     redirectToHome: true,
   },
@@ -68,7 +68,7 @@ export const userInteractionsConfiguration: {
       icon: 'alert',
       type: 'danger',
     },
-    needsToComputeNextEnrollmentState: true,
+    changeEnrollmentState: true,
     promptForComment: true,
     redirectToHome: true,
   },
@@ -78,7 +78,7 @@ export const userInteractionsConfiguration: {
       icon: 'edit',
       type: 'secondary',
     },
-    needsToComputeNextEnrollmentState: true,
+    changeEnrollmentState: true,
     promptForComment: true,
     redirectToHome: true,
   },
@@ -88,7 +88,7 @@ export const userInteractionsConfiguration: {
       icon: 'checkbox',
       type: 'info',
     },
-    needsToComputeNextEnrollmentState: true,
+    changeEnrollmentState: true,
     promptForComment: true,
     redirectToHome: true,
   },

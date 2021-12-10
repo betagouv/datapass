@@ -6,12 +6,14 @@ import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/Button';
 import Tag from '../../atoms/Tag';
-import statusToButtonType from '../../../lib/status-to-button-type';
 import {
   DATA_PROVIDER_LABELS,
   DATA_PROVIDER_ICONS,
 } from '../../../config/data-provider-parameters';
-import { USER_STATUS_LABELS } from '../../../lib/enrollment';
+import {
+  STATUS_TO_BUTTON_TYPE,
+  USER_STATUS_LABELS,
+} from '../../../config/status-parameters';
 
 const Enrollment = ({
   id,
@@ -51,7 +53,7 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <Tag type={statusToButtonType[status]}>
+        <Tag type={STATUS_TO_BUTTON_TYPE[status]}>
           {USER_STATUS_LABELS[status]}
         </Tag>
       </div>
