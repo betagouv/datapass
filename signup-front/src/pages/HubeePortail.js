@@ -24,8 +24,8 @@ const initialContacts = {
     description: (
       <>
         <b>Le responsable d’abonnement</b> disposera des droits d’administration
-        sur le portail HubEE : gestion des abonnements, gestion des utilisateurs
-        et accès aux statistiques d’usage.
+        sur le portail HubEE : gestion des abonnements et gestion des
+        utilisateurs.
       </>
     ),
   },
