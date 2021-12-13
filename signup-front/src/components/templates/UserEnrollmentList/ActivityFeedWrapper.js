@@ -20,12 +20,12 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
       );
     }
 
-    if (status === 'sent') {
+    if (status === 'submitted') {
       fetchStats();
     }
   }, [status, target_api]);
 
-  if (status === 'pending') {
+  if (status === 'draft') {
     return (
       <div className="notification">
         <p>
@@ -37,7 +37,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     );
   }
 
-  if (status === 'sent' && majorityPercentileProcessingTimeInDays > 0) {
+  if (status === 'submitted' && majorityPercentileProcessingTimeInDays > 0) {
     return (
       <div className="notification">
         La majorité des demandes des 6 derniers mois reçoivent une réponse en
@@ -46,7 +46,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     );
   }
 
-  if (status === 'modification_pending') {
+  if (status === 'changes_requested') {
     return (
       <div className="notification warning">
         Votre demande est incomplète et requiert les modifications suivantes :

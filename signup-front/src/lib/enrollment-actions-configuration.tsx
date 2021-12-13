@@ -2,10 +2,10 @@ export enum EnrollmentAction {
   notify = 'notify',
   destroy = 'destroy',
   update = 'update',
-  send_application = 'send_application',
-  refuse_application = 'refuse_application',
-  review_application = 'review_application',
-  validate_application = 'validate_application',
+  submit = 'submit',
+  refuse = 'refuse',
+  request_changes = 'request_changes',
+  validate = 'validate',
 }
 
 export type ActionConfiguration = {
@@ -52,7 +52,7 @@ export const userInteractionsConfiguration: {
     },
     createOrUpdate: true,
   },
-  send_application: {
+  submit: {
     displayProps: {
       label: 'Soumettre la demande',
       icon: 'checkbox',
@@ -62,7 +62,7 @@ export const userInteractionsConfiguration: {
     createOrUpdate: true,
     redirectToHome: true,
   },
-  refuse_application: {
+  refuse: {
     displayProps: {
       label: 'Refuser',
       icon: 'alert',
@@ -72,7 +72,7 @@ export const userInteractionsConfiguration: {
     promptForComment: true,
     redirectToHome: true,
   },
-  review_application: {
+  request_changes: {
     displayProps: {
       label: 'Demander une modification',
       icon: 'edit',
@@ -82,7 +82,7 @@ export const userInteractionsConfiguration: {
     promptForComment: true,
     redirectToHome: true,
   },
-  validate_application: {
+  validate: {
     displayProps: {
       label: 'Valider',
       icon: 'checkbox',

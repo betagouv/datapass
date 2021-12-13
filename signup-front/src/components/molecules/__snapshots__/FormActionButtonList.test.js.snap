@@ -3,8 +3,9 @@
 exports[`FormActionButtonList lists button to display from enrollment acl 1`] = `
 Array [
   "notify",
+  "destroy",
   "update",
-  "send_application",
-  "refuse_application",
+  "submit",
+  "refuse",
 ]
 `;

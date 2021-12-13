@@ -450,7 +450,7 @@ describe('utils', () => {
       const enrollmentState = {
         acl: {
           update: true,
-          send_application: true,
+          submit: true,
         },
         status: 'pending',
         target_api: 'api_particulier',

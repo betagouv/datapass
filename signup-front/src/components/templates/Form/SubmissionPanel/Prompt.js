@@ -35,10 +35,10 @@ const Prompt = ({
 
   const promptLabel = {
     notify: 'Votre message :',
-    review_application:
+    changes_requested:
       'Précisez au demandeur les modifications à apporter à sa demande :',
-    refuse_application: 'Précisez au demandeur le motif de votre refus :',
-    validate_application: 'Votre message :',
+    refuse: 'Précisez au demandeur le motif de votre refus :',
+    validate: 'Votre message :',
   }[selectedAction];
 
   return (

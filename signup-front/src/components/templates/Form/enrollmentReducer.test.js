@@ -4,9 +4,9 @@ describe('enrollmentReducerFactory', () => {
   const previousEnrollment = {
     acl: {
       update: true,
-      send_application: true,
+      submit: true,
     },
-    status: 'pending',
+    status: 'draft',
     target_api: 'api_particulier',
     scopes: {
       dgfip_declarant1_nom: false,
@@ -103,16 +103,16 @@ describe('enrollmentReducerFactory', () => {
       const savedEnrollment = {
         acl: {
           update: true,
-          send_application: true,
+          submit: true,
           show: true,
           create: true,
           destroy: true,
           notify: false,
           get_email_templates: true,
           copy: false,
-          validate_application: false,
-          review_application: false,
-          refuse_application: false,
+          validate: false,
+          request_changes: false,
+          refuse: false,
           index: false,
         },
         cgu_approved: null,

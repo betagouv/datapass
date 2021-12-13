@@ -56,9 +56,9 @@ export const Form = ({
   const [enrollment, dispatchSetEnrollment] = useReducer(enrollmentReducer, {
     acl: {
       update: true,
-      send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
+      submit: true, // Enable edition for new enrollment (ie. enrollment has no id)
     },
-    status: 'pending',
+    status: 'draft',
     events: [],
     target_api,
     additional_content: {},
@@ -196,7 +196,7 @@ export const Form = ({
           {steps && (
             <FormContext.Provider
               value={{
-                disabled: !enrollment.acl.send_application,
+                disabled: !enrollment.acl.submit,
                 onChange: dispatchSetEnrollment,
                 enrollment,
                 isUserEnrollmentLoading,

@@ -1,22 +1,15 @@
 import { useState, useEffect } from 'react';
 import { getMostUsedComments } from '../../../../../services/enrollments';
 
-const actionToEventName = {
-  notify: 'notified',
-  review_application: 'asked_for_modification',
-  refuse_application: 'refused',
-  validate_application: 'validated',
-};
-
-const useMostUsedComments = (selectedAction, targetApi) => {
+const useMostUsedComments = (event, targetApi) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     async function fetchMostUsedComments() {
-      if (!selectedAction || !targetApi) return null;
+      if (!event || !targetApi) return null;
 
       const comments = await getMostUsedComments({
-        eventName: actionToEventName[selectedAction],
+        event,
         targetApi,
       });
 
@@ -24,7 +17,7 @@ const useMostUsedComments = (selectedAction, targetApi) => {
     }
 
     fetchMostUsedComments();
-  }, [selectedAction, targetApi]);
+  }, [event, targetApi]);
 
   return comments;
 };

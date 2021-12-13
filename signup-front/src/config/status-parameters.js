@@ -1,23 +1,23 @@
 export const ADMIN_STATUS_LABELS = {
-  sent: 'À valider',
-  modification_pending: 'Retour',
+  submitted: 'À valider',
+  changes_requested: 'Retour',
   validated: 'Validée',
   refused: 'Refusée',
-  pending: 'Brouillon',
+  draft: 'Brouillon',
 };
 
 export const USER_STATUS_LABELS = {
-  pending: 'Brouillon',
-  modification_pending: 'Modifications demandées',
-  sent: 'En cours de validation',
+  draft: 'Brouillon',
+  changes_requested: 'Modifications demandées',
+  submitted: 'En cours de validation',
   validated: 'Validée',
   refused: 'Refusée',
 };
 
 export const STATUS_TO_BUTTON_TYPE = {
-  pending: '',
-  sent: 'info',
+  draft: '',
+  submitted: 'info',
   validated: 'success',
-  modification_pending: 'warning',
+  changes_requested: 'warning',
   refused: 'danger',
 };

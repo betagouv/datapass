@@ -58,9 +58,9 @@ const COLORS = [
 
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
 const USER_STATUS_COLORS = {
-  pending: '#50514F',
-  modification_pending: '#1A535C',
-  sent: '#4ECDC4',
+  draft: '#50514F',
+  changes_requested: '#1A535C',
+  submitted: '#4ECDC4',
   validated: '#FFE66D',
   refused: '#FF6B6B',
 };
@@ -192,18 +192,18 @@ export const Stats = ({
                     <CartesianGrid vertical={false} />
                     <Bar
                       stackId="count"
-                      dataKey="pending"
-                      fill={USER_STATUS_COLORS['pending']}
+                      dataKey="draft"
+                      fill={USER_STATUS_COLORS['draft']}
                     />
                     <Bar
                       stackId="count"
-                      dataKey="modification_pending"
-                      fill={USER_STATUS_COLORS['modification_pending']}
+                      dataKey="changes_requested"
+                      fill={USER_STATUS_COLORS['changes_requested']}
                     />
                     <Bar
                       stackId="count"
-                      dataKey="sent"
-                      fill={USER_STATUS_COLORS['sent']}
+                      dataKey="submitted"
+                      fill={USER_STATUS_COLORS['submitted']}
                     />
                     <Bar
                       stackId="count"

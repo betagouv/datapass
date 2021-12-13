@@ -55,7 +55,7 @@ describe('serializeEnrollment', () => {
       const enrollment = FIRST_ENROLLMENT_1;
       const formData = serializeEnrollment(enrollment);
       expect(formData.getAll('enrollment[enrollment][status]')).toEqual([
-        'pending',
+        'draft',
       ]);
       expect(formData.getAll('enrollment[enrollment][intitule]')).toEqual([
         'Nom du fournisseur de service',
