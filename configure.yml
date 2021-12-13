@@ -124,10 +124,12 @@
           destination_path: "/api-impot-particulier-fc-sandbox$1"
         - source_pattern: "~ ^/api-impot-particulier-step2(/[0-9]*|)$"
           destination_path: "/api-impot-particulier-fc-production$1"
-        - source_pattern: "~ ^/le-taxi(/[0-9]*|)$"
-          destination_path: "/authorization-request$1"
         - source_pattern: "~ ^/hubee(/[0-9]*|)$"
           destination_path: "/hubee-portail$1"
+        - source_pattern: "~ ^/le-taxi-chauffeurs(/[0-9]*|)$"
+          destination_path: "/le-taxi$1"
+        - source_pattern: "~ ^/le-taxi-clients(/[0-9]*|)$"
+          destination_path: "/le-taxi$1"
       tags:
         - front
         - app-config

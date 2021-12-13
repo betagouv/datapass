@@ -35,9 +35,8 @@ class UpgradeHubeeForm < ActiveRecord::Migration[6.1]
                ) AS subquery
           WHERE tm2.id = subquery.id;
         SQL
-      end
 
-      execute <<-SQL
+        execute <<-SQL
         UPDATE enrollments
         SET
           intitule = 'Abonnement au portail HubEE',
@@ -46,7 +45,8 @@ class UpgradeHubeeForm < ActiveRecord::Migration[6.1]
           fondement_juridique_url = null,
           demarche = null
         WHERE target_api = 'hubee_portail';
-      SQL
+        SQL
+      end
 
       dir.down do
         execute <<-SQL
