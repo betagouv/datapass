@@ -10,14 +10,14 @@ const Prompt = ({
   onAccept,
   onCancel,
   displayProps,
-  selectedAction,
+  selectedEvent,
   enrollment,
 }) => {
   const { target_api: targetApi, id } = enrollment;
 
   const [input, setInput] = useState('');
-  const templates = useMostUsedComments(selectedAction, targetApi);
-  const { plain_text_content } = useEmailTemplate(id, selectedAction);
+  const templates = useMostUsedComments(selectedEvent, targetApi);
+  const { plain_text_content } = useEmailTemplate(id, selectedEvent);
 
   useEffect(() => {
     if (!input && plain_text_content) {
@@ -39,7 +39,7 @@ const Prompt = ({
       'Précisez au demandeur les modifications à apporter à sa demande :',
     refuse: 'Précisez au demandeur le motif de votre refus :',
     validate: 'Votre message :',
-  }[selectedAction];
+  }[selectedEvent];
 
   return (
     <div className="panel">

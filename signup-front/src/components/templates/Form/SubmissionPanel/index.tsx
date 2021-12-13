@@ -1,52 +1,50 @@
 import { FunctionComponent } from 'react';
 import Prompt from './Prompt';
-import FormActionButtonList from '../../../molecules/FormActionButtonList';
-import { userInteractionsConfiguration } from '../../../../lib/enrollment-actions-configuration';
+import EventButtonList from '../../../molecules/EventButtonList';
+import { eventConfigurations } from '../../../../config/event-configuration';
 import { useFormSubmission } from './hooks/use-form-submission';
-import { handleSubmissionAction } from '../../../../lib/enrollment-submission-handler';
+import { processEvent } from '../../../../lib/process-event';
 
 type Props = {
   enrollment: any;
-  handleSubmit: Function;
+  handlePostEvent: Function;
   updateEnrollment: Function;
 };
 
 const SubmissionPanel: FunctionComponent<Props> = ({
   enrollment,
-  handleSubmit,
+  handlePostEvent,
   updateEnrollment,
 }) => {
   const {
-    pendingAction,
+    pendingEvent,
     loading,
-    onActionButtonClick,
+    onEventButtonClick,
     waitingForUserInput,
     onPromptConfirmation,
     onPromptCancellation,
   } = useFormSubmission(
-    handleSubmit,
+    handlePostEvent,
     enrollment,
     updateEnrollment,
-    handleSubmissionAction
+    processEvent
   );
 
   return (
     <>
-      <FormActionButtonList
-        pendingAction={pendingAction}
-        enrollment={enrollment}
+      <EventButtonList
+        pendingEvent={pendingEvent}
+        acl={enrollment.acl}
         loading={loading}
-        onActionButtonClick={onActionButtonClick}
+        onEventButtonClick={onEventButtonClick}
       />
 
       {waitingForUserInput && (
         <Prompt
           onAccept={onPromptConfirmation}
           onCancel={onPromptCancellation}
-          displayProps={
-            userInteractionsConfiguration[pendingAction!].displayProps
-          }
-          selectedAction={pendingAction as string}
+          displayProps={eventConfigurations[pendingEvent!].displayProps}
+          selectedEvent={pendingEvent as string}
           enrollment={enrollment}
         />
       )}

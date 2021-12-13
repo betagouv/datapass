@@ -43,7 +43,7 @@ RSpec.describe EnrollmentsEmailTemplatesController, type: :controller do
           {
             "email_templates" => enrollment_email_templates.map do |enrollment_email_template|
               {
-                "action_name" => enrollment_email_template.action_name,
+                "event" => enrollment_email_template.event,
                 "sender_email" => enrollment_email_template.sender_email,
                 "user_email" => enrollment_email_template.user_email,
                 "subject" => enrollment_email_template.subject,

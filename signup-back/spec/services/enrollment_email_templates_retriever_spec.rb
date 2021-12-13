@@ -31,7 +31,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       it "renders 4 templates, one for each action" do
         expect(subject.count).to eq(4)
 
-        expect(subject.map(&:action_name)).to include(
+        expect(subject.map(&:event)).to include(
           *%w[
             notify
             refuse
@@ -44,7 +44,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       describe "request changes default template" do
         subject do
           described_class.new(enrollment, instructor).perform.find do |template|
-            template.action_name == "request_changes"
+            template.event == "request_changes"
           end
         end
 
@@ -94,7 +94,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       it "renders 4 templates, one for each action" do
         expect(subject.count).to eq(4)
 
-        expect(subject.map(&:action_name)).to include(
+        expect(subject.map(&:event)).to include(
           *%w[
             notify
             refuse
@@ -107,7 +107,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       describe "a specific template : request changes" do
         subject do
           described_class.new(enrollment, instructor).perform.find do |template|
-            template.action_name == "request_changes"
+            template.event == "request_changes"
           end
         end
 

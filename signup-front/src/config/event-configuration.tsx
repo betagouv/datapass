@@ -1,4 +1,4 @@
-export enum EnrollmentAction {
+export enum EnrollmentEvent {
   notify = 'notify',
   destroy = 'destroy',
   update = 'update',
@@ -8,7 +8,7 @@ export enum EnrollmentAction {
   validate = 'validate',
 }
 
-export type ActionConfiguration = {
+export type EventConfiguration = {
   displayProps: {
     label: string;
     type?: string;
@@ -22,8 +22,8 @@ export type ActionConfiguration = {
   redirectToHome?: boolean;
 };
 
-export const userInteractionsConfiguration: {
-  [key in EnrollmentAction]: ActionConfiguration;
+export const eventConfigurations: {
+  [key in EnrollmentEvent]: EventConfiguration;
 } = {
   notify: {
     displayProps: {

@@ -1,6 +1,6 @@
-import { listAuthorizedActions } from './FormActionButtonList';
+import { listAuthorizedEvents } from './EventButtonList';
 
-describe('FormActionButtonList', () => {
+describe('EventButtonList', () => {
   it('lists button to display from enrollment acl', () => {
     const acl = {
       create: false,
@@ -15,6 +15,6 @@ describe('FormActionButtonList', () => {
       validate: false,
     };
 
-    expect(listAuthorizedActions(acl)).toMatchSnapshot();
+    expect(listAuthorizedEvents(acl)).toMatchSnapshot();
   });
 });

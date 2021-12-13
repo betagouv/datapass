@@ -1,17 +1,17 @@
 import { getErrorMessages } from '.';
 import {
-  ActionConfiguration,
-  EnrollmentAction,
-} from './enrollment-actions-configuration';
+  EventConfiguration,
+  EnrollmentEvent,
+} from '../config/event-configuration';
 import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   changeEnrollmentState,
 } from '../services/enrollments';
 
-export const handleSubmissionAction = async (
-  action: EnrollmentAction,
-  actionConfiguration: ActionConfiguration,
+export const processEvent = async (
+  event: EnrollmentEvent,
+  eventConfiguration: EventConfiguration,
   enrollment: any,
   updateEnrollment: Function,
   message?: string
@@ -30,7 +30,7 @@ export const handleSubmissionAction = async (
     let comment = null;
     let enrollmentId = enrollment.id;
 
-    if (actionConfiguration.promptForComment) {
+    if (eventConfiguration.promptForComment) {
       try {
         comment = message;
       } catch (e) {
@@ -38,7 +38,7 @@ export const handleSubmissionAction = async (
       }
     }
 
-    if (actionConfiguration.createOrUpdate) {
+    if (eventConfiguration.createOrUpdate) {
       const newEnrollment = await createOrUpdateEnrollment({
         enrollment,
       });
@@ -48,19 +48,19 @@ export const handleSubmissionAction = async (
       resultMessages.successMessages.push('Votre demande a été sauvegardée.');
     }
 
-    if (actionConfiguration.delete) {
+    if (eventConfiguration.delete) {
       await deleteEnrollment({ id: enrollmentId });
     }
 
-    if (actionConfiguration.changeEnrollmentState) {
+    if (eventConfiguration.changeEnrollmentState) {
       await changeEnrollmentState({
-        action,
+        event,
         id: enrollmentId,
         comment,
       });
     }
 
-    if (actionConfiguration.redirectToHome) {
+    if (eventConfiguration.redirectToHome) {
       resultMessages.redirectToHome = true;
     }
 

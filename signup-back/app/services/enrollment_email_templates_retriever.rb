@@ -17,7 +17,7 @@ class EnrollmentEmailTemplatesRetriever
 
   def build_template(email_kind)
     EnrollmentEmailTemplate.new(
-      action_name: email_kind,
+      event: email_kind,
       sender_email: target_api_data["support_email"],
       subject: target_api_data["mailer"][email_kind]["subject"],
       user_email: enrollment.demandeurs.pluck(:email).first,

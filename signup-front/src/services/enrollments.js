@@ -162,9 +162,9 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function changeEnrollmentState({ action, id, comment }) {
+export function changeEnrollmentState({ event, id, comment }) {
   const options = {
-    event: action,
+    event,
   };
 
   if (comment) {

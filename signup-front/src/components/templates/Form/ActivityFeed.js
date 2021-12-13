@@ -14,7 +14,7 @@ import { getChangelog } from '../../../lib';
 import Button from '../../atoms/Button';
 import { Linkify } from '../../molecules/Linkify';
 
-const eventNameToDisplayableContent = {
+const eventToDisplayableContent = {
   request_changes: {
     icon: <WarningIcon color={'var(--orange)'} />,
     label: 'a demandé des modifications',
@@ -35,7 +35,7 @@ const eventNameToDisplayableContent = {
     icon: <CheckCircleIcon color={'var(--green)'} />,
     label: 'a validé la demande',
   },
-  // This action is not available anymore but we keep this to display remaining
+  // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   update_contacts: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
@@ -65,14 +65,12 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
 
   return (
     <div className="event-item">
-      <div className="event-icon">
-        {eventNameToDisplayableContent[name].icon}
-      </div>
+      <div className="event-icon">{eventToDisplayableContent[name].icon}</div>
       <div className="event-content">
         <div className="event-head">
           <div>
             <strong>{email} </strong>
-            {eventNameToDisplayableContent[name].label}
+            {eventToDisplayableContent[name].label}
             {!isEmpty(diff) && (
               <button
                 className="toogle-detail"

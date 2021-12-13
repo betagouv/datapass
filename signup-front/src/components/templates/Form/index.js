@@ -121,7 +121,7 @@ export const Form = ({
     }
   }, [enrollment.id, history]);
 
-  const handleSubmit = ({
+  const handlePostEvent = ({
     errorMessages = [],
     successMessages = [],
     redirectToHome = false,
@@ -261,7 +261,7 @@ export const Form = ({
         <SubmissionPanel
           enrollment={enrollment}
           updateEnrollment={dispatchSetEnrollment}
-          handleSubmit={handleSubmit}
+          handlePostEvent={handlePostEvent}
         />
       </div>
     </div>
