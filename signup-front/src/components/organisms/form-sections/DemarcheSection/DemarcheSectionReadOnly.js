@@ -32,10 +32,11 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
       demarches[selectedDemarcheId].state &&
       enrollment
     ) {
-      const demarcheState = merge({}, [
+      const demarcheState = merge(
+        {},
         get(demarches, 'default', {}).state,
-        get(demarches, selectedDemarcheId, {}).state,
-      ]);
+        get(demarches, selectedDemarcheId, {}).state
+      );
       setModifiedFields(findModifiedFields(demarcheState, enrollment));
       setModifiedScopes(findModifiedScopes(demarcheState, enrollment));
     }
@@ -52,7 +53,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
           {hasSelectedDemarche ? (
             <>
               <p>
-                Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
+                Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
                 <i>
                   {get(demarches, selectedDemarcheId, {}).label ||
                     selectedDemarcheId}
@@ -65,32 +66,27 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
                 </p>
               )}
               {!isEmpty(modifiedScopes) && (
-                <div>
+                <>
                   <p>
-                    Les périmètres de données suivants ont été modifiés par
-                    rapport au modèle pré-rempli&nbsp;:
+                    Les périmètres de données suivants ont notamment été
+                    modifiés par rapport au modèle pré-rempli :
                   </p>
                   <ul>
-                    {Object.entries(modifiedScopes).map(([key, value]) => {
-                      return (
-                        <li key={key}>
-                          <strong>{valueToLabel(key, availableScopes)}</strong>:
-                          {value ? (
-                            <span className="text--red">
-                              {' '}
-                              ⚠️ Nouvelle donnée demandée
-                            </span>
-                          ) : (
-                            <span className="text--green">
-                              {' '}
-                              Donnée décochée
-                            </span>
-                          )}
-                        </li>
-                      );
-                    })}
+                    {Object.entries(modifiedScopes).map(([key, value]) => (
+                      <li key={key}>
+                        <strong>{valueToLabel(key, availableScopes)} :</strong>
+                        {value ? (
+                          <span className="text--red">
+                            {' '}
+                            ⚠️ Nouvelle donnée demandée
+                          </span>
+                        ) : (
+                          <span className="text--green"> Donnée décochée</span>
+                        )}
+                      </li>
+                    ))}
                   </ul>
-                </div>
+                </>
               )}
             </>
           ) : (
