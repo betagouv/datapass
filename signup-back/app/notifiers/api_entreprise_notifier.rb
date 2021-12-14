@@ -2,11 +2,11 @@ class ApiEntrepriseNotifier < AbstractNotifier
   include WebhookNotifierMethods
   include EmailNotifierMethods
 
-  def create
+  def create(user_id:)
     deliver_event_webhook(__method__)
   end
 
-  def update(diff:, user_id:)
+  def update(user_id:, diff:)
     deliver_event_webhook(__method__)
   end
 
@@ -16,25 +16,25 @@ class ApiEntrepriseNotifier < AbstractNotifier
     end
   end
 
-  def submit(comment:, current_user:)
+  def submit(user_id:, comment:)
     deliver_event_webhook(__method__)
 
     notify_subscribers_by_email_for_submitted_enrollment
   end
 
-  def notify(comment:, current_user:)
+  def notify(user_id:, comment:)
     deliver_event_webhook(__method__)
   end
 
-  def request_changes(comment:, current_user:)
+  def request_changes(user_id:, comment:)
     deliver_event_webhook(__method__)
   end
 
-  def refuse(comment:, current_user:)
+  def refuse(user_id:, comment:)
     deliver_event_webhook(__method__)
   end
 
-  def validate(comment:, current_user:)
+  def validate(user_id:, comment:)
     deliver_event_webhook(__method__)
 
     if enrollment.team_members.exists?(type: "responsable_traitement")

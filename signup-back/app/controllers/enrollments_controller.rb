@@ -120,9 +120,6 @@ class EnrollmentsController < ApplicationController
     authorize @enrollment
 
     if @enrollment.save
-      @enrollment.events.create(name: "create", user_id: current_user.id)
-      @enrollment.notify_event("create")
-
       render json: @enrollment
     else
       render json: @enrollment.errors, status: :unprocessable_entity
@@ -133,9 +130,6 @@ class EnrollmentsController < ApplicationController
   def update
     @enrollment = authorize Enrollment.find(params[:id])
     if @enrollment.update(permitted_attributes(@enrollment))
-      @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.previous_changes)
-      @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.previous_changes)
-
       render json: @enrollment
     else
       render json: @enrollment.errors, status: :unprocessable_entity
@@ -186,12 +180,6 @@ class EnrollmentsController < ApplicationController
       user_id: current_user.id,
       comment: params[:comment]
     )
-      @enrollment.notify_event(
-        event,
-        comment: params[:comment],
-        current_user: current_user
-      )
-
       render json: @enrollment
     else
       render status: :unprocessable_entity, json: @enrollment.errors

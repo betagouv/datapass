@@ -20,6 +20,9 @@ class Enrollment < ActiveRecord::Base
   before_save :clean_and_format_scopes
   before_save :set_company_info, if: :will_save_change_to_organization_id?
 
+  after_update :notify_update
+  after_create :notify_create
+
   has_many :documents, as: :attachable
   accepts_nested_attributes_for :documents
   has_many :events, dependent: :destroy
@@ -62,9 +65,14 @@ class Enrollment < ActiveRecord::Base
       enrollment.valid?(transition.event.to_sym)
     end
 
-    before_transition do |enrollment, transition|
+    after_transition do |enrollment, transition|
       enrollment.events.create!(
         name: transition.event.to_s,
+        user_id: transition.args[0][:user_id],
+        comment: transition.args[0][:comment]
+      )
+      enrollment.notify_event(
+        transition.event.to_s,
         user_id: transition.args[0][:user_id],
         comment: transition.args[0][:comment]
       )
@@ -170,6 +178,16 @@ class Enrollment < ActiveRecord::Base
   end
 
   protected
+
+  def notify_update
+    events.create(name: "update", user_id: demandeurs.first.id, diff: previous_changes)
+    notify_event("update", user_id: demandeurs.first.id, diff: previous_changes)
+  end
+
+  def notify_create
+    @enrollment.events.create(name: "create", user_id: demandeurs.first.id)
+    @enrollment.notify_event("create", user_id: demandeurs.first.id)
+  end
 
   def clean_and_format_scopes
     # we need to convert boolean values as it is send as string because of the data-form serialisation

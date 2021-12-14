@@ -1,11 +1,11 @@
 class BaseNotifier < AbstractNotifier
   include EmailNotifierMethods
 
-  def create
+  def create(user_id:)
     deliver_created_mail_to_enrollment_creator
   end
 
-  def update(diff:, user_id:)
+  def update(user_id:, diff:)
   end
 
   def team_member_update(team_member_type:)
@@ -14,25 +14,25 @@ class BaseNotifier < AbstractNotifier
     end
   end
 
-  def submit(comment:, current_user:)
+  def submit(user_id:, comment:)
     deliver_event_mailer(__method__, comment)
 
     notify_subscribers_by_email_for_submitted_enrollment
   end
 
-  def notify(comment:, current_user:)
+  def notify(user_id:, comment:)
     deliver_event_mailer(__method__, comment)
   end
 
-  def request_changes(comment:, current_user:)
+  def request_changes(user_id:, comment:)
     deliver_event_mailer(__method__, comment)
   end
 
-  def refuse(comment:, current_user:)
+  def refuse(user_id:, comment:)
     deliver_event_mailer(__method__, comment)
   end
 
-  def validate(comment:, current_user:)
+  def validate(user_id:, comment:)
     deliver_event_mailer(__method__, comment)
 
     if enrollment.team_members.exists?(type: "responsable_traitement")
