@@ -99,7 +99,7 @@ const ApiDroitsCnam = ({
     ]}
   >
     <OrganisationSection />
-    <DemarcheSection />
+    <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
     <CadreJuridiqueSection />

@@ -76,7 +76,7 @@ const LeTaxi = ({
     ]}
   >
     <OrganisationSection editorList={editorList} />
-    <DemarcheSection />
+    <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
     <CadreJuridiqueSection />
