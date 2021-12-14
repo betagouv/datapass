@@ -1,10 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { get, has, isEmpty, find } from 'lodash';
+import { get, has, isEmpty, find, merge } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import { UserContext } from '../../UserContext';
 import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
+
+const valueToLabel = (key, availableScopes) => {
+  const scope = find(availableScopes, { value: key });
+  if (scope) {
+    return scope.label;
+  } else {
+    return key;
+  }
+};
 
 export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
   const { enrollment, demarches } = useContext(FormContext);
@@ -15,7 +24,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
   } = useContext(UserContext);
 
   const [modifiedFields, setModifiedFields] = useState([]);
-  const [modifiedScopes, setModifiedScopes] = useState([]);
+  const [modifiedScopes, setModifiedScopes] = useState({});
 
   useEffect(() => {
     if (
@@ -23,7 +32,10 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
       demarches[selectedDemarcheId].state &&
       enrollment
     ) {
-      const demarcheState = get(demarches, selectedDemarcheId, {}).state;
+      const demarcheState = merge({}, [
+        get(demarches, 'default', {}).state,
+        get(demarches, selectedDemarcheId, {}).state,
+      ]);
       setModifiedFields(findModifiedFields(demarcheState, enrollment));
       setModifiedScopes(findModifiedScopes(demarcheState, enrollment));
     }
@@ -55,14 +67,11 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
               {!isEmpty(modifiedScopes) && (
                 <div>
                   <p>
-                    Les scopes suivants ont étés modifiés depuis le modèle
-                    pré-rempli:
+                    Les périmètres de données suivants ont été modifiés par
+                    rapport au modèle pré-rempli&nbsp;:
                   </p>
                   <ul>
                     {Object.entries(modifiedScopes).map(([key, value]) => {
-                      console.log('key', key);
-                      console.log('value', value);
-                      console.log('av', availableScopes);
                       return (
                         <li key={key}>
                           <strong>{valueToLabel(key, availableScopes)}</strong>:
@@ -91,15 +100,6 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
       </ScrollablePanel>
     </>
   );
-};
-
-const valueToLabel = (key, availableScopes) => {
-  const scope = find(availableScopes, { value: key });
-  if (scope) {
-    return scope.label;
-  } else {
-    return key;
-  }
 };
 
 export default DemarcheSectionReadOnly;

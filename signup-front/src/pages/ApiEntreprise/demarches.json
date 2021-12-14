@@ -64,10 +64,7 @@
         "certificat_rge_ademe": true,
         "qualibat": true,
         "certificat_opqibi": true,
-        "extrait_court_inpi": true,
-        "eori_douanes": false,
-        "bilans_entreprise_bdf": false,
-        "liasse_fiscale": false
+        "extrait_court_inpi": true
       }
     }
   },
@@ -84,24 +81,7 @@
         "entreprises_artisanales": true,
         "exercices": true,
         "attestations_fiscales": true,
-        "attestations_sociales": true,
-        "actes_inpi": false,
-        "conventions_collectives": false,
-        "effectifs_acoss": false,
-        "eori_douanes": false,
-        "bilans_inpi": false,
-        "bilans_entreprise_bdf": false,
-        "liasse_fiscale": false,
-        "attestations_agefiph": false,
-        "msa_cotisations": false,
-        "probtp": false,
-        "fntp_carte_pro": false,
-        "certificat_cnetp": false,
-        "certificat_agence_bio": false,
-        "certificat_rge_ademe": false,
-        "qualibat": false,
-        "certificat_opqibi": false,
-        "extrait_court_inpi": false
+        "attestations_sociales": true
       }
     }
   },
@@ -111,31 +91,7 @@
     "state": {
       "scopes": {
         "entreprises": true,
-        "effectifs_acoss": true,
-        "etablissements": false,
-        "extraits_rcs": false,
-        "associations": false,
-        "documents_association": false,
-        "actes_inpi": false,
-        "conventions_collectives": false,
-        "entreprises_artisanales": false,
-        "eori_douanes": false,
-        "exercices": false,
-        "bilans_inpi": false,
-        "bilans_entreprise_bdf": false,
-        "liasse_fiscale": false,
-        "attestations_fiscales": false,
-        "attestations_sociales": false,
-        "attestations_agefiph": false,
-        "msa_cotisations": false,
-        "probtp": false,
-        "fntp_carte_pro": false,
-        "certificat_cnetp": false,
-        "certificat_agence_bio": false,
-        "certificat_rge_ademe": false,
-        "qualibat": false,
-        "certificat_opqibi": false,
-        "extrait_court_inpi": false
+        "effectifs_acoss": true
       }
     }
   },
@@ -149,28 +105,7 @@
         "etablissements": true,
         "extraits_rcs": true,
         "associations": true,
-        "entreprises_artisanales": true,
-        "certificat_agence_bio": false,
-        "documents_association": false,
-        "actes_inpi": false,
-        "conventions_collectives": false,
-        "effectifs_acoss": false,
-        "eori_douanes": false,
-        "exercices": false,
-        "bilans_inpi": false,
-        "bilans_entreprise_bdf": false,
-        "liasse_fiscale": false,
-        "attestations_fiscales": false,
-        "attestations_sociales": false,
-        "attestations_agefiph": false,
-        "msa_cotisations": false,
-        "probtp": false,
-        "fntp_carte_pro": false,
-        "certificat_cnetp": false,
-        "certificat_rge_ademe": false,
-        "qualibat": false,
-        "certificat_opqibi": false,
-        "extrait_court_inpi": false
+        "entreprises_artisanales": true
       }
     }
   },
@@ -190,21 +125,7 @@
         "bilans_entreprise_bdf": true,
         "liasse_fiscale": true,
         "attestations_fiscales": true,
-        "attestations_sociales": true,
-        "associations": false,
-        "documents_association": false,
-        "conventions_collectives": false,
-        "entreprises_artisanales": false,
-        "attestations_agefiph": false,
-        "msa_cotisations": false,
-        "probtp": false,
-        "fntp_carte_pro": false,
-        "certificat_cnetp": false,
-        "certificat_agence_bio": false,
-        "certificat_rge_ademe": false,
-        "qualibat": false,
-        "certificat_opqibi": false,
-        "extrait_court_inpi": false
+        "attestations_sociales": true
       }
     }
   },

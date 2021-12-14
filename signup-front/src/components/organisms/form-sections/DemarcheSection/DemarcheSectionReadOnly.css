@@ -1,7 +1,7 @@
 .text--green {
-  color: #17bd3d;
+  color: var(--success);
 }
 
 .text--red {
-  color: #af2341;
+  color: var(--error);
 }

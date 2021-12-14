@@ -306,7 +306,7 @@ export const findModifiedScopes = (
   enrollmentState = {}
 ) => {
   if (!findModifiedFields(demarcheState, enrollmentState).includes('scopes')) {
-    return;
+    return {};
   }
 
   return omitBy(enrollmentState.scopes, function (v, k) {
