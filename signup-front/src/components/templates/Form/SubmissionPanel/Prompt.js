@@ -10,14 +10,14 @@ const Prompt = ({
   onAccept,
   onCancel,
   displayProps,
-  selectedAction,
+  selectedEvent,
   enrollment,
 }) => {
   const { target_api: targetApi, id } = enrollment;
 
   const [input, setInput] = useState('');
-  const templates = useMostUsedComments(selectedAction, targetApi);
-  const { plain_text_content } = useEmailTemplate(id, selectedAction);
+  const templates = useMostUsedComments(selectedEvent, targetApi);
+  const { plain_text_content } = useEmailTemplate(id, selectedEvent);
 
   useEffect(() => {
     if (!input && plain_text_content) {
@@ -35,11 +35,11 @@ const Prompt = ({
 
   const promptLabel = {
     notify: 'Votre message :',
-    review_application:
+    changes_requested:
       'Précisez au demandeur les modifications à apporter à sa demande :',
-    refuse_application: 'Précisez au demandeur le motif de votre refus :',
-    validate_application: 'Votre message :',
-  }[selectedAction];
+    refuse: 'Précisez au demandeur le motif de votre refus :',
+    validate: 'Votre message :',
+  }[selectedEvent];
 
   return (
     <div className="panel">

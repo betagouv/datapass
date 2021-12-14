@@ -120,8 +120,8 @@ class EnrollmentsController < ApplicationController
     authorize @enrollment
 
     if @enrollment.save
-      @enrollment.events.create(name: "created", user_id: current_user.id)
-      @enrollment.notify_event("created")
+      @enrollment.events.create(name: "create", user_id: current_user.id)
+      @enrollment.notify_event("create")
 
       render json: @enrollment
     else
@@ -133,8 +133,8 @@ class EnrollmentsController < ApplicationController
   def update
     @enrollment = authorize Enrollment.find(params[:id])
     if @enrollment.update(permitted_attributes(@enrollment))
-      @enrollment.events.create(name: "updated", user_id: current_user.id, diff: @enrollment.previous_changes)
-      @enrollment.notify_event("updated", user_id: current_user.id, diff: @enrollment.previous_changes)
+      @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.previous_changes)
+      @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.previous_changes)
 
       render json: @enrollment
     else
@@ -152,12 +152,12 @@ class EnrollmentsController < ApplicationController
     end
     @enrollment = authorize Enrollment.find(params[:id]), "#{event}?".to_sym
 
-    # We update userinfo when "event" is "send_application".
+    # We update userinfo when "event" is "submit".
     # This is useful to prevent user that has been removed from organization, or has been deactivated
     # since first login, to submit authorization request illegitimately
     # Note that this feature need the access token to be stored in a clientside
     # sessions. This might be considered as a security weakness.
-    if event == "send_application"
+    if event == "submit"
       begin
         refreshed_user = RefreshUser.call(session[:access_token])
 
@@ -182,7 +182,7 @@ class EnrollmentsController < ApplicationController
     end
 
     if @enrollment.send(
-      event.to_sym,
+      "#{event}_status".to_sym,
       user_id: current_user.id,
       comment: params[:comment]
     )

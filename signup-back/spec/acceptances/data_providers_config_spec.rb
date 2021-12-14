@@ -24,12 +24,12 @@ RSpec.describe "Providers config", type: :acceptance do
       expect(config["support_email"]).to match(URI::MailTo::EMAIL_REGEXP), "Provider '#{provider}' has an invalid 'support_email' email format"
 
       expect(config["mailer"].keys).to include(
-        "send_application",
-        "validate_application",
-        "review_application",
-        "refuse_application",
-        "notify_application_sent",
-        "create_application",
+        "submit",
+        "validate",
+        "request_changes",
+        "refuse",
+        "notify_submitted",
+        "create",
         "notify"
       )
 

@@ -162,9 +162,9 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function changeEnrollmentState({ action, id, comment }) {
+export function changeEnrollmentState({ event, id, comment }) {
   const options = {
-    event: action,
+    event,
   };
 
   if (comment) {
@@ -218,9 +218,9 @@ export function deleteEnrollment({ id }) {
   });
 }
 
-export function getMostUsedComments({ eventName, targetApi } = {}) {
+export function getMostUsedComments({ event, targetApi } = {}) {
   const queryParam = hashToQueryParams({
-    event: eventName,
+    event,
     target_api: targetApi,
   });
 

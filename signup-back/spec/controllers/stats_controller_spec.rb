@@ -7,27 +7,27 @@ RSpec.describe StatsController, type: :controller do
     let!(:some_enrollments_for_stats) do
       Timecop.freeze(Time.new(2021, Time.now.month, 30))
 
-      enrollment = create(:enrollment, :franceconnect, :pending)
-      create(:event, :created, enrollment: enrollment)
+      enrollment = create(:enrollment, :franceconnect, :draft)
+      create(:event, :create, enrollment: enrollment)
 
       enrollment = create(:enrollment, :franceconnect, :validated, created_at: 20.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 20.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 20.days.ago)
-      create(:event, :validated, enrollment: enrollment, created_at: 17.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 20.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 20.days.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: 17.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :validated, created_at: 15.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 15.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 15.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 14.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 13.days.ago)
-      create(:event, :validated, enrollment: enrollment, created_at: 12.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 15.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 15.days.ago)
+      create(:event, :request_changes, enrollment: enrollment, created_at: 14.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 13.days.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: 12.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :refused, created_at: 10.days.ago)
-      create(:event, :created, enrollment: enrollment, created_at: 10.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 10.days.ago)
-      create(:event, :asked_for_modification, enrollment: enrollment, created_at: 9.days.ago)
-      create(:event, :submitted, enrollment: enrollment, created_at: 8.days.ago)
-      create(:event, :refused, enrollment: enrollment, created_at: 7.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 10.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 10.days.ago)
+      create(:event, :request_changes, enrollment: enrollment, created_at: 9.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 8.days.ago)
+      create(:event, :refuse, enrollment: enrollment, created_at: 7.days.ago)
     end
 
     after do
@@ -48,9 +48,9 @@ RSpec.describe StatsController, type: :controller do
       expect(stats_json["monthly_enrollment_count"]).to eq([
         {
           "month" => "2021-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
-          "pending" => 1,
-          "modification_pending" => 0,
-          "sent" => 0,
+          "draft" => 1,
+          "changes_requested" => 0,
+          "submitted" => 0,
           "validated" => 2,
           "refused" => 1,
           "total" => 4
@@ -74,7 +74,7 @@ RSpec.describe StatsController, type: :controller do
           "count" => 1
         },
         {
-          "name" => "pending",
+          "name" => "draft",
           "count" => 1
         },
         {

@@ -1,69 +1,67 @@
 import { useState } from 'react';
 import {
-  EnrollmentAction,
-  userInteractionsConfiguration,
-} from '../../../../../lib/enrollment-actions-configuration';
+  EnrollmentEvent,
+  eventConfigurations,
+} from '../../../../../config/event-configuration';
 
 export const useFormSubmission = (
-  handleSubmit: Function,
+  handlePostEvent: Function,
   enrollment: any,
   updateEnrollment: Function,
-  doAction: Function
+  processEvent: Function
 ) => {
-  const [pendingAction, setPendingAction] = useState<EnrollmentAction>();
-  const loading = pendingAction !== undefined;
+  const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
+  const loading = pendingEvent !== undefined;
 
   const waitingForUserInput =
-    pendingAction !== undefined &&
-    userInteractionsConfiguration[pendingAction]?.promptForComment === true;
+    pendingEvent !== undefined &&
+    eventConfigurations[pendingEvent]?.promptForComment === true;
 
-  const pendingActionConfiguration =
-    pendingAction !== undefined
-      ? userInteractionsConfiguration[pendingAction]
-      : undefined;
+  const pendingEventConfiguration =
+    pendingEvent !== undefined ? eventConfigurations[pendingEvent] : undefined;
 
-  const onActionButtonClick = async (action: EnrollmentAction) => {
-    setPendingAction(action);
+  const onEventButtonClick = async (event: EnrollmentEvent) => {
+    setPendingEvent(event);
 
-    const actionConfiguration = userInteractionsConfiguration[action];
-    if (!actionConfiguration.promptForComment) {
-      handleSubmit(
-        await doAction(
-          action,
-          actionConfiguration,
+    const eventConfiguration = eventConfigurations[event];
+    if (!eventConfiguration.promptForComment) {
+      handlePostEvent(
+        await processEvent(
+          event,
+          eventConfiguration,
           enrollment,
           updateEnrollment
         )
       );
 
-      setPendingAction(undefined);
+      setPendingEvent(undefined);
     }
   };
 
   const onPromptConfirmation = async (message: string) => {
-    handleSubmit(
-      await doAction(
-        pendingAction!,
-        pendingActionConfiguration!,
+    handlePostEvent(
+      await processEvent(
+        pendingEvent!,
+        pendingEventConfiguration!,
         enrollment,
         updateEnrollment,
         message
       )
     );
 
-    setPendingAction(undefined);
+    setPendingEvent(undefined);
   };
 
   const onPromptCancellation = () => {
-    setPendingAction(undefined);
+    setPendingEvent(undefined);
   };
 
   return {
     loading,
     waitingForUserInput,
-    pendingAction,
-    pendingActionConfiguration,
-    onActionButtonClick,
+    pendingEvent,
+    pendingEventConfiguration,
+    onEventButtonClick,
     onPromptConfirmation,
     onPromptCancellation,
   };

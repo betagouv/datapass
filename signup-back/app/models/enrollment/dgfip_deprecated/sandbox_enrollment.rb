@@ -1,7 +1,7 @@
 class Enrollment::DgfipDeprecated::SandboxEnrollment < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     # Organisation
     errors[:siret] << "Vous devez renseigner un SIRET d’organisation valide avant de continuer" unless nom_raison_sociale.present?
 

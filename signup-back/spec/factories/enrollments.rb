@@ -8,13 +8,13 @@ end
 
 FactoryBot.define do
   factory :enrollment do
-    status { "pending" }
+    status { "draft" }
     intitule { "Intitulé" }
 
-    trait :pending
+    trait :draft
 
-    trait :modification_pending do
-      status { "modification_pending" }
+    trait :changes_requested do
+      status { "changes_requested" }
     end
 
     transient do
@@ -87,12 +87,12 @@ FactoryBot.define do
       cgu_approved { true }
     end
 
-    trait :sent do
+    trait :submitted do
       complete
 
       after(:create) do |enrollment|
         enrollment.update!(
-          status: "sent"
+          status: "submitted"
         )
       end
 

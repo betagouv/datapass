@@ -7,29 +7,29 @@ class EnrollmentPolicy < ApplicationPolicy
     # note that we cannot use 'user.is_demandeur?(record)' here because team_members
     # are not persisted yet. We cannot use 'where' on team_members and we cannot
     # use team_member.user_id for comparaison since it has not been set yet.
-    record.pending? &&
+    record.status_draft? &&
       user.belongs_to_organization?(record) &&
       record.team_members.any? { |t_m| t_m["type"] == "demandeur" && t_m.email == user.email }
   end
 
   def update?
-    (record.pending? || record.modification_pending?) &&
+    (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
 
   def destroy?
-    (record.pending? || record.modification_pending?) &&
+    (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
 
   def notify?
-    record.can_notify? && user.is_instructor?(record.target_api)
+    record.can_notify_status? && user.is_instructor?(record.target_api)
   end
 
   def copy?
-    unless record.validated? || record.refused?
+    unless record.status_validated? || record.status_refused?
       @error_message_key = :copy_enrollment_is_not_validated_nor_refused
       return false
     end
@@ -47,22 +47,22 @@ class EnrollmentPolicy < ApplicationPolicy
     true
   end
 
-  def send_application?
-    record.can_send_application? &&
+  def submit?
+    record.can_submit_status? &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
 
-  def validate_application?
-    record.can_validate_application? && user.is_instructor?(record.target_api)
+  def validate?
+    record.can_validate_status? && user.is_instructor?(record.target_api)
   end
 
-  def review_application?
-    record.can_review_application? && user.is_instructor?(record.target_api)
+  def request_changes?
+    record.can_request_changes_status? && user.is_instructor?(record.target_api)
   end
 
-  def refuse_application?
-    record.can_refuse_application? && user.is_instructor?(record.target_api)
+  def refuse?
+    record.can_refuse_status? && user.is_instructor?(record.target_api)
   end
 
   def get_email_templates?

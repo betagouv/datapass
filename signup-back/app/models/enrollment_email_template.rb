@@ -1,5 +1,5 @@
 class EnrollmentEmailTemplate < ActiveModelSerializers::Model
-  attributes :action_name,
+  attributes :event,
     :sender_email,
     :user_email,
     :subject,

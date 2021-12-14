@@ -14,46 +14,46 @@ import { getChangelog } from '../../../lib';
 import Button from '../../atoms/Button';
 import { Linkify } from '../../molecules/Linkify';
 
-const eventNameToDisplayableContent = {
-  asked_for_modification: {
+const eventToDisplayableContent = {
+  request_changes: {
     icon: <WarningIcon color={'var(--orange)'} />,
     label: 'a demandé des modifications',
   },
-  notified: {
+  notify: {
     icon: <NotificationsIcon color={'var(--orange)'} />,
     label: 'a écrit',
   },
-  created: {
+  create: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a créé la demande',
   },
-  submitted: {
+  submit: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a soumis la demande',
   },
-  validated: {
+  validate: {
     icon: <CheckCircleIcon color={'var(--green)'} />,
     label: 'a validé la demande',
   },
-  // This action is not available anymore but we keep this to display remaining
+  // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
-  updated_contacts: {
+  update_contacts: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a mis à jour les contacts',
   },
-  updated: {
+  update: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a mis à jour la demande',
   },
-  refused: {
+  refuse: {
     icon: <ErrorIcon color={'var(--red)'} />,
     label: 'a refusé la demande',
   },
-  copied: {
+  copy: {
     icon: <FileCopyIcon color={'var(--blue)'} />,
     label: 'a copié la demande',
   },
-  imported: {
+  import: {
     icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a importé la demande',
   },
@@ -65,14 +65,12 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
 
   return (
     <div className="event-item">
-      <div className="event-icon">
-        {eventNameToDisplayableContent[name].icon}
-      </div>
+      <div className="event-icon">{eventToDisplayableContent[name].icon}</div>
       <div className="event-content">
         <div className="event-head">
           <div>
             <strong>{email} </strong>
-            {eventNameToDisplayableContent[name].label}
+            {eventToDisplayableContent[name].label}
             {!isEmpty(diff) && (
               <button
                 className="toogle-detail"

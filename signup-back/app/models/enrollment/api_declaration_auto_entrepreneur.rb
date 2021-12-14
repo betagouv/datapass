@@ -1,7 +1,7 @@
 class Enrollment::ApiDeclarationAutoEntrepreneur < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     rgpd_validation
     cadre_juridique_validation
 

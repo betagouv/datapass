@@ -3,12 +3,12 @@ RSpec.describe Event, type: :model do
     expect(build(:event)).to be_valid
 
     %i[
-      created
-      updated
-      notified
-      validated
-      refused
-      asked_for_modification
+      create
+      update
+      notify
+      validate
+      refuse
+      request_changes
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -21,10 +21,10 @@ RSpec.describe Event, type: :model do
 
     describe "events which require comment presence" do
       %w[
-        refused
-        asked_for_modification
-        validated
-        notified
+        refuse
+        request_changes
+        validate
+        notify
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }
@@ -46,9 +46,9 @@ RSpec.describe Event, type: :model do
 
     describe "events which do not require comment presence" do
       %w[
-        created
-        updated
-        submitted
+        create
+        update
+        submit
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }

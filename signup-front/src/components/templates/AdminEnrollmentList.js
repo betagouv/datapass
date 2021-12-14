@@ -41,8 +41,8 @@ const getInboxes = (user) => ({
       {
         id: 'status',
         value: isEmpty(user.roles)
-          ? ['sent', 'modification_pending', 'pending']
-          : ['sent', 'modification_pending'],
+          ? ['submitted', 'changes_requested', 'draft']
+          : ['submitted', 'changes_requested'],
       },
     ],
   },
@@ -115,10 +115,10 @@ class AdminEnrollmentList extends React.Component {
   }
 
   availableAction = new Set([
-    'validate_application',
-    'review_application',
-    'refuse_application',
-    'send_application',
+    'validate',
+    'request_changes',
+    'refuse',
+    'submit',
   ]);
 
   hasTriggerableActions = ({ acl }) =>

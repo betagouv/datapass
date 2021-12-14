@@ -23,8 +23,8 @@ class GetMajorityPercentileProcessingTimeInDays < ApplicationService
         SELECT enrollment_id,
           DATE_PART(
             'days',
-            MIN(created_at) FILTER (WHERE name IN ('asked_for_modification', 'validated', 'refused')) -
-            MIN(created_at) FILTER (WHERE name IN ('submitted'))
+            MIN(created_at) FILTER (WHERE name IN ('request_changes', 'validate', 'refuse')) -
+            MIN(created_at) FILTER (WHERE name IN ('submit'))
           ) AS validation_duration
         FROM events
           INNER JOIN

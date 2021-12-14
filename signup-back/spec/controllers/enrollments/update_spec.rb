@@ -13,7 +13,7 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
     }
   end
   let(:new_intitule) { "Nouvel intitulé" }
-  let(:enrollment_status) { :pending }
+  let(:enrollment_status) { :draft }
   let(:enrollment_creator) { create(:user) }
 
   describe "authorization" do
@@ -31,8 +31,8 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
       context "when user created this enrollment" do
         let(:enrollment_creator) { user }
 
-        context "when enrollment is pending" do
-          let(:enrollment_status) { :pending }
+        context "when enrollment is draft" do
+          let(:enrollment_status) { :draft }
 
           it { is_expected.to have_http_status(:ok) }
         end
@@ -64,7 +64,7 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
       }.to change { enrollment.reload.intitule }.to(new_intitule)
     end
 
-    it "creates an event 'updated' associated to this enrollment and user" do
+    it "creates an event 'update' associated to this enrollment and user" do
       expect {
         update_enrollment
       }.to change { user.events.count }.by(1)
@@ -72,7 +72,7 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
       latest_user_event = user.events.last
       latest_user_enrollment = user.enrollments.last
 
-      expect(latest_user_event.name).to eq("updated")
+      expect(latest_user_event.name).to eq("update")
       expect(latest_user_event.enrollment).to eq(latest_user_enrollment)
     end
   end

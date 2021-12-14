@@ -20,9 +20,9 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
             "support_email" => "rockstars@beta.gouv.fr",
             "mailer" => {
               "notify" => mailer_template_payload,
-              "refuse_application" => mailer_template_payload,
-              "review_application" => mailer_template_payload,
-              "validate_application" => mailer_template_payload
+              "refuse" => mailer_template_payload,
+              "request_changes" => mailer_template_payload,
+              "validate" => mailer_template_payload
             }
           }
         )
@@ -31,20 +31,20 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       it "renders 4 templates, one for each action" do
         expect(subject.count).to eq(4)
 
-        expect(subject.map(&:action_name)).to include(
+        expect(subject.map(&:event)).to include(
           *%w[
             notify
-            refuse_application
-            review_application
-            validate_application
+            refuse
+            request_changes
+            validate
           ]
         )
       end
 
-      describe "review application default template" do
+      describe "request changes default template" do
         subject do
           described_class.new(enrollment, instructor).perform.find do |template|
-            template.action_name == "review_application"
+            template.event == "request_changes"
           end
         end
 
@@ -61,20 +61,20 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
 
         describe "plain text content" do
-          let(:default_review_application_first_line) do
-            File.open(Rails.root.join("app/views/enrollment_mailer/review_application.text.erb")) { |f| f.readline }.chomp
+          let(:default_request_changes_first_line) do
+            File.open(Rails.root.join("app/views/enrollment_mailer/request_changes.text.erb")) { |f| f.readline }.chomp
           end
 
-          let(:default_review_application_third_line) do
-            IO.readlines(Rails.root.join("app/views/enrollment_mailer/review_application.text.erb"))[2].chomp
+          let(:default_request_changes_third_line) do
+            IO.readlines(Rails.root.join("app/views/enrollment_mailer/request_changes.text.erb"))[2].chomp
           end
 
-          it "includes review_application view, without layout" do
+          it "includes request_changes view, without layout" do
             first_line_of_plain_text = subject.plain_text_content.split("\n")[0]
             third_line_of_plain_text = subject.plain_text_content.split("\n")[2]
 
-            expect(first_line_of_plain_text).to eq(default_review_application_first_line)
-            expect(third_line_of_plain_text).to eq(default_review_application_third_line)
+            expect(first_line_of_plain_text).to eq(default_request_changes_first_line)
+            expect(third_line_of_plain_text).to eq(default_request_changes_third_line)
           end
 
           it "includes valid url to datapass" do
@@ -94,24 +94,24 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       it "renders 4 templates, one for each action" do
         expect(subject.count).to eq(4)
 
-        expect(subject.map(&:action_name)).to include(
+        expect(subject.map(&:event)).to include(
           *%w[
             notify
-            refuse_application
-            review_application
-            validate_application
+            refuse
+            request_changes
+            validate
           ]
         )
       end
 
-      describe "a specific template : review application" do
+      describe "a specific template : request changes" do
         subject do
           described_class.new(enrollment, instructor).perform.find do |template|
-            template.action_name == "review_application"
+            template.event == "request_changes"
           end
         end
 
-        it "includes default validate_application view" do
+        it "includes default validate view" do
           pending "Need to find a new data provider which customize emails"
 
           expect(subject.plain_text_content).to include("#{instructor.given_name} pour API Entreprise")

@@ -13,7 +13,7 @@ class EnrollmentMailer < ActionMailer::Base
     @front_host = ENV.fetch("FRONT_HOST")
 
     @majority_percentile_processing_time_in_days = nil
-    if params[:template] == "send_application"
+    if params[:template] == "submit"
       @majority_percentile_processing_time_in_days = GetMajorityPercentileProcessingTimeInDays.call(params[:target_api])
     end
 
@@ -68,9 +68,9 @@ class EnrollmentMailer < ActionMailer::Base
   def manual_review_from_instructor?
     %w[
       notify
-      refuse_application
-      review_application
-      validate_application
+      refuse
+      request_changes
+      validate
     ].include?(params[:template])
   end
 

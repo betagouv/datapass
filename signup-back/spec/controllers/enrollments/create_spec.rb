@@ -45,7 +45,7 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
       expect(latest_team_members.find { |tm| tm.type == "demandeur" }).to be_present
     end
 
-    it "creates an event 'created' associated to this enrollment and user" do
+    it "creates an event 'create' associated to this enrollment and user" do
       expect {
         create_enrollment
       }.to change { user.events.count }.by(1)
@@ -53,13 +53,13 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
       latest_user_event = user.events.last
       latest_user_enrollment = user.enrollments.last
 
-      expect(latest_user_event.name).to eq("created")
+      expect(latest_user_event.name).to eq("create")
       expect(latest_user_event.enrollment).to eq(latest_user_enrollment)
     end
 
     describe "email sent on creation success" do
-      let(:create_application_email_sample) do
-        File.open(Rails.root.join("app/views/enrollment_mailer/create_application.text.erb")) { |f| f.readline }.chomp
+      let(:create_email_sample) do
+        File.open(Rails.root.join("app/views/enrollment_mailer/create.text.erb")) { |f| f.readline }.chomp
       end
 
       before do
@@ -70,8 +70,8 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
         ActiveJob::Base.queue_adapter = :test
       end
 
-      it "calls notifier created method" do
-        expect_any_instance_of(BaseNotifier).to receive(:created)
+      it "calls notifier create method" do
+        expect_any_instance_of(BaseNotifier).to receive(:create)
 
         subject
       end
@@ -84,7 +84,7 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
         last_email = ActionMailer::Base.deliveries.last
 
         expect(last_email.to).to eq([user.email])
-        expect(last_email.body).to include(create_application_email_sample)
+        expect(last_email.body).to include(create_email_sample)
       end
     end
   end

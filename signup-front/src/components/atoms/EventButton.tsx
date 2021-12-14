@@ -1,20 +1,20 @@
 import Loader from './Loader';
 import { FunctionComponent, MouseEvent } from 'react';
-import { ActionConfiguration } from '../../lib/enrollment-actions-configuration';
+import { EventConfiguration } from '../../config/event-configuration';
 import Button from './Button';
 
-type Props = ActionConfiguration['displayProps'] & {
+type Props = EventConfiguration['displayProps'] & {
+  disabled: boolean;
   loading: boolean;
-  isPendingAction: boolean;
   onClick: (event: MouseEvent<HTMLElement>) => void;
 };
 
-const FormActionButton: FunctionComponent<Props> = ({
+const EventButton: FunctionComponent<Props> = ({
   label,
   icon,
   type,
+  disabled,
   loading,
-  isPendingAction,
   onClick,
 }) => (
   <Button
@@ -23,11 +23,11 @@ const FormActionButton: FunctionComponent<Props> = ({
     type={type}
     large
     onClick={onClick}
-    disabled={loading}
+    disabled={disabled}
   >
     <div>
       {label}
-      {isPendingAction && (
+      {loading && (
         <>
           {' '}
           <Loader small />
@@ -37,4 +37,4 @@ const FormActionButton: FunctionComponent<Props> = ({
   </Button>
 );
 
-export default FormActionButton;
+export default EventButton;

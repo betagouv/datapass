@@ -5,8 +5,17 @@ class EventsController < ApplicationController
   def most_used_comments
     event = params.fetch(:event, "")
     target_api = params.fetch(:target_api, "")
+    unless Enrollment.state_machine.events.map(&:name).include?(event.to_sym)
+      return render status: :bad_request, json: {
+        message: ["event not permitted"]
+      }
+    end
+    unless DataProvidersConfiguration.instance.exists?(target_api)
+      return render status: :bad_request, json: {
+        message: ["target_api not permitted"]
+      }
+    end
 
-    return render status: :bad_request, json: {} unless event.in?(%w[notified validated refused asked_for_modification])
     return render status: :forbidden, json: {} unless current_user.is_instructor?(target_api)
 
     comments_query = <<-SQL

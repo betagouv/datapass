@@ -16,7 +16,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         ).notification_email
       end
 
-      let(:template) { "review_application" }
+      let(:template) { "request_changes" }
       let(:message) { "Hello world!" }
 
       it "renders valid headers" do
@@ -40,26 +40,26 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         ).notification_email
       end
 
-      let(:create_application_email_sample) do
-        File.open(Rails.root.join("app/views/enrollment_mailer/create_application.text.erb")) { |f| f.readline }.chomp
+      let(:create_email_sample) do
+        File.open(Rails.root.join("app/views/enrollment_mailer/create.text.erb")) { |f| f.readline }.chomp
       end
 
       describe "default template for a target API" do
         let(:target_api) { "aidants_connect" }
-        let(:template) { "create_application" }
+        let(:template) { "create" }
 
         it "renders default subject" do
           expect(mail.subject).to eq("Votre demande a été enregistrée")
         end
 
         it "renders default template" do
-          expect(mail.body.encoded).to include(create_application_email_sample)
+          expect(mail.body.encoded).to include(create_email_sample)
         end
       end
 
       describe "custom subject for a target API" do
         let(:target_api) { "api_entreprise" }
-        let(:template) { "create_application" }
+        let(:template) { "create" }
 
         it "renders custom subject" do
           expect(mail.subject).to eq("💾 Le brouillon de votre demande a bien été enregistré")
@@ -67,7 +67,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       end
 
       describe "custom template for a target API" do
-        let(:template) { "send_application" }
+        let(:template) { "submit" }
 
         context "when skip layout option is true" do
           let(:target_api) { "api_entreprise" }

@@ -1,7 +1,7 @@
 class Enrollment::Dgfip::SandboxEnrollment < Enrollment
   protected
 
-  def sent_validation
+  def submit_validation
     rgpd_validation
 
     errors[:description] << "Vous devez renseigner la description de la démarche avant de continuer" unless description.present?

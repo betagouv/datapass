@@ -15,7 +15,7 @@ class Enrollment::DgfipDeprecated::ProductionEnrollment < Enrollment
     errors[:target_api] << "Une erreur inattendue est survenue: pas d’API cible. Aucun changement n’a été sauvegardé." unless target_api.present?
   end
 
-  def sent_validation
+  def submit_validation
     # Recette fonctionnelle
     errors[:recette_fonctionnelle] << "Vous devez attester avoir réaliser une recette fonctionnelle avant de continuer" unless additional_content&.fetch("recette_fonctionnelle", false)&.present?
 

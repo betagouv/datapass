@@ -77,8 +77,8 @@ CSV.foreach(INPUT_FILE, headers: true, strip: true, liberal_parsing: true) do |r
 
   puts "Saving authorization request for #{siret}..."
   enrollment.save!
-  enrollment.events.create!(name: "imported", user: User.find_by_email(USER_EMAIL))
-  enrollment.events.create!(name: "validated", user: User.find_by_email(VALIDATOR_EMAIL))
+  enrollment.events.create!(name: "import", user: User.find_by_email(USER_EMAIL))
+  enrollment.events.create!(name: "validate", user: User.find_by_email(VALIDATOR_EMAIL))
 
   puts "Sending rgpd mail to #{resp_traitement_email}..."
   RgpdMailer.with(

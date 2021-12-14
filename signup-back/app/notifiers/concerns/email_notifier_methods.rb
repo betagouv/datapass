@@ -6,7 +6,7 @@ module EmailNotifierMethods
       to: enrollment.demandeurs.pluck(:email),
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      template: "create_application"
+      template: "create"
     ).notification_email.deliver_later
   end
 
@@ -33,12 +33,12 @@ module EmailNotifierMethods
     ).rgpd_contact_email.deliver_later
   end
 
-  def notify_subscribers_by_email_for_sent_application
+  def notify_subscribers_by_email_for_submitted_enrollment
     EnrollmentMailer.with(
       to: enrollment.subscribers.pluck(:email),
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      template: "notify_application_sent",
+      template: "notify_submitted",
       demandeur_email: enrollment.demandeurs.pluck(:email).first
     ).notification_email.deliver_later
   end

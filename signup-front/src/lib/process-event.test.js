@@ -1,10 +1,10 @@
 import {
-  EnrollmentAction,
-  userInteractionsConfiguration,
-} from './enrollment-actions-configuration';
+  EnrollmentEvent,
+  eventConfigurations,
+} from '../config/event-configuration';
 jest.mock('../services/enrollments');
 // eslint-disable-next-line import/first
-import { handleSubmissionAction } from './enrollment-submission-handler';
+import { processEvent } from './process-event';
 // eslint-disable-next-line import/first
 import {
   changeEnrollmentState,
@@ -20,16 +20,16 @@ describe('When submitting the enrollment form', () => {
     jest.resetAllMocks();
   });
 
-  describe('with the notify action', () => {
-    const action = EnrollmentAction.notify;
-    const actionConfiguration = userInteractionsConfiguration.notify;
+  describe('with the notify event', () => {
+    const event = EnrollmentEvent.notify;
+    const eventConfiguration = eventConfigurations.notify;
 
     it('calls for the enrollment state update', async () => {
       const userMessage = 'La barbe de la femme à Georges Moustaki';
 
-      const output = await handleSubmissionAction(
-        action,
-        actionConfiguration,
+      const output = await processEvent(
+        event,
+        eventConfiguration,
         enrollment,
         updateEnrollment,
         userMessage,
@@ -37,7 +37,7 @@ describe('When submitting the enrollment form', () => {
       );
 
       expect(changeEnrollmentState).toHaveBeenCalledWith({
-        action: 'notify',
+        event: 'notify',
         comment: userMessage,
         id: enrollment.id,
       });
@@ -45,14 +45,14 @@ describe('When submitting the enrollment form', () => {
     });
   });
 
-  describe('with the destroy action', () => {
-    const action = EnrollmentAction.destroy;
-    const actionConfiguration = userInteractionsConfiguration.destroy;
+  describe('with the destroy event', () => {
+    const event = EnrollmentEvent.destroy;
+    const eventConfiguration = eventConfigurations.destroy;
 
     it('calls the delete endpoint', async () => {
-      const output = await handleSubmissionAction(
-        action,
-        actionConfiguration,
+      const output = await processEvent(
+        event,
+        eventConfiguration,
         enrollment,
         updateEnrollment
       );
@@ -64,18 +64,18 @@ describe('When submitting the enrollment form', () => {
     });
   });
 
-  describe('with the update action', () => {
-    const action = EnrollmentAction.update;
-    const actionConfiguration = userInteractionsConfiguration.update;
+  describe('with the update event', () => {
+    const event = EnrollmentEvent.update;
+    const eventConfiguration = eventConfigurations.update;
 
     const enrollmentToUpdate = { ...enrollment, acl: { update: true } };
 
     it('calls the update endpoint', async () => {
       createOrUpdateEnrollment.mockResolvedValue(enrollmentToUpdate);
 
-      const output = await handleSubmissionAction(
-        action,
-        actionConfiguration,
+      const output = await processEvent(
+        event,
+        eventConfiguration,
         enrollmentToUpdate,
         updateEnrollment
       );
@@ -89,9 +89,9 @@ describe('When submitting the enrollment form', () => {
     it('displays an error if update fails', async () => {
       createOrUpdateEnrollment.mockRejectedValue("Pas d'update désolé");
 
-      const output = await handleSubmissionAction(
-        action,
-        actionConfiguration,
+      const output = await processEvent(
+        event,
+        eventConfiguration,
         enrollmentToUpdate,
         updateEnrollment
       );
