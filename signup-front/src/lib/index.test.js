@@ -2,6 +2,7 @@ import {
   stackLowUseAndUnpublishedApi,
   collectionWithKeyToObject,
   findModifiedFields,
+  findModifiedScopes,
   getChangelog,
   getErrorMessages,
   getStateFromUrlParams,
@@ -474,6 +475,28 @@ describe('utils', () => {
       expect(findModifiedFields(demarcheState, enrollmentState)).toStrictEqual([
         'intitule',
       ]);
+    });
+  });
+
+  describe('findModifiedScopes', () => {
+    it('should return an object containing modified scopes', () => {
+      const demarcheState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+          cnaf_quotient_familial: true,
+        },
+      };
+      const enrollmentState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+          cnaf_quotient_familial: false,
+          entreprise: false,
+        },
+      };
+      expect(findModifiedScopes(demarcheState, enrollmentState)).toStrictEqual({
+        cnaf_quotient_familial: false,
+        entreprise: false,
+      });
     });
   });
 

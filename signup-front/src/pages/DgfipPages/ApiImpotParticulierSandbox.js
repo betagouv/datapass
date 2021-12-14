@@ -120,7 +120,7 @@ const ApiImpotParticulierSandbox = ({
     ]}
   >
     <OrganisationSection />
-    <DemarcheSection />
+    <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <MiseEnOeuvreSection initialContacts={contacts} />
     <DonneesSection

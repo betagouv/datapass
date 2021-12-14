@@ -1,0 +1,7 @@
+.text--green {
+  color: var(--success);
+}
+
+.text--red {
+  color: var(--error);
+}
