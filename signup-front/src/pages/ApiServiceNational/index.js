@@ -40,7 +40,7 @@ const ApiServiceNational = ({
     ]}
   >
     <OrganisationSection />
-    <DemarcheSection />
+    <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
     <CadreJuridiqueSection />
