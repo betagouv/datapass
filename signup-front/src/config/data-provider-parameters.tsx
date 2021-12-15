@@ -45,8 +45,7 @@ import ApiPrestationsSociales from '../pages/ApiPrestationsSociales';
 import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
 import ApiEnsuDadSandbox from '../pages/DgfipPages/ApiEnsuDadSandbox';
 import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
-import ApiIngresNomenclatures from '../pages/ApiIngresNomenclatures';
-import ApiIngresNoyau from '../pages/ApiIngresNoyau';
+import ApiIngres from '../pages/ApiIngres';
 
 type DataProviderParameter = {
   label: string;
@@ -333,17 +332,11 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
       component: ApiEnsuDadProduction,
     },
-    api_ingres_nomenclatures: {
-      label: 'API INGRES - Nomenclatures',
+    api_ingres: {
+      label: 'API INGRES',
       icon: null,
       email: 'api.cisirh@finances.gouv.fr',
-      component: ApiIngresNomenclatures,
-    },
-    api_ingres_noyau: {
-      label: 'API INGRES - Noyau',
-      icon: null,
-      email: 'api.cisirh@finances.gouv.fr',
-      component: ApiIngresNoyau,
+      component: ApiIngres,
     },
   };
 
