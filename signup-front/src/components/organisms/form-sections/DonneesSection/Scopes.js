@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Scopes.css';
 import ConfirmationModal from '../../ConfirmationModal';
 import Helper from '../../../atoms/Helper';
+import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
 const ModalContent = {
   rgpd: {
@@ -84,8 +85,7 @@ const Scopes = ({
               link,
             }) => (
               <div className="scope_item" key={value}>
-                <input
-                  type="checkbox"
+                <CheckboxInput
                   onChange={
                     triggerWarning && !selectedScopes[value]
                       ? () => {
@@ -95,32 +95,30 @@ const Scopes = ({
                       : handleChange
                   }
                   name={`scopes.${value}`}
-                  id={`checkbox-scope-${value}`}
                   disabled={disabledApplication || mandatory}
-                  checked={selectedScopes[value]}
-                />
-                <label
-                  htmlFor={`checkbox-scope-${value}`}
-                  className="label-inline"
-                  aria-label={`Périmètre de données « ${label} »`}
-                >
-                  {label}
-                  {mandatory && <i> (nécessaire)</i>}
-                  {helper && <Helper title={helper} />}
-                  {link && (
+                  value={selectedScopes[value]}
+                  ariaLabel={`Périmètre de données « ${label} »`}
+                  label={
                     <>
-                      {' '}
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Plus d’information sur la donnée ${label}`}
-                      >
-                        {''}
-                      </a>
+                      {label}
+                      {mandatory && <i> (nécessaire)</i>}
+                      {helper && <Helper title={helper} />}
+                      {link && (
+                        <>
+                          {' '}
+                          <a
+                            href={link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Plus d’information sur la donnée ${label}`}
+                          >
+                            {''}
+                          </a>
+                        </>
+                      )}
                     </>
-                  )}
-                </label>
+                  }
+                />
                 {comment && <div className="scope_comment">{comment}</div>}
               </div>
             )

@@ -4,7 +4,7 @@ import { FormContext } from '../../templates/Form';
 import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import FileInput from '../../molecules/FileInput';
-import Input from '../../atoms/inputs/input';
+import Input from '../../atoms/inputs/Input';
 
 const SECTION_LABEL = 'Le projet';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
