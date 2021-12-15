@@ -22,7 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "@craco/craco": "^6.3.0",
-    "@gouvfr/dsfr": "^1.0.0-rc1.0",
+    "@gouvfr/dsfr": "^1.2.1",
     "@justfixnyc/react-aria-modal": "^5.1.2-alpha.0",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.169",
