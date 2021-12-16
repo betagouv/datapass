@@ -271,6 +271,8 @@ FactoryBot.define do
         Enrollment::ApiImpotParticulierFcSandbox.new(attributes)
       end
 
+      previous_enrollment { create(:enrollment, :franceconnect, :validated) }
+
       contacts do
         [
           {
