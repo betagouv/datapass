@@ -14,9 +14,9 @@ class Enrollment::AidantsConnect < Enrollment
     end
     errors[:organization_city] << "Vous devez renseigner la ville de la structure avant de continuer" unless additional_content&.fetch("organization_city", false)&.present?
 
-    errors[:description] << "Vous devez renseigner la description de la démarche avant de continuer" unless description.present?
+    errors[:description] << "Vous devez préciser les missions de votre structure avant de continuer" unless description.present?
 
-    team_members_validation("responsable_metier", "responsable Aidants Connect", true)
+    team_members_validation("responsable_metier", "responsable Aidants Connect")
 
     errors[:cgu_approved] << "Vous devez valider les modalités d’utilisation avant de continuer" unless cgu_approved?
     unless additional_content&.fetch("has_professional_contact_only", false)&.present?

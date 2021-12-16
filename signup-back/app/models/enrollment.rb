@@ -223,7 +223,7 @@ class Enrollment < ActiveRecord::Base
     errors[:organization_id] << "Une erreur inattendue est survenue: pas d’organisation. Aucun changement n’a été sauvegardé." unless organization_id.present?
   end
 
-  def team_members_validation(type, label, validate_full_profile = false)
+  def team_members_validation(type, label, validate_full_profile = true)
     email_regex = URI::MailTo::EMAIL_REGEXP
     # loose homemade regexp to match large amount of phone number
     phone_number_regex = /^\+?(?:[0-9][ -]?){6,14}[0-9]$/
@@ -286,7 +286,6 @@ class Enrollment < ActiveRecord::Base
     errors[:description] << "Vous devez renseigner la description de la démarche avant de continuer" unless description.present?
     errors[:siret] << "Vous devez renseigner un SIRET d’organisation valide avant de continuer" unless nom_raison_sociale
     errors[:cgu_approved] << "Vous devez valider les modalités d’utilisation avant de continuer" unless cgu_approved?
-    # TODO validate this plus full profile by default
-    # errors[:dpo_is_informed] << "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer" unless dpo_is_informed?
+    errors[:dpo_is_informed] << "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer" unless dpo_is_informed?
   end
 end
