@@ -10,18 +10,7 @@ import Stepper from './Stepper';
 import Quote from '../../../atoms/inputs/Quote';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 
-const PreviousEnrollmentSection = ({
-  steps,
-  Description = () => (
-    <Quote>
-      <p>
-        Afin de pouvoir utiliser votre bouton FranceConnect pour récupérer les
-        données, merci de renseigner la demande FranceConnect à associer à cette
-        demande.
-      </p>
-    </Quote>
-  ),
-}) => {
+const PreviousEnrollmentSection = ({ steps }) => {
   const {
     isUserEnrollmentLoading,
     disabled,
@@ -131,7 +120,15 @@ const PreviousEnrollmentSection = ({
       {previousTargetApi && (
         <div className="panel">
           <h2>Démarche {DATA_PROVIDER_LABELS[previousTargetApi]} associée</h2>
-          <Description />
+          {previousTargetApi === 'franceconnect' && (
+            <Quote>
+              <p>
+                Afin de pouvoir utiliser votre bouton FranceConnect pour
+                récupérer les données, merci de renseigner la demande
+                FranceConnect à associer à cette demande.
+              </p>
+            </Quote>
+          )}
           {!disabled &&
             !isUserEnrollmentLoading &&
             isValidatedEnrollmentsLoading && (

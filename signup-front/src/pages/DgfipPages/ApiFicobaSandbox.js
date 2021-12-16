@@ -142,14 +142,8 @@ const ApiFicobaSandbox = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />

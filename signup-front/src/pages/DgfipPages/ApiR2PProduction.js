@@ -22,14 +22,8 @@ const ApiR2PProduction = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />

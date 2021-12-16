@@ -44,13 +44,7 @@ const HubeePortail = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.hubee,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.hubee}
     documentationUrl="https://www.numerique.gouv.fr/dinum/"
   >
     <OrganisationSection />

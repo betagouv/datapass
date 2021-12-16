@@ -89,14 +89,8 @@ const ApiDroitsCnam = ({
     target_api="api_droits_cnam"
     demarches={demarches}
     steps={steps}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.cnam,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <OrganisationSection />
     <DemarcheSection availableScopes={availableScopes} />

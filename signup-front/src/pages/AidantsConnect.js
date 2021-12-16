@@ -89,14 +89,8 @@ const AidantsConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="aidants_connect"
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.aidants_connect}
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.aidants_connect,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <OrganisationSection />
     <StructureSection />

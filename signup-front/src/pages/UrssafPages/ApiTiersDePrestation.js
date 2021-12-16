@@ -10,6 +10,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_tiers_de_prestation';
 
@@ -68,13 +69,8 @@ const ApiTiersDePrestation = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.urssaf,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.urssaf}
+    documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />
     <DescriptionSection />

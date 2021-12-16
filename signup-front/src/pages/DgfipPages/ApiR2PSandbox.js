@@ -97,14 +97,8 @@ const ApiR2PSandbox = ({
     target_api={target_api}
     steps={steps}
     demarches={demarches}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />

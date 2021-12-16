@@ -9,6 +9,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 const DonneesDescription = () => (
   <>
@@ -67,13 +68,8 @@ const ApiIngresNoyau = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.cisirh,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cisirh}
+    documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />
     <DescriptionSection />

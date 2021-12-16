@@ -318,13 +318,7 @@ const ApiEntreprise = ({
     enrollmentId={enrollmentId}
     target_api="api_entreprise"
     demarches={demarches}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.api_entreprise,
-        label: 'Contact mail',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_entreprise}
     documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
     <OrganisationSection />

@@ -4,14 +4,18 @@ import { withRouter } from 'react-router-dom';
 import { ScrollableLink } from './Scrollable';
 import { goBack } from '../../lib';
 import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
-import { isEmpty } from 'lodash';
 import Button from '../atoms/Button';
+
+export const getDefaultDocumentationUrl = (target_api) =>
+  `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
+
+export const DEFAULT_CONTACT_EMAIL = 'contact@api.gouv.fr';
 
 const Nav = ({
   target_api,
-  documentationUrl,
   sectionLabels = [],
-  contactInformation = [],
+  contactEmail = '',
+  documentationUrl,
   history,
 }) => {
   const navElements = useMemo(
@@ -23,27 +27,15 @@ const Nav = ({
     [sectionLabels]
   );
 
-  const contactElements = useMemo(
+  const subject = useMemo(
     () =>
-      isEmpty(contactInformation)
-        ? [
-            {
-              email: 'contact@api.gouv.fr',
-              label: 'Nous contacter',
-              subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-                DATA_PROVIDER_LABELS[target_api]
-              )}`,
-            },
-          ]
-        : contactInformation,
-    [contactInformation, target_api]
+      contactEmail === DEFAULT_CONTACT_EMAIL
+        ? `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            DATA_PROVIDER_LABELS[target_api]
+          )}`
+        : 'Contact%20via%20datapass.api.gouv.fr',
+    [contactEmail, target_api]
   );
-
-  const defaultedDocumentationUrl = useMemo(() => {
-    return documentationUrl
-      ? documentationUrl
-      : `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
-  }, [documentationUrl, target_api]);
 
   return (
     <nav
@@ -71,36 +63,21 @@ const Nav = ({
             ))}
           </ul>
           <ul>
-            {contactElements.map(({ tel, email, label, subject }) =>
-              tel ? (
-                <li key={label} style={{ marginTop: '1em' }}>
-                  <Button
-                    key={tel}
-                    outline
-                    icon="phone"
-                    iconRight
-                    href={`tel:${tel}`}
-                  >
-                    {tel}
-                  </Button>
-                </li>
-              ) : (
-                <li key={label} style={{ marginTop: '1em' }}>
-                  <Button
-                    key={label}
-                    outline
-                    icon="mail"
-                    iconRight
-                    href={`mailto:${email}?subject=${subject}`}
-                  >
-                    {label}
-                  </Button>
-                </li>
-              )
-            )}
             <li style={{ marginTop: '1em' }}>
               <Button
-                href={defaultedDocumentationUrl}
+                outline
+                icon="mail"
+                iconRight
+                href={`mailto:${
+                  contactEmail || DEFAULT_CONTACT_EMAIL
+                }?subject=${subject}`}
+              >
+                Nous contacter
+              </Button>
+            </li>
+            <li style={{ marginTop: '1em' }}>
+              <Button
+                href={documentationUrl}
                 outline
                 icon="file"
                 iconRight
@@ -119,7 +96,7 @@ const Nav = ({
 
 Nav.propTypes = {
   sectionLabels: PropTypes.array.isRequired,
-  contactInformation: PropTypes.array,
+  contactEmail: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

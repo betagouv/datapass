@@ -9,6 +9,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 const availableScopes = [
   {
@@ -31,13 +32,8 @@ const ApiIndemnitesJournalieresCnam = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.cnam,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
+    documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />
     <DescriptionSection />

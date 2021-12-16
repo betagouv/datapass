@@ -128,13 +128,7 @@ const FranceConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="franceconnect"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.franceconnect,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.franceconnect}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />

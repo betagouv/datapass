@@ -29,14 +29,13 @@ export const Form = ({
   DemarcheDescription = () => null,
   location,
   steps = undefined,
-  PreviousEnrollmentDescription,
   target_api,
   enrollmentId = null,
   history,
   demarches = null,
   children,
   documentationUrl,
-  contactInformation,
+  contactEmail,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
@@ -139,7 +138,7 @@ export const Form = ({
       <Nav
         target_api={target_api}
         documentationUrl={documentationUrl}
-        contactInformation={contactInformation}
+        contactEmail={contactEmail}
         sectionLabels={sectionLabels}
       />
       <div className="main">
@@ -203,10 +202,7 @@ export const Form = ({
                 demarches,
               }}
             >
-              <PreviousEnrollmentSection
-                steps={steps}
-                Description={PreviousEnrollmentDescription}
-              />
+              <PreviousEnrollmentSection steps={steps} />
             </FormContext.Provider>
           )}
           {get(location, 'state.source') === 'copy-authorization-request' && (
@@ -275,7 +271,7 @@ Form.propTypes = {
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
   demarches: PropTypes.any,
-  contactInformation: PropTypes.array,
+  contactEmail: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
