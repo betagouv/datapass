@@ -138,11 +138,11 @@ class Enrollment < ActiveRecord::Base
   end
 
   def submitted_at
-    events.where(name: "submitted").order("created_at").last["created_at"]
+    events.where(name: "submit").order("created_at").last["created_at"]
   end
 
   def validated_at
-    events.where(name: "validated").order("created_at").last["created_at"]
+    events.where(name: "validate").order("created_at").last["created_at"]
   end
 
   def copy(current_user)
