@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -84,21 +82,5 @@ const ApiIngresNomenclatures = ({
     <CguSection cguLink="/docs/cgu_api_ingres_nomenclatures_v0.3.pdf" />
   </Form>
 );
-
-ApiIngresNomenclatures.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiIngresNomenclatures.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiIngresNomenclatures;

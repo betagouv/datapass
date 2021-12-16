@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -33,21 +31,5 @@ const ApiOpaleProduction = ({
     <CguSection cguLink="/docs/cgu_pcr_v1/cgu_api_opale_pcr_prod_2021_v1.0.pdf" />
   </Form>
 );
-
-ApiOpaleProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiOpaleProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiOpaleProduction;

@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -33,21 +31,5 @@ const ApiInfinoeProduction = ({
     <CguSection cguLink="/docs/cgu_api_hermes_production_v1_3_05-05-2021_cdc.pdf" />
   </Form>
 );
-
-ApiInfinoeProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiInfinoeProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiInfinoeProduction;

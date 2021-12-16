@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -36,21 +34,5 @@ const ApiImpotParticulierProduction = ({
     <CguSection cguLink="/docs/cgu_api_impot_particulier_production_connexion_fc_septembre2020_v5.5.pdf" />
   </Form>
 );
-
-ApiImpotParticulierProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiImpotParticulierProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiImpotParticulierProduction;

@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -77,21 +75,5 @@ const ApiDeclarationCesu = ({
     <CguSection cguLink="/docs/cgu_api_declaration_cesu_v1.pdf" />
   </Form>
 );
-
-ApiDeclarationCesu.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiDeclarationCesu.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiDeclarationCesu;

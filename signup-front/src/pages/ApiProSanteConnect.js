@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -48,21 +46,5 @@ const ApiProSanteConnect = ({
     <CguSection cguLink="https://tech.esante.gouv.fr/outils-services/pro-sante-connect-e-cps/conditions-generale-dutilisation-pro-sante-connect" />
   </Form>
 );
-
-ApiProSanteConnect.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiProSanteConnect.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiProSanteConnect;

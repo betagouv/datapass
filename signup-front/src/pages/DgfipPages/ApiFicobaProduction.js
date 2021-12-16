@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -33,21 +31,5 @@ const ApiFicobaProduction = ({
     <CguSection cguLink="/docs/cgu_api_ficoba_production_decembre2020_v1.1.pdf" />
   </Form>
 );
-
-ApiFicobaProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiFicobaProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiFicobaProduction;

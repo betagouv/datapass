@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -85,21 +83,5 @@ const ApiDeclarationAutoEntrepreneur = ({
     <ContratDeLicenceSection />
   </Form>
 );
-
-ApiDeclarationAutoEntrepreneur.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiDeclarationAutoEntrepreneur.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiDeclarationAutoEntrepreneur;

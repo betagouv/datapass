@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -33,21 +31,5 @@ const ApiEnsuDadProduction = ({
     <CguSection cguLink="/docs/cgu_pcr_v1/CGU_API ENSU DAD_PCR_PROD_2021_v1.0.pdf" />
   </Form>
 );
-
-ApiEnsuDadProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiEnsuDadProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiEnsuDadProduction;

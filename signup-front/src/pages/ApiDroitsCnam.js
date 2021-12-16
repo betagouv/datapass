@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../components/organisms/form-sections/DemarcheSection';
@@ -101,21 +99,5 @@ const ApiDroitsCnam = ({
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
   </Form>
 );
-
-ApiDroitsCnam.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiDroitsCnam.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiDroitsCnam;

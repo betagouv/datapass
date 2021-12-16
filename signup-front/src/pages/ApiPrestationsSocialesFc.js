@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -43,21 +41,5 @@ const ApiPrestationsSociales = ({
     <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
   </Form>
 );
-
-ApiPrestationsSociales.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiPrestationsSociales.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiPrestationsSociales;

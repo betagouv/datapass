@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
@@ -117,21 +115,5 @@ const ApiR2PSandbox = ({
     />
   </Form>
 );
-
-ApiR2PSandbox.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiR2PSandbox.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiR2PSandbox;
