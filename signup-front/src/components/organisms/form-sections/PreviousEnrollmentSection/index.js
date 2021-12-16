@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import { isEmpty } from 'lodash';
 
 const PreviousEnrollmentSection = ({ steps }) => {
   const {
@@ -56,6 +57,17 @@ const PreviousEnrollmentSection = ({ steps }) => {
       fetchUserValidatedEnrollments();
     }
   }, [isUserEnrollmentLoading, disabled, previousTargetApi]);
+
+  useEffect(() => {
+    if (!isEmpty(validatedEnrollments) && !previous_enrollment_id) {
+      onChange({
+        target: {
+          name: 'previous_enrollment_id',
+          value: validatedEnrollments[0].id,
+        },
+      });
+    }
+  }, [validatedEnrollments, previous_enrollment_id, onChange]);
 
   return (
     <>
@@ -173,13 +185,8 @@ const PreviousEnrollmentSection = ({ steps }) => {
                       )}
                     </>
                   }
-                  helper={
-                    target_api === 'api_impot_particulier_fc_sandbox' &&
-                    'Sélectionnez "aucune habilitation" si vous souhaitez accéder à l’API sans FranceConnect'
-                  }
                   name="previous_enrollment_id"
                   options={[
-                    { id: '', label: 'aucune habilitation' },
                     ...validatedEnrollments.map(({ intitule: name, id }) => ({
                       id,
                       label: `n°${id} : ${name}`,
