@@ -7,9 +7,7 @@ import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 const SECTION_LABEL = 'Les pièces justificatives';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const PiecesJustificativesSection = ({
-  showHabilitationServiceDomicile = false,
-}) => {
+export const PiecesJustificativesSection = () => {
   const {
     disabled,
     onChange,
@@ -46,30 +44,6 @@ export const PiecesJustificativesSection = ({
         onChange={onChange}
         label={'Attestation de régularité fiscale'}
       />
-      {showHabilitationServiceDomicile && (
-        <>
-          <ExpandableQuote title="Pourquoi avons nous besoin de votre habilitation service à domicile ?">
-            <p>
-              Afin de vérifier que vous êtes habilité à fournir des prestations
-              de services à domicile, merci de joindre un document justifiant
-              que vous êtes agréé dans les conditions prévues à l’article L.
-              7232-1 du code du travail, que vous procédez à la déclaration
-              prévue à l’article L. 7232-1-1 du code du travail ou que vous
-              disposez d’une autorisation en cours de validité pour exercer les
-              activités relevant du I de l’article D. 312-6-2 du code de
-              l’action sociale et des familles
-            </p>
-          </ExpandableQuote>
-          <FileInput
-            disabled={disabled}
-            uploadedDocuments={documents}
-            documentsToUpload={documents_attributes}
-            documentType={'Document::HabilitationServiceDomicile'}
-            onChange={onChange}
-            label={'Habilitation service à domicile'}
-          />
-        </>
-      )}
     </ScrollablePanel>
   );
 };

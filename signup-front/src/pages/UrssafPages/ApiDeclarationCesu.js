@@ -77,7 +77,7 @@ const ApiDeclarationCesu = ({
       defaultFondementJuridiqueUrl="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033686041/"
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
-    <PiecesJustificativesSection hideHabilitationServiceDomicile />
+    <PiecesJustificativesSection />
     <CguSection cguLink="/docs/cgu_api_declaration_cesu_v1.pdf" />
   </Form>
 );
