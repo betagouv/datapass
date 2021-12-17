@@ -59,7 +59,7 @@ un json qui est sous le format ci-dessous :
 
 ```json
 {
-  "event": "refused",
+  "event": "refuse",
   "fired_at": 1628253953,
   "model_type": "Pass",
   "data": {
@@ -72,8 +72,8 @@ Avec:
 
 - `event`, `string`: l'événement associé au changement d'état de la demande.
   Les valeurs possibles sont:
-  - `created`: la demande datapass vient d'être créée ;
-  - `updated`: la demande datapass a été mise à jour par le demandeur ;
+  - `create`: la demande datapass vient d'être créée ;
+  - `update`: la demande datapass a été mise à jour par le demandeur ;
   - `submit`: la demande datapass a été envoyée par le demandeur ;
   - `refuse`: la demande datapass a été refusée par un instructeur ;
   - `request_changes`: la demande datapass a été instruite par un instructeur et
@@ -81,10 +81,6 @@ Avec:
   - `validate`: la demande datapass a été validée par un instructeur ;
   - `notify`: un instructeur a relancé la demande en cours d'édition par le
     demandeur ;
-  - `owner_updated`: le demandeur de la demande datapass a été mise à jour
-    par le demandeur ou un instructeur ;
-  - `rgpd_contact_updated`: le DPO ou le responsable de traitement a été mis à
-    jour par le demandeur ou un instructeur ;
 - `fired_at`, `timestamp`: timestamp correspondant au moment où le webhook a été
   déclenché ;
 - `model_type`, `string`: correspond au modèle de donnée. Pour le moment il n'y
@@ -97,7 +93,7 @@ Avec:
   l'initiateur de l'événement (théoriquement il s'agit de la première entrée
   `events`) ;
 
-Un exemple de payloaad pour `pass_data`:
+Un exemple de payload pour `pass_data`:
 
 ```json
 {
