@@ -104,7 +104,19 @@ class PublicEnrollmentList extends React.Component {
     },
     {
       Header: 'Responsable traitement',
-      accessor: 'responsable_traitement_family_name',
+      accessor: ({
+        responsable_traitement_given_name: given_name,
+        responsable_traitement_family_name: family_name,
+      }) => {
+        if (!given_name && !family_name) {
+          return '';
+        }
+        if (!given_name) {
+          return family_name;
+        }
+        return `${given_name} ${family_name}`;
+      },
+      id: 'responsable_traitement_name',
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
     },

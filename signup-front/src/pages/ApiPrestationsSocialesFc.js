@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -26,15 +24,9 @@ const ApiPrestationsSociales = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    documentationUrl="https://api.gouv.fr/les-api/api-prestations-sociales"
     steps={steps}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.api_prestations_sociales,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_prestations_sociales}
+    documentationUrl="https://api.gouv.fr/les-api/api-prestations-sociales"
   >
     <OrganisationSection />
     <DescriptionSection />
@@ -49,21 +41,5 @@ const ApiPrestationsSociales = ({
     <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
   </Form>
 );
-
-ApiPrestationsSociales.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiPrestationsSociales.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiPrestationsSociales;

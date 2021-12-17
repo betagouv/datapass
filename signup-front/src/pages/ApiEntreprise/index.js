@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
@@ -318,13 +316,7 @@ const ApiEntreprise = ({
     enrollmentId={enrollmentId}
     target_api="api_entreprise"
     demarches={demarches}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.api_entreprise,
-        label: 'Contact mail',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_entreprise}
     documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
     <OrganisationSection />
@@ -341,21 +333,5 @@ const ApiEntreprise = ({
     <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
   </Form>
 );
-
-ApiEntreprise.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiEntreprise.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiEntreprise;

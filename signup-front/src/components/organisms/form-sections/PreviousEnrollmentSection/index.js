@@ -7,21 +7,11 @@ import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';
 import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
-import Quote from '../../../atoms/inputs/Quote';
 import SelectInput from '../../../atoms/inputs/SelectInput';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import { isEmpty } from 'lodash';
 
-const PreviousEnrollmentSection = ({
-  steps,
-  Description = () => (
-    <Quote>
-      <p>
-        Afin de pouvoir utiliser votre bouton FranceConnect pour récupérer les
-        données, merci de renseigner la demande FranceConnect à associer à cette
-        demande.
-      </p>
-    </Quote>
-  ),
-}) => {
+const PreviousEnrollmentSection = ({ steps }) => {
   const {
     isUserEnrollmentLoading,
     disabled,
@@ -67,6 +57,17 @@ const PreviousEnrollmentSection = ({
       fetchUserValidatedEnrollments();
     }
   }, [isUserEnrollmentLoading, disabled, previousTargetApi]);
+
+  useEffect(() => {
+    if (!isEmpty(validatedEnrollments) && !previous_enrollment_id) {
+      onChange({
+        target: {
+          name: 'previous_enrollment_id',
+          value: validatedEnrollments[0].id,
+        },
+      });
+    }
+  }, [validatedEnrollments, previous_enrollment_id, onChange]);
 
   return (
     <>
@@ -130,8 +131,21 @@ const PreviousEnrollmentSection = ({
         )}
       {previousTargetApi && (
         <div className="panel">
-          <h2>Démarche {DATA_PROVIDER_LABELS[previousTargetApi]} associée</h2>
-          <Description />
+          <h2>
+            Habilitation {DATA_PROVIDER_LABELS[previousTargetApi]} associée
+          </h2>
+          {previousTargetApi === 'franceconnect' && (
+            <ExpandableQuote title="Pourquoi associer une habilitation FranceConnect ?">
+              <>
+                <p>
+                  Lorsque cette demande d’accès à{' '}
+                  {DATA_PROVIDER_LABELS[target_api]} sera validée vous
+                  disposerez des périmètres de données supplémentaires demandés.
+                </p>
+                <p>Ils apparaitront à l’utilisateur lors de sa connexion.</p>
+              </>
+            </ExpandableQuote>
+          )}
           {!disabled &&
             !isUserEnrollmentLoading &&
             isValidatedEnrollmentsLoading && (
@@ -162,18 +176,17 @@ const PreviousEnrollmentSection = ({
                 <SelectInput
                   label={
                     <>
-                      Nom de la démarche{' '}
-                      <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b> que vous
-                      souhaitez poursuivre
+                      Nom de l’habilitation{' '}
+                      <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>{' '}
+                      {previousTargetApi === 'franceconnect' ? (
+                        <>de votre démarche</>
+                      ) : (
+                        <>que vous souhaitez poursuivre</>
+                      )}
                     </>
-                  }
-                  helper={
-                    target_api === 'api_impot_particulier_fc_sandbox' &&
-                    'Sélectionnez "aucune démarche" si vous souhaitez accéder à l’API sans FranceConnect'
                   }
                   name="previous_enrollment_id"
                   options={[
-                    { id: '', label: 'aucune démarche' },
                     ...validatedEnrollments.map(({ intitule: name, id }) => ({
                       id,
                       label: `n°${id} : ${name}`,
@@ -194,10 +207,12 @@ const PreviousEnrollmentSection = ({
                     '-'
                   )}/${previous_enrollment_id}`}
                 >
-                  Numéro de la demande associée : {previous_enrollment_id}
+                  Numéro de l’habilitation associée : {previous_enrollment_id}
                 </a>
               ) : (
-                <>Numéro de la demande associée : {previous_enrollment_id}</>
+                <>
+                  Numéro de l’habilitation associée : {previous_enrollment_id}
+                </>
               )}
             </>
           )}

@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -9,6 +7,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 const availableScopes = [
   {
@@ -33,13 +32,8 @@ const ApiProSanteConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.api_pro_sante_connect,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}
+    documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />
     <DescriptionSection />
@@ -52,21 +46,5 @@ const ApiProSanteConnect = ({
     <CguSection cguLink="https://tech.esante.gouv.fr/outils-services/pro-sante-connect-e-cps/conditions-generale-dutilisation-pro-sante-connect" />
   </Form>
 );
-
-ApiProSanteConnect.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiProSanteConnect.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiProSanteConnect;

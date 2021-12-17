@@ -1,6 +1,10 @@
 FactoryBot.define do
   factory :team_member do
     email
+    given_name { "Jean" }
+    family_name { "Dupont" }
+    phone_number { "0636656565" }
+    job { "Administrateur" }
 
     after(:build) do |team_member|
       if team_member.user.present?
@@ -30,7 +34,6 @@ FactoryBot.define do
       end
 
       type { "delegue_protection_donnees" }
-      phone_number { "0636656565" }
     end
 
     trait :demandeur do
@@ -55,7 +58,6 @@ FactoryBot.define do
       end
 
       type { "responsable_traitement" }
-      phone_number { "0636656565" }
     end
 
     trait :with_user do

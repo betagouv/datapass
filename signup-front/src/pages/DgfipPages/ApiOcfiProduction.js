@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -22,15 +20,8 @@ const ApiOcfiProduction = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    PreviousEnrollmentDescription={() => null}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />
@@ -40,21 +31,5 @@ const ApiOcfiProduction = ({
     <CguSection cguLink="/docs/cgu_pcr_v1/cgu_api_ocfi_pcr_prod_2021_v1.0.pdf" />
   </Form>
 );
-
-ApiOcfiProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiOcfiProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiOcfiProduction;

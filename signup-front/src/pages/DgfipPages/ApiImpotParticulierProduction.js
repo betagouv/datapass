@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -23,15 +21,8 @@ const ApiImpotParticulierProduction = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    PreviousEnrollmentDescription={() => null}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />
@@ -43,21 +34,5 @@ const ApiImpotParticulierProduction = ({
     <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_septembre2020_v3.5.pdf" />
   </Form>
 );
-
-ApiImpotParticulierProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiImpotParticulierProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiImpotParticulierProduction;

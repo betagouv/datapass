@@ -85,6 +85,7 @@ FactoryBot.define do
       with_technical_team
 
       cgu_approved { true }
+      dpo_is_informed { true }
     end
 
     trait :submitted do

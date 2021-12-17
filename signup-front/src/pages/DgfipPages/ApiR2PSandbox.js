@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
@@ -97,14 +95,8 @@ const ApiR2PSandbox = ({
     target_api={target_api}
     steps={steps}
     demarches={demarches}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
@@ -123,21 +115,5 @@ const ApiR2PSandbox = ({
     />
   </Form>
 );
-
-ApiR2PSandbox.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiR2PSandbox.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiR2PSandbox;

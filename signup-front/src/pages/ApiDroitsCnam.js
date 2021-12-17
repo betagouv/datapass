@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../components/organisms/form-sections/DemarcheSection';
@@ -89,14 +87,8 @@ const ApiDroitsCnam = ({
     target_api="api_droits_cnam"
     demarches={demarches}
     steps={steps}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.cnam,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <OrganisationSection />
     <DemarcheSection availableScopes={availableScopes} />
@@ -107,21 +99,5 @@ const ApiDroitsCnam = ({
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
   </Form>
 );
-
-ApiDroitsCnam.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiDroitsCnam.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiDroitsCnam;

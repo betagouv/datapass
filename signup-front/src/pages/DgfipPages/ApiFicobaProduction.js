@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
@@ -22,15 +20,8 @@ const ApiFicobaProduction = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    PreviousEnrollmentDescription={() => null}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />
@@ -40,21 +31,5 @@ const ApiFicobaProduction = ({
     <CguSection cguLink="/docs/cgu_api_ficoba_production_decembre2020_v1.1.pdf" />
   </Form>
 );
-
-ApiFicobaProduction.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiFicobaProduction.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiFicobaProduction;

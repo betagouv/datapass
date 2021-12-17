@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Form from '../../components/templates/Form';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
@@ -24,14 +22,8 @@ const ApiOcfiSandbox = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
+    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
-    contactInformation={[
-      {
-        email: DATA_PROVIDER_CONTACT_EMAILS.dgfip,
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
@@ -47,21 +39,5 @@ const ApiOcfiSandbox = ({
     />
   </Form>
 );
-
-ApiOcfiSandbox.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiOcfiSandbox.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
 
 export default ApiOcfiSandbox;
