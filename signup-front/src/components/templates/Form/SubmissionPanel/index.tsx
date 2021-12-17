@@ -4,6 +4,7 @@ import EventButtonList from '../../../molecules/EventButtonList';
 import { eventConfigurations } from '../../../../config/event-configuration';
 import { useFormSubmission } from './hooks/use-form-submission';
 import { processEvent } from '../../../../lib/process-event';
+import ConfirmationModal from '../../../organisms/ConfirmationModal';
 
 type Props = {
   enrollment: any;
@@ -21,6 +22,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     loading,
     onEventButtonClick,
     waitingForUserInput,
+    waitingForUserConfirmation,
     onPromptConfirmation,
     onPromptCancellation,
   } = useFormSubmission(
@@ -47,6 +49,15 @@ const SubmissionPanel: FunctionComponent<Props> = ({
           selectedEvent={pendingEvent as string}
           enrollment={enrollment}
         />
+      )}
+      {waitingForUserConfirmation && (
+        <ConfirmationModal
+          title="La suppression d'une demande est irréversible"
+          handleCancel={onPromptCancellation}
+          handleConfirm={onPromptConfirmation}
+        >
+          Voulez vous continuer ?
+        </ConfirmationModal>
       )}
     </>
   );
