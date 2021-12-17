@@ -20,11 +20,18 @@ export const useFormSubmission = (
   const pendingEventConfiguration =
     pendingEvent !== undefined ? eventConfigurations[pendingEvent] : undefined;
 
+  const waitingForUserConfirmation =
+    pendingEvent !== undefined &&
+    eventConfigurations[pendingEvent]?.promptForConfirmation === true;
+
   const onEventButtonClick = async (event: EnrollmentEvent) => {
     setPendingEvent(event);
 
     const eventConfiguration = eventConfigurations[event];
-    if (!eventConfiguration.promptForComment) {
+    if (
+      !eventConfiguration.promptForComment &&
+      !eventConfiguration.promptForConfirmation
+    ) {
       handlePostEvent(
         await processEvent(
           event,
@@ -38,7 +45,7 @@ export const useFormSubmission = (
     }
   };
 
-  const onPromptConfirmation = async (message: string) => {
+  const onPromptConfirmation = async (message?: string) => {
     handlePostEvent(
       await processEvent(
         pendingEvent!,
@@ -59,6 +66,7 @@ export const useFormSubmission = (
   return {
     loading,
     waitingForUserInput,
+    waitingForUserConfirmation,
     pendingEvent,
     pendingEventConfiguration,
     onEventButtonClick,

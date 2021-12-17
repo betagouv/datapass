@@ -19,9 +19,13 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    (record.status_draft? || record.status_changes_requested?) &&
+    (
+      (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
+    ) || (
+      user.is_administrator? && !record.status_validated? && !record.status_refused?
+    )
   end
 
   def notify?

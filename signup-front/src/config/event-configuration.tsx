@@ -17,6 +17,7 @@ export type EventConfiguration = {
   };
   changeEnrollmentState?: boolean;
   promptForComment?: boolean;
+  promptForConfirmation?: boolean;
   createOrUpdate?: boolean;
   delete?: boolean;
   redirectToHome?: boolean;
@@ -43,6 +44,7 @@ export const eventConfigurations: {
     },
     delete: true,
     redirectToHome: true,
+    promptForConfirmation: true,
   },
   update: {
     displayProps: {
