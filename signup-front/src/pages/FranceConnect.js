@@ -35,11 +35,11 @@ const CadreJuridiqueDescription = () => (
       <li>
         Si vous êtes une <b>administration</b>, vous pouvez citer ici{' '}
         <a
-          href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037611479&categorieLien=id"
+          href="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
-          l’arrêté du 8 novembre 2018
+          la décision du 18 juin 2021
         </a>
         . N’oubliez pas de justifier la nécessité d’identification de la
         personne dans le champs de description de votre cas d’usage.{' '}
