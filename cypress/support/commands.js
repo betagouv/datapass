@@ -11,7 +11,7 @@ Cypress.Commands.add("login", (email, password) => {
 });
 
 Cypress.Commands.add("checkScope", (scope) => {
-  cy.get(`input#checkbox-scope-${scope}`).click();
+  cy.get(`input[name="scopes.${scope}"]`).click();
 });
 
 Cypress.Commands.add("fillField", (fieldName, value, fieldType = "input") => {

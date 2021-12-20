@@ -11,7 +11,7 @@ import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
-import Input from '../../../atoms/inputs/input';
+import Input from '../../../atoms/inputs/Input';
 
 const SECTION_LABEL = 'La structure';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

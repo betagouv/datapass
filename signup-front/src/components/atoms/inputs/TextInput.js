@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from './input';
+import Input from './Input';
 
 export const TextInput = (props) => <Input {...props} type="text" />;
 
