@@ -42,8 +42,8 @@ const DonneesSection = ({
           value: zipObject(
             availableScopes.map(({ value }) => value),
             availableScopes.map(
-              ({ mandatory, checkedByDefault }) =>
-                !!mandatory || !!checkedByDefault
+              ({ required, checkedByDefault }) =>
+                !!required || !!checkedByDefault
             )
           ),
         },
@@ -55,8 +55,6 @@ const DonneesSection = ({
     availableScopes,
     (e) => e.groupTitle || 'default'
   );
-
-  const hasDefaultGroup = availableScopes.some((e) => !e.groupTitle);
 
   // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
   const scopesAsArray = chain(scopes)
@@ -98,11 +96,7 @@ const DonneesSection = ({
           <DonneesDescription />
         </ExpandableQuote>
       )}
-      {AvailableScopesDescription && (
-        <div className="form__group">
-          <AvailableScopesDescription />
-        </div>
-      )}
+      {AvailableScopesDescription && <AvailableScopesDescription />}
       {!isEmpty(availableScopes) && (
         <>
           <h3>À quelles données souhaitez-vous avoir accès ?</h3>
@@ -114,7 +108,6 @@ const DonneesSection = ({
               selectedScopes={scopes}
               disabledApplication={disabled}
               handleChange={onChange}
-              useCategoryStyle={!hasDefaultGroup}
             />
           ))}
           {disabled && !isEmpty(outdatedScopes) && (
@@ -223,10 +216,8 @@ const DonneesSection = ({
       />
       {data_retention_period > 36 && (
         <>
-          <div className="form__group">
-            <div className="notification warning">
-              Cette durée excède la durée communément constatée (36 mois).
-            </div>
+          <div className="notification warning">
+            Cette durée excède la durée communément constatée (36 mois).
           </div>
           <TextInput
             label="Veuillez justifier cette durée dans le champ ci-après :"

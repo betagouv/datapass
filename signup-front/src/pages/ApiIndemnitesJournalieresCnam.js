@@ -13,7 +13,7 @@ const availableScopes = [
   {
     value: 'cnam_PaiementIndemnitesJournalieres',
     label: 'Période indemnisée et montants journaliers',
-    mandatory: true,
+    required: true,
   },
 ];
 

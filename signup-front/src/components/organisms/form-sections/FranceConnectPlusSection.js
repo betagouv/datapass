@@ -53,7 +53,7 @@ export const FranceConnectPlusSection = () => {
         </p>
       </ExpandableQuote>
       <RadioInput
-        label="Niveau de garantie :"
+        label="Niveau de garantie"
         options={[
           {
             id: '1',
@@ -69,7 +69,6 @@ export const FranceConnectPlusSection = () => {
         disabled={disabled}
         onChange={onChange}
         required
-        useOtherOption={false}
       />
     </ScrollablePanel>
   );

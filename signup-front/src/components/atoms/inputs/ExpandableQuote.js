@@ -7,22 +7,20 @@ export const ExpandableQuote = ({ title, large, children }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="form__group">
+    <div
+      className={`expandable-quote ${expanded ? 'expanded' : ''} ${
+        large ? 'large' : ''
+      }`}
+    >
       <div
-        className={`expandable-quote ${expanded ? 'expanded' : ''} ${
-          large ? 'large' : ''
-        }`}
+        className="expandable-quote-header"
+        onClick={() => setExpanded(!expanded)}
       >
-        <div
-          className="expandable-quote-header"
-          onClick={() => setExpanded(!expanded)}
-        >
-          <AlertIcon />
-          <div>{title}</div>
-          {expanded ? <ArrowUpIcon /> : <ArrowDownIcon />}
-        </div>
-        <div className={`expandable-quote-content`}>{children}</div>
+        <AlertIcon />
+        <div>{title}</div>
+        {expanded ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </div>
+      <div className={`expandable-quote-content`}>{children}</div>
     </div>
   );
 };

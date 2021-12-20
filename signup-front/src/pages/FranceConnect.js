@@ -112,8 +112,8 @@ export const availableScopes = [
   {
     value: 'openid',
     label: 'Identifiant technique',
-    mandatory: true,
-    comment: '"sub" de l\'utilisateur au format OpenIDConnect',
+    required: true,
+    helper: '"sub" de l\'utilisateur au format OpenIDConnect',
     groupTitle: 'Donnée technique :',
   },
 ];

@@ -4,6 +4,10 @@
   align-items: flex-start;
 }
 
+.or-input-form:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
 .or-input-form .separator {
   display: flex;
   flex-direction: column;

@@ -204,67 +204,62 @@ const ÉquipeSection = ({
           <p key={type}>{description}</p>
         ))}
       </ExpandableQuote>
-      <div className="form__group">
-        <CardContainer flex={false}>
-          {Object.entries(contactConfiguration).map(
-            ([
-              type,
-              {
-                header,
-                forceDisable,
-                displayMobilePhoneLabel,
-                displayIndividualEmailLabel,
-                displayGroupEmailLabel,
-                contactByEmailOnly,
-                multiple,
-              },
-            ]) => (
-              <React.Fragment key={type}>
-                {team_members
-                  .filter(({ type: t }) => t === type)
-                  .map(({ id, tmp_id, ...team_member }) => (
-                    <Contact
-                      heading={header}
-                      key={id || tmp_id}
-                      id={id}
-                      index={findIndex(
-                        team_members,
-                        ({ id: i, tmp_id: t_i }) => {
-                          if (id) {
-                            // if id is defined match on id field
-                            return i === id;
-                          }
-                          if (tmp_id) {
-                            // if id is not defined and tmp_id is defined
-                            // match on tmp_id
-                            return t_i === tmp_id;
-                          }
-                          return false;
-                        }
-                      )}
-                      {...team_member}
-                      displayMobilePhoneLabel={displayMobilePhoneLabel}
-                      displayIndividualEmailLabel={displayIndividualEmailLabel}
-                      displayGroupEmailLabel={displayGroupEmailLabel}
-                      contactByEmailOnly={contactByEmailOnly}
-                      displayIdForAdministrator={displayIdForAdministrator}
-                      disabled={forceDisable || disabled}
-                      onChange={onChange}
-                      onDelete={multiple && !id && removeTeamMember}
-                      onFillWithUserInformation={fillWithUserInformation}
-                    />
-                  ))}
-                {!disabled && multiple && (
-                  <AddCard
-                    label={`ajouter un ${header.toLowerCase()}`}
-                    onClick={addTeamMemberFactory(type)}
+      <CardContainer flex={false}>
+        {Object.entries(contactConfiguration).map(
+          ([
+            type,
+            {
+              header,
+              forceDisable,
+              displayMobilePhoneLabel,
+              displayIndividualEmailLabel,
+              displayGroupEmailLabel,
+              contactByEmailOnly,
+              multiple,
+            },
+          ]) => (
+            <React.Fragment key={type}>
+              {team_members
+                .filter(({ type: t }) => t === type)
+                .map(({ id, tmp_id, ...team_member }) => (
+                  <Contact
+                    heading={header}
+                    key={id || tmp_id}
+                    id={id}
+                    index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
+                      if (id) {
+                        // if id is defined match on id field
+                        return i === id;
+                      }
+                      if (tmp_id) {
+                        // if id is not defined and tmp_id is defined
+                        // match on tmp_id
+                        return t_i === tmp_id;
+                      }
+                      return false;
+                    })}
+                    {...team_member}
+                    displayMobilePhoneLabel={displayMobilePhoneLabel}
+                    displayIndividualEmailLabel={displayIndividualEmailLabel}
+                    displayGroupEmailLabel={displayGroupEmailLabel}
+                    contactByEmailOnly={contactByEmailOnly}
+                    displayIdForAdministrator={displayIdForAdministrator}
+                    disabled={forceDisable || disabled}
+                    onChange={onChange}
+                    onDelete={multiple && !id && removeTeamMember}
+                    onFillWithUserInformation={fillWithUserInformation}
                   />
-                )}
-              </React.Fragment>
-            )
-          )}
-        </CardContainer>
-      </div>
+                ))}
+              {!disabled && multiple && (
+                <AddCard
+                  label={`ajouter un ${header.toLowerCase()}`}
+                  onClick={addTeamMemberFactory(type)}
+                />
+              )}
+            </React.Fragment>
+          )
+        )}
+      </CardContainer>
     </ScrollablePanel>
   );
 };

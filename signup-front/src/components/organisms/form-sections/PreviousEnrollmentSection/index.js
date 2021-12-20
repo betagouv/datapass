@@ -93,40 +93,37 @@ const PreviousEnrollmentSection = ({ steps }) => {
         !isValidatedEnrollmentsLoading &&
         previousTargetApi &&
         validatedEnrollments.length === 0 && (
-          <div className="form__group">
-            <div className="notification warning">
-              <p>
-                Pour demander l’accès à{' '}
-                <b>{DATA_PROVIDER_LABELS[target_api]}</b>
-                {target_api === 'api_impot_particulier_fc_sandbox' && (
-                  <span> en mode FranceConnecté</span>
-                )}
-                , vous devez avoir préalablement obtenu un accès à{' '}
-                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
-              </p>
-              <p>
-                Veuillez{' '}
-                <Link
-                  to={{
-                    pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
-                    state: { fromFranceConnectedAPI: target_api },
-                  }}
-                >
-                  demander votre accès à{' '}
-                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
-                </Link>{' '}
-                avant de continuer cette demande.
-              </p>
-              {previousTargetApi === 'franceconnect' && (
-                <p>
-                  Vous avez déjà accès à FranceConnect mais vous ne retrouvez
-                  pas la demande correspondante ? Vos accès datent probablement
-                  d’avant la mise en place de ce dispositif. Merci de remplir
-                  une nouvelle demande d’accès à FranceConnect. Cette nouvelle
-                  demande n’interférera pas avec vos accès précédents.
-                </p>
+          <div className="notification warning">
+            <p>
+              Pour demander l’accès à <b>{DATA_PROVIDER_LABELS[target_api]}</b>
+              {target_api === 'api_impot_particulier_fc_sandbox' && (
+                <span> en mode FranceConnecté</span>
               )}
-            </div>
+              , vous devez avoir préalablement obtenu un accès à{' '}
+              <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
+            </p>
+            <p>
+              Veuillez{' '}
+              <Link
+                to={{
+                  pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
+                  state: { fromFranceConnectedAPI: target_api },
+                }}
+              >
+                demander votre accès à{' '}
+                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
+              </Link>{' '}
+              avant de continuer cette demande.
+            </p>
+            {previousTargetApi === 'franceconnect' && (
+              <p>
+                Vous avez déjà accès à FranceConnect mais vous ne retrouvez pas
+                la demande correspondante ? Vos accès datent probablement
+                d’avant la mise en place de ce dispositif. Merci de remplir une
+                nouvelle demande d’accès à FranceConnect. Cette nouvelle demande
+                n’interférera pas avec vos accès précédents.
+              </p>
+            )}
           </div>
         )}
       {previousTargetApi && (
@@ -149,7 +146,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
           {!disabled &&
             !isUserEnrollmentLoading &&
             isValidatedEnrollmentsLoading && (
-              <div className="form__group">
+              <>
                 <h4>
                   Association à votre demande{' '}
                   <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
@@ -159,16 +156,16 @@ const PreviousEnrollmentSection = ({ steps }) => {
                   <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                   ...
                 </p>
-              </div>
+              </>
             )}
-          {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
-            <div className="form__group">
+          {!disabled &&
+            !isUserEnrollmentLoading &&
+            validatedEnrollmentsError && (
               <div className="notification error">
                 Erreur inconnue lors de la récupération de vos demandes{' '}
                 {DATA_PROVIDER_LABELS[previousTargetApi]}.
               </div>
-            </div>
-          )}
+            )}
           {!disabled &&
             !isUserEnrollmentLoading &&
             !isValidatedEnrollmentsLoading && (

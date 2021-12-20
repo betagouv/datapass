@@ -6,7 +6,7 @@ export const CardHead = ({ children }) => (
   <div className="datapass_card_head">{children}</div>
 );
 
-export const Card = ({ children, className }) => (
+export const Card = ({ children, className = '' }) => (
   <div className={`datapass_card ${className}`}>{children}</div>
 );
 

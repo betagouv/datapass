@@ -1,36 +1,4 @@
 /* put here rules to fix template data gouv stylesheets */
-
-/* fix: background of read-only fields */
-input:read-only {
-  background-color: var(--theme-background-grey);
-}
-
-textarea:read-only {
-  background-color: var(--theme-background-grey);
-}
-
-/* fix: missing style for disabled inputs */
-input[type='checkbox'][disabled]:checked {
-  background-color: var(--g700);
-  border-color: var(--g700);
-  cursor: not-allowed;
-}
-
-input[type='radio'][disabled]:checked {
-  background-color: var(--theme-background-grey);
-  border-color: var(--g700);
-  cursor: not-allowed;
-}
-
-input[type='radio'][disabled]:checked::before {
-  background-color: var(--g700);
-}
-
-input[type='checkbox'][disabled],
-input[type='radio'][disabled] {
-  cursor: not-allowed;
-}
-
 /* fix: contrast accessibility */
 .steps-form li::before {
   color: var(--g600);
@@ -96,21 +64,6 @@ ul.steps-form li::before {
   }
 }
 
-/*
-* Fix: select makes container to grow
-* Fix 2: and remove background that hides down arrow
-*/
-select {
-  width: 100%;
-  appearance: auto !important;
-  background: #fff !important;
-}
-
-input,
-select {
-  height: 43px;
-}
-
 /* fix: margin behave coherently with h2 margin rules */
 .card__content h3 {
   margin-bottom: 1em;
@@ -124,14 +77,4 @@ select {
 /* fix: text-quote inner spacing */
 .text-quote {
   padding-top: 2.5rem;
-}
-
-/* fix: header & form__group spacing */
-.form__group + h2,
-h2 + .form__group,
-.form__group + h3,
-h3 + .form__group,
-.form__group + h4,
-h4 + .form__group {
-  margin-top: var(--space-l);
 }

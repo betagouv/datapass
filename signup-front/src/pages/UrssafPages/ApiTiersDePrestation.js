@@ -16,39 +16,39 @@ const availableScopes = [
   {
     value: 'id_client',
     label: 'Identifiant du client du tiers de prestation',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'id_demande_paiement',
     label: 'Identifiant de la demande de paiement',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'demande_paiement',
     label: 'Informations sur la demande de paiement (montant, acompte, ...)',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'num_facture_tiers',
     label: 'Numéro de la facture',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'statut',
     label: 'Statut de la demande de paiement',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'info_rejet',
     label:
       'Dans le cadre d’un rejet, les informations complémentaires sur le rejet',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'info_virement',
     label:
       'Contient des informations complémentaires sur le virement lors que cela est disponible',
-    mandatory: true,
+    required: true,
   },
 ];
 

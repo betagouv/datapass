@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import './Scopes.css';
 import ConfirmationModal from '../../ConfirmationModal';
-import Helper from '../../../atoms/Helper';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
+import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 
 const ModalContent = {
   rgpd: {
@@ -46,7 +44,6 @@ const Scopes = ({
   selectedScopes,
   disabledApplication,
   handleChange,
-  useCategoryStyle,
 }) => {
   const [warningModalScope, setWarningModalScope] = useState(null);
   const [warningType, setWarningType] = useState('rgpd');
@@ -64,67 +61,57 @@ const Scopes = ({
   };
 
   return (
-    <div className="form__group">
-      <fieldset>
-        {title &&
-          (useCategoryStyle ? (
-            <label className="typography__caption label">{title}</label>
-          ) : (
-            <p>{title}</p>
-          ))}
-        <div className="scope_container">
-          {scopes.map(
-            ({
-              value,
-              label,
-              helper,
-              mandatory,
-              comment,
-              triggerWarning,
-              warningType,
-              link,
-            }) => (
-              <div className="scope_item" key={value}>
-                <CheckboxInput
-                  onChange={
-                    triggerWarning && !selectedScopes[value]
-                      ? () => {
-                          setWarningType(warningType || 'rgpd');
-                          setWarningModalScope(value);
-                        }
-                      : handleChange
-                  }
-                  name={`scopes.${value}`}
-                  disabled={disabledApplication || mandatory}
-                  value={selectedScopes[value]}
-                  ariaLabel={`Périmètre de données « ${label} »`}
-                  label={
-                    <>
+    <>
+      <FieldsetWrapper title={title} grid>
+        {scopes.map(
+          ({
+            value,
+            label,
+            helper,
+            required,
+            triggerWarning,
+            warningType,
+            link,
+          }) => (
+            <CheckboxInput
+              key={value}
+              onChange={
+                triggerWarning && !selectedScopes[value]
+                  ? () => {
+                      setWarningType(warningType || 'rgpd');
+                      setWarningModalScope(value);
+                    }
+                  : handleChange
+              }
+              name={`scopes.${value}`}
+              disabled={disabledApplication || required}
+              value={selectedScopes[value]}
+              ariaLabel={`Périmètre de données « ${label} »`}
+              label={
+                <>
+                  {link ? (
+                    <span>
                       {label}
-                      {mandatory && <i> (nécessaire)</i>}
-                      {helper && <Helper title={helper} />}
-                      {link && (
-                        <>
-                          {' '}
-                          <a
-                            href={link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Plus d’information sur la donnée ${label}`}
-                          >
-                            {''}
-                          </a>
-                        </>
-                      )}
-                    </>
-                  }
-                />
-                {comment && <div className="scope_comment">{comment}</div>}
-              </div>
-            )
-          )}
-        </div>
-      </fieldset>
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Plus d’information sur la donnée ${label}`}
+                      >
+                        {''}
+                      </a>
+                    </span>
+                  ) : (
+                    label
+                  )}
+                </>
+              }
+              required={required}
+              helper={helper}
+            />
+          )
+        )}
+      </FieldsetWrapper>
       {warningModalScope && (
         <ConfirmationModal
           handleCancel={() => setWarningModalScope(null)}
@@ -135,7 +122,7 @@ const Scopes = ({
           <p>{ModalContent[warningType].body} </p>
         </ConfirmationModal>
       )}
-    </div>
+    </>
   );
 };
 

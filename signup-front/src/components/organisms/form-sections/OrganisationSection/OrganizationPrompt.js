@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import AriaModal from '@justfixnyc/react-aria-modal';
 import { collectionWithKeyToObject } from '../../../../lib';
@@ -6,6 +6,7 @@ import { isEmpty } from 'lodash';
 import { getCachedOrganizationInformationPool } from '../../../../services/external';
 import Button from '../../../atoms/Button';
 import Link from '../../../atoms/Link';
+import RadioInput from '../../../atoms/inputs/RadioInput';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -20,6 +21,7 @@ const OrganizationPrompt = ({
   const [siretToNomRaisonSociale, setSiretToNomRaisonSociale] = useState(
     collectionWithKeyToObject(organizations.map(({ siret }) => ({ id: siret })))
   );
+
   useEffect(() => {
     const fetchCachedOrganizationInformationPool = async (organizations) => {
       try {
@@ -44,9 +46,20 @@ const OrganizationPrompt = ({
     }
   }, [organizations]);
 
+  const options = useMemo(
+    () =>
+      organizations.map(({ id, siret }) => ({
+        id,
+        label: siretToNomRaisonSociale[siret]
+          ? siretToNomRaisonSociale[siret].title
+          : siret,
+      })),
+    [organizations, siretToNomRaisonSociale]
+  );
+
   return (
     <AriaModal
-      titleText="Sélectionnez l’organisation à associer à cette demande :"
+      titleText="Sélectionnez l’organisation à associer à cette demande"
       // we use this no op function to close the modal
       onExit={() => onClose()}
       focusDialog
@@ -72,32 +85,13 @@ const OrganizationPrompt = ({
             <h1 className="fr-modal__title">
               Faire une demande pour une autre organisation
             </h1>
-            <div className="form__group">
-              <fieldset>
-                <legend>
-                  Sélectionnez l’organisation à associer à cette demande :
-                </legend>
-                {organizations.map(({ id, siret }) => (
-                  <div key={id}>
-                    <input
-                      type="radio"
-                      id={id}
-                      value={id}
-                      checked={id === selectedOrganizationId}
-                      // Use onClick in addition of onChange because it allows to
-                      // handle clicks on the already selected value.
-                      onClick={handleChange}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor={id} className="label-inline">
-                      {(siretToNomRaisonSociale[siret] &&
-                        siretToNomRaisonSociale[siret].title) ||
-                        siret}
-                    </label>
-                  </div>
-                ))}
-              </fieldset>
-            </div>
+            <RadioInput
+              label="Sélectionnez l’organisation à associer à cette demande"
+              options={options}
+              name="organization_id"
+              value={selectedOrganizationId}
+              onChange={handleChange}
+            />
           </div>
           <div className="fr-modal__footer">
             <Button

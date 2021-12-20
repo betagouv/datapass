@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
-import Helper from '../Helper';
 import { uniqueId } from 'lodash';
 import TextInput from './TextInput';
 import SideBySideWrapper from './SideBySideWrapper';
+import Label from './Label';
 
 export const SelectInput = ({
   label,
   name,
   helper,
+  meta,
   options = [],
   value,
   disabled,
@@ -26,14 +27,17 @@ export const SelectInput = ({
 
   return (
     <SideBySideWrapper>
-      <div className="form__group">
-        <label htmlFor={id}>
-          {label}
-          {required && ' *'}
-          {helper && <Helper title={helper} />}
-        </label>
+      <div className="fr-select-group">
+        <Label
+          id={id}
+          label={label}
+          required={required}
+          helper={helper}
+          meta={meta}
+        />
         <select
           id={id}
+          className="fr-select"
           name={name}
           value={isOtherSelected ? '' : value}
           disabled={disabled}
@@ -61,7 +65,7 @@ export const SelectInput = ({
           onChange={onChange}
           required={required}
           ariaLabel={`Précisez le ${label}`}
-        ></TextInput>
+        />
       )}
     </SideBySideWrapper>
   );

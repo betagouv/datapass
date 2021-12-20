@@ -207,25 +207,19 @@ const OrganisationSection = ({ editorList = [] }) => {
             <>
               <h3>Vous faites cette demande pour :</h3>
               {activite && !isValidNAFCode(target_api, activite) && (
-                <div className="form__group">
-                  <div className="notification warning">
-                    Votre organisme ne semble pas être éligible
-                  </div>
+                <div className="notification warning">
+                  Votre organisme ne semble pas être éligible
                 </div>
               )}
               {showOrganizationInfoNotFound && (
-                <div className="form__group">
-                  <div className="notification warning">
-                    Cet établissement est fermé ou le SIRET est invalide.
-                  </div>
+                <div className="notification warning">
+                  Cet établissement est fermé ou le SIRET est invalide.
                 </div>
               )}
               {showOrganizationInfoError && (
-                <div className="form__group">
-                  <div className="notification error">
-                    Erreur inconnue lors de la récupération des informations de
-                    cet établissement.
-                  </div>
+                <div className="notification error">
+                  Erreur inconnue lors de la récupération des informations de
+                  cet établissement.
                 </div>
               )}
               <CardHead>

@@ -94,7 +94,7 @@ const FileInput = ({
   };
 
   return (
-    <div className="form__group">
+    <div className="fr-input-group">
       {showDocumentDownloadLink ? (
         <>
           <div>{label}</div>

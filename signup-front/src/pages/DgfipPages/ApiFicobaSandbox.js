@@ -22,7 +22,7 @@ const availableScopes = [
   {
     value: 'dgfip_ficoba_compte',
     label: 'Désignation du compte',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'dgfip_ficoba_etablissement_bancaire',

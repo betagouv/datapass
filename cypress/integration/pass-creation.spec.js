@@ -50,7 +50,7 @@ describe("DataPass", () => {
     cy.fillField("team_members[2].email", "jp@donnee-protegee.fr");
     cy.fillField("team_members[2].phone_number", "0606060606");
 
-    cy.get(".form__group > button").click();
+    cy.get('#Les\\%20personnes\\%20impliqu\\%C3\\%A9es button').click();
     cy.fillField("team_members[3].phone_number", "0606060606");
 
     cy.get('input[name="cgu_approved"]').click();

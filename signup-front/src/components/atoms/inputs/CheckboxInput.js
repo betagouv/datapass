@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash';
-import Helper from '../Helper';
+import Label from './Label';
 
 export const CheckboxInput = ({
   label,
   helper,
+  meta,
   name,
   value = null,
   disabled,
   onChange,
   required,
-  ariaLabel,
+  ...rest
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
   return (
-    <div className="form__group">
+    <div className="fr-checkbox-group">
       <input
         onChange={onChange}
         disabled={disabled ? 'disabled' : false}
@@ -26,11 +27,15 @@ export const CheckboxInput = ({
         name={name}
         id={id}
         required={required}
+        {...rest}
       />
-      <label htmlFor={id} className="label-inline" aria-label={ariaLabel}>
-        {label}
-        {helper && <Helper title={helper} />}
-      </label>
+      <Label
+        id={id}
+        label={label}
+        required={required}
+        helper={helper}
+        meta={meta}
+      />
     </div>
   );
 };

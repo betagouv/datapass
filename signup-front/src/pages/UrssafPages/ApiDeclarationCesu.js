@@ -17,37 +17,37 @@ const availableScopes = [
   {
     value: 'api_cesu050',
     label: 'Télédéclaration du salaire',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu040',
     label: 'Obtention du montant estimé des cotisations sociales',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu030',
     label: 'Enregistrement de mandat',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu031',
     label: 'Annulation de mandat',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu020',
     label: 'Vérification compte CESU PE',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu021',
     label: 'Vérification compte CESU SP',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api_cesu010',
     label: 'Inscription PE au régime CESU',
-    mandatory: true,
+    required: true,
   },
 ];
 

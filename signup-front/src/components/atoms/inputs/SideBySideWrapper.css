@@ -5,12 +5,8 @@
   position: relative;
 }
 
-.form__group + .form-row {
-  margin-top: 2em;
-}
-
-.form-row + .form__group {
-  margin-top: 2em;
+.form-row:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 .form-col {

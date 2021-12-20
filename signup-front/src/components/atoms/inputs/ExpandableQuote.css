@@ -4,6 +4,10 @@
   border-radius: 3px;
 }
 
+.expandable-quote:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
 .expandable-quote-header {
   display: flex;
   flex-direction: row;
@@ -27,7 +31,7 @@
   max-height: 0;
   padding: 0 2rem;
   transition: max-height 0.15s ease-out, padding-top 0.15s ease-out,
-    padding-bottom 0.15s ease-out;
+  padding-bottom 0.15s ease-out;
 }
 
 .expandable-quote.expanded .expandable-quote-content {
@@ -35,7 +39,7 @@
   max-height: 500px;
   padding: 1rem 2rem;
   transition: max-height 0.25s ease-out, padding-top 0.25s ease-out,
-    padding-bottom 0.25s ease-out;
+  padding-bottom 0.25s ease-out;
   overflow-y: auto;
 }
 
