@@ -4,7 +4,7 @@ import UserList from './UserList';
 import AddUser from './AddUser';
 
 export const Admin = () => (
-  <section className="section-grey full-width-container">
+  <section className="full-width-container">
     <h1>Administration</h1>
     <div className="notification warning">
       <b>« Un grand pouvoir implique de grandes responsabilités »</b>

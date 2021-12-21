@@ -59,7 +59,7 @@ const CopyEnrollment = ({
 
   if (copyErrorMessage) {
     return (
-      <section className="section-grey layout-full-page">
+      <section className="full-page">
         <div className="notification error">
           <Linkify
             message={`Erreur : ${copyErrorMessage} La demande #${enrollmentId} n’a pas été copiée.`}
@@ -70,7 +70,7 @@ const CopyEnrollment = ({
   }
 
   return (
-    <section className="section-grey layout-full-page">
+    <section className="full-page">
       <Loader />
     </section>
   );

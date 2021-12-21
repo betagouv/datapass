@@ -93,13 +93,13 @@ const UserList = () => {
     <div className="panel">
       <ListHeader title="Liste des utilisateurs">
         <Tag
-          type={!showAllUsers ? 'info' : 'secondary'}
+          type={!showAllUsers ? 'info' : ''}
           onClick={() => setShowAllUsers(false)}
         >
           Utilisateurs avec droits
         </Tag>
         <Tag
-          type={showAllUsers ? 'info' : 'secondary'}
+          type={showAllUsers ? 'info' : ''}
           onClick={() => setShowAllUsers(true)}
         >
           Tous les utilisateurs
@@ -109,7 +109,7 @@ const UserList = () => {
         </Tag>
       </ListHeader>
       {isLoading ? (
-        <div className="layout-full-page " style={{ minHeight: '800px' }}>
+        <div className="full-page" style={{ minHeight: '800px' }}>
           <Loader />
         </div>
       ) : (

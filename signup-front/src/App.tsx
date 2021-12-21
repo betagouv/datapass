@@ -3,15 +3,14 @@ import { createBrowserHistory } from 'history';
 import PiwikReactRouter from 'piwik-react-router';
 
 import './App.css';
-import './template-data-gouv-fixes.css';
-import './template-data-gouv-overrides.css';
-import './dsfr-fixes.css';
 
 import Footer from './components/organisms/Footer';
 import Header from './components/organisms/Header';
 import { UserStore, UserContext } from './components/organisms/UserContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
+// @ts-ignore
+import Alert from './components/atoms/Alert';
 
 const history = createBrowserHistory();
 
@@ -28,19 +27,21 @@ const App = () => (
 
         <UserContext.Consumer>
           {({ isLoading, connectionError }) => (
-            <main>
+            <>
               {isLoading && (
-                <section className="section-grey layout-full-page">
+                <main className="full-page">
                   <Loader />
-                </section>
+                </main>
               )}
               {!isLoading && connectionError && (
-                <section className="section-grey layout-full-page">
-                  <div className="notification error">{connectionError}</div>
-                </section>
+                <main className="full-page">
+                  <Alert type="error" title="Erreur de connexion">
+                    {connectionError}
+                  </Alert>
+                </main>
               )}
               {!isLoading && !connectionError && <Routes />}
-            </main>
+            </>
           )}
         </UserContext.Consumer>
 

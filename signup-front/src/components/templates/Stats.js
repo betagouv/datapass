@@ -91,14 +91,14 @@ export const Stats = ({
 
   if (!stats) {
     return (
-      <section className="section-grey layout-full-page">
+      <section className="full-page">
         <Loader />
       </section>
     );
   }
 
   return (
-    <section className="section-grey stats-page">
+    <section className="stats-page">
       <div className="container">
         <ListHeader>
           <NavLink

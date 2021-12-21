@@ -105,7 +105,7 @@ export const Login = () => {
     !window.location.pathname.split('/')[2];
 
   return (
-    <section className="section-grey layout-full-page">
+    <section className="full-page">
       <div className="container">
         <div className="panel" style={{ textAlign: 'center' }}>
           {DATA_PROVIDER_ICONS[targetApi] && (

@@ -372,12 +372,12 @@ class AdminEnrollmentList extends React.Component {
       totalPages,
     } = this.state;
     return (
-      <section className="section-grey full-width-container">
+      <section className="full-width-container">
         <ListHeader title="Liste des demandes">
           {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
             <Tag
               key={currentInbox}
-              type={inbox === currentInbox ? 'info' : 'secondary'}
+              type={inbox === currentInbox ? 'info' : ''}
               onClick={() => this.onSelectInbox(currentInbox)}
             >
               {getInboxes(this.props.user)[currentInbox].label}

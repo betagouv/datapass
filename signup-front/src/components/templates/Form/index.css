@@ -1,0 +1,31 @@
+nav {
+  grid-area: nav;
+}
+
+.datapass-form {
+  grid-area: datapass-form;
+}
+
+main.dashboard {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 300px auto;
+  grid-template-areas: 'nav datapass-form';
+}
+
+.datapass-form {
+  max-width: 1200px;
+  margin: 1.5rem auto 1.5rem 0;
+  padding-right: 2rem;
+}
+
+
+@media all and (max-width: 768px) {
+  main.dashboard {
+    grid-template-columns: 100%;
+    grid-template-areas: 'datapass-form';
+  }
+  .datapass-form {
+    padding-left: 2rem;
+  }
+}

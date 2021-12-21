@@ -34,7 +34,7 @@ export function getErrorMessages(error) {
 
   if (error.message === 'Network Error') {
     return [
-      'Une erreur de connection au serveur est survenue. ' +
+      'Une erreur de connexion au serveur est survenue. ' +
         'Merci de vérifier que vous êtes bien connecté à internet. ' +
         'Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à ' +
         'l’administrateur de votre réseau informatique. ' +

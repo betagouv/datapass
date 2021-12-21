@@ -31,7 +31,7 @@
   display: block;
 }
 
-@media (min-width: 1px) and (max-width: 1000px) {
+@media (min-width: 1px) and (max-width: 992px) {
   .or-input-form {
     flex-direction: column;
     align-items: flex-start;

@@ -3,7 +3,7 @@
   margin: 5em 3em;
 }
 
-@media (max-width: 749px) {
+@media (max-width: 768px) {
   .steps-form-description {
     margin: 5em 0;
   }

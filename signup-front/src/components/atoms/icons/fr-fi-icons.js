@@ -15,3 +15,7 @@ export const ArrowDownIcon = ({ color }) => (
 export const InfoIcon = ({ color }) => (
   <FrFiIcon type="information-fill" color={color} />
 );
+
+export const ExternalLinkIcon = ({ color }) => (
+  <FrFiIcon type="external-link-line" color={color} />
+);

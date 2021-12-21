@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 
 const Button = ({
   href,
@@ -23,7 +22,7 @@ const Button = ({
   }
 
   if (type) {
-    className += ` ${type}`;
+    className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
 
   if (icon) {

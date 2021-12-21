@@ -30,7 +30,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Envoyer un message',
       icon: 'mail',
-      type: 'secondary',
+      type: 'grey',
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -40,7 +40,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Supprimer la demande',
       icon: 'delete',
-      type: 'danger',
+      type: 'error',
     },
     delete: true,
     redirectToHome: true,
@@ -50,7 +50,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Enregistrer les modifications',
       icon: 'save',
-      type: 'secondary',
+      type: 'grey',
     },
     createOrUpdate: true,
   },
@@ -68,7 +68,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Refuser',
       icon: 'alert',
-      type: 'danger',
+      type: 'error',
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -78,7 +78,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Demander une modification',
       icon: 'edit',
-      type: 'secondary',
+      type: 'grey',
     },
     changeEnrollmentState: true,
     promptForComment: true,

@@ -46,7 +46,6 @@ const Nav = ({
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <Button
             onClick={() => goBack(history)}
-            type="light"
             icon="arrow-left"
             style={{ margin: '1em 0' }}
           >

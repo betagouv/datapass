@@ -13,15 +13,17 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
-import Tag from '../../atoms/Tag';
+import Tag, { TagContainer } from '../../atoms/Tag';
 import { withUser } from '../../organisms/UserContext';
 import FileCopyIcon from '../../atoms/icons/file_copy';
 import { Linkify } from '../../molecules/Linkify';
 import { enrollmentReducerFactory } from './enrollmentReducer';
+import './index.css';
 import {
   STATUS_TO_BUTTON_TYPE,
   USER_STATUS_LABELS,
 } from '../../../config/status-parameters';
+import Alert from '../../atoms/Alert';
 
 export const FormContext = React.createContext();
 
@@ -134,14 +136,14 @@ export const Form = ({
   };
 
   return (
-    <div className="dashboard">
+    <main className="dashboard">
       <Nav
         target_api={target_api}
         documentationUrl={documentationUrl}
         contactEmail={contactEmail}
         sectionLabels={sectionLabels}
       />
-      <div className="main">
+      <div className="datapass-form">
         <ScrollablePanel scrollableId="head" className={null}>
           <div
             style={{
@@ -150,14 +152,14 @@ export const Form = ({
           >
             <>Vous demandez l’accès à</>
             <h1>{DATA_PROVIDER_LABELS[target_api]}</h1>
-            <div className="tag-container">
+            <TagContainer>
               {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
               {enrollment.copied_from_enrollment_id && (
                 <Tag
                   href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
                   type="info"
                 >
-                  <FileCopyIcon size={18} color="var(--w)" />
+                  <FileCopyIcon size={18} color="inherit" />
                   <span style={{ marginLeft: '4px' }}>
                     Copie de n°{enrollment.copied_from_enrollment_id}
                   </span>
@@ -166,7 +168,7 @@ export const Form = ({
               <Tag type={STATUS_TO_BUTTON_TYPE[enrollment.status]}>
                 {USER_STATUS_LABELS[enrollment.status]}
               </Tag>
-            </div>
+            </TagContainer>
           </div>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
@@ -217,9 +219,9 @@ export const Form = ({
 
           {!isUserEnrollmentLoading && enrollment.acl.update && (
             <>
-              <div className="notification info">
+              <Alert type="info">
                 Pensez à enregistrer régulièrement vos modifications.
-              </div>
+              </Alert>
               <DemarcheDescription />
             </>
           )}
@@ -260,7 +262,7 @@ export const Form = ({
           handlePostEvent={handlePostEvent}
         />
       </div>
-    </div>
+    </main>
   );
 };
 

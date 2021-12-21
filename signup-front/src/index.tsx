@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import 'template.data.gouv.fr/dist/main.css';
 import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
 import App from './App';
 import { unregister as unregisterServiceWorker } from './registerServiceWorker';

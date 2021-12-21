@@ -3,5 +3,5 @@
 }
 
 .text--red {
-  color: var(--error);
+  color: var(--background-flat-error);
 }

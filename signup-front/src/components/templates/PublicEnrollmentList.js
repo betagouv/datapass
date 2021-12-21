@@ -160,7 +160,7 @@ class PublicEnrollmentList extends React.Component {
     const { enrollments, errors, loading, page, totalPages } = this.state;
 
     return (
-      <section className="section-grey full-width-container">
+      <section className="full-width-container">
         <ListHeader title="Liste des demandes validées">
           <NavLink
             className="fr-tag secondary"

@@ -18,20 +18,9 @@
 
 .datapass_card_container_grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-columns: minmax(100px, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   grid-gap: 1.5em;
-}
-
-@media all and (max-width: 1650px) {
-  .datapass_card_container_grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media all and (max-width: 1248px) {
-  .datapass_card_container_grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 
 .datapass_card {

@@ -53,9 +53,9 @@ const UserEnrollmentList = ({ history }) => {
         </div>
       </div>
 
-      <section className="section-grey enrollments-section">
+      <section className="enrollments-section">
         {isLoading ? (
-          <div className="layout-full-page">
+          <div className="full-page">
             <Loader />
           </div>
         ) : (
