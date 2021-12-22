@@ -23,9 +23,7 @@ class EnrollmentPolicy < ApplicationPolicy
       (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
-    ) || (
-      user.is_administrator? && !record.status_validated? && !record.status_refused?
-    )
+    ) || user.is_administrator?
   end
 
   def notify?
