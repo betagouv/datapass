@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
 
-import CheckCircleIcon from '../../atoms/icons/check-circle';
-import InfoIcon from '../../atoms/icons/info';
-import ErrorIcon from '../../atoms/icons/error';
-import FileCopyIcon from '../../atoms/icons/file_copy';
-import WarningIcon from '../../atoms/icons/warning';
-import NotificationsIcon from '../../atoms/icons/notifications';
+import CheckCircleIcon from '../../../atoms/icons/check-circle';
+import InfoIcon from '../../../atoms/icons/info';
+import ErrorIcon from '../../../atoms/icons/error';
+import FileCopyIcon from '../../../atoms/icons/file_copy';
+import WarningIcon from '../../../atoms/icons/warning';
+import NotificationsIcon from '../../../atoms/icons/notifications';
 import './ActivityFeed.css';
-import { getChangelog } from '../../../lib';
-import Button from '../../atoms/Button';
-import { Linkify } from '../../molecules/Linkify';
+import { getChangelog } from '../../../../lib';
+import Button from '../../../atoms/Button';
+import { Linkify } from '../../../molecules/Linkify';
 
 const eventToDisplayableContent = {
   request_changes: {
@@ -80,7 +80,10 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
               </button>
             )}
           </div>
-          <div title={moment(updated_at).format('LLLL')} className="event-date">
+          <div
+            title={moment(updated_at).format('LLLL')}
+            className="fr-hint-text"
+          >
             {moment(updated_at).calendar()}
           </div>
         </div>
@@ -135,7 +138,7 @@ class ActivityFeed extends React.Component {
     }
 
     return (
-      <>
+      <div>
         <div className="activity-head">
           <Button
             outline
@@ -157,7 +160,7 @@ class ActivityFeed extends React.Component {
             />
           )
         )}
-      </>
+      </div>
     );
   }
 }

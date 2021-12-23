@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { getErrorMessages } from '../../lib';
 import Loader from '../atoms/Loader';
 import { Linkify } from '../molecules/Linkify';
+import Alert from '../atoms/Alert';
 
 const CopyEnrollment = ({
   match: {
@@ -59,20 +60,20 @@ const CopyEnrollment = ({
 
   if (copyErrorMessage) {
     return (
-      <section className="full-page">
-        <div className="notification error">
+      <div className="full-page">
+        <Alert title="Erreur" type="error">
           <Linkify
-            message={`Erreur : ${copyErrorMessage} La demande #${enrollmentId} n’a pas été copiée.`}
+            message={`${copyErrorMessage} La demande #${enrollmentId} n’a pas été copiée.`}
           />
-        </div>
-      </section>
+        </Alert>
+      </div>
     );
   }
 
   return (
-    <section className="full-page">
+    <div className="full-page">
       <Loader />
-    </section>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@
   align-items: center;
 }
 .or-input-form .separator span {
-  background-color: var(--datapass-background-grey);
+  background-color: var(--background-contrast-grey);
   border-radius: 4px;
   padding: 5px 10px;
   margin: 10px;
@@ -23,7 +23,7 @@
 
 .or-input-form .separator:after,
 .or-input-form .separator:before {
-  background-color: var(--datapass-background-grey);
+  background-color: var(--background-contrast-grey);
   height: 20px;
   width: 2px;
   border-radius: 5px;

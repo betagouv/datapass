@@ -50,7 +50,7 @@ const Nav = ({
             icon="arrow-left"
             style={{ margin: '1em 0' }}
           >
-            Toutes mes demandes
+            Toutes mes habilitations
           </Button>
           <div className="fr-sidemenu__title">
             <a href="#head">Formulaire</a>

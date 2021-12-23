@@ -7,7 +7,6 @@ import FranceConnectPlusSection from '../components/organisms/form-sections/Fran
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 
 const DonneesDescription = () => (
@@ -129,7 +128,6 @@ const FranceConnect = ({
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.franceconnect}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
-    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection

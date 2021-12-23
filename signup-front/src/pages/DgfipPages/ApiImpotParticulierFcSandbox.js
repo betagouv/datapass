@@ -6,7 +6,6 @@ import DemarcheSection from '../../components/organisms/form-sections/DemarcheSe
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
 import { additionalTermsOfUse } from './common';
 import {
   demarches,
@@ -15,6 +14,7 @@ import {
 } from './api-impot-particulier-common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 export const CadreJuridiqueDescription = () => (
   <>
@@ -57,12 +57,11 @@ const ApiImpotParticulierFcSandbox = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
-    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />

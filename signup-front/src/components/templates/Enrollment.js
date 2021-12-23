@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getUserEnrollment } from '../../services/enrollments';
 import { Redirect } from 'react-router-dom';
 import Loader from '../atoms/Loader';
+import Alert from '../atoms/Alert';
 
 const Enrollment = ({
   match: {
@@ -48,28 +49,28 @@ const Enrollment = ({
 
   if (fetchEnrollmentNotFound) {
     return (
-      <section className="full-page">
-        <div className="notification error">
+      <div className="full-page">
+        <Alert title="Erreur" type="error">
           Nous n’avons pas trouvé votre demande d’habilitation.
-        </div>
-      </section>
+        </Alert>
+      </div>
     );
   }
 
   if (fetchEnrollmentError) {
     return (
-      <section className="full-page">
-        <div className="notification error">
+      <div className="full-page">
+        <Alert title="Erreur" type="error">
           Erreur inconnue lors de la récupération de la demande d’habilitation.
-        </div>
-      </section>
+        </Alert>
+      </div>
     );
   }
 
   return (
-    <section className="full-page">
+    <div className="full-page">
       <Loader />
-    </section>
+    </div>
   );
 };
 

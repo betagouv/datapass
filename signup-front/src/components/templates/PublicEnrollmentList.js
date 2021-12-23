@@ -214,7 +214,7 @@ class PublicEnrollmentList extends React.Component {
               previousText="Précédent"
               nextText="Suivant"
               loadingText="Chargement..."
-              noDataText={'Aucune demande'}
+              noDataText={'Aucune habilitation'}
               pageText="Page"
               ofText="sur"
               rowsText="lignes"

@@ -77,7 +77,7 @@ const CadreJuridiqueSection = ({
       <h3>
         Vous souhaitez accéder, traiter et conserver des données personnelles.
         Quel est le cadre juridique qui autorise votre organisation à accéder à
-        ces données ?
+        ces données ?
       </h3>
       <TextAreaInput
         label={

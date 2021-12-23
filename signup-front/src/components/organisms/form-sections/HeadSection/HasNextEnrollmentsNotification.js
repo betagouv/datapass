@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
-import { getNextEnrollments } from '../../../services/enrollments';
-import { Linkify } from '../../molecules/Linkify';
+import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import { getNextEnrollments } from '../../../../services/enrollments';
+import { Linkify } from '../../../molecules/Linkify';
+import Alert from '../../../atoms/Alert';
+import IndexPointingRightEmoji from '../../../atoms/icons/IndexPointingRightEmoji';
 
 const formatNextEnrollment = (enrollment) =>
   `${DATA_PROVIDER_LABELS[enrollment.target_api] || enrollment.target_api} : #${
@@ -31,17 +33,22 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
   const severalNexts = nextEnrollments.length > 1;
 
   return (
-    <div className="notification info">
-      Cette demande est liée{' '}
-      {severalNexts ? 'aux demandes suivantes' : 'à la demande suivante'} :
-      <ul>
-        {nextEnrollments.map((enrollment) => (
-          <li key={enrollment.id}>
-            <Linkify message={`Demande ${formatNextEnrollment(enrollment)}`} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Alert
+      title={
+        <>
+          Cette demande est liée{' '}
+          {severalNexts ? 'aux demandes suivantes' : 'à la demande suivante'}
+        </>
+      }
+    >
+      {nextEnrollments.map((enrollment) => (
+        <p key={enrollment.id}>
+          <IndexPointingRightEmoji />
+          {' '}
+          <Linkify message={`Demande ${formatNextEnrollment(enrollment)}`} />
+        </p>
+      ))}
+    </Alert>
   );
 };
 

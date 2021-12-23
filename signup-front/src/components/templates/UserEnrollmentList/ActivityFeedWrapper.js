@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { EventItem } from '../Form/ActivityFeed';
+import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert from '../../atoms/Alert';
 import { USER_STATUS_LABELS } from '../../../config/status-parameters';

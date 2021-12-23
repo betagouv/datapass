@@ -86,7 +86,7 @@ const Scopes = ({
               name={`scopes.${value}`}
               disabled={disabledApplication || required}
               value={selectedScopes[value]}
-              ariaLabel={`Périmètre de données « ${label} »`}
+              aria-label={`Périmètre de données « ${label} »`}
               label={
                 <>
                   {link ? (

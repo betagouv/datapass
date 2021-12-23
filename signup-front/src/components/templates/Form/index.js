@@ -1,36 +1,25 @@
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { get } from 'lodash';
+import { isEmpty } from 'lodash';
 
 import { getUserEnrollment } from '../../../services/enrollments';
 import SubmissionPanel from './SubmissionPanel';
-import ActivityFeed from './ActivityFeed';
-import { ScrollablePanel } from '../../organisms/Scrollable';
-import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
-import PreviousEnrollmentSection from '../../organisms/form-sections/PreviousEnrollmentSection';
-import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
 import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
-import Tag, { TagContainer } from '../../atoms/Tag';
 import { withUser } from '../../organisms/UserContext';
-import FileCopyIcon from '../../atoms/icons/file_copy';
 import { Linkify } from '../../molecules/Linkify';
 import { enrollmentReducerFactory } from './enrollmentReducer';
 import './index.css';
-import {
-  STATUS_TO_BUTTON_TYPE,
-  USER_STATUS_LABELS,
-} from '../../../config/status-parameters';
 import Alert from '../../atoms/Alert';
+import WarningEmoji from '../../atoms/icons/WarningEmoji';
+import HeadSection from '../../organisms/form-sections/HeadSection';
+import StepperSection from '../../organisms/form-sections/StepperSection';
 
 export const FormContext = React.createContext();
 
 export const Form = ({
-  DemarcheDescription = () => null,
-  location,
-  steps = undefined,
   target_api,
   enrollmentId = null,
   history,
@@ -144,118 +133,40 @@ export const Form = ({
         sectionLabels={sectionLabels}
       />
       <div className="datapass-form">
-        <ScrollablePanel scrollableId="head" className={null}>
-          <div
-            style={{
-              marginBottom: '2em',
-            }}
-          >
-            <>Vous demandez l’accès à</>
-            <h1>{DATA_PROVIDER_LABELS[target_api]}</h1>
-            <TagContainer>
-              {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
-              {enrollment.copied_from_enrollment_id && (
-                <Tag
-                  href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
-                  type="info"
-                >
-                  {/* --text-inverted-info: #f4f6ff; */}
-                  <FileCopyIcon size={18} color="#f4f6ff" />
-                  <span style={{ marginLeft: '4px' }}>
-                    Copie de n°{enrollment.copied_from_enrollment_id}
-                  </span>
-                </Tag>
-              )}
-              <Tag type={STATUS_TO_BUTTON_TYPE[enrollment.status]}>
-                {USER_STATUS_LABELS[enrollment.status]}
-              </Tag>
-            </TagContainer>
-          </div>
-          {get(location, 'state.fromFranceConnectedAPI') ===
-            'api_droits_cnam' && (
-            <>
-              <p>La procédure consiste en 2 demandes d’accès distinctes :</p>
-              <Stepper
-                steps={['franceconnect', 'api_droits_cnam']}
-                currentStep="franceconnect"
-              />
-            </>
-          )}
-          {get(location, 'state.fromFranceConnectedAPI') ===
-            'api_impot_particulier_fc_sandbox' && (
-            <>
-              <p>La procédure consiste en 3 demandes d’accès distinctes :</p>
-              <Stepper
-                steps={[
-                  'franceconnect',
-                  'api_impot_particulier_fc_sandbox',
-                  'api_impot_particulier_fc_production',
-                ]}
-                currentStep="franceconnect"
-              />
-            </>
-          )}
-          {steps && (
-            <FormContext.Provider
-              value={{
-                disabled: !enrollment.acl.submit,
-                onChange: dispatchSetEnrollment,
-                enrollment,
-                isUserEnrollmentLoading,
-                demarches,
-              }}
-            >
-              <PreviousEnrollmentSection steps={steps} />
-            </FormContext.Provider>
-          )}
-          {get(location, 'state.source') === 'copy-authorization-request' && (
-            <div className="notification warning">
-              Vous trouverez ci dessous une copie de votre demande initiale.
-              Merci de vérifier que ces informations sont à jour puis cliquez
-              sur "Soumettre la demande".
-            </div>
-          )}
-
-          <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
-
-          {!isUserEnrollmentLoading && enrollment.acl.update && (
-            <>
-              <Alert type="info">
-                Pensez à enregistrer régulièrement vos modifications.
-              </Alert>
-              <DemarcheDescription />
-            </>
-          )}
-        </ScrollablePanel>
-
-        {enrollment.events.length > 0 && (
-          <ActivityFeed events={enrollment.events} />
-        )}
         <FormContext.Provider
           value={{
-            disabled: !enrollment.acl.update,
+            disabled: !enrollment.acl.submit,
             onChange: dispatchSetEnrollment,
             enrollment,
             isUserEnrollmentLoading,
             demarches,
           }}
         >
+          <HeadSection />
+          <StepperSection />
           {children}
         </FormContext.Provider>
-        {successMessages.map((successMessage) => (
-          <div key={successMessage} className="notification success">
-            <Linkify message={successMessage} />
+
+        {!isEmpty(errorMessages) && !isEmpty(successMessages) && (
+          <div>
+            {successMessages.map((successMessage) => (
+              <Alert type="success" key={successMessage}>
+                <Linkify message={successMessage} />
+              </Alert>
+            ))}
+            {!isEmpty(errorMessages) && (
+              <Alert title="Erreur" type="error">
+                {errorMessages.map((errorMessage) => (
+                  <p key={errorMessage} style={{ whiteSpace: 'pre-line' }}>
+                    <WarningEmoji />
+                    {' '}
+                    <Linkify message={errorMessage} />
+                  </p>
+                ))}
+              </Alert>
+            )}
           </div>
-        ))}
-        {errorMessages.map((errorMessage) => (
-          <div
-            key={errorMessage}
-            className="notification error"
-            style={{ whiteSpace: 'pre-line' }}
-          >
-            <Linkify message={errorMessage} />
-          </div>
-        ))}
+        )}
 
         <SubmissionPanel
           enrollment={enrollment}
@@ -269,10 +180,8 @@ export const Form = ({
 
 Form.propTypes = {
   title: PropTypes.string,
-  DemarcheDescription: PropTypes.func,
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
-  steps: PropTypes.array,
   demarches: PropTypes.any,
   contactEmail: PropTypes.string,
   history: PropTypes.shape({

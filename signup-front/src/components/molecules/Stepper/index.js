@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import './style.css';
+import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
 
 const Stepper = ({
   steps,

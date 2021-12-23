@@ -446,8 +446,8 @@ class AdminEnrollmentList extends React.Component {
               loadingText="Chargement..."
               noDataText={
                 inbox === 'primary'
-                  ? 'Toute les demandes ont été traitées'
-                  : 'Aucune demande'
+                  ? 'Toute les habilitations ont été traitées'
+                  : 'Aucune habilitation'
               }
               pageText="Page"
               ofText="sur"

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './ApiImpotParticulierWelcomeMessage.css';
-import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
+import Stepper from '../../molecules/Stepper';
 
 const ApiImpotParticulierSandboxWelcomeMessage = () => (
   <>
