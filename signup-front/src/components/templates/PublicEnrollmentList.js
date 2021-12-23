@@ -23,7 +23,6 @@ class PublicEnrollmentList extends React.Component {
 
     this.state = {
       enrollments: [],
-      errors: [],
       loading: true,
       totalPages: 0,
       page: 0,
@@ -158,10 +157,10 @@ class PublicEnrollmentList extends React.Component {
   }
 
   render() {
-    const { enrollments, errors, loading, page, totalPages } = this.state;
+    const { enrollments, loading, page, totalPages } = this.state;
 
     return (
-      <section className="full-width-container">
+      <main>
         <ListHeader title="Liste des habilitations">
           <TagContainer>
             <NavLink
@@ -187,46 +186,39 @@ class PublicEnrollmentList extends React.Component {
             )}
           </TagContainer>
         </ListHeader>
-        <div className="panel">
-          <div className="enrollment-table">
-            {errors.map((error) => (
-              <div key={error} className="notification error">
-                {error}
-              </div>
-            ))}
-            <ReactTable
-              manual
-              data={enrollments}
-              pages={totalPages}
-              columns={this.getColumnConfiguration()}
-              getTdProps={(state, rowInfo, column) => ({
-                title: this.getTitle({ column, rowInfo }),
-              })}
-              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-              getPaginationProps={() => ({
-                style: enrollmentListStyle.pagination,
-              })}
-              style={enrollmentListStyle.table}
-              className="-highlight"
-              loading={loading}
-              showPageSizeOptions={false}
-              pageSize={10}
-              page={page}
-              onPageChange={this.onPageChange}
-              onFetchData={this.debouncedFetchData}
-              resizable={false}
-              sortable={false}
-              previousText="Précédent"
-              nextText="Suivant"
-              loadingText="Chargement..."
-              noDataText={'Aucune habilitation'}
-              pageText="Page"
-              ofText="sur"
-              rowsText="lignes"
-            />
-          </div>
+        <div className="table-container">
+          <ReactTable
+            manual
+            data={enrollments}
+            pages={totalPages}
+            columns={this.getColumnConfiguration()}
+            getTdProps={(state, rowInfo, column) => ({
+              title: this.getTitle({ column, rowInfo }),
+            })}
+            getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+            getPaginationProps={() => ({
+              style: enrollmentListStyle.pagination,
+            })}
+            style={enrollmentListStyle.table}
+            className="-highlight"
+            loading={loading}
+            showPageSizeOptions={false}
+            pageSize={10}
+            page={page}
+            onPageChange={this.onPageChange}
+            onFetchData={this.debouncedFetchData}
+            resizable={false}
+            sortable={false}
+            previousText="Précédent"
+            nextText="Suivant"
+            loadingText="Chargement..."
+            noDataText={'Aucune habilitation'}
+            pageText="Page"
+            ofText="sur"
+            rowsText="lignes"
+          />
         </div>
-      </section>
+      </main>
     );
   }
 }

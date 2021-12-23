@@ -22,11 +22,7 @@ import { withUser } from '../organisms/UserContext';
 import MultiSelect from '../molecules/MultiSelect';
 import Tag, { TagContainer } from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
-import Button from '../atoms/Button';
-import ButtonGroup from '../molecules/ButtonGroup';
 import FileCopyIcon from '../atoms/icons/file_copy';
-
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const getInboxes = (user) => ({
   primary: {
@@ -69,7 +65,6 @@ class InstructorEnrollmentList extends React.Component {
 
     this.state = {
       enrollments: [],
-      errors: [],
       loading: true,
       totalPages: 0,
       page: 0,
@@ -364,7 +359,6 @@ class InstructorEnrollmentList extends React.Component {
     const { history } = this.props;
     const {
       enrollments,
-      errors,
       loading,
       page,
       sorted,
@@ -374,7 +368,7 @@ class InstructorEnrollmentList extends React.Component {
       totalPages,
     } = this.state;
     return (
-      <section className="full-width-container">
+      <main>
         <ListHeader title="Liste des habilitations">
           <TagContainer>
             {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
@@ -388,83 +382,71 @@ class InstructorEnrollmentList extends React.Component {
             ))}
           </TagContainer>
         </ListHeader>
-        <div className="panel">
-          <div className="enrollment-table">
-            {errors.map((error) => (
-              <div key={error} className="notification error">
-                {error}
-              </div>
-            ))}
-            <ReactTable
-              manual
-              data={enrollments}
-              pages={totalPages}
-              columns={this.getColumnConfiguration()}
-              getTdProps={(state, rowInfo, column) => ({
-                onClick: (e, handleOriginal) => {
-                  if (rowInfo) {
-                    const {
-                      original: { id, target_api },
-                    } = rowInfo;
-                    const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
+        <div className="table-container">
+          <ReactTable
+            manual
+            data={enrollments}
+            pages={totalPages}
+            columns={this.getColumnConfiguration()}
+            getTdProps={(state, rowInfo, column) => ({
+              onClick: (e, handleOriginal) => {
+                if (rowInfo) {
+                  const {
+                    original: { id, target_api },
+                  } = rowInfo;
+                  const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
 
-                    this.savePreviouslySelectedEnrollmentId(id);
+                  this.savePreviouslySelectedEnrollmentId(id);
 
-                    openLink(e, history, targetUrl);
-                  }
+                  openLink(e, history, targetUrl);
+                }
 
-                  if (handleOriginal) {
-                    handleOriginal();
-                  }
-                },
-                title: this.getTitle({ column, rowInfo }),
-                className:
-                  rowInfo &&
-                  rowInfo.original.id === previouslySelectedEnrollmentId
-                    ? 'selected'
-                    : null,
-              })}
-              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-              getTheadFilterThProps={() => ({
-                style: enrollmentListStyle.filterThead,
-              })}
-              getPaginationProps={() => ({
-                style: enrollmentListStyle.pagination,
-              })}
-              style={enrollmentListStyle.table}
-              className="-highlight"
-              loading={loading}
-              showPageSizeOptions={false}
-              pageSize={10}
-              page={page}
-              onPageChange={this.onPageChange}
-              sortable={false}
-              sorted={sorted}
-              onSortedChange={this.onSortedChange}
-              filtered={filtered}
-              onFilteredChange={this.onFilteredChange}
-              onFetchData={this.debouncedFetchData}
-              resizable={false}
-              previousText="Précédent"
-              nextText="Suivant"
-              loadingText="Chargement..."
-              noDataText={
-                inbox === 'primary'
-                  ? 'Toute les habilitations ont été traitées'
-                  : 'Aucune habilitation'
-              }
-              pageText="Page"
-              ofText="sur"
-              rowsText="lignes"
-            />
-          </div>
-          <ButtonGroup alignRight>
-            <Button href={`${API_GOUV_HOST}/datapass/api`}>
-              Nouvelle Demande
-            </Button>
-          </ButtonGroup>
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              },
+              title: this.getTitle({ column, rowInfo }),
+              className:
+                rowInfo &&
+                rowInfo.original.id === previouslySelectedEnrollmentId
+                  ? 'selected'
+                  : null,
+            })}
+            getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+            getTheadFilterThProps={() => ({
+              style: enrollmentListStyle.filterThead,
+            })}
+            getPaginationProps={() => ({
+              style: enrollmentListStyle.pagination,
+            })}
+            style={enrollmentListStyle.table}
+            className="-highlight"
+            loading={loading}
+            showPageSizeOptions={false}
+            pageSize={10}
+            page={page}
+            onPageChange={this.onPageChange}
+            sortable={false}
+            sorted={sorted}
+            onSortedChange={this.onSortedChange}
+            filtered={filtered}
+            onFilteredChange={this.onFilteredChange}
+            onFetchData={this.debouncedFetchData}
+            resizable={false}
+            previousText="Précédent"
+            nextText="Suivant"
+            loadingText="Chargement..."
+            noDataText={
+              inbox === 'primary'
+                ? 'Toute les habilitations ont été traitées'
+                : 'Aucune habilitation'
+            }
+            pageText="Page"
+            ofText="sur"
+            rowsText="lignes"
+          />
         </div>
-      </section>
+      </main>
     );
   }
 }

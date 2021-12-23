@@ -9,9 +9,10 @@ const Button = ({
   icon,
   iconRight = false,
   children,
+  className = '',
   ...props
 }) => {
-  let className = 'fr-btn';
+  className += ' fr-btn';
 
   if (!large) {
     className += ' fr-btn--sm';

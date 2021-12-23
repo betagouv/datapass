@@ -48,11 +48,15 @@ const UserEnrollmentList = ({ history }) => {
             <Button
               large
               href={`${API_GOUV_HOST}/datapass/api`}
-              style={{ marginBottom: 0 }}
+              className="call-to-action-button"
             >
               une API
             </Button>
-            <Button large href="/aidants-connect" style={{ marginBottom: 0 }}>
+            <Button
+              large
+              href="/aidants-connect"
+              className="call-to-action-button"
+            >
               Aidants Connect
             </Button>
           </ButtonGroup>

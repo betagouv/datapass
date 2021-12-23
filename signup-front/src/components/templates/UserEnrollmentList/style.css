@@ -13,12 +13,22 @@ main.user-enrollments-page {
   align-items: center;
   max-width: 1200px;
   width: 100%;
-  margin: 1.5rem auto;
+  margin: 0 auto 1.5rem;
+}
+
+a.fr-btn.call-to-action-button {
+  margin-bottom: 0;
+}
+
+@media all and (max-width: 992px) {
+  a.fr-btn.call-to-action-button + a.fr-btn.call-to-action-button {
+    margin-top: 0.5rem;
+  }
 }
 
 @media all and (max-width: 1248px) {
   .user-enrollments-list-container {
-    margin: 1.5em;
+    margin: 0 1.5rem 1.5rem;
     width: calc(100% - 3rem);
   }
 }

@@ -22,7 +22,6 @@ main.dashboard-page {
   row-gap: 6rem;
 }
 
-
 @media all and (max-width: 768px) {
   main.dashboard-page {
     grid-template-columns: 100%;
