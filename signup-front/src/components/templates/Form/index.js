@@ -132,7 +132,7 @@ export const Form = ({
         contactEmail={contactEmail}
         sectionLabels={sectionLabels}
       />
-      <div className="datapass-form">
+      <div className="form-container">
         <FormContext.Provider
           value={{
             disabled: !enrollment.acl.submit,

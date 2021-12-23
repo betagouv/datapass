@@ -91,7 +91,10 @@ const UserEnrollmentList = ({ history }) => {
       )}
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
-        <div className="user-enrollments-list-container">
+        <div
+          className="page-container user-enrollments-list-container"
+          style={{ marginTop: 0 }}
+        >
           {Object.keys(enrollmentsByOrganization).map((group) => (
             <React.Fragment key={group}>
               <div className="user-enrollments-organisation-label fr-text--lead">

@@ -11,9 +11,6 @@ main.user-enrollments-page {
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto 1.5rem;
 }
 
 a.fr-btn.call-to-action-button {
@@ -23,13 +20,6 @@ a.fr-btn.call-to-action-button {
 @media all and (max-width: 992px) {
   a.fr-btn.call-to-action-button + a.fr-btn.call-to-action-button {
     margin-top: 0.5rem;
-  }
-}
-
-@media all and (max-width: 1248px) {
-  .user-enrollments-list-container {
-    margin: 0 1.5rem 1.5rem;
-    width: calc(100% - 3rem);
   }
 }
 
