@@ -113,6 +113,7 @@ export const Login = () => {
               src={`/images/${DATA_PROVIDER_ICONS[targetApi]}`}
               alt={`Logo ${DATA_PROVIDER_LABELS[targetApi]}`}
               height="90"
+              style={{ margin: '1.5rem' }}
             />
           )}
           <WelcomeMessageRouter
