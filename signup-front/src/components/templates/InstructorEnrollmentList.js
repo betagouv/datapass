@@ -20,7 +20,7 @@ import enrollmentListStyle from './enrollmentListStyle';
 import ScheduleIcon from '../atoms/icons/schedule';
 import { withUser } from '../organisms/UserContext';
 import MultiSelect from '../molecules/MultiSelect';
-import Tag from '../atoms/Tag';
+import Tag, { TagContainer } from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
 import Button from '../atoms/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
@@ -375,16 +375,18 @@ class InstructorEnrollmentList extends React.Component {
     } = this.state;
     return (
       <section className="full-width-container">
-        <ListHeader title="Liste des demandes">
-          {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
-            <Tag
-              key={currentInbox}
-              type={inbox === currentInbox ? 'info' : ''}
-              onClick={() => this.onSelectInbox(currentInbox)}
-            >
-              {getInboxes(this.props.user)[currentInbox].label}
-            </Tag>
-          ))}
+        <ListHeader title="Liste des habilitations">
+          <TagContainer>
+            {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
+              <Tag
+                key={currentInbox}
+                type={inbox === currentInbox ? 'info' : ''}
+                onClick={() => this.onSelectInbox(currentInbox)}
+              >
+                {getInboxes(this.props.user)[currentInbox].label}
+              </Tag>
+            ))}
+          </TagContainer>
         </ListHeader>
         <div className="panel">
           <div className="enrollment-table">

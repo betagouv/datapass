@@ -30,6 +30,7 @@ import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { Card, CardContainer } from '../molecules/Card';
+import { TagContainer } from '../atoms/Tag';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -100,26 +101,30 @@ export const Stats = ({
   return (
     <section className="stats-page">
       <div className="container">
-        <ListHeader>
-          <NavLink
-            className="fr-tag secondary"
-            activeClassName={'info'}
-            exact
-            to="/stats"
-          >
-            Toutes les APIs
-          </NavLink>
-          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+        <ListHeader title="Statistiques d’utilisation">
+          <TagContainer>
             <NavLink
-              key={targetApi}
               className="fr-tag secondary"
               activeClassName={'info'}
               exact
-              to={`/stats/${targetApi}`}
+              to="/stats"
             >
-              {DATA_PROVIDER_LABELS[targetApi]}
+              Toutes les APIs
             </NavLink>
-          ))}
+            {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
+              (targetApi) => (
+                <NavLink
+                  key={targetApi}
+                  className="fr-tag secondary"
+                  activeClassName={'info'}
+                  exact
+                  to={`/stats/${targetApi}`}
+                >
+                  {DATA_PROVIDER_LABELS[targetApi]}
+                </NavLink>
+              )
+            )}
+          </TagContainer>
         </ListHeader>
         <div>
           <CardContainer>

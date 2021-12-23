@@ -10,6 +10,7 @@ import Button from '../../atoms/Button';
 import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
 import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
+import ListHeader from '../../molecules/ListHeader';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -38,24 +39,25 @@ const UserEnrollmentList = ({ history }) => {
 
   return (
     <main className="user-enrollments-page">
-      <div className="user-enrollments-header-container">
-        <div className="user-enrollments-header">
-          <span className="fr-text--lead">Toutes mes habilitations</span>
-          <div>
-            <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
-              Faire une nouvelle demande pour :
-            </p>
-            <ButtonGroup>
-              <Button large href={`${API_GOUV_HOST}/datapass/api`}>
-                une API
-              </Button>
-              <Button large href="/aidants-connect">
-                Aidants Connect
-              </Button>
-            </ButtonGroup>
-          </div>
+      <ListHeader title="Toutes mes habilitations">
+        <div>
+          <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
+            Faire une nouvelle demande pour :
+          </p>
+          <ButtonGroup>
+            <Button
+              large
+              href={`${API_GOUV_HOST}/datapass/api`}
+              style={{ marginBottom: 0 }}
+            >
+              une API
+            </Button>
+            <Button large href="/aidants-connect" style={{ marginBottom: 0 }}>
+              Aidants Connect
+            </Button>
+          </ButtonGroup>
         </div>
-      </div>
+      </ListHeader>
 
       {isLoading && (
         <div className="full-page">

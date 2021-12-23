@@ -15,6 +15,7 @@ import {
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
 import { debounce } from 'lodash';
+import { TagContainer } from '../atoms/Tag';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -161,26 +162,30 @@ class PublicEnrollmentList extends React.Component {
 
     return (
       <section className="full-width-container">
-        <ListHeader title="Liste des demandes validées">
-          <NavLink
-            className="fr-tag secondary"
-            activeClassName={'info'}
-            exact
-            to="/public"
-          >
-            Toutes les demandes
-          </NavLink>
-          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+        <ListHeader title="Liste des habilitations">
+          <TagContainer>
             <NavLink
-              key={targetApi}
               className="fr-tag secondary"
               activeClassName={'info'}
               exact
-              to={`/public/${targetApi}`}
+              to="/public"
             >
-              {DATA_PROVIDER_LABELS[targetApi]}
+              Toutes les demandes
             </NavLink>
-          ))}
+            {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
+              (targetApi) => (
+                <NavLink
+                  key={targetApi}
+                  className="fr-tag secondary"
+                  activeClassName={'info'}
+                  exact
+                  to={`/public/${targetApi}`}
+                >
+                  {DATA_PROVIDER_LABELS[targetApi]}
+                </NavLink>
+              )
+            )}
+          </TagContainer>
         </ListHeader>
         <div className="panel">
           <div className="enrollment-table">
