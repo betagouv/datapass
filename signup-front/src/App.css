@@ -1,3 +1,8 @@
+:root {
+  --datapass-blue: #0959b6;
+  --datapass-background-grey: #ebeff3;
+}
+
 header {
   grid-area: header;
 }

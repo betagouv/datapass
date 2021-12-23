@@ -136,7 +136,7 @@ export const Form = ({
   };
 
   return (
-    <main className="dashboard">
+    <main className="dashboard-page">
       <Nav
         target_api={target_api}
         documentationUrl={documentationUrl}
@@ -159,7 +159,8 @@ export const Form = ({
                   href={`/authorization-request/${enrollment.copied_from_enrollment_id}`}
                   type="info"
                 >
-                  <FileCopyIcon size={18} color="inherit" />
+                  {/* --text-inverted-info: #f4f6ff; */}
+                  <FileCopyIcon size={18} color="#f4f6ff" />
                   <span style={{ marginLeft: '4px' }}>
                     Copie de n°{enrollment.copied_from_enrollment_id}
                   </span>

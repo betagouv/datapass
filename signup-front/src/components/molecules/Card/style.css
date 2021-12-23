@@ -24,14 +24,14 @@
 }
 
 .datapass_card {
-  border: 1px solid var(--g400);
+  border: 1px solid var(--border-default-grey);
   border-radius: 2px;
   padding: 1.5em;
-  background-color: var(--w);
+  background-color: white;
 }
 
 .datapass_card.datapass_add_card {
-  border: 2px dashed var(--g600);
+  border: 2px dashed var(--border-default-grey);
   min-height: 500px;
   cursor: pointer;
   display: flex;
@@ -40,11 +40,11 @@
   flex-direction: column;
   font-size: 18px;
   line-height: 25px;
-  color: var(--g600);
+  color: var(--text-mention-grey);
 }
 
 .datapass_card.datapass_add_card:hover {
-  background-color: var(--g100);
+  background-color: #fafafa;
 }
 
 .datapass_card_head {

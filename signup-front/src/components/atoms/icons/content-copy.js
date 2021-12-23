@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Source: https://fonts.google.com/icons?selected=Material+Icons&icon.query=content+copy
-const ContentCopyIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const ContentCopyIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}

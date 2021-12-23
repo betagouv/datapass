@@ -2,7 +2,7 @@ import React from 'react';
 
 // Source: https://material.io/resources/icons/?icon=info&style=outline
 const InfoIcon = ({
-  color = 'var(--theme-dark-text)',
+  color = 'var(--text-default-grey)',
   size = 24,
   outlined = false,
 }) => {

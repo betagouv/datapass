@@ -1,0 +1,47 @@
+main.user-enrollments-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--datapass-background-grey);
+}
+
+.user-enrollments-header-container {
+  width: 100%;
+  background-color: white;
+}
+.user-enrollments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 1.5rem auto;
+}
+
+.user-enrollments-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 1.5rem auto;
+}
+
+@media all and (max-width: 1248px) {
+  .user-enrollments-header {
+    margin: 1.5rem;
+    width: calc(100% - 3rem);
+  }
+
+  .user-enrollments-list-container {
+    margin: 1.5em;
+    width: calc(100% - 3rem);
+  }
+}
+
+.user-enrollments-organisation-label {
+  margin: 1.5rem 0 0;
+  width: 100%;
+}

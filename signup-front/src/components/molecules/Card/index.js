@@ -12,7 +12,7 @@ export const Card = ({ children, className = '' }) => (
 
 export const AddCard = ({ onClick, label = '' }) => (
   <div className="datapass_card datapass_add_card" onClick={onClick}>
-    <ControlPointIcon size="50px" />
+    <ControlPointIcon color="var(--text-mention-grey)" size="50px" />
     <div>{label}</div>
   </div>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // https://material.io/resources/icons/?icon=local_phone&style=baseline
-const LocalPhoneIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const LocalPhoneIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

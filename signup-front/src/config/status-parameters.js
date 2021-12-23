@@ -19,5 +19,5 @@ export const STATUS_TO_BUTTON_TYPE = {
   submitted: 'info',
   validated: 'success',
   changes_requested: 'warning',
-  refused: 'danger',
+  refused: 'error',
 };

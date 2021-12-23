@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Source: https://material.io/tools/icons/?icon=help&style=baseline
-const HelpIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const HelpIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

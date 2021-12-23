@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Source: https://material.io/tools/icons/?icon=check_circle&style=baseline
-const CheckCircleIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const CheckCircleIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

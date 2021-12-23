@@ -6,7 +6,7 @@ nav {
   grid-area: datapass-form;
 }
 
-main.dashboard {
+main.dashboard-page {
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 300px auto;
@@ -21,7 +21,7 @@ main.dashboard {
 
 
 @media all and (max-width: 768px) {
-  main.dashboard {
+  main.dashboard-page {
     grid-template-columns: 100%;
     grid-template-areas: 'datapass-form';
   }

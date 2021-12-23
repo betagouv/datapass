@@ -5,7 +5,7 @@ import HelpIcon from '../icons/help';
 
 const Helper = ({ title }) => (
   <span tooltip={title} className="helper">
-    <HelpIcon color={'var(--grey)'} />
+    <HelpIcon color={'var(--text-default-grey)'} />
   </span>
 );
 
