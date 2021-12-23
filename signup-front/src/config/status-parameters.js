@@ -1,4 +1,4 @@
-export const ADMIN_STATUS_LABELS = {
+export const INSTRUCTOR_STATUS_LABELS = {
   submitted: 'À valider',
   changes_requested: 'Retour',
   validated: 'Validée',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { union, xor } from 'lodash';
-import './index.css';
+import './style.css';
 
 export const MultiSelect = ({
   options = [],

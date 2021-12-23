@@ -11,7 +11,7 @@ import Nav from '../../organisms/Nav';
 import { withUser } from '../../organisms/UserContext';
 import { Linkify } from '../../molecules/Linkify';
 import { enrollmentReducerFactory } from './enrollmentReducer';
-import './index.css';
+import './style.css';
 import Alert from '../../atoms/Alert';
 import WarningEmoji from '../../atoms/icons/WarningEmoji';
 import HeadSection from '../../organisms/form-sections/HeadSection';

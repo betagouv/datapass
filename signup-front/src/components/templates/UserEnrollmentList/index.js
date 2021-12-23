@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { groupBy, isEmpty } from 'lodash';
-import './index.css';
+import './style.css';
 import { openLink } from '../../../lib';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';

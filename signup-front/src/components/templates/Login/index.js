@@ -1,6 +1,6 @@
 import React from 'react';
 import { hashToQueryParams } from '../../../lib';
-import './index.css';
+import './style.css';
 import {
   DATA_PROVIDER_ICONS,
   DATA_PROVIDER_LABELS,

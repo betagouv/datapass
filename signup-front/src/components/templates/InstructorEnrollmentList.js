@@ -5,7 +5,7 @@ import ReactTable from 'react-table-6';
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 
-import './AdminEnrollmentList.css';
+import './InstructorEnrollmentList.css';
 
 import {
   getStateFromUrlParams,
@@ -14,7 +14,7 @@ import {
 } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
 import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
-import { ADMIN_STATUS_LABELS } from '../../config/status-parameters';
+import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
 import enrollmentListStyle from './enrollmentListStyle';
 
 import ScheduleIcon from '../atoms/icons/schedule';
@@ -63,7 +63,7 @@ const getInboxes = (user) => ({
   },
 });
 
-class AdminEnrollmentList extends React.Component {
+class InstructorEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -213,7 +213,7 @@ class AdminEnrollmentList extends React.Component {
     {
       Header: 'Statut',
       accessor: ({ status, acl, is_renewal }) => ({
-        statusLabel: ADMIN_STATUS_LABELS[status] || null,
+        statusLabel: INSTRUCTOR_STATUS_LABELS[status] || null,
         acl,
         isRenewal: is_renewal,
       }),
@@ -255,10 +255,12 @@ class AdminEnrollmentList extends React.Component {
         );
       },
       Filter: ({ filter, onChange }) => {
-        const options = toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => ({
-          key,
-          label,
-        }));
+        const options = toPairs(INSTRUCTOR_STATUS_LABELS).map(
+          ([key, label]) => ({
+            key,
+            label,
+          })
+        );
 
         return (
           <MultiSelect
@@ -465,10 +467,10 @@ class AdminEnrollmentList extends React.Component {
   }
 }
 
-AdminEnrollmentList.propTypes = {
+InstructorEnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
 };
 
-export default withUser(AdminEnrollmentList);
+export default withUser(InstructorEnrollmentList);
