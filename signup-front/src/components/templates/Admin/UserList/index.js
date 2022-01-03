@@ -8,7 +8,7 @@ import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 import ListHeader from '../../../molecules/ListHeader';
-import Tag from '../../../atoms/Tag';
+import Tag, { TagContainer } from '../../../atoms/Tag';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -90,23 +90,25 @@ const UserList = () => {
   };
 
   return (
-    <div className="panel">
+    <div className="table-container admin-table-container">
       <ListHeader title="Liste des utilisateurs">
-        <Tag
-          type={!showAllUsers ? 'info' : ''}
-          onClick={() => setShowAllUsers(false)}
-        >
-          Utilisateurs avec droits
-        </Tag>
-        <Tag
-          type={showAllUsers ? 'info' : ''}
-          onClick={() => setShowAllUsers(true)}
-        >
-          Tous les utilisateurs
-        </Tag>
-        <Tag onClick={handleRefreshData}>
-          <AutorenewIcon size={16} />
-        </Tag>
+        <TagContainer>
+          <Tag
+            type={!showAllUsers ? 'info' : ''}
+            onClick={() => setShowAllUsers(false)}
+          >
+            Utilisateurs avec droits
+          </Tag>
+          <Tag
+            type={showAllUsers ? 'info' : ''}
+            onClick={() => setShowAllUsers(true)}
+          >
+            Tous les utilisateurs
+          </Tag>
+          <Tag onClick={handleRefreshData}>
+            <AutorenewIcon size={16} />
+          </Tag>
+        </TagContainer>
       </ListHeader>
       {isLoading ? (
         <div className="full-page" style={{ minHeight: '800px' }}>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { updateTeamMember } from '../../../services/enrollments';
 import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
+import Button from '../../atoms/Button';
+import Alert from '../../atoms/Alert';
 
 export const UpdateTeamMember = () => {
   const [teamMemberId, setTeamMemberId] = useState('');
@@ -39,14 +41,18 @@ export const UpdateTeamMember = () => {
   };
 
   return (
-    <div className="panel">
-      <h2>Modification d’un membre de l’équipe</h2>
+    <div className="page-container">
+      <div className="fr-text--lead">Modification d’un membre de l’équipe</div>
       {success && (
-        <div className="notification success">
+        <Alert type="success" title="Succès">
           Contact mis à jour et mail envoyé avec succès !
-        </div>
+        </Alert>
       )}
-      {error && <div className="notification error">{error}</div>}
+      {error && (
+        <Alert type="error" title="Erreur">
+          {error}
+        </Alert>
+      )}
       <form onSubmit={onSubmit}>
         <TextInput
           label="Identifiant du contact"
@@ -84,10 +90,10 @@ export const UpdateTeamMember = () => {
           onChange={({ target: { value } }) => setPhoneNumber(value)}
           value={phoneNumber}
         />
-        <button type="submit">
-          Mettre à jour le contact et lui envoyer un mail (si il est
+        <Button type="submit">
+          Mettre à jour le contact et lui envoyer un mail (s’il est
           correspondant RGPD)
-        </button>
+        </Button>
       </form>
     </div>
   );

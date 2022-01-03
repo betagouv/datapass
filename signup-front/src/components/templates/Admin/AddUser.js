@@ -3,6 +3,8 @@ import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
 import AutorenewIcon from '../../atoms/icons/autorenew';
 import { getErrorMessages } from '../../../lib';
+import Button from '../../atoms/Button';
+import Alert from '../../atoms/Alert';
 
 export const AddUser = () => {
   const [newUserEmail, setNewUserEmail] = useState('');
@@ -29,16 +31,20 @@ export const AddUser = () => {
   };
 
   return (
-    <div className="panel">
-      <h2>Ajouter un utilisateur</h2>
+    <div className="page-container">
+      <div className="fr-text--lead">Ajouter un utilisateur</div>
       {success && (
-        <div className="notification success">
+        <Alert type="success" title="Succès">
           L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
           liste des utilisateurs en cliquant sur l’icone{' '}
           <AutorenewIcon size={16} />.
-        </div>
+        </Alert>
       )}
-      {error && <div className="notification error">{error}</div>}
+      {error && (
+        <Alert type="error" title="Erreur">
+          {error}
+        </Alert>
+      )}
       <form onSubmit={onSubmit}>
         <TextInput
           label="Adresse email du nouvel utilisateur à ajouter"
@@ -46,7 +52,7 @@ export const AddUser = () => {
           value={newUserEmail}
           required
         />
-        <button type="submit">Ajouter l’utilisateur</button>
+        <Button type="submit">Ajouter l’utilisateur</Button>
       </form>
     </div>
   );
