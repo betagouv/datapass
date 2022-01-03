@@ -34,7 +34,7 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   right: 0;
   z-index: 1001;
-  padding: 1px 0;
+  padding: 2px;
   background-color: #fff;
   text-align: left;
   /* the following rules are taken from Chrome stylesheet for native select element */
@@ -48,19 +48,12 @@
   content: '\00a0\00a0\00a0\00a0';
 }
 
-.multiselect-dropdown-item {
-  line-height: initial !important;
-  font-weight: normal;
-  display: block;
-  padding: 0 2px 1px 2px;
-  white-space: nowrap;
-  min-height: 1.2em;
-}
-
 /* extra rules to fix conflicts with ReactTable stylesheets */
 .ReactTable .rt-th {
   overflow: inherit !important;
+  font-weight: normal !important;
 }
+
 .ReactTable .rt-thead.-filters input[type='checkbox']:checked {
   background-color: var(--bf500);
 }
