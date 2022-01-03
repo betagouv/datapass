@@ -53,6 +53,19 @@ export const UpdateTeamMember = () => {
           {error}
         </Alert>
       )}
+      {!success && !error && (
+        <Alert>
+          Si le membre de l’équipe mis à jour est le demandeur, seul le champ
+          email sera mis à jour. Les autres champs seront ignorés. Ils prendront
+          la valeur renseignée par l’utilisateur si celui ci à déjà un compte,
+          ils resteront vides sinon.
+        </Alert>
+      )}
+      {!success && !error && (
+        <Alert>
+          Les champs non renseignés seront laissés dans leur état d’origine.
+        </Alert>
+      )}
       <form onSubmit={onSubmit}>
         <TextInput
           label="Identifiant du contact"
@@ -62,31 +75,26 @@ export const UpdateTeamMember = () => {
         />
         <TextInput
           label="Nouveau nom"
-          helper="vide = pas de modification"
           onChange={({ target: { value } }) => setNom(value)}
           value={nom}
         />
         <TextInput
           label="Nouveau prénom"
-          helper="vide = pas de modification"
           onChange={({ target: { value } }) => setPrenom(value)}
           value={prenom}
         />
         <TextInput
           label="Nouveau poste occupé"
-          helper="vide = pas de modification"
           onChange={({ target: { value } }) => setJob(value)}
           value={job}
         />
         <TextInput
           label="Nouvel email"
-          helper="vide = pas de modification"
           onChange={({ target: { value } }) => setEmail(value)}
           value={email}
         />
         <TextInput
           label="Nouveau numéro de téléphone"
-          helper="vide = pas de modification"
           onChange={({ target: { value } }) => setPhoneNumber(value)}
           value={phoneNumber}
         />
