@@ -5,6 +5,7 @@ import { uniqueId } from 'lodash';
 import ConfirmationModal from '../organisms/ConfirmationModal';
 import httpClient from '../../lib/http-client';
 import Button from '../atoms/Button';
+import Label from '../atoms/inputs/Label';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -94,10 +95,10 @@ const FileInput = ({
   };
 
   return (
-    <div className="fr-input-group">
+    <div className="fr-upload-group">
       {showDocumentDownloadLink ? (
         <>
-          <div>{label}</div>
+          <Label id={id} label={label} />
           <div>
             <Button
               style={{
@@ -131,8 +132,15 @@ const FileInput = ({
         </>
       ) : (
         <>
-          <label htmlFor={id}>{label}</label>
+          <Label
+            id={id}
+            label={label}
+            meta={`Taille maximale : ${FILE_SIZE_LIMIT_IN_MB} Mo. Formats supportés : ${
+              mimeTypes === '*' ? 'tous' : mimeTypes
+            }.${meta ? ' ' + meta : ''}`}
+          />
           <input
+            className="fr-upload"
             type="file"
             accept={mimeTypes}
             onChange={handleChange}
@@ -140,16 +148,11 @@ const FileInput = ({
             name={documentType}
             id={id}
           />
-          {meta && (
-            <small className="card__meta">
-              <i>{meta}</i>
-            </small>
-          )}
           {documentsTooLargeError && (
-            <div className="notification error">
+            <p className="fr-error-text">
               La taille des pièces jointes dépasse la taille maximale autorisée
-              ({FILE_SIZE_LIMIT_IN_MB} MO)
-            </div>
+              ({FILE_SIZE_LIMIT_IN_MB} Mo)
+            </p>
           )}
         </>
       )}

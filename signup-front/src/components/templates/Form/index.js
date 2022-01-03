@@ -147,7 +147,7 @@ export const Form = ({
           {children}
         </FormContext.Provider>
 
-        {!isEmpty(errorMessages) && !isEmpty(successMessages) && (
+        {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div>
             {successMessages.map((successMessage) => (
               <Alert type="success" key={successMessage}>
