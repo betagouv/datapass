@@ -1,6 +1,6 @@
 class TeamMemberPolicy < ApplicationPolicy
   def update?
-    (record.enrollment.status_validated? || record.enrollment.status_refused?) && user.is_administrator?
+    user.is_administrator?
   end
 
   def permitted_attributes
