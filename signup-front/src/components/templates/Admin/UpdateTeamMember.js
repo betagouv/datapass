@@ -4,6 +4,7 @@ import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
 import Button from '../../atoms/Button';
 import Alert from '../../atoms/Alert';
+import ListHeader from '../../molecules/ListHeader';
 
 export const UpdateTeamMember = () => {
   const [teamMemberId, setTeamMemberId] = useState('');
@@ -42,7 +43,7 @@ export const UpdateTeamMember = () => {
 
   return (
     <div className="page-container">
-      <div className="fr-text--lead">Modification d’un membre de l’équipe</div>
+      <ListHeader title="Modification d’un membre de l’équipe" />
       {success && (
         <Alert type="success" title="Succès">
           Contact mis à jour et mail envoyé avec succès !

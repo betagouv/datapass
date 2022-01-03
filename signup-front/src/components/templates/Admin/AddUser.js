@@ -5,6 +5,7 @@ import AutorenewIcon from '../../atoms/icons/autorenew';
 import { getErrorMessages } from '../../../lib';
 import Button from '../../atoms/Button';
 import Alert from '../../atoms/Alert';
+import ListHeader from '../../molecules/ListHeader';
 
 export const AddUser = () => {
   const [newUserEmail, setNewUserEmail] = useState('');
@@ -32,7 +33,7 @@ export const AddUser = () => {
 
   return (
     <div className="page-container">
-      <div className="fr-text--lead">Ajouter un utilisateur</div>
+      <ListHeader title="Ajouter un utilisateur" />
       {success && (
         <Alert type="success" title="Succès">
           L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
