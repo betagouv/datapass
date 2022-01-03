@@ -5,7 +5,7 @@ RSpec.describe StatsController, type: :controller do
     end
 
     let!(:some_enrollments_for_stats) do
-      Timecop.freeze(Time.new(2021, Time.now.month, 30))
+      Timecop.freeze(Time.new(2021, 12, 24))
 
       enrollment = create(:enrollment, :franceconnect, :draft)
       create(:event, :create, enrollment: enrollment)
