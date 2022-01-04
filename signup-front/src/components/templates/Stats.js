@@ -103,8 +103,13 @@ export const Stats = ({
       <ListHeader title="Statistiques d’utilisation">
         <TagContainer>
           <NavLink
-            className="fr-tag secondary"
-            activeClassName={'info'}
+            className={(isActive) =>
+              `fr-tag${
+                isActive
+                  ? ' fr-background-flat--info fr-text-inverted--info'
+                  : ''
+              }`
+            }
             exact
             to="/stats"
           >
@@ -113,8 +118,13 @@ export const Stats = ({
           {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
             <NavLink
               key={targetApi}
-              className="fr-tag secondary"
-              activeClassName={'info'}
+              className={(isActive) =>
+                `fr-tag${
+                  isActive
+                    ? ' fr-background-flat--info fr-text-inverted--info'
+                    : ''
+                }`
+              }
               exact
               to={`/stats/${targetApi}`}
             >
