@@ -78,13 +78,8 @@ const demarches = {
 
 const steps = ['franceconnect', 'api_droits_cnam'];
 
-const ApiDroitsCnam = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiDroitsCnam = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api="api_droits_cnam"
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}

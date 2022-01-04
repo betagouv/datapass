@@ -57,13 +57,8 @@ const editorList = [
 
 const target_api = 'le_taxi';
 
-const LeTaxi = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const LeTaxi = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}

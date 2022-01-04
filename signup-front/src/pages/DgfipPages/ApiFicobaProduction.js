@@ -12,13 +12,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_ficoba_production';
 const steps = ['api_ficoba_sandbox', target_api];
 
-const ApiFicobaProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiFicobaProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"

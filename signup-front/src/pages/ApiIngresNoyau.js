@@ -58,13 +58,8 @@ const availableScopes = [
 
 const target_api = 'api_ingres_noyau';
 
-const ApiIngresNoyau = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiIngresNoyau = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cisirh}
     documentationUrl={getDefaultDocumentationUrl(target_api)}

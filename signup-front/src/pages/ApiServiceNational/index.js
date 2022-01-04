@@ -21,13 +21,8 @@ const availableScopes = [
 
 const target_api = 'api_service_national';
 
-const ApiServiceNational = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiServiceNational = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}

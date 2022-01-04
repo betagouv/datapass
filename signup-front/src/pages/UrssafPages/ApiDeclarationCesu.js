@@ -51,13 +51,8 @@ const availableScopes = [
   },
 ];
 
-const ApiDeclarationCesu = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiDeclarationCesu = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.urssaf}
     documentationUrl={getDefaultDocumentationUrl(target_api)}

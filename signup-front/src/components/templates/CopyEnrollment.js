@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { copyEnrollment } from '../../services/enrollments';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { getErrorMessages } from '../../lib';
 import Loader from '../atoms/Loader';
 import { Linkify } from '../molecules/Linkify';
 import Alert from '../atoms/Alert';
 
-const CopyEnrollment = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => {
+const CopyEnrollment = () => {
+  const { enrollmentId } = useParams();
+
   const [copyErrorMessage, setCopyErrorMessage] = useState(null);
   const [copiedEnrollmentId, setCopiedEnrollmentId] = useState(null);
   const [copiedTargetApi, setCopiedTargetApi] = useState(null);
@@ -75,22 +72,6 @@ const CopyEnrollment = ({
       <Loader />
     </div>
   );
-};
-
-CopyEnrollment.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-CopyEnrollment.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
 };
 
 export default CopyEnrollment;

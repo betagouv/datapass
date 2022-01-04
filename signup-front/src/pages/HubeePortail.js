@@ -34,13 +34,8 @@ const initialContacts = {
 
 const target_api = 'hubee_portail';
 
-const HubeePortail = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const HubeePortail = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.hubee}
     documentationUrl="https://www.numerique.gouv.fr/dinum/"

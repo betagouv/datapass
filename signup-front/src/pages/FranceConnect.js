@@ -117,13 +117,8 @@ export const availableScopes = [
   },
 ];
 
-const FranceConnect = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const FranceConnect = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api="franceconnect"
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.franceconnect}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"

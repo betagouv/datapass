@@ -58,13 +58,8 @@ const availableScopes = [
 
 const target_api = 'api_ingres_nomenclatures';
 
-const ApiIngresNomenclatures = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiIngresNomenclatures = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cisirh}
     documentationUrl={getDefaultDocumentationUrl(target_api)}

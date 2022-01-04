@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { ScrollableLink } from './Scrollable';
 import { goBack } from '../../lib';
 import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
@@ -16,8 +15,9 @@ const Nav = ({
   sectionLabels = [],
   contactEmail = '',
   documentationUrl,
-  history,
 }) => {
+  const history = useHistory();
+
   const navElements = useMemo(
     () =>
       sectionLabels.map((sectionName) => ({
@@ -94,18 +94,4 @@ const Nav = ({
   );
 };
 
-Nav.propTypes = {
-  sectionLabels: PropTypes.array.isRequired,
-  contactEmail: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-    goBack: PropTypes.func.isRequired,
-    location: PropTypes.shape({
-      state: PropTypes.shape({
-        fromList: PropTypes.bool,
-      }),
-    }),
-  }),
-};
-
-export default withRouter(Nav);
+export default Nav;

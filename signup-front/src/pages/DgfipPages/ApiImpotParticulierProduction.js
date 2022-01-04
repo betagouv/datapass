@@ -13,13 +13,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_impot_particulier_production';
 const steps = ['api_impot_particulier_sandbox', target_api];
 
-const ApiImpotParticulierProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiImpotParticulierProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"

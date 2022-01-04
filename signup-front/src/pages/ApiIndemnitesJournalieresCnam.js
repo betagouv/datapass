@@ -22,13 +22,8 @@ const steps = ['franceconnect', 'api_indemnites_journalieres_cnam'];
 
 const target_api = 'api_indemnites_journalieres_cnam';
 
-const ApiIndemnitesJournalieresCnam = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiIndemnitesJournalieresCnam = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
     documentationUrl={getDefaultDocumentationUrl(target_api)}

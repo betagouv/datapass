@@ -12,13 +12,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_mire_production';
 const steps = ['api_mire_sandbox', target_api];
 
-const ApiMireProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiMireProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"

@@ -79,13 +79,8 @@ export const availableScopes = [
 
 const target_api = 'api_prestations_sociales';
 
-const ApiPrestationsSociales = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiPrestationsSociales = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}
     documentationUrl={getDefaultDocumentationUrl(target_api)}

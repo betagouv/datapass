@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
@@ -23,6 +22,7 @@ import MultiSelect from '../molecules/MultiSelect';
 import Tag, { TagContainer } from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
 import FileCopyIcon from '../atoms/icons/file_copy';
+import { useHistory } from 'react-router-dom';
 
 const getInboxes = (user) => ({
   primary: {
@@ -451,10 +451,11 @@ class InstructorEnrollmentList extends React.Component {
   }
 }
 
-InstructorEnrollmentList.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
-};
+function withHistory(Component) {
+  return (props) => {
+    const history = useHistory();
+    return <Component {...props} history={history} />;
+  };
+}
 
-export default withUser(InstructorEnrollmentList);
+export default withHistory(withUser(InstructorEnrollmentList));

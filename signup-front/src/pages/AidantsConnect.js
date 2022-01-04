@@ -79,13 +79,8 @@ const additionalTermsOfUse = [
   },
 ];
 
-const AidantsConnect = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const AidantsConnect = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api="aidants_connect"
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.aidants_connect}
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"

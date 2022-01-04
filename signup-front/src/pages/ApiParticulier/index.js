@@ -261,13 +261,8 @@ const editorList = [
 
 const target_api = 'api_particulier';
 
-const ApiParticulier = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiParticulier = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_particulier}

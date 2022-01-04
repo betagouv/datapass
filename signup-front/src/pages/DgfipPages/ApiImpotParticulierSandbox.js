@@ -87,13 +87,8 @@ export const CadreJuridiqueDescription = () => (
 const target_api = 'api_impot_particulier_sandbox';
 const steps = [target_api, 'api_impot_particulier_production'];
 
-const ApiImpotParticulierSandbox = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiImpotParticulierSandbox = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}

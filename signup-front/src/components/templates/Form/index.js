@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
 import { getUserEnrollment } from '../../../services/enrollments';
@@ -21,8 +21,6 @@ export const FormContext = React.createContext();
 
 export const Form = ({
   target_api,
-  enrollmentId = null,
-  history,
   demarches = null,
   children,
   documentationUrl,
@@ -31,6 +29,9 @@ export const Form = ({
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
+  const { enrollmentId } = useParams();
+  const history = useHistory();
+
   const sectionLabels = useMemo(() => {
     return React.Children.map(
       children,
@@ -184,15 +185,6 @@ Form.propTypes = {
   target_api: PropTypes.string.isRequired,
   demarches: PropTypes.any,
   contactEmail: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-    goBack: PropTypes.func.isRequired,
-    location: PropTypes.shape({
-      state: PropTypes.shape({
-        fromList: PropTypes.bool,
-      }),
-    }),
-  }),
 };
 
-export default withRouter(withUser(Form));
+export default withUser(Form);

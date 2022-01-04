@@ -3,10 +3,12 @@ import { get } from 'lodash';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 
-export const NotificationSubSection = ({ location }) => {
+export const NotificationSubSection = () => {
+  const location = useLocation();
+
   const {
     isUserEnrollmentLoading,
     enrollment: { id, acl = {} },
@@ -36,4 +38,4 @@ export const NotificationSubSection = ({ location }) => {
   );
 };
 
-export default withRouter(NotificationSubSection);
+export default NotificationSubSection;

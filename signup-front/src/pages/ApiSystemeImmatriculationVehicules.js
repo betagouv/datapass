@@ -75,12 +75,8 @@ const target_api = 'api_systeme_immatriculation_vehicules';
 
 const steps = ['franceconnect', target_api];
 
-const ApiSystemeImmatriculationVehicules = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
-  <Form enrollmentId={enrollmentId} target_api={target_api}>
+const ApiSystemeImmatriculationVehicules = () => (
+  <Form target_api={target_api}>
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />

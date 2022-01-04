@@ -12,13 +12,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_r2p_production';
 const steps = ['api_r2p_sandbox', target_api];
 
-const ApiR2PProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiR2PProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"

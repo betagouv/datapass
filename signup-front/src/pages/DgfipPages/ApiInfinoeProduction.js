@@ -12,13 +12,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_infinoe_production';
 const steps = ['api_infinoe_sandbox', target_api];
 
-const ApiInfinoeProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiInfinoeProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"

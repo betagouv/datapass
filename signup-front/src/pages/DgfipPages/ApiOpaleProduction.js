@@ -12,13 +12,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_opale_production';
 const steps = ['api_opale_sandbox', target_api];
 
-const ApiOpaleProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiOpaleProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"

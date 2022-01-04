@@ -85,13 +85,8 @@ const accessModes = [
 const target_api = 'api_r2p_sandbox';
 const steps = [target_api, 'api_r2p_production'];
 
-const ApiR2PSandbox = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiR2PSandbox = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}

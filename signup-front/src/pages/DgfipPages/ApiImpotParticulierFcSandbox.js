@@ -49,13 +49,8 @@ const steps = [
   'api_impot_particulier_fc_production',
 ];
 
-const ApiImpotParticulierFcSandbox = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiImpotParticulierFcSandbox = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}

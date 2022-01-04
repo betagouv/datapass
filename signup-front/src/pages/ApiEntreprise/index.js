@@ -307,13 +307,8 @@ const initialContacts = {
   },
 };
 
-const ApiEntreprise = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiEntreprise = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api="api_entreprise"
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_entreprise}

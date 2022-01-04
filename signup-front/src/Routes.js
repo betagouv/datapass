@@ -68,269 +68,271 @@ export const Routes = ({ user }) => {
 
   return (
     <>
-      <Route path="/public/:targetApi?" component={PublicEnrollmentList} />
+      <Route path="/public/:targetApi?" children={<PublicEnrollmentList />} />
 
-      <Route path="/stats/:targetApi?" component={Stats} />
+      <Route path="/stats/:targetApi?" children={<Stats />} />
 
-      <Route path="/accessibilite" component={Accessibilite} />
+      <Route path="/accessibilite" children={<Accessibilite />} />
 
-      <Route path="/faq" component={FAQ} />
+      <Route path="/faq" children={<FAQ />} />
 
       <PrivateRoute
         exact
         path="/"
-        component={
-          user && isEmpty(user.roles) && user.organizations.length < 5
-            ? UserEnrollmentList
-            : AdminEnrollmentList
+        children={
+          user && isEmpty(user.roles) && user.organizations.length < 5 ? (
+            <UserEnrollmentList />
+          ) : (
+            <AdminEnrollmentList />
+          )
         }
       />
 
       <PrivateRoute
         path="/api-particulier/:enrollmentId?"
-        component={ApiParticulier}
+        children={<ApiParticulier />}
       />
 
       <PrivateRoute
         path="/api-impot-particulier-sandbox/:enrollmentId?"
-        component={ApiImpotParticulierSandbox}
+        children={<ApiImpotParticulierSandbox />}
       />
 
       <PrivateRoute
         path="/api-impot-particulier-production/:enrollmentId?"
-        component={ApiImpotParticulierProduction}
+        children={<ApiImpotParticulierProduction />}
       />
 
       <PrivateRoute
         path="/api-impot-particulier-fc-sandbox/:enrollmentId?"
-        component={ApiImpotParticulierFcSandbox}
+        children={<ApiImpotParticulierFcSandbox />}
       />
 
       <PrivateRoute
         path="/api-impot-particulier-fc-production/:enrollmentId?"
-        component={ApiImpotParticulierFcProduction}
+        children={<ApiImpotParticulierFcProduction />}
       />
 
       <PrivateRoute
         path="/api-r2p-sandbox/:enrollmentId?"
-        component={ApiR2PSandbox}
+        children={<ApiR2PSandbox />}
       />
 
       <PrivateRoute
         path="/api-r2p-production/:enrollmentId?"
-        component={ApiR2PProduction}
+        children={<ApiR2PProduction />}
       />
 
       <PrivateRoute
         path="/api-ficoba-sandbox/:enrollmentId?"
-        component={ApiFicobaSandbox}
+        children={<ApiFicobaSandbox />}
       />
 
       <PrivateRoute
         path="/api-ficoba-production/:enrollmentId?"
-        component={ApiFicobaProduction}
+        children={<ApiFicobaProduction />}
       />
 
       <PrivateRoute
         path="/franceconnect/:enrollmentId?"
-        component={FranceConnect}
+        children={<FranceConnect />}
       />
 
       <PrivateRoute
         path="/aidants-connect/:enrollmentId?"
-        component={AidantsConnect}
+        children={<AidantsConnect />}
       />
 
       <PrivateRoute
         path="/api-droits-cnam/:enrollmentId?"
-        component={ApiDroitsCnam}
+        children={<ApiDroitsCnam />}
       />
 
       <PrivateRoute
         path="/api-entreprise/:enrollmentId?"
-        component={ApiEntreprise}
+        children={<ApiEntreprise />}
       />
 
-      <PrivateRoute path="/le-taxi/:enrollmentId?" component={LeTaxi} />
+      <PrivateRoute path="/le-taxi/:enrollmentId?" children={<LeTaxi />} />
 
-      <PrivateRoute path="/cartobio/:enrollmentId?" component={CartoBio} />
+      <PrivateRoute path="/cartobio/:enrollmentId?" children={<CartoBio />} />
 
       <PrivateRoute
         path="/api-service-national/:enrollmentId?"
-        component={ApiServiceNational}
+        children={<ApiServiceNational />}
       />
 
       <PrivateRoute
         path="/api-hermes-sandbox/:enrollmentId?"
-        component={ApiHermesSandbox}
+        children={<ApiHermesSandbox />}
       />
 
       <PrivateRoute
         path="/api-hermes-production/:enrollmentId?"
-        component={ApiHermesProduction}
+        children={<ApiHermesProduction />}
       />
 
       <PrivateRoute
         path="/api-e-contacts-sandbox/:enrollmentId?"
-        component={ApiEContactsSandbox}
+        children={<ApiEContactsSandbox />}
       />
 
       <PrivateRoute
         path="/api-e-contacts-production/:enrollmentId?"
-        component={ApiEContactsProduction}
+        children={<ApiEContactsProduction />}
       />
 
       <PrivateRoute
         path="/api-opale-sandbox/:enrollmentId?"
-        component={ApiOpaleSandbox}
+        children={<ApiOpaleSandbox />}
       />
 
       <PrivateRoute
         path="/api-opale-production/:enrollmentId?"
-        component={ApiOpaleProduction}
+        children={<ApiOpaleProduction />}
       />
 
       <PrivateRoute
         path="/api-mire-sandbox/:enrollmentId?"
-        component={ApiMireSandbox}
+        children={<ApiMireSandbox />}
       />
 
       <PrivateRoute
         path="/api-mire-production/:enrollmentId?"
-        component={ApiMireProduction}
+        children={<ApiMireProduction />}
       />
 
       <PrivateRoute
         path="/api-ocfi-sandbox/:enrollmentId?"
-        component={ApiOcfiSandbox}
+        children={<ApiOcfiSandbox />}
       />
 
       <PrivateRoute
         path="/api-ocfi-production/:enrollmentId?"
-        component={ApiOcfiProduction}
+        children={<ApiOcfiProduction />}
       />
 
       <PrivateRoute
         path="/api-e-pro-sandbox/:enrollmentId?"
-        component={ApiEProSandbox}
+        children={<ApiEProSandbox />}
       />
 
       <PrivateRoute
         path="/api-e-pro-production/:enrollmentId?"
-        component={ApiEProProduction}
+        children={<ApiEProProduction />}
       />
 
       <PrivateRoute
         path="/api-robf-sandbox/:enrollmentId?"
-        component={ApiRobfSandbox}
+        children={<ApiRobfSandbox />}
       />
 
       <PrivateRoute
         path="/api-robf-production/:enrollmentId?"
-        component={ApiRobfProduction}
+        children={<ApiRobfProduction />}
       />
 
       <PrivateRoute
         path="/api-cpr-pro-sandbox/:enrollmentId?"
-        component={ApiCprProSandbox}
+        children={<ApiCprProSandbox />}
       />
 
       <PrivateRoute
         path="/api-cpr-pro-production/:enrollmentId?"
-        component={ApiCprProProduction}
+        children={<ApiCprProProduction />}
       />
 
       <PrivateRoute
         path="/api-infinoe-sandbox/:enrollmentId?"
-        component={ApiInfinoeSandbox}
+        children={<ApiInfinoeSandbox />}
       />
 
       <PrivateRoute
         path="/api-infinoe-production/:enrollmentId?"
-        component={ApiInfinoeProduction}
+        children={<ApiInfinoeProduction />}
       />
 
       <PrivateRoute
         path="/api-tiers-de-prestation/:enrollmentId?"
-        component={ApiTiersDePrestation}
+        children={<ApiTiersDePrestation />}
       />
 
       <PrivateRoute
         path="/api-declaration-cesu/:enrollmentId?"
-        component={ApiDeclarationCesu}
+        children={<ApiDeclarationCesu />}
       />
 
       <PrivateRoute
         path="/api-declaration-auto-entrepreneur/:enrollmentId?"
-        component={ApiDeclarationAutoEntrepreneur}
+        children={<ApiDeclarationAutoEntrepreneur />}
       />
 
       <PrivateRoute
         path="/hubee-portail/:enrollmentId?"
-        component={HubeePortail}
+        children={<HubeePortail />}
       />
 
       <PrivateRoute
         path="/api-pro-sante-connect/:enrollmentId?"
-        component={ApiProSanteConnect}
+        children={<ApiProSanteConnect />}
       />
 
       <PrivateRoute
         path="/api-indemnites-journalieres-cnam/:enrollmentId?"
-        component={ApiIndemnitesJournalieresCnam}
+        children={<ApiIndemnitesJournalieresCnam />}
       />
 
       <PrivateRoute
         path="/api-systeme-immatriculation-vehicules/:enrollmentId?"
-        component={ApiSystemeImmatriculationVehicules}
+        children={<ApiSystemeImmatriculationVehicules />}
       />
 
       <PrivateRoute
         path="/copy-authorization-request/:enrollmentId"
-        component={CopyEnrollment}
+        children={<CopyEnrollment />}
       />
 
       <PrivateRoute
         path="/authorization-request/:enrollmentId"
-        component={Enrollment}
+        children={<Enrollment />}
       />
 
       <PrivateRoute
         path="/api-histovec/:enrollmentId?"
-        component={ApiHistovec}
+        children={<ApiHistovec />}
       />
 
       <PrivateRoute
         path="/api-prestations-sociales/:enrollmentId?"
-        component={ApiPrestationsSociales}
+        children={<ApiPrestationsSociales />}
       />
 
       <PrivateRoute
         path="/api-prestations-sociales-fc/:enrollmentId?"
-        component={ApiPrestationsSocialesFc}
+        children={<ApiPrestationsSocialesFc />}
       />
 
       <PrivateRoute
         path="/api-ensu-dad-sandbox/:enrollmentId?"
-        component={ApiEnsuDadSandbox}
+        children={<ApiEnsuDadSandbox />}
       />
 
       <PrivateRoute
         path="/api-ensu-dad-production/:enrollmentId?"
-        component={ApiEnsuDadProduction}
+        children={<ApiEnsuDadProduction />}
       />
 
       <PrivateRoute
         path="/api-ingres-nomenclatures/:enrollmentId?"
-        component={ApiIngresNomenclatures}
+        children={<ApiIngresNomenclatures />}
       />
 
       <PrivateRoute
         path="/api-ingres-noyau/:enrollmentId?"
-        component={ApiIngresNoyau}
+        children={<ApiIngresNoyau />}
       />
 
-      <PrivateRoute path="/admin" component={Admin} />
+      <PrivateRoute path="/admin" children={<Admin />} />
     </>
   );
 };

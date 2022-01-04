@@ -13,13 +13,8 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_ocfi_sandbox';
 const steps = [target_api, 'api_ocfi_production'];
 
-const ApiOcfiSandbox = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiOcfiSandbox = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"

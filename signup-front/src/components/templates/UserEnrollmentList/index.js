@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { groupBy, isEmpty } from 'lodash';
 import './style.css';
 import { openLink } from '../../../lib';
@@ -11,12 +10,15 @@ import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
 import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
 import ListHeader from '../../molecules/ListHeader';
+import { useHistory } from 'react-router-dom';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
-const UserEnrollmentList = ({ history }) => {
+const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
+
+  const history = useHistory();
 
   useEffect(() => {
     const onFetchData = async () => {
@@ -113,12 +115,6 @@ const UserEnrollmentList = ({ history }) => {
       )}
     </main>
   );
-};
-
-UserEnrollmentList.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
 };
 
 export default UserEnrollmentList;
