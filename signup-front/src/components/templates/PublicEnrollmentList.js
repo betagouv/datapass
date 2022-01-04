@@ -164,8 +164,13 @@ class PublicEnrollmentList extends React.Component {
         <ListHeader title="Liste des habilitations">
           <TagContainer>
             <NavLink
-              className="fr-tag secondary"
-              activeClassName={'info'}
+              className={(isActive) =>
+                `fr-tag${
+                  isActive
+                    ? ' fr-background-flat--info fr-text-inverted--info'
+                    : ''
+                }`
+              }
               exact
               to="/public"
             >
@@ -175,8 +180,13 @@ class PublicEnrollmentList extends React.Component {
               (targetApi) => (
                 <NavLink
                   key={targetApi}
-                  className="fr-tag secondary"
-                  activeClassName={'info'}
+                  className={(isActive) =>
+                    `fr-tag${
+                      isActive
+                        ? ' fr-background-flat--info fr-text-inverted--info'
+                        : ''
+                    }`
+                  }
                   exact
                   to={`/public/${targetApi}`}
                 >
