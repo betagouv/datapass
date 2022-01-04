@@ -38,7 +38,7 @@ export const SearchableSelect = ({
   };
 
   return (
-    <div className="form__group">
+    <div className="fr-input-group">
       <label htmlFor={id}>
         {label}
         {required && ' *'}

@@ -1,23 +1,25 @@
 import React from 'react';
 import Loader from '../../../atoms/Loader';
 import { get, isEmpty } from 'lodash';
+import Alert from '../../../atoms/Alert';
+import HighVoltageEmoji from '../../../atoms/icons/HighVoltageEmoji';
 
 const DemarcheSectionNotification = ({
   isLoading = false,
   selectedDemarcheId,
   demarches,
 }) => (
-  <div className="notification info" style={{ marginTop: '2rem' }}>
+  <>
     {isLoading ? (
       <Loader message="pré-remplissage du formulaire en cours ..." />
     ) : (
-      <div>
-        <b>
-          Formulaire pré-rempli{' '}
-          <span role="img" aria-label="Emoji-eclair">
-            ⚡️
-          </span>
-        </b>
+      <Alert
+        title={
+          <>
+            Formulaire pré-rempli <HighVoltageEmoji />
+          </>
+        }
+      >
         <br />
         Vous avez sélectionné le cas d’usage «{' '}
         <b>
@@ -46,8 +48,8 @@ const DemarcheSectionNotification = ({
         Certains champs du formulaire ont été pré-remplis afin de faciliter
         votre demande. Attention, il est <b>tout de même indispensable</b> que
         vous lisiez la demande et que vous adaptiez les champs selon votre cas.
-      </div>
+      </Alert>
     )}
-  </div>
+  </>
 );
 export default DemarcheSectionNotification;

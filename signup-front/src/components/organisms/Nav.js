@@ -46,11 +46,11 @@ const Nav = ({
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <Button
             onClick={() => goBack(history)}
-            type="light"
+            outline
             icon="arrow-left"
             style={{ margin: '1em 0' }}
           >
-            Toutes mes demandes
+            Toutes mes habilitations
           </Button>
           <div className="fr-sidemenu__title">
             <a href="#head">Formulaire</a>

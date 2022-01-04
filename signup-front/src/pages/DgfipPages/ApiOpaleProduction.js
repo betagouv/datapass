@@ -7,6 +7,7 @@ import VolumetrieSection from '../../components/organisms/form-sections/dgfip-se
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_opale_production';
 const steps = ['api_opale_sandbox', target_api];
@@ -19,11 +20,11 @@ const ApiOpaleProduction = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <ÉquipeInitializerSection />
+    <PreviousEnrollmentSection steps={steps} />
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />

@@ -46,8 +46,8 @@ const QuestionBlock: React.FC<
 };
 
 const FAQ: React.FC<{}> = () => (
-  <section className="section-white">
-    <div className="container">
+  <main>
+    <div className="page-container">
       <h1>FAQ</h1>
       <p>Comment peut-on vous aider ?</p>
       <div className="questions">
@@ -62,7 +62,7 @@ const FAQ: React.FC<{}> = () => (
         ))}
       </div>
     </div>
-  </section>
+  </main>
 );
 
 export default FAQ;

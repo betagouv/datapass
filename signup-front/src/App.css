@@ -1,108 +1,59 @@
-/* page is full screen when loading */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  background: #fff;
+:root {
+  --datapass-blue: #0959b6;
+  --datapass-background-grey: #ebeff3;
 }
 
-#root {
-  display: flex;
-  flex: 1;
-  height: 100%;
-}
-
-.page {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
+header {
+  grid-area: header;
 }
 
 main {
-  flex-grow: 1;
+  grid-area: main;
 }
 
-/* add grey notification */
-.notification.grey {
-  background-color: #e6ecf3;
-  border-color: #748191;
+footer {
+  grid-area: footer;
 }
 
-/* add check mark in steps-form */
-.steps-form li.check-mark::before {
-  content: '\2713';
-  font-weight: bold;
+.page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-rows: 117px auto 280px;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
 }
 
-/* customise steps-form spacing */
-.steps-form {
-  margin-top: 3em;
-  margin-bottom: 3em;
-}
-
-/* add warning in steps-form */
-.steps-form li.warning::before {
-  border-color: var(--orange);
-  color: var(--w);
-  background-color: var(--orange);
-}
-
-.steps-form li.warning.active::before {
-  border-color: var(--orange);
-  color: var(--orange);
-  background-color: var(--w);
-}
-
-.steps-form li.warning::after {
-  background-color: var(--orange);
-}
-
-@media (max-width: 749px) {
-  .steps-form > li > div {
-    justify-content: flex-end;
-    text-align: initial;
-    width: initial;
-    padding: 0 0 1em 0;
-  }
-
-  .steps-form > li {
-    margin: auto;
-    width: 80%;
-  }
-}
-
-/* full width container */
-.full-width-container {
-  padding: 1rem;
-  margin: 0 auto;
-}
-
-.container {
-  padding: 1rem 0;
-  margin: 0 auto;
-}
-
-/* layout full page */
-.layout-full-page {
+.full-page {
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
+  padding: 1.5rem 20%;
 }
 
-/* handle modal layout */
-.modal__backdrop {
-  display: flex;
+@media all and (max-width: 1248px) {
+  .full-page {
+    padding: 1.5rem 5%;
+  }
 }
 
-.fr-modal__body {
-  max-width: 50em;
-  max-height: 90vh;
-  overflow-y: auto;
+.table-container {
+  margin: 0 1.5rem 1.5rem;
 }
 
-/* define datapass blue */
-:root {
-  --datapass-blue: #0959b6;
+.page-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 1.5rem auto 1.5rem;
+}
+
+@media all and (max-width: 1248px) {
+  .page-container {
+    margin: 0 1.5rem 1.5rem;
+    width: calc(100% - 3rem);
+  }
 }

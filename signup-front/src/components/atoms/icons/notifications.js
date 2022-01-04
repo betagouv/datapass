@@ -1,7 +1,10 @@
 import React from 'react';
 
 // Source: https://material.io/tools/icons/?icon=notifications&style=baseline
-const NotificationsIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const NotificationsIcon = ({
+  color = 'var(--text-default-grey)',
+  size = 24,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

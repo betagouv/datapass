@@ -21,10 +21,12 @@ describe("DataPass", () => {
       "Le projet sert à tester de bout en bout la soumission de formulaire",
       "textarea"
     );
-    cy.checkScope("family_name");
-    cy.checkScope("given_name");
-    cy.checkScope("email");
-    cy.get(".fr-modal__footer button.fr-btn:not(.fr-btn--secondary)").should("be.visible");
+    cy.checkBox("scopes.family_name");
+    cy.checkBox("scopes.given_name");
+    cy.checkBox("scopes.email");
+    cy.get(".fr-modal__footer button.fr-btn:not(.fr-btn--secondary)").should(
+      "be.visible"
+    );
     cy.get(".fr-modal__footer button.fr-btn:not(.fr-btn--secondary)").click();
     cy.fillField("data_recipients", "Le testeur");
     cy.fillField("data_retention_period", "12");
@@ -50,14 +52,12 @@ describe("DataPass", () => {
     cy.fillField("team_members[2].email", "jp@donnee-protegee.fr");
     cy.fillField("team_members[2].phone_number", "0606060606");
 
-    cy.get(".form__group > button").click();
+    cy.get("#Les\\%20personnes\\%20impliqu\\%C3\\%A9es button").click();
     cy.fillField("team_members[3].phone_number", "0606060606");
 
-    cy.get('input[name="cgu_approved"]').click();
-    cy.get('input[name="dpo_is_informed"]').click();
-    cy.get(
-      'input[name="additional_content.has_alternative_authentication_methods"]'
-    ).click();
+    cy.checkBox("cgu_approved");
+    cy.checkBox("dpo_is_informed");
+    cy.checkBox("has_alternative_authentication_methods");
 
     cy.get("button.fr-fi-checkbox-line").click();
 

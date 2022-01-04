@@ -52,7 +52,7 @@ const availableScopes = [
   {
     value: 'donnees_ingres_nomenclatures',
     label: 'Ensemble des données INGRES Nomenclatures',
-    mandatory: true,
+    required: true,
   },
 ];
 

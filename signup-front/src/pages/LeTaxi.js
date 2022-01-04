@@ -40,12 +40,12 @@ const availableScopes = [
   {
     value: 'taxis_management',
     label: 'API gestion des taxis',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'hails_management',
     label: 'API gestion des appels',
-    mandatory: true,
+    required: true,
   },
 ];
 

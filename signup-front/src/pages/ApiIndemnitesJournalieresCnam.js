@@ -8,12 +8,13 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
+import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const availableScopes = [
   {
     value: 'cnam_PaiementIndemnitesJournalieres',
     label: 'Période indemnisée et montants journaliers',
-    mandatory: true,
+    required: true,
   },
 ];
 
@@ -29,10 +30,10 @@ const ApiIndemnitesJournalieresCnam = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />

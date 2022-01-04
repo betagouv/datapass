@@ -8,6 +8,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const availableScopes = [
   {
@@ -86,10 +87,10 @@ const ApiDroitsCnam = ({
     enrollmentId={enrollmentId}
     target_api="api_droits_cnam"
     demarches={demarches}
-    steps={steps}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
   >
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />

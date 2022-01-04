@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Helper from '../Helper';
 import { uniqueId } from 'lodash';
+import Label from './Label';
 
 export const Input = ({
   type = 'text',
@@ -21,13 +21,16 @@ export const Input = ({
   const [id] = useState(uniqueId(name));
 
   return (
-    <div className="form__group">
-      <label htmlFor={id}>
-        {label}
-        {required && ' *'}
-        {helper && <Helper title={helper} />}
-      </label>
+    <div className="fr-input-group">
+      <Label
+        id={id}
+        label={label}
+        required={required}
+        helper={helper}
+        meta={meta}
+      />
       <input
+        className="fr-input"
         type={type}
         onChange={onChange}
         name={name}
@@ -39,11 +42,6 @@ export const Input = ({
         required={required}
         {...rest}
       />
-      {meta && (
-        <small className="card__meta">
-          <i>{meta}</i>
-        </small>
-      )}
     </div>
   );
 };

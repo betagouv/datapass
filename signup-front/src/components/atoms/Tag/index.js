@@ -1,11 +1,15 @@
 import React from 'react';
 import './style.css';
 
-const Tag = ({ type = '', onClick, href, children, ...props }) => {
+export const TagContainer = ({ children }) => (
+  <div className="tag-container">{children}</div>
+);
+
+export const Tag = ({ type = '', onClick, href, children, ...props }) => {
   let className = `fr-tag`;
 
   if (type) {
-    className += ` ${type}`;
+    className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
 
   if (href) {

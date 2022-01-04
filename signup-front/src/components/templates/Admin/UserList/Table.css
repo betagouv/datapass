@@ -1,3 +1,8 @@
+.admin-table-container input {
+  appearance: auto;
+  border: solid;
+}
+
 .admin-table-wrapper {
   display: grid;
 }

@@ -1,0 +1,33 @@
+nav {
+  grid-area: nav;
+}
+
+.form-container {
+  grid-area: form-container;
+}
+
+main.dashboard-page {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 300px auto;
+  grid-template-areas: 'nav form-container';
+}
+
+.form-container {
+  max-width: 1200px;
+  margin: 1.5rem auto 1.5rem 0;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6rem;
+}
+
+@media all and (max-width: 768px) {
+  main.dashboard-page {
+    grid-template-columns: 100%;
+    grid-template-areas: 'form-container';
+  }
+  .form-container {
+    padding-left: 2rem;
+  }
+}

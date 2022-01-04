@@ -70,12 +70,12 @@ const availableScopes = [
   {
     value: 'info_vehicule_histovec',
     label: 'Informations sur le véhicule',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'historique_vehicule_histovec',
     label: 'Historique du véhicule',
-    mandatory: true,
+    required: true,
   },
 ];
 

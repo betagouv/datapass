@@ -5,7 +5,7 @@ import Stats from './components/templates/Stats';
 import Accessibilite from './components/templates/Accessibilite';
 import PrivateRoute from './components/organisms/PrivateRoute';
 import { isEmpty } from 'lodash';
-import AdminEnrollmentList from './components/templates/AdminEnrollmentList';
+import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
 import ApiImpotParticulierSandbox from './pages/DgfipPages/ApiImpotParticulierSandbox';
 import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiImpotParticulierFcSandbox from './pages/DgfipPages/ApiImpotParticulierFcSandbox';

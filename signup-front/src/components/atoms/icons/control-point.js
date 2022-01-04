@@ -1,7 +1,10 @@
 import React from 'react';
 
 // Source: https://fonts.google.com/icons?selected=Material%20Icons%3Acontrol_point%3A
-const ControlPointIcon = ({ color = 'var(--g600)', size = 24 }) => (
+const ControlPointIcon = ({
+  color = 'var(--text-default-grey)',
+  size = 24,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}

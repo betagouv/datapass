@@ -15,6 +15,7 @@ import {
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
 import { debounce } from 'lodash';
+import { TagContainer } from '../atoms/Tag';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class PublicEnrollmentList extends React.Component {
 
     this.state = {
       enrollments: [],
-      errors: [],
       loading: true,
       totalPages: 0,
       page: 0,
@@ -157,71 +157,68 @@ class PublicEnrollmentList extends React.Component {
   }
 
   render() {
-    const { enrollments, errors, loading, page, totalPages } = this.state;
+    const { enrollments, loading, page, totalPages } = this.state;
 
     return (
-      <section className="section-grey full-width-container">
-        <ListHeader title="Liste des demandes validées">
-          <NavLink
-            className="fr-tag secondary"
-            activeClassName={'info'}
-            exact
-            to="/public"
-          >
-            Toutes les demandes
-          </NavLink>
-          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+      <main>
+        <ListHeader title="Liste des habilitations">
+          <TagContainer>
             <NavLink
-              key={targetApi}
               className="fr-tag secondary"
               activeClassName={'info'}
               exact
-              to={`/public/${targetApi}`}
+              to="/public"
             >
-              {DATA_PROVIDER_LABELS[targetApi]}
+              Toutes les demandes
             </NavLink>
-          ))}
+            {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
+              (targetApi) => (
+                <NavLink
+                  key={targetApi}
+                  className="fr-tag secondary"
+                  activeClassName={'info'}
+                  exact
+                  to={`/public/${targetApi}`}
+                >
+                  {DATA_PROVIDER_LABELS[targetApi]}
+                </NavLink>
+              )
+            )}
+          </TagContainer>
         </ListHeader>
-        <div className="panel">
-          <div className="enrollment-table">
-            {errors.map((error) => (
-              <div key={error} className="notification error">
-                {error}
-              </div>
-            ))}
-            <ReactTable
-              manual
-              data={enrollments}
-              pages={totalPages}
-              columns={this.getColumnConfiguration()}
-              getTdProps={(state, rowInfo, column) => ({
-                title: this.getTitle({ column, rowInfo }),
-              })}
-              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-              getPaginationProps={() => ({
-                style: enrollmentListStyle.pagination,
-              })}
-              style={enrollmentListStyle.table}
-              className="-highlight"
-              loading={loading}
-              showPageSizeOptions={false}
-              pageSize={10}
-              page={page}
-              onPageChange={this.onPageChange}
-              onFetchData={this.debouncedFetchData}
-              resizable={false}
-              sortable={false}
-              previousText="Précédent"
-              nextText="Suivant"
-              loadingText="Chargement..."
-              noDataText={'Aucune demande'}
-              pageText="Page"
-              ofText="sur"
-              rowsText="lignes"
-            />
-          </div>
+        <div className="table-container">
+          <ReactTable
+            manual
+            data={enrollments}
+            pages={totalPages}
+            columns={this.getColumnConfiguration()}
+            getTdProps={(state, rowInfo, column) => ({
+              title: this.getTitle({ column, rowInfo }),
+            })}
+            getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+            getPaginationProps={() => ({
+              style: enrollmentListStyle.pagination,
+            })}
+            style={enrollmentListStyle.table}
+            className="-highlight"
+            loading={loading}
+            showPageSizeOptions={false}
+            pageSize={10}
+            page={page}
+            onPageChange={this.onPageChange}
+            onFetchData={this.debouncedFetchData}
+            resizable={false}
+            sortable={false}
+            previousText="Précédent"
+            nextText="Suivant"
+            loadingText="Chargement..."
+            noDataText={'Aucune habilitation'}
+            pageText="Page"
+            ofText="sur"
+            rowsText="lignes"
+          />
         </div>
-      </section>
+      </main>
     );
   }
 }

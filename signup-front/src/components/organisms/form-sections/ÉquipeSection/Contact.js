@@ -58,7 +58,7 @@ export const Contact = ({
       !email &&
       !phone_number &&
       !job && (
-        <div className="form__group">
+        <div style={{ marginBottom: '1.5rem' }}>
           <Button outline onClick={() => onFillWithUserInformation(index)}>
             🖐️ c’est moi : remplir avec mes info
           </Button>

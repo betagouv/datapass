@@ -12,11 +12,14 @@ const WelcomeMessage = ({
   <>
     {isOnNewEnrollmentPage ? (
       <>
-        <h3>Bienvenue !</h3>
         <div className="call-to-action">
-          {newEnrollmentPageMessage ||
-            `Vous souhaitez connecter votre service en ligne à « ${DATA_PROVIDER_LABELS[targetApi]} »`}
-          , l’obtention de votre habilitation va se dérouler en 4 étapes :
+          {newEnrollmentPageMessage || (
+            <>
+              Vous souhaitez connecter votre service en ligne à{' '}
+              <b>{DATA_PROVIDER_LABELS[targetApi]}</b>
+            </>
+          )}
+          ,<br /> l’obtention de votre habilitation va se dérouler en 4 étapes :
           <NextSteps targetApi={targetApi} isService={isService} />
           <p>
             Merci de <b>créer un compte</b> pour déposer votre demande
@@ -29,9 +32,8 @@ const WelcomeMessage = ({
       <>
         <h3>Bienvenue sur DataPass !</h3>
         <p>
-          Vous cherchez à accéder à des données protégées pour construire un
-          service en ligne innovant, DataPass remplace les conventions et vous
-          délivre un passe vers la donnée.{' '}
+          DataPass délivre des habilitations pour accéder à l’ensemble des
+          données protégées produites par l’État.{' '}
           <a href="https://beta.gouv.fr/startups/datapass.html">
             En savoir plus
           </a>

@@ -52,7 +52,7 @@ const availableScopes = [
   {
     value: 'donnees_ingres_noyau',
     label: 'Ensemble des données INGRES Noyau',
-    mandatory: true,
+    required: true,
   },
 ];
 

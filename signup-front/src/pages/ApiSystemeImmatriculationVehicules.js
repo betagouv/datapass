@@ -6,6 +6,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
+import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const DonneesDescription = () => (
   <>
@@ -79,7 +80,8 @@ const ApiSystemeImmatriculationVehicules = ({
     params: { enrollmentId },
   },
 }) => (
-  <Form enrollmentId={enrollmentId} target_api={target_api} steps={steps}>
+  <Form enrollmentId={enrollmentId} target_api={target_api}>
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection

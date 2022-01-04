@@ -15,7 +15,7 @@ const availableScopes = [
   {
     value: 'en_regle',
     label: 'État de régularité vis-à-vis des obligations de Service National',
-    mandatory: true,
+    required: true,
   },
 ];
 

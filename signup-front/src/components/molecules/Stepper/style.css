@@ -1,0 +1,200 @@
+
+.steps-form {
+  counter-reset: step;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.steps-form li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-basis: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+}
+
+.steps-form li::before {
+  font-size: 2em;
+  color: var(--text-mention-grey);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  content: counter(step);
+  counter-increment: step;
+  border: 7px solid var(--text-mention-grey);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: block;
+  text-align: center;
+  background-color: white;
+  z-index: 1;
+}
+
+.steps-form li.active::before,
+li.done::before {
+  border-color: var(--background-flat-info);
+  color: var(--background-flat-info);
+}
+
+.steps-form li.done::before {
+  color: white;
+  background-color: var(--background-flat-info);
+}
+
+.steps-form li::after {
+  width: 100%;
+  height: 15px;
+  content: '';
+  position: absolute;
+  background-color: var(--text-mention-grey);
+  top: 23px;
+  left: -50%;
+  z-index: 0;
+}
+
+.steps-form li.active::after,
+li.done::after {
+  background-color: var(--background-flat-info);
+}
+
+.steps-form li:first-child::after {
+  content: none;
+}
+
+@media (max-width: 749px) {
+  .steps-form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 0 0 0 2vw;
+  }
+
+  .steps-form li {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  .steps-form > li > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-left: 2vw;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .steps-form li::after {
+    width: 15px;
+    height: 100%;
+    left: 20px;
+    top: -50%;
+  }
+
+  .steps-form li::before {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    margin: 2vh 0 0;
+  }
+}
+
+/* add check mark in steps-form */
+.steps-form li.check-mark::before {
+  content: '\2713';
+  font-weight: bold;
+}
+
+/* customise steps-form spacing */
+.steps-form {
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+/* add warning in steps-form */
+.steps-form li.warning::before {
+  border-color: var(--background-flat-warning);
+  color: white;
+  background-color: var(--background-flat-warning);
+}
+
+.steps-form li.warning.active::before {
+  border-color: var(--background-flat-warning);
+  color: var(--background-flat-warning);
+  background-color: white;
+}
+
+.steps-form li.warning::after {
+  background-color: var(--background-flat-warning);
+}
+
+@media (max-width: 749px) {
+  .steps-form > li > div {
+    justify-content: flex-end;
+    text-align: initial;
+    width: initial;
+    padding: 0 0 1em 0;
+  }
+
+  .steps-form > li {
+    margin: auto;
+    width: 80%;
+  }
+}
+
+/* fix: contrast accessibility */
+.steps-form li::before {
+  color: var(--text-mention-grey);
+  border-color: var(--text-mention-grey);
+}
+
+.steps-form li::after {
+  background-color: var(--text-mention-grey);
+}
+
+/* fix: steps form style */
+.steps-form li::after {
+  top: 24px;
+  height: 7px;
+}
+
+/* fix: steps form spacing */
+.steps-form {
+  padding-left: 0;
+}
+
+.steps-form > li > div {
+  padding: 0 1em;
+}
+
+/* fix: steps form dsfr conflict */
+ul.steps-form li::before {
+  box-sizing: initial;
+  padding-right: initial;
+}
+
+/* fix: missing selector for done step-form */
+.steps-form li.done::before {
+  border-color: var(--background-flat-info);
+}
+
+.steps-form li.done::after {
+  background-color: var(--background-flat-info);
+}

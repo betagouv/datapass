@@ -60,7 +60,7 @@ describe('utils', () => {
       };
 
       expect(getErrorMessages(errorObject)).toEqual([
-        'Une erreur de connection au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à l’administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à contact@api.gouv.fr.',
+        'Une erreur de connexion au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à l’administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à contact@api.gouv.fr.',
       ]);
     });
 

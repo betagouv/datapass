@@ -1,6 +1,6 @@
 import React from 'react';
 import { hashToQueryParams } from '../../../lib';
-import './index.css';
+import './style.css';
 import {
   DATA_PROVIDER_ICONS,
   DATA_PROVIDER_LABELS,
@@ -105,7 +105,7 @@ export const Login = () => {
     !window.location.pathname.split('/')[2];
 
   return (
-    <section className="section-grey layout-full-page">
+    <section className="full-page">
       <div className="container">
         <div className="panel" style={{ textAlign: 'center' }}>
           {DATA_PROVIDER_ICONS[targetApi] && (
@@ -113,6 +113,7 @@ export const Login = () => {
               src={`/images/${DATA_PROVIDER_ICONS[targetApi]}`}
               alt={`Logo ${DATA_PROVIDER_LABELS[targetApi]}`}
               height="90"
+              style={{ margin: '1.5rem' }}
             />
           )}
           <WelcomeMessageRouter

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { groupBy } from 'lodash';
-import './UserEnrollments.css';
+import { groupBy, isEmpty } from 'lodash';
+import './style.css';
 import { openLink } from '../../../lib';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
 import Button from '../../atoms/Button';
 import ButtonGroup from '../../molecules/ButtonGroup';
+import Alert from '../../atoms/Alert';
+import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
+import ListHeader from '../../molecules/ListHeader';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -35,71 +38,80 @@ const UserEnrollmentList = ({ history }) => {
   };
 
   return (
-    <div className="user-enrollments-page">
-      <div className="container header">
-        <h1>Toutes mes demandes</h1>
+    <main className="user-enrollments-page">
+      <ListHeader title="Toutes mes habilitations">
         <div>
           <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
             Faire une nouvelle demande pour :
           </p>
           <ButtonGroup>
-            <Button large href={`${API_GOUV_HOST}/datapass/api`}>
+            <Button
+              large
+              href={`${API_GOUV_HOST}/datapass/api`}
+              className="call-to-action-button"
+            >
               une API
             </Button>
-            <Button large href="/aidants-connect">
+            <Button
+              large
+              href="/aidants-connect"
+              className="call-to-action-button"
+            >
               Aidants Connect
             </Button>
           </ButtonGroup>
         </div>
-      </div>
+      </ListHeader>
 
-      <section className="section-grey enrollments-section">
-        {isLoading ? (
-          <div className="layout-full-page">
-            <Loader />
-          </div>
-        ) : (
-          <div className="container">
-            {Object.keys(enrollmentsByOrganization).length > 0 ? (
-              <>
-                {Object.keys(enrollmentsByOrganization).map((group) => (
-                  <div key={group}>
-                    <div className="organisation">
-                      {enrollmentsByOrganization[group][0].nom_raison_sociale}
-                    </div>
-                    <div className="enrollments-list">
-                      {enrollmentsByOrganization[group].map((enrollment) => (
-                        <Enrollment
-                          key={enrollment.id}
-                          {...enrollment}
-                          onSelect={handleSelectEnrollment}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <div className="notification">
-                <p>Vous n’avez aucune demande en cours :</p>
-                <ul>
-                  <li>
-                    <a href={`${API_GOUV_HOST}/datapass/api`}>
-                      Soumettre une demande API
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/aidants-connect">
-                      Soumettre une demande AidantsConnect
-                    </a>
-                  </li>
-                </ul>
+      {isLoading && (
+        <div className="full-page">
+          <Loader />
+        </div>
+      )}
+
+      {!isLoading && isEmpty(enrollmentsByOrganization) && (
+        <div className="full-page">
+          <Alert title="Vous n’avez aucune habilitation en cours">
+            <p>
+              <IndexPointingRightEmoji />
+              {' '}
+              <a href={`${API_GOUV_HOST}/datapass/api`}>
+                Soumettre une demande API
+              </a>
+            </p>
+            <p>
+              <IndexPointingRightEmoji />
+              {' '}
+              <a href="/aidants-connect">
+                Soumettre une demande AidantsConnect
+              </a>
+            </p>
+          </Alert>
+        </div>
+      )}
+
+      {!isLoading && !isEmpty(enrollmentsByOrganization) && (
+        <div
+          className="page-container user-enrollments-list-container"
+          style={{ marginTop: 0 }}
+        >
+          {Object.keys(enrollmentsByOrganization).map((group) => (
+            <React.Fragment key={group}>
+              <div className="user-enrollments-organisation-label fr-text--lead">
+                {enrollmentsByOrganization[group][0].nom_raison_sociale}
               </div>
-            )}
-          </div>
-        )}
-      </section>
-    </div>
+              {enrollmentsByOrganization[group].map((enrollment) => (
+                <Enrollment
+                  key={enrollment.id}
+                  {...enrollment}
+                  onSelect={handleSelectEnrollment}
+                />
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+    </main>
   );
 };
 

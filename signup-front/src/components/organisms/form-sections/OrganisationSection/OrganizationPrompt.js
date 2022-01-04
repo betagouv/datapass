@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import AriaModal from '@justfixnyc/react-aria-modal';
 import { collectionWithKeyToObject } from '../../../../lib';
 import { isEmpty } from 'lodash';
 import { getCachedOrganizationInformationPool } from '../../../../services/external';
-import Button from '../../../atoms/Button';
-import Link from '../../../atoms/Link';
+import RadioInput from '../../../atoms/inputs/RadioInput';
+import ConfirmationModal from '../../ConfirmationModal';
+import { ExternalLinkIcon } from '../../../atoms/icons/fr-fi-icons';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -20,6 +20,7 @@ const OrganizationPrompt = ({
   const [siretToNomRaisonSociale, setSiretToNomRaisonSociale] = useState(
     collectionWithKeyToObject(organizations.map(({ siret }) => ({ id: siret })))
   );
+
   useEffect(() => {
     const fetchCachedOrganizationInformationPool = async (organizations) => {
       try {
@@ -44,73 +45,41 @@ const OrganizationPrompt = ({
     }
   }, [organizations]);
 
+  const options = useMemo(
+    () =>
+      organizations.map(({ id, siret }) => ({
+        id,
+        label: siretToNomRaisonSociale[siret]
+          ? siretToNomRaisonSociale[siret].title
+          : siret,
+      })),
+    [organizations, siretToNomRaisonSociale]
+  );
+
+  const handleJoinOrganization = () =>
+    (window.location = `${BACK_HOST}/api/users/join_organization`);
+
   return (
-    <AriaModal
-      titleText="Sélectionnez l’organisation à associer à cette demande :"
-      // we use this no op function to close the modal
-      onExit={() => onClose()}
-      focusDialog
-      getApplicationNode={() => document.getElementById('root')}
-      scrollDisabled={false}
-    >
-      <div
-        className="modal__backdrop"
-        // we use this no op function to close the modal
-        onClick={() => onClose()}
+    <>
+      <ConfirmationModal
+        title="Sélectionnez l’organisation à associer à cette demande"
+        handleCancel={() => onClose()}
+        handleConfirm={handleJoinOrganization}
+        confirmLabel={
+          <>
+            Faire une demande pour une autre organisation{' '}
+            <ExternalLinkIcon color="inherit" />
+          </>
+        }
       >
-        <div className="fr-modal__body" onClick={(e) => e.stopPropagation()}>
-          <div className="fr-modal__header">
-            <Link
-              closeButton
-              onClick={() => onClose()}
-              aria-label="Conserver l’organisation actuelle"
-            >
-              Fermer
-            </Link>
-          </div>
-          <div className="fr-modal__content">
-            <h1 className="fr-modal__title">
-              Faire une demande pour une autre organisation
-            </h1>
-            <div className="form__group">
-              <fieldset>
-                <legend>
-                  Sélectionnez l’organisation à associer à cette demande :
-                </legend>
-                {organizations.map(({ id, siret }) => (
-                  <div key={id}>
-                    <input
-                      type="radio"
-                      id={id}
-                      value={id}
-                      checked={id === selectedOrganizationId}
-                      // Use onClick in addition of onChange because it allows to
-                      // handle clicks on the already selected value.
-                      onClick={handleChange}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor={id} className="label-inline">
-                      {(siretToNomRaisonSociale[siret] &&
-                        siretToNomRaisonSociale[siret].title) ||
-                        siret}
-                    </label>
-                  </div>
-                ))}
-              </fieldset>
-            </div>
-          </div>
-          <div className="fr-modal__footer">
-            <Button
-              large
-              outline
-              href={`${BACK_HOST}/api/users/join_organization`}
-            >
-              Faire une demande pour une autre organisation
-            </Button>
-          </div>
-        </div>
-      </div>
-    </AriaModal>
+        <RadioInput
+          options={options}
+          name="organization_id"
+          value={selectedOrganizationId}
+          onChange={handleChange}
+        />
+      </ConfirmationModal>
+    </>
   );
 };
 

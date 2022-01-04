@@ -1,0 +1,100 @@
+.datapass_fieldset_grid .fr-fieldset__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5em;
+}
+
+@media all and (max-width: 1248px) {
+  .datapass_fieldset_grid .fr-fieldset__content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media all and (max-width: 768px) {
+  .datapass_fieldset_grid .fr-fieldset__content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.datapass_fieldset_grid .fr-checkbox-group .fr-label {
+  align-items: flex-start;
+}
+
+/* The following rules are derived from fr-fieldset--inline */
+.datapass_fieldset_grid .fr-fieldset__content {
+  margin: -0.75rem 0;
+}
+
+.datapass_fieldset_grid .fr-checkbox-group {
+  display: inline-flex;
+  margin-bottom: 0;
+}
+
+.datapass_fieldset_grid .fr-checkbox-group:first-child {
+  margin-top: 0;
+}
+
+.datapass_fieldset_grid .fr-checkbox-group:not(:last-child) {
+  margin-right: 1.25rem;
+}
+
+.datapass_fieldset_grid .fr-checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-group {
+  display: inline-flex;
+}
+
+.datapass_fieldset_grid .fr-radio-group:not(:last-child) input[type="radio"] + label {
+  margin-right: 1.75rem;
+}
+
+.datapass_fieldset_grid .fr-radio-group:first-child {
+  margin-top: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-group:first-child input[type="radio"] + label {
+  margin-top: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-group:last-child {
+  margin-bottom: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-group:last-child input[type="radio"] + label {
+  margin-bottom: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-rich:not(:last-child) input[type="radio"] + label {
+  margin-right: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.datapass_fieldset_grid .fr-radio-rich:not(:last-child) .fr-radio-rich__img {
+  right: 1rem;
+}
+
+.datapass_fieldset_grid .fr-radio-rich:last-child {
+  margin-bottom: 0;
+}
+
+.datapass_fieldset_grid .fr-radio-rich:last-child input[type="radio"] + label {
+  margin-bottom: 0.75rem;
+}
+
+.datapass_fieldset_grid .fr-radio-rich:first-child .fr-radio-rich__img {
+  top: 1rem;
+}
+
+.datapass_fieldset_grid .fr-radio-rich__img {
+  top: 0.75rem;
+}
+
+.datapass_fieldset_grid .fr-hint-text + .fr-fieldset__content .fr-radio-rich:first-child input[type="radio"] + label {
+  margin-top: 1.5rem;
+}
+
+.datapass_fieldset_grid .fr-radio-group:last-child input[type="radio"] + label[style*='background-image:'], .datapass_fieldset_grid .fr-radio-group:last-child input[type="radio"] + label[class^="fr-ifi-"], .datapass_fieldset_grid .fr-radio-group:last-child input[type="radio"] + label[class*=" fr-ifi-"] {
+  margin-bottom: 0.5rem !important;
+}

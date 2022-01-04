@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { union, xor } from 'lodash';
-import './index.css';
+import './style.css';
+import CheckboxInput from '../../atoms/inputs/CheckboxInput';
+import FieldsetWrapper from '../../atoms/inputs/FieldsetWrapper';
 
 export const MultiSelect = ({
   options = [],
@@ -42,27 +44,19 @@ export const MultiSelect = ({
       </div>
       {isContentOpen && (
         <>
-          <div className="multiselect-dropdown-content">
+          <FieldsetWrapper small className="multiselect-dropdown-content">
             {options.map(({ key, label }) => (
               <div key={key} className="multiselect-dropdown-item">
-                <input
-                  type="checkbox"
+                <CheckboxInput
                   name={key}
-                  id={`multiselect-option-${key}`}
-                  disabled={disabled}
+                  label={label}
                   onChange={handleChange}
-                  checked={values.includes(key)}
+                  value={values.includes(key)}
+                  disabled={disabled}
                 />
-                <label
-                  htmlFor={`multiselect-option-${key}`}
-                  className="label-inline"
-                  aria-label="Périmètre de données « CNAF - Quotient familial »"
-                >
-                  {label}
-                </label>
               </div>
             ))}
-          </div>
+          </FieldsetWrapper>
 
           <div
             className="multiselect-dropdown-backdrop"

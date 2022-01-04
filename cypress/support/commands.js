@@ -10,8 +10,8 @@ Cypress.Commands.add("login", (email, password) => {
   });
 });
 
-Cypress.Commands.add("checkScope", (scope) => {
-  cy.get(`input[name="scopes.${scope}"]`).click();
+Cypress.Commands.add("checkBox", (checkbox) => {
+  cy.get(`label[for*="${checkbox}"]`).click({ position: "left" });
 });
 
 Cypress.Commands.add("fillField", (fieldName, value, fieldType = "input") => {

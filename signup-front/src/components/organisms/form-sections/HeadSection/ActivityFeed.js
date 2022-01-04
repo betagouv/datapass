@@ -3,58 +3,58 @@ import PropTypes from 'prop-types';
 import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
 
-import CheckCircleIcon from '../../atoms/icons/check-circle';
-import InfoIcon from '../../atoms/icons/info';
-import ErrorIcon from '../../atoms/icons/error';
-import FileCopyIcon from '../../atoms/icons/file_copy';
-import WarningIcon from '../../atoms/icons/warning';
-import NotificationsIcon from '../../atoms/icons/notifications';
+import CheckCircleIcon from '../../../atoms/icons/check-circle';
+import InfoIcon from '../../../atoms/icons/info';
+import ErrorIcon from '../../../atoms/icons/error';
+import FileCopyIcon from '../../../atoms/icons/file_copy';
+import WarningIcon from '../../../atoms/icons/warning';
+import NotificationsIcon from '../../../atoms/icons/notifications';
 import './ActivityFeed.css';
-import { getChangelog } from '../../../lib';
-import Button from '../../atoms/Button';
-import { Linkify } from '../../molecules/Linkify';
+import { getChangelog } from '../../../../lib';
+import Button from '../../../atoms/Button';
+import { Linkify } from '../../../molecules/Linkify';
 
 const eventToDisplayableContent = {
   request_changes: {
-    icon: <WarningIcon color={'var(--orange)'} />,
+    icon: <WarningIcon color={'var(--text-default-warning)'} />,
     label: 'a demandé des modifications',
   },
   notify: {
-    icon: <NotificationsIcon color={'var(--orange)'} />,
+    icon: <NotificationsIcon color={'var(--text-default-warning)'} />,
     label: 'a écrit',
   },
   create: {
-    icon: <InfoIcon color={'var(--blue)'} outlined />,
+    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
     label: 'a créé la demande',
   },
   submit: {
-    icon: <InfoIcon color={'var(--blue)'} outlined />,
+    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
     label: 'a soumis la demande',
   },
   validate: {
-    icon: <CheckCircleIcon color={'var(--green)'} />,
+    icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
     label: 'a validé la demande',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   update_contacts: {
-    icon: <InfoIcon color={'var(--blue)'} outlined />,
+    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
     label: 'a mis à jour les contacts',
   },
   update: {
-    icon: <InfoIcon color={'var(--blue)'} outlined />,
+    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
     label: 'a mis à jour la demande',
   },
   refuse: {
-    icon: <ErrorIcon color={'var(--red)'} />,
+    icon: <ErrorIcon color={'var(--text-default-error)'} />,
     label: 'a refusé la demande',
   },
   copy: {
-    icon: <FileCopyIcon color={'var(--blue)'} />,
+    icon: <FileCopyIcon color={'var(--text-default-info)'} />,
     label: 'a copié la demande',
   },
   import: {
-    icon: <InfoIcon color={'var(--blue)'} outlined />,
+    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
     label: 'a importé la demande',
   },
 };
@@ -80,7 +80,10 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
               </button>
             )}
           </div>
-          <div title={moment(updated_at).format('LLLL')} className="event-date">
+          <div
+            title={moment(updated_at).format('LLLL')}
+            className="fr-hint-text"
+          >
             {moment(updated_at).calendar()}
           </div>
         </div>
@@ -135,7 +138,7 @@ class ActivityFeed extends React.Component {
     }
 
     return (
-      <>
+      <div>
         <div className="activity-head">
           <Button
             outline
@@ -157,7 +160,7 @@ class ActivityFeed extends React.Component {
             />
           )
         )}
-      </>
+      </div>
     );
   }
 }

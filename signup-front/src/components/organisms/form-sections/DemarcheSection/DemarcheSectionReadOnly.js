@@ -5,6 +5,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { UserContext } from '../../UserContext';
 import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
+import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 
 const valueToLabel = (key, availableScopes) => {
   const scope = find(availableScopes, { value: key });
@@ -78,7 +79,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
                         {value ? (
                           <span className="text--red">
                             {' '}
-                            ⚠️ Nouvelle donnée demandée
+                            <WarningEmoji /> Nouvelle donnée demandée
                           </span>
                         ) : (
                           <span className="text--green"> Donnée décochée</span>

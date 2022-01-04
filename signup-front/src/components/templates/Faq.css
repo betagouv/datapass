@@ -50,7 +50,7 @@
   transform: rotate(0deg);
 }
 
-@media only screen and (min-width: 1px) and (max-width: 600px) {
+@media only screen and (min-width: 1px) and (max-width: 576px) {
   .questions label {
     padding: 10px 0;
     font-size: 1.2rem;

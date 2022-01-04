@@ -1,0 +1,29 @@
+main.user-enrollments-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--datapass-background-grey);
+}
+
+.user-enrollments-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+a.fr-btn.call-to-action-button {
+  margin-bottom: 0;
+}
+
+@media all and (max-width: 992px) {
+  a.fr-btn.call-to-action-button + a.fr-btn.call-to-action-button {
+    margin-top: 0.5rem;
+  }
+}
+
+.user-enrollments-organisation-label {
+  margin: 1.5rem 0 0;
+  width: 100%;
+}

@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import ActivityFeed from '../Form/ActivityFeed';
+import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
+import Alert from '../../atoms/Alert';
+import { USER_STATUS_LABELS } from '../../../config/status-parameters';
+import { chain } from 'lodash';
 
 const ActivityFeedWrapper = ({ events, status, target_api }) => {
   const [
@@ -25,35 +28,58 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     }
   }, [status, target_api]);
 
-  if (status === 'draft') {
+  const {
+    comment = '',
+    name: lastEventName = '',
+    updated_at = '',
+    user: { email = '' } = {},
+    diff,
+  } = useMemo(
+    () => chain(events).sortBy('updated_at').last().value() || {},
+    [events]
+  );
+
+  if (
+    ['draft', 'changes_requested'].includes(status) &&
+    ['request_changes'].includes(lastEventName)
+  ) {
     return (
-      <div className="notification">
+      <Alert title={USER_STATUS_LABELS[status]} type="warning">
+        Votre demande est incomplète et requiert les modifications suivantes :
+        <div style={{ margin: '1em 0' }}>
+          <EventItem
+            comment={comment}
+            name={lastEventName}
+            updated_at={updated_at}
+            email={email}
+            diff={diff}
+          />
+        </div>
+      </Alert>
+    );
+  }
+
+  if (
+    ['draft', 'changes_requested'].includes(status) &&
+    ['create', 'update'].includes(lastEventName)
+  ) {
+    return (
+      <Alert title={USER_STATUS_LABELS[status]}>
         <p>
           Votre demande est actuellement en cours d’édition. Notre service
           juridique pourra la consulter lorsque vous cliquerez sur "Soumettre la
           demande".
         </p>
-      </div>
+      </Alert>
     );
   }
 
   if (status === 'submitted' && majorityPercentileProcessingTimeInDays > 0) {
     return (
-      <div className="notification">
+      <Alert title={USER_STATUS_LABELS[status]}>
         La majorité des demandes des 6 derniers mois reçoivent une réponse en
         moins de <b>{majorityPercentileProcessingTimeInDays} jours</b>.
-      </div>
-    );
-  }
-
-  if (status === 'changes_requested') {
-    return (
-      <div className="notification warning">
-        Votre demande est incomplète et requiert les modifications suivantes :
-        <div style={{ margin: '1em 0' }}>
-          {events.length > 0 && <ActivityFeed events={events} />}
-        </div>
-      </div>
+      </Alert>
     );
   }
 

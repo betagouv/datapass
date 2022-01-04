@@ -8,8 +8,8 @@ import DemarcheSection from '../../components/organisms/form-sections/DemarcheSe
 import { additionalTermsOfUse, DonneesDescription } from './common';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const demarches = {
   default: {
@@ -93,12 +93,11 @@ const ApiR2PSandbox = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
-    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DemarcheSection />
     <DescriptionSection />

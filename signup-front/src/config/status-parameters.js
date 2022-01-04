@@ -1,4 +1,4 @@
-export const ADMIN_STATUS_LABELS = {
+export const INSTRUCTOR_STATUS_LABELS = {
   submitted: 'À valider',
   changes_requested: 'Retour',
   validated: 'Validée',
@@ -19,5 +19,5 @@ export const STATUS_TO_BUTTON_TYPE = {
   submitted: 'info',
   validated: 'success',
   changes_requested: 'warning',
-  refused: 'danger',
+  refused: 'error',
 };

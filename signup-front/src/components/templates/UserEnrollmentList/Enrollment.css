@@ -1,6 +1,6 @@
 .enrollment {
   width: 100%;
-  background-color: var(--w);
+  background-color: white;
 }
 
 .enrollment-header {
@@ -9,7 +9,7 @@
   flex-flow: wrap;
   align-items: center;
   padding: 1em;
-  border-bottom: 1px solid var(--g400);
+  border-bottom: 1px solid var(--border-default-grey);
 }
 
 .enrollment-header .fs {

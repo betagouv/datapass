@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 
 const Button = ({
   href,
@@ -10,9 +9,10 @@ const Button = ({
   icon,
   iconRight = false,
   children,
+  className = '',
   ...props
 }) => {
-  let className = 'fr-btn';
+  className += ' fr-btn';
 
   if (!large) {
     className += ' fr-btn--sm';
@@ -23,7 +23,7 @@ const Button = ({
   }
 
   if (type) {
-    className += ` ${type}`;
+    className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
 
   if (icon) {

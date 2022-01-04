@@ -30,6 +30,7 @@ import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { Card, CardContainer } from '../molecules/Card';
+import { TagContainer } from '../atoms/Tag';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -91,16 +92,16 @@ export const Stats = ({
 
   if (!stats) {
     return (
-      <section className="section-grey layout-full-page">
+      <section className="full-page">
         <Loader />
       </section>
     );
   }
 
   return (
-    <section className="section-grey stats-page">
-      <div className="container">
-        <ListHeader>
+    <main>
+      <ListHeader title="Statistiques d’utilisation">
+        <TagContainer>
           <NavLink
             className="fr-tag secondary"
             activeClassName={'info'}
@@ -120,187 +121,179 @@ export const Stats = ({
               {DATA_PROVIDER_LABELS[targetApi]}
             </NavLink>
           ))}
-        </ListHeader>
-        <div>
-          <CardContainer>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>Demandes d’habilitation déposées</h3>
+        </TagContainer>
+      </ListHeader>
+      <div className="table-container">
+        <CardContainer>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>Demandes d’habilitation déposées</h3>
+            </div>
+            <div className="stat_card_number">{stats.enrollment_count}</div>
+          </Card>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>Demandes d’habilitation validées</h3>
+              <div className="card__meta">
+                <a href={`/public${targetApi ? `/${targetApi}` : ''}`}>
+                  voir la liste détaillée
+                </a>
               </div>
-              <div className="stat_card_number">{stats.enrollment_count}</div>
-            </Card>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>Demandes d’habilitation validées</h3>
-                <div className="card__meta">
-                  <a href="/public">voir la liste détaillée</a>
-                </div>
-              </div>
-              <div className="stat_card_number">
-                <div>{stats.validated_enrollment_count}</div>
-              </div>
-            </Card>
-          </CardContainer>
-          <CardContainer>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>
-                  Temps moyen de traitement des demandes
-                  <Helper title="temps moyen entre la première soumission d’une demande jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
-                </h3>
-                <div className="card__meta">(en jours)</div>
-              </div>
-              <div className="stat_card_number">
-                {stats.average_processing_time_in_days}
-              </div>
-            </Card>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>
-                  Pourcentage de demandes nécessitant un aller retour
-                  <Helper title="sur les 6 derniers mois" />
-                </h3>
-                <div className="card__meta">(en % des demandes totales)</div>
-              </div>
-              <div className="stat_card_number">{stats.go_back_ratio}</div>
-            </Card>
-          </CardContainer>
-          <CardContainer>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>Demandes d’habilitation déposées</h3>
-              </div>
-              <div className="stat_card_graph">
-                <ResponsiveContainer width={'100%'} height={250}>
-                  <BarChart data={stats.monthly_enrollment_count}>
-                    <XAxis
-                      dataKey="month"
-                      tickFormatter={(value) => moment(value).format('MMM YY')}
-                    />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value, name, props) => [
-                        value,
-                        USER_STATUS_LABELS[name],
-                        props,
-                      ]}
-                      labelFormatter={(value) =>
-                        moment(value).format('MMMM YYYY')
-                      }
-                    />
-                    <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
-                    <CartesianGrid vertical={false} />
-                    <Bar
-                      stackId="count"
-                      dataKey="draft"
-                      fill={USER_STATUS_COLORS['draft']}
-                    />
-                    <Bar
-                      stackId="count"
-                      dataKey="changes_requested"
-                      fill={USER_STATUS_COLORS['changes_requested']}
-                    />
-                    <Bar
-                      stackId="count"
-                      dataKey="submitted"
-                      fill={USER_STATUS_COLORS['submitted']}
-                    />
-                    <Bar
-                      stackId="count"
-                      dataKey="validated"
-                      fill={USER_STATUS_COLORS['validated']}
-                    />
-                    <Bar
-                      stackId="count"
-                      dataKey="refused"
-                      fill={USER_STATUS_COLORS['refused']}
-                    >
-                      <LabelList dataKey="total" position="top" />
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
-          </CardContainer>
-          <CardContainer>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>Répartition des demandes par statut</h3>
-              </div>
-              <div className="stat_card_graph">
-                <ResponsiveContainer width={'100%'} height={250}>
-                  <PieChart>
-                    <Pie
-                      data={stats.enrollment_by_status}
-                      dataKey="count"
-                      label
-                    >
-                      {stats.enrollment_by_status.map((entry, index) => (
-                        <Cell
-                          key={index}
-                          fill={USER_STATUS_COLORS[entry.name]}
-                        />
-                      ))}
-                    </Pie>
-                    <Legend
-                      layout={'vertical'}
-                      align={'right'}
-                      verticalAlign={'middle'}
-                      formatter={(value) => USER_STATUS_LABELS[value]}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
-          </CardContainer>
-          <CardContainer>
-            <Card className="stat_card">
-              <div className="stat_card_head">
-                <h3>Répartition des demandes par API</h3>
-              </div>
-              <div className="stat_card_graph">
-                <ResponsiveContainer width={'100%'} height={450}>
-                  <PieChart>
-                    <Pie
-                      data={stats.enrollment_by_target_api}
-                      dataKey="count"
-                      label
-                    >
-                      {stats.enrollment_by_target_api.map((entry, index) => (
-                        <Cell
-                          key={index}
-                          fill={COLORS[index % COLORS.length]}
-                        />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      formatter={(value, name, props) => [
-                        value,
-                        value === 'others'
-                          ? 'Autres'
-                          : DATA_PROVIDER_LABELS[value],
-                        props,
-                      ]}
-                    />
-                    <Legend
-                      layout={'vertical'}
-                      align={'right'}
-                      verticalAlign={'middle'}
-                      formatter={(value) =>
-                        (value === 'others'
-                          ? 'Autres'
-                          : DATA_PROVIDER_LABELS[value]
-                        ).substring(0, 25)
-                      }
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
-          </CardContainer>
-        </div>
+            </div>
+            <div className="stat_card_number">
+              <div>{stats.validated_enrollment_count}</div>
+            </div>
+          </Card>
+        </CardContainer>
+        <CardContainer>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>
+                Temps moyen de traitement des demandes
+                <Helper title="temps moyen entre la première soumission d’une demande jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
+              </h3>
+              <div className="card__meta">(en jours)</div>
+            </div>
+            <div className="stat_card_number">
+              {stats.average_processing_time_in_days}
+            </div>
+          </Card>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>
+                Pourcentage de demandes nécessitant un aller retour
+                <Helper title="sur les 6 derniers mois" />
+              </h3>
+              <div className="card__meta">(en % des demandes totales)</div>
+            </div>
+            <div className="stat_card_number">{stats.go_back_ratio}</div>
+          </Card>
+        </CardContainer>
+        <CardContainer>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>Demandes d’habilitation déposées</h3>
+            </div>
+            <div className="stat_card_graph">
+              <ResponsiveContainer width={'100%'} height={250}>
+                <BarChart data={stats.monthly_enrollment_count}>
+                  <XAxis
+                    dataKey="month"
+                    tickFormatter={(value) => moment(value).format('MMM YY')}
+                  />
+                  <YAxis />
+                  <Tooltip
+                    formatter={(value, name, props) => [
+                      value,
+                      USER_STATUS_LABELS[name],
+                      props,
+                    ]}
+                    labelFormatter={(value) =>
+                      moment(value).format('MMMM YYYY')
+                    }
+                  />
+                  <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
+                  <CartesianGrid vertical={false} />
+                  <Bar
+                    stackId="count"
+                    dataKey="draft"
+                    fill={USER_STATUS_COLORS['draft']}
+                  />
+                  <Bar
+                    stackId="count"
+                    dataKey="changes_requested"
+                    fill={USER_STATUS_COLORS['changes_requested']}
+                  />
+                  <Bar
+                    stackId="count"
+                    dataKey="submitted"
+                    fill={USER_STATUS_COLORS['submitted']}
+                  />
+                  <Bar
+                    stackId="count"
+                    dataKey="validated"
+                    fill={USER_STATUS_COLORS['validated']}
+                  />
+                  <Bar
+                    stackId="count"
+                    dataKey="refused"
+                    fill={USER_STATUS_COLORS['refused']}
+                  >
+                    <LabelList dataKey="total" position="top" />
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </Card>
+        </CardContainer>
+        <CardContainer>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>Répartition des demandes par statut</h3>
+            </div>
+            <div className="stat_card_graph">
+              <ResponsiveContainer width={'100%'} height={250}>
+                <PieChart>
+                  <Pie data={stats.enrollment_by_status} dataKey="count" label>
+                    {stats.enrollment_by_status.map((entry, index) => (
+                      <Cell key={index} fill={USER_STATUS_COLORS[entry.name]} />
+                    ))}
+                  </Pie>
+                  <Legend
+                    layout={'vertical'}
+                    align={'right'}
+                    verticalAlign={'middle'}
+                    formatter={(value) => USER_STATUS_LABELS[value]}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </Card>
+        </CardContainer>
+        <CardContainer>
+          <Card className="stat_card">
+            <div className="stat_card_head">
+              <h3>Répartition des demandes par API</h3>
+            </div>
+            <div className="stat_card_graph">
+              <ResponsiveContainer width={'100%'} height={450}>
+                <PieChart>
+                  <Pie
+                    data={stats.enrollment_by_target_api}
+                    dataKey="count"
+                    label
+                  >
+                    {stats.enrollment_by_target_api.map((entry, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value, name, props) => [
+                      value,
+                      value === 'others'
+                        ? 'Autres'
+                        : DATA_PROVIDER_LABELS[value],
+                      props,
+                    ]}
+                  />
+                  <Legend
+                    layout={'vertical'}
+                    align={'right'}
+                    verticalAlign={'middle'}
+                    formatter={(value) =>
+                      (value === 'others'
+                        ? 'Autres'
+                        : DATA_PROVIDER_LABELS[value]
+                      ).substring(0, 25)
+                    }
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </Card>
+        </CardContainer>
       </div>
-    </section>
+    </main>
   );
 };
 

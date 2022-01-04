@@ -20,16 +20,12 @@
 }
 
 .event-item + .event-item > .event-content {
-  border-top: 1px solid var(--g400);
+  border-top: 1px solid var(--border-default-grey);
 }
 
 .event-head {
   display: flex;
   justify-content: space-between;
-}
-
-.event-date {
-  color: var(--g600);
 }
 
 .event-comment {

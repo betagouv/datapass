@@ -5,7 +5,7 @@ import ReactTable from 'react-table-6';
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 
-import './AdminEnrollmentList.css';
+import './InstructorEnrollmentList.css';
 
 import {
   getStateFromUrlParams,
@@ -14,19 +14,15 @@ import {
 } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
 import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
-import { ADMIN_STATUS_LABELS } from '../../config/status-parameters';
+import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
 import enrollmentListStyle from './enrollmentListStyle';
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import { withUser } from '../organisms/UserContext';
 import MultiSelect from '../molecules/MultiSelect';
-import Tag from '../atoms/Tag';
+import Tag, { TagContainer } from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
-import Button from '../atoms/Button';
-import ButtonGroup from '../molecules/ButtonGroup';
 import FileCopyIcon from '../atoms/icons/file_copy';
-
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const getInboxes = (user) => ({
   primary: {
@@ -63,13 +59,12 @@ const getInboxes = (user) => ({
   },
 });
 
-class AdminEnrollmentList extends React.Component {
+class InstructorEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       enrollments: [],
-      errors: [],
       loading: true,
       totalPages: 0,
       page: 0,
@@ -213,7 +208,7 @@ class AdminEnrollmentList extends React.Component {
     {
       Header: 'Statut',
       accessor: ({ status, acl, is_renewal }) => ({
-        statusLabel: ADMIN_STATUS_LABELS[status] || null,
+        statusLabel: INSTRUCTOR_STATUS_LABELS[status] || null,
         acl,
         isRenewal: is_renewal,
       }),
@@ -255,10 +250,12 @@ class AdminEnrollmentList extends React.Component {
         );
       },
       Filter: ({ filter, onChange }) => {
-        const options = toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => ({
-          key,
-          label,
-        }));
+        const options = toPairs(INSTRUCTOR_STATUS_LABELS).map(
+          ([key, label]) => ({
+            key,
+            label,
+          })
+        );
 
         return (
           <MultiSelect
@@ -362,7 +359,6 @@ class AdminEnrollmentList extends React.Component {
     const { history } = this.props;
     const {
       enrollments,
-      errors,
       loading,
       page,
       sorted,
@@ -372,103 +368,93 @@ class AdminEnrollmentList extends React.Component {
       totalPages,
     } = this.state;
     return (
-      <section className="section-grey full-width-container">
-        <ListHeader title="Liste des demandes">
-          {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
-            <Tag
-              key={currentInbox}
-              type={inbox === currentInbox ? 'info' : 'secondary'}
-              onClick={() => this.onSelectInbox(currentInbox)}
-            >
-              {getInboxes(this.props.user)[currentInbox].label}
-            </Tag>
-          ))}
-        </ListHeader>
-        <div className="panel">
-          <div className="enrollment-table">
-            {errors.map((error) => (
-              <div key={error} className="notification error">
-                {error}
-              </div>
+      <main>
+        <ListHeader title="Liste des habilitations">
+          <TagContainer>
+            {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
+              <Tag
+                key={currentInbox}
+                type={inbox === currentInbox ? 'info' : ''}
+                onClick={() => this.onSelectInbox(currentInbox)}
+              >
+                {getInboxes(this.props.user)[currentInbox].label}
+              </Tag>
             ))}
-            <ReactTable
-              manual
-              data={enrollments}
-              pages={totalPages}
-              columns={this.getColumnConfiguration()}
-              getTdProps={(state, rowInfo, column) => ({
-                onClick: (e, handleOriginal) => {
-                  if (rowInfo) {
-                    const {
-                      original: { id, target_api },
-                    } = rowInfo;
-                    const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
+          </TagContainer>
+        </ListHeader>
+        <div className="table-container">
+          <ReactTable
+            manual
+            data={enrollments}
+            pages={totalPages}
+            columns={this.getColumnConfiguration()}
+            getTdProps={(state, rowInfo, column) => ({
+              onClick: (e, handleOriginal) => {
+                if (rowInfo) {
+                  const {
+                    original: { id, target_api },
+                  } = rowInfo;
+                  const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
 
-                    this.savePreviouslySelectedEnrollmentId(id);
+                  this.savePreviouslySelectedEnrollmentId(id);
 
-                    openLink(e, history, targetUrl);
-                  }
+                  openLink(e, history, targetUrl);
+                }
 
-                  if (handleOriginal) {
-                    handleOriginal();
-                  }
-                },
-                title: this.getTitle({ column, rowInfo }),
-                className:
-                  rowInfo &&
-                  rowInfo.original.id === previouslySelectedEnrollmentId
-                    ? 'selected'
-                    : null,
-              })}
-              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-              getTheadFilterThProps={() => ({
-                style: enrollmentListStyle.filterThead,
-              })}
-              getPaginationProps={() => ({
-                style: enrollmentListStyle.pagination,
-              })}
-              style={enrollmentListStyle.table}
-              className="-highlight"
-              loading={loading}
-              showPageSizeOptions={false}
-              pageSize={10}
-              page={page}
-              onPageChange={this.onPageChange}
-              sortable={false}
-              sorted={sorted}
-              onSortedChange={this.onSortedChange}
-              filtered={filtered}
-              onFilteredChange={this.onFilteredChange}
-              onFetchData={this.debouncedFetchData}
-              resizable={false}
-              previousText="Précédent"
-              nextText="Suivant"
-              loadingText="Chargement..."
-              noDataText={
-                inbox === 'primary'
-                  ? 'Toute les demandes ont été traitées'
-                  : 'Aucune demande'
-              }
-              pageText="Page"
-              ofText="sur"
-              rowsText="lignes"
-            />
-          </div>
-          <ButtonGroup alignRight>
-            <Button href={`${API_GOUV_HOST}/datapass/api`}>
-              Nouvelle Demande
-            </Button>
-          </ButtonGroup>
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              },
+              title: this.getTitle({ column, rowInfo }),
+              className:
+                rowInfo &&
+                rowInfo.original.id === previouslySelectedEnrollmentId
+                  ? 'selected'
+                  : null,
+            })}
+            getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+            getTheadFilterThProps={() => ({
+              style: enrollmentListStyle.filterThead,
+            })}
+            getPaginationProps={() => ({
+              style: enrollmentListStyle.pagination,
+            })}
+            style={enrollmentListStyle.table}
+            className="-highlight"
+            loading={loading}
+            showPageSizeOptions={false}
+            pageSize={10}
+            page={page}
+            onPageChange={this.onPageChange}
+            sortable={false}
+            sorted={sorted}
+            onSortedChange={this.onSortedChange}
+            filtered={filtered}
+            onFilteredChange={this.onFilteredChange}
+            onFetchData={this.debouncedFetchData}
+            resizable={false}
+            previousText="Précédent"
+            nextText="Suivant"
+            loadingText="Chargement..."
+            noDataText={
+              inbox === 'primary'
+                ? 'Toute les habilitations ont été traitées'
+                : 'Aucune habilitation'
+            }
+            pageText="Page"
+            ofText="sur"
+            rowsText="lignes"
+          />
         </div>
-      </section>
+      </main>
     );
   }
 }
 
-AdminEnrollmentList.propTypes = {
+InstructorEnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
 };
 
-export default withUser(AdminEnrollmentList);
+export default withUser(InstructorEnrollmentList);

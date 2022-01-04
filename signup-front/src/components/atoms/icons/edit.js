@@ -1,7 +1,7 @@
 import React from 'react';
 
 // https://material.io/tools/icons/?icon=edit&style=baseline
-const EditIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
+const EditIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

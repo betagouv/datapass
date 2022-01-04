@@ -17,45 +17,45 @@ const availableScopes = [
   {
     value: 'api040',
     label: 'Estimation des cotisations sociales',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api075',
     label:
       'Récupération de la liste des mandats SEPA rattachés à un compte à partir de son siret ou nir',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api030',
     label: 'Notification de mandat de tierce déclaration',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api031',
     label: 'Annulation de mandat de tierce déclaration',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api071',
     label: 'Révocation d’un mandat SEPA d’un compte',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api020',
     label: 'Récupération de compte URSSAF AE',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'api050',
     label: 'Télédéclaration de chiffres d’affaires',
-    mandatory: true,
+    required: true,
   },
-  { value: 'api060', label: 'Télépaiement SEPA', mandatory: true },
+  { value: 'api060', label: 'Télépaiement SEPA', required: true },
   {
     value: 'api070',
     label:
       'Enregistrement d’un mandat SEPA pour un compte identifié par son siret ou nir',
-    mandatory: true,
+    required: true,
   },
 ];
 

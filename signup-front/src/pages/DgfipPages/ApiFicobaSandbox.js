@@ -5,10 +5,10 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
 import { additionalTermsOfUse } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const availableScopes = [
   {
@@ -22,7 +22,7 @@ const availableScopes = [
   {
     value: 'dgfip_ficoba_compte',
     label: 'Désignation du compte',
-    mandatory: true,
+    required: true,
   },
   {
     value: 'dgfip_ficoba_etablissement_bancaire',
@@ -139,11 +139,10 @@ const ApiFicobaSandbox = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    steps={steps}
     contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
-    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
+    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection

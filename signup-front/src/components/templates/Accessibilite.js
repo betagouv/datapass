@@ -2,8 +2,8 @@ import React from 'react';
 import Button from '../atoms/Button';
 
 const Accessibilite = () => (
-  <section className="section-white">
-    <div className="container">
+  <main>
+    <div className="page-container">
       <h1>Déclaration d’accessibilité</h1>
       <h2>Périmètre d’accessibilité visé</h2>
       <p>
@@ -98,7 +98,7 @@ const Accessibilite = () => (
         Signaler un problème d’accessibilité par email
       </Button>
     </div>
-  </section>
+  </main>
 );
 
 export default Accessibilite;

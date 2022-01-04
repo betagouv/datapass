@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-
 import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';
 import { Link } from 'react-router-dom';
-import Stepper from './Stepper';
+import Stepper from '../../../molecules/Stepper';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { isEmpty } from 'lodash';
+import { ScrollablePanel } from '../../Scrollable';
+import Alert from '../../../atoms/Alert';
+
+const SECTION_LABEL = 'Habilitation associée';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const PreviousEnrollmentSection = ({ steps }) => {
   const {
@@ -70,12 +73,16 @@ const PreviousEnrollmentSection = ({ steps }) => {
   }, [validatedEnrollments, previous_enrollment_id, onChange]);
 
   return (
-    <>
+    <ScrollablePanel scrollableId={SECTION_ID}>
+      <h2>
+        Habilitation{' '}
+        {previousTargetApi ? DATA_PROVIDER_LABELS[previousTargetApi] : ''}{' '}
+        associée
+      </h2>
       {!disabled && !isUserEnrollmentLoading && (
         <>
           <p>
-            La procédure consiste en {steps.length} demandes d’accès
-            distinctes :
+            La procédure consiste en {steps.length} habilitations distinctes :
           </p>
           <Stepper
             steps={steps}
@@ -93,52 +100,43 @@ const PreviousEnrollmentSection = ({ steps }) => {
         !isValidatedEnrollmentsLoading &&
         previousTargetApi &&
         validatedEnrollments.length === 0 && (
-          <div className="form__group">
-            <div className="notification warning">
+          <Alert type="warning">
+            <p>
+              Pour demander l’accès à <b>{DATA_PROVIDER_LABELS[target_api]}</b>,
+              vous devez avoir préalablement obtenu une habilitation à{' '}
+              <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
+            </p>
+            <p>
+              Veuillez{' '}
+              <Link
+                to={{
+                  pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
+                  state: { fromFranceConnectedAPI: target_api },
+                }}
+              >
+                demander votre habilitation à{' '}
+                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
+              </Link>{' '}
+              avant de continuer cette habilitation.
+            </p>
+            {previousTargetApi === 'franceconnect' && (
               <p>
-                Pour demander l’accès à{' '}
-                <b>{DATA_PROVIDER_LABELS[target_api]}</b>
-                {target_api === 'api_impot_particulier_fc_sandbox' && (
-                  <span> en mode FranceConnecté</span>
-                )}
-                , vous devez avoir préalablement obtenu un accès à{' '}
-                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
+                Vous avez déjà accès à FranceConnect mais vous ne retrouvez pas
+                l’habilitation correspondante ? Vos accès datent probablement
+                d’avant la mise en place de ce dispositif. Merci de remplir une
+                nouvelle habilitation FranceConnect. Cette nouvelle habilitation
+                n’interférera pas avec vos accès précédents.
               </p>
-              <p>
-                Veuillez{' '}
-                <Link
-                  to={{
-                    pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
-                    state: { fromFranceConnectedAPI: target_api },
-                  }}
-                >
-                  demander votre accès à{' '}
-                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
-                </Link>{' '}
-                avant de continuer cette demande.
-              </p>
-              {previousTargetApi === 'franceconnect' && (
-                <p>
-                  Vous avez déjà accès à FranceConnect mais vous ne retrouvez
-                  pas la demande correspondante ? Vos accès datent probablement
-                  d’avant la mise en place de ce dispositif. Merci de remplir
-                  une nouvelle demande d’accès à FranceConnect. Cette nouvelle
-                  demande n’interférera pas avec vos accès précédents.
-                </p>
-              )}
-            </div>
-          </div>
+            )}
+          </Alert>
         )}
       {previousTargetApi && (
-        <div className="panel">
-          <h2>
-            Habilitation {DATA_PROVIDER_LABELS[previousTargetApi]} associée
-          </h2>
+        <div style={{ margin: '1.5rem 0' }}>
           {previousTargetApi === 'franceconnect' && (
             <ExpandableQuote title="Pourquoi associer une habilitation FranceConnect ?">
               <>
                 <p>
-                  Lorsque cette demande d’accès à{' '}
+                  Lorsque cette habilitation à{' '}
                   {DATA_PROVIDER_LABELS[target_api]} sera validée vous
                   disposerez des périmètres de données supplémentaires demandés.
                 </p>
@@ -149,25 +147,23 @@ const PreviousEnrollmentSection = ({ steps }) => {
           {!disabled &&
             !isUserEnrollmentLoading &&
             isValidatedEnrollmentsLoading && (
-              <div className="form__group">
+              <>
                 <h4>
-                  Association à votre demande{' '}
+                  Association à votre habilitation{' '}
                   <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                 </h4>
                 <p>
-                  Chargement de vos demandes{' '}
+                  Chargement de vos habilitations{' '}
                   <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
                   ...
                 </p>
-              </div>
+              </>
             )}
           {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
-            <div className="form__group">
-              <div className="notification error">
-                Erreur inconnue lors de la récupération de vos demandes{' '}
-                {DATA_PROVIDER_LABELS[previousTargetApi]}.
-              </div>
-            </div>
+            <Alert title="Erreur" type="error">
+              Erreur inconnue lors de la récupération de vos habilitations{' '}
+              {DATA_PROVIDER_LABELS[previousTargetApi]}.
+            </Alert>
           )}
           {!disabled &&
             !isUserEnrollmentLoading &&
@@ -179,7 +175,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
                       Nom de l’habilitation{' '}
                       <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>{' '}
                       {previousTargetApi === 'franceconnect' ? (
-                        <>de votre démarche</>
+                        <>à associer</>
                       ) : (
                         <>que vous souhaitez poursuivre</>
                       )}
@@ -218,13 +214,10 @@ const PreviousEnrollmentSection = ({ steps }) => {
           )}
         </div>
       )}
-    </>
+    </ScrollablePanel>
   );
 };
 
-PreviousEnrollmentSection.propTypes = {
-  previousTargetApi: PropTypes.string,
-  Description: PropTypes.func,
-};
+PreviousEnrollmentSection.sectionLabel = SECTION_LABEL;
 
 export default PreviousEnrollmentSection;

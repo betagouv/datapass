@@ -4,6 +4,7 @@ import Button from '../atoms/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
 import Link from '../atoms/Link';
 import { InfoIcon } from '../atoms/icons/fr-fi-icons';
+import './ConfirmationModal.css';
 
 const ConfirmationModal = ({
   handleConfirm,
@@ -21,17 +22,21 @@ const ConfirmationModal = ({
     scrollDisabled={false}
     alert
   >
-    <div className="modal__backdrop" onClick={handleCancel}>
-      <div className="fr-modal__body">
+    <div className="datapass_modal_backdrop" onClick={handleCancel}>
+      <div
+        className="fr-modal__body datapass_modal_body"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="fr-modal__header">
           <Link closeButton onClick={handleCancel} aria-label={cancelLabel}>
             Fermer
           </Link>
         </div>
         <div className="fr-modal__content">
-          <h1 className="fr-modal__title">
-            <InfoIcon color="var(--bf500)" />
-            <span style={{ color: 'var(--bf500)' }}>{title}</span>
+          <h1 className="fr-modal__title fr-text-title--blue-france">
+            <InfoIcon color="inherit" />
+            {' '}
+            {title}
           </h1>
           {children}
         </div>
