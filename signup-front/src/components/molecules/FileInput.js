@@ -31,7 +31,7 @@ const FileInput = ({
 
   const areDocumentsTooLarge = (documentsToUpload) => {
     const documentsSizeInMB = documentsToUpload.reduce(
-      (accumulator, { attachment: { size } }) =>
+      (accumulator, { attachment: { size } = {} }) =>
         accumulator + size / 1024 / 1024, // in MB
       0
     );
