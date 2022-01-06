@@ -1,0 +1,10 @@
+name: Manually deploy the application
+
+on: workflow_dispatch
+
+jobs:
+  manual_deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Nothing to do here, workflow dispatch will trigger the deployment via the webhook"
