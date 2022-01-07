@@ -14,7 +14,7 @@ export const Tag = ({ type = '', onClick, href, children, ...props }) => {
   }
 
   if (href) {
-    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRefPattern = /^(https?:\/\/|mailto:|\/docs\/|#)/;
     const isExternalRef = isExternalRefPattern.test(href);
 
     if (isExternalRef) {

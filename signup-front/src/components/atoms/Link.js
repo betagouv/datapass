@@ -25,11 +25,7 @@ const Link = ({
   }
 
   if (href) {
-    // Actually we should also use a <a> element if href:
-    // - start with #
-    // - start with /doc
-    // - start with mailto:
-    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRefPattern = /^(https?:\/\/|mailto:|\/docs\/|#)/;
     const isExternalRef = isExternalRefPattern.test(href);
 
     if (isExternalRef) {
