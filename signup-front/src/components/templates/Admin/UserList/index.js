@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
 import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
@@ -31,10 +31,10 @@ const UserList = () => {
         Filter: TextFilter,
         filter: 'text',
       },
-      ...Object.keys(DATA_PROVIDER_LABELS).map((targetApi) => ({
+      ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) => ({
         Header: () => (
           <span style={{ writingMode: 'vertical-rl' }}>
-            {`${DATA_PROVIDER_LABELS[targetApi]}`}
+            {`${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
           </span>
         ),
         id: targetApi,

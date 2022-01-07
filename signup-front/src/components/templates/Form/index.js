@@ -1,14 +1,18 @@
-import React, { useEffect, useMemo, useReducer, useState } from 'react';
-import PropTypes from 'prop-types';
-import { useHistory, useParams } from 'react-router-dom';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
 import { getUserEnrollment } from '../../../services/enrollments';
 import SubmissionPanel from './SubmissionPanel';
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
-import { getStateFromUrlParams, goBack } from '../../../lib';
+import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
+import { getStateFromUrlParams } from '../../../lib';
 import Nav from '../../organisms/Nav';
-import { withUser } from '../../organisms/UserContext';
 import { Linkify } from '../../molecules/Linkify';
 import { enrollmentReducerFactory } from './enrollmentReducer';
 import './style.css';
@@ -16,6 +20,8 @@ import Alert from '../../atoms/Alert';
 import WarningEmoji from '../../atoms/icons/WarningEmoji';
 import HeadSection from '../../organisms/form-sections/HeadSection';
 import StepperSection from '../../organisms/form-sections/StepperSection';
+import useListItemNavigation from '../hooks/use-list-item-navigation';
+import NotFound from '../../organisms/NotFound';
 
 export const FormContext = React.createContext();
 
@@ -30,7 +36,9 @@ export const Form = ({
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
   const { enrollmentId } = useParams();
-  const history = useHistory();
+  const [hasNotFoundError, setHasNotFoundError] = useState(false);
+  const navigate = useNavigate();
+  const { goBackToList } = useListItemNavigation();
 
   const sectionLabels = useMemo(() => {
     return React.Children.map(
@@ -62,8 +70,9 @@ export const Form = ({
         dispatchSetEnrollment(userEnrollment);
         setIsUserEnrollmentLoading(false);
       } catch (error) {
-        if (error.response && error.response.status === 404) {
-          history.push('/');
+        if ([403, 404].includes(error.response?.status)) {
+          setHasNotFoundError(true);
+          setTimeout(() => goBackToList(), 3000);
         }
       }
     }
@@ -89,41 +98,43 @@ export const Form = ({
       }
       setIsUserEnrollmentLoading(false);
     }
-  }, [enrollmentId, history]);
+  }, [enrollmentId, goBackToList]);
 
   useEffect(() => {
-    const targetApiLabel = `${DATA_PROVIDER_LABELS[target_api]}`;
-    document.title = targetApiLabel;
+    const targetApiLabel = `${DATA_PROVIDER_PARAMETERS[target_api]?.label}`;
 
-    if (enrollment.id)
+    if (targetApiLabel) {
+      document.title = targetApiLabel;
+    }
+
+    if (enrollment.id) {
       document.title = `${enrollment.id} - ${
         enrollment.intitule || targetApiLabel
       }`;
+    }
   }, [enrollment.id, enrollment.intitule, target_api]);
 
   useEffect(() => {
     if (enrollment.id && !window.location.pathname.includes(enrollment.id)) {
-      history.replace(
-        `${window.location.pathname}${
-          window.location.pathname.endsWith('/') ? '' : '/'
-        }${enrollment.id}`,
-        history.state
-      );
+      navigate(`${enrollment.id}`, { replace: true });
     }
-  }, [enrollment.id, history]);
+  }, [enrollment.id, navigate]);
 
-  const handlePostEvent = ({
-    errorMessages = [],
-    successMessages = [],
-    redirectToHome = false,
-  }) => {
-    if (redirectToHome) {
-      return goBack(history);
-    }
+  const handlePostEvent = useCallback(
+    ({ errorMessages = [], successMessages = [], redirectToHome = false }) => {
+      if (redirectToHome) {
+        return goBackToList();
+      }
 
-    setErrorMessages(errorMessages);
-    setSuccessMessages(successMessages);
-  };
+      setErrorMessages(errorMessages);
+      setSuccessMessages(successMessages);
+    },
+    [goBackToList]
+  );
+
+  if (hasNotFoundError) {
+    return <NotFound />;
+  }
 
   return (
     <main className="dashboard-page">
@@ -179,12 +190,4 @@ export const Form = ({
   );
 };
 
-Form.propTypes = {
-  title: PropTypes.string,
-  enrollmentId: PropTypes.string,
-  target_api: PropTypes.string.isRequired,
-  demarches: PropTypes.any,
-  contactEmail: PropTypes.string,
-};
-
-export default withUser(Form);
+export default Form;

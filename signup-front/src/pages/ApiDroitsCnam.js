@@ -7,7 +7,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const availableScopes = [
@@ -76,13 +76,15 @@ const demarches = {
   },
 };
 
-const steps = ['franceconnect', 'api_droits_cnam'];
+const target_api = 'api_droits_cnam';
+
+const steps = ['franceconnect', target_api];
 
 const ApiDroitsCnam = () => (
   <Form
-    target_api="api_droits_cnam"
+    target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
   >
     <PreviousEnrollmentSection steps={steps} />

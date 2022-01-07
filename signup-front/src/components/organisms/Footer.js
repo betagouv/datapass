@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from '../atoms/Link';
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const Footer = () => (
@@ -7,13 +7,13 @@ const Footer = () => (
     <div className="fr-container">
       <div className="fr-footer__body">
         <div className="fr-footer__brand fr-enlarge-link">
-          <a href="/" title="Retour à l’accueil">
+          <Link inline href="/" title="Retour à l’accueil">
             <p className="fr-logo" title="république française">
               république
               <br />
               française
             </p>
-          </a>
+          </Link>
         </div>
         <div className="fr-footer__content">
           <p className="fr-footer__content-desc">
@@ -58,22 +58,22 @@ const Footer = () => (
       <div className="fr-footer__bottom">
         <ul className="fr-footer__bottom-list">
           <li className="fr-footer__bottom-item">
-            <a className="fr-footer__bottom-link" href="/accessibilite">
+            <Link className="fr-footer__bottom-link" href="/accessibilite">
               Accessibilité: partiellement conforme
-            </a>
+            </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <a
+            <Link
               className="fr-footer__bottom-link"
               href={`${API_GOUV_HOST}/apropos`}
             >
               À propos
-            </a>
+            </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <a className="fr-footer__bottom-link" href="/stats">
+            <Link className="fr-footer__bottom-link" href="/stats">
               Statistiques d'utilisation
-            </a>
+            </Link>
           </li>
           <li className="fr-footer__bottom-item">
             <a
@@ -84,9 +84,9 @@ const Footer = () => (
             </a>
           </li>
           <li className="fr-footer__bottom-item">
-            <a className="fr-footer__bottom-link" href="/faq">
+            <Link className="fr-footer__bottom-link" href="/faq">
               Aide
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="fr-footer__bottom-copy">

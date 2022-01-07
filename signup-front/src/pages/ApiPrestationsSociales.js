@@ -6,7 +6,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 export const DonneesDescription = () => (
@@ -82,7 +82,7 @@ const target_api = 'api_prestations_sociales';
 const ApiPrestationsSociales = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />

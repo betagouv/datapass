@@ -4,7 +4,7 @@ import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
-import { UserContext } from '../../UserContext';
+import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
 
@@ -85,7 +85,7 @@ const ÉquipeSection = ({
     onChange,
     enrollment: { team_members = [] },
   } = useContext(FormContext);
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
   const contactConfiguration = useMemo(() => {
     const defaultInitialContacts = {
       demandeur: {

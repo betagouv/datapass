@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { copyEnrollment } from '../../services/enrollments';
-import { Redirect, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { getErrorMessages } from '../../lib';
 import Loader from '../atoms/Loader';
 import { Linkify } from '../molecules/Linkify';
@@ -43,7 +43,7 @@ const CopyEnrollment = () => {
 
   if (copiedEnrollmentId && copiedTargetApi) {
     return (
-      <Redirect
+      <Navigate
         to={{
           pathname: `/${copiedTargetApi.replace(
             /_/g,
@@ -51,6 +51,7 @@ const CopyEnrollment = () => {
           )}/${copiedEnrollmentId}`,
           state: { source: 'copy-authorization-request' },
         }}
+        replace
       />
     );
   }

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash';
-import { UserContext } from '../../UserContext';
+import { useAuth } from '../../AuthContext';
 import { getCachedOrganizationActivityDetails } from '../../../../services/external';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import { isValidNAFCode } from '../../../../lib';
@@ -45,7 +45,7 @@ const OrganisationSection = ({ editorList = [] }) => {
     useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
 
-  const { user, isLoading } = useContext(UserContext);
+  const { user, isLoading } = useAuth();
   const [personalInformation, setPersonalInformation] = useState({});
 
   useEffect(() => {

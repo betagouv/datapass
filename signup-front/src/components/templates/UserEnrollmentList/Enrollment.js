@@ -6,10 +6,7 @@ import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/Button';
 import Tag from '../../atoms/Tag';
-import {
-  DATA_PROVIDER_LABELS,
-  DATA_PROVIDER_ICONS,
-} from '../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import {
   STATUS_TO_BUTTON_TYPE,
   USER_STATUS_LABELS,
@@ -26,7 +23,7 @@ const Enrollment = ({
 }) => {
   const handleClick = useCallback(
     (e) => {
-      onSelect(e, id, target_api);
+      onSelect(target_api, id, e);
     },
     [id, target_api, onSelect]
   );
@@ -43,12 +40,12 @@ const Enrollment = ({
     <div className="enrollment">
       <div className="enrollment-header">
         <div className="fs">
-          {DATA_PROVIDER_LABELS[target_api]}{' '}
-          {DATA_PROVIDER_ICONS[target_api] && (
+          {DATA_PROVIDER_PARAMETERS[target_api]?.label}{' '}
+          {DATA_PROVIDER_PARAMETERS[target_api]?.icon && (
             <div>
               <img
-                src={`/images/${DATA_PROVIDER_ICONS[target_api]}`}
-                alt={`logo ${DATA_PROVIDER_LABELS[target_api]}`}
+                src={`/images/${DATA_PROVIDER_PARAMETERS[target_api]?.icon}`}
+                alt={`logo ${DATA_PROVIDER_PARAMETERS[target_api]?.label}`}
               />
             </div>
           )}

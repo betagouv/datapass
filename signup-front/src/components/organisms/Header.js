@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import {
-  DATA_PROVIDER_ICONS,
-  DATA_PROVIDER_LABELS,
-} from '../../config/data-provider-parameters';
-import { withUser } from './UserContext';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { useAuth } from './AuthContext';
 import { loginUrl } from '../templates/Login';
 import Link from '../atoms/Link';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-const Header = ({ user, logout }) => {
+const Header = () => {
   const [displayContactLink, setDisplayContactLink] = useState();
   const [targetApi, setTargetApi] = useState();
   let location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
-    const targetApiInUrl = Object.keys(DATA_PROVIDER_LABELS).find(
+    const targetApiInUrl = Object.keys(DATA_PROVIDER_PARAMETERS).find(
       (target_api) => {
         return window.location.pathname.startsWith(
           `/${target_api.replace(/_/g, '-')}`
@@ -43,17 +40,17 @@ const Header = ({ user, logout }) => {
                     Française
                   </p>
                 </div>
-                {targetApi && !!DATA_PROVIDER_ICONS[targetApi] && (
+                {targetApi && !!DATA_PROVIDER_PARAMETERS[targetApi]?.icon && (
                   <div className="fr-header__operator">
                     <img
-                      src={`/images/${DATA_PROVIDER_ICONS[targetApi]}`}
+                      src={`/images/${DATA_PROVIDER_PARAMETERS[targetApi]?.icon}`}
                       className="fr-responsive-img"
                       style={{
                         maxHeight: '67px',
                         width: 'auto',
                         maxWidth: '6em',
                       }}
-                      alt={`Logo ${DATA_PROVIDER_LABELS[targetApi]}`}
+                      alt={`Logo ${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
                     />
                   </div>
                 )}
@@ -70,9 +67,9 @@ const Header = ({ user, logout }) => {
                 </div>
               </div>
               <div className="fr-header__service">
-                <a href="/" title="Accueil - api.gouv.fr - DINUM">
+                <Link inline href="/" title="Accueil - api.gouv.fr - DINUM">
                   <p className="fr-header__service-title">api.gouv.fr</p>
-                </a>
+                </Link>
                 <p className="fr-header__service-tagline">
                   habilitations juridiques
                 </p>
@@ -142,13 +139,4 @@ const Header = ({ user, logout }) => {
   );
 };
 
-Header.propTypes = {
-  user: PropTypes.object,
-  logout: PropTypes.func.isRequired,
-};
-
-Header.defaultProps = {
-  user: null,
-};
-
-export default withUser(Header);
+export default Header;

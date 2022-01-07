@@ -91,7 +91,7 @@ export class ScrollableLink extends Component {
           .querySelector(
             `.fr-sidemenu__item a[href="#${this.props.scrollableId}"]`
           )
-          .click();
+          ?.click();
       }
     }, 500);
 

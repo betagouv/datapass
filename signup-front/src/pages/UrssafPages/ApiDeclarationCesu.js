@@ -8,7 +8,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import { CadreJuridiqueDescription } from './common';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_declaration_cesu';
@@ -54,7 +54,7 @@ const availableScopes = [
 const ApiDeclarationCesu = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.urssaf}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />

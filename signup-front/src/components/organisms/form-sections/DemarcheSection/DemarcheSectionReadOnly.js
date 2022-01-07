@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { get, has, isEmpty, find, merge } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
-import { UserContext } from '../../UserContext';
+import { useAuth } from '../../AuthContext';
 import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
@@ -22,7 +22,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
   const { demarche: selectedDemarcheId } = enrollment;
   const {
     user: { roles },
-  } = useContext(UserContext);
+  } = useAuth();
 
   const [modifiedFields, setModifiedFields] = useState([]);
   const [modifiedScopes, setModifiedScopes] = useState({});

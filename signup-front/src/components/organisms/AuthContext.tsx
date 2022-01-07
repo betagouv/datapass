@@ -1,19 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
+import { Login } from '../templates/Login';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export const UserContext = React.createContext();
+type AuthContextType = {
+  user: any;
+  isLoading: boolean;
+  connectionError: string | null;
+  login: () => void;
+  logout: () => void;
+};
 
-export function withUser(Component) {
-  return (props) => (
-    <UserContext.Consumer>
-      {(userProps) => <Component {...props} {...userProps} />}
-    </UserContext.Consumer>
-  );
-}
+export const AuthContext = React.createContext<AuthContextType>(null!);
+
+export const useAuth = () => {
+  return React.useContext(AuthContext);
+};
 
 /**
  * Do not try this at home: trying to modify a state of a component outside react is not recommended!
@@ -33,20 +37,28 @@ export function withUser(Component) {
  *
  * @returns {*}
  */
-export let resetUserContext = () => void 0;
+export let resetAuthContext = (): void => void 0;
 
-export class UserStore extends React.Component {
-  constructor(props) {
+export class AuthStore extends React.Component {
+  _isMounted: boolean;
+  state: {
+    user: any;
+    isLoading: boolean;
+    connectionError: string | null;
+  };
+
+  constructor(props: any) {
     super(props);
 
-    resetUserContext = () =>
-      this.setState({ user: null, isLoading: false, connectionError: false });
+    resetAuthContext = () =>
+      this.setState({ user: null, isLoading: false, connectionError: null });
 
     this.state = {
       user: null,
       isLoading: true,
-      connectionError: false,
+      connectionError: null,
     };
+    this._isMounted = false;
   }
 
   componentDidMount() {
@@ -88,7 +100,7 @@ export class UserStore extends React.Component {
     const { user, isLoading, connectionError } = this.state;
 
     return (
-      <UserContext.Provider
+      <AuthContext.Provider
         value={{
           user,
           isLoading,
@@ -98,15 +110,21 @@ export class UserStore extends React.Component {
         }}
       >
         {children}
-      </UserContext.Provider>
+      </AuthContext.Provider>
     );
   }
 }
 
-UserStore.propTypes = {
-  children: PropTypes.node,
-};
+export const AuthRequired = ({
+  children,
+}: {
+  children: React.ReactNode | null;
+}) => {
+  const { user } = useAuth();
 
-UserStore.defaultProps = {
-  children: null,
+  if (!user) {
+    return <Login />;
+  }
+
+  return children;
 };

@@ -7,7 +7,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_tiers_de_prestation';
@@ -62,7 +62,7 @@ const CadreJuridiqueDescription = () => (
 const ApiTiersDePrestation = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.urssaf}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />

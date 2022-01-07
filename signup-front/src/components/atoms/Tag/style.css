@@ -3,3 +3,7 @@
   flex-wrap: wrap;
   gap: 0.5em;
 }
+
+.tag-container > a:not(.fr-tag) {
+  box-shadow: none;
+}

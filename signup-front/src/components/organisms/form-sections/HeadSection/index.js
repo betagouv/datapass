@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import Tag, { TagContainer } from '../../../atoms/Tag';
 import FileCopyIcon from '../../../atoms/icons/file_copy';
 import {
@@ -10,7 +10,7 @@ import {
 import { FormContext } from '../../../templates/Form';
 import ActivityFeed from './ActivityFeed';
 import { isEmpty } from 'lodash';
-import { NotificationSubSection } from './NotificationSubSection';
+import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
   const {
@@ -25,7 +25,7 @@ export const HeadSection = () => {
         }}
       >
         <>Vous demandez l’accès à</>
-        <h1>{DATA_PROVIDER_LABELS[target_api]}</h1>
+        <h1>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</h1>
         <TagContainer>
           {id && <Tag>Demande n°{id}</Tag>}
           {copied_from_enrollment_id && (

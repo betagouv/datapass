@@ -8,8 +8,9 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
+import Link from '../../components/atoms/Link';
 
 const DonneesDescription = () => (
   <>
@@ -60,9 +61,9 @@ const CadreJuridiqueDescription = () => (
     </p>
     <p>
       Pour en savoir plus, consultez{' '}
-      <a href="https://api.gouv.fr/guides/deliberation-api-part">
+      <Link inline href="https://api.gouv.fr/guides/deliberation-api-part">
         notre guide sur ce qu’est une bonne délibération
-      </a>
+      </Link>
       .
     </p>
   </>
@@ -265,7 +266,7 @@ const ApiParticulier = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_particulier}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection editorList={editorList} />

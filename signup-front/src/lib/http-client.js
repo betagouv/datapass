@@ -1,6 +1,6 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
-import { resetUserContext } from '../components/organisms/UserContext';
+import { resetAuthContext } from '../components/organisms/AuthContext';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -26,7 +26,7 @@ axios.interceptors.response.use(
       new URL(error.config.url).origin === BACK_HOST
     ) {
       // This is bad. Find out why in this function doc !
-      resetUserContext();
+      resetAuthContext();
     }
 
     return Promise.reject(error);

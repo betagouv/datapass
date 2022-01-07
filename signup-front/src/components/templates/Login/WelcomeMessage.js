@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import NextSteps from './NextSteps';
 
 const WelcomeMessage = ({
@@ -16,7 +16,7 @@ const WelcomeMessage = ({
           {newEnrollmentPageMessage || (
             <>
               Vous souhaitez connecter votre service en ligne à{' '}
-              <b>{DATA_PROVIDER_LABELS[targetApi]}</b>
+              <b>{DATA_PROVIDER_PARAMETERS[targetApi]?.label}</b>
             </>
           )}
           ,<br /> l’obtention de votre habilitation va se dérouler en 4 étapes :

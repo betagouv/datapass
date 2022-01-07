@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getUserEnrollment } from '../../services/enrollments';
-import { Redirect, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import Loader from '../atoms/Loader';
 import Alert from '../atoms/Alert';
+import NotFound from '../organisms/NotFound';
 
 const Enrollment = () => {
   const { enrollmentId } = useParams();
@@ -34,22 +35,17 @@ const Enrollment = () => {
 
   if (enrollmentId && targetApi) {
     return (
-      <Redirect
+      <Navigate
         to={{
           pathname: `/${targetApi.replace(/_/g, '-')}/${enrollmentId}`,
         }}
+        replace
       />
     );
   }
 
   if (fetchEnrollmentNotFound) {
-    return (
-      <div className="full-page">
-        <Alert title="Erreur" type="error">
-          Nous n’avons pas trouvé votre demande d’habilitation.
-        </Alert>
-      </div>
-    );
+    return <NotFound />;
   }
 
   if (fetchEnrollmentError) {

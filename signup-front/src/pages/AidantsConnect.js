@@ -5,7 +5,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 
 const initialContacts = {
   demandeur: {
@@ -79,10 +79,12 @@ const additionalTermsOfUse = [
   },
 ];
 
+const target_api = 'aidants_connect';
+
 const AidantsConnect = () => (
   <Form
-    target_api="aidants_connect"
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.aidants_connect}
+    target_api={target_api}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"
   >
     <OrganisationSection />

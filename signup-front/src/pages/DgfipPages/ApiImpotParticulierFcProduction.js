@@ -6,7 +6,7 @@ import RecetteFonctionnelleSection from '../../components/organisms/form-section
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierFcSandbox';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
@@ -16,7 +16,7 @@ const steps = ['franceconnect', 'api_impot_particulier_fc_sandbox', target_api];
 const ApiImpotParticulierProduction = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <ÉquipeInitializerSection />

@@ -4,7 +4,7 @@ import {
   getUserEnrollment,
   serializeEnrollment,
 } from './enrollments';
-import * as UserContext from '../components/organisms/UserContext';
+import * as UserContext from '../components/organisms/AuthContext';
 import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment.json';
 import ENROLLMENTS from '../../mock/api/get-user-enrollments-response.json';
 import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment.json';

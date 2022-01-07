@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { groupBy, isEmpty } from 'lodash';
 import './style.css';
-import { openLink } from '../../../lib';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
@@ -10,7 +9,8 @@ import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
 import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
 import ListHeader from '../../molecules/ListHeader';
-import { useHistory } from 'react-router-dom';
+import useListItemNavigation from '../hooks/use-list-item-navigation';
+import Link from '../../atoms/Link';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -18,7 +18,7 @@ const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
 
-  const history = useHistory();
+  const { goToItem } = useListItemNavigation();
 
   useEffect(() => {
     const onFetchData = async () => {
@@ -33,11 +33,6 @@ const UserEnrollmentList = () => {
 
     onFetchData();
   }, []);
-
-  const handleSelectEnrollment = (e, id, target_api) => {
-    const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
-    openLink(e, history, targetUrl);
-  };
 
   return (
     <main className="user-enrollments-page">
@@ -84,9 +79,9 @@ const UserEnrollmentList = () => {
             <p>
               <IndexPointingRightEmoji />
               {' '}
-              <a href="/aidants-connect">
+              <Link inline href="/aidants-connect">
                 Soumettre une demande AidantsConnect
-              </a>
+              </Link>
             </p>
           </Alert>
         </div>
@@ -106,7 +101,7 @@ const UserEnrollmentList = () => {
                 <Enrollment
                   key={enrollment.id}
                   {...enrollment}
-                  onSelect={handleSelectEnrollment}
+                  onSelect={goToItem}
                 />
               ))}
             </React.Fragment>

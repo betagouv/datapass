@@ -6,23 +6,19 @@ import moment from 'moment';
 
 import './InstructorEnrollmentList.css';
 
-import {
-  getStateFromUrlParams,
-  openLink,
-  setUrlParamsFromState,
-} from '../../lib';
+import { getStateFromUrlParams, setUrlParamsFromState } from '../../lib';
 import { getEnrollments } from '../../services/enrollments';
-import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
 import enrollmentListStyle from './enrollmentListStyle';
 
 import ScheduleIcon from '../atoms/icons/schedule';
-import { withUser } from '../organisms/UserContext';
+import { AuthContext } from '../organisms/AuthContext';
 import MultiSelect from '../molecules/MultiSelect';
 import Tag, { TagContainer } from '../atoms/Tag';
 import ListHeader from '../molecules/ListHeader';
 import FileCopyIcon from '../atoms/icons/file_copy';
-import { useHistory } from 'react-router-dom';
+import useListItemNavigation from './hooks/use-list-item-navigation';
 
 const getInboxes = (user) => ({
   primary: {
@@ -177,7 +173,7 @@ class InstructorEnrollmentList extends React.Component {
     },
     {
       Header: 'Fournisseur',
-      accessor: ({ target_api }) => DATA_PROVIDER_LABELS[target_api],
+      accessor: ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
       id: 'target_api',
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
@@ -192,7 +188,7 @@ class InstructorEnrollmentList extends React.Component {
 
             return {
               key: targetApiKey,
-              label: DATA_PROVIDER_LABELS[targetApiKey],
+              label: DATA_PROVIDER_PARAMETERS[targetApiKey]?.label,
             };
           });
 
@@ -356,7 +352,7 @@ class InstructorEnrollmentList extends React.Component {
   }
 
   render() {
-    const { history } = this.props;
+    const { goToItem } = this.props;
     const {
       enrollments,
       loading,
@@ -394,11 +390,9 @@ class InstructorEnrollmentList extends React.Component {
                   const {
                     original: { id, target_api },
                   } = rowInfo;
-                  const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
-
                   this.savePreviouslySelectedEnrollmentId(id);
 
-                  openLink(e, history, targetUrl);
+                  goToItem(target_api, id, e);
                 }
 
                 if (handleOriginal) {
@@ -451,11 +445,19 @@ class InstructorEnrollmentList extends React.Component {
   }
 }
 
-function withHistory(Component) {
+const withListItemNavigation = (Component) => {
   return (props) => {
-    const history = useHistory();
-    return <Component {...props} history={history} />;
+    const { goToItem } = useListItemNavigation();
+    return <Component {...props} goToItem={goToItem} />;
   };
-}
+};
 
-export default withHistory(withUser(InstructorEnrollmentList));
+const withAuth = (Component) => {
+  return (props) => (
+    <AuthContext.Consumer>
+      {(userProps) => <Component {...props} {...userProps} />}
+    </AuthContext.Consumer>
+  );
+};
+
+export default withListItemNavigation(withAuth(InstructorEnrollmentList));

@@ -11,6 +11,7 @@ import {
   isValidNAFCode,
   isValidPhoneNumber,
   isIndividualEmailAddress,
+  dataProviderParametersToContactInfo,
 } from './index';
 import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
 
@@ -633,6 +634,53 @@ describe('utils', () => {
           count: 6,
         },
       ]);
+    });
+  });
+
+  describe('dataProviderParametersToContactInfo', () => {
+    it('should return stacked contact info', () => {
+      const parameters = [
+        { label: 'API 1', email: 'contact@api1.fr' },
+        { label: 'API 2', email: 'contact@api2.fr' },
+        { label: 'API 3', email: 'contact@api1.fr' },
+        { label: 'API 4', email: null },
+      ];
+
+      const expected = [
+        { label: 'API 1, API 3', email: 'contact@api1.fr' },
+        { label: 'API 2', email: 'contact@api2.fr' },
+      ];
+
+      const result = dataProviderParametersToContactInfo(parameters);
+
+      expect(result).toStrictEqual(expected);
+    });
+
+    it('should manage data provider with many api', () => {
+      const parameters = [
+        { label: 'API 1 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 1 (Production)', email: 'contact@api1.fr' },
+        { label: 'API 1 (FC) (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 1 (FC) (Production)', email: 'contact@api1.fr' },
+        { label: 'API 2 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 2 (Production)', email: 'contact@api1.fr' },
+        { label: 'API 3 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 3 (Production)', email: 'contact@api1.fr' },
+        { label: 'API 4 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 4 (Production)', email: 'contact@api1.fr' },
+        { label: 'API 5 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 5 (Production)', email: 'contact@api1.fr' },
+        { label: 'API 6 (Bac à sable)', email: 'contact@api1.fr' },
+        { label: 'API 6 (Production)', email: 'contact@api1.fr' },
+      ];
+
+      const expected = [
+        { label: 'API 1, API 2, API 3, API 4, etc.', email: 'contact@api1.fr' },
+      ];
+
+      const result = dataProviderParametersToContactInfo(parameters);
+
+      expect(result).toStrictEqual(expected);
     });
   });
 });

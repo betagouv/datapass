@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
 import { ScrollableLink } from './Scrollable';
-import { goBack } from '../../lib';
-import { DATA_PROVIDER_LABELS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import Button from '../atoms/Button';
+import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
 
 export const getDefaultDocumentationUrl = (target_api) =>
   `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
@@ -16,7 +15,7 @@ const Nav = ({
   contactEmail = '',
   documentationUrl,
 }) => {
-  const history = useHistory();
+  const { goBackToList } = useListItemNavigation();
 
   const navElements = useMemo(
     () =>
@@ -31,7 +30,7 @@ const Nav = ({
     () =>
       contactEmail === DEFAULT_CONTACT_EMAIL
         ? `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-            DATA_PROVIDER_LABELS[target_api]
+            DATA_PROVIDER_PARAMETERS[target_api]?.label
           )}`
         : 'Contact%20via%20datapass.api.gouv.fr',
     [contactEmail, target_api]
@@ -45,7 +44,7 @@ const Nav = ({
       <div className="fr-sidemenu__inner">
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <Button
-            onClick={() => goBack(history)}
+            onClick={() => goBackToList()}
             outline
             icon="arrow-left"
             style={{ margin: '1em 0' }}
