@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
+import Link from '../../../atoms/Link';
 
 const SECTION_LABEL = 'Les modalités d’utilisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -26,9 +27,14 @@ export const CguSection = ({ cguLink, additionalTermsOfUse = [] }) => {
         label={
           <>
             J’ai pris connaissance des{' '}
-            <a href={cguLink} target="_blank" rel="noreferrer noopener">
+            <Link
+              inline
+              href={cguLink}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               conditions générales d’utilisation
-            </a>{' '}
+            </Link>{' '}
             et je les valide.
           </>
         }

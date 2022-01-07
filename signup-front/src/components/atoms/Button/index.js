@@ -36,7 +36,7 @@ const Button = ({
   }
 
   if (href) {
-    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRefPattern = /^(https?:\/\/|mailto:|\/docs\/|#)/;
     const isExternalRef = isExternalRefPattern.test(href);
 
     if (isExternalRef) {
