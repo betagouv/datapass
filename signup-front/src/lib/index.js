@@ -223,29 +223,6 @@ export function collectionWithKeyToObject(collection) {
   );
 }
 
-export function openLink(e, history, targetUrl) {
-  if (e.ctrlKey || e.metaKey) {
-    // metaKey is cmd on mac
-    window.open(targetUrl); // open in new tab
-  } else {
-    const previousPath = `${window.location.path || '/'}${
-      window.location.search
-    }`;
-    history.push(targetUrl, { previousPath });
-  }
-}
-
-export function goBack(history) {
-  if (
-    isObject(history.location.state) &&
-    !isEmpty(history.location.state.previousPath)
-  ) {
-    return history.push(history.location.state.previousPath);
-  }
-
-  return history.push('/');
-}
-
 export const getStateFromUrlParams = (defaultState = {}) => {
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -453,3 +430,27 @@ export const stackLowUseAndUnpublishedApi = (
 
   return filteredEnrollmentByTargetApi;
 };
+
+export const dataProviderParametersToContactInfo = (parameters) =>
+  chain(parameters)
+    .map(({ label, ...rest }) =>
+      label.endsWith(' (Bac à sable)')
+        ? { label: label.replace(' (Bac à sable)', ''), ...rest }
+        : { label, ...rest }
+    )
+    .reject(({ email }) => !email)
+    .reject(({ label }) => label.endsWith(' (Production)'))
+    .reject(({ label }) => label.endsWith(' (FC)'))
+    .groupBy(({ email }) => email)
+    .mapValues((params) => {
+      let labels = params.map(({ label }) => label);
+      if (labels.length > 4) {
+        labels = labels.slice(0, 4);
+        labels.push('etc.');
+      }
+
+      return labels.join(', ');
+    })
+    .toPairs()
+    .map(([email, label]) => ({ email, label }))
+    .value();

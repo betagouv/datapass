@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getNextEnrollments } from '../../../../services/enrollments';
 import { Linkify } from '../../../molecules/Linkify';
 import Alert from '../../../atoms/Alert';
 import IndexPointingRightEmoji from '../../../atoms/icons/IndexPointingRightEmoji';
 
 const formatNextEnrollment = (enrollment) =>
-  `${DATA_PROVIDER_LABELS[enrollment.target_api] || enrollment.target_api} : #${
-    enrollment.id
-  }`;
+  `${
+    DATA_PROVIDER_PARAMETERS[enrollment.target_api]?.label ||
+    enrollment.target_api
+  } : #${enrollment.id}`;
 
 const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
   const [nextEnrollments, setNextEnrollments] = useState(false);

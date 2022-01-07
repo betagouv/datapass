@@ -6,7 +6,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 const DonneesDescription = () => (
@@ -58,15 +58,10 @@ const availableScopes = [
 
 const target_api = 'api_ingres_nomenclatures';
 
-const ApiIngresNomenclatures = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiIngresNomenclatures = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cisirh}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />

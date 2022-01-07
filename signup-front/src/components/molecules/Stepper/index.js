@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { DATA_PROVIDER_LABELS } from '../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 
 const Stepper = ({
   steps,
@@ -35,7 +35,7 @@ const Stepper = ({
     <ul className="steps-form">
       {steps.map((e, i) => (
         <li key={e} className={getStepCssClass(i)}>
-          <div>{DATA_PROVIDER_LABELS[e]}</div>
+          <div>{DATA_PROVIDER_PARAMETERS[e]?.label}</div>
         </li>
       ))}
       <li className="check-mark">

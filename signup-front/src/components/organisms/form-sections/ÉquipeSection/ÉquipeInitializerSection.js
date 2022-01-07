@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { FormContext } from '../../../templates/Form';
-import { UserContext } from '../../UserContext';
+import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { isEmpty } from 'lodash';
 
@@ -11,7 +11,7 @@ export const ÉquipeInitializerSection = () => {
     onChange,
     enrollment: { team_members = [] },
   } = useContext(FormContext);
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
 
   const newTeamMembers = useNewTeamMembers({
     user,

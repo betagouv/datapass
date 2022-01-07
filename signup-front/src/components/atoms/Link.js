@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const Link = ({
   type = '',
@@ -7,9 +8,13 @@ const Link = ({
   onClick,
   href,
   children,
+  className = '',
+  inline = false,
   ...props
 }) => {
-  let className = `fr-link`;
+  if (!inline && !className) {
+    className = 'fr-link';
+  }
 
   if (icon) {
     className += ` fr-fi-${icon}-line`;
@@ -20,10 +25,25 @@ const Link = ({
   }
 
   if (href) {
+    // Actually we should also use a <a> element if href:
+    // - start with #
+    // - start with /doc
+    // - start with mailto:
+    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRef = isExternalRefPattern.test(href);
+
+    if (isExternalRef) {
+      return (
+        <a className={className} href={href} {...props}>
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a className={className} href={href} {...props}>
+      <ReactRouterLink className={className} to={href} {...props}>
         {children}
-      </a>
+      </ReactRouterLink>
     );
   }
   if (onClick) {

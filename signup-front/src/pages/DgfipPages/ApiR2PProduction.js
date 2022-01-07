@@ -6,21 +6,16 @@ import RecetteFonctionnelleSection from '../../components/organisms/form-section
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_r2p_production';
 const steps = ['api_r2p_sandbox', target_api];
 
-const ApiR2PProduction = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiR2PProduction = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <ÉquipeInitializerSection />

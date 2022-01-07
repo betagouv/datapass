@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import moment from 'moment';
 import {
   Bar,
@@ -21,7 +21,7 @@ import './Stats.css';
 import { getAPIStats } from '../../services/stats';
 import { USER_STATUS_LABELS } from '../../config/status-parameters';
 import {
-  DATA_PROVIDER_LABELS,
+  DATA_PROVIDER_PARAMETERS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
 } from '../../config/data-provider-parameters';
 
@@ -30,7 +30,8 @@ import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { Card, CardContainer } from '../molecules/Card';
-import { TagContainer } from '../atoms/Tag';
+import { Tag, TagContainer } from '../atoms/Tag';
+import Link from '../atoms/Link';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -66,12 +67,9 @@ const USER_STATUS_COLORS = {
   refused: '#FF6B6B',
 };
 
-export const Stats = ({
-  match: {
-    params: { targetApi },
-  },
-}) => {
+export const Stats = () => {
   const [stats, setStats] = useState(null);
+  const { targetApi } = useParams();
 
   useEffect(() => {
     async function fetchStats() {
@@ -102,33 +100,18 @@ export const Stats = ({
     <main>
       <ListHeader title="Statistiques d’utilisation">
         <TagContainer>
-          <NavLink
-            className={(isActive) =>
-              `fr-tag${
-                isActive
-                  ? ' fr-background-flat--info fr-text-inverted--info'
-                  : ''
-              }`
-            }
-            exact
-            to="/stats"
-          >
-            Toutes les APIs
+          <NavLink end to="/stats">
+            {({ isActive }) => (
+              <Tag type={isActive ? 'info' : ''}>Toutes les APIs</Tag>
+            )}
           </NavLink>
           {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
-            <NavLink
-              key={targetApi}
-              className={(isActive) =>
-                `fr-tag${
-                  isActive
-                    ? ' fr-background-flat--info fr-text-inverted--info'
-                    : ''
-                }`
-              }
-              exact
-              to={`/stats/${targetApi}`}
-            >
-              {DATA_PROVIDER_LABELS[targetApi]}
+            <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
+              {({ isActive }) => (
+                <Tag type={isActive ? 'info' : ''}>
+                  {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
+                </Tag>
+              )}
             </NavLink>
           ))}
         </TagContainer>
@@ -145,9 +128,12 @@ export const Stats = ({
             <div className="stat_card_head">
               <h3>Demandes d’habilitation validées</h3>
               <div className="card__meta">
-                <a href={`/public${targetApi ? `/${targetApi}` : ''}`}>
+                <Link
+                  inline
+                  href={`/public${targetApi ? `/${targetApi}` : ''}`}
+                >
                   voir la liste détaillée
-                </a>
+                </Link>
               </div>
             </div>
             <div className="stat_card_number">
@@ -282,7 +268,7 @@ export const Stats = ({
                       value,
                       value === 'others'
                         ? 'Autres'
-                        : DATA_PROVIDER_LABELS[value],
+                        : DATA_PROVIDER_PARAMETERS[value]?.label,
                       props,
                     ]}
                   />
@@ -293,7 +279,7 @@ export const Stats = ({
                     formatter={(value) =>
                       (value === 'others'
                         ? 'Autres'
-                        : DATA_PROVIDER_LABELS[value]
+                        : DATA_PROVIDER_PARAMETERS[value]?.label
                       ).substring(0, 25)
                     }
                   />

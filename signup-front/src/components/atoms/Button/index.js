@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const Button = ({
   href,
@@ -35,10 +36,21 @@ const Button = ({
   }
 
   if (href) {
+    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRef = isExternalRefPattern.test(href);
+
+    if (isExternalRef) {
+      return (
+        <a className={className} href={href} {...props}>
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a href={href} className={className} {...props}>
+      <ReactRouterLink className={className} to={href} {...props}>
         {children}
-      </a>
+      </ReactRouterLink>
     );
   }
   if (onClick) {

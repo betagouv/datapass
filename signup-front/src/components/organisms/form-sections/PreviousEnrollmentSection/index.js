@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { DATA_PROVIDER_LABELS } from '../../../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';
-import { Link } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import Stepper from '../../../molecules/Stepper';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert from '../../../atoms/Alert';
+import Link from '../../../atoms/Link';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -76,7 +77,9 @@ const PreviousEnrollmentSection = ({ steps }) => {
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>
         Habilitation{' '}
-        {previousTargetApi ? DATA_PROVIDER_LABELS[previousTargetApi] : ''}{' '}
+        {previousTargetApi
+          ? DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label
+          : ''}{' '}
         associée
       </h2>
       {!disabled && !isUserEnrollmentLoading && (
@@ -102,21 +105,22 @@ const PreviousEnrollmentSection = ({ steps }) => {
         validatedEnrollments.length === 0 && (
           <Alert type="warning">
             <p>
-              Pour demander l’accès à <b>{DATA_PROVIDER_LABELS[target_api]}</b>,
-              vous devez avoir préalablement obtenu une habilitation à{' '}
-              <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>.
+              Pour demander l’accès à{' '}
+              <b>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</b>, vous devez
+              avoir préalablement obtenu une habilitation à{' '}
+              <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>.
             </p>
             <p>
               Veuillez{' '}
-              <Link
+              <ReactRouterLink
                 to={{
                   pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
                   state: { fromFranceConnectedAPI: target_api },
                 }}
               >
                 demander votre habilitation à{' '}
-                <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
-              </Link>{' '}
+                <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
+              </ReactRouterLink>{' '}
               avant de continuer cette habilitation.
             </p>
             {previousTargetApi === 'franceconnect' && (
@@ -137,8 +141,9 @@ const PreviousEnrollmentSection = ({ steps }) => {
               <>
                 <p>
                   Lorsque cette habilitation à{' '}
-                  {DATA_PROVIDER_LABELS[target_api]} sera validée vous
-                  disposerez des périmètres de données supplémentaires demandés.
+                  {DATA_PROVIDER_PARAMETERS[target_api]?.label} sera validée
+                  vous disposerez des périmètres de données supplémentaires
+                  demandés.
                 </p>
                 <p>Ils apparaitront à l’utilisateur lors de sa connexion.</p>
               </>
@@ -150,11 +155,11 @@ const PreviousEnrollmentSection = ({ steps }) => {
               <>
                 <h4>
                   Association à votre habilitation{' '}
-                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
+                  <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
                 </h4>
                 <p>
                   Chargement de vos habilitations{' '}
-                  <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>
+                  <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
                   ...
                 </p>
               </>
@@ -162,7 +167,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
           {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
             <Alert title="Erreur" type="error">
               Erreur inconnue lors de la récupération de vos habilitations{' '}
-              {DATA_PROVIDER_LABELS[previousTargetApi]}.
+              {DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}.
             </Alert>
           )}
           {!disabled &&
@@ -173,7 +178,9 @@ const PreviousEnrollmentSection = ({ steps }) => {
                   label={
                     <>
                       Nom de l’habilitation{' '}
-                      <b>{DATA_PROVIDER_LABELS[previousTargetApi]}</b>{' '}
+                      <b>
+                        {DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}
+                      </b>{' '}
                       {previousTargetApi === 'franceconnect' ? (
                         <>à associer</>
                       ) : (
@@ -197,14 +204,15 @@ const PreviousEnrollmentSection = ({ steps }) => {
           {disabled && !isUserEnrollmentLoading && (
             <>
               {hasAccessToPreviousEnrollment ? (
-                <a
+                <Link
+                  inline
                   href={`/${previousTargetApi.replace(
                     /_/g,
                     '-'
                   )}/${previous_enrollment_id}`}
                 >
                   Numéro de l’habilitation associée : {previous_enrollment_id}
-                </a>
+                </Link>
               ) : (
                 <>
                   Numéro de l’habilitation associée : {previous_enrollment_id}

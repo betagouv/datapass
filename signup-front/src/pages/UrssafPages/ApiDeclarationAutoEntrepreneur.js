@@ -8,7 +8,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
 import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
 import { CadreJuridiqueDescription } from './common';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_declaration_auto_entrepreneur';
@@ -59,15 +59,10 @@ const availableScopes = [
   },
 ];
 
-const ApiDeclarationAutoEntrepreneur = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiDeclarationAutoEntrepreneur = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS[target_api]}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />

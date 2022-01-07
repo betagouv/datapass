@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const TagContainer = ({ children }) => (
   <div className="tag-container">{children}</div>
@@ -13,10 +14,21 @@ export const Tag = ({ type = '', onClick, href, children, ...props }) => {
   }
 
   if (href) {
+    const isExternalRefPattern = /^https?:\/\//i;
+    const isExternalRef = isExternalRefPattern.test(href);
+
+    if (isExternalRef) {
+      return (
+        <a className={className} href={href} {...props}>
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a className={className} href={href} {...props}>
+      <ReactRouterLink className={className} to={href} {...props}>
         {children}
-      </a>
+      </ReactRouterLink>
     );
   }
   if (onClick) {

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { groupBy, isEmpty } from 'lodash';
 import './style.css';
-import { openLink } from '../../../lib';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
@@ -11,12 +9,16 @@ import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
 import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
 import ListHeader from '../../molecules/ListHeader';
+import useListItemNavigation from '../hooks/use-list-item-navigation';
+import Link from '../../atoms/Link';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
-const UserEnrollmentList = ({ history }) => {
+const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
+
+  const { goToItem } = useListItemNavigation();
 
   useEffect(() => {
     const onFetchData = async () => {
@@ -31,11 +33,6 @@ const UserEnrollmentList = ({ history }) => {
 
     onFetchData();
   }, []);
-
-  const handleSelectEnrollment = (e, id, target_api) => {
-    const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
-    openLink(e, history, targetUrl);
-  };
 
   return (
     <main className="user-enrollments-page">
@@ -82,9 +79,9 @@ const UserEnrollmentList = ({ history }) => {
             <p>
               <IndexPointingRightEmoji />
               {' '}
-              <a href="/aidants-connect">
+              <Link inline href="/aidants-connect">
                 Soumettre une demande AidantsConnect
-              </a>
+              </Link>
             </p>
           </Alert>
         </div>
@@ -104,7 +101,7 @@ const UserEnrollmentList = ({ history }) => {
                 <Enrollment
                   key={enrollment.id}
                   {...enrollment}
-                  onSelect={handleSelectEnrollment}
+                  onSelect={goToItem}
                 />
               ))}
             </React.Fragment>
@@ -113,12 +110,6 @@ const UserEnrollmentList = ({ history }) => {
       )}
     </main>
   );
-};
-
-UserEnrollmentList.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
 };
 
 export default UserEnrollmentList;

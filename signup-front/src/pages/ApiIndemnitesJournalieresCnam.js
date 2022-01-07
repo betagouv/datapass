@@ -6,7 +6,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
@@ -22,15 +22,10 @@ const steps = ['franceconnect', 'api_indemnites_journalieres_cnam'];
 
 const target_api = 'api_indemnites_journalieres_cnam';
 
-const ApiIndemnitesJournalieresCnam = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiIndemnitesJournalieresCnam = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.cnam}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <PreviousEnrollmentSection steps={steps} />

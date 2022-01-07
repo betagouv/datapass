@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-
 import { getUserEnrollment } from '../../services/enrollments';
-import { Redirect } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import Loader from '../atoms/Loader';
 import Alert from '../atoms/Alert';
+import NotFound from '../organisms/NotFound';
 
-const Enrollment = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => {
+const Enrollment = () => {
+  const { enrollmentId } = useParams();
   const [fetchEnrollmentError, setFetchEnrollmentError] = useState(false);
   const [fetchEnrollmentNotFound, setFetchEnrollmentNotFound] = useState(false);
-  const [targetApi, settargetApi] = useState(null);
+  const [targetApi, setTargetApi] = useState(null);
 
   const fetchEnrollment = async ({ enrollmentId }) => {
     try {
@@ -21,7 +17,7 @@ const Enrollment = ({
       setFetchEnrollmentNotFound(false);
       const { target_api } = await getUserEnrollment(enrollmentId);
 
-      settargetApi(target_api);
+      setTargetApi(target_api);
     } catch (e) {
       if (e.response && e.response.status === 404) {
         setFetchEnrollmentNotFound(true);
@@ -39,22 +35,17 @@ const Enrollment = ({
 
   if (enrollmentId && targetApi) {
     return (
-      <Redirect
+      <Navigate
         to={{
           pathname: `/${targetApi.replace(/_/g, '-')}/${enrollmentId}`,
         }}
+        replace
       />
     );
   }
 
   if (fetchEnrollmentNotFound) {
-    return (
-      <div className="full-page">
-        <Alert title="Erreur" type="error">
-          Nous n’avons pas trouvé votre demande d’habilitation.
-        </Alert>
-      </div>
-    );
+    return <NotFound />;
   }
 
   if (fetchEnrollmentError) {
@@ -72,22 +63,6 @@ const Enrollment = ({
       <Loader />
     </div>
   );
-};
-
-Enrollment.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-Enrollment.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
 };
 
 export default Enrollment;

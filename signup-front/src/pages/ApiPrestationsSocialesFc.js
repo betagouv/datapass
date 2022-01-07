@@ -6,7 +6,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import {
   availableScopes,
   CadreJuridiqueDescription,
@@ -17,15 +17,10 @@ import PreviousEnrollmentSection from '../components/organisms/form-sections/Pre
 const target_api = 'api_prestations_sociales_fc';
 const steps = ['franceconnect', target_api];
 
-const ApiPrestationsSociales = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiPrestationsSociales = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.api_prestations_sociales}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api-prestations-sociales"
   >
     <PreviousEnrollmentSection steps={steps} />

@@ -7,21 +7,16 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import { DATA_PROVIDER_CONTACT_EMAILS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_infinoe_sandbox';
 const steps = [target_api, 'api_infinoe_production'];
 
-const ApiInfinoeSandbox = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
+const ApiInfinoeSandbox = () => (
   <Form
-    enrollmentId={enrollmentId}
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_CONTACT_EMAILS.dgfip}
+    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <PreviousEnrollmentSection steps={steps} />

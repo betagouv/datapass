@@ -1,21 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
 import moment from 'moment';
-
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
 import enrollmentListStyle from './enrollmentListStyle';
 import {
-  DATA_PROVIDER_LABELS,
+  DATA_PROVIDER_PARAMETERS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
 } from '../../config/data-provider-parameters';
 
 import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
 import { debounce } from 'lodash';
-import { TagContainer } from '../atoms/Tag';
+import { Tag, TagContainer } from '../atoms/Tag';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -30,9 +28,7 @@ class PublicEnrollmentList extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
-    if (
-      this.props.match.params.targetApi !== prevProps.match.params.targetApi
-    ) {
+    if (this.props.params.targetApi !== prevProps.params.targetApi) {
       this.setState({
         page: 0,
       });
@@ -52,7 +48,7 @@ class PublicEnrollmentList extends React.Component {
       enrollments,
       meta: { total_pages: totalPages },
     } = await getPublicValidatedEnrollments({
-      targetApi: this.props.match.params.targetApi,
+      targetApi: this.props.params.targetApi,
       page,
     });
 
@@ -122,7 +118,7 @@ class PublicEnrollmentList extends React.Component {
     },
     {
       Header: 'Fournisseur',
-      accessor: ({ target_api }) => DATA_PROVIDER_LABELS[target_api],
+      accessor: ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
       id: 'target_api',
       headerStyle: enrollmentListStyle.header,
       style: {
@@ -163,34 +159,19 @@ class PublicEnrollmentList extends React.Component {
       <main>
         <ListHeader title="Liste des habilitations">
           <TagContainer>
-            <NavLink
-              className={(isActive) =>
-                `fr-tag${
-                  isActive
-                    ? ' fr-background-flat--info fr-text-inverted--info'
-                    : ''
-                }`
-              }
-              exact
-              to="/public"
-            >
-              Toutes les demandes
+            <NavLink end to="/public">
+              {({ isActive }) => (
+                <Tag type={isActive ? 'info' : ''}>Toutes les demandes</Tag>
+              )}
             </NavLink>
             {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
               (targetApi) => (
-                <NavLink
-                  key={targetApi}
-                  className={(isActive) =>
-                    `fr-tag${
-                      isActive
-                        ? ' fr-background-flat--info fr-text-inverted--info'
-                        : ''
-                    }`
-                  }
-                  exact
-                  to={`/public/${targetApi}`}
-                >
-                  {DATA_PROVIDER_LABELS[targetApi]}
+                <NavLink key={targetApi} end to={`/public/${targetApi}`}>
+                  {({ isActive }) => (
+                    <Tag type={isActive ? 'info' : ''}>
+                      {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
+                    </Tag>
+                  )}
                 </NavLink>
               )
             )}
@@ -233,20 +214,11 @@ class PublicEnrollmentList extends React.Component {
   }
 }
 
-PublicEnrollmentList.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      targetApi: PropTypes.string,
-    }),
-  }),
+const withParams = (Component) => {
+  return (props) => {
+    const params = useParams();
+    return <Component {...props} params={params} />;
+  };
 };
 
-PublicEnrollmentList.defaultProps = {
-  match: {
-    params: {
-      targetApi: null,
-    },
-  },
-};
-
-export default PublicEnrollmentList;
+export default withParams(PublicEnrollmentList);
