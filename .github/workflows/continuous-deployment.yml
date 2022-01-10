@@ -1,4 +1,4 @@
-name: Frontend build
+name: Continuous deployment
 
 on:
   push:
