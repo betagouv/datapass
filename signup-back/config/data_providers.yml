@@ -262,3 +262,8 @@ api_statut_etudiant:
   label: API Statut étudiant
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_statut_demandeur_emploi:
+  label: API statut demandeur d’emploi
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer

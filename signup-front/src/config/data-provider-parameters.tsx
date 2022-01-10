@@ -47,6 +47,7 @@ import ApiEnsuDadSandbox from '../pages/DgfipPages/ApiEnsuDadSandbox';
 import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
 import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
+import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 
 type DataProviderParameter = {
   label: string;
@@ -344,6 +345,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-mesri.png',
       email: 'support-statutetudiant@renater.fr',
       component: ApiStatutEtudiant,
+    },
+    api_statut_demandeur_emploi: {
+      label: 'API statut demandeur d’emploi',
+      icon: 'logo-pole-emploi.png',
+      email: 'support@pole-emploi.io',
+      component: ApiStatutDemandeurEmploi,
     },
   };
 
