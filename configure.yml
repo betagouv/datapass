@@ -189,9 +189,9 @@
       when: retool_ssh_key is defined
       tags: retool
 
-- hosts: datapass-front
+- hosts: all
   become: true
   roles:
     - role: continuous-deployment
-      when: target_deploy_env is defined
+      when: github_action_ssh_key is defined
       tags: continuous-deployment
