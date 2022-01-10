@@ -338,18 +338,6 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: 'api.cisirh@finances.gouv.fr',
       component: ApiIngres,
     },
-    api_ingres_nomenclatures: {
-      label: 'API INGRES - Nomenclatures',
-      icon: null,
-      email: 'api.cisirh@finances.gouv.fr',
-      component: ApiIngres,
-    },
-    api_ingres_noyau: {
-      label: 'API INGRES - Noyau',
-      icon: null,
-      email: 'api.cisirh@finances.gouv.fr',
-      component: ApiIngres,
-    },
   };
 
 export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
