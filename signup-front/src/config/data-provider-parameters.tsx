@@ -48,6 +48,7 @@ import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
 import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
+import ApiIndemnitesPoleEmploi from '../pages/ApiIndemnitesPoleEmploi';
 
 type DataProviderParameter = {
   label: string;
@@ -351,6 +352,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-pole-emploi.png',
       email: 'support@pole-emploi.io',
       component: ApiStatutDemandeurEmploi,
+    },
+    api_indemnites_pole_emploi: {
+      label: 'API Indemnités Pôle Emploi',
+      icon: 'logo-pole-emploi.png',
+      email: 'support@pole-emploi.io',
+      component: ApiIndemnitesPoleEmploi,
     },
   };
 
