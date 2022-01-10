@@ -257,3 +257,8 @@ api_prestations_sociales_fc:
   label: API prestations sociales (FC)
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_statut_etudiant:
+  label: API Statut étudiant
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
