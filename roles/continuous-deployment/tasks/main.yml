@@ -1,50 +1,4 @@
 ---
-- name: Copy webhook webhooks.json file
-  become: true
-  template:
-    src: templates/webhooks.json.j2
-    dest: "/etc/webhooks.json"
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
-    mode: 0644
-
-- name: check if webhook file already exists (to allow download bypass - necessary if behind firewall)
-  stat:
-    path: /tmp/webhook.tar.gz
-  register: tarball
-
-- name: Download file with check (md5)
-  tags: download
-  get_url:
-    url: "https://github.com/adnanh/webhook/releases/download/{{ webhook_version }}/webhook-linux-amd64.tar.gz"
-    dest: "/tmp/webhook.tar.gz"
-    checksum: "{{ webhook_checksum }}"
-  when: not tarball.stat.exists
-
-- name: Unarchive a file with extra options
-  tags: download
-  become: true
-  unarchive:
-    src: /tmp/webhook.tar.gz
-    dest: /usr/local/bin
-    remote_src: true
-    extra_opts:
-      - --strip-components=1
-
-- name: Install systemd file for webhook
-  template:
-    src: templates/webhook.service.j2
-    dest: /etc/systemd/system/webhook.service
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
-    mode: 0400
-
-- name: Enable and start webhook service
-  service:
-    name: webhook
-    enabled: true
-    state: started
-
 - name: Copy server apps deploy scripts
   copy:
     dest: "~/deploy-server-app.sh"
@@ -60,3 +14,11 @@
     mode: 0700
   become: yes
   become_user: "{{ app_user }}"
+
+- name: Add ssh deployment key
+  authorized_key:
+    exclusive: no
+    state: present
+    user: "{{ app_user }}"
+    key: "{{ github_action_ssh_key }}"
+    key_options: 'command="{{ github_action_authorized_command }}",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty' # copied from https://gitlab.com/etalab/api.gouv.fr/annuaire-entreprises-infrastructure/-/blob/main/roles/team-ssh-keys/tasks/main.yml#L21
