@@ -32,24 +32,24 @@ export const Routes = () => {
         <Route path=":targetApi" element={<Stats />} />
       </Route>
 
-      <Route path="/accessibilite" element={<Accessibilite />} />
+      <Route path="accessibilite" element={<Accessibilite />} />
 
-      <Route path="/faq" element={<FAQ />} />
+      <Route path="faq" element={<FAQ />} />
 
-      <Route path="/admin" element={<AuthRequired children={<Admin />} />} />
+      <Route path="admin" element={<AuthRequired children={<Admin />} />} />
 
       <Route
-        path="/copy-authorization-request/:enrollmentId"
+        path="copy-authorization-request/:enrollmentId"
         element={<AuthRequired children={<CopyEnrollment />} />}
       />
 
       <Route
-        path="/authorization-request/:enrollmentId"
+        path="authorization-request/:enrollmentId"
         element={<AuthRequired children={<Enrollment />} />}
       />
 
       <Route
-        path="/"
+        index
         element={
           <AuthRequired>
             {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
