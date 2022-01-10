@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch: ~
 
 jobs:
   build:
@@ -56,3 +57,37 @@ jobs:
           name: ${{ matrix.env }}-${{ github.sha }}-build
           path: |
             signup-front/build
+  deployment:
+    needs: build
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        include:
+          - environment: test
+            url: https://datapass-test.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: staging
+            url: https://datapass-staging.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: staging
+            url: https://datapass-staging.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+    environment:
+      url: ${{ matrix.url }}
+      name: ${{ matrix.environment }}
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets[matrix.ssh_key] }}
+      SSH_HOST: ${{secrets.SSH_HOST}}
+      APP_USER: ${{secrets.APP_USER}}
+    steps:
+      - name: Setup private SSH deployment key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ./deployment.key
+          sudo chmod 600 ./deployment.key
+        shell: bash
+      - name: Add target ssh host signature to known hosts
+        run: |
+          ssh-keyscan -t rsa -H "$SSH_HOST" >> ~/.ssh/known_hosts
+      - name: Deploy application
+        run: ssh -i ./deployment.key "$APP_USER@$SSH_HOST"
