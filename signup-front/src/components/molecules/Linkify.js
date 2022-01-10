@@ -1,11 +1,14 @@
 import React from 'react';
 import LinkifyReact from 'linkify-react';
 import 'linkify-plugin-ticket';
+import Link from '../atoms/Link';
 
 const linkifyOptions = {
   formatHref: {
     ticket: (href) => '/authorization-request/' + href.substring(1),
   },
+  attributes: { inline: true },
+  tagName: () => Link,
 };
 
 export const Linkify = ({ message }) => (
