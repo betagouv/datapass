@@ -1,4 +1,4 @@
-class Enrollment::ApiIngresNoyau < Enrollment
+class Enrollment::ApiIngres < Enrollment
   protected
 
   def submit_validation
