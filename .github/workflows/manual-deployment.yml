@@ -1,0 +1,37 @@
+name: Manual deployment
+
+on:
+  workflow_dispatch: ~
+
+jobs:
+  deployment:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        include:
+          - environment: test
+            url: https://datapass-test.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            url: https://datapass.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            url: https://datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+    environment:
+      url: ${{ matrix.url }}
+      name: ${{ matrix.environment }}
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets[matrix.ssh_key] }}
+      SSH_HOST: ${{secrets.SSH_HOST}}
+      APP_USER: ${{secrets.APP_USER}}
+    steps:
+      - name: Setup private SSH deployment key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
+          sudo chmod 600 ~/.ssh/private.key
+          ssh-keyscan -t rsa -H "$SSH_HOST" > ~/.ssh/known_hosts
+        shell: bash
+      - name: Deploy application
+        run: ssh -i ~/.ssh/private.key "$APP_USER@$SSH_HOST"
