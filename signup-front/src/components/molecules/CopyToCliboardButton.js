@@ -21,7 +21,10 @@ export const CopyToCliboardButton = ({ textToCopy }) => {
       className="inline-icon-button tooltip-controlled"
       tooltip="Copié !"
     >
-      <ContentCopyIcon color={'var(--bf500)'} size={14} />
+      <ContentCopyIcon
+        color={'var(--border-action-high-blue-france)'}
+        size={14}
+      />
     </button>
   );
 };
