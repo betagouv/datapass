@@ -295,6 +295,10 @@ describe('utils', () => {
 
       expect(hashToQueryParams(state)).toBe('?demarche=ccas');
     });
+
+    it('should override value when new value is null', () => {
+      expect(hashToQueryParams({ a: 0, b: 2 }, 'a=1')).toBe('?b=2');
+    });
   });
 
   describe('collectionWithKeyToObject', () => {
