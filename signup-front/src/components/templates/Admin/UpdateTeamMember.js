@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { updateTeamMember } from '../../../services/enrollments';
 import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
-import Button from '../../atoms/Button';
+import Button from '../../atoms/hyperTexts/Button';
 import Alert from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 
@@ -99,7 +99,7 @@ export const UpdateTeamMember = () => {
           onChange={({ target: { value } }) => setPhoneNumber(value)}
           value={phoneNumber}
         />
-        <Button type="submit">
+        <Button submit>
           Mettre à jour le contact et lui envoyer un mail (s’il est
           correspondant RGPD)
         </Button>

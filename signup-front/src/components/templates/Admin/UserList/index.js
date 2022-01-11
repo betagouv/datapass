@@ -8,7 +8,9 @@ import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 import ListHeader from '../../../molecules/ListHeader';
-import Tag, { TagContainer } from '../../../atoms/Tag';
+import TagContainer from '../../../atoms/TagContainer';
+import Link from '../../../atoms/hyperTexts/Link';
+import Tag from '../../../atoms/hyperTexts/Tag';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -131,9 +133,12 @@ const UserList = () => {
               <li>i (instructor) : instructeur</li>
               <li>s (subscriber) : abonné</li>
             </ul>
-            <a href="https://github.com/betagouv/datapass#les-roles-dans-datapass">
+            <Link
+              inline
+              href="https://github.com/betagouv/datapass#les-roles-dans-datapass"
+            >
               Plus d’info
-            </a>
+            </Link>
           </div>
         </>
       )}

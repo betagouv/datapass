@@ -2,6 +2,7 @@ import React from 'react';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import NextSteps from './NextSteps';
+import Link from '../../atoms/hyperTexts/Link';
 
 const WelcomeMessage = ({
   isOnNewEnrollmentPage,
@@ -34,9 +35,9 @@ const WelcomeMessage = ({
         <p>
           DataPass délivre des habilitations pour accéder à l’ensemble des
           données protégées produites par l’État.{' '}
-          <a href="https://beta.gouv.fr/startups/datapass.html">
+          <Link inline href="https://beta.gouv.fr/startups/datapass.html">
             En savoir plus
-          </a>
+          </Link>
         </p>
         <div className="call-to-action">
           Vous souhaitez suivre le traitement d’une demande d’habilitation,

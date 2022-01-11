@@ -10,7 +10,7 @@ import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert from '../../../atoms/Alert';
-import Link from '../../../atoms/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

@@ -53,7 +53,3 @@
   overflow: inherit !important;
   font-weight: normal !important;
 }
-
-.ReactTable .rt-thead.-filters input[type='checkbox']:checked {
-  background-color: var(--bf500);
-}

@@ -8,6 +8,7 @@ import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import TextInput from '../../atoms/inputs/TextInput';
 import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
 import { isEmpty } from 'lodash';
+import Link from '../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -103,14 +104,14 @@ const CadreJuridiqueSection = ({
           onChange={onChange}
           meta={
             fondement_juridique_url && (
-              <a
+              <Link
+                inline
+                newTab
                 href={fondement_juridique_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Accéder au texts relatif au traitement"
+                aria-label="Accéder au texte relatif au traitement"
               >
                 accéder à cette URL
-              </a>
+              </Link>
             )
           }
         />

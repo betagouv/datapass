@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { useAuth } from './AuthContext';
 import { loginUrl } from '../templates/Login';
-import Link from '../atoms/Link';
+import Link from '../atoms/hyperTexts/Link';
+import Button from '../atoms/hyperTexts/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -102,17 +103,17 @@ const Header = () => {
                   {user ? (
                     <li>
                       <div className="dropdown">
-                        <Link icon="user" href="#logout">
+                        <Link icon="user" href="#">
                           {user.given_name} {user.family_name}
                         </Link>
                         <div className="dropdown-content">
-                          <a
+                          <Link
+                            inline
                             onClick={logout}
-                            href="#logout"
                             style={{ fontSize: '0.85em' }}
                           >
                             Se déconnecter
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </li>
@@ -123,9 +124,9 @@ const Header = () => {
                         method="post"
                         style={{ cursor: 'pointer' }}
                       >
-                        <Link icon="lock" type="submit">
+                        <Button icon="lock" outline submit>
                           Se connecter
-                        </Link>
+                        </Button>
                       </form>
                     </li>
                   )}

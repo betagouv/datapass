@@ -1,27 +1,34 @@
 import React from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-const Link = ({
-  type = '',
-  closeButton,
+const HyperText = ({
+  type,
   icon,
+  iconRight = false,
   onClick,
   href,
   children,
   className = '',
-  inline = false,
   ...props
+}: {
+  type?: string;
+  icon?: string;
+  iconRight?: boolean;
+  onClick?: () => void;
+  href?: string;
+  children: React.ReactNode;
+  className?: string;
 }) => {
-  if (!inline && !className) {
-    className = 'fr-link';
+  if (type) {
+    className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
 
   if (icon) {
     className += ` fr-fi-${icon}-line`;
   }
 
-  if (closeButton) {
-    className += ` fr-link--close`;
+  if (icon && children) {
+    className += iconRight ? ' fr-btn--icon-right' : ' fr-btn--icon-left';
   }
 
   if (href) {
@@ -42,6 +49,7 @@ const Link = ({
       </ReactRouterLink>
     );
   }
+
   if (onClick) {
     return (
       <button className={className} onClick={onClick} {...props}>
@@ -49,14 +57,12 @@ const Link = ({
       </button>
     );
   }
-  if (type === 'submit') {
-    return (
-      <button type={type} className={className} {...props}>
-        {children}
-      </button>
-    );
-  }
-  throw new Error("Please specify either 'href', 'onClick' or 'type' props");
+
+  return (
+    <p className={className} {...props}>
+      {children}
+    </p>
+  );
 };
 
-export default Link;
+export default HyperText;

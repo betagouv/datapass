@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../../../atoms/inputs/TextInput';
 import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
-import Button from '../../../atoms/Button';
+import Button from '../../../atoms/hyperTexts/Button';
 import {
   isEmailValid,
   isIndividualEmailAddress,
@@ -13,6 +13,7 @@ import {
 } from '../../../../lib';
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
+import Alert from '../../../atoms/Alert';
 
 export const Contact = ({
   heading,
@@ -113,16 +114,14 @@ export const Contact = ({
     {displayIndividualEmailLabel &&
       isEmailValid(email) &&
       !isIndividualEmailAddress(email) && (
-        <div className="notification error">
-          Merci d’utiliser un email nominatif.
-        </div>
+        <Alert type="error">Merci d’utiliser un email nominatif.</Alert>
       )}
     {displayGroupEmailLabel &&
       isEmailValid(email) &&
       isIndividualEmailAddress(email) && (
-        <div className="notification error">
+        <Alert type="error">
           Merci d’utiliser une adresse email générique.
-        </div>
+        </Alert>
       )}
     {!contactByEmailOnly && (
       <TelInput
@@ -144,9 +143,9 @@ export const Contact = ({
     {displayMobilePhoneLabel &&
       isValidPhoneNumber(phone_number) &&
       !isValidMobilePhoneNumber(phone_number) && (
-        <div className="notification error">
+        <Alert type="error">
           Ce numéro ne correspond pas à un numéro de téléphone mobile
-        </div>
+        </Alert>
       )}
   </Card>
 );

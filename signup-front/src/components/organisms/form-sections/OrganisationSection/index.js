@@ -9,9 +9,10 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
-import Button from '../../../atoms/Button';
+import Button from '../../../atoms/hyperTexts/Button';
 import { Card, CardContainer, CardHead } from '../../../molecules/Card';
 import TechnicalTeamCard from './TechnicalTeamCard';
+import Alert from '../../../atoms/Alert';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
@@ -207,20 +208,20 @@ const OrganisationSection = ({ editorList = [] }) => {
             <>
               <h3>Vous faites cette demande pour :</h3>
               {activite && !isValidNAFCode(target_api, activite) && (
-                <div className="notification warning">
+                <Alert type="warning">
                   Votre organisme ne semble pas être éligible
-                </div>
+                </Alert>
               )}
               {showOrganizationInfoNotFound && (
-                <div className="notification warning">
+                <Alert type="warning">
                   Cet établissement est fermé ou le SIRET est invalide.
-                </div>
+                </Alert>
               )}
               {showOrganizationInfoError && (
-                <div className="notification error">
+                <Alert type="error">
                   Erreur inconnue lors de la récupération des informations de
                   cet établissement.
-                </div>
+                </Alert>
               )}
               <CardHead>
                 <b>

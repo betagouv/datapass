@@ -9,6 +9,8 @@ import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FileInput from '../../../molecules/FileInput';
+import Link from '../../../atoms/hyperTexts/Link';
+import Alert from '../../../atoms/Alert';
 
 const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -181,14 +183,14 @@ const DonneesSection = ({
           'services publics de la ville », etc.'
         }
         meta={
-          <a
+          <Link
+            inline
+            newTab
             href="https://www.cnil.fr/fr/definition/destinataire"
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="Voir la définition CNIL du destinataire des données"
           >
             Plus d’infos
-          </a>
+          </Link>
         }
         name="data_recipients"
         value={data_recipients}
@@ -199,14 +201,14 @@ const DonneesSection = ({
       <NumberInput
         label="Durée de conservation des données en mois"
         meta={
-          <a
+          <Link
+            inline
+            newTab
             href="https://www.cnil.fr/fr/les-durees-de-conservation-des-donnees"
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="Voir l’explication CNIL sur les durées de conservation des données"
           >
             Plus d’infos
-          </a>
+          </Link>
         }
         name="data_retention_period"
         value={data_retention_period}
@@ -216,9 +218,9 @@ const DonneesSection = ({
       />
       {data_retention_period > 36 && (
         <>
-          <div className="notification warning">
+          <Alert type="warning" title="Attention">
             Cette durée excède la durée communément constatée (36 mois).
-          </div>
+          </Alert>
           <TextInput
             label="Veuillez justifier cette durée dans le champ ci-après :"
             name="data_retention_comment"

@@ -198,17 +198,19 @@ export function getChangelog(diff) {
 }
 
 export function hashToQueryParams(hash, initialSearchParams) {
-  const hashWithoutNullValue = omitBy(hash, (e) =>
-    isObject(e) ? isEmpty(e) : !e
-  );
-
   const urlParams = new URLSearchParams(initialSearchParams);
 
-  forOwn(hashWithoutNullValue, (value, key) =>
+  forOwn(hash, (value, key) =>
     urlParams.set(key, isObject(value) ? JSON.stringify(value) : value)
   );
 
-  return isEmpty(hashWithoutNullValue) ? '' : `?${urlParams.toString()}`;
+  forOwn(hash, (value, key) => {
+    if (isObject(value) ? isEmpty(value) : !value) {
+      urlParams.delete(key);
+    }
+  });
+
+  return isEmpty(urlParams.toString()) ? '' : `?${urlParams.toString()}`;
 }
 
 export function collectionWithKeyToObject(collection) {

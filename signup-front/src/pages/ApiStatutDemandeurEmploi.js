@@ -9,6 +9,7 @@ import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
+import Link from '../components/atoms/hyperTexts/Link';
 
 export const DonneesDescription = () => (
   <>
@@ -59,9 +60,9 @@ export const CadreJuridiqueDescription = () => (
     </p>
     <p>
       Pour en savoir plus, consultez{' '}
-      <a href="https://api.gouv.fr/guides/deliberation-api-part">
+      <Link inline href="https://api.gouv.fr/guides/deliberation-api-part">
         notre guide sur ce qu’est une bonne délibération
-      </a>
+      </Link>
       .
     </p>
   </>

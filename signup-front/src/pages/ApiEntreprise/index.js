@@ -13,6 +13,7 @@ import ÉquipeSection, {
 } from '../../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
+import Link from '../../components/atoms/hyperTexts/Link';
 
 const DonneesDescription = () => (
   <>
@@ -20,25 +21,17 @@ const DonneesDescription = () => (
     <ul>
       <li>
         du{' '}
-        <a
-          href="https://entreprise.api.gouv.fr/catalogue/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link inline newTab href="https://entreprise.api.gouv.fr/catalogue/">
           catalogue de données
-        </a>
+        </Link>
         . Il présente l’ensemble des API disponibles accompagnées d’une
         documentation fonctionnelle et technique.
       </li>
       <li>
         des{' '}
-        <a
-          href="https://entreprise.api.gouv.fr/cas_usage/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link inline newTab href="https://entreprise.api.gouv.fr/cas_usage/">
           cas d’usage
-        </a>{' '}
+        </Link>{' '}
         proposés par API Entreprise. Nous y décrivons les données utiles par
         contexte d'utilisation. Si votre besoin correspond à l’un de ces cas
         d’usage, vous pourrez vous appuyez sur le formulaire pré-rempli adéquat.
@@ -225,21 +218,21 @@ const CadreJuridiqueDescription = () => (
     </p>
     <p>
       <WarningEmoji /> Attention, quel que soit votre statut, le{' '}
-      <a
+      <Link
+        inline
+        newTab
         href="https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000031366350/2020-12-14/"
-        target="_blank"
-        rel="noopener noreferrer"
       >
         CRPA (Code des relations entre le public et l’administration)
-      </a>
+      </Link>
       , la{' '}
-      <a
+      <Link
+        inline
+        newTab
         href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037307624/"
-        target="_blank"
-        rel="noopener noreferrer"
       >
         loi ESSOC (pour un État au service d’une société de confiance)
-      </a>{' '}
+      </Link>{' '}
       ou la loi Lemaire (pour une République numérique){' '}
       <b>ne sont pas suffisants</b> car ils indiquent un principe d’échange qui
       doit être complété par un cadre juridique précis pour l’utilisation

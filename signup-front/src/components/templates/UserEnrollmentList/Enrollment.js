@@ -4,13 +4,13 @@ import moment from 'moment';
 import { chain } from 'lodash';
 import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
-import Button from '../../atoms/Button';
-import Tag from '../../atoms/Tag';
+import Button from '../../atoms/hyperTexts/Button';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import {
   STATUS_TO_BUTTON_TYPE,
   USER_STATUS_LABELS,
 } from '../../../config/status-parameters';
+import Tag from '../../atoms/hyperTexts/Tag';
 
 const Enrollment = ({
   id,

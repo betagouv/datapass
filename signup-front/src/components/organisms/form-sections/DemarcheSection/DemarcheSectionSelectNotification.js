@@ -3,6 +3,7 @@ import Loader from '../../../atoms/Loader';
 import { get, isEmpty } from 'lodash';
 import Alert from '../../../atoms/Alert';
 import HighVoltageEmoji from '../../../atoms/icons/HighVoltageEmoji';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const DemarcheSectionNotification = ({
   isLoading = false,
@@ -33,14 +34,14 @@ const DemarcheSectionNotification = ({
             <>
               Pour en savoir plus sur ce cas d’usage, vous pouvez en consulter
               la{' '}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                inline
+                newTab
                 aria-label={`Plus d’information sur le cas d’usage « ${selectedDemarcheId} »`}
                 href={get(demarches, selectedDemarcheId, {}).about}
               >
                 fiche explicative
-              </a>
+              </Link>
             </>
           )}
         <br />

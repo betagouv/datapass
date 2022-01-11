@@ -11,7 +11,7 @@ import WarningIcon from '../../../atoms/icons/warning';
 import NotificationsIcon from '../../../atoms/icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../../../lib';
-import Button from '../../../atoms/Button';
+import Button from '../../../atoms/hyperTexts/Button';
 import { Linkify } from '../../../molecules/Linkify';
 
 const eventToDisplayableContent = {

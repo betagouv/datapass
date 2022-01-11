@@ -3,6 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import FileInput from '../../../molecules/FileInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les pièces justificatives';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -26,14 +27,14 @@ export const PiecesJustificativesSection = () => {
           fiscale.
         </p>
         <p>
-          <a
-            target="_blank"
-            rel="noreferrer noopener"
+          <Link
+            inline
+            newTab
             aria-label="Document pdf précisant comment obtenir une attestation de régularité fiscale sur le site impots.gouv.fr"
             href="https://www.impots.gouv.fr/portail/professionnel/questions/comment-obtenir-une-attestation-de-regularite-fiscale"
           >
             Comment obtenir une attestation de régularité fiscale ?
-          </a>
+          </Link>
         </p>
       </ExpandableQuote>
       <FileInput

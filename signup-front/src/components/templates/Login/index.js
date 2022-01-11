@@ -5,7 +5,7 @@ import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-paramete
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
-import Button from '../../atoms/Button';
+import Button from '../../atoms/hyperTexts/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -74,7 +74,7 @@ const LoginButtons = ({ isOnNewEnrollmentPage }) => (
       method="post"
       style={{ margin: 0 }}
     >
-      <Button outline large type="submit">
+      <Button outline large submit>
         {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
       </Button>
     </form>
@@ -84,7 +84,7 @@ const LoginButtons = ({ isOnNewEnrollmentPage }) => (
       method="post"
       style={{ margin: 0 }}
     >
-      <Button large type="submit">
+      <Button large submit>
         {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
       </Button>
     </form>

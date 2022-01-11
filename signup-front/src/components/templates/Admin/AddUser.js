@@ -3,7 +3,7 @@ import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
 import AutorenewIcon from '../../atoms/icons/autorenew';
 import { getErrorMessages } from '../../../lib';
-import Button from '../../atoms/Button';
+import Button from '../../atoms/hyperTexts/Button';
 import Alert from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 
@@ -53,7 +53,7 @@ export const AddUser = () => {
           value={newUserEmail}
           required
         />
-        <Button type="submit">Ajouter l’utilisateur</Button>
+        <Button submit>Ajouter l’utilisateur</Button>
       </form>
     </div>
   );

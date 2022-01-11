@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { delay, throttle } from 'lodash';
 import PropTypes from 'prop-types';
+import Link from '../atoms/hyperTexts/Link';
 
 const getWindowHash = () =>
   window.location.hash ? window.location.hash.substr(1) : null;
@@ -108,15 +109,15 @@ export class ScrollableLink extends Component {
 
     return (
       <li className="fr-sidemenu__item">
-        <a
-          className="fr-sidemenu__link"
+        <Link
+          sidemenu
           href={`#${scrollableId}`}
           style={style}
           target="_self"
           aria-current={this.state.selected ? true : null}
         >
           {children}
-        </a>
+        </Link>
       </li>
     );
   }
