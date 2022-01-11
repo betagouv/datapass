@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
+import Link from '../../../atoms/Link';
 
 const ModalContent = {
   rgpd: {
@@ -92,14 +93,14 @@ const Scopes = ({
                   {link ? (
                     <span>
                       {label}
-                      <a
+                      <Link
+                        inline
+                        newTab
                         href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         aria-label={`Plus d’information sur la donnée ${label}`}
                       >
                         {''}
-                      </a>
+                      </Link>
                     </span>
                   ) : (
                     label

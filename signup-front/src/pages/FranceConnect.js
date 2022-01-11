@@ -8,6 +8,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
+import Link from '../components/atoms/Link';
 
 const DonneesDescription = () => (
   <>
@@ -33,13 +34,13 @@ const CadreJuridiqueDescription = () => (
     <ul>
       <li>
         Si vous êtes une <b>administration</b>, vous pouvez citer ici{' '}
-        <a
+        <Link
+          inline
+          newTab
           href="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           la décision du 18 juin 2021
-        </a>
+        </Link>
         . N’oubliez pas de justifier la nécessité d’identification de la
         personne dans le champs de description de votre cas d’usage.{' '}
       </li>
@@ -47,13 +48,9 @@ const CadreJuridiqueDescription = () => (
         Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
         réglementaire qui s’applique à votre entité. Vous trouverez plus
         d’information sur{' '}
-        <a
-          href="https://franceconnect.gouv.fr/partenaires"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link inline newtab href="https://franceconnect.gouv.fr/partenaires">
           notre page dédiée
-        </a>
+        </Link>
         .
       </li>
     </ul>

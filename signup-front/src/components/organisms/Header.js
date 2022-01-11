@@ -106,13 +106,14 @@ const Header = () => {
                           {user.given_name} {user.family_name}
                         </Link>
                         <div className="dropdown-content">
-                          <a
+                          <Link
+                            inline
                             onClick={logout}
                             href="#logout"
                             style={{ fontSize: '0.85em' }}
                           >
                             Se déconnecter
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </li>

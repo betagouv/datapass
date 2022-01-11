@@ -9,6 +9,7 @@ import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 import ListHeader from '../../../molecules/ListHeader';
 import Tag, { TagContainer } from '../../../atoms/Tag';
+import Link from '../../../atoms/Link';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -131,9 +132,12 @@ const UserList = () => {
               <li>i (instructor) : instructeur</li>
               <li>s (subscriber) : abonné</li>
             </ul>
-            <a href="https://github.com/betagouv/datapass#les-roles-dans-datapass">
+            <Link
+              inline
+              href="https://github.com/betagouv/datapass#les-roles-dans-datapass"
+            >
               Plus d’info
-            </a>
+            </Link>
           </div>
         </>
       )}

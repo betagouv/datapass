@@ -4,6 +4,7 @@ import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
 import RadioInput from '../../atoms/inputs/RadioInput';
 import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
+import Link from '../../atoms/Link';
 
 const SECTION_LABEL = 'Le niveau de garantie';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -40,14 +41,14 @@ export const FranceConnectPlusSection = () => {
         <p>
           <b>eIDAS 2</b> est un niveau de garantie plus élevé. Vous trouverez
           plus d’information sur{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            inline
+            newTab
             aria-label="Aller vers le règlement eIDAS"
             href="https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=CELEX:32015R1502&from=FR"
           >
             le site de la réglementation eIDAS
-          </a>
+          </Link>
           . Si vous êtes un acteur du secteur privé, une facturation pourra être
           appliquée par certains fournisseurs d’identité.
         </p>

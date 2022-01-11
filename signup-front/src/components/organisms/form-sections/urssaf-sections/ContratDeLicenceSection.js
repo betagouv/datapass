@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollablePanel } from '../../Scrollable';
+import Link from '../../../atoms/Link';
 
 const SECTION_LABEL = 'Le contrat de licence';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -22,13 +23,9 @@ export const ContratDeLicenceSection = () => (
     <p>
       Dans le cas où votre organisme n’aurait pas de dispositif de signature
       électronique, l’outil Docusign (
-      <a
-        href={'https://www.docusign.fr'}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link inline newTab href={'https://www.docusign.fr'}>
         https://www.docusign.fr
-      </a>
+      </Link>
       ) offre par exemple un accès de 30 jours à sa plateforme de signature.
     </p>
     <p>

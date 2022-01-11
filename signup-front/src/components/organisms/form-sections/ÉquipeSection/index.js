@@ -7,6 +7,7 @@ import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
+import Link from '../../../atoms/Link';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -26,14 +27,14 @@ export const getDefaultResponsableTraitementDescription = () => (
     personne appartenant à l’organisme demandeur peut être renseignée. Cette
     personne sera notifiée par email à la validation de la demande. Ses nom et
     prénom peuvent également être rendus publics.{' '}
-    <a
+    <Link
+      inline
+      newTab
       href={'https://www.cnil.fr/fr/definition/responsable-de-traitement'}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label="Voir la définition CNIL du responsable de traitement"
     >
       Plus d’infos
-    </a>
+    </Link>
     .
   </>
 );
@@ -45,14 +46,14 @@ export const getDefaultDelegueProtectionDonneesDescription = () => (
     législation en vigueur. C'est généralement une personne appartenant à
     l’organisme demandeur. Cette personne sera notifiée par email à la
     validation de la demande.{' '}
-    <a
+    <Link
+      inline
+      newTab
       href={'https://www.cnil.fr/fr/designation-dpo'}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label="Voir la définition CNIL du délégué à la protection des données"
     >
       Plus d’infos
-    </a>
+    </Link>
     .
   </>
 );

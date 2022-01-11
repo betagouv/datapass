@@ -1,16 +1,32 @@
 import React from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+type linkProps = {
+  target: string;
+  rel: string;
+};
+
 const Link = ({
-  type = '',
-  closeButton,
+  type,
+  closeButton = false,
   icon,
   onClick,
   href,
   children,
   className = '',
   inline = false,
+  newTab = false,
   ...props
+}: {
+  type?: string;
+  closeButton?: boolean;
+  icon?: string;
+  onClick?: () => void;
+  href?: string;
+  children: React.ReactNode;
+  className?: string;
+  inline?: boolean;
+  newTab?: boolean;
 }) => {
   if (!inline && !className) {
     className = 'fr-link';
@@ -22,6 +38,11 @@ const Link = ({
 
   if (closeButton) {
     className += ` fr-link--close`;
+  }
+
+  if (newTab) {
+    (props as linkProps).target = '_blank';
+    (props as linkProps).rel = 'noreferrer';
   }
 
   if (href) {

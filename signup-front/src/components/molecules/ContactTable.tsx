@@ -1,6 +1,7 @@
 import React from 'react';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { dataProviderParametersToContactInfo } from '../../lib';
+import Link from '../atoms/Link';
 
 const ContactsTable = () => {
   type dataProviderInfoType = {
@@ -23,11 +24,11 @@ const ContactsTable = () => {
             <tr>
               <td>{label}</td>
               <td>
-                <a
+                <Link
                   href={`mailto:${email}?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr`}
                 >
                   Écrire à l’équipe
-                </a>
+                </Link>
               </td>
             </tr>
           ))}

@@ -21,36 +21,36 @@ const Footer = () => (
           </p>
           <ul className="fr-footer__content-list">
             <li className="fr-footer__content-item">
-              <a
+              <Link
                 className="fr-footer__content-link"
                 href="https://legifrance.gouv.fr"
               >
                 legifrance.gouv.fr
-              </a>
+              </Link>
             </li>
             <li className="fr-footer__content-item">
-              <a
+              <Link
                 className="fr-footer__content-link"
                 href="https://gouvernement.fr"
               >
                 gouvernement.fr
-              </a>
+              </Link>
             </li>
             <li className="fr-footer__content-item">
-              <a
+              <Link
                 className="fr-footer__content-link"
                 href="https://service-public.fr"
               >
                 service-public.fr
-              </a>
+              </Link>
             </li>
             <li className="fr-footer__content-item">
-              <a
+              <Link
                 className="fr-footer__content-link"
                 href="https://data.gouv.fr"
               >
                 data.gouv.fr
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -76,12 +76,12 @@ const Footer = () => (
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <a
+            <Link
               className="fr-footer__bottom-link"
               href={`/docs/cgu_datapass.pdf`}
             >
               Conditions générales d'utilisation
-            </a>
+            </Link>
           </li>
           <li className="fr-footer__bottom-item">
             <Link className="fr-footer__bottom-link" href="/faq">
@@ -92,13 +92,13 @@ const Footer = () => (
         <div className="fr-footer__bottom-copy">
           <p>
             Sauf mention contraire, tous les textes de ce site sont sous{' '}
-            <a
+            <Link
+              inline
+              newTab
               href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
-              target="_blank"
-              rel="noreferrer"
             >
               licence etalab-2.0
-            </a>
+            </Link>
           </p>
         </div>
       </div>

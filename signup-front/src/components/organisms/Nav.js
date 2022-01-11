@@ -3,6 +3,7 @@ import { ScrollableLink } from './Scrollable';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import Button from '../atoms/Button';
 import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
+import Link from '../atoms/Link';
 
 export const getDefaultDocumentationUrl = (target_api) =>
   `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
@@ -52,7 +53,9 @@ const Nav = ({
             Toutes mes habilitations
           </Button>
           <div className="fr-sidemenu__title">
-            <a href="#head">Formulaire</a>
+            <Link inline href="#head">
+              Formulaire
+            </Link>
           </div>
           <ul className="fr-sidemenu__list">
             {navElements.map(({ id, label }) => (

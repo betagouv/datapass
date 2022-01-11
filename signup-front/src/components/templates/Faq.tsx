@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import ContactsTable from '../molecules/ContactTable';
 import './Faq.css';
+import Link from '../atoms/Link';
 
 const questions = [
   {
@@ -22,9 +23,12 @@ const questions = [
     body: (
       <>
         Vous pouvez{' '}
-        <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr">
+        <Link
+          inline
+          href="mailto:contact@api.gouv.fr?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr"
+        >
           nous poser votre question directement.
-        </a>
+        </Link>
       </>
     ),
   },

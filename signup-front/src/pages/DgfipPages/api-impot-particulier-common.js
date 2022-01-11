@@ -1,4 +1,5 @@
 import { DonneesDescription as CommonDonneesDescription } from './common';
+import Link from '../../components/atoms/Link';
 
 export const DonneesDescription = () => (
   <>
@@ -7,14 +8,14 @@ export const DonneesDescription = () => (
       Pour connaitre les modalités d’appel et de réponse de l’API Impôt
       particulier ainsi que les données proposées, merci de consulter le
       document suivant :{' '}
-      <a
+      <Link
+        inline
+        newTab
         href="/docs/presentation_de_l_api_impot_particulier_v1_9.pdf"
-        target="_blank"
-        rel="noreferrer noopener"
         aria-label="Présentation de l’API Impôt particulier (PDF)"
       >
         Présentation de l’API Impôt particulier (PDF)
-      </a>
+      </Link>
       .
     </p>
   </>

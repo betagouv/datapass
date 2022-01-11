@@ -72,9 +72,9 @@ const UserEnrollmentList = () => {
             <p>
               <IndexPointingRightEmoji />
               {' '}
-              <a href={`${API_GOUV_HOST}/datapass/api`}>
+              <Link inline href={`${API_GOUV_HOST}/datapass/api`}>
                 Soumettre une demande API
-              </a>
+              </Link>
             </p>
             <p>
               <IndexPointingRightEmoji />
