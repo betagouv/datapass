@@ -10,6 +10,7 @@ import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FileInput from '../../../molecules/FileInput';
 import Link from '../../../atoms/hyperTexts/Link';
+import Alert from '../../../atoms/Alert';
 
 const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -217,9 +218,9 @@ const DonneesSection = ({
       />
       {data_retention_period > 36 && (
         <>
-          <div className="notification warning">
+          <Alert type="warning" title="Attention">
             Cette durée excède la durée communément constatée (36 mois).
-          </div>
+          </Alert>
           <TextInput
             label="Veuillez justifier cette durée dans le champ ci-après :"
             name="data_retention_comment"
