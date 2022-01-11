@@ -82,11 +82,9 @@ jobs:
       - name: Setup private SSH deployment key
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ./deployment.key
-          sudo chmod 600 ./deployment.key
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          ssh-keyscan -t rsa -H "$SSH_HOST" > ~/.ssh/known_hosts
         shell: bash
-      - name: Add target ssh host signature to known hosts
-        run: |
-          ssh-keyscan -t rsa -H "$SSH_HOST" >> ~/.ssh/known_hosts
       - name: Deploy application
-        run: ssh -i ./deployment.key "$APP_USER@$SSH_HOST"
+        run: ssh -i ../private.key "$APP_USER@$SSH_HOST"
