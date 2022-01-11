@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { ScrollableLink } from './Scrollable';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
-import Button from '../atoms/Button';
+import Button from '../atoms/hyperTexts/Button';
 import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
-import Link from '../atoms/Link';
+import Link from '../atoms/hyperTexts/Link';
 
 export const getDefaultDocumentationUrl = (target_api) =>
   `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;

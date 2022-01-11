@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../../../atoms/inputs/TextInput';
 import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
-import Button from '../../../atoms/Button';
+import Button from '../../../atoms/hyperTexts/Button';
 import {
   isEmailValid,
   isIndividualEmailAddress,

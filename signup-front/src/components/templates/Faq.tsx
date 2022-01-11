@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import ContactsTable from '../molecules/ContactTable';
 import './Faq.css';
-import Link from '../atoms/Link';
+import Link from '../atoms/hyperTexts/Link';
 
 const questions = [
   {

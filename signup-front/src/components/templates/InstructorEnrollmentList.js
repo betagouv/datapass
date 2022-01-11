@@ -15,10 +15,11 @@ import enrollmentListStyle from './enrollmentListStyle';
 import ScheduleIcon from '../atoms/icons/schedule';
 import { AuthContext } from '../organisms/AuthContext';
 import MultiSelect from '../molecules/MultiSelect';
-import Tag, { TagContainer } from '../atoms/Tag';
+import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import FileCopyIcon from '../atoms/icons/file_copy';
 import useListItemNavigation from './hooks/use-list-item-navigation';
+import Tag from '../atoms/hyperTexts/Tag';
 
 const getInboxes = (user) => ({
   primary: {

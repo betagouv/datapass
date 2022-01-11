@@ -3,7 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import FileInput from '../../../molecules/FileInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
-import Link from '../../../atoms/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les pièces justificatives';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

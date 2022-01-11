@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
-import Tag, { TagContainer } from '../../../atoms/Tag';
+import TagContainer from '../../../atoms/TagContainer';
 import FileCopyIcon from '../../../atoms/icons/file_copy';
 import {
   STATUS_TO_BUTTON_TYPE,
@@ -11,6 +11,7 @@ import { FormContext } from '../../../templates/Form';
 import ActivityFeed from './ActivityFeed';
 import { isEmpty } from 'lodash';
 import NotificationSubSection from './NotificationSubSection';
+import Tag from '../../../atoms/hyperTexts/Tag';
 
 export const HeadSection = () => {
   const {

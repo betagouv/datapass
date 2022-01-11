@@ -9,7 +9,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
-import Button from '../../../atoms/Button';
+import Button from '../../../atoms/hyperTexts/Button';
 import { Card, CardContainer, CardHead } from '../../../molecules/Card';
 import TechnicalTeamCard from './TechnicalTeamCard';
 

@@ -8,8 +8,9 @@ import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 import ListHeader from '../../../molecules/ListHeader';
-import Tag, { TagContainer } from '../../../atoms/Tag';
-import Link from '../../../atoms/Link';
+import TagContainer from '../../../atoms/TagContainer';
+import Link from '../../../atoms/hyperTexts/Link';
+import Tag from '../../../atoms/hyperTexts/Tag';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);

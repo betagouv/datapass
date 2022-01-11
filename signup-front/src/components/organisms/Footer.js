@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../atoms/Link';
+import Link from '../atoms/hyperTexts/Link';
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const Footer = () => (
@@ -21,34 +21,22 @@ const Footer = () => (
           </p>
           <ul className="fr-footer__content-list">
             <li className="fr-footer__content-item">
-              <Link
-                className="fr-footer__content-link"
-                href="https://legifrance.gouv.fr"
-              >
+              <Link footerContent href="https://legifrance.gouv.fr">
                 legifrance.gouv.fr
               </Link>
             </li>
             <li className="fr-footer__content-item">
-              <Link
-                className="fr-footer__content-link"
-                href="https://gouvernement.fr"
-              >
+              <Link footerContent href="https://gouvernement.fr">
                 gouvernement.fr
               </Link>
             </li>
             <li className="fr-footer__content-item">
-              <Link
-                className="fr-footer__content-link"
-                href="https://service-public.fr"
-              >
+              <Link footerContent href="https://service-public.fr">
                 service-public.fr
               </Link>
             </li>
             <li className="fr-footer__content-item">
-              <Link
-                className="fr-footer__content-link"
-                href="https://data.gouv.fr"
-              >
+              <Link footerContent href="https://data.gouv.fr">
                 data.gouv.fr
               </Link>
             </li>
@@ -58,33 +46,27 @@ const Footer = () => (
       <div className="fr-footer__bottom">
         <ul className="fr-footer__bottom-list">
           <li className="fr-footer__bottom-item">
-            <Link className="fr-footer__bottom-link" href="/accessibilite">
+            <Link footerBottom href="/accessibilite">
               Accessibilité: partiellement conforme
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <Link
-              className="fr-footer__bottom-link"
-              href={`${API_GOUV_HOST}/apropos`}
-            >
+            <Link footerBottom href={`${API_GOUV_HOST}/apropos`}>
               À propos
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <Link className="fr-footer__bottom-link" href="/stats">
+            <Link footerBottom href="/stats">
               Statistiques d'utilisation
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <Link
-              className="fr-footer__bottom-link"
-              href={`/docs/cgu_datapass.pdf`}
-            >
+            <Link footerBottom href={`/docs/cgu_datapass.pdf`}>
               Conditions générales d'utilisation
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
-            <Link className="fr-footer__bottom-link" href="/faq">
+            <Link footerBottom href="/faq">
               Aide
             </Link>
           </li>

@@ -1,16 +1,34 @@
 import React from 'react';
-import './style.css';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-export const TagContainer = ({ children }) => (
-  <div className="tag-container">{children}</div>
-);
-
-export const Tag = ({ type = '', onClick, href, children, ...props }) => {
-  let className = `fr-tag`;
-
+const HyperText = ({
+  type,
+  icon,
+  iconRight = false,
+  onClick,
+  href,
+  children,
+  className = '',
+  ...props
+}: {
+  type?: string;
+  icon?: string;
+  iconRight?: boolean;
+  onClick?: () => void;
+  href?: string;
+  children: React.ReactNode;
+  className?: string;
+}) => {
   if (type) {
     className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
+  }
+
+  if (icon) {
+    className += ` fr-fi-${icon}-line`;
+  }
+
+  if (icon && children) {
+    className += iconRight ? ' fr-btn--icon-right' : ' fr-btn--icon-left';
   }
 
   if (href) {
@@ -31,6 +49,7 @@ export const Tag = ({ type = '', onClick, href, children, ...props }) => {
       </ReactRouterLink>
     );
   }
+
   if (onClick) {
     return (
       <button className={className} onClick={onClick} {...props}>
@@ -46,4 +65,4 @@ export const Tag = ({ type = '', onClick, href, children, ...props }) => {
   );
 };
 
-export default Tag;
+export default HyperText;

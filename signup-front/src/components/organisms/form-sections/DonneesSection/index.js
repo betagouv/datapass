@@ -9,7 +9,7 @@ import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FileInput from '../../../molecules/FileInput';
-import Link from '../../../atoms/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

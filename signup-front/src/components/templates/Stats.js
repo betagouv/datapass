@@ -15,9 +15,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
 import './Stats.css';
-
 import { getAPIStats } from '../../services/stats';
 import { USER_STATUS_LABELS } from '../../config/status-parameters';
 import {
@@ -30,8 +28,9 @@ import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { Card, CardContainer } from '../molecules/Card';
-import { Tag, TagContainer } from '../atoms/Tag';
-import Link from '../atoms/Link';
+import TagContainer from '../atoms/TagContainer';
+import Link from '../atoms/hyperTexts/Link';
+import Tag from '../atoms/hyperTexts/Tag';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
