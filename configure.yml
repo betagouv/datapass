@@ -189,8 +189,19 @@
       when: retool_ssh_key is defined
       tags: retool
 
-- hosts: all
+- hosts: datapass-back
   become: true
+  vars_files:
+    - "{{ inventory_dir }}/group_vars/datapass-back.yml"
+  roles:
+    - role: continuous-deployment
+      when: github_action_ssh_key is defined
+      tags: continuous-deployment
+
+- hosts: datapass-front
+  become: true
+  vars_files:
+    - "{{ inventory_dir }}/group_vars/datapass-front.yml"
   roles:
     - role: continuous-deployment
       when: github_action_ssh_key is defined
