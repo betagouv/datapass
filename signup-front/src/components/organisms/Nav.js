@@ -13,7 +13,7 @@ export const DEFAULT_CONTACT_EMAIL = 'contact@api.gouv.fr';
 const Nav = ({
   target_api,
   sectionLabels = [],
-  contactEmail = '',
+  contactEmail,
   documentationUrl,
 }) => {
   const { goBackToList } = useListItemNavigation();
@@ -27,13 +27,13 @@ const Nav = ({
     [sectionLabels]
   );
 
-  const subject = useMemo(
+  const contactLink = useMemo(
     () =>
-      contactEmail === DEFAULT_CONTACT_EMAIL
-        ? `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+      !contactEmail || contactEmail === DEFAULT_CONTACT_EMAIL
+        ? `mailto:${DEFAULT_CONTACT_EMAIL}?subject=Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
             DATA_PROVIDER_PARAMETERS[target_api]?.label
           )}`
-        : 'Contact%20via%20datapass.api.gouv.fr',
+        : `mailto:${contactEmail}?subject=Contact%20via%20datapass.api.gouv.fr`,
     [contactEmail, target_api]
   );
 
@@ -66,14 +66,7 @@ const Nav = ({
           </ul>
           <ul>
             <li style={{ marginTop: '1em' }}>
-              <Button
-                outline
-                icon="mail"
-                iconRight
-                href={`mailto:${
-                  contactEmail || DEFAULT_CONTACT_EMAIL
-                }?subject=${subject}`}
-              >
+              <Button outline icon="mail" iconRight href={contactLink}>
                 Nous contacter
               </Button>
             </li>
