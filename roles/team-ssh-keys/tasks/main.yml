@@ -1,7 +1,6 @@
 ---
 - name: Add users ssh key
   authorized_key:
-    exclusive: no
     state: "{{ item.state }}"
     user: "{{ ansible_user }}"
     key: "{{ item.public_key }}"
@@ -9,7 +8,6 @@
 
 - name: Add users ssh key
   authorized_key:
-    exclusive: no
     state: "{{ item.state }}"
     user: "{{ app_user }}"
     key: "{{ item.public_key }}"
