@@ -17,7 +17,6 @@
 
 - name: Add ssh deployment key
   authorized_key:
-    exclusive: no
     state: present
     user: "{{ app_user }}"
     key: "{{ github_action_ssh_key }}"
