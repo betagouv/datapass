@@ -1,17 +1,17 @@
-import React, { PropsWithChildren, useState } from 'react';
+import React from 'react';
 import ContactsTable from '../molecules/ContactTable';
-import './Faq.css';
 import Link from '../atoms/hyperTexts/Link';
+import ExpandableQuote from '../atoms/inputs/ExpandableQuote';
 
 const questions = [
   {
     anchor: 'probleme-demande',
-    title: 'J’ai une question concernant ma demande',
+    title: 'J’ai une question concernant ma demande ?',
     body: (
       <>
         <p>
           Pour répondre à votre question, vous pouvez contacter l'équipe qui
-          arbitre votre demande :
+          instruit votre demande :
         </p>
         <ContactsTable />
       </>
@@ -19,7 +19,7 @@ const questions = [
   },
   {
     anchor: 'contact',
-    title: 'Je ne trouve pas la réponse à ma question',
+    title: 'Je ne trouve pas la réponse à ma question ?',
     body: (
       <>
         Vous pouvez{' '}
@@ -34,37 +34,25 @@ const questions = [
   },
 ];
 
-const QuestionBlock: React.FC<
-  PropsWithChildren<{ title: string; anchor: string; openOnMount: boolean }>
-> = ({ children, title, anchor, openOnMount }) => {
-  const [isOpen, setIsOpen] = useState(openOnMount || false);
-  return (
-    <div
-      id={anchor}
-      className={`question-container ${isOpen ? 'open' : 'closed'}`}
-    >
-      <label onClick={() => setIsOpen(!isOpen)}>{title}</label>
-      <div>{children}</div>
-    </div>
-  );
-};
-
 const FAQ: React.FC<{}> = () => (
   <main>
     <div className="page-container">
       <h1>FAQ</h1>
       <p>Comment peut-on vous aider ?</p>
-      <div className="questions">
-        {questions.map((question) => (
-          <QuestionBlock
-            anchor={question.anchor}
+      {questions.map((question) => (
+        <div
+          key={question.anchor}
+          id={question.anchor}
+          style={{ marginBottom: '1.5rem' }}
+        >
+          <ExpandableQuote
             title={question.title}
             openOnMount={window.location.hash === `#${question.anchor}`}
           >
             {question.body}
-          </QuestionBlock>
-        ))}
-      </div>
+          </ExpandableQuote>
+        </div>
+      ))}
     </div>
   </main>
 );
