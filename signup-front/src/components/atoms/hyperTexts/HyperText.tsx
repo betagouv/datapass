@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
-const HyperText = ({
+export enum ButtonType {
+  grey = 'grey',
+  info = 'info',
+  success = 'success',
+  warning = 'warning',
+  error = 'error',
+}
+
+type Props = {
+  type?: ButtonType;
+  icon?: string;
+  iconRight?: boolean;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  href?: string;
+  className?: string;
+};
+
+const HyperText: React.FC<Props> = ({
   type,
   icon,
   iconRight = false,
   onClick,
   href,
-  children,
   className = '',
+  children,
   ...props
-}: {
-  type?: string;
-  icon?: string;
-  iconRight?: boolean;
-  onClick?: () => void;
-  href?: string;
-  children: React.ReactNode;
-  className?: string;
 }) => {
+  const { trackEvent } = useMatomo();
+
   if (type) {
     className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
@@ -51,8 +63,13 @@ const HyperText = ({
   }
 
   if (onClick) {
+    const handleClick: (e: MouseEvent<HTMLElement>) => void = (e) => {
+      trackEvent({ category: 'sample-page', action: 'click-event' });
+      onClick(e);
+    };
+
     return (
-      <button className={className} onClick={onClick} {...props}>
+      <button className={className} onClick={handleClick} {...props}>
         {children}
       </button>
     );

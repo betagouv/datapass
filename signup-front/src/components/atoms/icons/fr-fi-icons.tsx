@@ -1,24 +1,24 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
-const FrFiIcon: React.FC<PropsWithChildren<{ color?: string; type: string }>> =
-  ({ color = 'var(--datapass-blue)', type }) => (
-    <span className={`fr-fi-${type}`} aria-hidden="true" style={{ color }} />
-  );
+const FrFiIcon: React.FC<{ color?: string; type: string }> = ({
+  color = 'var(--datapass-blue)',
+  type,
+}) => <span className={`fr-fi-${type}`} aria-hidden="true" style={{ color }} />;
 
-type FrFiIconsType = React.FC<PropsWithChildren<{ color?: string }>>;
+type Props = { color?: string };
 
-export const ArrowUpIcon: FrFiIconsType = ({ color }) => (
+export const ArrowUpIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="arrow-up-s-line" color={color} />
 );
 
-export const ArrowDownIcon: FrFiIconsType = ({ color }) => (
+export const ArrowDownIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="arrow-down-s-line" color={color} />
 );
 
-export const InfoIcon: FrFiIconsType = ({ color }) => (
+export const InfoIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="information-fill" color={color} />
 );
 
-export const ExternalLinkIcon: FrFiIconsType = ({ color }) => (
+export const ExternalLinkIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="external-link-line" color={color} />
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import HyperText from './HyperText';
 
 type linkProps = {
@@ -6,7 +6,19 @@ type linkProps = {
   rel: string;
 };
 
-const Link = ({
+type Props = {
+  href?: string;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  inline?: boolean;
+  footerContent?: boolean;
+  footerBottom?: boolean;
+  sidemenu?: boolean;
+  closeButton?: boolean;
+  icon?: string;
+  newTab?: boolean;
+};
+
+const Link: React.FC<Props> = ({
   href,
   onClick,
   inline = false,
@@ -18,17 +30,6 @@ const Link = ({
   newTab = false,
   children,
   ...props
-}: {
-  href?: string;
-  onClick?: () => void;
-  inline?: boolean;
-  footerContent?: boolean;
-  footerBottom?: boolean;
-  sidemenu?: boolean;
-  closeButton?: boolean;
-  icon?: string;
-  newTab?: boolean;
-  children: React.ReactNode;
 }) => {
   let className = 'fr-link';
 
