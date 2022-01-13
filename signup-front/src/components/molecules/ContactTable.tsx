@@ -1,7 +1,7 @@
 import React from 'react';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { dataProviderParametersToContactInfo } from '../../lib';
-import Link from '../atoms/hyperTexts/Link';
+import Link from './hyperTexts/Link';
 
 const ContactsTable: React.FC = () => {
   type dataProviderInfoType = {

@@ -29,8 +29,8 @@ import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { Card, CardContainer } from '../molecules/Card';
 import TagContainer from '../atoms/TagContainer';
-import Link from '../atoms/hyperTexts/Link';
-import Tag from '../atoms/hyperTexts/Tag';
+import Link from '../molecules/hyperTexts/Link';
+import Tag from '../molecules/hyperTexts/Tag';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [

@@ -4,13 +4,13 @@ import './style.css';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
-import Button from '../../atoms/hyperTexts/Button';
+import Button from '../../molecules/hyperTexts/Button';
 import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
 import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
 import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
-import Link from '../../atoms/hyperTexts/Link';
+import Link from '../../molecules/hyperTexts/Link';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 

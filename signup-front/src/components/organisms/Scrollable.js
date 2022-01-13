@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { delay, throttle } from 'lodash';
 import PropTypes from 'prop-types';
-import Link from '../atoms/hyperTexts/Link';
+import Link from '../molecules/hyperTexts/Link';
 
 const getWindowHash = () =>
   window.location.hash ? window.location.hash.substr(1) : null;

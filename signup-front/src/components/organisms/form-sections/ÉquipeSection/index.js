@@ -3,11 +3,11 @@ import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
-import Link from '../../../atoms/hyperTexts/Link';
+import Link from '../../../molecules/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

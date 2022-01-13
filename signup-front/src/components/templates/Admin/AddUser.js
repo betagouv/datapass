@@ -3,7 +3,7 @@ import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
 import AutorenewIcon from '../../atoms/icons/autorenew';
 import { getErrorMessages } from '../../../lib';
-import Button from '../../atoms/hyperTexts/Button';
+import Button from '../../molecules/hyperTexts/Button';
 import Alert from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 

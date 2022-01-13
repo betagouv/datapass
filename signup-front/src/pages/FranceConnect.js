@@ -8,7 +8,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
-import Link from '../components/atoms/hyperTexts/Link';
+import Link from '../components/molecules/hyperTexts/Link';
 
 const DonneesDescription = () => (
   <>

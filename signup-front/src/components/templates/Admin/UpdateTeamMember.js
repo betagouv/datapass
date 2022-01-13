@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { updateTeamMember } from '../../../services/enrollments';
 import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
-import Button from '../../atoms/hyperTexts/Button';
+import Button from '../../molecules/hyperTexts/Button';
 import Alert from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 

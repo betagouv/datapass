@@ -9,8 +9,8 @@ import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
-import Link from '../../../atoms/hyperTexts/Link';
-import Tag from '../../../atoms/hyperTexts/Tag';
+import Link from '../../../molecules/hyperTexts/Link';
+import Tag from '../../../molecules/hyperTexts/Tag';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);

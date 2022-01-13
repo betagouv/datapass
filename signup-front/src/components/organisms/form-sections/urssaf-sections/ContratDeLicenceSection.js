@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollablePanel } from '../../Scrollable';
-import Link from '../../../atoms/hyperTexts/Link';
+import Link from '../../../molecules/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le contrat de licence';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

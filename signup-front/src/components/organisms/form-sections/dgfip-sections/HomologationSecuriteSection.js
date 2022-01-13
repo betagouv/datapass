@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import FileInput from '../../../molecules/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import DateInput from '../../../atoms/inputs/DateInput';
 

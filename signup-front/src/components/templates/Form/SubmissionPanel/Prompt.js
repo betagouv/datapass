@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import useMostUsedComments from './hooks/use-most-used-comments';
 import useEmailTemplate from './hooks/use-email-template';
 import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
-import Button from '../../../atoms/hyperTexts/Button';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
+import Button from '../../../molecules/hyperTexts/Button';
 import ButtonGroup from '../../../molecules/ButtonGroup';
 
 const Prompt = ({

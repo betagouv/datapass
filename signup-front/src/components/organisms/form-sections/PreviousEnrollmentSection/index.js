@@ -6,11 +6,11 @@ import { getUserValidatedEnrollments } from '../../../../services/enrollments';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import Stepper from '../../../molecules/Stepper';
 import SelectInput from '../../../atoms/inputs/SelectInput';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert from '../../../atoms/Alert';
-import Link from '../../../atoms/hyperTexts/Link';
+import Link from '../../../molecules/hyperTexts/Link';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

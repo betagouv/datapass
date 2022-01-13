@@ -11,7 +11,7 @@ import { FormContext } from '../../../templates/Form';
 import ActivityFeed from './ActivityFeed';
 import { isEmpty } from 'lodash';
 import NotificationSubSection from './NotificationSubSection';
-import Tag from '../../../atoms/hyperTexts/Tag';
+import Tag from '../../../molecules/hyperTexts/Tag';
 
 export const HeadSection = () => {
   const {

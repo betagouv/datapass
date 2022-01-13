@@ -1,8 +1,8 @@
 import React from 'react';
 import AriaModal from '@justfixnyc/react-aria-modal';
-import Button from '../atoms/hyperTexts/Button';
+import Button from '../molecules/hyperTexts/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
-import Link from '../atoms/hyperTexts/Link';
+import Link from '../molecules/hyperTexts/Link';
 import { InfoIcon } from '../atoms/icons/fr-fi-icons';
 import './ConfirmationModal.css';
 

@@ -3,7 +3,7 @@ import Loader from '../../../atoms/Loader';
 import { get, isEmpty } from 'lodash';
 import Alert from '../../../atoms/Alert';
 import HighVoltageEmoji from '../../../atoms/icons/HighVoltageEmoji';
-import Link from '../../../atoms/hyperTexts/Link';
+import Link from '../../../molecules/hyperTexts/Link';
 
 const DemarcheSectionNotification = ({
   isLoading = false,

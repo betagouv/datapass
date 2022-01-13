@@ -1,7 +1,7 @@
 import Loader from './Loader';
 import React, { MouseEvent } from 'react';
 import { EventConfiguration } from '../../config/event-configuration';
-import Button from './hyperTexts/Button';
+import Button from '../molecules/hyperTexts/Button';
 
 type Props = EventConfiguration['displayProps'] & {
   disabled: boolean;

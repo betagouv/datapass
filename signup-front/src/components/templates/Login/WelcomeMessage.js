@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import NextSteps from './NextSteps';
-import Link from '../../atoms/hyperTexts/Link';
+import Link from '../../molecules/hyperTexts/Link';
 
 const WelcomeMessage = ({
   isOnNewEnrollmentPage,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../atoms/hyperTexts/Button';
+import Button from '../molecules/hyperTexts/Button';
 
 const Accessibilite = () => (
   <main>

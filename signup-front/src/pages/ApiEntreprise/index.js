@@ -13,7 +13,7 @@ import ÉquipeSection, {
 } from '../../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
-import Link from '../../components/atoms/hyperTexts/Link';
+import Link from '../../components/molecules/hyperTexts/Link';
 
 const DonneesDescription = () => (
   <>

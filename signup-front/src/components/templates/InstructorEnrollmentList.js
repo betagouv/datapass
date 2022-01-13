@@ -19,7 +19,7 @@ import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import FileCopyIcon from '../atoms/icons/file_copy';
 import useListItemNavigation from './hooks/use-list-item-navigation';
-import Tag from '../atoms/hyperTexts/Tag';
+import Tag from '../molecules/hyperTexts/Tag';
 
 const getInboxes = (user) => ({
   primary: {

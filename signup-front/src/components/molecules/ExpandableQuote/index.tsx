@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './ExpandableQuote.css';
-import AlertIcon from '../icons/alert';
-import { ArrowDownIcon, ArrowUpIcon } from '../icons/fr-fi-icons';
+import './style.css';
+import AlertIcon from '../../atoms/icons/alert';
+import { ArrowDownIcon, ArrowUpIcon } from '../../atoms/icons/fr-fi-icons';
 
 type Props = { title: string; large?: boolean; openOnMount?: boolean };
 

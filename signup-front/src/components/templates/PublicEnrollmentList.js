@@ -14,7 +14,7 @@ import ScheduleIcon from '../atoms/icons/schedule';
 import ListHeader from '../molecules/ListHeader';
 import { debounce } from 'lodash';
 import TagContainer from '../atoms/TagContainer';
-import Tag from '../atoms/hyperTexts/Tag';
+import Tag from '../molecules/hyperTexts/Tag';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
