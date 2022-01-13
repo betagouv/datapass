@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { getNodeText } from '../../../lib';
 
 export enum ButtonType {
   grey = 'grey',
@@ -64,7 +65,13 @@ const HyperText: React.FC<Props> = ({
 
   if (onClick) {
     const handleClick: (e: MouseEvent<HTMLElement>) => void = (e) => {
-      trackEvent({ category: 'DataPass', action: 'click-event' });
+      const category = window.location.pathname.replace(/\d*/, '');
+      const name = getNodeText(children);
+      trackEvent({
+        category,
+        action: 'click-event',
+        name,
+      });
       onClick(e);
     };
 
