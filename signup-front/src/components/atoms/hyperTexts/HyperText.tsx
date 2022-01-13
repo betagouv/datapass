@@ -64,7 +64,7 @@ const HyperText: React.FC<Props> = ({
 
   if (onClick) {
     const handleClick: (e: MouseEvent<HTMLElement>) => void = (e) => {
-      trackEvent({ category: 'sample-page', action: 'click-event' });
+      trackEvent({ category: 'DataPass', action: 'click-event' });
       onClick(e);
     };
 
