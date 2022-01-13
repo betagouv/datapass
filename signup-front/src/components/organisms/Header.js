@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { useAuth } from './AuthContext';
 import { loginUrl } from '../templates/Login';
-import Link from '../molecules/hyperTexts/Link';
-import Button from '../molecules/hyperTexts/Button';
+import Link from '../atoms/hyperTexts/Link';
+import Button from '../atoms/hyperTexts/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

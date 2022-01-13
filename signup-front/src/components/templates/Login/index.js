@@ -5,7 +5,7 @@ import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-paramete
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
-import Button from '../../molecules/hyperTexts/Button';
+import Button from '../../atoms/hyperTexts/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

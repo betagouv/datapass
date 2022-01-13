@@ -7,7 +7,7 @@ import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
-import Link from '../../../molecules/hyperTexts/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

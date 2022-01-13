@@ -1,7 +1,7 @@
 import React from 'react';
 import LinkifyReact from 'linkify-react';
 import 'linkify-plugin-ticket';
-import Link from './hyperTexts/Link';
+import Link from '../atoms/hyperTexts/Link';
 
 const linkifyOptions = {
   formatHref: {

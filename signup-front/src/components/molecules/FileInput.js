@@ -4,7 +4,7 @@ import fileDownload from 'js-file-download';
 import { uniqueId } from 'lodash';
 import ConfirmationModal from '../organisms/ConfirmationModal';
 import httpClient from '../../lib/http-client';
-import Button from './hyperTexts/Button';
+import Button from '../atoms/hyperTexts/Button';
 import Label from '../atoms/inputs/Label';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;

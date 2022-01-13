@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../molecules/hyperTexts/Link';
+import Link from '../atoms/hyperTexts/Link';
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const Footer = () => (

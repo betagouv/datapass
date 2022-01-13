@@ -8,7 +8,7 @@ import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import TextInput from '../../atoms/inputs/TextInput';
 import ExpandableQuote from '../../molecules/ExpandableQuote';
 import { isEmpty } from 'lodash';
-import Link from '../../molecules/hyperTexts/Link';
+import Link from '../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

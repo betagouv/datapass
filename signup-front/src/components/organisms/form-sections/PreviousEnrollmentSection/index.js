@@ -10,7 +10,7 @@ import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert from '../../../atoms/Alert';
-import Link from '../../../molecules/hyperTexts/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

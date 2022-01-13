@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
-import Link from '../../../molecules/hyperTexts/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const ModalContent = {
   rgpd: {

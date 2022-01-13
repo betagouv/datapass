@@ -1,6 +1,6 @@
 import React from 'react';
 import ContactsTable from '../molecules/ContactTable';
-import Link from '../molecules/hyperTexts/Link';
+import Link from '../atoms/hyperTexts/Link';
 import ExpandableQuote from '../molecules/ExpandableQuote';
 
 const questions = [

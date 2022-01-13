@@ -4,7 +4,7 @@ import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
 import RadioInput from '../../atoms/inputs/RadioInput';
 import ExpandableQuote from '../../molecules/ExpandableQuote';
-import Link from '../../molecules/hyperTexts/Link';
+import Link from '../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le niveau de garantie';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

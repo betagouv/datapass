@@ -1,7 +1,5 @@
 import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
-import { getNodeText } from '../../../lib';
 
 export enum ButtonType {
   grey = 'grey',
@@ -30,8 +28,6 @@ const HyperText: React.FC<Props> = ({
   children,
   ...props
 }) => {
-  const { trackEvent } = useMatomo();
-
   if (type) {
     className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
@@ -64,19 +60,8 @@ const HyperText: React.FC<Props> = ({
   }
 
   if (onClick) {
-    const handleClick: (e: MouseEvent<HTMLElement>) => void = (e) => {
-      const category = window.location.pathname.replace(/\d*/, '');
-      const name = getNodeText(children);
-      trackEvent({
-        category,
-        action: 'click-event',
-        name,
-      });
-      onClick(e);
-    };
-
     return (
-      <button className={className} onClick={handleClick} {...props}>
+      <button className={className} onClick={onClick} {...props}>
         {children}
       </button>
     );

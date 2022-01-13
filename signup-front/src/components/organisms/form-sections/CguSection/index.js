@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
-import Link from '../../../molecules/hyperTexts/Link';
+import Link from '../../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Les modalités d’utilisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
