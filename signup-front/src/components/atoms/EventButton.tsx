@@ -1,5 +1,5 @@
 import Loader from './Loader';
-import { FunctionComponent, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { EventConfiguration } from '../../config/event-configuration';
 import Button from './hyperTexts/Button';
 
@@ -9,7 +9,7 @@ type Props = EventConfiguration['displayProps'] & {
   onClick: (event: MouseEvent<HTMLElement>) => void;
 };
 
-const EventButton: FunctionComponent<Props> = ({
+const EventButton: React.FC<Props> = ({
   label,
   icon,
   type,
@@ -17,14 +17,8 @@ const EventButton: FunctionComponent<Props> = ({
   loading,
   onClick,
 }) => (
-  <Button
-    href={null}
-    icon={icon}
-    type={type}
-    large
-    onClick={onClick}
-    disabled={disabled}
-  >
+  // @ts-ignore
+  <Button icon={icon} type={type} large onClick={onClick} disabled={disabled}>
     <div>
       {label}
       {loading && (

@@ -1,7 +1,19 @@
-import React from 'react';
-import HyperText from './HyperText';
+import React, { MouseEvent } from 'react';
+import HyperText, { ButtonType } from './HyperText';
 
-const Button = ({
+type Props = {
+  href?: string;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  outline?: boolean;
+  large?: boolean;
+  type?: ButtonType;
+  icon?: string;
+  iconRight?: boolean;
+  className?: string;
+  submit?: boolean;
+};
+
+const Button: React.FC<Props> = ({
   href,
   onClick,
   outline = false,

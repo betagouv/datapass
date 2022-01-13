@@ -48,7 +48,7 @@ const CadreJuridiqueDescription = () => (
         Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
         réglementaire qui s’applique à votre entité. Vous trouverez plus
         d’information sur{' '}
-        <Link inline newtab href="https://franceconnect.gouv.fr/partenaires">
+        <Link inline newTab href="https://franceconnect.gouv.fr/partenaires">
           notre page dédiée
         </Link>
         .

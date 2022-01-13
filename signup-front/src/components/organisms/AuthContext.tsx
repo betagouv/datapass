@@ -6,7 +6,22 @@ import { Login } from '../templates/Login';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 type AuthContextType = {
-  user: any;
+  user: {
+    id: number;
+    email: string;
+    given_name: string;
+    family_name: string;
+    phone_number: string;
+    job: string;
+    roles: string[];
+    organizations: [
+      {
+        id: number;
+        siret: string;
+        is_external: boolean;
+      }
+    ];
+  };
   isLoading: boolean;
   connectionError: string | null;
   login: () => void;

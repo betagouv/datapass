@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ExpandableQuote.css';
 import AlertIcon from '../icons/alert';
 import { ArrowDownIcon, ArrowUpIcon } from '../icons/fr-fi-icons';
 
-export const ExpandableQuote = ({ title, large, children }) => {
+type Props = { title: string; large?: boolean; openOnMount?: boolean };
+
+export const ExpandableQuote: React.FC<Props> = ({
+  title,
+  large = false,
+  openOnMount = false,
+  children,
+}) => {
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => setExpanded(openOnMount), [openOnMount]);
 
   return (
     <div

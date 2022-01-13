@@ -25,11 +25,11 @@ it('renders without crashing', () => {
     .reply(200, {
       id: 1,
       email: 'user@yopmail.com',
-      created_at: '2020-02-04T15:42:13.134Z',
-      updated_at: '2020-07-07T12:23:26.311Z',
+      given_name: 'User',
+      family_name: 'User',
+      phone_number: '0123456789',
+      job: 'User',
       roles: [],
-      uid: '1',
-      email_verified: true,
       organizations: [
         {
           id: 16,
