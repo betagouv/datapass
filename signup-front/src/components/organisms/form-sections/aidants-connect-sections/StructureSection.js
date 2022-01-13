@@ -7,7 +7,7 @@ import OrWrapper from '../../../atoms/inputs/OrWrapper';
 import FileInput from '../../../molecules/FileInput';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';

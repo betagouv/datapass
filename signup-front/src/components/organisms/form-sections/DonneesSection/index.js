@@ -4,7 +4,7 @@ import { chain, difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';

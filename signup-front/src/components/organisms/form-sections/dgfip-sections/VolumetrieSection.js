@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 
 const SECTION_LABEL = 'La volumétrie';

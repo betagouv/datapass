@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 
 const SECTION_LABEL = 'Démarches en ligne';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

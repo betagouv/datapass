@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
 import RadioInput from '../../atoms/inputs/RadioInput';
-import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../molecules/ExpandableQuote';
 import Link from '../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le niveau de garantie';

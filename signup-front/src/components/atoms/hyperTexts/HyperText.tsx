@@ -1,6 +1,5 @@
 import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 export enum ButtonType {
   grey = 'grey',
@@ -29,8 +28,6 @@ const HyperText: React.FC<Props> = ({
   children,
   ...props
 }) => {
-  const { trackEvent } = useMatomo();
-
   if (type) {
     className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
   }
@@ -63,13 +60,8 @@ const HyperText: React.FC<Props> = ({
   }
 
   if (onClick) {
-    const handleClick: (e: MouseEvent<HTMLElement>) => void = (e) => {
-      trackEvent({ category: 'DataPass', action: 'click-event' });
-      onClick(e);
-    };
-
     return (
-      <button className={className} onClick={handleClick} {...props}>
+      <button className={className} onClick={onClick} {...props}>
         {children}
       </button>
     );

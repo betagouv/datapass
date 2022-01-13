@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
-import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
 const SECTION_LABEL = 'La recette fonctionnelle';
