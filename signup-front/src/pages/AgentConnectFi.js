@@ -76,13 +76,13 @@ export const availableScopes = [
   },
 ];
 
-const target_api = 'agent_connect_fs';
+const target_api = 'agent_connect_fi';
 
-const AgentConnectFs = () => (
+const AgentConnectFi = () => (
   <Form
     target_api={target_api}
     contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
-    documentationUrl="À COMPLETER peut être https://github.com/france-connect/Documentation-AgentConnect/blob/main/doc-fs.md"
+    documentationUrl="À COMPLETER peut être https://github.com/france-connect/Documentation-AgentConnect/blob/main/doc%20FI.md"
   >
     <OrganisationSection />
     <DescriptionSection />
@@ -109,22 +109,14 @@ const AgentConnectFs = () => (
       cguLink="À COMPLETER"
       additionalTermsOfUse={[
         {
-          id: 'has_alternative_authentication_methods',
+          id: 'authorize_access_to_service_providers',
           label: (
             <>
-              J’atteste que mon service propose une alternative à la connexion
-              avec AgentConnect, et que cette alternative permet l’accès, dans
-              des conditions analogues, au même service.
-            </>
-          ),
-        },
-        {
-          id: 'authorize_access_to_identity_providers',
-          label: (
-            <>
-              J’autorise tous les fournisseurs d’identité à accéder à mon
-              service après avoir pris connaissance de leur politique de
-              sécurité figurant <a href="À COMPLETER">ici</a>.
+              J’autorise tous les fournisseurs de services de la fonction
+              publique d’État (administrations centrales et services
+              déconcentrés) et tous les fournisseurs de services des opérateurs
+              de l’État à utiliser les données transmises par AgentConnect pour
+              procéder à l’authentification de leurs agents utilisateurs.
             </>
           ),
         },
@@ -133,4 +125,4 @@ const AgentConnectFs = () => (
   </Form>
 );
 
-export default AgentConnectFs;
+export default AgentConnectFi;

@@ -49,6 +49,7 @@ import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import AgentConnectFs from '../pages/AgentConnectFs';
+import AgentConnectFi from '../pages/AgentConnectFi';
 
 type DataProviderParameter = {
   label: string;
@@ -358,6 +359,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-agent-connect.svg',
       email: 'À COMPLETER',
       component: AgentConnectFs,
+    },
+    agent_connect_fi: {
+      label: 'AgentConnect - Fournisseurs d’identité',
+      icon: 'logo-agent-connect.svg',
+      email: 'À COMPLETER',
+      component: AgentConnectFi,
     },
   };
 
