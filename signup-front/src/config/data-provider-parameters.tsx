@@ -48,6 +48,7 @@ import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
 import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
+import AgentConnectFs from '../pages/AgentConnectFs';
 
 type DataProviderParameter = {
   label: string;
@@ -351,6 +352,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-pole-emploi.png',
       email: 'support@pole-emploi.io',
       component: ApiStatutDemandeurEmploi,
+    },
+    agent_connect_fs: {
+      label: 'AgentConnect - Fournisseurs de services',
+      icon: 'logo-agent-connect.svg',
+      email: 'À COMPLETER',
+      component: AgentConnectFs,
     },
   };
 
