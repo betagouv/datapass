@@ -162,7 +162,7 @@ const DonneesSection = ({
       )}
       {!isEmpty(accessModes) && (
         <>
-          <h3>Comment souhaitez-vous accéder à l’API ?</h3>
+          <h3>Comment souhaitez-vous y accéder ?</h3>
           {accessModes.map(({ id, label }) => (
             <CheckboxInput
               key={id}
