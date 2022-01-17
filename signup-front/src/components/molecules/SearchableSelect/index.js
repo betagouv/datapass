@@ -1,7 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import { uniqueId } from 'lodash';
-import './style.css';
+import customStyles from './style';
+
+// Indicator is replaced by a background image in the control component
+const customComponents = { IndicatorsContainer: () => <></> };
 
 export const SearchableSelect = ({
   label,
@@ -51,6 +54,8 @@ export const SearchableSelect = ({
         formatCreateLabel={(inputValue) => inputValue}
         onChange={handleChange}
         value={valueObject}
+        styles={customStyles}
+        components={customComponents}
       />
     </div>
   );
