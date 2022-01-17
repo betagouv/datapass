@@ -18,7 +18,7 @@ shared:
 
 franceconnect:
   label: FranceConnect
-  support_email: contact@api.gouv.fr
+  support_email: support.partenaires@franceconnect.gouv.fr
   mailer: *shared_mailer
 
 api_particulier:

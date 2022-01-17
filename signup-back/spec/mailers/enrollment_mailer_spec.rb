@@ -22,7 +22,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       it "renders valid headers" do
         expect(mail.subject).to eq("Votre demande requiert des modifications")
         expect(mail.to).to eq([to_email])
-        expect(mail.from).to eq(["contact@api.gouv.fr"])
+        expect(mail.from).to eq(["support.partenaires@franceconnect.gouv.fr"])
       end
 
       it "renders valid body with message only" do
