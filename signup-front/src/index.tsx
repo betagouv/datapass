@@ -3,7 +3,7 @@ import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
 import App from './App';
 import { unregister as unregisterServiceWorker } from './registerServiceWorker';
 import 'moment/locale/fr'; // set moment locale to french globally
-import Sentry from '@sentry/react';
+import * as Sentry from '@sentry/react';
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({
