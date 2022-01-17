@@ -88,6 +88,76 @@ export const demarches = {
       },
     },
   },
+  stationnement_residentiel: {
+    label: 'Stationnement Résidentiel',
+    state: {
+      intitule: 'Dites-le nous une fois - Stationnement Résidentiel',
+      description:
+        'Simplification des demandes de carte de stationnement résidentiel pour les usagers par l’utilisation des données fiscales fournies par la DGFiP.\n\n(A compléter par le demandeur)',
+      data_recipients:
+        'Agents instructeurs des demandes de carte de stationnement résidentiel',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
+  place_creche: {
+    label: 'Place en crèche',
+    state: {
+      intitule: 'Dites-le nous une fois - Place en crèche',
+      description:
+        'Simplification des demandes de place en crèche pour les usagers par l’utilisation des données fiscales fournies par la DGFiP.\n\n(A compléter par le demandeur)',
+      data_recipients: 'Agents instructeurs des demandes de place en crèche',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
+  activites_periscolaires: {
+    label: 'Activités périscolaires',
+    state: {
+      intitule: 'Dites-le-nous une fois – Activités périscolaires',
+      description:
+        'Simplification de la souscription aux activités périscolaires pour les usagers par l’utilisation des données fiscales fournies par la DGFiP afin de déterminer les tarifs applicables.\n\n(A compléter par le demandeur)',
+      data_recipients:
+        'Agents instructeurs des demandes de souscription aux activités périscolaires',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
+  cantine_scolaire: {
+    label: 'Cantine scolaire',
+    state: {
+      intitule: 'Dites-le-nous une fois – Cantine scolaire',
+      description:
+        'Simplification de la souscription à la cantine scolaire pour les usagers par l’utilisation des données fiscales fournies par la DGFiP afin de déterminer les tarifs applicables.\n\n(A compléter par le demandeur)',
+      data_recipients:
+        'Agents instructeurs des demandes de souscription à la cantine scolaire',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
+  aides_sociales_facultatives: {
+    label: 'Aides sociales facultatives',
+    state: {
+      intitule: 'Dites-le-nous une fois – Aides sociales facultatives',
+      description:
+        'Simplification des demandes d’aides sociales facultatives pour les usagers par l’utilisation des données fiscales fournies par la DGFiP pour déterminer l’éligibilité au service.\n\n(A compléter par le demandeur)',
+      data_recipients:
+        'Agents instructeurs des demandes d’aides sociales facultatives',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
+  carte_transport: {
+    label: 'Carte de transport',
+    state: {
+      intitule: 'Dites-le-nous une fois – Carte de transport',
+      description:
+        'Simplification de la souscription à la carte de transport pour les usagers par l’utilisation des données fiscales fournies par la DGFiP pour déterminer le tarif applicable.\n\n(A compléter par le demandeur)',
+      data_recipients: 'Agents instructeurs des demandes de carte de transport',
+      fondement_juridique_title:
+        '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\n- Délibération de la collectivité (ou autre fondement juridique)',
+    },
+  },
 };
 
 export const availableScopes = [
