@@ -300,6 +300,11 @@ const initialContacts = {
   },
 };
 
+const editorList = [
+  { name: 'Provigis', siret: '43196025100061' },
+  { name: 'E-attestations.com', siret: '50382936800052' },
+];
+
 const target_api = 'api_entreprise';
 
 const ApiEntreprise = () => (
@@ -309,7 +314,7 @@ const ApiEntreprise = () => (
     contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
     documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection
