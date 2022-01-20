@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
 import App from './App';
-import { unregister as unregisterServiceWorker } from './registerServiceWorker';
 import 'moment/locale/fr'; // set moment locale to french globally
 import * as Sentry from '@sentry/react';
 
@@ -12,4 +11,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-unregisterServiceWorker();
