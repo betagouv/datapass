@@ -41,7 +41,13 @@
         "pole_emploi_identite": false,
         "pole_emploi_contact": false,
         "pole_emploi_adresse": false,
-        "pole_emploi_inscription": false
+        "pole_emploi_inscription": false,
+        "mesri_identifiant": false,
+        "mesri_identite": false,
+        "mesri_inscription_etudiant": false,
+        "mesri_inscription_autre": false,
+        "mesri_admission": false,
+        "mesri_etablissements": false
       }
     },
     "team_members": {
