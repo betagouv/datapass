@@ -11,7 +11,9 @@ import { AuthStore, useAuth } from './components/organisms/AuthContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
 import Alert from './components/atoms/Alert';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { ErrorBoundary } from '@sentry/react';
+import ErrorBoundaryFallback from './components/organisms/ErrorBoundaryFallback';
 
 const urlBase: string = process.env.REACT_APP_PIWIK_URL || 'https://matomo.org';
 // 1 is default value for no siteId since matomo considers 0 as an empty id and does not accept null value
@@ -58,13 +60,15 @@ const Page: React.FC = () => {
 };
 
 const App = () => (
-  <MatomoProvider value={instance}>
-    <BrowserRouter>
-      <AuthStore>
-        <Page />
-      </AuthStore>
-    </BrowserRouter>
-  </MatomoProvider>
+  <ErrorBoundary fallback={ErrorBoundaryFallback}>
+    <MatomoProvider value={instance}>
+      <BrowserRouter>
+        <AuthStore>
+          <Page />
+        </AuthStore>
+      </BrowserRouter>
+    </MatomoProvider>
+  </ErrorBoundary>
 );
 
 export default App;

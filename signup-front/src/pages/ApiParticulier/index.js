@@ -236,6 +236,38 @@ const availableScopes = [
     groupTitle: 'Pôle Emploi',
     helper: 'Données concernant l’inscription de la personne à Pôle Emploi',
   },
+  {
+    value: 'mesri_identifiant',
+    label: 'Identifiant national étudiant (INE)',
+    groupTitle: 'Statut étudiant',
+  },
+  {
+    value: 'mesri_identite',
+    label: 'Identité',
+    groupTitle: 'Statut étudiant',
+    helper: 'Nom, prénom, date de naissance',
+  },
+  {
+    value: 'mesri_inscription_etudiant',
+    label: 'Inscriptions en formation initiale',
+    groupTitle: 'Statut étudiant',
+  },
+  {
+    value: 'mesri_inscription_autre',
+    label: 'Inscriptions en formation continue',
+    groupTitle: 'Statut étudiant',
+  },
+  {
+    value: 'mesri_admission',
+    label: 'Pré-inscriptions',
+    groupTitle: 'Statut étudiant',
+  },
+  {
+    value: 'mesri_etablissements',
+    label: 'Établissement',
+    groupTitle: 'Statut étudiant',
+    helper: 'Établissement relatif à chaque inscription',
+  },
 ];
 
 const editorList = [
