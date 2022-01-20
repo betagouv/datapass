@@ -4,12 +4,11 @@ class Enrollment::ApiStatutEtudiantPolicy < EnrollmentPolicy
 
     res.concat([
       scopes: [
-        :identifiant_national_etudiant,
-        :identite_etudiant,
-        :inscription_formation_initiale,
-        :inscription_formation_continue,
-        :admissions_etudiant,
-        :etablissements_etudiant
+        :mesri_identifiant,
+        :mesri_inscription_etudiant,
+        :mesri_inscription_autre,
+        :mesri_admission,
+        :mesri_etablissements
       ]
     ])
 
