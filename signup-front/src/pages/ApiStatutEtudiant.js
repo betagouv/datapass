@@ -71,28 +71,31 @@ export const CadreJuridiqueDescription = () => (
 
 export const availableScopes = [
   {
-    value: 'identifiant_national_etudiant',
+    value: 'mesri_identifiant',
     label: 'INE (Identifiant National Etudiant)',
   },
   {
-    value: 'identite_etudiant',
-    label: 'Identité',
-  },
-  {
-    value: 'inscription_formation_initiale',
+    value: 'mesri_inscription_etudiant',
     label: 'Inscriptions en formation initiale',
+    helper:
+      'Permet d’interroger les données des étudiants en formation initiale (dates de début et fin d‘inscription).',
   },
   {
-    value: 'inscription_formation_continue',
-    label: 'Inscriptions en formation continue)',
+    value: 'mesri_inscription_autre',
+    label: 'Inscriptions en formation continue',
+    helper:
+      'Permet d’interroger les données des étudiants en formation continue (dates de début et fin d‘inscription).',
   },
   {
-    value: 'admissions_etudiant',
+    value: 'mesri_admission',
     label: 'Admissions',
+    helper: 'Limite la recherche aux seuls étudiants admis (non-inscrits).',
   },
   {
-    value: 'etablissements_etudiant',
+    value: 'mesri_etablissements',
     label: 'Etablissements',
+    helper:
+      'Le ou les établissements du lieu d‘étude (nom et identifiant de l‘établissement).',
   },
 ];
 
@@ -117,7 +120,7 @@ const ApiStatutEtudiant = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
+    <CguSection cguLink="/docs/cgu_api_statut_etudiant.pdf" />
   </Form>
 );
 
