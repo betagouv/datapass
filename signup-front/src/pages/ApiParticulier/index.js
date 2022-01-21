@@ -238,8 +238,8 @@ const availableScopes = [
   },
   {
     value: 'mesri_identifiant',
-    label: 'Identifiant national étudiant (INE)',
-    groupTitle: 'Statut étudiant',
+    label: 'INE',
+    helper: 'Identifiant National de l’étudiant',
   },
   {
     value: 'mesri_identite',
@@ -248,25 +248,26 @@ const availableScopes = [
     helper: 'Nom, prénom, date de naissance',
   },
   {
-    value: 'mesri_inscription_etudiant',
-    label: 'Inscriptions en formation initiale',
-    groupTitle: 'Statut étudiant',
-  },
-  {
     value: 'mesri_inscription_autre',
     label: 'Inscriptions en formation continue',
-    groupTitle: 'Statut étudiant',
+    helper:
+      'Permet d’interroger les données des étudiants en formation continue. Données : date de début, de fin d’inscription, et code COG de la commune du lieu d’étude.',
+  },
+  {
+    value: 'mesri_inscription_etudiant',
+    label: 'Inscriptions en formation initiale',
+    helper:
+      'Permet d’interroger les données des étudiants en formation initiale. Données : dates de début, fin d’inscription et code COG de la commune du lieu d’étude.',
   },
   {
     value: 'mesri_admission',
-    label: 'Pré-inscriptions',
-    groupTitle: 'Statut étudiant',
+    label: 'Admissions',
+    helper: 'Limite la recherche aux seuls étudiants admis (non-inscrits).',
   },
   {
     value: 'mesri_etablissements',
-    label: 'Établissement',
-    groupTitle: 'Statut étudiant',
-    helper: 'Établissement relatif à chaque inscription',
+    label: 'Établissements',
+    helper: 'Le ou les établissements (nom et indentifiant - UAI).',
   },
 ];
 
