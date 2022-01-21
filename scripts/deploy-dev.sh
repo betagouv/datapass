@@ -57,11 +57,6 @@ if [ -e package.json ]; then
     npm run build
 fi
 
-if [ -d test/fixtures ]; then
-  echo "$(logPrefix) Loading fixtures..."
-  rails db:fixtures:load FIXTURES=users,enrollments,events
-fi
-
 if [ -e scripts/fixtures.sql ]; then
   echo "$(logPrefix) Loading fixtures..."
   npm run load-fixtures
