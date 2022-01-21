@@ -17,7 +17,7 @@ import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters'
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const demarches = {
-  ...fcAvailableDemarches,
+  ...JSON.parse(JSON.stringify(fcAvailableDemarches)),
   eligibilite_lep: {
     label: 'Vérification de l’éligibilité au Livret d’épargne populaire (LEP)',
     state: {
@@ -31,6 +31,8 @@ const demarches = {
     },
   },
 };
+
+demarches.default.state.scopes['dgfip_IndLep'] = false;
 
 const availableScopes = [
   ...fcAvailableScopes,
