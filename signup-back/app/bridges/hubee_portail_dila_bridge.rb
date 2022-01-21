@@ -1,0 +1,2 @@
+class HubeePortailDilaBridge < HubeePortailBridge
+end

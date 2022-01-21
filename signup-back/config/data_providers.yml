@@ -123,6 +123,11 @@ hubee_portail:
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
+hubee_portail_dila:
+  label: Portail HubEE
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
 api_pro_sante_connect:
   label: API Pro Santé Connect
   support_email: contact@api.gouv.fr
