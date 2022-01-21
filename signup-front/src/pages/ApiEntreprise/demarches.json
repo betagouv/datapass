@@ -5,6 +5,8 @@
     "state": {
       "intitule": "",
       "description": "",
+      "technical_team_type": "",
+      "technical_team_value": "",
       "fondement_juridique_title": "",
       "fondement_juridique_url": "",
       "data_retention_period": "",
