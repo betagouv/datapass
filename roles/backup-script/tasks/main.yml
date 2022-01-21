@@ -6,14 +6,13 @@
     cache_valid_time: 86400
   with_items:
     - gnupg2
-    - python-pip
+    - python3-pip
 
 - name: Install dependent packages.
   pip:
     name:
-      - python-swiftclient==3.10.0
-      - python-keystoneclient==3.22.0
-    extra_args: "--no-cache-dir" # fixes "AssertionError: zipp>=0.5 .dist-info directory not found"
+      - python-swiftclient
+      - python-keystoneclient
 
 # from https://github.com/vkill/ansible-role-gpg_key/blob/c5ed54c6eb15873831bb91d5128af20560b8b25d/tasks/common.yml
 - name: "Ensure ~/.gnupg config directory exists with right permissions"
@@ -72,7 +71,6 @@
     chdir: "~"
   become: yes
   become_user: "{{ backup_user }}"
-
 
 - name: install backup script
   template:
