@@ -150,7 +150,7 @@
       }
     }
   },
-  "eattestations": {
+  "e_attestations": {
     "label": "Éditeur e-attestations - Conformité titulaires de marchés",
     "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
     "team_members": {
@@ -254,7 +254,7 @@
       }
     }
   },
-  "achat_solution_com": {
+  "achat_solution": {
     "label": "Éditeur Achat-Solution.com - Conformité titulaires de marchés",
     "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
     "team_members": {
