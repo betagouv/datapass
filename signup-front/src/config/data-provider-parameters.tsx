@@ -35,6 +35,7 @@ import AidantsConnect from '../pages/AidantsConnect';
 import ApiServiceNational from '../pages/ApiServiceNational';
 import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
 import HubeePortail from '../pages/HubeePortail';
+import HubeePortailDila from '../pages/HubeePortailDila';
 import ApiProSanteConnect from '../pages/ApiProSanteConnect';
 import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiIndemnitesJournalieresCnam from '../pages/ApiIndemnitesJournalieresCnam';
@@ -65,10 +66,16 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       component: AidantsConnect,
     },
     hubee_portail: {
-      label: 'Portail HubEE',
+      label: 'Portail HubEE - Démarche CertDC',
       icon: 'logo-hubee.png',
       email: 'support@hubee.numerique.gouv.fr',
       component: HubeePortail,
+    },
+    hubee_portail_dila: {
+      label: 'Portail HubEE - Démarches DILA',
+      icon: 'logo-hubee.png',
+      email: 'support@hubee.numerique.gouv.fr',
+      component: HubeePortailDila,
     },
     franceconnect: {
       label: 'FranceConnect',

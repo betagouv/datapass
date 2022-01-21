@@ -3,15 +3,16 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
+import { isEmpty } from 'lodash';
 
 const SECTION_LABEL = 'Démarches en ligne';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const DemarcheEnLigneSection = () => {
+export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
   const {
     disabled,
     onChange,
-    enrollment: { scopes: { cert_dc = false } = {} },
+    enrollment: { scopes = {} },
   } = useContext(FormContext);
 
   return (
@@ -19,20 +20,30 @@ export const DemarcheEnLigneSection = () => {
       <h2>
         Démarches en ligne auxquelles vous souhaitez abonner votre commune
       </h2>
-      <ExpandableQuote title=" En quoi consiste cette démarche ?">
+      <ExpandableQuote
+        title={`En quoi consiste ${
+          demarchesHubee.length === 1 ? 'cette démarche' : 'ces démarches'
+        } ?`}
+      >
         <>
-          Ce service donne la possibilité de recevoir par voie électronique le
-          volet administratif du certificat de décès lorsque le médecin rédige
-          le certificat de décès au moyen de l’application « CertDc ».
+          {!isEmpty(demarchesHubee) &&
+            demarchesHubee.map(({ id, label, description }) => (
+              <p key={id}>
+                <b>{label} :</b> {description}
+              </p>
+            ))}
         </>
       </ExpandableQuote>
-      <CheckboxInput
-        name="scopes.cert_dc"
-        value={cert_dc}
-        label="Certificat de décès (CertDc)"
-        onChange={onChange}
-        disabled={disabled}
-      />
+      {!isEmpty(demarchesHubee) &&
+        demarchesHubee.map(({ id, label }) => (
+          <CheckboxInput
+            name={`scopes.${id}`}
+            value={scopes[id]}
+            label={label}
+            onChange={onChange}
+            disabled={disabled}
+          />
+        ))}
     </ScrollablePanel>
   );
 };

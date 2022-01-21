@@ -26,11 +26,26 @@ const initialContacts = {
         utilisateurs.
       </>
     ),
+    displayIndividualEmailLabel: true,
   },
   responsable_traitement: null,
   delegue_protection_donnees: null,
   responsable_technique: null,
 };
+
+const demarchesHubee = [
+  {
+    id: 'cert_dc',
+    label: 'CertDc - Certificat de décès',
+    description: (
+      <>
+        Ce service donne la possibilité de recevoir par voie électronique le
+        volet administratif du certificat de décès lorsque le médecin rédige le
+        certificat de décès au moyen de l’application « CertDc ».
+      </>
+    ),
+  },
+];
 
 const target_api = 'hubee_portail';
 
@@ -42,7 +57,7 @@ const HubeePortail = () => (
   >
     <OrganisationSection />
     <IntituleInitializerSection value="Abonnement au portail HubEE" />
-    <DemarcheEnLigneSection />
+    <DemarcheEnLigneSection demarchesHubee={demarchesHubee} />
     <ÉquipeSection initialContacts={initialContacts} />
     <CguSection cguLink="/docs/20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf" />
   </Form>
