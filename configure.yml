@@ -1,5 +1,11 @@
 - hosts: datapass-front,datapass-back,api-auth
   become: true
+  pre_tasks:
+    - name: Install acl to let ansible become whoever it needs to
+      apt:
+        name: acl
+        update_cache: true
+        cache_valid_time: 86400
   roles:
     - app-user
     - role: team-ssh-keys
