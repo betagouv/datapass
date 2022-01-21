@@ -208,21 +208,21 @@ const availableScopes = [
 ];
 
 const editorList = [
-  { name: 'Achat Public', siret: '44785462100045' },
-  { name: 'Achat Solution', siret: '81449011600013' },
-  { name: 'Alpi40', siret: '25400330400030' },
+  { name: 'Achatpublic.com', siret: '44785462100045' },
+  { name: 'Achat solution', siret: '81449011600013' },
+  { name: 'Alpi40.fr', siret: '25400330400030' },
   { name: 'Atexo', siret: '44090956200033' },
-  { name: 'Atline Services', siret: '44166368900012' },
-  { name: 'Avenue web systèmes (AWS)', siret: '44392887400066' },
+  { name: 'Atline services', siret: '44166368900012' },
+  { name: 'Avenue web systemes (AWS)', siret: '44392887400066' },
   { name: 'Axyus', siret: '43024416000072' },
   { name: 'Dematis', siret: '45072478600030' },
-  { name: 'e-attestations', siret: '50382936800045' },
+  { name: 'e-Attestations', siret: '50382936800045' },
   { name: "Entr'ouvert", siret: '44317013900036' },
-  { name: 'GIE - Maximilien', siret: '13001845000028' },
+  { name: 'GIP Maximilien', siret: '13001845000028' },
   { name: 'Klekoon', siret: '42140180300042' },
-  { name: 'MGDIS', siret: '32816124500027' },
+  { name: 'Mgdis', siret: '32816124500027' },
   { name: 'Provigis', siret: '43196025100061' },
-  { name: 'Territoires Numériques', siret: '13000493000025' },
+  { name: 'Territoires Numériques BFC', siret: '13000493000025' },
 ];
 
 const CadreJuridiqueDescription = () => (
