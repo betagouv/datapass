@@ -19,12 +19,16 @@ export const AgentConnectNetworkSection: React.FC = () => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Plateforme accessible depuis :</h2>
-      <ExpandableQuote title="Comment choisir mon PLATEFORME ACCESSIBLE DEPUIS ?">
-        <p>À COMPLÉTER</p>
+      <ExpandableQuote title="Comment choisir le mode d'accès">
+        <p>
+          Votre projet sera t-il accessible depuis le Réseau Interministériel de
+          l’Etat (RIE) ? Depuis Internet ? ou à la fois depuis le RIE et
+          Internet ?{' '}
+        </p>
       </ExpandableQuote>
       {/*@ts-ignore*/}
       <CheckboxInput
-        label="RIE"
+        label="RIE (Réseau Interministériel de l'Etat)"
         disabled={disabled}
         onChange={onChange}
         name="additional_content.access_rie"

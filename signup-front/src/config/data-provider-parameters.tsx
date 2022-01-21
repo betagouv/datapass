@@ -357,13 +357,13 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
     agent_connect_fs: {
       label: 'AgentConnect - Fournisseurs de services',
       icon: 'logo-agent-connect.svg',
-      email: 'À COMPLETER',
+      email: 'support.partenaires@agentconnect.gouv.fr',
       component: AgentConnectFs,
     },
     agent_connect_fi: {
       label: 'AgentConnect - Fournisseurs d’identité',
       icon: 'logo-agent-connect.svg',
-      email: 'À COMPLETER',
+      email: 'support.partenaires@agentconnect.gouv.fr',
       component: AgentConnectFi,
     },
   };
