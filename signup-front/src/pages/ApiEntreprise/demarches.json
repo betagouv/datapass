@@ -5,8 +5,11 @@
     "state": {
       "intitule": "",
       "description": "",
+      "technical_team_type": "",
+      "technical_team_value": "",
       "fondement_juridique_title": "",
       "fondement_juridique_url": "",
+      "data_retention_period": "",
       "data_recipients": "",
       "scopes": {
         "entreprises": false,
@@ -35,6 +38,20 @@
         "qualibat": false,
         "certificat_opqibi": false,
         "extrait_court_inpi": false
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "",
+        "family_name": "",
+        "email": "",
+        "phone_number": ""
+      },
+      "contact_metier": {
+        "given_name": "",
+        "family_name": "",
+        "email": "",
+        "phone_number": ""
       }
     }
   },
@@ -116,6 +133,7 @@
     "label": "Détection de la fraude",
     "about": "https://entreprise.api.gouv.fr/use_cases/detection_fraude/",
     "state": {
+      "description": "Ce cas d'usage est EXCLUSIVEMENT réservé aux administrations dont la détection des fraudes fait parti de ses missions.",
       "scopes": {
         "entreprises": true,
         "etablissements": true,
@@ -132,14 +150,160 @@
       }
     }
   },
-  "editeur": {
-    "label": "Spécifique aux éditeurs",
-    "about": "https://entreprise.api.gouv.fr/use_cases/editeurs/",
+  "e_attestations": {
+    "label": "Éditeur e-Attestations - Conformité titulaires de marchés",
+    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "team_members": {
+      "contact_metier": {
+        "email": "p.gue@e-attestations.com",
+        "phone_number": "0158060016"
+      },
+      "responsable_technique": {
+        "email": "tech@e-attestations.com",
+        "phone_number": "0158060010"
+      }
+    },
     "state": {
-      "fondement_juridique_title": "Loi ou décret ou arrêté ...",
-      "intitule": "Nom de votre solution et cas d’usage (marchés publics, aides publiques ...)",
-      "description": "Dans l’objectif de traiter votre demande plus rapidement, nous vous remercions d’indiquer : à quel type d’acteur public s’adresse votre solution logicielle ; le nombre d’acteurs publics que vous avez déjà comme clients ; le cadre d’usage de votre outil (marchés publics, aides publiques ...), ce qu’il permet précisément de faire pour les utilisateurs ; et qui consommera la donnée. N’hésitez pas à nous transmettre une URL de votre solution ou tout lien vers un page explicative.",
-      "data_recipients": "Agents publics, usagers (entreprise ou association) ; service spécifique d’une administration ..."
+      "intitule": "Logiciel de contrôle de conformité des opérateurs économiques en vue de l'attribution ou du suivi des marchés - Solution e-Attestations",
+      "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination de nos agents habilités en interne, leur permettant de récupérer les justificatifs nécessaires au dépôt et à l'instruction du dossier de candidature.\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\nCet outil s'appuie sur la solution de l’éditeur e-Attestations.",
+      "technical_team_type": "software_company",
+      "technical_team_value" : "50382936800045",
+      "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique, concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve :\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
+      "data_retention_period": 36,
+      "data_recipients": "Services marchés d'organismes publics et collectivités locales",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": true,
+        "effectifs_acoss": true,
+        "eori_douanes": true,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": true,
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_agence_bio": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
+    }
+  },
+  "provigis": {
+    "label": "Éditeur Provigis - Conformité titulaires de marchés",
+    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "team_members": {
+      "contact_metier": {
+        "email": "client.services@provigis.com",
+        "phone_number": "0183755520"
+      },
+      "responsable_technique": {
+        "email": "tech@provigis.com",
+        "phone_number": "0183755520"
+      }
+    },
+    "state": {
+      "intitule": "Outil de contrôle de conformité des titulaires de marchés - Solution Provigis",
+      "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination de nos agents habilités en interne, leur permettant de collecter, contrôler et stocker les documents de conformité de leurs prestataires et sous-traitants.\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\n\nCet outil s'appuie sur la solution de l’éditeur Provigis.\n\nhttps://www.provigis.com/",
+      "technical_team_type": "software_company",
+      "technical_team_value" : "43196025100061",
+      "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
+      "data_retention_period": 36,
+      "data_recipients": "Services marchés d'organismes publics et collectivités locales",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": false,
+        "effectifs_acoss": true,
+        "eori_douanes": false,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": true,
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_agence_bio": false,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
+    }
+  },
+  "achat_solution": {
+    "label": "Éditeur Achat Solution - Conformité titulaires de marchés",
+    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "team_members": {
+      "contact_metier": {
+        "email": "gmorel@achat-solution.com",
+        "phone_number": "0262513194"
+      },
+      "responsable_technique": {
+        "email": "j.santolaria@bourbon-digital.com",
+        "phone_number": "0692234821"
+      }
+    },
+    "state": {
+      "intitule": "Outil de contrôle de conformité des candidats et titulaires de marchés publics - Par l'éditeur Achat Solution",
+      "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination des acheteurs adhérents, leur permettant de récupérer les justificatifs nécessaires au dépôt et à l'instruction du dossier de candidature ainsi qu'au contrôle périodique de la régularité fiscale et sociale des entreprises\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\nCet outil s'appuie sur la solution de l’éditeur Achat Solution.\n\nhttps://www.achat-solution.com/",
+      "technical_team_type": "software_company",
+      "technical_team_value" : "81449011600013",
+      "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
+      "data_retention_period": 36,
+      "data_recipients": "Maître d'ouvrage, acheteurs publics dans le cadre de leurs contrôles de la régularité fiscale et sociale des entreprises",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": true,
+        "effectifs_acoss": true,
+        "eori_douanes": false,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": true,
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_agence_bio": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
     }
   }
 }
