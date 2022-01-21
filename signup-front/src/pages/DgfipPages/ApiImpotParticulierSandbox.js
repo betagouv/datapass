@@ -32,6 +32,8 @@ const demarches = {
   },
 };
 
+demarches.default.state.scopes['dgfip_IndLep'] = false;
+
 const availableScopes = [
   ...fcAvailableScopes,
   {
