@@ -72,19 +72,20 @@ export const CadreJuridiqueDescription = () => (
 export const availableScopes = [
   {
     value: 'mesri_identifiant',
-    label: 'INE (Identifiant National Etudiant)',
-  },
-  {
-    value: 'mesri_inscription_etudiant',
-    label: 'Inscriptions en formation initiale',
-    helper:
-      'Permet d’interroger les données des étudiants en formation initiale (dates de début et fin d‘inscription).',
+    label: 'INE',
+    helper: 'Identifiant National de l’Étudiant',
   },
   {
     value: 'mesri_inscription_autre',
     label: 'Inscriptions en formation continue',
     helper:
-      'Permet d’interroger les données des étudiants en formation continue (dates de début et fin d‘inscription).',
+      'Permet d’interroger les données des étudiants en formation continue. Données : date de début, de fin d’inscription, et code COG de la commune du lieu d’étude.',
+  },
+  {
+    value: 'mesri_inscription_etudiant',
+    label: 'Inscriptions en formation initiale',
+    helper:
+      'Permet d’interroger les données des étudiants en formation initiale. Données : dates de début, fin d’inscription et code COG de la commune du lieu d’étude.',
   },
   {
     value: 'mesri_admission',
@@ -93,9 +94,8 @@ export const availableScopes = [
   },
   {
     value: 'mesri_etablissements',
-    label: 'Etablissements',
-    helper:
-      'Le ou les établissements du lieu d‘étude (nom et identifiant de l‘établissement).',
+    label: 'Établissements',
+    helper: 'Le ou les établissements (nom et indentifiant - UAI).',
   },
 ];
 
