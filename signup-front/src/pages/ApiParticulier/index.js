@@ -239,6 +239,7 @@ const availableScopes = [
   {
     value: 'mesri_identifiant',
     label: 'INE',
+    groupTitle: 'Statut étudiant',
     helper: 'Identifiant National de l’étudiant',
   },
   {
@@ -250,23 +251,27 @@ const availableScopes = [
   {
     value: 'mesri_inscription_autre',
     label: 'Inscriptions en formation continue',
+    groupTitle: 'Statut étudiant',
     helper:
       'Permet d’interroger les données des étudiants en formation continue. Données : date de début, de fin d’inscription, et code COG de la commune du lieu d’étude.',
   },
   {
     value: 'mesri_inscription_etudiant',
     label: 'Inscriptions en formation initiale',
+    groupTitle: 'Statut étudiant',
     helper:
       'Permet d’interroger les données des étudiants en formation initiale. Données : dates de début, fin d’inscription et code COG de la commune du lieu d’étude.',
   },
   {
     value: 'mesri_admission',
     label: 'Admissions',
+    groupTitle: 'Statut étudiant',
     helper: 'Limite la recherche aux seuls étudiants admis (non-inscrits).',
   },
   {
     value: 'mesri_etablissements',
     label: 'Établissements',
+    groupTitle: 'Statut étudiant',
     helper: 'Le ou les établissements (nom et indentifiant - UAI).',
   },
 ];
