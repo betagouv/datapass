@@ -25,6 +25,10 @@ export const demarches = {
   default: {
     label: 'Demande libre',
     state: {
+      intitule: '',
+      description: '',
+      data_recipients: '',
+      fondement_juridique_title: '',
       scopes: {
         dgfip_annee_n_moins_1: false,
         dgfip_annee_n_moins_2: false,
