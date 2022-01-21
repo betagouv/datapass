@@ -214,6 +214,8 @@
     "state": {
       "intitule": "Outil de contrôle de conformité des titulaires de marchés - Solution Provigis",
       "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination de nos agents habilités en interne, leur permettant de collecter, contrôler et stocker les documents de conformité de leurs prestataires et sous-traitants.\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\n\nCet outil s'appuie sur la solution de l’éditeur Provigis.\n\nhttps://www.provigis.com/",
+      "technical_team_type": "software_company",
+      "technical_team_value" : "43196025100061",
       "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, tel que défini par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
       "data_retention_period": 36,
