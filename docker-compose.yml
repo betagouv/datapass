@@ -21,6 +21,8 @@ services:
     volumes:
       - ./signup-back:/myapp
       - /myapp/vendor
+    environment:
+      PG_HOST: db
     ports:
       - 3001:3001
     depends_on:
