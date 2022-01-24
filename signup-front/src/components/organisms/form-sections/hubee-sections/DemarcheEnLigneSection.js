@@ -38,6 +38,7 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
         demarchesHubee.map(({ id, label }) => (
           <CheckboxInput
             name={`scopes.${id}`}
+            key={id}
             value={scopes[id]}
             label={label}
             onChange={onChange}
