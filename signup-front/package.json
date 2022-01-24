@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^6.0.0",
-    "http-proxy-middleware": "^2.0.1",
+    "http-proxy-middleware": "^2.0.2",
     "jest-mock-extended": "^2.0.4",
     "nock": "^13.2.2",
     "react-axe": "^3.5.3",
