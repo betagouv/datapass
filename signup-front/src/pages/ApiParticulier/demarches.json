@@ -97,6 +97,36 @@
       }
     }
   },
+  "amiciel-malice": {
+    "label": "Dématérialisation des services enfance jeunesse avec le portail familles Amiciel",
+    "about": "https://api.gouv.fr/les-api/api-particulier",
+    "state": {
+      "intitule": "Récupération des données de la famille pour l'inscription et la facturation en crèche, cantine, périscolaire, extrascolaire, transports scolaires",
+      "description": "La collectivité utilisera les API Particulier dans les cas suivants :\n- Lors de l'inscription d'une nouvelle famille sur le portail familles : la famille pourra choisir le remplissage des informations déjà connues (Dites-le nous une fois).\n- Lors de l'inscription ou actualisation d'une famille sur le portail familles : les données actualisées via les API ne nécessiteront plus de justificatifs.\n- Lors du suivi du dossier par la collectivité, les données pourront être automatiquement vérifiées, contrôlées et actualisées\nL’utilisation de l’API Particulier se fait dans le cadre de l’utilisation du portail familles MALICE édité par la société AMICIEL.",
+      "data_recipients": "Agents instructeurs gérant les inscriptions et les facturations des prestations Petite Enfance, Scolaire et Extra-Scolaire",
+      "data_retention_period": 60,
+      "fondement_juridique_title": "Joindre les délibérations justifiant les besoins (ex : barèmes tarifaires)",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true,
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_adresse_fiscale_taxation": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true
+      }
+    }
+  },
   "arpege-concerto": {
     "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec l’editeur Arpège",
     "about": "https://api.gouv.fr/les-api/api-particulier",
