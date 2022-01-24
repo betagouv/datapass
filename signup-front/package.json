@@ -35,7 +35,7 @@
     "axios": "^0.21.1",
     "clipboard": "^2.0.8",
     "craco-esbuild": "^0.4.0",
-    "eslint-plugin-prettier": "^2.7.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "flat": "^5.0.2",
     "js-file-download": "^0.4.12",
     "limiter": "^1.1.5",
