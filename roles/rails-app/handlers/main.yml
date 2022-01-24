@@ -4,12 +4,12 @@
     state: restarted
 
 # TODO dynamically generate these handlers
-- name: "restart service signup-back"
+- name: "restart service datapass-back"
   service:
-    name: signup-back
+    name: datapass-back
     state: restarted
 
-- name: "restart service sidekiq-signup-back"
+- name: "restart service sidekiq-datapass-back"
   service:
-    name: sidekiq-signup-back
+    name: sidekiq-datapass-back
     state: restarted

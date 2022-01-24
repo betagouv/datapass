@@ -42,28 +42,28 @@
     - role: postgres
       pg_user: back
       pg_password: "{{ back_pg_password }}"
-      pg_database: signup-back
+      pg_database: datapass-back
     - role: backup-script
       backup_user: postgres
-      store_identifier: signup-back
+      store_identifier: datapass-back
       backup_type: postgresql
       frequency: daily
       tags: backup-script
       when: disable_backup is not defined
     - role: backup-script
-      backup_user: signup
+      backup_user: datapass
       store_identifier: /opt/apps/signup-back/uploads
       frequency: weekly
       backup_type: file
       tags: backup-script
       when: disable_backup is not defined
     - role: rails-app
-      app_service_name: signup-back
+      app_service_name: datapass-back
       server_name: "{{ back_domain_name }}"
       app_port: 3000
       pg_user: back
       pg_password: "{{ back_pg_password }}"
-      pg_database: signup-back
+      pg_database: datapass-back
       devise_secret: "{{ back_devise_secret }}"
       secret_key_base: "{{ back_secret_key_base }}"
       env_var:
@@ -123,7 +123,7 @@
       server_name: "{{ former_front_domain_name }}"
       tags: ssl
     - role: react-app
-      app_service_name: signup-front
+      app_service_name: datapass-front
       server_name: "{{ front_domain_name }}"
       permanent_redirect_rules:
         - source_pattern: "~ ^/api-impot-particulier(/[0-9]*|)$"

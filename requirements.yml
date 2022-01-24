@@ -1,4 +1,4 @@
 - src: zzet.rbenv
-  version: '3.3.6'
+  version: "3.5.0"
 - src: https://github.com/thefinn93/ansible-letsencrypt
 - src: https://github.com/geerlingguy/ansible-role-nodejs

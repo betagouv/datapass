@@ -1,4 +1,4 @@
-app_user: signup
+app_user: datapass
 
 front_domain_name: datapass-development.api.gouv.fr
 front_host: "https://{{ front_domain_name }}"
@@ -11,32 +11,30 @@ oauth_host: "https://{{ oauth_domain_name }}"
 back_pg_password: back
 back_devise_secret: 06ac0ccb5e1b76536486de079bd6adab7b1873ac2d3a841dad9bb5ab76e9653f1ffa728a22ef577457f77f2582ac8f75a2873d5ba18628a0ecfafc4002268b15
 back_secret_key_base: 3eb2f607525cea7c70d1ee1dab712a88a1f80896cb493f5a7e44948aab334e5542d1a2b31dd93f41370915acb949a6b68f0c49c3aeff5ef49982aadfb5afff19
-rgpd_contact_error_hook_id: 'JIRuylEfnrbXyJuqhfBWaIxaBqCp5OdPLt0OPTPtolKeFZ4ouxNAFPq6KlJ7Uj5T'
-
-
+rgpd_contact_error_hook_id: "JIRuylEfnrbXyJuqhfBWaIxaBqCp5OdPLt0OPTPtolKeFZ4ouxNAFPq6KlJ7Uj5T"
 
 datapass_oauth_client_id: 82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b
 datapass_oauth_client_secret: 1ff180ba922fbbbb4cf6fe0d3e82efadaa48a14de454a2137e2d656aac5e97c4
 
 disable_api_particulier_bridge: True
-api_particulier_host: ''
-api_particulier_api_key: ''
+api_particulier_host: ""
+api_particulier_api_key: ""
 disable_franceconnect_bridge: True
-franceconnect_particulier_host: ''
-franceconnect_particulier_api_key: ''
+franceconnect_particulier_host: ""
+franceconnect_particulier_api_key: ""
 disable_api_entreprise_bridge: True
-api_entreprise_host: ''
-api_entreprise_api_key: ''
-api_entreprise_webhook_url: ''
-api_entreprise_verify_token: ''
+api_entreprise_host: ""
+api_entreprise_api_key: ""
+api_entreprise_webhook_url: ""
+api_entreprise_verify_token: ""
 disable_aidants_connect_bridge: True
-aidants_connect_host: ''
-aidants_connect_api_key: ''
+aidants_connect_host: ""
+aidants_connect_api_key: ""
 disable_api_impot_particulier_bridge: True
 disable_api_droits_cnam_bridge: True
 disable_api_indemnites_journalieres_cnam_bridge: True
 disable_hubee_portail_bridge: True
-hubee_host: ''
-hubee_auth_url: ''
-hubee_client_id: ''
-hubee_client_secret: ''
+hubee_host: ""
+hubee_auth_url: ""
+hubee_client_id: ""
+hubee_client_secret: ""

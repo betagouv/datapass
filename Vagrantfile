@@ -20,8 +20,8 @@ vms = {
       ],
     :services_to_start =>
       [
-        "signup-front",
-        "signup-back"
+        "datapass-front",
+        "datapass-back"
       ]
   },
   'api-auth': {

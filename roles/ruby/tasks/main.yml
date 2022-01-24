@@ -4,10 +4,9 @@
   vars:
     rbenv:
       env: user
-      version: v1.1.1
-      default_ruby: 2.7.1
+      version: v1.2.0
+      default_ruby: 2.7.3
       rubies:
-        - version: 2.7.1
         - version: 2.7.3
     rbenv_owner: "{{ app_user }}"
     rbenv_group: "{{ app_user }}"
@@ -16,4 +15,4 @@
     rbenv_extra_depends:
       - libpq-dev
       - libmagick++-dev
-    default_gems_file: 'roles/ruby/files/default-gems'
+    default_gems_file: "roles/ruby/files/default-gems"

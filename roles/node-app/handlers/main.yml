@@ -4,9 +4,9 @@
     state: restarted
 
 # TODO dynamically generate these handlers
-- name: "restart service signup-front"
+- name: "restart service datapass-front"
   service:
-    name: signup-front
+    name: datapass-front
     state: restarted
 - name: "restart service api-auth"
   service:
