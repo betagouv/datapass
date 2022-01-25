@@ -40,30 +40,30 @@
       server_name: "{{ back_domain_name }}"
       tags: ssl
     - role: postgres
-      pg_user: back
+      pg_user: datapass
       pg_password: "{{ back_pg_password }}"
-      pg_database: datapass-back
+      pg_database: datapass
     - role: backup-script
       backup_user: postgres
-      store_identifier: datapass-back
+      store_identifier: datapass
       backup_type: postgresql
       frequency: daily
       tags: backup-script
       when: disable_backup is not defined
     - role: backup-script
       backup_user: datapass
-      store_identifier: /opt/apps/signup-back/uploads
+      store_identifier: /opt/apps/datapass-backend/uploads
       frequency: weekly
       backup_type: file
       tags: backup-script
       when: disable_backup is not defined
     - role: rails-app
-      app_service_name: datapass-back
+      app_service_name: datapass-backend
       server_name: "{{ back_domain_name }}"
       app_port: 3000
-      pg_user: back
+      pg_user: datapass
       pg_password: "{{ back_pg_password }}"
-      pg_database: datapass-back
+      pg_database: datapass
       devise_secret: "{{ back_devise_secret }}"
       secret_key_base: "{{ back_secret_key_base }}"
       env_var:
@@ -120,7 +120,7 @@
       server_name: "{{ front_domain_name }}"
       tags: ssl
     - role: react-app
-      app_service_name: datapass-front
+      app_service_name: datapass-frontend
       server_name: "{{ front_domain_name }}"
       permanent_redirect_rules:
         - source_pattern: "~ ^/api-impot-particulier(/[0-9]*|)$"
