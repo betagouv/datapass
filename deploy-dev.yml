@@ -3,7 +3,7 @@
     - name: deploy front
       become: yes
       become_user: "{{ app_user }}"
-      script: ./scripts/deploy-dev.sh signup-front
+      script: ./scripts/deploy-dev.sh frontend datapass-frontend
       tags:
         - front
 
@@ -19,7 +19,7 @@
     - name: deploy back
       become: yes
       become_user: "{{ app_user }}"
-      script: ./scripts/deploy-dev.sh signup-back
+      script: ./scripts/deploy-dev.sh backend datapass-backend
       tags:
         - back
     - name: disable altering postgres tables
@@ -34,6 +34,6 @@
     - name: deploy api-auth
       become: yes
       become_user: "{{ app_user }}"
-      script: ./scripts/deploy-dev.sh api-auth
+      script: ./scripts/deploy-dev.sh api-auth api-auth
       tags:
         - api-auth

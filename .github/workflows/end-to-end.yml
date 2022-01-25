@@ -37,7 +37,7 @@ jobs:
           - 5432:5432
     defaults:
       run:
-        working-directory: signup-front
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16.x
@@ -54,7 +54,7 @@ jobs:
       - name: Cache Gems
         uses: actions/cache@v1
         with:
-          path: signup-back/vendor/bundle
+          path: datapass-back/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
@@ -63,7 +63,7 @@ jobs:
           gem install bundler
           bundle config path vendor/bundle
           bundler install --jobs 4 --retry 3
-        working-directory: signup-back
+        working-directory: datapass-back
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -79,16 +79,16 @@ jobs:
       - run: npm install
       - name: Migrate database
         run: bin/rails db:migrate
-        working-directory: signup-back
+        working-directory: backend
       - name: Seed database
         run: bin/rails db:seed
-        working-directory: signup-back
+        working-directory: backend
       - name: Install Cypress
         run: npm install cypress@8
         working-directory: .
       - name: Run backend application
         run: bundle exec puma -C ./config/puma.rb &
-        working-directory: signup-back
+        working-directory: backend
         env:
           PORT: 3001
       - name: Run frontend application

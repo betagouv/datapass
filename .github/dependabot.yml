@@ -1,10 +1,10 @@
 version: 2
 updates:
   - package-ecosystem: "bundler"
-    directory: "/signup-back"
+    directory: "/backend"
     schedule:
       interval: "weekly"
   - package-ecosystem: "npm"
-    directory: "/signup-front"
+    directory: "/frontend"
     schedule:
       interval: "weekly"

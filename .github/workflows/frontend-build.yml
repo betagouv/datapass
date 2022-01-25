@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     defaults:
       run:
-        working-directory: signup-front
+        working-directory: frontend
     strategy:
       matrix:
         include:
@@ -55,4 +55,4 @@ jobs:
         with:
           name: ${{ matrix.env }}-${{ github.sha }}-build
           path: |
-            signup-front/build
+            frontend/build

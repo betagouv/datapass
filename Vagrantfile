@@ -10,18 +10,18 @@ vms = {
     :synced_folders =>
       [
         {
-          :host => "./signup-back",
-          :guest => "/opt/apps/signup-back/current"
+          :host => "./backend",
+          :guest => "/opt/apps/datapass-backend/current"
         },
         {
-          :host => "./signup-front",
-          :guest => "/opt/apps/signup-front/current"
+          :host => "./frontend",
+          :guest => "/opt/apps/datapass-frontend/current"
         }
       ],
     :services_to_start =>
       [
-        "datapass-front",
-        "datapass-back"
+        "datapass-frontend",
+        "datapass-backend"
       ]
   },
   'api-auth': {
