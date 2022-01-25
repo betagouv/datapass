@@ -119,9 +119,6 @@
     - role: ssl
       server_name: "{{ front_domain_name }}"
       tags: ssl
-    - role: ssl
-      server_name: "{{ former_front_domain_name }}"
-      tags: ssl
     - role: react-app
       app_service_name: datapass-front
       server_name: "{{ front_domain_name }}"
@@ -139,10 +136,6 @@
       tags:
         - front
         - app-config
-    - role: domain-redirection
-      alternative_domain: "{{ former_front_domain_name }}"
-      current_domain: "{{ front_domain_name }}"
-      tags: domain-redirection
 
 - hosts: api-auth
   become: true
