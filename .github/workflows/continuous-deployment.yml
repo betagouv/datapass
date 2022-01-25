@@ -1,7 +1,13 @@
 name: Continuous deployment
 
 on:
-  workflow_dispatch: ~
+  workflow_run:
+    workflows:
+      - Frontend build
+    branches:
+      - master
+    types:
+      - completed
 
 jobs:
   deployment:
