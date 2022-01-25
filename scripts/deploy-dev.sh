@@ -13,7 +13,8 @@ if [ -z $1 ]; then
     exit 1
 fi
 
-APP_NAME=$1
+MONOREPO_TARGET_FOLDER=$1
+APP_NAME=$2
 APP_VERSION=master
 echo "$(logPrefix) Deploying $APP_NAME..."
 
