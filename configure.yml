@@ -1,5 +1,11 @@
 - hosts: datapass-front,datapass-back,api-auth
   become: true
+  pre_tasks:
+    - name: Install acl to let ansible become whoever it needs to
+      apt:
+        name: acl
+        update_cache: true
+        cache_valid_time: 86400
   roles:
     - app-user
     - role: team-ssh-keys
@@ -34,30 +40,30 @@
       server_name: "{{ back_domain_name }}"
       tags: ssl
     - role: postgres
-      pg_user: back
+      pg_user: datapass
       pg_password: "{{ back_pg_password }}"
-      pg_database: signup-back
+      pg_database: datapass
     - role: backup-script
       backup_user: postgres
-      store_identifier: signup-back
+      store_identifier: datapass
       backup_type: postgresql
       frequency: daily
       tags: backup-script
       when: disable_backup is not defined
     - role: backup-script
-      backup_user: signup
-      store_identifier: /opt/apps/signup-back/uploads
+      backup_user: datapass
+      store_identifier: /opt/apps/datapass-backend/uploads
       frequency: weekly
       backup_type: file
       tags: backup-script
       when: disable_backup is not defined
     - role: rails-app
-      app_service_name: signup-back
+      app_service_name: datapass-backend
       server_name: "{{ back_domain_name }}"
       app_port: 3000
-      pg_user: back
+      pg_user: datapass
       pg_password: "{{ back_pg_password }}"
-      pg_database: signup-back
+      pg_database: datapass
       devise_secret: "{{ back_devise_secret }}"
       secret_key_base: "{{ back_secret_key_base }}"
       env_var:
@@ -113,11 +119,8 @@
     - role: ssl
       server_name: "{{ front_domain_name }}"
       tags: ssl
-    - role: ssl
-      server_name: "{{ former_front_domain_name }}"
-      tags: ssl
     - role: react-app
-      app_service_name: signup-front
+      app_service_name: datapass-frontend
       server_name: "{{ front_domain_name }}"
       permanent_redirect_rules:
         - source_pattern: "~ ^/api-impot-particulier(/[0-9]*|)$"
@@ -133,10 +136,6 @@
       tags:
         - front
         - app-config
-    - role: domain-redirection
-      alternative_domain: "{{ former_front_domain_name }}"
-      current_domain: "{{ front_domain_name }}"
-      tags: domain-redirection
 
 - hosts: api-auth
   become: true

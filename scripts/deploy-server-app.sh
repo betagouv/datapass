@@ -13,7 +13,8 @@ if [ -z $1 ]; then
     exit 1
 fi
 
-APP_NAME=$1
+MONOREPO_TARGET_FOLDER=$1
+APP_NAME=$2
 APP_VERSION=master
 echo "$(logPrefix) Deploying $APP_NAME..."
 
@@ -40,7 +41,7 @@ else
 
     echo "$(logPrefix) Unpacking..."
     tar -xzf datapass-${APP_VERSION}.tar.gz
-    mv datapass-${APP_VERSION}/${APP_NAME}/ ${RELEASES_PATH}
+    mv datapass-${APP_VERSION}/${MONOREPO_TARGET_FOLDER}/ ${RELEASES_PATH}
     rm -rf datapass-${APP_VERSION}/
     rm datapass-${APP_VERSION}.tar.gz
 fi

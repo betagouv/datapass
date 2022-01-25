@@ -10,7 +10,7 @@
   ],
   "env": {
     "NODE_ENV": "development",
-    "PROJECT_PATH": "signup-front",
+    "PROJECT_PATH": "frontend",
     "REACT_APP_API_GOUV_HOST": "https://www-staging.api.gouv.fr",
     "REACT_APP_BACK_HOST": "https://back.datapass-test.api.gouv.fr",
     "REACT_APP_NODE_ENV": "production"

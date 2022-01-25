@@ -368,7 +368,7 @@ sudo systemctl stop signup-back
 sudo su - signup
 cd /opt/apps/signup-back/current
 export $(cat /etc/signup-back.conf | xargs)
-PG_HOST=localhost REDIS_URL=redis://localhost:6379 RAILS_ENV=development rails s
+REDIS_URL=redis://localhost:6379 RAILS_ENV=development rails s
 ```
 
 ### Production-like deployment (optional)

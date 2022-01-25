@@ -1,4 +1,4 @@
-app_user: signup
+app_user: datapass
 node_env: production
 
 former_front_domain_name: signup-development.api.gouv.fr

@@ -11,9 +11,9 @@ env:
   COVERAGE: true
   RUBY_VERSION: 2.7.3
   PG_HOST: localhost
-  PG_USER: signup-back
-  PG_PASSWORD: signup-back
-  PG_DATABASE: signup-back-test
+  PG_USER: datapass
+  PG_PASSWORD: datapass
+  PG_DATABASE: datapass
 
 jobs:
   test:
@@ -21,14 +21,14 @@ jobs:
     runs-on: ubuntu-18.04
     defaults:
       run:
-        working-directory: ./signup-back
+        working-directory: ./backend
     services:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: signup-back
-          POSTGRES_PASSWORD: signup-back
-          POSTGRES_DB: signup-back-test
+          POSTGRES_USER: datapass
+          POSTGRES_PASSWORD: datapass
+          POSTGRES_DB: datapass
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -94,7 +94,7 @@ jobs:
           CC_TEST_REPORTER_ID: c520d0a599739b0fb177eb2ecfeaa72792c262af475dfa0a7bcea092fdcd3301
         with:
           coverageCommand: bundle exec rspec
-          workingDirectory: signup-back
+          workingDirectory: backend
 
   # lint:
   #   name: Linter (StandardRB)

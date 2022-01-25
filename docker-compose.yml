@@ -7,19 +7,19 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: signup-development
-      POSTGRES_USER: back
-      POSTGRES_PASSWORD: back
+      POSTGRES_DB: datapass
+      POSTGRES_USER: datapass
+      POSTGRES_PASSWORD: datapass
     ports:
       - 5432:5432
   cache:
     image: redis
   back:
     build:
-      context: signup-back
+      context: backend
     command: bash -c "rm -f tmp/pids/server.pid && rails db:migrate && bundle exec rails s -p 3001 -b '0.0.0.0'"
     volumes:
-      - ./signup-back:/myapp
+      - ./backend:/myapp
       - /myapp/vendor
     environment:
       PG_HOST: db
@@ -30,10 +30,10 @@ services:
       - cache
   worker:
     build:
-      context: signup-back
+      context: backend
     command: bash -c "bundle exec sidekiq"
     volumes:
-      - ./signup-back:/myapp
+      - ./backend:/myapp
       - /myapp/vendor
     depends_on:
       - back

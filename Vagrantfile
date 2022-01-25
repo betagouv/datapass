@@ -10,18 +10,18 @@ vms = {
     :synced_folders =>
       [
         {
-          :host => "./signup-back",
-          :guest => "/opt/apps/signup-back/current"
+          :host => "./backend",
+          :guest => "/opt/apps/datapass-backend/current"
         },
         {
-          :host => "./signup-front",
-          :guest => "/opt/apps/signup-front/current"
+          :host => "./frontend",
+          :guest => "/opt/apps/datapass-frontend/current"
         }
       ],
     :services_to_start =>
       [
-        "signup-front",
-        "signup-back"
+        "datapass-frontend",
+        "datapass-backend"
       ]
   },
   'api-auth': {
@@ -46,19 +46,12 @@ vms = {
 ssh_pubkey = File.read(File.join(Dir.home, '.ssh', 'id_rsa.pub')).chomp
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-20.04"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provision 'shell', inline: <<-SHELL
     sudo mkdir -p /home/vagrant/.ssh -m 700
     sudo echo '#{ssh_pubkey}' >> /home/vagrant/.ssh/authorized_keys
-  SHELL
-
-  # see https://github.com/hashicorp/vagrant/issues/9222
-  config.vm.provision 'shell', run: 'always', inline: <<-SHELL
-    sudo sed -i '/^auto enp0s3/c\#auto enp0s3/' /etc/network/interfaces
-    sudo sed -i '/^iface enp0s3 inet dhcp/c\#iface enp0s3 inet dhcp/' /etc/network/interfaces
-    sudo sed -i '/^pre-up sleep 2/c\#pre-up sleep 2/' /etc/network/interfaces
   SHELL
 
   config.vm.provision "ansible" do |ansible|
@@ -98,7 +91,7 @@ Vagrant.configure("2") do |config|
       end
 
       vm[:synced_folders].each do |folders|
-        configvm.vm.synced_folder folders[:host], folders[:guest], type: "nfs", create: true
+        configvm.vm.synced_folder folders[:host], folders[:guest], type: "nfs", create: true, nfs_version: "4"
       end
       configvm.vm.synced_folder ".", "/vagrant", disabled: true
 
