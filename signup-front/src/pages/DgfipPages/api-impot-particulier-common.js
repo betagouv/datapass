@@ -73,25 +73,6 @@ export const demarches = {
       },
     },
   },
-  carte_stationnement: {
-    label: 'Délivrance d’une carte de stationnement',
-    state: {
-      scopes: {
-        dgfip_aft: true,
-        dgfip_annee_n_moins_1: true,
-      },
-    },
-  },
-  quotient_familial: {
-    label: 'Calcul du quotient familial pour les prestations municipales',
-    state: {
-      scopes: {
-        dgfip_nbpart: true,
-        dgfip_rfr: true,
-        dgfip_annee_n_moins_1: true,
-      },
-    },
-  },
   stationnement_residentiel: {
     label: 'Stationnement Résidentiel',
     state: {
