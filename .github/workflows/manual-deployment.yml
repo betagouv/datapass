@@ -9,9 +9,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - environment: test
-            url: https://datapass-test.api.gouv.fr
-            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          # - environment: test
+          #   url: https://datapass-test.api.gouv.fr
+          #   ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
           - environment: production
             url: https://datapass.api.gouv.fr
             ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
