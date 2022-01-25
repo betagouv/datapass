@@ -43,6 +43,7 @@
       pg_user: datapass
       pg_password: "{{ back_pg_password }}"
       pg_database: datapass
+      tags: postgres
     - role: backup-script
       backup_user: postgres
       store_identifier: datapass
