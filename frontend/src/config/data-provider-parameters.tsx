@@ -49,6 +49,7 @@ import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
 import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
+import ApiCaptchetat from '../pages/ApiCaptchetat';
 
 type DataProviderParameter = {
   label: string;
@@ -358,6 +359,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-pole-emploi.png',
       email: 'support@pole-emploi.io',
       component: ApiStatutDemandeurEmploi,
+    },
+    api_captchetat: {
+      label: 'API CaptchEtat',
+      icon: 'logo-aife.png',
+      email: 'piste.aife@finances.gouv.fr',
+      component: ApiCaptchetat,
     },
   };
 
