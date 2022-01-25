@@ -4,12 +4,12 @@
     state: restarted
 
 # TODO dynamically generate these handlers
-- name: "restart service datapass-back"
+- name: "restart service datapass-backend"
   service:
-    name: datapass-back
+    name: datapass-backend
     state: restarted
 
-- name: "restart service sidekiq-datapass-back"
+- name: "restart service sidekiq-datapass-backend"
   service:
-    name: sidekiq-datapass-back
+    name: sidekiq-datapass-backend
     state: restarted

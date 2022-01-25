@@ -54,7 +54,7 @@ jobs:
       - name: Cache Gems
         uses: actions/cache@v1
         with:
-          path: datapass-back/vendor/bundle
+          path: backend/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
@@ -63,7 +63,7 @@ jobs:
           gem install bundler
           bundle config path vendor/bundle
           bundler install --jobs 4 --retry 3
-        working-directory: datapass-back
+        working-directory: backend
       - name: Cache node modules
         uses: actions/cache@v2
         env:

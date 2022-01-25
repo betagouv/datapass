@@ -4,9 +4,9 @@
     state: restarted
 
 # TODO dynamically generate these handlers
-- name: "restart service datapass-front"
+- name: "restart service datapass-frontend"
   service:
-    name: datapass-front
+    name: datapass-frontend
     state: restarted
 - name: "restart service api-auth"
   service:
