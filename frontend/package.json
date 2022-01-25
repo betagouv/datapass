@@ -57,7 +57,7 @@
     "typescript": "^4.5.5"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^6.0.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "http-proxy-middleware": "^2.0.2",
     "jest-mock-extended": "^2.0.4",
     "nock": "^13.2.2",
