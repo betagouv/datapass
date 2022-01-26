@@ -51,6 +51,8 @@ jobs:
           ruby-version: 2.7.3
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
+      - name: Link libffi7 to libffi6 since the version 6 is not available anymore in Ubuntu 20.04
+        run: sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6
       - name: Cache Gems
         uses: actions/cache@v1
         with:
