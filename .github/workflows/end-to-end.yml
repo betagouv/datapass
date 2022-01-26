@@ -49,8 +49,8 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: 2.7.3
-      - name: Install postgres client #and imagemagick
-        run: sudo apt-get install libpq-dev #imagemagick
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
       - name: Cache Gems
         uses: actions/cache@v1
         with:
