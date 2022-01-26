@@ -9,7 +9,7 @@ import Label from '../atoms/inputs/Label';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-// NB: please keep this limit in sync with the limit in nginx signup-back configuration
+// NB: please keep this limit in sync with the limit in nginx datapass-backend configuration
 const FILE_SIZE_LIMIT_IN_MB = 10;
 
 const FileInput = ({

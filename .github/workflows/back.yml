@@ -108,7 +108,7 @@ jobs:
   #       uses: amoeba/standardrb-action@master
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         PROJECT_PATH: signup-back
+  #         PROJECT_PATH: datapass-backend
 
   # security:
   #   name: Brakeman
@@ -122,4 +122,4 @@ jobs:
   #       uses: devmasx/brakeman-linter-action@master
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         PROJECT_PATH: signup-back
+  #         PROJECT_PATH: datapass-backend

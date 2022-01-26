@@ -177,7 +177,7 @@ Then, clone the repository and install npm dependencies:
 
 ```
 git clone git@github.com:betagouv/datapass.git
-cd datapass/signup-front
+cd datapass/frontend
 npm i
 ```
 
@@ -210,7 +210,7 @@ cd datapass
 ```
 
 Ask a colleague to give you the backend secrets stored in
-the `signup-back/.env.local` file.
+the `backend/.env.local` file.
 
 Then create and configure your backend docker containers:
 
@@ -221,7 +221,7 @@ docker-compose up # This can take a while, go make a loaf of bread or something
 And finally, you can start the frontend:
 
 ```bash
-cd signup-front
+cd frontend
 npm install
 npm run dev
 ```
@@ -236,7 +236,7 @@ found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.s
 
 #### Front end linter
 
-Note that, we use the [`prettier`](https://prettier.io) linter for signup-front.
+Note that, we use the [`prettier`](https://prettier.io) linter for datapass-frontend.
 Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
 ### API Auth (optional)
@@ -328,7 +328,7 @@ git clone git@github.com:betagouv/datapass.git
 Add the following hosts in `/etc/hosts`:
 
 ```text
-192.168.56.125 datapass-development.particulier-infra.api.gouv.fr
+192.168.56.125 datapass-development.infra.api.gouv.fr
 192.168.56.125 datapass-development.api.gouv.fr
 192.168.56.125 back.datapass-development.api.gouv.fr
 ```
@@ -354,7 +354,7 @@ Additional dependencies setup:
 Start the app in the interactive mode:
 
 ```
-cd signup-front
+cd frontend
 REACT_APP_BACK_HOST=https://back.datapass-development.api.gouv.fr npm run dev
 ```
 
@@ -364,10 +364,10 @@ You will run DataPass backend interactively in the virtual machine.
 
 ```bash
 vagrant ssh datapass
-sudo systemctl stop signup-back
-sudo su - signup
-cd /opt/apps/signup-back/current
-export $(cat /etc/signup-back.conf | xargs)
+sudo systemctl stop datapass-backend
+sudo su - datapass
+cd /opt/apps/datapass-backend/current
+export $(cat /etc/datapass-backend.conf | xargs)
 REDIS_URL=redis://localhost:6379 RAILS_ENV=development rails s
 ```
 

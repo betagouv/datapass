@@ -1,20 +1,20 @@
-- hosts: datapass-front
+- hosts: datapass-frontend
   vars:
     ansible_user: "{{ app_user }}"
   tasks:
-    - name: deploy front
+    - name: deploy frontend
       script: "./scripts/deploy-static-app.sh datapass-frontend {{ github_access_token }} {{ target_deploy_env }}"
       tags:
-        - front
+        - frontend
 
-- hosts: datapass-back
+- hosts: datapass-backend
   vars:
     ansible_user: "{{ app_user }}"
   tasks:
-    - name: deploy back
+    - name: deploy backend
       script: ./scripts/deploy-server-app.sh backend datapass-backend
       tags:
-        - back
+        - backend
 
 - hosts: api-auth
   vars:

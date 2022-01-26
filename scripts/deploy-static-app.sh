@@ -9,17 +9,17 @@ logPrefix(){
 }
 
 if [ -z $1 ]; then
-    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
+    echo "$(logPrefix) Error: You must provide the application name as an argument. Ex: ./scripts/deploy.sh datapass-frontend secret_token staging"
     exit 1
 fi
 
 if [ -z $2 ]; then
-    echo "$(logPrefix) Error: You must provide the github access token as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
+    echo "$(logPrefix) Error: You must provide the github access token as an argument. Ex: ./scripts/deploy.sh datapass-frontend secret_token staging"
     exit 1
 fi
 
 if [ -z $3 ]; then
-    echo "$(logPrefix) Error: You must provide the target environment as an argument. Ex: ./scripts/deploy.sh signup-front blabliblou staging"
+    echo "$(logPrefix) Error: You must provide the target environment as an argument. Ex: ./scripts/deploy.sh datapass-frontend secret_token staging"
     exit 1
 fi
 

@@ -1,4 +1,4 @@
-CREATE ROLE "signup-back" SUPERUSER LOGIN ;
+CREATE ROLE "datapass" SUPERUSER LOGIN ;
 
-CREATE DATABASE "signup-back-development" WITH OWNER "signup-back";
-CREATE DATABASE "signup-back-test" WITH OWNER "signup-back";
+CREATE DATABASE "datapass-development" WITH OWNER "datapass";
+CREATE DATABASE "datapass-test" WITH OWNER "datapass";
