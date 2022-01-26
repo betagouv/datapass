@@ -8,7 +8,7 @@ on:
 
 jobs:
   quality-control:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       BACK_HOST: http://localhost:3001
       FRONT_HOST: http://localhost:3000
@@ -28,7 +28,7 @@ jobs:
         ports:
           - 6379:6379
       postgres:
-        image: postgres:9.5
+        image: postgres:12.9
         env:
           POSTGRES_USER: ${{ env.PG_USER }}
           POSTGRES_PASSWORD: ${{ env.PG_PASSWORD }}
