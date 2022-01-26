@@ -21,8 +21,8 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
         Démarches en ligne auxquelles vous souhaitez abonner votre commune
       </h2>
       <ExpandableQuote
-        title={`En quoi consiste ${
-          demarchesHubee.length === 1 ? 'cette démarche' : 'ces démarches'
+        title={`En quoi ${
+          demarchesHubee.length === 1 ? 'consiste cette démarche' : 'consistent ces démarches'
         } ?`}
       >
         <>
