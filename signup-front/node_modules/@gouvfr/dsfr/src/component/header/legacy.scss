@@ -1,0 +1,10 @@
+////
+/// Header Legacy
+/// @group core
+////
+
+@import 'index';
+@import 'style/scheme';
+@import 'style/legacy';
+
+@include _header-scheme(true);

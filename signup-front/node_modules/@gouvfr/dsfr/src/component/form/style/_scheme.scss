@@ -1,0 +1,122 @@
+////
+/// form Scheme
+/// @group form
+////
+
+@mixin _form-scheme($legacy: false) {
+  #{ns-group(select), ns-group(input)} {
+    /**
+    * Modificateur au niveau du groupe pour appliquer un état validé aux labels
+    */
+    &--valid {
+      label {
+        @include scheme-element-text-color(default success, $legacy);
+      }
+    }
+
+    /**
+    * Modificateur au niveau du groupe pour appliquer un état d'erreur aux labels
+    */
+    &--error {
+      label {
+        @include scheme-element-text-color(default error, $legacy);
+      }
+    }
+
+    /**
+    * Modificateur au niveau du groupe pour appliquer un état inactif aux labels
+    */
+    &--disabled {
+      label {
+        @include disabled-colors($legacy, true);
+      }
+    }
+  }
+
+  #{ns(label)} {
+    @include scheme-element-text-color(label grey, $legacy);
+
+    /**
+    * Modificateur au niveau du label pour appliquer un état d'erreur au label
+    */
+    &--error {
+      @include scheme-element-text-color(default error, $legacy);
+    }
+
+    /**
+    * Modificateur au niveau du label pour appliquer un état de succès au label
+    */
+    &--success {
+      @include scheme-element-text-color(default success, $legacy);
+    }
+  }
+
+  /**
+  * Style du texte d'aide
+  */
+  #{ns(hint-text)} {
+    @include scheme-element-text-color(mention grey, $legacy);
+  }
+
+  /**
+  * Style du texte d'erreur
+  */
+  #{ns(error-text)} {
+    @include scheme-element-text-color(default error, $legacy);
+  }
+
+  /**
+  * Style du texte de l'état validé
+  */
+  #{ns(valid-text)} {
+    @include scheme-element-text-color(default success, $legacy);
+  }
+
+  /**
+  * Style d'un ensemble de champs
+  */
+  #{ns(fieldset)} {
+    /**
+    * Mixin disabled pour gérer l'état disabled
+    */
+    @include disabled($legacy) {
+      label {
+        @include disabled-colors($legacy, true);
+      }
+    }
+
+    &__legend {
+      @include scheme-element-text-color(title grey, $legacy);
+    }
+
+    /**
+    * Modificateur pour gérer l'état d'erreur
+    */
+    &--error {
+      #{ns(fieldset__content)} {
+        @include before {
+          @include scheme-element-box-shadow-color(plain error, $legacy, false, left-2-in);
+        }
+      }
+
+      label {
+        @include scheme-element-text-color(default error, $legacy);
+      }
+    }
+
+    /**
+    * Modificateur pour gérer l'état de validation
+    */
+    &--valid {
+      #{ns(fieldset__content)} {
+        @include before {
+          @include scheme-element-box-shadow-color(plain success, $legacy, false, left-2-in);
+        }
+      }
+
+      label {
+        @include scheme-element-text-color(default success, $legacy);
+      }
+    }
+  }
+}

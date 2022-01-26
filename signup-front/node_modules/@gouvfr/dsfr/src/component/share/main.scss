@@ -1,0 +1,14 @@
+////
+/// Share Main
+/// @group share
+////
+
+/* ------------------------------------ *\
+  SHARE
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _share-scheme;

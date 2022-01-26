@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>react-aria-modal demo / manual test suite</title>
+
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="modal.css">
+  <meta name="description" content="A demo / manual test suite of react-aria-modal">
+</head>
+<body>
+  <div id="application">
+
+    <h1>
+      react-aria-modal demo / manual test suite
+    </h1>
+
+    <p>
+      When a modal is active, you should notice the following:
+      <ul>
+        <li>
+          Focus is trapped within the modal: Tab and Shift+Tab will cycle through the modal's focusable nodes
+          without returning to the main document beneath.
+        </li>
+        <li>
+          The dialog element has an ARIA <code>role</code> of <code>dialog</code> (or <code>alertdialog</code>).
+        </li>
+        <li>
+          The dialog element has an ARIA attribute designating its title, either <code>aria-label</code> or <code>aria-labelledby</code>.
+        </li>
+        <li>
+          Escape will close the modal.
+        </li>
+        <li>
+          When the modal closes, focus returns to the element that was focused just before the modal activated.
+        </li>
+        <li>
+          By default, clicking on the modal's underlay (outside the dialog element) will close the modal (this can be disabled).
+        </li>
+        <li>
+          Scrolling is frozen on the main document beneath the modal. (Although, sadly, you can still mess with the scrolling using a touch screen.)
+        </li>
+        <li>
+          The modal is appended to the end of <code>document.body</code> instead of its taking up its source-order position within the React component tree.
+        </li>
+      </ul>
+    </p>
+
+    <h2>
+      demo one
+    </h2>
+    <p>
+      This modal
+    </p>
+    <ul>
+      <li>
+        has an invisible but still screen-reader-accessible title
+      </li>
+      <li>
+        places initial focus on the deactivation button
+      </li>
+    </ul>
+    <div id="demo-one"></div>
+
+    <h2>
+      demo two
+    </h2>
+    <p>
+      This modal
+    </p>
+    <ul>
+      <li>
+        is vertically centered
+      </li>
+      <li>
+        does not close when the underlay is clicked
+      </li>
+      <li>
+        has a visible title (which is also used by the screen-reader)
+      </li>
+      <li>
+        does not deliberately place focus, so the first element in the tab order receives focus
+      </li>
+      <li>
+        has an internally scrolling region
+      </li>
+    </ul>
+    <div id="demo-two"></div>
+
+    <h2>
+      demo three
+    </h2>
+    <p>
+      This modal
+    </p>
+    <ul>
+      <li>
+        is tall enough that scrolling is required to see all of its content
+      </li>
+      <li>
+        uses <code>focusDialog=true</code>, so the focus trap
+        still works but no focus outline is initially visible
+      </li>
+      <li>
+        uses <code>escapeExits=false</code> so the Escape key does not close the modal.
+      </li>
+      <li>
+        passes special <code>data-</code> and <code>aria-</code> attributes to the modal container <code>div</code>.
+      </li>
+    </ul>
+    <div id="demo-three"></div>
+
+    <h2>
+      demo four
+    </h2>
+    <p>
+      This modal's active/inactive state is controlled with the <code>mounted</code> prop instead of
+      mounting and unmounting.
+    </p>
+    <div id="demo-four"></div>
+
+    <h2>
+      demo five
+    </h2>
+    <p>
+      This modal uses some custom classes and special <code>onEnter</code> and <code>onExit</code> functions to enable nice transitions.
+    </p>
+    <div id="demo-five"></div>
+
+    <h2>
+      demo six
+    </h2>
+    <p>
+      This modal renders into a specified element instead of into a new one at the bottom of <code>&lt;body&gt;</code>, uses the <code>underlayStyle</code> prop to customize the underlay, and <code>underlayProps</code> to pass additional attributes.
+    </p>
+    <div id="demo-six"></div>
+    <div id="demo-six-container" style="border:2px solid gray;height: 300px;position:relative;"></div>
+
+
+    <h2>demo seven</h2>
+    <p>
+      This modal renders with no default styles via
+      <code>includeDefaultStyles=false</code>, allowing complete
+      presentational control without <code>underlayStyle</code> or <code>dialogStyle</code> overrides.
+      Demo includes styles to allow for an auto-overflowing modal with a
+      sticky footer.
+    </p>
+    <div id="demo-seven"></div>
+
+    <h2>demo eight</h2>
+    <p>
+      This modal has another focus trap inside it.
+    </p>
+    <div id="demo-eight"></div>
+
+    <h2>demo nine</h2>
+    <p>
+      This modal has doesn't prevent the scrolling of the content behind the modal. It also includes a nested modal.
+    </p>
+    <div id="demo-nine"></div>
+
+    <h2>demo ten</h2>
+    <p>
+      This modal will not return focus to the element that was focused just before the modal activated.
+    </p>
+    <div id="demo-ten"></div>
+  </div>
+
+  <script src="react-aria-modal-manual-test.bundle.js"></script>
+</body>
+</html>

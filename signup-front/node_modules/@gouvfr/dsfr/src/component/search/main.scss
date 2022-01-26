@@ -1,0 +1,14 @@
+////
+/// Search Main
+/// @group search
+////
+
+/* ------------------------------------ *\
+  SEARCH
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _search-scheme;

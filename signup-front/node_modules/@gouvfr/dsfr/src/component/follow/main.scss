@@ -1,0 +1,14 @@
+////
+/// Follow Main
+/// @group follow
+////
+
+/* ------------------------------------ *\
+  FOLLOW
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _follow-scheme;

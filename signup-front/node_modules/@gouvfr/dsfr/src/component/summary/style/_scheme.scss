@@ -1,0 +1,19 @@
+////
+/// Summary Module
+/// @group summary
+////
+
+@mixin _summary-scheme($legacy: false) {
+  #{ns(summary)} {
+    @include scheme-element-bg-color(contrast grey, $legacy);
+    // @include scheme-element-box-shadow-color(default grey, $legacy);
+
+    @include title {
+      @include scheme-element-text-color(title grey, $legacy);
+    }
+
+    li > a {
+      @include scheme-element-text-color(action-high grey, $legacy);
+    }
+  }
+}

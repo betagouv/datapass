@@ -1,0 +1,61 @@
+////
+/// Core Setting : Typography content
+/// @group core
+////
+
+$text-styles: (
+  12: (
+    line-height: 5v
+  ),
+  14: (
+    line-height: 6v
+  ),
+  16: (
+    line-height: 6v
+  ),
+  18: (
+    line-height: 7v
+  ),
+  20: (
+    line-height: 8v
+  ),
+  22: (
+    line-height: 9v
+  ),
+);
+
+$text-settings: (
+  xs: (
+    breakpoints: (
+      first: 12,
+    ),
+    margin: text
+  ),
+  sm: (
+    breakpoints: (
+      first: 14,
+    ),
+    margin: text
+  ),
+  md: (
+    breakpoints: (
+      first: 16,
+    ),
+    margin: text
+  ),
+  lg: (
+    breakpoints: (
+      first: 18,
+      md: 20,
+    ),
+    margin: text
+  ),
+  xl: (
+    alt: lead,
+    breakpoints: (
+      first: 20,
+      md: 22,
+    ),
+    margin: text
+  )
+);

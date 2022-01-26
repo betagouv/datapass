@@ -1,0 +1,87 @@
+<%#
+# paramètres input
+
+* input.id (string, required) : id du label et de l'input, sert également à construire les ids des messages valid, error et hint
+
+* input.label (string, required) : label
+
+* input.type (string, required) : type de l'input. si textarea, l'input est remplacé par un textarea
+
+* input.placeholder (string, optionnal) : text du placeholder de l'input
+
+* input.icon (string, optionnal) : nom de l'icone qui sera placée sur la partie droite de l'input
+
+* input.valid (string, optionnal) : message de validation
+
+* input.error (string, optionnal) : message d'erreur
+
+* input.hint (string, optionnal) : message d'aide
+
+* input.required (boolean, optionnal)
+
+* input.disabled (boolean, optionnal)
+
+* input.attributes (object, optionnal) : attributs spécifiques à rajouter sur l'input
+
+* input.classes (array, optionnal) : classes spécifiques à rajouter sur l'input
+
+%>
+<% eval(include('../../../../core/index.ejs')); %>
+
+<%
+let input = locals.input || {};
+let inputClasses = input.classes || [];
+let inputAttrs = input.attributes || {};
+let describedby = [];
+
+inputClasses.push(prefix + '-input');
+
+if (input.valid !== undefined) {
+  inputClasses.push(prefix + '-input--valid');
+  describedby.push(input.id + '-desc-valid');
+}
+
+if (input.error !== undefined) {
+  inputClasses.push(prefix + '-input--error');
+  describedby.push(input.id + '-desc-error');
+}
+
+if (input.hint === true) {
+  describedby.push(input.id + '-hint-text');
+  input.hint = undefined;
+}
+
+if (describedby.length > 0) inputAttrs['aria-describedby'] = describedby.join(' ');
+
+if (input.required === true) inputAttrs['required'] = '';
+if (input.disabled === true) inputAttrs['disabled'] = '';
+if (input.placeholder != undefined) inputAttrs['placeholder'] = input.placeholder;
+%>
+
+<%- include('../../../form/template/ejs/label', {label: {id: input.id, label: input.label, hint: input.hint}}); %>
+
+<% if (input.icon != undefined) { %>
+ <div class="<%= prefix %>-input-wrap <%- prefix %>-fi-<%= input.icon %>" >
+<% } %>
+
+<% if (input.addon && input.button != undefined) { %>
+  <div class="<%= prefix %>-input-wrap <%- prefix %>-input-wrap--addon" >
+<% } %>
+
+<% if (input.type === 'textarea') { %>
+<textarea <%- includeClasses(inputClasses); %> <%- includeAttrs(inputAttrs); %>  id="<%= input.id %>" name="<%= input.id %>"></textarea>
+<% }
+else {%>
+<input <%- includeClasses(inputClasses); %> <%- includeAttrs(inputAttrs); %> type="<%= input.type %>" id="<%= input.id %>" name="<%= input.id %>">
+<% } %>
+
+<% if (input.addon && input.button != undefined) { %>
+  <%- include('../../../button/template/ejs/button', {button:input.button}); %>
+  </div>
+<% } %>
+
+<% if (input.icon != undefined) { %>
+</div>
+<% } %>
+
+<%- include('../../../form/template/ejs/message', {message:input}); %>

@@ -44,7 +44,6 @@
     "linkifyjs": "^3.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
-    "prettier": "^2.5.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -61,6 +60,7 @@
     "http-proxy-middleware": "^2.0.2",
     "jest-mock-extended": "^2.0.4",
     "nock": "^13.2.2",
+    "prettier": "2.5.1",
     "react-axe": "^3.5.3",
     "react-test-renderer": "^17.0.2",
     "serve": "^13.0.2"

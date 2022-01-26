@@ -1,0 +1,14 @@
+////
+/// Footer Main
+/// @group footer
+////
+
+/* ------------------------------------ *\
+  FOOTER
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _footer-scheme;

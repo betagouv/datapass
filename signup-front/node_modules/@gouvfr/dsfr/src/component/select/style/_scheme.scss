@@ -1,0 +1,47 @@
+////
+/// Select Module
+/// @group select
+////
+
+@mixin _select-scheme($legacy: false) {
+  #{ns(select)} {
+    @include scheme-element-text-color(title neutral, $legacy);
+    @include scheme-element-bg-color(contrast neutral, $legacy);
+    @include scheme-element-box-shadow-color(plain neutral, $legacy, false, bottom-2-in);
+
+    // @include scheme-element-data-uri-svg(g800, $svg, background-image); // @TODO
+
+    /**
+    * Modificateur pour gérer l'état d'erreur
+    */
+    &--error {
+      @include scheme-element-box-shadow-color(plain error, $legacy, false, bottom-2-in);
+    }
+
+    /**
+    * Modificateur pour gérer l'état de validation
+    */
+    &--valid {
+      @include scheme-element-box-shadow-color(plain success, $legacy, false, bottom-2-in);
+    }
+
+    /**
+    * Mixin pour gérer l'état disabled
+    */
+    @include disabled-form-field($legacy);
+    // @include disabled-form-field(select) {
+    //   @include scheme-element-data-uri-svg(get-disabled-color(text), $svg, background-image); //@TODO disabled
+    // }
+
+    /**
+    * On applique un style lorsque la valeur est automatiquement remplie par le navigateur
+    * sur les navigateurs webkit.
+    */
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      @include scheme-element-box-shadow-color(plain neutral background-contrast blue-france, $legacy, false, bottom-2-in all-in);
+      @include _scheme-element(-webkit-text-fill-color, text, label neutral, $legacy);
+    }
+  }
+}

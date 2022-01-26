@@ -1,0 +1,11 @@
+<%
+
+let data = {
+  label: 'Label action interrupteur',
+  ...locals.toggle || {},
+  id: uniqueId('toggle'),
+}
+
+%>
+
+<%- include('../../template/ejs/toggle', {toggle:data}); %>

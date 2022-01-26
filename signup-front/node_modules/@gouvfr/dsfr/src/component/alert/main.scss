@@ -1,0 +1,14 @@
+////
+/// Alert Main
+/// @group alert
+////
+
+/* ------------------------------------ *\
+  ALERT
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _alert-scheme;

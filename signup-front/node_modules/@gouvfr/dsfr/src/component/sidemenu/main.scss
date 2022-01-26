@@ -1,0 +1,14 @@
+////
+/// Sidemenu Main
+/// @group sidemenu
+////
+
+/* ------------------------------------ *\
+  SIDEMENU
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _sidemenu-scheme;

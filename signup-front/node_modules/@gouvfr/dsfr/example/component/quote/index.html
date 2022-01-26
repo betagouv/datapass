@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Citation - Design System</title>
+        <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+        <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+        <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+        <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+        <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+        <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+        <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+        <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+        <link href="../../../dist/core/core.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/quote/quote.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/scheme/scheme.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/link/link.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/form/form.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/button/button.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet" file="main">
+        <link href="../../../dist/core/core.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/quote/quote.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet" file="legacy">
+        <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet" file="legacy">
+        <style>
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre-wrap;
+            }
+
+            .example-controls {
+                z-index: 100000;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+            }
+
+            .example-controls>button {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .example-controls__content {
+                padding: 16px;
+                background-color: var(--background-elevated-white);
+            }
+
+            .example-controls .fr-collapse--expanded~[aria-expanded] {
+                display: none;
+            }
+
+            .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+                display: none;
+            }
+
+            .example-controls [class*="-form-group"] {
+                margin-bottom: 0;
+            }
+
+            .fr-display-button {
+                position: fixed;
+                bottom: 3.5rem;
+                right: 2rem;
+            }
+
+            @media screen and (-ms-high-contrast: active),
+            (-ms-high-contrast: none) {
+
+                /* IE10+ specific styles go here */
+                .example-controls {
+                    display: none;
+                }
+            }
+
+        </style>
+        <script>
+            window['dsfr'] = {
+                verbose: false,
+                //mode: 'manual'
+            }
+
+        </script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    </head>
+
+    <body class="fr-mb-12w" style="margin:0; padding:0;">
+        <div class="fr-container fr-mt-2v fr-mb-8w">
+            <a class="fr-link fr-fi-arrow-left-line fr-link--icon-left" href="../">Retour</a>
+            <h1>Citation (quote)</h1>
+            <p>La citation permet de citer un texte dans une page éditoriale. La citation peut provenir d'un extrait d’un discours oral formulé par une tierce personne ou d’un texte écrit.</p>
+            <a href="https://gouvfr.atlassian.net/wiki/spaces/DB/pages/771358744/" target="_blank">Documentation</a>
+        </div>
+        <div class="fr-mb-12w">
+            <div class="fr-container">
+                <div class="fr-grid-row fr-grid-row--center">
+                    <div class="fr-col-md-8 fr-col-12">
+                        <h4>Citation par défaut (texte taille xl)</h4>
+                        <div class="fr-mb-6v">
+                            <figure class="fr-quote">
+                                <blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]">
+                                    <p>« Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. »</p>
+                                </blockquote>
+                                <figcaption>
+                                    <p class="fr-quote__author">Auteur</p>
+                                    <ul class="fr-quote__source">
+                                        <li>
+                                            <cite>Ouvrage</cite>
+                                        </li>
+                                        <li>Détail 1</li>
+                                        <li>Détail 2</li>
+                                        <li>Détail 3</li>
+                                        <li>
+                                            <a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]">Détail 4</a>
+                                        </li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="fr-mb-12v">
+                            <section class="fr-accordion">
+                                <h3 class="fr-accordion__title">
+                                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-340">Extrait de code</button>
+                                </h3>
+                                <div class="fr-collapse" id="snippet-340">
+                                    <pre class=" language-html"><code>&lt;figure class="fr-quote"&gt;
+    &lt;blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]"&gt;
+        &lt;p&gt;« Lorem [...] elit ut. »&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;figcaption&gt;
+        &lt;p class="fr-quote__author"&gt;Auteur&lt;/p&gt;
+        &lt;ul class="fr-quote__source"&gt;
+            &lt;li&gt;
+                &lt;cite&gt;Ouvrage&lt;/cite&gt;
+            &lt;/li&gt;
+            &lt;li&gt;Détail 1&lt;/li&gt;
+            &lt;li&gt;Détail 2&lt;/li&gt;
+            &lt;li&gt;Détail 3&lt;/li&gt;
+            &lt;li&gt;
+                &lt;a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]"&gt;Détail 4&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+                                </div>
+                            </section>
+                        </div>
+                        <h4>Citation taille lg</h4>
+                        <div class="fr-mb-6v">
+                            <figure class="fr-quote">
+                                <blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]">
+                                    <p class="fr-text--lg">« Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. »</p>
+                                </blockquote>
+                                <figcaption>
+                                    <p class="fr-quote__author">Auteur</p>
+                                    <ul class="fr-quote__source">
+                                        <li>
+                                            <cite>Ouvrage</cite>
+                                        </li>
+                                        <li>Détail 1</li>
+                                        <li>Détail 2</li>
+                                        <li>Détail 3</li>
+                                        <li>
+                                            <a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]">Détail 4</a>
+                                        </li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="fr-mb-12v">
+                            <section class="fr-accordion">
+                                <h3 class="fr-accordion__title">
+                                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-341">Extrait de code</button>
+                                </h3>
+                                <div class="fr-collapse" id="snippet-341">
+                                    <pre class=" language-html"><code>&lt;figure class="fr-quote"&gt;
+    &lt;blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]"&gt;
+        &lt;p class="fr-text--lg"&gt;« Lorem [...] elit ut. »&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;figcaption&gt;
+        &lt;p class="fr-quote__author"&gt;Auteur&lt;/p&gt;
+        &lt;ul class="fr-quote__source"&gt;
+            &lt;li&gt;
+                &lt;cite&gt;Ouvrage&lt;/cite&gt;
+            &lt;/li&gt;
+            &lt;li&gt;Détail 1&lt;/li&gt;
+            &lt;li&gt;Détail 2&lt;/li&gt;
+            &lt;li&gt;Détail 3&lt;/li&gt;
+            &lt;li&gt;
+                &lt;a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]"&gt;Détail 4&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+                                </div>
+                            </section>
+                        </div>
+                        <h4>Citation avec image</h4>
+                        <div class="fr-mb-6v">
+                            <figure class="fr-quote fr-quote--column">
+                                <blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]">
+                                    <p>« Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. »</p>
+                                </blockquote>
+                                <figcaption>
+                                    <p class="fr-quote__author">Auteur</p>
+                                    <ul class="fr-quote__source">
+                                        <li>
+                                            <cite>Ouvrage</cite>
+                                        </li>
+                                        <li>Détail 1</li>
+                                        <li>Détail 2</li>
+                                        <li>Détail 3</li>
+                                        <li>
+                                            <a href="">Détail 4</a>
+                                        </li>
+                                    </ul>
+                                    <div class="fr-quote__image">
+                                        <img class="fr-responsive-img" src="../../../example/img/placeholder.1x1.png" alt="" />
+                                        <!-- L’alternative de l’image (attribut alt) doit rester vide car l’image est illustrative et ne doit pas être restituée aux technologies d’assistance -->
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="fr-mb-12v">
+                            <section class="fr-accordion">
+                                <h3 class="fr-accordion__title">
+                                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-342">Extrait de code</button>
+                                </h3>
+                                <div class="fr-collapse" id="snippet-342">
+                                    <pre class=" language-html"><code>&lt;figure class="fr-quote fr-quote--column"&gt;
+    &lt;blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]"&gt;
+        &lt;p&gt;« Lorem [...] elit ut. »&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;figcaption&gt;
+        &lt;p class="fr-quote__author"&gt;Auteur&lt;/p&gt;
+        &lt;ul class="fr-quote__source"&gt;
+            &lt;li&gt;
+                &lt;cite&gt;Ouvrage&lt;/cite&gt;
+            &lt;/li&gt;
+            &lt;li&gt;Détail 1&lt;/li&gt;
+            &lt;li&gt;Détail 2&lt;/li&gt;
+            &lt;li&gt;Détail 3&lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=""&gt;Détail 4&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="fr-quote__image"&gt;
+            &lt;img class="fr-responsive-img" src="../../../example/img/placeholder.1x1.png" alt="" /&gt;
+            &lt;!-- L’alternative de l’image (attribut alt) doit rester vide car l’image est illustrative et ne doit pas être restituée aux technologies d’assistance --&gt;
+        &lt;/div&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+                                </div>
+                            </section>
+                        </div>
+                        <h4>Citation accentuée</h4>
+                        <div class="fr-mb-6v">
+                            <figure class="fr-quote fr-quote--green-emeraude">
+                                <blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]">
+                                    <p>« Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. »</p>
+                                </blockquote>
+                                <figcaption>
+                                    <p class="fr-quote__author">Auteur</p>
+                                    <ul class="fr-quote__source">
+                                        <li>
+                                            <cite>Ouvrage</cite>
+                                        </li>
+                                        <li>Détail 1</li>
+                                        <li>Détail 2</li>
+                                        <li>Détail 3</li>
+                                        <li>
+                                            <a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]">Détail 4</a>
+                                        </li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="fr-mb-12v">
+                            <section class="fr-accordion">
+                                <h3 class="fr-accordion__title">
+                                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-343">Extrait de code</button>
+                                </h3>
+                                <div class="fr-collapse" id="snippet-343">
+                                    <pre class=" language-html"><code>&lt;figure class="fr-quote fr-quote--green-emeraude"&gt;
+    &lt;blockquote cite="[À MODIFIER - https://lien-vers-la-source.fr]"&gt;
+        &lt;p&gt;« Lorem [...] elit ut. »&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;figcaption&gt;
+        &lt;p class="fr-quote__author"&gt;Auteur&lt;/p&gt;
+        &lt;ul class="fr-quote__source"&gt;
+            &lt;li&gt;
+                &lt;cite&gt;Ouvrage&lt;/cite&gt;
+            &lt;/li&gt;
+            &lt;li&gt;Détail 1&lt;/li&gt;
+            &lt;li&gt;Détail 2&lt;/li&gt;
+            &lt;li&gt;Détail 3&lt;/li&gt;
+            &lt;li&gt;
+                &lt;a target="_blank" href="[À MODIFIER - Lien vers la sources ou des infos complémentaires]"&gt;Détail 4&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="fr-display-button fr-background-default--white fr-btn fr-btn--lg fr-fi-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false">
+            Label bouton
+        </button>
+        <dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
+            <div class="fr-container fr-container--fluid fr-container-md">
+                <div class="fr-grid-row fr-grid-row--center">
+                    <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                        <div class="fr-modal__body">
+                            <div class="fr-modal__header">
+                                <button class="fr-link--close fr-link" aria-controls="fr-theme-modal">Fermer</button>
+                            </div>
+                            <div class="fr-modal__content">
+                                <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                    Paramètres d’affichage
+                                </h1>
+                                <div id="fr-display" class="fr-form-group fr-display">
+                                    <div class="fr-form-group">
+                                        <fieldset class="fr-fieldset">
+                                            <legend class="fr-fieldset__legend fr-text--regular" id='-legend'>
+                                                Choisissez un thème pour personnaliser l’apparence du site.
+                                            </legend>
+                                            <div class="fr-fieldset__content">
+                                                <div class="fr-radio-group fr-radio-rich">
+                                                    <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                                    <label class="fr-label" for="fr-radios-theme-light">Thème clair
+                                                    </label>
+                                                    <div class="fr-radio-rich__img" data-fr-inject-svg>
+                                                        <img src="../../../dist/artwork/light.svg" alt="" />
+                                                        <!-- L’alternative de l’image (attribut alt) doit rester vide car l’image est illustrative et ne doit pas être restituée aux technologies d’assistance -->
+                                                    </div>
+                                                </div>
+                                                <div class="fr-radio-group fr-radio-rich">
+                                                    <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                                    <label class="fr-label" for="fr-radios-theme-dark">Thème sombre
+                                                    </label>
+                                                    <div class="fr-radio-rich__img" data-fr-inject-svg>
+                                                        <img src="../../../dist/artwork/dark.svg" alt="" />
+                                                        <!-- L’alternative de l’image (attribut alt) doit rester vide car l’image est illustrative et ne doit pas être restituée aux technologies d’assistance -->
+                                                    </div>
+                                                </div>
+                                                <div class="fr-radio-group fr-radio-rich">
+                                                    <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                                    <label class="fr-label" for="fr-radios-theme-system">Système
+                                                        <span class="fr-hint-text">Utilise les paramètres système.</span>
+                                                    </label>
+                                                    <div class="fr-radio-rich__img" data-fr-inject-svg>
+                                                        <img src="../../../dist/artwork/system.svg" alt="" />
+                                                        <!-- L’alternative de l’image (attribut alt) doit rester vide car l’image est illustrative et ne doit pas être restituée aux technologies d’assistance -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <script type="module" src="../../../dist/core/core.module.js"></script>
+        <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+        <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+        <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+        <script type="module" src="../../../dist/component/display/display.module.js"></script>
+        <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+        <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+        <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+        <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+        <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    </body>
+
+</html>

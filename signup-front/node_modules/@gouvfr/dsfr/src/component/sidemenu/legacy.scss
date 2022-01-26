@@ -1,0 +1,10 @@
+////
+/// Sidemenu Legacy
+/// @group sidemenu
+////
+
+@import 'index';
+@import 'style/legacy';
+@import 'style/scheme';
+
+@include _sidemenu-scheme(true);

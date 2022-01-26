@@ -1,0 +1,24 @@
+<%#
+# paramètres média responsive image
+
+* media.src (string, required): url de l'image
+
+* media.alt (string, optional): texte alternatif de l'image (peut être vide si l'image est illlustrative)
+
+* media.classes (array, optional) : classes supplémentaires sur l'image
+
+* media.attributes (object, optional) : Attributs supplémentaires sur l'image
+
+* media.style (object, optional) : raccourci vers l'attribut style
+
+%>
+<% eval(include('../../../index.ejs')); %>
+
+<%
+ let media = locals.media || {};
+ const mediaClasses = media.classes || [];
+ mediaClasses.push(`${prefix}-responsive-img`);
+ %>
+
+<%- include('img.ejs', {media: {...media, classes: mediaClasses}}); %>
+

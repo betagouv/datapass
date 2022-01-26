@@ -1,0 +1,71 @@
+<%#
+# paramètres select
+
+* select.id (string, required) : id du label et du select, sert également à construire les ids des messages valid, error et hint
+
+* select.label (string, required) : label
+
+* select.options (array, required) : options du select, un array d'objets avec :
+  * value : attribut value de l'option
+  * label : label de l'option
+
+* select.placeholder (string, optionnal) : text du placeholder du select
+
+* select.valid (string, optionnal) : message de validation
+
+* select.error (string, optionnal) : message d'erreur
+
+* select.hint (string, optionnal) : message d'aide
+
+* select.required (boolean, optionnal)
+
+* select.disabled (boolena, optionnal)
+
+* select.attributes (object, optionnal) : attributs spécifiques à rajouter sur le select
+
+* select.classes (array, optionnal) : classes spécifiques à rajouter sur le select
+
+
+%>
+<% eval(include('../../../../core/index.ejs')); %>
+
+<%
+ let select = locals.select || {};
+
+ let selectClasses = select.classes || [];
+ let selectAttrs = select.attributes || {};
+ let describedby = [];
+ selectClasses.push(prefix + '-select');
+
+ if (select.valid !== undefined) {
+   selectClasses.push(prefix + '-select--valid');
+   describedby.push(select.id + '-desc-valid');
+ }
+
+ if (select.error !== undefined) {
+   selectClasses.push(prefix + '-select--error');
+   describedby.push(select.id + '-desc-error');
+ }
+
+ if (describedby.length > 0) selectAttrs['aria-describedby'] = describedby.join(' ');
+
+ if (select.required === true) selectAttrs['required'] = '';
+ if (select.disabled === true) selectAttrs['disabled'] = '';
+ %>
+
+<%- include('../../../form/template/ejs/label', {label:select}); %>
+
+<select <%- includeClasses(selectClasses); %> <%- includeAttrs(selectAttrs); %> id="<%= select.id %>" name="<%= select.id %>">
+ <% if (select.placeholder != undefined) { %>
+ <option value="" selected disabled hidden><%= select.placeholder %></option>
+ <% } %>
+
+ <%
+  for (let i = 0; i < select.options.length; i++) {
+   let option = select.options[i];
+ %>
+ <option value="<%= option.value %>"><%= option.label %></option>
+ <% } %>
+</select>
+
+<%- include('../../../form/template/ejs/message', {message:select}); %>

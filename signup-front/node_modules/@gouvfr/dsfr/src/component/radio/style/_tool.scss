@@ -1,0 +1,30 @@
+////
+/// Radio Tool
+/// @group radio
+////
+
+/// Mixin pour gérer l'affichage des boutons radios riches
+@mixin radio-rich() {
+  @at-root {
+    &[style*='background-image:'],
+    &[class^="#{ns(ifi-, '')}"],
+    &[class*=" #{ns(ifi-, '')}"] {
+      @content;
+    }
+  }
+}
+
+@function radio-box-shadow ($checked: true, $size: md) {
+  $max: 12;
+  @if $size == sm {
+    $max: 8;
+  }
+
+  $out: $max / 2;
+
+  @if not $checked {
+    $out: $max;
+  }
+
+  @return all-1-in all-#{$out}-in all-#{$max}-in;
+}

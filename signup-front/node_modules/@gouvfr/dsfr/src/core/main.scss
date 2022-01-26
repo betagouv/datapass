@@ -1,0 +1,14 @@
+////
+/// Core Main
+/// @group core
+////
+
+/* ------------------------------------ *\
+  CORE
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _core-scheme;

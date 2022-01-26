@@ -1,0 +1,14 @@
+////
+/// Pagination Main
+/// @group pagination
+////
+
+/* ------------------------------------ *\
+  PAGINATION
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _pagination-scheme;

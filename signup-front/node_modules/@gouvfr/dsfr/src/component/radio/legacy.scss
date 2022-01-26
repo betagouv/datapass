@@ -1,0 +1,10 @@
+////
+/// Radio Legacy
+/// @group radio
+////
+
+@import 'index';
+@import 'style/legacy';
+@import 'style/scheme';
+
+@include _radio-scheme(true);

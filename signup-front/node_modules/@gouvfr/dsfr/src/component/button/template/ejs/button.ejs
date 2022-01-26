@@ -1,0 +1,94 @@
+<%#
+# paramètres button
+
+* button.label (string, required) : label du bouton
+
+* button.tag (string) : si non défini, button
+
+* button.id (string) : id du bouton
+
+* button.secondary (boolean, optionnal) : si valeur true, bouton secondaire
+
+* button.type (string, optionnal) type du bouton
+
+* button.disabled (boolean, optionnal) : si valeur true, bouton désactivé
+
+* button.size (string, optionnal) : modificateur de taille
+valeurs :
+* sm : bouton petit
+* lg : bouton large
+
+* button.icon (string, optionnal) : nom de l'icone dans le bouton
+
+* button.iconPlace (string, optionnal) : emplacement de l'icone
+si non défini alors que le paramètre icon est défini, bouton avec icone seule, sans label
+valeurs :
+* left : icone à gauche du label
+* right : icone à droite du label
+
+* button.classes (array, optionnal) : Classes suplémentaires sur le bouton
+
+* button.attributes (object, optionnal) : Attributs suplémentaires sur le bouton
+
+%>
+
+<% eval(include('../../../../core/index.ejs')); %>
+
+<%
+ const button = locals.button || {};
+ let btnClasses = button.classes || [];
+ let btnAttrs = button.attributes || {};
+ if (button.id) btnAttrs.id = button.id;
+
+ const tag = button.tag || 'button';
+
+ btnClasses.push(prefix + '-btn');
+
+ switch(button.size) {
+     case 'sm':
+        btnClasses.push(prefix + '-btn--sm');
+        break;
+
+     case 'lg':
+        btnClasses.push(prefix + '-btn--lg');
+        break;
+ }
+
+ if (button.icon !== undefined) btnClasses.push(prefix + '-fi-' + button.icon);
+
+ if (button.iconPlace !== undefined) switch(button.iconPlace)
+ {
+     case 'left':
+        btnClasses.push(prefix + '-btn--icon-left');
+        break;
+
+     case 'right':
+        btnClasses.push(prefix + '-btn--icon-right');
+        break;
+ }
+
+ if (button.secondary === true) btnClasses.push(prefix +'-btn--secondary');
+
+ if (button.disabled === true) {
+   if (tag === 'button') btnAttrs['disabled'] = '';
+ } else if (tag === 'a') {
+   btnAttrs.href = button.href || '[url - à modifier]';
+  switch (true) {
+   case button.blank:
+   btnAttrs.target = '_blank';
+   break;
+
+   case button.self:
+   btnAttrs.target = '_self';
+   break;
+  }
+ }
+
+ if (button.title) btnAttrs['title'] = button.title;
+ if (button.type !== undefined) btnAttrs['type'] = button.type;
+ %>
+
+<<%= tag %> <%- includeClasses(btnClasses) %> <%- includeAttrs(btnAttrs); %> >
+    <%= button.label %>
+</<%= tag %>>
+

@@ -1,0 +1,10 @@
+<%
+  const data = {
+    id: uniqueId('accordion'),
+    label: 'Intitulé accordéon',
+    content: include('./accordion'),
+  }
+
+%>
+
+<%- include('./accordion', {accordion: data}); %>

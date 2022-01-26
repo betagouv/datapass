@@ -1,0 +1,57 @@
+<%#
+# paramètres header
+
+// TODO: documentation
+
+header = {
+    brand: {
+        logo: { voir logo },
+        operator: {
+            src: 'url de l'img',
+            alt: 'texte alternatif',
+            style: '' // TODO: taille de l'image gérée autrement
+        },
+        service: {
+            title: '',
+            tagline: ''
+        }
+    },
+    tools: {
+        links: { // TODO: à revoir avec groupe de links
+            items: [
+                { voir links }
+            ]
+        },
+        search: { voir search }
+    },
+    navigation: {
+        voir navigation
+    },
+    navbar: {
+        menu: {
+            id: '',
+            modalId: '',
+            label: ''
+        }
+        search: {
+            id: '',
+            modalId: '',
+            label: ''
+        }
+    }
+}
+
+%>
+<% eval(include('../../../../core/index.ejs')); %>
+<% let header = locals.header || {};
+%>
+
+<header role="banner" class="<%= prefix %>-header">
+
+    <%- include('./body', {header:header});%>
+
+    <% if (header.navigation || (header.tools && header.tools.links)) { %>
+        <%- include('./menu', {header:header});%>
+    <% } %>
+
+</header>

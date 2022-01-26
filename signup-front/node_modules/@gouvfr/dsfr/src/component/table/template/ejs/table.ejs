@@ -1,0 +1,58 @@
+<%#
+# paramètres Table
+
+* table.caption (string, required) : Titre du tableau
+
+* table.noScroll (boolean, optional) : {default: false} désactive le scroll
+
+* table.noCaption (boolean, optional) : {default: false} cache le texte de la caption
+
+* table.bordered (boolean, optional) : {default: false} si true, ajoute des séparateurs entre chaque ligne et enleve l'effet even/odd
+
+* table.layout (string, optional) : si non undefined, fix la taille des colonnes à 100%/col
+
+* table.col (integer, optional) : nombre de colones
+
+* table.row (integer, optional) : nombre de lignes
+
+* table.accent (string, optional): Couleur d'accenturation du composant
+
+// TODO: templatisation du contenu des cellules avec des objets de config
+%>
+<% eval(include('../../../../core/index.ejs')); %>
+
+<%
+let table = locals.table || {};
+let classes = table.classes || [];
+classes.push(prefix + '-table');
+if (table.accent !== undefined) classes.push(prefix + '-table--' + table.accent);
+if (table.bordered) classes.push(prefix + '-table--bordered');
+if (table.noScroll) classes.push(prefix + '-table--no-scroll');
+if (table.noCaption) classes.push(prefix + '-table--no-caption');
+if (table.captionBottom) classes.push(prefix + '-table--caption-bottom');
+if (table.layout) classes.push(prefix + '-table--layout-fixed');
+%>
+
+<div <%- includeClasses(classes) %>>
+    <table>
+        <% if (table.caption !== undefined) { %>
+            <caption><%= table.caption %></caption>
+        <% } %>
+        <thead>
+            <tr>
+                <% for(var j = 0; j < table.col; j++) { %>
+                    <th scope="col"> th<%= j %> </th>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i = 0; i < table.row; i++) { %>
+            <tr>
+                <% for(var j = 0; j < table.col; j++) { %>
+                    <td><%- lorem().slice(0,Math.floor(Math.random() * 50)) %></td>
+                <% } %>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

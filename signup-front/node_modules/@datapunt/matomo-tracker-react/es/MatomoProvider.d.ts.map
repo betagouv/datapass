@@ -1,0 +1,1 @@
+{"version":3,"file":"MatomoProvider.d.ts","sourceRoot":"","sources":["../src/MatomoProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAA;AAEzB,OAAO,EAAE,cAAc,EAAE,MAAM,SAAS,CAAA;AAExC,MAAM,WAAW,mBAAmB;IAClC,KAAK,EAAE,cAAc,CAAA;CACtB;AAED,QAAA,MAAM,cAAc,EAAE,KAAK,CAAC,EAAE,CAAC,mBAAmB,CAIjD,CAAA;AAED,eAAe,cAAc,CAAA"}

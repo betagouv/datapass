@@ -1,0 +1,26 @@
+////
+/// Search Scheme
+/// @group search
+////
+
+@mixin _search-scheme($legacy: false) {
+  #{ns(search-bar)} {
+    #{ns(input)} {
+      @include scheme-element-box-shadow-color(action-high blue-france, $legacy, false, bottom-2-in);
+
+      /**
+      * Modificateur pour le champ validés
+      */
+      &--valid {
+        @include scheme-element-box-shadow-color(plain success, $legacy, false, bottom-2-in);
+      }
+
+      /**
+      * Modificateur pour le champ présentant des erreurs
+      */
+      &--error {
+        @include scheme-element-box-shadow-color(plain error, $legacy, false, bottom-2-in);
+      }
+    }
+  }
+}

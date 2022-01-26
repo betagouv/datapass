@@ -1,0 +1,42 @@
+<%#
+# paramètres checkbox group
+
+* checkbox.error (string, optionnal) : message d'erreur
+
+* checkbox.size (string, optionnal) : la valeur sm permet d'opter pour de petites cases à cocher
+
+* checkbox.id (string, required): id du checkbox
+
+* checkbox.attributes (object, optional): attributs sur l'input
+
+* checkbox.label (string, optional): label du checkbox
+
+%>
+<% eval(include('../../../../core/index.ejs')); %>
+<%
+let checkbox = locals.checkbox || {};
+let groupClasses = [prefix + '-checkbox-group'];
+let describedby = [];
+let checkboxAttrs = checkbox.attributes || {};
+
+if (checkbox.error !== undefined) {
+    groupClasses.push(prefix + '-checkbox-group--error');
+    describedby.push('checkboxes-error-desc-error');
+}
+
+if (checkbox.valid !== undefined) {
+    groupClasses.push(prefix + '-checkbox-group--valid');
+    describedby.push('checkboxes-valid-desc-valid');
+}
+if (describedby.length > 0) checkboxAttrs['aria-describedby'] = describedby.join(' ');
+
+switch(checkbox.size) {
+    case 'sm' :
+        groupClasses.push(prefix + '-checkbox-group--sm');
+        break;
+}
+%>
+
+<div <%- includeClasses(groupClasses); %>>
+    <%- include('./checkbox', {checkbox: {...checkbox, attributes: checkboxAttrs}}); %>
+</div>

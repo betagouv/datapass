@@ -1,0 +1,11 @@
+<%
+  let accordion = locals.accordion || {};
+  const data = {
+    label: accordion.label || 'Intitulé accordéon',
+    content: accordion.content || randomContent(),
+    id: accordion.id || uniqueId('accordion'),
+  }
+
+%>
+
+<%- include('../../template/ejs/accordion', {accordion: data}); %>

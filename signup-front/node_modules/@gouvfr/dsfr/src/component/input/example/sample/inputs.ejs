@@ -1,0 +1,18 @@
+<%
+let input = locals.input || {};
+let element = {
+  path: 'input/example/sample/input-text',
+    data: {...input, ...input.element} || {}
+}
+
+let fields = {
+    elements: [
+        { ...element, data: { input: {...element.data, group: true, id: input.id + '-1' } } },
+        { ...element, data: { input: {...element.data, group: true, id: input.id + '-2' } } },
+        { ...element, data: { input: {...element.data, group: true, id: input.id + '-3' } } },
+    ],
+    ...input,
+}
+%>
+
+<%- include('../../../form/example/sample/fieldset', {fieldset: fields}) %>

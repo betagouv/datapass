@@ -1,0 +1,92 @@
+<%#
+# paramètres groupe de boutons
+
+* buttonGroup.buttons (array, required): paramètres spécifique de chaque bouton du groupe
+
+* buttonGroup.inline (string|boolean, optional) : aligne les boutons horizontalement (dans la mesure du possible)
+valeurs :
+  * true : toujours en ligne
+  * sm : en ligne a partir du breakpoint SM
+  * md : en ligne a partir du breakpoint MD
+  * lg : en ligne a partir du breakpoint LG
+
+* buttonGroup.align (string, optional) : définie l'alignement horizontal des boutons dans le groupe
+  * right : align les boutons sur la droite
+  * left : align les boutons sur la gauche
+  * center : align les boutons au centre
+
+* buttonGroup.size (string, optional) : définie la taille des boutons dans le groupe (default md)
+  * sm : Boutons taille sm
+  * lg : Boutons taille lg
+
+* buttonGroup.equisized (boolean, optional) : si valeur true, fixe la largeur des boutons a celle du plus grand
+
+* buttonGroup.reverse (boolean, optional) : si valeur true, inverse l'ordre des boutons en mode inline
+
+* buttonGroup.classes (array, optionnal) : Classes suplémentaires sur le groupe de bouton
+
+* buttonGroup.attributes (object, optionnal) : Attributs suplémentaires sur le groupe de boutons
+
+#%>
+
+<% eval(include('../../../../core/index.ejs')); %>
+
+<%
+ const buttonGroup = locals.buttonGroup || {};
+ let groupClasses = buttonGroup.classes || [];
+ let groupAttrs = buttonGroup.attributes || {};
+ let buttons = buttonGroup.buttons || [];
+ groupClasses.push(prefix + '-btns-group');
+
+ if (buttonGroup.align) groupClasses.push(prefix + '-btns-group--'+buttonGroup.align);
+ if (buttonGroup.equisized) groupClasses.push(prefix + '-btns-group--equisized');
+ if (buttonGroup.reverse) groupClasses.push(prefix + '-btns-group--inline-reverse');
+
+
+ switch(buttonGroup.inline) {
+     case true:
+        groupClasses.push(prefix + '-btns-group--inline');
+        break;
+     case 'sm':
+        groupClasses.push(prefix + '-btns-group--inline-sm');
+        break;
+
+     case 'md':
+        groupClasses.push(prefix + '-btns-group--inline-md');
+        break;
+
+     case 'lg':
+        groupClasses.push(prefix + '-btns-group--inline-lg');
+        break;
+ }
+
+ switch(buttonGroup.size) {
+     case 'sm':
+        groupClasses.push(prefix + '-btns-group--sm');
+        break;
+
+     case 'lg':
+        groupClasses.push(prefix + '-btns-group--lg');
+        break;
+ }
+
+ if (buttonGroup.iconPlace !== undefined) switch(buttonGroup.iconPlace)
+ {
+
+     case 'left':
+        groupClasses.push(prefix + '-btns-group--icon-left');
+        break;
+
+     case 'right':
+        groupClasses.push(prefix + '-btns-group--icon-right');
+        break;
+ }
+ %>
+
+<ul <%- includeClasses(groupClasses) %> <%- includeAttrs(groupAttrs) %>>
+<% for (let i = 0; i < buttons.length; i++) { %>
+   <li>
+      <%- include('./button.ejs', {button:{...buttons[i]}}); %>
+   </li>
+<% } %>
+</ul>

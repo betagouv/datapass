@@ -1,0 +1,964 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>@gouvfr/dsfr-dev - v1.0.0-rc1.0</title><link rel="stylesheet" href="assets/css/main.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="@gouvfr/dsfr-dev - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>Système de Design de l&#39;Etat - DSFR</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">@gouvfr/dsfr-dev - 1.0.0-rc1.0</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="core"><a href="#core">core</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="core-variable"><a href="#core-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="core" data-name="icon-size-map" data-type="variable"><a href="#core-variable-icon-size-map">icon-size-map</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="z-indexes" data-type="variable"><a href="#core-variable-z-indexes">z-indexes</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="core-mixin"><a href="#core-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="core" data-name="aspect-ratio" data-type="mixin"><a href="#core-mixin-aspect-ratio">aspect-ratio</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="respond-from" data-type="mixin"><a href="#core-mixin-respond-from">respond-from</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="respond-to" data-type="mixin"><a href="#core-mixin-respond-to">respond-to</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="z-index" data-type="mixin"><a href="#core-mixin-z-index">z-index</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="grid-col" data-type="mixin"><a href="#core-mixin-grid-col">grid-col</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="grid-col-offset" data-type="mixin"><a href="#core-mixin-grid-col-offset">grid-col-offset</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="grid" data-type="mixin"><a href="#core-mixin-grid">grid</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="all-ns-elements-selector" data-type="mixin"><a href="#core-mixin-all-ns-elements-selector">all-ns-elements-selector</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="_spacing" data-type="mixin"><a href="#core-mixin-_spacing">_spacing</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="core-function"><a href="#core-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="core" data-name="icon-size" data-type="function"><a href="#core-function-icon-size">icon-size</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="map-deep-get" data-type="function"><a href="#core-function-map-deep-get">map-deep-get</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="ns" data-type="function"><a href="#core-function-ns">ns</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="ns-group" data-type="function"><a href="#core-function-ns-group">ns-group</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="ns-attr" data-type="function"><a href="#core-function-ns-attr">ns-attr</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="str-to-num" data-type="function"><a href="#core-function-str-to-num">str-to-num</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="str-replace" data-type="function"><a href="#core-function-str-replace">str-replace</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="str-split" data-type="function"><a href="#core-function-str-split">str-split</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="clean-unit" data-type="function"><a href="#core-function-clean-unit">clean-unit</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="px-rem" data-type="function"><a href="#core-function-px-rem">px-rem</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="z-index" data-type="function"><a href="#core-function-z-index">z-index</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="font-weight" data-type="function"><a href="#core-function-font-weight">font-weight</a></li><li class="sidebar__item sassdoc__item" data-group="core" data-name="space" data-type="function"><a href="#core-function-space">space</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="forms"><a href="#forms">forms</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="forms-mixin"><a href="#forms-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="forms" data-name="disabled-form-field" data-type="mixin"><a href="#forms-mixin-disabled-form-field">disabled-form-field</a></li><li class="sidebar__item sassdoc__item" data-group="forms" data-name="disabled-form-choice" data-type="mixin"><a href="#forms-mixin-disabled-form-choice">disabled-form-choice</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="inputs"><a href="#inputs">inputs</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="inputs-mixin"><a href="#inputs-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="inputs" data-name="placeholder" data-type="mixin"><a href="#inputs-mixin-placeholder">placeholder</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="legacy"><a href="#legacy">legacy</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="legacy-mixin"><a href="#legacy-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="legacy" data-name="legacy" data-type="mixin"><a href="#legacy-mixin-legacy">legacy</a></li><li class="sidebar__item sassdoc__item" data-group="legacy" data-name="not-legacy" data-type="mixin"><a href="#legacy-mixin-not-legacy">not-legacy</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="radios"><a href="#radios">radios</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="radios-mixin"><a href="#radios-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="radios" data-name="radio-rich" data-type="mixin"><a href="#radios-mixin-radio-rich">radio-rich</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="schemes"><a href="#schemes">schemes</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="schemes-mixin"><a href="#schemes-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_box-shadow-border" data-type="mixin"><a href="#schemes-mixin-_box-shadow-border">_box-shadow-border</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_scheme-block-border" data-type="mixin"><a href="#schemes-mixin-_scheme-block-border">_scheme-block-border</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-body" data-type="mixin"><a href="#schemes-mixin-scheme-body">scheme-body</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-blocks" data-type="mixin"><a href="#schemes-mixin-scheme-blocks">scheme-blocks</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_stylize-component" data-type="mixin"><a href="#schemes-mixin-_stylize-component">_stylize-component</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="component-as-scheme" data-type="mixin"><a href="#schemes-mixin-component-as-scheme">component-as-scheme</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="component-as-scheme-modifiers" data-type="mixin"><a href="#schemes-mixin-component-as-scheme-modifiers">component-as-scheme-modifiers</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-data-uri-svg" data-type="mixin"><a href="#schemes-mixin-scheme-element-data-uri-svg">scheme-element-data-uri-svg</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_scheme-element" data-type="mixin"><a href="#schemes-mixin-_scheme-element">_scheme-element</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-bg-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-bg-color">scheme-element-bg-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-text-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-text-color">scheme-element-text-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-fill-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-fill-color">scheme-element-fill-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-border-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-border-color">scheme-element-border-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-outline-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-outline-color">scheme-element-outline-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-element-box-shadow-color" data-type="mixin"><a href="#schemes-mixin-scheme-element-box-shadow-color">scheme-element-box-shadow-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_get-hover-vars" data-type="mixin"><a href="#schemes-mixin-_get-hover-vars">_get-hover-vars</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_scheme-element-hover" data-type="mixin"><a href="#schemes-mixin-_scheme-element-hover">_scheme-element-hover</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_theme-transition" data-type="mixin"><a href="#schemes-mixin-_theme-transition">_theme-transition</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="define-vars" data-type="mixin"><a href="#schemes-mixin-define-vars">define-vars</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="schemes-variable"><a href="#schemes-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-blocks" data-type="variable"><a href="#schemes-variable-scheme-blocks">scheme-blocks</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-elements-transitions" data-type="variable"><a href="#schemes-variable-scheme-elements-transitions">scheme-elements-transitions</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="scheme-sets" data-type="variable"><a href="#schemes-variable-scheme-sets">scheme-sets</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="schemes-function"><a href="#schemes-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_replace_color" data-type="function"><a href="#schemes-function-_replace_color">_replace_color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_scheme-set-color" data-type="function"><a href="#schemes-function-_scheme-set-color">_scheme-set-color</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_get-scheme" data-type="function"><a href="#schemes-function-_get-scheme">_get-scheme</a></li><li class="sidebar__item sassdoc__item" data-group="schemes" data-name="_overlay-color" data-type="function"><a href="#schemes-function-_overlay-color">_overlay-color</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="toggles"><a href="#toggles">toggles</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="toggles-mixin"><a href="#toggles-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="toggles" data-name="disabled-toggle-choice" data-type="mixin"><a href="#toggles-mixin-disabled-toggle-choice">disabled-toggle-choice</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="core"><div class="container">core</div></h1><section class="main__sub-section" id="core-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="core-variable-icon-size-map"><h3 class="item__heading"><a class="item__name" href="#variable-icon-size-map">icon-size-map</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$icon-size-map: (
+  sm: 16px,
+  md: 24px,
+  lg: 32px
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>$icon-size-map</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-icon-size"><code>icon-size</code></a></li></ul></section><section class="main__item container item" id="core-variable-z-indexes"><h3 class="item__heading"><a class="item__name" href="#variable-z-indexes">z-indexes</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$z-indexes: (
+  auto: auto,
+  under: -1,
+  base: 0,
+  over: 1,
+  focus: 2000,
+  menu: 2500,
+  menu-focus: 3000,
+  nav: 3500,
+  nav-focus: 4000,
+  consent: 4500,
+  consent-focus: 5000,
+  modal: 5500,
+  modal-focus: 6000,
+  modal-footer: 6500,
+);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Liste des z-index présent dans le DS</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-z-index"><code>z-index</code></a></li></ul></section></section><section class="main__sub-section" id="core-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="core-mixin-aspect-ratio"><h3 class="item__heading"><a class="item__name" href="#mixin-aspect-ratio">aspect-ratio</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin aspect-ratio($ratio, $block) { 
+  @include before(&#39;&#39;, block) {
+    @if $block != false {
+      @if $block == true {
+        $block: 100%;
+      }
+      @include size($block);
+    }
+    padding-bottom: map_get($ratio-scale, $ratio);
+  }
+ }" data-collapsed="@mixin aspect-ratio($ratio, $block) { ... }"><code>@mixin aspect-ratio($ratio, $block) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Force un ratio d&#39;aspect sur le block par l&#39;ajout d&#39;un pseudo-element en before</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$ratio</code></th><td data-label="desc"><p>key du ratio attendu selon la map $ratio-scale</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$block</code></th><td data-label="desc"><p>détermine si le block est créé et sa taille correspondante</p></td><td data-label="type"><code>Size</code> or <code>Bool</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table></section><section class="main__item container item" id="core-mixin-respond-from"><h3 class="item__heading"><a class="item__name" href="#mixin-respond-from">respond-from</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin respond-from($media: md) { 
+  $limits: map_get($breakpoints, $media);
+
+  @if $limits != null {
+    @media (min-width: nth($limits, 1)) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+ }" data-collapsed="@mixin respond-from($media: md) { ... }"><code>@mixin respond-from($media: md) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Set media query styles</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$media</code></th><td data-label="desc"><p>Layout size <code>[&quot;xs&quot;, &quot;sm&quot;, &quot;md&quot;, &quot;lg&quot;, &quot;xl&quot;]</code></p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>md</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.foo {
+  @include respond-from(md) {
+  }
+}</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li></ul></section><section class="main__item container item" id="core-mixin-respond-to"><h3 class="item__heading"><a class="item__name" href="#mixin-respond-to">respond-to</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin respond-to($media: md) { 
+
+  @debug &#39;afin de rester mobile first, n‘utiliser la mixin respond-to uniquement s‘il n‘y a pas d‘autre alternative, lui préférer systématiquement la mixin respond-from&#39;;
+
+  $limits: map_get($breakpoints, $media);
+
+  @if $limits != null and length($limits) == 2 {
+    @media (max-width: nth($limits, 2)) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+ }" data-collapsed="@mixin respond-to($media: md) { ... }"><code>@mixin respond-to($media: md) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Set media query styles</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$media</code></th><td data-label="desc"><p>Layout size <code>[&quot;xs&quot;, &quot;sm&quot;, &quot;md&quot;, &quot;lg&quot;, &quot;xl&quot;]</code></p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>md</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.foo {
+  @include respond-to(md) {
+  }
+}</code></pre></div></section><section class="main__item container item" id="core-mixin-z-index"><h3 class="item__heading"><a class="item__name" href="#mixin-z-index">z-index</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin z-index($index-name) { 
+  z-index: z-index($index-name);
+  @if $focus {
+    $focus-z-index: z-index($index-name + &#39;-focus&#39;);
+
+    @if $focus-z-index != null {
+      *:focus,
+      *:focus-visible {
+        z-index: #{$focus-z-index};
+      }
+    }
+  }
+ }" data-collapsed="@mixin z-index($index-name) { ... }"><code>@mixin z-index($index-name) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin de gestion des z-index</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$index-name</code></th><td data-label="desc"><p>nom du calque de z-index</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-z-index"><code>z-index</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-z-index"><code>z-index</code></a></li></ul></section><section class="main__item container item" id="core-mixin-grid-col"><h3 class="item__heading"><a class="item__name" href="#mixin-grid-col">grid-col</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid-col($size, $columns: $grid-columns) { 
+  $percent: #{100% * $size};
+  $calc: &#39;calc(#{$percent} / #{$columns})&#39;;
+  flex: 0 0 #{$calc};
+  width: #{$calc};
+  max-width: #{$calc};
+ }" data-collapsed="@mixin grid-col($size, $columns: $grid-columns) { ... }"><code>@mixin grid-col($size, $columns: $grid-columns) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Définit la largeur de colonne</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Proportion de la taille de colonne</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$columns</code></th><td data-label="desc"><p>Nombre de colonne dans la grille (Par défaut <code>$grid-columns</code> = 12)</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>$grid-columns</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Définit la taille de colonne à 6 sur 12</p></div><pre class="example__code language-scss"><code>.foo {
+  @include grid-col(6);
+}</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li></ul></section><section class="main__item container item" id="core-mixin-grid-col-offset"><h3 class="item__heading"><a class="item__name" href="#mixin-grid-col-offset">grid-col-offset</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid-col-offset($size, $columns: $grid-columns) { 
+  $percent: #{100% * $size};
+  $calc: &#39;calc(#{$percent} / #{$columns})&#39;;
+
+  @if $size == 0 {
+    $calc: &#39;0&#39;;
+  }
+
+  &amp;:not(&amp;--right) {
+    @include margin-left($calc);
+  }
+
+  &amp;--right {
+    @include margin-right($calc);
+  }
+ }" data-collapsed="@mixin grid-col-offset($size, $columns: $grid-columns) { ... }"><code>@mixin grid-col-offset($size, $columns: $grid-columns) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Définit le décalage de colonne (créé une marge à gauche)</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Proportion du décalage de colonne</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$columns</code></th><td data-label="desc"><p>Nombre de colonne dans la grille (Par défaut <code>$grid-columns</code> = 12)</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>$grid-columns</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Définit la taille du décalage à 2 colonnes sur 12</p></div><pre class="example__code language-scss"><code>.foo {
+  @include grid-col-offset(2);
+}</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li></ul></section><section class="main__item container item" id="core-mixin-grid"><h3 class="item__heading"><a class="item__name" href="#mixin-grid">grid</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid($columns: $grid-settings, $with-container: true, $with-offsets: true) { 
+  $columns: map-get($settings, columns);
+  $breakpoints-settings: map-get($grid-settings, breakpoints);
+  $last-gutter: 0;
+  $last-max-width: null;
+  $containers: ();
+  $row-gutters: ();
+
+  @each $breakpoint, $limits in $breakpoints {
+    $mod: &#39;-#{$breakpoint}&#39;;
+
+    @if $breakpoint == xs {
+      $breakpoint: first;
+      $mod: &#39;&#39;;
+    }
+
+    @include respond-from($breakpoint) {
+      $breakpoint-settings: map-get($breakpoints-settings, $breakpoint);
+      $gutter: null;
+      $max-width: null;
+
+      @if $breakpoint-settings != null {
+        $gutter: map-get($breakpoint-settings, gutter);
+        $max-width: map-get($breakpoint-settings, max-width);
+
+        @if $gutter != null {
+          $last-gutter: $gutter;
+        }
+
+        @if $max-width != null {
+          $last-max-width: $max-width;
+        }
+      }
+
+      // Container
+      @if $with-container {
+
+        $container: ns(&#39;container&#39; + $mod);
+
+        @if length($containers) &gt; 0 {
+          #{$containers} {
+            @if $gutter != null {
+              @include padding-x($gutter * 2);
+            }
+
+            @if $max-width != null {
+              @include max-size($max-width + $last-gutter * 4);
+            }
+          }
+        }
+
+        $containers: append($containers, $container, &#39;comma&#39;);
+
+        #{$container} {
+          @if $last-gutter != 0 {
+            @include padding-x($last-gutter * 2);
+          }
+
+          @if $last-max-width != null {
+            @include max-size($last-max-width + $last-gutter * 4);
+          }
+        }
+
+        #{ns(&#39;container&#39; + $mod + &#39;--fluid&#39;)} {
+          @include padding-x(0);
+          @include max-size(none);
+        }
+      }
+
+      // Gutters
+      $row-gutter: ns(grid-row#{$mod}--gutters);
+      $g: $last-gutter;
+
+      @if $gutter != null {
+        $g: $gutter;
+        @if length($row-gutters) &gt; 0 {
+          #{$row-gutters} {
+            @include margin(-$g);
+
+            &gt; {
+              #{class-start-with(ns(col-, &#39;&#39;))},
+              #{ns(col)} {
+                @include padding($g);
+              }
+            }
+          }
+        }
+      }
+
+      #{$row-gutter} {
+        @include margin(-$g);
+
+        &gt; {
+          #{class-start-with(ns(col-, &#39;&#39;))},
+          #{ns(col)} {
+            @include padding($g);
+          }
+        }
+      }
+
+      $row-gutters: append($row-gutters, $row-gutter, &#39;comma&#39;);
+
+      #{ns(grid-row + $mod + --no-gutters)} {
+        @include margin(0);
+
+        &gt; {
+          #{class-start-with(ns(col-, &#39;&#39;))},
+          #{ns(col)} {
+            @include padding(0);
+          }
+        }
+      }
+
+      // Cols
+      #{ns(&#39;col&#39; + $mod)} {
+        flex: 1;
+      }
+
+      @for $i from 1 through $columns {
+        $append: &#39;#{$mod}-#{$i}&#39;;
+        #{ns(&#39;col&#39; + $append)} {
+          @include grid-col($i, $columns);
+        }
+
+        @if $with-offsets {
+          #{ns(&#39;col-offset&#39; + $append)} {
+            @include grid-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin grid($columns: $grid-settings, $with-container: true, $with-offsets: true) { ... }"><code>@mixin grid($columns: $grid-settings, $with-container: true, $with-offsets: true) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Génère les classes de colonne pour la grille ainsi que les offsets (optionnel)</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$columns</code></th><td data-label="desc"><p>configuration de la grille</p></td><td data-label="type"><code>Map</code></td><td data-label="default"><code>$grid-settings</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-container</code></th><td data-label="desc"><p>si true, définit les containers</p></td><td data-label="type"><code>Bool</code></td><td data-label="default"><code>true</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$with-offsets</code></th><td data-label="desc"><p>si true, définit les offsets</p></td><td data-label="type"><code>Bool</code></td><td data-label="default"><code>true</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Génère les colonnes</p></div><pre class="example__code language-scss"><code>@include grid-generator();</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-respond-from"><code>respond-from</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid-col"><code>grid-col</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid-col-offset"><code>grid-col-offset</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li></ul></section><section class="main__item container item" id="core-mixin-all-ns-elements-selector"><h3 class="item__heading"><a class="item__name" href="#mixin-all-ns-elements-selector">all-ns-elements-selector</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin all-ns-elements-selector() { 
+  @include class-start-with(ns(&#39;&#39;, &#39;&#39;), false) {
+    @at-root {
+      &amp;,
+      &amp; * {
+        @at-root {
+          &amp;,
+          &amp;::before,
+          &amp;::after {
+            @content;
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin all-ns-elements-selector() { ... }"><code>@mixin all-ns-elements-selector() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sélecteur de toutes les éléments avec une classe du design system ainsi que leur noeuds enfants</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li></ul></section><section class="main__item container item" id="core-mixin-_spacing"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_spacing">_spacing</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _spacing($property: &quot;margin&quot;, $value: 2, $direction) { 
+
+  @if $direction != null {
+    $v: space($value);
+
+    @if $direction == &#39;x&#39; {
+      #{$property}-left: $v;
+      #{$property}-right: $v;
+    }
+    @else if $direction == &#39;y&#39; {
+      #{$property}-top: $v;
+      #{$property}-bottom: $v;
+    }
+    @else {
+      #{$property}-#{$direction}: $v;
+    }
+  }
+  @else {
+    $spaces: ();
+
+    @each $v in $value {
+      $spaces: append($spaces, space($v));
+    }
+
+    #{$property}: $spaces;
+  }
+ }" data-collapsed="@mixin _spacing($property: &quot;margin&quot;, $value: 2, $direction) { ... }"><code>@mixin _spacing($property: &quot;margin&quot;, $value: 2, $direction) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Set space property</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$property</code></th><td data-label="desc"><p>propriété à appliquer à l&#39;espacement <code>[&quot;margin&quot;, &quot;padding&quot;]</code></p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>&quot;margin&quot;</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>valeur de l&#39;espacement en v ou w. peut être une liste si la direction n&#39;est pas renseignée</p></td><td data-label="type"><code>Number</code> or <code>List</code></td><td data-label="default"><code>2</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$direction</code></th><td data-label="desc"><p>direction de l&#39;espacement <code>[&quot;x&quot;, &quot;y&quot;, &quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Set margin-bottom to 24px</p></div><pre class="example__code language-scss"><code>.foo {
+  @include _spacing(&quot;margin&quot;, 6v, &quot;bottom&quot;);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-space"><code>space</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-space"><code>space</code></a></li></ul></section></section><section class="main__sub-section" id="core-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="core-function-icon-size"><h3 class="item__heading"><a class="item__name" href="#function-icon-size">icon-size</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function icon-size($size: &quot;md&quot;) { 
+  @return px-rem(map-get($icon-size-map, $size));
+ }" data-collapsed="@function icon-size($size: &quot;md&quot;) { ... }"><code>@function icon-size($size: &quot;md&quot;) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return icon size from map</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$size</code></th><td data-label="desc"><p>Icon size from <code>$icon-size-map</code> (Default to &quot;md&quot; = 16px)</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>&quot;md&quot;</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Set icon size to <code>SM</code> (12px)</p></div><pre class="example__code language-scss"><code>.foo {
+  width: icons-size(sm);
+  height: icons-size(sm);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-px-rem"><code>px-rem</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#core-variable-icon-size-map"><code>icon-size-map</code></a></li></ul></section><section class="main__item container item" id="core-function-map-deep-get"><h3 class="item__heading"><a class="item__name" href="#function-map-deep-get">map-deep-get</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function map-deep-get($map, $keys...) { 
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+ }" data-collapsed="@function map-deep-get($map, $keys...) { ... }"><code>@function map-deep-get($map, $keys...) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Map deep get</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$map</code></th><td data-label="desc"><p>Map</p></td><td data-label="type"><code>Map</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$keys</code></th><td data-label="desc"><p>clés des maps</p></td><td data-label="type"><code>Arglist</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline">Any type &mdash;<p>Valeur attendue</p></div><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Hugo Giraudel</p></li></ul></section><section class="main__item container item" id="core-function-ns"><h3 class="item__heading"><a class="item__name" href="#function-ns">ns</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function ns($name, $notation) { 
+  $class-name: $notation + $prefix + &#39;-&#39; + $name;
+  @return $class-name;
+ }" data-collapsed="@function ns($name, $notation) { ... }"><code>@function ns($name, $notation) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Préfixage d&#39;un élément css, généralement un nom de classe</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$name</code></th><td data-label="desc"><p>nom de l&#39;élément</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$notation</code></th><td data-label="desc"><p>notation du sélecteur, par défaut un point pour les classes</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-ns-group"><code>ns-group</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#core-function-ns-attr"><code>ns-attr</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-grid"><code>grid</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-all-ns-elements-selector"><code>all-ns-elements-selector</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#radios-mixin-radio-rich"><code>radio-rich</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#radios-mixin-radio-rich"><code>radio-rich</code></a></li></ul></section><section class="main__item container item" id="core-function-ns-group"><h3 class="item__heading"><a class="item__name" href="#function-ns-group">ns-group</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function ns-group($name) { 
+  @return ns($name + &#39;-group&#39;);
+ }" data-collapsed="@function ns-group($name) { ... }"><code>@function ns-group($name) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Préfixage d&#39;une classe de groupe</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$name</code></th><td data-label="desc"><p>nom de l&#39;élément, à mettre au pluriel</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li></ul></section><section class="main__item container item" id="core-function-ns-attr"><h3 class="item__heading"><a class="item__name" href="#function-ns-attr">ns-attr</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function ns-attr($name, $value) { 
+  $attr: &#39;data-#{ns($name, &quot;&quot;)}&#39;;
+  @if $no-brackets {
+    @return $attr;
+  }
+  @if $value == null {
+    @return &#39;[&#39; + $attr + &#39;]&#39;;
+  }
+  @else {
+    @return &#39;[&#39; + $attr + &#39;=&quot;&#39; + $value + &#39;&quot;]&#39;;
+  }
+ }" data-collapsed="@function ns-attr($name, $value) { ... }"><code>@function ns-attr($name, $value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Préfixage d&#39;un attribut css</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$name</code></th><td data-label="desc"><p>nom de l&#39;attribut</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>valeur de l&#39;attribut</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li></ul></section><section class="main__item container item" id="core-function-str-to-num"><h3 class="item__heading"><a class="item__name" href="#function-str-to-num">str-to-num</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-to-num($value) { 
+  $length: str-length($value);
+  $int: ();
+  $float: ();
+  $floating: false;
+  $neg: false;
+
+  @for $i from 1 through $length {
+    $n: str-slice($value, $i, $i);
+
+    @if $n == &#39;.&#39; {
+      $floating: true;
+    }
+    @else if $n == &#39;-&#39; {
+      $neg: true;
+    }
+    @else {
+      @for $d from 0 through 9 {
+        @if quote($d) == $n {
+          @if $floating {
+            $float: append($float, $d);
+          }
+          @else {
+            $int: append($int, $d);
+          }
+        }
+      }
+    }
+  }
+
+  $result: 0;
+
+  $length: length($int);
+  @if $length &gt; 0 {
+    @for $i from 1 through $length {
+      $result: $result + (nth($int, $i) * _pow10($length - $i));
+    }
+  }
+
+  $length: length($float);
+  @if $length &gt; 0 {
+    @for $i from 1 through $length {
+      $result: $result + (nth($float, $i) / _pow10($i));
+    }
+  }
+
+  @if $neg {
+    @return -$result;
+  }
+  @else {
+    @return $result;
+  }
+ }" data-collapsed="@function str-to-num($value) { ... }"><code>@function str-to-num($value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Fonction de transformation d&#39;une string en nombre intégral</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>le nombre en chaîne de caractères</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-space"><code>space</code></a></li></ul></section><section class="main__item container item" id="core-function-str-replace"><h3 class="item__heading"><a class="item__name" href="#function-str-replace">str-replace</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-replace($stack, $needle, $content) { 
+  $is:quote($stack);
+  $in:quote($needle);
+  $ic:quote($content);
+
+  $i:str-index($is, $in);
+
+  @while $i != null {
+    $is:unquote(str_slice($is, 1, $i - 1) + $ic + str_slice($is, $i + str-length($in), str_length($is)));
+    $i:str-index($is, $in);
+  }
+
+  @return unquote($is);
+ }" data-collapsed="@function str-replace($stack, $needle, $content) { ... }"><code>@function str-replace($stack, $needle, $content) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Remplacement dans une chaine de caractères</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$stack</code></th><td data-label="desc"><p>chaine de caractère où chercher</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$needle</code></th><td data-label="desc"><p>élément à chercher</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$content</code></th><td data-label="desc"><p>élément de remplacement</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>la chaîne de caractères transformée</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#schemes-function-_replace_color"><code>_replace_color</code></a></li></ul></section><section class="main__item container item" id="core-function-str-split"><h3 class="item__heading"><a class="item__name" href="#function-str-split">str-split</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-split($string, $separator) { 
+  $tmp: str-slice($string, 1);
+  $list: ();
+  $index: str-index($string, $separator);
+
+  @if $index == null {
+    $list: ($string);
+  }
+  @else {
+    $list: join((str-slice($string, 1, $index - 1)), str-split(str-slice($string, $index + 1), $separator));
+  }
+  @return $list;
+ }" data-collapsed="@function str-split($string, $separator) { ... }"><code>@function str-split($string, $separator) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Découpage d&#39;une chaine de caractères avec un séparateur particulier</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>chaine de caractère à découper</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$separator</code></th><td data-label="desc"><p>séparateur</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table></section><section class="main__item container item" id="core-function-clean-unit"><h3 class="item__heading"><a class="item__name" href="#function-clean-unit">clean-unit</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function clean-unit($value) { 
+  @if $value == null {
+    @return null;
+  }
+  @return ($value / ($value * 0 + 1));
+ }" data-collapsed="@function clean-unit($value) { ... }"><code>@function clean-unit($value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Retourne la valeur numérique sans unité.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>la valeur avec unité</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>clean-unit(12px);</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-px-rem"><code>px-rem</code></a></li></ul></section><section class="main__item container item" id="core-function-px-rem"><h3 class="item__heading"><a class="item__name" href="#function-px-rem">px-rem</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function px-rem($px, $root-font-size: $base-font-size-px) { 
+  @return clean-unit($px / $root-font-size) * 1rem;
+ }" data-collapsed="@function px-rem($px, $root-font-size: $base-font-size-px) { ... }"><code>@function px-rem($px, $root-font-size: $base-font-size-px) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return rem from px</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$px</code></th><td data-label="desc"><p>Font size in pixels</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$root-font-size</code></th><td data-label="desc"><p>Pixel font size for conversion</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>$base-font-size-px</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Get 1rem conversion from 16px, using $base-font-size-px</p></div><pre class="example__code language-scss"><code>.foo {
+  font-size: px-rem(12px);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-clean-unit"><code>clean-unit</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#core-function-icon-size"><code>icon-size</code></a></li></ul></section><section class="main__item container item" id="core-function-z-index"><h3 class="item__heading"><a class="item__name" href="#function-z-index">z-index</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function z-index($index-name) { 
+  @return map-get($z-indexes, $index-name);
+ }" data-collapsed="@function z-index($index-name) { ... }"><code>@function z-index($index-name) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Fonction de gestion des z-index</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$index-name</code></th><td data-label="desc"><p>nom du calque de z-index</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#core-variable-z-indexes"><code>z-indexes</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-z-index"><code>z-index</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-z-index"><code>z-index</code></a></li></ul></section><section class="main__item container item" id="core-function-font-weight"><h3 class="item__heading"><a class="item__name" href="#function-font-weight">font-weight</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function font-weight($scale: &quot;regular&quot;) { 
+  @return map-get($font-weight-scale, $scale);
+ }" data-collapsed="@function font-weight($scale: &quot;regular&quot;) { ... }"><code>@function font-weight($scale: &quot;regular&quot;) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return font-weight value from font-weight map.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$scale</code></th><td data-label="desc"><p>Type scale value from <code>$weight-scale</code> (Default to &quot;regular&quot; = 400)</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>&quot;regular&quot;</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Set font-weight to bold (700)</p></div><pre class="example__code language-scss"><code>.foo {
+  font-weight: font-weight(&quot;bold&quot;);
+}</code></pre></div></section><section class="main__item container item" id="core-function-space"><h3 class="item__heading"><a class="item__name" href="#function-space">space</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function space($value) { 
+  @if $value == 0 {
+    @return $value;
+  }
+
+  @if length($value) &gt; 1 {
+    $result: ();
+    @each $v in $value {
+      $result: append($result, space($v));
+    }
+    @return $result;
+  }
+
+  $v: quote($value);
+
+  @if is-basic-unit($value) {
+    @return $value;
+  }
+
+  $q: str-to-num(unquote(str_slice($v, 0, str_length($v) - 1)));
+  $unit: str_slice($v, str-length($v), str_length($v));
+
+  @if is-unit($value, v) {
+    @return $q * 0.25rem;
+  }
+  @else if is-unit($value, w) {
+    @return $q * 0.5rem;
+  }
+  @return unquote($value);
+ }" data-collapsed="@function space($value) { ... }"><code>@function space($value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return space value from type map and convert to rem.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>valeur de l&#39;espacement, permet de convertir cet espacement de v (4px) ou w (8px) en rem</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Set margin-bottom to 24px</p></div><pre class="example__code language-scss"><code>.foo {
+  margin-bottom: space(6v);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-str-to-num"><code>str-to-num</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-_spacing"><code>_spacing</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#core-mixin-_spacing"><code>_spacing</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="forms"><div class="container">forms</div></h1><section class="main__sub-section" id="forms-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="forms-mixin-disabled-form-field"><h3 class="item__heading"><a class="item__name" href="#mixin-disabled-form-field">disabled-form-field</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin disabled-form-field($element: input) { 
+  @at-root #{selector_unify(&amp;, $element)} {
+    @include disabled(true, false, inset 0 -2px 0 0 $COLOR) {
+      /**
+       * Override de l&#39;opacité chrome sur un élément disabled
+       */
+      opacity: 1;
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin disabled-form-field($element: input) { ... }"><code>@mixin disabled-form-field($element: input) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin pour gérer l&#39;état disabled avec sur un champ input avec un box-shadow</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc">&mdash;<span class="visually-hidden"> none</span></td><td data-label="type"><code>String</code></td><td data-label="default"><code>input</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>On ajoute un style disabled sur un élément de type input</p></div><pre class="example__code language-scss"><code>.foo {
+  @include disabled-form-field(input);
+}</code></pre></div></section><section class="main__item container item" id="forms-mixin-disabled-form-choice"><h3 class="item__heading"><a class="item__name" href="#mixin-disabled-form-choice">disabled-form-choice</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin disabled-form-choice() { 
+  @at-root #{selector_unify(&amp;, input)} {
+    @include disabled(true, false, false, &#39;+ label&#39;) {
+      &amp;::before {
+        @include disabled-colors(false, true, border);
+      }
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin disabled-form-choice() { ... }"><code>@mixin disabled-form-choice() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin pour gérer l&#39;état disabled sur un label et les pseudo-elements before et after, l&#39;input étant masqué</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>On ajoute un style disabled sur le label et ses pseudo-elements</p></div><pre class="example__code language-scss"><code>.foo {
+  @include disabled-form-choice();
+}</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="inputs"><div class="container">inputs</div></h1><section class="main__sub-section" id="inputs-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="inputs-mixin-placeholder"><h3 class="item__heading"><a class="item__name" href="#mixin-placeholder">placeholder</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin placeholder() { 
+  &amp;::-webkit-input-placeholder {@content;}
+  &amp;:-moz-placeholder           {@content;}
+  &amp;::-moz-placeholder          {@content;}
+  &amp;:-ms-input-placeholder      {@content;}
+ }" data-collapsed="@mixin placeholder() { ... }"><code>@mixin placeholder() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin pour ajouter les préfixes vendor du placeholder</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.foo {
+  @include placeholder {
+    @content;
+  }
+}</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="legacy"><div class="container">legacy</div></h1><section class="main__sub-section" id="legacy-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="legacy-mixin-legacy"><h3 class="item__heading"><a class="item__name" href="#mixin-legacy">legacy</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin legacy() { 
+  @if $target == ie10 or $target == ie11 {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin legacy() { ... }"><code>@mixin legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles spécifiques pour les plateformes antérieures</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.foo {
+  @include ie-hack() {
+  }
+}</code></pre></div></section><section class="main__item container item" id="legacy-mixin-not-legacy"><h3 class="item__heading"><a class="item__name" href="#mixin-not-legacy">not-legacy</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin not-legacy() { 
+  @if $target == ie10 or $target == ie11 {
+    @supports not (-ms-high-contrast: none) {
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin not-legacy() { ... }"><code>@mixin not-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Styles spécifiques pour les plateformes modernes, excluant les plateformes antérieures</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>.foo {
+  @include ie-hack() {
+  }
+}</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="radios"><div class="container">radios</div></h1><section class="main__sub-section" id="radios-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="radios-mixin-radio-rich"><h3 class="item__heading"><a class="item__name" href="#mixin-radio-rich">radio-rich</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin radio-rich() { 
+  @at-root {
+    &amp;[style*=&#39;background-image:&#39;],
+    &amp;[class^=&quot;#{ns(ifi-, &#39;&#39;)}&quot;],
+    &amp;[class*=&quot; #{ns(ifi-, &#39;&#39;)}&quot;] {
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin radio-rich() { ... }"><code>@mixin radio-rich() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin pour gérer l&#39;affichage des boutons radios riches</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-ns"><code>ns</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="schemes"><div class="container">schemes</div></h1><section class="main__sub-section" id="schemes-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="schemes-mixin-_box-shadow-border"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_box-shadow-border">_box-shadow-border</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _box-shadow-border($var, $width) { 
+  $tw:nth($width, 1);
+  $rw:nth($width, 2);
+  $bw:nth($width, 3);
+  $lw:nth($width, 4);
+
+  @if $lw == 0 and $tw == 0 {
+    @if $rw == 0 and $bw == 0 {
+      // no action
+    }
+    @else {
+      box-shadow: inset #{-($rw)} #{-($bw)} 0 0 $var;
+    }
+  }
+  @else {
+    @if $rw == 0 and $bw == 0 {
+      box-shadow: inset $lw $tw 0 0 $var;
+    }
+    @else {
+      box-shadow: inset $lw $tw 0 0 $var, inset #{-($rw)} #{-($bw)} 0 0 $var;
+    }
+  }
+ }" data-collapsed="@mixin _box-shadow-border($var, $width) { ... }"><code>@mixin _box-shadow-border($var, $width) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Rendu des borders en box-shadow en copiant le système de width de border</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$var</code></th><td data-label="desc"><p>custom property correspondant à la combinaison de couleur</p></td><td data-label="type"><code>Custom-property</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>Largeur de box-shadow correspondant au top right bottom left</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-block-border"><code>_scheme-block-border</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-block-border"><code>_scheme-block-border</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_stylize-component"><code>_stylize-component</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme-modifiers"><code>component-as-scheme-modifiers</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_scheme-block-border"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_scheme-block-border">_scheme-block-border</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _scheme-block-border($module, $width) { 
+
+  $base:&#39;#{$module}-border&#39;;
+  $w:$width;
+
+  @if length($width) == 1 {
+    $w: $width $width $width $width;
+  }
+  @else if length($width) == 2 {
+    $w: nth($width, 1) nth($width, 2) nth($width, 1) nth($width, 2);
+  }
+  @else if length($width) == 3 {
+    $w: nth($width, 1) nth($width, 2) nth($width, 3) nth($width, 2);
+  }
+
+  /* on définit les modifiers pour chaque côté */
+  $l:(&#39;&#39;:0,&#39;#{$base}--left&#39;: nth($w, 1));
+  $t:(&#39;&#39;:0,&#39;#{$base}--top&#39;: nth($w, 2));
+  $r:(&#39;&#39;:0,&#39;#{$base}--right&#39;: nth($w, 3));
+  $b:(&#39;&#39;:0,&#39;#{$base}--bottom&#39;: nth($w, 4));
+
+  &amp;#{$base} {
+    @include _box-shadow-border(var(--scheme-border), $w);
+
+    @each $ln, $lp in $l {
+      @each $tn, $tp in $t {
+        @each $rn, $rp in $r {
+          @each $bn, $bp in $b {
+            @if $lp != 0 or $tp != 0 or $rp != 0 or $bp != 0 {
+              &amp;#{$ln}#{$tn}#{$rn}#{$bn} {
+                @include _box-shadow-border(var(--scheme-border), $tp $rp $bp $lp);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin _scheme-block-border($module, $width) { ... }"><code>@mixin _scheme-block-border($module, $width) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Création de classe permettant l&#39;ajout de border sur les blocks</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$module</code></th><td data-label="desc"><p>module sur lequel sera appliqué la bordure</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>Epaisseur de la bordure, fonctionne de manière similaire à la propriété css border-width</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_box-shadow-border"><code>_box-shadow-border</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_box-shadow-border"><code>_box-shadow-border</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-body"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-body">scheme-body</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-body() { 
+  $sets: _get-scheme(light, white);
+
+  // Par défault, on applique le scheme light white sur le body
+
+  background-color: var(--#{nth($sets, 1)});
+
+  $set: map_get($scheme-sets, nth($sets, 1));
+
+  @include _get-hover-vars(_scheme-set-color($set, light), true);
+
+  // Les variables de couleur hover en version dark-mode
+  #{$dark-theme-selector} &amp; {
+    @include _get-hover-vars(_scheme-set-color($set, dark), true);
+  }
+
+  @include _theme-transition() {
+    transition: background-color $theme-transition-duration;
+  }
+ }" data-collapsed="@mixin scheme-body() { ... }"><code>@mixin scheme-body() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Couleur de fond blanche par défaut sur le body</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_theme-transition"><code>_theme-transition</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_get-scheme"><code>_get-scheme</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-blocks"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-blocks">scheme-blocks</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-blocks() { 
+
+  // On créé un nouveau bloc de couleur pour chaque type présent dans la configuration
+  @each $type, $variation in $scheme-blocks {
+    $base: #{$base-scheme-selector}-#{$type};
+
+    @each $color, $sets in $variation {
+      $set: map_get($scheme-sets, nth($sets, 1));
+      $selector: #{$base}-#{$color};
+
+      @at-root :root #{$selector} {
+        background-color: var(--#{nth($sets, 1)});
+
+        --scheme-border: var(--#{nth($sets, 2)});
+
+        // Définition des variables de couleur de l&#39;hover par rapport à la couleur de fond du block pour l&#39;hover d&#39;un élément transparent
+        @include _get-hover-vars(_scheme-set-color($set, light), true);
+
+        // Les variables de couleur hover en version dark-mode
+        #{$dark-theme-selector} &amp; {
+          @include _get-hover-vars(_scheme-set-color($set, dark), true);
+        }
+      }
+    }
+
+    // Ajout de border et de transition associés au type de la combinaison
+    @at-root [class*=&quot;#{$base-scheme}-#{$type}&quot;] {
+      // @include _scheme-block-border(#{$base-scheme-selector}, space(1v));
+
+      @include _theme-transition() {
+        transition: background-color $theme-transition-duration, box-shadow $theme-transition-duration;
+      }
+    }
+  }
+ }" data-collapsed="@mixin scheme-blocks() { ... }"><code>@mixin scheme-blocks() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Initialisation des blocs de couleurs</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-block-border"><code>_scheme-block-border</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_theme-transition"><code>_theme-transition</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-space"><code>space</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_stylize-component"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_stylize-component">_stylize-component</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _stylize-component($type, $color, $width) { 
+  $sets: _get-scheme($type, $color);
+  background-color: var(--#{nth($sets, 1)});
+
+  --scheme-border: var(--#{nth($sets, 2)});
+
+  @if $width != none {
+    @include _box-shadow-border(var(--scheme-border), $width);
+  }
+ }" data-collapsed="@mixin _stylize-component($type, $color, $width) { ... }"><code>@mixin _stylize-component($type, $color, $width) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Stylisation du composant en tant que block de combinaison de couleur</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>le type de combinaison, voir settings blocks</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>la couleur du type</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>ajout d&#39;une border avec la propriété width déterminant la taille de chacun des 4 côté (comme la propriété css border-width)</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_box-shadow-border"><code>_box-shadow-border</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_get-scheme"><code>_get-scheme</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme"><code>component-as-scheme</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme"><code>component-as-scheme</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-component-as-scheme"><h3 class="item__heading"><a class="item__name" href="#mixin-component-as-scheme">component-as-scheme</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin component-as-scheme($type, $color, $modifier, $width) { 
+
+  $selector: &amp;;
+
+  @at-root {
+    @if $modifier and $type != light {
+      &amp;--scheme-#{$type}-#{$color} {
+        @include _stylize-component($type, $color, $width);
+        @content;
+      }
+    }
+    @else {
+      &amp; {
+        @include _stylize-component($type, $color, $width);
+        @content;
+      }
+    }
+  }
+ }" data-collapsed="@mixin component-as-scheme($type, $color, $modifier, $width) { ... }"><code>@mixin component-as-scheme($type, $color, $modifier, $width) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Component as scheme permet de conférer à un composant le statut de block de combinaison de couleur</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>le type de combinaison, voir settings blocks</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>la couleur du type</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$modifier</code></th><td data-label="desc"><p>est-ce que la couleur est assignée au composant par un modifier</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>ajout d&#39;une border avec la propriété width déterminant la taille de chacun des 4 côté (comme la propriété css border-width)</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_stylize-component"><code>_stylize-component</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_stylize-component"><code>_stylize-component</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme-modifiers"><code>component-as-scheme-modifiers</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-component-as-scheme-modifiers"><h3 class="item__heading"><a class="item__name" href="#mixin-component-as-scheme-modifiers">component-as-scheme-modifiers</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin component-as-scheme-modifiers($type, $width) { 
+  $variation: map_get($scheme-blocks, $type);
+
+  @each $color, $sets in $variation {
+    @include component-as-scheme($type, $color, true);
+  }
+
+  @if $width != none {
+    @include _box-shadow-border(var(--scheme-border), $width);
+  }
+ }" data-collapsed="@mixin component-as-scheme-modifiers($type, $width) { ... }"><code>@mixin component-as-scheme-modifiers($type, $width) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Cette mixin permet d&#39;assigner à un composant tous les modifiers d&#39;un type de combinaison</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>le type de combinaison, voir settings blocks</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>ajout d&#39;une border avec la propriété width déterminant la taille de chacun des 4 côté (comme la propriété css border-width)</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme"><code>component-as-scheme</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_box-shadow-border"><code>_box-shadow-border</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-data-uri-svg"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-data-uri-svg">scheme-element-data-uri-svg</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-data-uri-svg($set-name, $value, $prop) { 
+  $set: map-get($scheme-sets, $set-name);
+
+  // la custom property --data-uri-svg permet d&#39;interchanger les svgs suivant les différents types de combinaison
+  --data-uri-svg: #{_replace_color($value, _scheme-set-color($set, light), true)};
+
+  #{$dark-theme-selector} &amp; {
+    --data-uri-svg: #{_replace_color($value, _scheme-set-color($set, dark), true)};
+  }
+
+  #{$not-dark-theme-selector} {
+    $i: 0;
+    @each $type, $variation in $scheme-blocks {
+      $i: ($i + 1);
+      [class*=&quot;#{$base-scheme}-#{$type}&quot;] &amp; {
+        @if length($set) &gt;= $i {
+          --data-uri-svg: #{_replace_color($value, _scheme-set-color($set, light), true)};
+        }
+      }
+    }
+  }
+
+  #{$prop}: var(--data-uri-svg);
+ }" data-collapsed="@mixin scheme-element-data-uri-svg($set-name, $value, $prop) { ... }"><code>@mixin scheme-element-data-uri-svg($set-name, $value, $prop) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Combinaison de couleur appliquée à un svg intégré en data-uri</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>le SVG en data-uri</p></td><td data-label="type"><code>Object</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$prop</code></th><td data-label="desc"><p>propriété sur laquelle est essignée le svg</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>@include scheme-element-data-uri-svg(g800, url(&quot;data:image/svg+xml;utf8,&lt;svg&gt;&lt;path fill=&quot;$COLOR&quot; /&gt;&lt;/svg&gt;&quot;));</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_replace_color"><code>_replace_color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_replace_color"><code>_replace_color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_replace_color"><code>_replace_color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_scheme-element"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_scheme-element">_scheme-element</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _scheme-element($set-name, $transition, $hover, $value, $element) { 
+  // hover
+  @if $hover != false {
+    $set: map_get($scheme-sets, $set-name);
+    $light: _scheme-set-color($set, light);
+    $dark: _scheme-set-color($set, dark);
+
+    @at-root {
+      @if $hover != override {
+        #{$element} {
+          @include _scheme-element-hover();
+        }
+      }
+
+      #{$not-dark-theme-selector} {
+        #{$element} {
+          @include _get-hover-vars($light);
+        }
+
+        $i: 0;
+        @each $type, $variation in $scheme-blocks {
+          $i: ($i + 1);
+
+          [class*=&quot;#{$base-scheme}-#{$type}&quot;],
+          [class*=&quot;--scheme-#{$type}-&quot;] {
+            #{$element} {
+              @include _get-hover-vars(_scheme-set-color($set, $type));
+            }
+          }
+        }
+      }
+
+      #{$dark-theme-selector} #{$element} {
+        @include _get-hover-vars($dark);
+      }
+    }
+  }
+
+  // le $COLOR de la valeur est remplacé par la custom property de la couleur
+  #{$prop}: _replace_color($value, var(--#{$set-name}), false);
+
+  // transitions
+  @if $transition != false and $theme-allow-transition != false {
+    @if $transition == true {
+      $transition: $element;
+    }
+
+    $transitions:map_get($scheme-elements-transitions, $transition);
+    @if $transitions == null {
+      $transitions:();
+    }
+
+    $transitions:append($transitions, $prop $theme-transition-duration, $separator: comma);
+    $scheme-elements-transitions:map_merge($scheme-elements-transitions, ($transition:$transitions)) !global;
+
+    @include _theme-transition() {
+      transition: $transitions;
+    }
+  }
+ }" data-collapsed="@mixin _scheme-element($set-name, $transition, $hover, $value, $element) { ... }"><code>@mixin _scheme-element($set-name, $transition, $hover, $value, $element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une combinaison de couleur sur un élément pour un propriété donnée @@param {String} $prop - propriété affectée</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>objet auqel la transition de couleur est associée</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover</code></th><td data-label="desc"><p>si true, un effet de hover est appliqué sur l&#39;élément en correspondance avec la couleur. la valeur override permet de simplement changer la couleur de hover (si un hover a déja été appliqué sur l&#39;élément)</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>la valeur appliquée à la propriété. la variable $COLOR est remplacée par la custom property de la combinaison de couleur</p></td><td data-label="type"><code>String</code> or <code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>le sélécteur de l&#39;élément</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element-hover"><code>_scheme-element-hover</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_theme-transition"><code>_theme-transition</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_replace_color"><code>_replace_color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-elements-transitions"><code>scheme-elements-transitions</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-elements-transitions"><code>scheme-elements-transitions</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-elements-transitions"><code>scheme-elements-transitions</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-bg-color"><code>scheme-element-bg-color</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-text-color"><code>scheme-element-text-color</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-fill-color"><code>scheme-element-fill-color</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-border-color"><code>scheme-element-border-color</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-outline-color"><code>scheme-element-outline-color</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-box-shadow-color"><code>scheme-element-box-shadow-color</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-bg-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-bg-color">scheme-element-bg-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-bg-color($set-name, $transition, $hover) { 
+  @include _scheme-element($set-name, background-color, $transition, $hover);
+ }" data-collapsed="@mixin scheme-element-bg-color($set-name, $transition, $hover) { ... }"><code>@mixin scheme-element-bg-color($set-name, $transition, $hover) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur de background sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover</code></th><td data-label="desc"><p>si true, un effet de hover est appliqué sur l&#39;élément en correspondance avec la couleur. la valeur override permet de simplement changer la couleur de hover (si un hover a déja été appliqué sur l&#39;élément)</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-text-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-text-color">scheme-element-text-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-text-color($set-name, $transition) { 
+  @include _scheme-element($set-name, color, $transition);
+ }" data-collapsed="@mixin scheme-element-text-color($set-name, $transition) { ... }"><code>@mixin scheme-element-text-color($set-name, $transition) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur de texte sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-fill-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-fill-color">scheme-element-fill-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-fill-color($set-name, $transition) { 
+  @include _scheme-element($set-name, fill, $transition);
+ }" data-collapsed="@mixin scheme-element-fill-color($set-name, $transition) { ... }"><code>@mixin scheme-element-fill-color($set-name, $transition) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur de fill sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-border-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-border-color">scheme-element-border-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-border-color($set-name, $transition, $side, $value) { 
+  $prop:border;
+  @if $side != null {
+    $prop:border-#{$side};
+  }
+  @include _scheme-element($set-name, $prop, $transition, false, $value);
+ }" data-collapsed="@mixin scheme-element-border-color($set-name, $transition, $side, $value) { ... }"><code>@mixin scheme-element-border-color($set-name, $transition, $side, $value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur de border sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$side</code></th><td data-label="desc"><p>le côté affecté. valeurs: top, right, bottom, left</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>définition des propriétés de border</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-outline-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-outline-color">scheme-element-outline-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-outline-color($set-name, $transition, $value) { 
+  @include _scheme-element($set-name, outline, $transition, false, $value);
+ }" data-collapsed="@mixin scheme-element-outline-color($set-name, $transition, $value) { ... }"><code>@mixin scheme-element-outline-color($set-name, $transition, $value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur d&#39;outline sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>définition des propriétés d&#39;outline</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-scheme-element-box-shadow-color"><h3 class="item__heading"><a class="item__name" href="#mixin-scheme-element-box-shadow-color">scheme-element-box-shadow-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scheme-element-box-shadow-color($set-name, $transition, $value) { 
+  @include _scheme-element($set-name, box-shadow, $transition, false, $value);
+ }" data-collapsed="@mixin scheme-element-box-shadow-color($set-name, $transition, $value) { ... }"><code>@mixin scheme-element-box-shadow-color($set-name, $transition, $value) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Ajout d&#39;une couleur de box-shadow sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set-name</code></th><td data-label="desc"><p>nom de la combinaison comme défini dans settings/sets</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$transition</code></th><td data-label="desc"><p>si true, une transition de couleur est appliquée sur la propriété</p></td><td data-label="type"><code>Bool</code> or <code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>définition des propriétés de box-shadow</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_get-hover-vars"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_get-hover-vars">_get-hover-vars</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _get-hover-vars($color, $is-block) { 
+
+  @if opacity($color) != 0 {
+
+    $prop: color;
+
+    @if $is-block {
+      $prop: block-color;
+    }
+
+    --#{$prop}-hover: #{ _overlay-color($color, 1) };
+    --#{$prop}-active: #{ _overlay-color($color, 2) };
+  }
+  @else {
+    --color-hover: var(--block-color-hover);
+    --color-active: var(--block-color-active);
+  }
+ }" data-collapsed="@mixin _get-hover-vars($color, $is-block) { ... }"><code>@mixin _get-hover-vars($color, $is-block) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Définit les couleurs d&#39;hover</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>couleur de l&#39;élément</p></td><td data-label="type"><code>Color</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$is-block</code></th><td data-label="desc"><p>est-ce que cette définition se fait au niveau d&#39;un block de combinaison ?</p></td><td data-label="type"><code>Bool</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_overlay-color"><code>_overlay-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_overlay-color"><code>_overlay-color</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_scheme-element-hover"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_scheme-element-hover">_scheme-element-hover</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _scheme-element-hover() { 
+  @media (hover: hover) and (pointer: fine) {
+    $selectors: (&#39;&amp;:not(a):not(:disabled)&#39;);
+    $a: selector-associate(&amp;, &#39;a[href]&#39;);
+    @if length($a) {
+      $selectors: append($selectors, $a, &#39;comma&#39;);
+    }
+    @at-root #{$selectors} {
+      &amp;:hover {
+        background-image: linear-gradient(0deg, var(--color-hover), var(--color-hover));
+      }
+
+      &amp;:active {
+        background-image: linear-gradient(0deg, var(--color-active), var(--color-active));
+      }
+    }
+  }
+ }" data-collapsed="@mixin _scheme-element-hover() { ... }"><code>@mixin _scheme-element-hover() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Applique le hover sur un élément</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-_theme-transition"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#mixin-_theme-transition">_theme-transition</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin _theme-transition() { 
+  @at-root #{$theme-transition-selector} &amp; {
+    @content;
+  }
+ }" data-collapsed="@mixin _theme-transition() { ... }"><code>@mixin _theme-transition() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>transition de thème.</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-mixin-define-vars"><h3 class="item__heading"><a class="item__name" href="#mixin-define-vars">define-vars</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin define-vars() { 
+  /* valeurs des couleurs en dark mode */
+  #{$dark-theme-selector} {
+    @each $name, $set in $scheme-sets {
+      --#{$name}: #{_scheme-set-color($set, dark)};
+    }
+  }
+
+  /* valeur des couleurs par défaut */
+  :root {
+    @each $name, $set in $scheme-sets {
+      --#{$name}: #{_scheme-set-color($set, light)};
+    }
+  }
+
+  /* valeur des couleurs dans des blocs de combinaison */
+  #{$not-dark-theme-selector} {
+    $i: 0;
+    @each $type, $variation in $scheme-blocks {
+      $i: ($i + 1);
+
+      /* le sélecteur est un bloc de combinaison de couleur du type défini */
+      [class*=&quot;#{$base-scheme}-#{$type}&quot;],
+      /* le selecteur contient un modifier de bloc de couleur du type défini */
+      [class*=&quot;--scheme-#{$type}-&quot;] {
+        @each $name, $set in $scheme-sets {
+          @if length($set) &gt;= $i {
+            --#{$name}: #{_scheme-set-color($set, $type)};
+          }
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin define-vars() { ... }"><code>@mixin define-vars() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Définition des custom properties de couleur</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-sets"><code>scheme-sets</code></a></li></ul></section></section><section class="main__sub-section" id="schemes-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="schemes-variable-scheme-blocks"><h3 class="item__heading"><a class="item__name" href="#variable-scheme-blocks">scheme-blocks</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$scheme-blocks: (
+  light:(
+    white: w bf500,
+    grey-100: g100-g800 bf500,
+    grey-200: g200 bf500,
+    beige: beige bf500
+  ),
+  dark:(
+    grey-800: g800-plain bf300-plain
+  ),
+  /*soft:(
+    brown: b300 b500,
+    blue-soft: bs300 bs500,
+    blue-dark: bd300 bd500,
+    green-light: gl300 gl500,
+    green-medium: gm300 gm500,
+    green-soft: gs300 gs500,
+    green-warm: gw300 gw500,
+    orange-dark: od300 od500,
+    orange-medium: om300 om500,
+    orange-soft: os300 os500,
+    purple: p300 p500,
+    pink-dark: pd300 pd500,
+    pink-light: pl300 pl500,
+    pink-soft: ps300 ps500,
+    yellow-dark: yd300 yd500,
+    yellow-medium: ym300 ym500,
+  )*/
+) !global;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>configuration des blocs de couleur Il y a 4 types de combinaisons de couleur :</p><ul><li>light : les couleurs claires proches du blanc</li><li>dark : les couleurs foncées proches du noir</li><li>soft : les couleurs claires avec une teinte</li><li>strong : les couleurs foncées avec une teinte (non implémentée à ce stade)</li></ul><p>pour chaque bloc, on définit 2 combinaisons de couleurs : la première pour le fond du wrapper la seconde pour les bordures du wrapper</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-component-as-scheme-modifiers"><code>component-as-scheme-modifiers</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#schemes-function-_scheme-set-color"><code>_scheme-set-color</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#schemes-function-_get-scheme"><code>_get-scheme</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li></ul></section><section class="main__item container item" id="schemes-variable-scheme-elements-transitions"><h3 class="item__heading"><a class="item__name" href="#variable-scheme-elements-transitions">scheme-elements-transitions</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$scheme-elements-transitions: () !global;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>map des transitions par élément</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-variable-scheme-sets"><h3 class="item__heading"><a class="item__name" href="#variable-scheme-sets">scheme-sets</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$scheme-sets: (
+  // Bleu France, couleur primaire
+  bf500: $blue-france-500 $blue-france-300 $grey-700 $grey-200,
+  bf500-plain: $blue-france-500,
+  w-bf500: $white $blue-france-500,
+  bf300-plain: $blue-france-300,
+  bf200-bf300: $blue-france-200 $blue-france-300,
+  bf100-g750: $blue-france-100 $grey-750,
+  // Transparence
+  t-plain: transparent,
+  t-w: transparent $white,
+  // Échelle des gris
+  g800: $grey-800 $white,
+  g700: $grey-700 $grey-200,
+  g600: $grey-600 $grey-300,
+  g500: $grey-500 $grey-400,
+  g400: $grey-400 $grey-500,
+  g300: $grey-300 $grey-600,
+  g200: $grey-200 $grey-700,
+  g100: $grey-100 $grey-750,
+  w: $white $grey-800,
+  beige: $beige $grey-750 $grey-100,
+  g800-plain: $grey-800,
+  g600-g400: $grey-600 $grey-400,
+  g400-t: $grey-400 transparent,
+  g100-g800: $grey-100 $grey-800,
+  w-g750: $white $grey-750,
+  // Focus
+  focus:$color-focus $color-focus-dark-mode,
+  // Couleurs fonctionnelles
+  info:$info $info-dark-mode,
+  success:$success $success-dark-mode,
+  // warning:$warning $warning-dark-mode, // inutilisé pour le moment
+  error:$error $error-dark-mode,
+  // Rouge Marianne
+  rm300: $red-marianne-300 $grey-700,
+  rm500: $red-marianne-500 $red-marianne-300,
+  // Couleurs illustratives
+  // b300: $brown-300 $grey-700,
+  // b500: $brown-500 $brown-300,
+  // bs300: $blue-soft-300 $grey-700,
+  // bs500: $blue-soft-500 $blue-soft-300,
+  // bd300: $blue-dark-300 $grey-700,
+  // bd500: $blue-dark-500 $blue-dark-300,
+  // gl300: $green-light-300 $grey-700,
+  // gl500: $green-light-500 $green-light-300,
+  // gm300: $green-medium-300 $grey-700,
+  // gm500: $green-medium-500 $green-medium-300,
+  // gs300: $green-light-300 $grey-700,
+  // gs500: $green-light-500 $green-light-300,
+  // gw300: $green-warm-300 $grey-700,
+  // gw500: $green-warm-500 $green-warm-300,
+  // od300: $orange-dark-300 $grey-700,
+  // od500: $orange-dark-500 $orange-dark-300,
+  // om300: $orange-dark-300 $grey-700,
+  // om500: $orange-medium-500 $orange-medium-500,
+  // os300: $orange-soft-300 $grey-700,
+  // os500: $orange-soft-500 $orange-soft-300,
+  // p300: $purple-300 $grey-700,
+  // p500: $purple-500 $purple-300,
+  // pd300: $pink-dark-300 $grey-700,
+  // pd500: $pink-dark-500 $pink-dark-300,
+  // pl300: $pink-light-300 $grey-700,
+  // pl500: $pink-light-500 $pink-light-300,
+  // ps300: $pink-soft-300 $grey-700,
+  // ps500: $pink-soft-500 $pink-soft-300,
+  // yd300: $yellow-dark-300 $grey-700,
+  // yd500: $yellow-dark-500 $yellow-dark-300,
+  // ym300: $yellow-medium-300 $grey-700,
+  // ym500: $yellow-medium-500 $yellow-medium-300,
+  // Ombre du scroll des tableaux. basé sur la couleur $grey-800 pour
+  scroll-shadow: rgba(red($grey-800), green($grey-800), blue($grey-800), 0.16) rgba(red($grey-800), green($grey-800), blue($grey-800), 1),
+  /// couleur de l&#39;overlay. basé sur le set couleur g-500 (grey-500 grey-400) et gère les opacité
+  overlay: rgba(red($grey-500), green($grey-500), blue($grey-500), 0.32) rgba(red($grey-400), green($grey-400), blue($grey-400), 0.32),
+) !global;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Configuration des blocs de couleur Il y a 4 types de combinaisons de couleur :</p><ul><li>light : les couleurs claires proches du blanc</li><li>dark : les couleurs foncées proches du noir</li><li>soft : les couleurs claires avec une teinte</li><li>strong : les couleurs foncées avec une teinte (non implémentée à ce stade)</li></ul><p>pour chaque combinaison de couuleur, on définit pour chaque type une couleur Si un type n&#39;est pas défini, la couleur de type light (la première) remplace</p></div><h3 class="item__sub-heading">Type</h3><p><code>Map</code></p><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li></ul></section></section><section class="main__sub-section" id="schemes-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="schemes-function-_replace_color"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#function-_replace_color">_replace_color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function _replace_color($value, $hex, $url-encode) { 
+  @if $url-encode == true {
+    $hex:unquote(&#39;%23&#39; + str_slice(inspect($hex), 2));
+  }
+
+  @return str-replace($value, $COLOR, $hex);
+ }" data-collapsed="@function _replace_color($value, $hex, $url-encode) { ... }"><code>@function _replace_color($value, $hex, $url-encode) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Remplacement de la variable $COLOR par la couleur attendu</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$value</code></th><td data-label="desc"><p>chaine de caractère dans laquelle remplacer la variable</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hex</code></th><td data-label="desc"><p>couleur de remplacement</p></td><td data-label="type"><code>Color</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$url-encode</code></th><td data-label="desc"><p>si true, la couleur est url-encodé</p></td><td data-label="type"><code>Boolean</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>retourne la variable avec la couleur intégrée</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#core-function-str-replace"><code>str-replace</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li></ul></section><section class="main__item container item" id="schemes-function-_scheme-set-color"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#function-_scheme-set-color">_scheme-set-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function _scheme-set-color($set, $type) { 
+  $result:null;
+  $i: 0;
+
+  @each $t, $variation in $scheme-blocks {
+    $i: $i + 1;
+    @if $type == $t and length($set) &gt;= $i {
+      @return nth($set, $i);
+    }
+  }
+
+  @return nth($set, 1);
+ }" data-collapsed="@function _scheme-set-color($set, $type) { ... }"><code>@function _scheme-set-color($set, $type) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Obtenir une couleur dans un set</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$set</code></th><td data-label="desc"><p>combinaison de couleur</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>type de combinaison (light, dark, soft, strong)</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>Retourne la couleur correspondant au $type dans un set de couleur définit dans settings/sets</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-blocks"><code>scheme-blocks</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-element-data-uri-svg"><code>scheme-element-data-uri-svg</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_scheme-element"><code>_scheme-element</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-define-vars"><code>define-vars</code></a></li></ul></section><section class="main__item container item" id="schemes-function-_get-scheme"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#function-_get-scheme">_get-scheme</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function _get-scheme($type, $name, $index) { 
+  $list: map_get(map_get($scheme-blocks, $type), $name);
+
+  @if $index == 0 {
+    @return $list;
+  }
+
+  @return nth($list, $index);
+ }" data-collapsed="@function _get-scheme($type, $name, $index) { ... }"><code>@function _get-scheme($type, $name, $index) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Obtenir la configuration d&#39;un block de combinaison</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>type de combinaison (light, dark, soft, strong)</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$name</code></th><td data-label="desc"><p>nom de la variation de bloc</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$index</code></th><td data-label="desc"><p>si un index est définit, retourne l&#39;élément à l&#39;index dans la variation, sinon retourne l&#39;ensemble de la variation (liste)</p></td><td data-label="type"><code>Int</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>Retourne la configuration d&#39;un bloc comme définit dans settings/blocks</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#schemes-variable-scheme-blocks"><code>scheme-blocks</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-scheme-body"><code>scheme-body</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_stylize-component"><code>_stylize-component</code></a></li></ul></section><section class="main__item container item" id="schemes-function-_overlay-color"><h3 class="item__heading"><span class="item__access">[private]</span> <a class="item__name" href="#function-_overlay-color">_overlay-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function _overlay-color($color, $factor) { 
+  $sum: red($color) + green($color) + blue($color);
+  $brightness: percentage($sum / (255*3));
+
+  $c: #000;
+
+  @if $brightness &gt; 50% {
+    $c: darken($color, (12% * $factor ) * (100% / $brightness));
+  }
+  @else {
+    $c: lighten($color, (12% * $factor ) * (100% / (100% - $brightness)));
+  }
+
+  @return adjust_color($c, $alpha: -0.5);
+ }" data-collapsed="@function _overlay-color($color, $factor) { ... }"><code>@function _overlay-color($color, $factor) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Obtenir la couleur d&#39;hover</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>couleur de base</p></td><td data-label="type"><code>Color</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$factor</code></th><td data-label="desc"><p>mutliplicateur permettant d&#39;amplifier l&#39;effet</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Color</code> &mdash;<p>Retourne la couleur modifiée pour le hover avec une transparence de 0.5</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#schemes-mixin-_get-hover-vars"><code>_get-hover-vars</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="toggles"><div class="container">toggles</div></h1><section class="main__sub-section" id="toggles-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="toggles-mixin-disabled-toggle-choice"><h3 class="item__heading"><a class="item__name" href="#mixin-disabled-toggle-choice">disabled-toggle-choice</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin disabled-toggle-choice() { 
+  @at-root #{selector_unify(&amp;, input)} {
+    @include disabled(true, false, false) {
+      @include disabled-colors(false, true, true); // TODO: à checker
+      @content;
+    }
+    @include disabled(true, false, false, &#39;+ label&#39;) {
+      @include disabled-colors(false, false); // TODO: à checker
+    }
+    @include disabled(true, false, false, &#39;+ label::before&#39;) {
+      @include before {
+        @include disabled-colors(false, true);
+      }
+      @content;
+    }
+    @include disabled(true, false, false, &#39;+ label::after&#39;) {
+      @include disabled-colors(false, true, border);
+      @content;
+    }
+  }
+ }" data-collapsed="@mixin disabled-toggle-choice() { ... }"><code>@mixin disabled-toggle-choice() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin pour gérer les styles quand le toggle est inactif, au niveau de l&#39;input, du label et de ses pseudos elements before et after</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>On ajoute un style disabled sur l’input, le label et ses pseudo-elements</p></div><pre class="example__code language-scss"><code>.foo {
+  @include disabled-toggle-choice();
+}</code></pre></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <span class="project-info__name">@gouvfr/dsfr-dev</span><!-- Version --> <span class="project-info__version">- v1.0.0-rc1.0</span><!-- License --></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

@@ -1,0 +1,20 @@
+////
+/// Form Tool
+/// @group form
+////
+
+/// Mixin pour gérer l'état disabled avec sur un champ input avec un box-shadow
+///
+/// @access public
+///
+/// @param {String} $element [input]
+///
+/// @example scss - On ajoute un style disabled sur un élément de type input
+///   .foo {
+///     @include disabled-form-field(input);
+///   }
+@mixin disabled-form-field($legacy) {
+  @include disabled($legacy, true, false, bottom-2-in) {
+    @content;
+  }
+}

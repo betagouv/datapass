@@ -1,0 +1,14 @@
+////
+/// Skiplink Main
+/// @group skiplink
+////
+
+/* ------------------------------------ *\
+  SKIPLINK
+\* ------------------------------------ */
+
+@import 'index';
+@import 'style/module';
+@import 'style/scheme';
+
+@include _skiplink-scheme;

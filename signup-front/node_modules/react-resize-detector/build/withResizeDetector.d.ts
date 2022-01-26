@@ -1,0 +1,4 @@
+import React, { ComponentType } from 'react';
+import { ComponentsProps } from './ResizeDetector';
+declare function withResizeDetector<P>(ComponentInner: ComponentType<P>, options?: ComponentsProps): React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<HTMLElement>>;
+export default withResizeDetector;

@@ -1,0 +1,24 @@
+<%
+let checkbox = locals.checkbox || {}
+let checkboxAttrs = checkbox.attributes || {};
+let element = {
+  path: 'checkbox/example/sample/checkbox',
+    data: {...checkbox, ...checkbox.element} || {}
+}
+let data = JSON.parse(include('../../../form/example/sample/data', {form: checkbox}));
+
+
+let fields = {
+    choice: true,
+    elements: [
+        { ...element, data: {checkbox: {...checkbox.element, size: checkbox.size, attributes: {...checkboxAttrs}, id: checkbox.id + '-1' } } },
+        { ...element, data: {checkbox: { ...checkbox.element, size: checkbox.size, attributes: {...checkboxAttrs}, id: checkbox.id + '-2', checked: true } } },
+        { ...element, data: {checkbox: { ...checkbox.element, size: checkbox.size, attributes: {...checkboxAttrs}, id: checkbox.id + '-3' } } },
+    ],
+    ...checkbox,
+    ...data,
+
+}
+%>
+
+<%- include('../../../form/example/sample/fieldset', {fieldset: fields}) %>

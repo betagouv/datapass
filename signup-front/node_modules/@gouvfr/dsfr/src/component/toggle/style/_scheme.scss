@@ -1,0 +1,56 @@
+////
+/// Toggle Scheme
+/// @group toggle
+////
+
+@mixin _toggle-scheme($legacy: false) {
+  #{ns(toggle)} {
+    label {
+      @include before {
+        @include scheme-element-text-color(active blue-france, $legacy);
+      }
+
+      @include after {
+        @include scheme-element-text-color(active blue-france, $legacy);
+        @include scheme-element-box-shadow-color(action-high blue-france, $legacy, false, all-1-in);
+        @include scheme-element-bg-color(default grey, $legacy);
+      }
+    }
+
+    input[type="checkbox"] {
+      @include scheme-element-box-shadow-color(action-high blue-france, $legacy, false, all-1-in);
+      // @include disabled-toggle-choice(); // disabled
+
+      &:checked {
+        @include scheme-element-bg-color(active blue-france, $legacy);
+      }
+
+      @include disabled($legacy, false, false, true) {
+        &:checked {
+          @include disabled-colors($legacy, false, true);
+        }
+
+        + label {
+          @include before {
+            @include disabled-colors($legacy, true);
+          }
+
+          @include after {
+            @include disabled-colors($legacy, true, false, true);
+          }
+        }
+      }
+    }
+
+    #{ns(hint-text)} {
+      @include scheme-element-text-color(mention grey, $legacy);
+    }
+
+    /*
+    * Ajout d'un séparateur
+    */
+    &--border-bottom {
+      @include scheme-element-box-shadow-color(default grey, $legacy, false, bottom-1-in);
+    }
+  }
+}
