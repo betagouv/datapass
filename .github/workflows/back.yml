@@ -18,13 +18,13 @@ env:
 jobs:
   test:
     name: Tests (RSpec)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./backend
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:12.9
         env:
           POSTGRES_USER: datapass
           POSTGRES_PASSWORD: datapass
@@ -98,7 +98,7 @@ jobs:
 
   # lint:
   #   name: Linter (StandardRB)
-  #   runs-on: ubuntu-18.04
+  #   runs-on: ubuntu-20.04
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
   #   steps:
   #     - name: Checkout code
@@ -113,7 +113,7 @@ jobs:
   # security:
   #   name: Brakeman
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
-  #   runs-on: ubuntu-18.04
+  #   runs-on: ubuntu-20.04
   #   steps:
   #     - name: Checkout code
   #       uses: actions/checkout@v2
