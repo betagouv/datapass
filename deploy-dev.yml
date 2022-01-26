@@ -1,13 +1,13 @@
-- hosts: datapass-front
+- hosts: datapass-frontend
   tasks:
-    - name: deploy front
+    - name: deploy frontend
       become: yes
       become_user: "{{ app_user }}"
       script: ./scripts/deploy-dev.sh datapass-frontend
       tags:
-        - front
+        - frontend
 
-- hosts: datapass-back
+- hosts: datapass-backend
   tasks:
     - name: enable altering postgres tables
       become: yes
@@ -15,19 +15,19 @@
       command: psql -d datapass -c 'ALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "enrollments" DISABLE TRIGGER ALL;'
       ignore_errors: yes # at first run, these tables may not exist yet
       tags:
-        - back
-    - name: deploy back
+        - backend
+    - name: deploy backend
       become: yes
       become_user: "{{ app_user }}"
       script: ./scripts/deploy-dev.sh datapass-backend
       tags:
-        - back
+        - backend
     - name: disable altering postgres tables
       become: yes
       become_user: postgres
       command: psql -d datapass -c 'ALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "enrollments" ENABLE TRIGGER ALL;'
       tags:
-        - back
+        - backend
 
 - hosts: api-auth
   tasks:

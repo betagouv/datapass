@@ -1,4 +1,4 @@
-- hosts: datapass-front,datapass-back,api-auth
+- hosts: datapass-frontend,datapass-backend,api-auth
   become: true
   pre_tasks:
     - name: Install acl to let ansible become whoever it needs to
@@ -15,7 +15,7 @@
     - role: nginx
       tags: nginx
 
-- hosts: datapass-front
+- hosts: datapass-frontend
   become: true
   roles:
     - role: ansible-role-nodejs
@@ -29,7 +29,7 @@
       nodejs_version: 12.x
       tags: nodejs
 
-- hosts: datapass-back
+- hosts: datapass-backend
   become: true
   roles:
     - role: ruby
@@ -111,10 +111,10 @@
         SENDINBLUE_API_KEY: "{{ sendinblue_api_key }}"
         DO_NOT_SEND_MAIL: "{{ do_not_send_mail | default('') }}"
       tags:
-        - back
+        - backend
         - app-config
 
-- hosts: datapass-front
+- hosts: datapass-frontend
   become: true
   roles:
     - role: ssl
@@ -135,7 +135,7 @@
         - source_pattern: "~ ^/le-taxi-clients(/[0-9]*|)$"
           destination_path: "/le-taxi$1"
       tags:
-        - front
+        - frontend
         - app-config
 
 - hosts: api-auth
@@ -189,19 +189,19 @@
       when: retool_ssh_key is defined
       tags: retool
 
-- hosts: datapass-back
+- hosts: datapass-backend
   become: true
   vars_files:
-    - "{{ inventory_dir }}/group_vars/datapass-back.yml"
+    - "{{ inventory_dir }}/group_vars/datapass-backend.yml"
   roles:
     - role: continuous-deployment
       when: github_action_ssh_key is defined
       tags: continuous-deployment
 
-- hosts: datapass-front
+- hosts: datapass-frontend
   become: true
   vars_files:
-    - "{{ inventory_dir }}/group_vars/datapass-front.yml"
+    - "{{ inventory_dir }}/group_vars/datapass-frontend.yml"
   roles:
     - role: continuous-deployment
       when: github_action_ssh_key is defined

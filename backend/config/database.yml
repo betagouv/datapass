@@ -17,12 +17,12 @@ default: &default
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV.fetch('PG_DATABASE', 'signup-back-test') %>
+  database: <%= ENV.fetch('PG_DATABASE', 'datapass-test') %>
 
 development:
   <<: *default
-  database: <%= ENV.fetch('PG_DATABASE', 'signup-back-development') %>
+  database: <%= ENV.fetch('PG_DATABASE', 'datapass-development') %>
 
 production:
   <<: *default
-  database: <%= ENV.fetch('PG_DATABASE', 'signup-back-production') %>
+  database: <%= ENV.fetch('PG_DATABASE') %>

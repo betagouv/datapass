@@ -1,7 +1,7 @@
-[datapass-front]
+[datapass-frontend]
 datapass-development.infra.api.gouv.fr
 
-[datapass-back]
+[datapass-backend]
 datapass-development.infra.api.gouv.fr
 
 [datapass]
