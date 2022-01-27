@@ -16,6 +16,7 @@ const Prompt = ({
   const { target_api: targetApi, id } = enrollment;
 
   const [input, setInput] = useState('');
+  const [disabled, setDisabled] = useState(false);
   const templates = useMostUsedComments(selectedEvent, targetApi);
   const { plain_text_content } = useEmailTemplate(id, selectedEvent);
 
@@ -30,6 +31,7 @@ const Prompt = ({
   };
 
   const handleAccept = () => {
+    setDisabled(true);
     onAccept(input.trim());
   };
 
@@ -66,13 +68,14 @@ const Prompt = ({
         </ExpandableQuote>
       )}
       <ButtonGroup alignRight>
-        <Button outline onClick={onCancel}>
+        <Button outline onClick={onCancel} disabled={disabled}>
           Annuler
         </Button>
         <Button
           type={displayProps.type}
           icon={displayProps.icon}
           onClick={handleAccept}
+          disabled={disabled}
         >
           {displayProps.label}
         </Button>

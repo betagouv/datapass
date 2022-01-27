@@ -9,7 +9,7 @@ class Enrollment::HubeePortailPolicy < EnrollmentPolicy
       :cgu_approved,
       :dpo_is_informed,
       scopes: [
-        :cert_dc
+        :CERTDC
       ],
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job]
     ])

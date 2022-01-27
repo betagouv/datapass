@@ -35,7 +35,7 @@ const initialContacts = {
 
 const demarchesHubee = [
   {
-    id: 'cert_dc',
+    id: 'CERTDC',
     label: 'CertDc - Certificat de décès',
     description: (
       <>

@@ -6,6 +6,7 @@ class HubeePortailBridge < ApplicationBridge
     siret = @enrollment[:siret]
     updated_at = @enrollment[:updated_at]
     validated_at = @enrollment.validated_at
+    scopes = @enrollment[:scopes].reject { |k, v| !v }.keys
     linked_token_manager_id = create_enrollment_in_token_manager(
       @enrollment.id,
       email,
@@ -13,7 +14,8 @@ class HubeePortailBridge < ApplicationBridge
       team_members,
       siret,
       updated_at,
-      validated_at
+      validated_at,
+      scopes
     )
     @enrollment.update({linked_token_manager_id: linked_token_manager_id})
   end
@@ -27,7 +29,8 @@ class HubeePortailBridge < ApplicationBridge
     team_members,
     siret,
     updated_at,
-    validated_at
+    validated_at,
+    scopes
   )
     response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{siret}")
     denomination = response.parse["etablissement"]["unite_legale"]["denomination"]
@@ -87,42 +90,47 @@ class HubeePortailBridge < ApplicationBridge
       end
     end
 
-    # 3. create subscription
+    # 3. create subscriptions
     responsable_metier = team_members.find { |team_member| team_member["type"] == "responsable_metier" }
-    create_subscription_response = Http.post(
-      "#{api_host}/referential/v1/subscriptions",
-      {
-        datapassId: id,
-        processCode: "CERTDC",
-        subscriber: {
-          type: "SI",
-          companyRegister: siret,
-          branchCode: code_commune
+    subscription_ids = []
+    scopes.each do |scope|
+      create_subscription_response = Http.post(
+        "#{api_host}/referential/v1/subscriptions",
+        {
+          datapassId: id,
+          processCode: scope,
+          subscriber: {
+            type: "SI",
+            companyRegister: siret,
+            branchCode: code_commune
+          },
+          accessMode: nil,
+          notificationFrequency: "unitaire",
+          activateDateTime: nil,
+          validateDateTime: validated_at.iso8601,
+          rejectDateTime: nil,
+          endDateTime: nil,
+          updateDateTime: updated_at.iso8601,
+          delegationActor: nil,
+          rejectionReason: nil,
+          status: "Inactif",
+          email: email,
+          localAdministrator: {
+            email: responsable_metier["email"],
+            firstName: responsable_metier["given_name"],
+            lastName: responsable_metier["family_name"],
+            function: responsable_metier["job"],
+            phoneNumber: responsable_metier["phone_number"],
+            mobileNumber: nil
+          }
         },
-        accessMode: nil,
-        notificationFrequency: "unitaire",
-        activateDateTime: nil,
-        validateDateTime: validated_at.iso8601,
-        rejectDateTime: nil,
-        endDateTime: nil,
-        updateDateTime: updated_at.iso8601,
-        delegationActor: nil,
-        rejectionReason: nil,
-        status: "Inactif",
-        email: email,
-        localAdministrator: {
-          email: responsable_metier["email"],
-          firstName: responsable_metier["given_name"],
-          lastName: responsable_metier["family_name"],
-          function: responsable_metier["job"],
-          phoneNumber: responsable_metier["phone_number"],
-          mobileNumber: nil
-        }
-      },
-      access_token,
-      "Portail HubEE"
-    )
+        access_token,
+        "Portail HubEE"
+      )
 
-    create_subscription_response.parse["id"]
+      subscription_ids.push create_subscription_response.parse["id"]
+    end
+
+    subscription_ids.join(",")
   end
 end
