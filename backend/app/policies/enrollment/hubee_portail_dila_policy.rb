@@ -9,11 +9,11 @@ class Enrollment::HubeePortailDilaPolicy < EnrollmentPolicy
       :cgu_approved,
       :dpo_is_informed,
       scopes: [
-        :aec,
-        :ddpacs,
-        :rco,
-        :dhtour,
-        :jcc
+        :AEC,
+        :DDPACS,
+        :RCO,
+        :DHTOUR,
+        :JCC
       ],
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job]
     ])
