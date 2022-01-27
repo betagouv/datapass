@@ -272,3 +272,8 @@ api_statut_demandeur_emploi:
   label: API statut demandeur d’emploi
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_captchetat:
+  label: API CaptchEtat
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
