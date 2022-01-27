@@ -71,9 +71,9 @@ class Enrollment < ActiveRecord::Base
     end
 
     before_transition from: :submitted, to: :validated do |enrollment|
-      bridge_enable = !ENV["DISABLE_#{enrollment.target_api.upcase}_BRIDGE"].present?
+      bridge_disable = ENV.fetch("DISABLE_#{enrollment.target_api.upcase}_BRIDGE", "") == "True"
 
-      if bridge_enable && enrollment.bridge
+      if !bridge_disable && enrollment.bridge
         enrollment.bridge.call(
           enrollment
         )
