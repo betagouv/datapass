@@ -35,7 +35,7 @@ const initialContacts = {
 
 const demarchesHubee = [
   {
-    id: 'AEC',
+    id: 'EtatCivil',
     label: 'AEC - Acte d’Etat Civil',
     description: (
       <>
@@ -45,7 +45,7 @@ const demarchesHubee = [
     ),
   },
   {
-    id: 'DDPACS',
+    id: 'depotDossierPACS',
     label:
       'DDPACS - Démarche en ligne de préparation à la conclusion d’un Pacs',
     description: (
@@ -60,7 +60,7 @@ const demarchesHubee = [
     ),
   },
   {
-    id: 'RCO',
+    id: 'recensementCitoyen',
     label: 'RCO - Recensement Citoyen Obligatoire',
     description: (
       <>
@@ -78,7 +78,7 @@ const demarchesHubee = [
     ),
   },
   {
-    id: 'DHTOUR',
+    id: 'HebergementTourisme',
     label: 'DHTOUR - Déclaration d’hébergement touristique',
     description: (
       <>
@@ -90,7 +90,7 @@ const demarchesHubee = [
     ),
   },
   {
-    id: 'JCC',
+    id: 'JeChangeDeCoordonnees',
     label: 'JCC - Déclaration de Changement de Coordonnées',
     description: (
       <>
