@@ -32,7 +32,7 @@ export const MultiSelect = ({
   if (values.length === 0) {
     overviewLabel = 'Tous';
   } else if (values.length === 1) {
-    overviewLabel = options.find(({ key }) => key === values[0]).label;
+    overviewLabel = options.find(({ key }) => key === values[0])?.label;
   } else {
     overviewLabel = `${values.length} sélections`;
   }
