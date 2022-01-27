@@ -65,7 +65,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: 'contact@aidantsconnect.beta.gouv.fr',
       component: AidantsConnect,
     },
-    hubee_portail: {
+    hubee_portail_certdc: {
       label: 'Portail HubEE - Démarche CertDC',
       icon: 'logo-hubee.png',
       email: 'support@hubee.numerique.gouv.fr',
