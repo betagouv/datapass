@@ -21,14 +21,20 @@ type AuthContextType = {
         is_external: boolean;
       }
     ];
-  };
+  } | null;
   isLoading: boolean;
   connectionError: string | null;
   login: () => void;
   logout: () => void;
 };
 
-export const AuthContext = React.createContext<AuthContextType>(null!);
+export const AuthContext = React.createContext<AuthContextType>({
+  user: null,
+  isLoading: true,
+  connectionError: null,
+  login: () => {},
+  logout: () => {},
+});
 
 export const useAuth = () => {
   return React.useContext(AuthContext);
@@ -52,7 +58,7 @@ export const useAuth = () => {
  *
  * @returns {*}
  */
-export let resetAuthContext = (): void => void 0;
+export let resetAuthContext = (): void => {};
 
 export class AuthStore extends React.Component {
   _isMounted: boolean;

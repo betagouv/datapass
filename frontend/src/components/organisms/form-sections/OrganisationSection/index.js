@@ -13,6 +13,7 @@ import Button from '../../../atoms/hyperTexts/Button';
 import { Card, CardContainer, CardHead } from '../../../molecules/Card';
 import TechnicalTeamCard from './TechnicalTeamCard';
 import Alert from '../../../atoms/Alert';
+import ConfirmationModal from '../../ConfirmationModal';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
@@ -44,7 +45,9 @@ const OrganisationSection = ({ editorList = [] }) => {
     useState(false);
   const [showOrganizationInfoError, setShowOrganizationInfoError] =
     useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [showOrganizationPrompt, setShowOrganizationPrompt] = useState(false);
+  const [urlForDisconnectionPrompt, setUrlForDisconnectionPrompt] =
+    useState('');
 
   const { user, isLoading } = useAuth();
   const [personalInformation, setPersonalInformation] = useState({});
@@ -164,7 +167,7 @@ const OrganisationSection = ({ editorList = [] }) => {
   }, [activite]);
 
   const onOrganizationChange = (new_organization_id) => {
-    setShowPrompt(false);
+    setShowOrganizationPrompt(false);
 
     if (!isEmpty(user.organizations)) {
       updateOrganizationInfo({
@@ -173,6 +176,14 @@ const OrganisationSection = ({ editorList = [] }) => {
           .siret,
       });
     }
+  };
+
+  const onUpdatePersonalInformation = () =>
+    setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/personal_information`);
+
+  const onJoinOrganization = () => {
+    setShowOrganizationPrompt(false);
+    setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/join_organization`);
   };
 
   return (
@@ -190,7 +201,7 @@ const OrganisationSection = ({ editorList = [] }) => {
                 title="Modifier mes informations"
                 outline
                 icon="edit"
-                href={`${BACK_HOST}/api/users/personal_information`}
+                onClick={onUpdatePersonalInformation}
               />
             )}
           </CardHead>
@@ -240,7 +251,7 @@ const OrganisationSection = ({ editorList = [] }) => {
                     title="faire une demande pour une autre organisation"
                     outline
                     icon="edit"
-                    onClick={() => setShowPrompt(true)}
+                    onClick={() => setShowOrganizationPrompt(true)}
                   />
                 )}
               </CardHead>
@@ -258,13 +269,24 @@ const OrganisationSection = ({ editorList = [] }) => {
         </Card>
         {!isEmpty(editorList) && <TechnicalTeamCard editorList={editorList} />}
 
-        {!disabled && !isLoading && showPrompt && (
+        {!disabled && !isLoading && showOrganizationPrompt && (
           <OrganizationPrompt
             selectedOrganizationId={organization_id}
             onSelect={onOrganizationChange}
-            onClose={() => setShowPrompt(false)}
+            onJoinOrganization={onJoinOrganization}
+            onClose={() => setShowOrganizationPrompt(false)}
             organizations={user.organizations}
           />
+        )}
+        {!disabled && !isLoading && urlForDisconnectionPrompt && (
+          <ConfirmationModal
+            title="Vous allez être déconnecté"
+            handleConfirm={() => (window.location = urlForDisconnectionPrompt)}
+            handleCancel={() => setUrlForDisconnectionPrompt('')}
+          >
+            Afin de mettre à jour vos informations personnelles, vous allez être
+            déconnecté.
+          </ConfirmationModal>
         )}
       </CardContainer>
     </ScrollablePanel>

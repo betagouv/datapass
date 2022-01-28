@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
@@ -113,7 +113,7 @@ const ÉquipeSection = ({
 
     return chain(defaultInitialContacts)
       .assign(initialContacts)
-      .pickBy((p) => p)
+      .omitBy((p) => !p)
       .value();
   }, [initialContacts, responsableTechniqueNeedsMobilePhone]);
 
@@ -145,32 +145,69 @@ const ÉquipeSection = ({
     [user]
   );
 
-  const fillWithUserInformation = (index) => {
-    onChange({
-      target: { name: `team_members[${index}].email`, value: user.email },
-    });
-    onChange({
-      target: {
-        name: `team_members[${index}].given_name`,
-        value: user.given_name,
-      },
-    });
-    onChange({
-      target: {
-        name: `team_members[${index}].family_name`,
-        value: user.family_name,
-      },
-    });
-    onChange({
-      target: {
-        name: `team_members[${index}].phone_number`,
-        value: user.phone_number,
-      },
-    });
-    onChange({
-      target: { name: `team_members[${index}].job`, value: user.job },
-    });
-  };
+  const updateWithUserInformation = useCallback(
+    (index) => {
+      if (team_members[index]?.email !== user.email) {
+        onChange({
+          target: {
+            name: `team_members[${index}].email`,
+            value: user.email,
+          },
+        });
+      }
+      if (team_members[index]?.given_name !== user.given_name) {
+        onChange({
+          target: {
+            name: `team_members[${index}].given_name`,
+            value: user.given_name,
+          },
+        });
+      }
+      if (team_members[index]?.family_name !== user.family_name) {
+        onChange({
+          target: {
+            name: `team_members[${index}].family_name`,
+            value: user.family_name,
+          },
+        });
+      }
+      if (team_members[index]?.phone_number !== user.phone_number) {
+        onChange({
+          target: {
+            name: `team_members[${index}].phone_number`,
+            value: user.phone_number,
+          },
+        });
+      }
+      if (team_members[index]?.job !== user.job) {
+        onChange({
+          target: {
+            name: `team_members[${index}].job`,
+            value: user.job,
+          },
+        });
+      }
+    },
+    [team_members, user, onChange]
+  );
+
+  useEffect(() => {
+    if (!isUserEnrollmentLoading && !disabled && !isEmpty(team_members)) {
+      const currentDemandeurIndex = team_members.findIndex(
+        ({ type, email }) => type === 'demandeur' && email === user.email
+      );
+
+      if (currentDemandeurIndex !== -1) {
+        updateWithUserInformation(currentDemandeurIndex);
+      }
+    }
+  }, [
+    isUserEnrollmentLoading,
+    disabled,
+    team_members,
+    user,
+    updateWithUserInformation,
+  ]);
 
   const addTeamMemberFactory = (type) => {
     const tmp_id = uniqueId(`tmp_`);
@@ -248,7 +285,14 @@ const ÉquipeSection = ({
                     disabled={forceDisable || disabled}
                     onChange={onChange}
                     onDelete={multiple && !id && removeTeamMember}
-                    onFillWithUserInformation={fillWithUserInformation}
+                    onUpdateWithUserInformation={updateWithUserInformation}
+                    canUpdatePersonalInformation={
+                      team_member.email === user.email &&
+                      (team_member.given_name !== user.given_name ||
+                        team_member.family_name !== user.family_name ||
+                        team_member.phone_number !== user.phone_number ||
+                        team_member.job !== user.job)
+                    }
                   />
                 ))}
               {!disabled && multiple && (

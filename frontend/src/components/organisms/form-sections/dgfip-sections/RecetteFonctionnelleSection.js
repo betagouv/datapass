@@ -12,7 +12,7 @@ const RecetteFonctionnelleSection = () => {
     disabled,
     onChange,
     enrollment: {
-      additional_content: { recette_fonctionnelle = '' },
+      additional_content: { recette_fonctionnelle = false },
     },
   } = useContext(FormContext);
 
