@@ -286,6 +286,13 @@ const ÉquipeSection = ({
                     onChange={onChange}
                     onDelete={multiple && !id && removeTeamMember}
                     onUpdateWithUserInformation={updateWithUserInformation}
+                    canUpdatePersonalInformation={
+                      team_member.email === user.email &&
+                      (team_member.given_name !== user.given_name ||
+                        team_member.family_name !== user.family_name ||
+                        team_member.phone_number !== user.phone_number ||
+                        team_member.job !== user.job)
+                    }
                   />
                 ))}
               {!disabled && multiple && (

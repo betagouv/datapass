@@ -14,6 +14,7 @@ import {
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
 import Alert from '../../../atoms/Alert';
+import AutorenewIcon from '../../../atoms/icons/autorenew';
 
 export const Contact = ({
   heading,
@@ -33,6 +34,7 @@ export const Contact = ({
   onChange,
   onDelete,
   onUpdateWithUserInformation,
+  canUpdatePersonalInformation = false,
 }) => (
   <Card>
     <CardHead>
@@ -65,6 +67,18 @@ export const Contact = ({
           </Button>
         </div>
       )}
+    {!disabled && onUpdateWithUserInformation && canUpdatePersonalInformation && (
+      <div style={{ marginBottom: '1.5rem' }}>
+        <Button outline onClick={() => onUpdateWithUserInformation(index)}>
+          <AutorenewIcon
+            color="var(--text-action-high-blue-france)"
+            size={16}
+          />
+          {' '}
+          Mettre à jour avec mes info
+        </Button>{' '}
+      </div>
+    )}
 
     <SideBySideWrapper>
       <TextInput
