@@ -5,14 +5,12 @@ import { isEmpty } from 'lodash';
 import { getCachedOrganizationInformationPool } from '../../../../services/external';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 import ConfirmationModal from '../../ConfirmationModal';
-import { ExternalLinkIcon } from '../../../atoms/icons/fr-fi-icons';
-
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const OrganizationPrompt = ({
   selectedOrganizationId,
   onSelect,
   onClose,
+  onJoinOrganization,
   organizations,
 }) => {
   const handleChange = ({ target: { value } }) => onSelect(parseInt(value));
@@ -56,21 +54,13 @@ const OrganizationPrompt = ({
     [organizations, siretToNomRaisonSociale]
   );
 
-  const handleJoinOrganization = () =>
-    (window.location = `${BACK_HOST}/api/users/join_organization`);
-
   return (
     <>
       <ConfirmationModal
         title="Sélectionnez l’organisation à associer à cette demande"
-        handleCancel={() => onClose()}
-        handleConfirm={handleJoinOrganization}
-        confirmLabel={
-          <>
-            Faire une demande pour une autre organisation{' '}
-            <ExternalLinkIcon color="inherit" />
-          </>
-        }
+        handleCancel={onClose}
+        handleConfirm={onJoinOrganization}
+        confirmLabel="Faire une demande pour une autre organisation"
       >
         <RadioInput
           options={options}
