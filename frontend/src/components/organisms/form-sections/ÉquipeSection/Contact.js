@@ -32,7 +32,7 @@ export const Contact = ({
   disabled,
   onChange,
   onDelete,
-  onFillWithUserInformation,
+  onUpdateWithUserInformation,
 }) => (
   <Card>
     <CardHead>
@@ -53,14 +53,14 @@ export const Contact = ({
       )}
     </CardHead>
     {!disabled &&
-      onFillWithUserInformation &&
+      onUpdateWithUserInformation &&
       !given_name &&
       !family_name &&
       !email &&
       !phone_number &&
       !job && (
         <div style={{ marginBottom: '1.5rem' }}>
-          <Button outline onClick={() => onFillWithUserInformation(index)}>
+          <Button outline onClick={() => onUpdateWithUserInformation(index)}>
             🖐️ c’est moi : remplir avec mes info
           </Button>
         </div>

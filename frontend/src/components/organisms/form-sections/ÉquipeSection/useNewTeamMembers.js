@@ -24,10 +24,6 @@ export const useNewTeamMembers = ({
             newTeamMember = {
               ...newTeamMember,
               email: user.email,
-              family_name: user.family_name,
-              given_name: user.given_name,
-              job: user.job,
-              phone_number: user.phone_number,
             };
           }
           return newTeamMember;
