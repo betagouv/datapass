@@ -135,6 +135,8 @@
           destination_path: "/le-taxi$1"
         - source_pattern: "~ ^/le-taxi-clients(/[0-9]*|)$"
           destination_path: "/le-taxi$1"
+        - source_pattern: "~ ^/hubee-portail-certdc(/[0-9]*|)$"
+          destination_path: "/hubee-portail$1"
       tags:
         - frontend
         - app-config
