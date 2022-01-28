@@ -77,22 +77,26 @@ class ApplicationController < ActionController::API
     }
   end
 
-  rescue_from ActiveRecord::RecordNotFound do |_|
-    render status: :not_found, json: {
-      message: "Record not found"
-    }
-  end
-
-  rescue_from ActiveRecord::RecordInvalid do |e|
-    error_message = if e.message.to_s.include? "Copied from enrollment"
-      "Copie impossible, une copie de cette demande d’habilitation existe déjà."
+  rescue_from ActiveRecord::ActiveRecordError do |e|
+    if e.is_a?(ActiveRecord::RecordInvalid)
+      if e.message.to_s.include? "Copied from enrollment"
+        render status: :unprocessable_entity, json: {
+          message: "Copie impossible, une copie de cette demande d’habilitation existe déjà."
+        }
+      else
+        render status: :unprocessable_entity, json: e.record.errors
+      end
+    elsif e.is_a?(ActiveRecord::RecordNotFound)
+      render status: :not_found, json: {
+        message: "Enregistrement introuvable."
+      }
+    elsif e.is_a?(ActiveRecord::RecordNotSaved)
+      render status: :unprocessable_entity, json: {
+        message: "Sauvegarde impossible."
+      }
     else
-      e.message.to_s
+      throw e
     end
-
-    render status: :unprocessable_entity, json: {
-      message: error_message
-    }
   end
 
   protected

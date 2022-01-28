@@ -15,14 +15,9 @@ class UsersController < ApplicationController
 
   def update
     @user = authorize User.find(params[:id])
+    @user.update!(permitted_attributes(@user))
 
-    if @user.update(permitted_attributes(@user))
-      render json: @user,
-        serializer: AdminUserSerializer
-    else
-      render json: @user.errors,
-        status: :unprocessable_entity
-    end
+    render json: @user, serializer: AdminUserSerializer
   end
 
   def create
@@ -30,14 +25,9 @@ class UsersController < ApplicationController
     @user.email = params[:email]
     @user.update(permitted_attributes(@user))
     authorize @user
+    @user.save!
 
-    if @user.save
-      render json: @user,
-        serializer: AdminUserSerializer
-    else
-      render json: @user.errors,
-        status: :unprocessable_entity
-    end
+    render json: @user, serializer: AdminUserSerializer
   end
 
   # GET /users/me
