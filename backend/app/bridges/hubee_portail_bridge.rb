@@ -79,7 +79,7 @@ class HubeePortailBridge < ApplicationBridge
             postalCode: code_postal,
             territory: libelle_commune,
             email: email,
-            phoneNumber: phone_number,
+            phoneNumber: phone_number.delete(" ").delete("."),
             status: "Actif"
           },
           access_token,
@@ -120,7 +120,7 @@ class HubeePortailBridge < ApplicationBridge
             firstName: responsable_metier["given_name"],
             lastName: responsable_metier["family_name"],
             function: responsable_metier["job"],
-            phoneNumber: responsable_metier["phone_number"],
+            phoneNumber: responsable_metier["phone_number"].delete(" ").delete("."),
             mobileNumber: nil
           }
         },
