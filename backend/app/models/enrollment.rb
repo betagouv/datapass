@@ -189,11 +189,13 @@ class Enrollment < ActiveRecord::Base
   end
 
   def set_company_info
-    # taking the siret from users organization ensure the user belongs to the organization
-    current_user_email = team_members.find { |tm| tm.type == "demandeur" }.email
-    current_user = User.find_by(email: current_user_email)
+    # We need to get the siret from organization_id.
+    # The only way to access this associations is through demandeur organizations.
+    # Note that we cannot access team_member's 'user_id' property directly as team_member may not be persisted yet.
+    demandeur_email = team_members.find { |tm| tm.type == "demandeur" }.email
+    demandeur = User.find_by(email: demandeur_email)
 
-    selected_organization = current_user.organizations.find { |o| o["id"] == organization_id }
+    selected_organization = demandeur.organizations.find { |o| o["id"] == organization_id }
     siret = selected_organization["siret"]
 
     response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{siret}")
@@ -210,9 +212,7 @@ class Enrollment < ActiveRecord::Base
       self.siret = siret
       self.nom_raison_sociale = nom_raison_sociale
     else
-      self.organization_id = nil
-      self.siret = nil
-      self.nom_raison_sociale = nil
+      throw :abort
     end
   end
 

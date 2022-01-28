@@ -119,27 +119,21 @@ class EnrollmentsController < ApplicationController
     @enrollment.assign_attributes(permitted_attributes(@enrollment))
     authorize @enrollment
 
-    if @enrollment.save
-      @enrollment.events.create(name: "create", user_id: current_user.id)
-      @enrollment.notify_event("create")
+    @enrollment.save!
+    @enrollment.events.create(name: "create", user_id: current_user.id)
+    @enrollment.notify_event("create")
 
-      render json: @enrollment
-    else
-      render json: @enrollment.errors, status: :unprocessable_entity
-    end
+    render json: @enrollment
   end
 
   # PATCH/PUT /enrollments/1
   def update
     @enrollment = authorize Enrollment.find(params[:id])
-    if @enrollment.update(permitted_attributes(@enrollment))
-      @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.previous_changes)
-      @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.previous_changes)
+    @enrollment.update!(permitted_attributes(@enrollment))
+    @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.previous_changes)
+    @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.previous_changes)
 
-      render json: @enrollment
-    else
-      render json: @enrollment.errors, status: :unprocessable_entity
-    end
+    render json: @enrollment
   end
 
   # PATCH /enrollment/1/change_state
