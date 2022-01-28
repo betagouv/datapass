@@ -52,7 +52,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
       )}
       {waitingForUserConfirmation && (
         <ConfirmationModal
-          title="La suppression d'une demande est irréversible"
+          title="La suppression d'une habilitation est irréversible"
           handleCancel={onPromptCancellation}
           handleConfirm={onPromptConfirmation}
         >
