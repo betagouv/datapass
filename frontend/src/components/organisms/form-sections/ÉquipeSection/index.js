@@ -113,7 +113,7 @@ const ÉquipeSection = ({
 
     return chain(defaultInitialContacts)
       .assign(initialContacts)
-      .pickBy((p) => p)
+      .omitBy((p) => !p)
       .value();
   }, [initialContacts, responsableTechniqueNeedsMobilePhone]);
 
