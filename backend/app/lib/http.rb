@@ -32,6 +32,13 @@ module Http
       nil,
       nil
     ), e.message
+  rescue OpenSSL::SSL::SSLError => e
+    raise ApplicationController::BadGateway.new(
+      endpoint_label,
+      url_as_string,
+      nil,
+      nil
+    ), e.message
   end
 
   def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method)
@@ -61,6 +68,13 @@ module Http
 
     response
   rescue HTTP::Error => e
+    raise ApplicationController::BadGateway.new(
+      endpoint_label,
+      url_as_string,
+      nil,
+      nil
+    ), e.message
+  rescue OpenSSL::SSL::SSLError => e
     raise ApplicationController::BadGateway.new(
       endpoint_label,
       url_as_string,
