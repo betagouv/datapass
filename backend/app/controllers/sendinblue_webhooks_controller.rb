@@ -6,7 +6,7 @@ class SendinblueWebhooksController < ApplicationController
 
     # 1. verify capability url id
     if params[:capability_url_id] != capability_url_id
-      raise ApplicationController::AccessDenied, ""
+      raise ApplicationController::Unauthorized
     end
 
     # 2. get message metadata

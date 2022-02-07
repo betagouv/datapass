@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  class AccessDenied < StandardError
+  class Unauthorized < StandardError
   end
 
   class Forbidden < StandardError
@@ -26,10 +26,9 @@ class ApplicationController < ActionController::API
 
   include Pundit
 
-  rescue_from AccessDenied do |e|
+  rescue_from Unauthorized do |_|
     render status: :unauthorized, json: {
-      message: "Vous n’êtes pas autorisé à accéder à cette API",
-      detail: e.message
+      message: I18n.t("devise.failure.unauthenticated")
     }
   end
 

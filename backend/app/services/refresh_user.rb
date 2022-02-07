@@ -7,7 +7,7 @@ class RefreshUser < ApplicationService
     response = Http.get(
       "#{ENV.fetch("OAUTH_HOST")}/oauth/userinfo",
       @access_token,
-      "api auth"
+      "Comptes DataPass"
     )
 
     User.reconcile(response.parse)
