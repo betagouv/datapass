@@ -16,19 +16,10 @@ export const getCachedOrganizationActivityDetails = memoize(
   getOrganizationActivityDetails
 );
 
-const limiter = new RateLimiter(2, 300);
-
-function asyncRemoveTokens(count, rateLimiter) {
-  return new Promise((resolve, reject) => {
-    rateLimiter.removeTokens(count, (error, remainingRequests) => {
-      if (error) return reject(error);
-      resolve(remainingRequests);
-    });
-  });
-}
+const limiter = new RateLimiter({ tokensPerInterval: 2, interval: 300 });
 
 const getOrganizationInformation = async (siret) => {
-  await asyncRemoveTokens(1, limiter);
+  await limiter.removeTokens(1);
   const {
     data: {
       etablissement: {
