@@ -162,16 +162,14 @@ class EnrollmentsController < ApplicationController
         if selected_organization.nil?
           raise ApplicationController::Forbidden, "Vous ne pouvez pas déposer une demande pour une organisation à laquelle vous n’appartenez pas. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/join-organization?siret_hint=#{@enrollment.siret} puis de cliquer sur 'Rejoindre l’organisation'"
         end
-      rescue ApplicationController::Forbidden => _e
-        raise
-      rescue => e
-        # If there is an error, we assume that the access token as expired
-        # we force the logout so the token can be refreshed.
-        # NB: if the error is something else, the user will keep clicking on "soumettre"
-        # without any effect. We log this in case some user get stuck into this
+      rescue ApplicationController::BadGateway => e
+        if e.http_code != 401
+          raise
+        end
+
+        # we force the logout so the token and user info can be refreshed.
         clear_user_session!
-        Sentry.capture_exception(e)
-        raise ApplicationController::AccessDenied, e.message
+        raise ApplicationController::Unauthorized
       end
     end
 
