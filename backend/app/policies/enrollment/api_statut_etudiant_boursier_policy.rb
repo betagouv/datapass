@@ -1,7 +1,7 @@
 class Enrollment::ApiStatutEtudiantBoursierPolicy < EnrollmentPolicy
   def permitted_attributes
     res = super
-  
+
     res.concat([
       scopes: [
         :cnous_statut_boursier,
@@ -12,8 +12,7 @@ class Enrollment::ApiStatutEtudiantBoursierPolicy < EnrollmentPolicy
         :cnous_ville_etude
       ]
     ])
-  
+
     res
   end
 end
-  
