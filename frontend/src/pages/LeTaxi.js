@@ -14,6 +14,8 @@ const demarches = {
   default: {
     label: 'Demande Libre',
     state: {
+      description:
+        'Combien de taxis dans votre groupement ? Combien de courses mensuelles ? Quelle proportion de courses sur réservation ? Quelle proportion de courses liées au transport médical ?',
       fondement_juridique_title:
         'articles L. 3121-11-1 et R3121-24 à R3121-33 du Code des transports',
       fondement_juridique_url:
