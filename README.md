@@ -45,58 +45,24 @@ Pour l’instructeur de la demande d’accès aux « données » :
 
 ## Raccorder son service à DataPass
 
-### Définition des besoins
-
-Si vous délivrez un service qui requiert une habilitation (ex : API délivrant des données
-à caractère personnel) vous pouvez utiliser DataPass pour la gestion des habilitations nécessaires à l’accès aux « données ». DataPass
-remplace les conventionnements multipartites entre organisations et de ce fait
-participe activement au déploiement du « dites le nous une fois ». À noter que la gestion du
-jeton d’accès n’est pas pris en charge directement par DataPass, c'est l’API manager qui s’en charge.
-Seule la gestion de l’habilitation juridique en amont est gérée par DataPass.
-
-La première étape du raccordement est de prendre contact avec notre équipe par mail à
-contact@api.gouv.fr.
-
-Nous vous recommanderons ensuite de réfléchir à une publication d’une fiche descriptive de votre API sur api.gouv.fr ([plus d’infos](https://public.3.basecamp.com/p/NtuWxsR6qk5spyEXRtzA5piP)).
-
-Ensuite nous établirons ensemble le contenu du formulaire d’habilitation qui correspond le mieux
-à votre service. Par exemple, nous établirons ensemble s’il y a besoin de proposer une granularité
-d’accès aux données ou un bloc RGPD si vous exposez des données personnelles.
-
 ### Déploiement du formulaire
 
-À partir d’éléments communs, nous développons et déployons un formulaire sur mesure. Voici la liste
-des informations à déterminer ensemble (ainsi que les fichiers à modifier dans le code de DataPass) :
+Pour ajouter un formulaire voici la liste des fichiers à modifier :
 
 1. dans le frontend
-   1. description de l’organisation du formulaire (création de src/pages/NameOfApi.js)
-   2. url du formulaire sur le domaine datapass.api.gouv.fr (src/Routes.js)
-   3. label à afficher pour le service dans la vue liste (src/lib/api.js)
-   4. [optionnel] codes organisation (codes NAF) valides pour votre service (src/lib/index.js L~38)
-   5. [optionnel] une page de présentation hors connection
+   1. description de l’organisation du formulaire (création de [frontend/src/pages/NameOfApi.js](/frontend/src/pages/FranceConnect.js))
+   2. label, icône, email de contact ([frontend/src/config/data-provider-parameters.tsx](/frontend/src/config/data-provider-parameters.tsx))
+   3. [optionnel] codes organisation (codes NAF) valides pour votre service ([frontend/src/lib](frontend/src/lib/index.js#L57-L60))
+   4. [optionnel] une page de présentation hors connection
+   5. [optionnel] une liste de démarches pré-remplies
 2. dans le backend
-   1. définition du format et du type des données hors tronc commun (création de
-      app/policies/enrollment/<name_of_api>\_policy.rb)
-   2. définitions de règles de validation supplémentaires et des messages d’erreurs spécifiques
-      (création de app/models/enrollment/<name_of_api>.rb)
+   1. définition des données spécifiques autorisées (création de
+      backend/app/policies/enrollment/<name_of_api>\_policy.rb)
+   2. définitions de règles de validation spécifiques (création de backend/app/models/enrollment/<name_of_api>.rb)
    3. configuration du label de service et de l’adresse email pour les notifications mails émises
-      depuis DataPass. À noter, que l’envoi par DataPass via une adresse email administrée par vous fait
-      l’object d’une procédure de validation effectuée par notre équipe dans l’outil mailjet
-      (config/data_providers.yml)
-   4. [optionnel] définition d’une action spécifique post validation (ex : création d’un espace
-      développeur dans l’API Manager via appel HTTP directement sur votre API Manager)
-      (app/models/enrollment.rb L51)
-   5. [optionnel] modèle d’email de réponse personnalisés
-
-### Traitement des demandes
-
-Enfin, nous définirons ensemble les modalités de validation de vos demandes d’habilitations.
-Plusieurs méthodes sont envisageables :
-
-- Le producteur valide toutes les demandes de manière autonome
-- La DINUM valide les demandes dites passantes (cas d’usage prédéfinis) et soumet à validation du
-  fournisseur les autres cas
-- Le producteur de données délègue intégralement la validation des accès à la DINUM
+      depuis DataPass (backend/config/data_providers.yml)
+   4. [optionnel] configuration d’un Webhook DataPass
+   5. [optionnel] modèle d’email de réponse personnalisé
 
 ### Interfaçage entre DataPass et un API Manager
 
