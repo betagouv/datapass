@@ -83,7 +83,7 @@ export const availableScopes = [
   },
   {
     value: 'cnous_email',
-    label: 'Email de contact de l’étudiant',
+    label: 'Email',
   },
   {
     value: 'cnous_periode_versement',
