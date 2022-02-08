@@ -97,8 +97,8 @@ export const availableScopes = [
     helper: 'O si définitif, > =1 si provisoire (conditionnel)',
   },
   {
-    value: 'cnous_ville_etude',
-    label: 'Ville d‘études',
+    value: 'cnous_ville_etudes',
+    label: 'Ville d‘étude',
     helper: 'Libellé de la ville d‘études',
   },
 ];
@@ -124,7 +124,7 @@ const ApiStatutEtudiantBoursier = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection cguLink="/docs/cgu_api_statut_etudiant.pdf" />
+    <CguSection cguLink="/docs/cgu_api_etudiant_boursier.pdf" />
   </Form>
 );
 
