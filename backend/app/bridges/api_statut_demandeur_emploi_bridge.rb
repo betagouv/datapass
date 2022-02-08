@@ -1,0 +1,2 @@
+class ApiStatutDemandeurEmploiBridge < FcDataProviderBridge
+end
