@@ -17,9 +17,9 @@ const Header = () => {
   useEffect(() => {
     const targetApiInUrl = Object.keys(DATA_PROVIDER_PARAMETERS).find(
       (target_api) => {
-        return window.location.pathname.startsWith(
-          `/${target_api.replace(/_/g, '-')}`
-        );
+        return window.location.pathname
+          .replace(/-/g, '_')
+          .startsWith(`/${target_api}`);
       }
     );
 
