@@ -50,6 +50,7 @@ import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import ApiCaptchetat from '../pages/ApiCaptchetat';
+import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
 
 type DataProviderParameter = {
   label: string;
@@ -365,6 +366,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-aife.png',
       email: 'piste.aife@finances.gouv.fr',
       component: ApiCaptchetat,
+    },
+    api_statut_etudiant_boursier: {
+      label: 'API Statut étudiant boursier',
+      icon: 'logo-cnous.png',
+      email: 'api-boursier@cnous.fr',
+      component: ApiStatutEtudiantBoursier,
     },
   };
 
