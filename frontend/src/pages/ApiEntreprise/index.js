@@ -210,6 +210,7 @@ const availableScopes = [
 const editorList = [
   { name: 'Achatpublic.com', siret: '44785462100045' },
   { name: 'Achat solution', siret: '81449011600013' },
+  { name: 'Actradis', siret: '50433492100021' },
   { name: 'Alpi40.fr', siret: '25400330400030' },
   { name: 'Atexo', siret: '44090956200033' },
   { name: 'Atline services', siret: '44166368900012' },
