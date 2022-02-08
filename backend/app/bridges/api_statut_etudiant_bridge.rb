@@ -1,0 +1,2 @@
+class ApiStatutEtudiantBridge < FcDataProviderBridge
+end

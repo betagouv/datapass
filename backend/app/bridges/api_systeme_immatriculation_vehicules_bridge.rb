@@ -1,0 +1,2 @@
+class ApiSystemeImmatriculationVehiculesBridge < FcDataProviderBridge
+end
