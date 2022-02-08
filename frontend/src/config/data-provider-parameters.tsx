@@ -385,4 +385,6 @@ export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_ficoba_production',
   'aidants_connect',
   'hubee_portail',
+  'api_pro_sante_connect',
+  'api_tiers_de_prestation',
 ];
