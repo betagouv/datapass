@@ -167,7 +167,7 @@
       "intitule": "Logiciel de contrôle de conformité des opérateurs économiques en vue de l'attribution ou du suivi des marchés - Solution e-Attestations",
       "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination de nos agents habilités en interne, leur permettant de récupérer les justificatifs nécessaires au dépôt et à l'instruction du dossier de candidature.\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\nCet outil s'appuie sur la solution de l’éditeur e-Attestations.",
       "technical_team_type": "software_company",
-      "technical_team_value" : "50382936800045",
+      "technical_team_value": "50382936800045",
       "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique, concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve :\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
       "data_retention_period": 36,
@@ -219,7 +219,7 @@
       "intitule": "Outil de contrôle de conformité des titulaires de marchés - Solution Provigis",
       "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination de nos agents habilités en interne, leur permettant de collecter, contrôler et stocker les documents de conformité de leurs prestataires et sous-traitants.\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\n\nCet outil s'appuie sur la solution de l’éditeur Provigis.\n\nhttps://www.provigis.com/",
       "technical_team_type": "software_company",
-      "technical_team_value" : "43196025100061",
+      "technical_team_value": "43196025100061",
       "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
       "data_retention_period": 36,
@@ -271,11 +271,63 @@
       "intitule": "Outil de contrôle de conformité des candidats et titulaires de marchés publics - Par l'éditeur Achat Solution",
       "description": "Dans le cadre des procédures de passation de marchés publics, nous mettons en place un outil, à destination des acheteurs adhérents, leur permettant de récupérer les justificatifs nécessaires au dépôt et à l'instruction du dossier de candidature ainsi qu'au contrôle périodique de la régularité fiscale et sociale des entreprises\nL'accès à l'API Entreprise nous permettra d'accéder aux justificatifs sans avoir à les demander aux prestataires.\nCet outil s'appuie sur la solution de l’éditeur Achat Solution.\n\nhttps://www.achat-solution.com/",
       "technical_team_type": "software_company",
-      "technical_team_value" : "81449011600013",
+      "technical_team_value": "81449011600013",
       "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, telle que définie par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
       "data_retention_period": 36,
       "data_recipients": "Maître d'ouvrage, acheteurs publics dans le cadre de leurs contrôles de la régularité fiscale et sociale des entreprises",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": true,
+        "effectifs_acoss": true,
+        "eori_douanes": false,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": true,
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_agence_bio": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
+    }
+  },
+  "atexo": {
+    "label": "Éditeur Atexo - Dématérialisation des marchés publics",
+    "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
+    "team_members": {
+      "contact_metier": {
+        "email": "produits@atexo.com",
+        "phone_number": "0175440934"
+      },
+      "responsable_technique": {
+        "email": "regis.menet@atexo.com",
+        "phone_number": "0153430678"
+      }
+    },
+    "state": {
+      "intitule": "Outil de dématérialisation des appels d'offres des marchés publics - Solution LOCAL TRUST MPE",
+      "description": "Afin de faciliter cette investigation du marché fournisseurs, ATEXO propose le module de Sourcing. Combiné au profil acheteur MPE, il permet aux entreprises de mettre en avant leurs informations.\nBasé sur l'open data et les renseignements des entreprises, ce module présente aux acheteurs des fiches fournisseurs complètes : établissements, éléments financiers, contrats publics, références significatives, expertises, contacts qualifiés, etc.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "44090956200033",
+      "fondement_juridique_title": "Service numérique de conformité pour les administrations publiques dans le cadre du décret N°2011-1601 et de l'article D8222 du code du travail, offre de services d’intermédiation aux organismes publics, tel que défini par l’article 17, alinéa IV, du décret du 24 septembre 2014 et le décret lié à la commande publique n° 2016-360.\nhttps://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/\n\nArticle R2143-13 du code de la commande publique. Concernant l'accès des acheteurs aux documents justificatifs et moyens de preuve.\nhttps://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000018520702/2011-12-31/",
+      "data_retention_period": 36,
+      "data_recipients": "Acheteurs publics dans le cadre de leur activité de traitement des marchés publics",
       "scopes": {
         "entreprises": true,
         "etablissements": true,
