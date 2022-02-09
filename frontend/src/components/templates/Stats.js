@@ -119,13 +119,13 @@ export const Stats = () => {
         <CardContainer>
           <Card className="stat_card">
             <div className="stat_card_head">
-              <h3>Demandes d’habilitation déposées</h3>
+              <h3>Habilitations déposées</h3>
             </div>
             <div className="stat_card_number">{stats.enrollment_count}</div>
           </Card>
           <Card className="stat_card">
             <div className="stat_card_head">
-              <h3>Demandes d’habilitation validées</h3>
+              <h3>Habilitations validées</h3>
               <div className="card__meta">
                 <Link
                   inline
@@ -144,8 +144,8 @@ export const Stats = () => {
           <Card className="stat_card">
             <div className="stat_card_head">
               <h3>
-                Temps moyen de traitement des demandes
-                <Helper title="temps moyen entre la première soumission d’une demande jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
+                Temps moyen de traitement des habilitations
+                <Helper title="temps moyen entre la première soumission d’une demande d’habilitation jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
               </h3>
               <div className="card__meta">(en jours)</div>
             </div>
@@ -156,10 +156,10 @@ export const Stats = () => {
           <Card className="stat_card">
             <div className="stat_card_head">
               <h3>
-                Pourcentage de demandes nécessitant un aller retour
+                Pourcentage des habilitations nécessitant un aller retour
                 <Helper title="sur les 6 derniers mois" />
               </h3>
-              <div className="card__meta">(en % des demandes totales)</div>
+              <div className="card__meta">(en % des habilitations totales)</div>
             </div>
             <div className="stat_card_number">{stats.go_back_ratio}</div>
           </Card>
@@ -167,7 +167,7 @@ export const Stats = () => {
         <CardContainer>
           <Card className="stat_card">
             <div className="stat_card_head">
-              <h3>Demandes d’habilitation déposées</h3>
+              <h3>Habilitations déposées</h3>
             </div>
             <div className="stat_card_graph">
               <ResponsiveContainer width={'100%'} height={250}>
@@ -224,7 +224,7 @@ export const Stats = () => {
         <CardContainer>
           <Card className="stat_card">
             <div className="stat_card_head">
-              <h3>Répartition des demandes par statut</h3>
+              <h3>Répartition des habilitations par statut</h3>
             </div>
             <div className="stat_card_graph">
               <ResponsiveContainer width={'100%'} height={250}>
@@ -248,7 +248,7 @@ export const Stats = () => {
         <CardContainer>
           <Card className="stat_card">
             <div className="stat_card_head">
-              <h3>Répartition des demandes par API</h3>
+              <h3>Répartition des habilitations par API</h3>
             </div>
             <div className="stat_card_graph">
               <ResponsiveContainer width={'100%'} height={450}>

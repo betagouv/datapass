@@ -23,7 +23,7 @@ import Tag from '../atoms/hyperTexts/Tag';
 
 const getInboxes = (user) => ({
   primary: {
-    label: 'Demandes en cours',
+    label: 'Habilitations en cours',
     sorted: [
       {
         id: 'updated_at',
@@ -40,7 +40,7 @@ const getInboxes = (user) => ({
     ],
   },
   archive: {
-    label: 'Demandes traitées',
+    label: 'Habilitations traitées',
     sorted: [
       {
         id: 'updated_at',
@@ -433,7 +433,7 @@ class InstructorEnrollmentList extends React.Component {
             loadingText="Chargement..."
             noDataText={
               inbox === 'primary'
-                ? 'Toute les habilitations ont été traitées'
+                ? 'Toutes les demandes d’habilitation ont été traitées'
                 : 'Aucune habilitation'
             }
             pageText="Page"

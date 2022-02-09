@@ -52,7 +52,7 @@ const Enrollment = () => {
     return (
       <div className="full-page">
         <Alert title="Erreur" type="error">
-          Erreur inconnue lors de la récupération de la demande d’habilitation.
+          Erreur inconnue lors de la récupération de l’habilitation.
         </Alert>
       </div>
     );

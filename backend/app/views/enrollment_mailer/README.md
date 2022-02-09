@@ -1,21 +1,21 @@
 # Personnalisation des emails
 
 Il est possible de personnaliser certains emails en fonction du type de service
-impliqué dans la demande Datapass.
+impliqué dans l’habilitation
 
 Les emails personnalisables envoyés après modification de l'instructeur sont:
 
-1. L'email de refus d'une demande
-1. L'email de demande de modification d'une demande
-1. L'email de validation d'une demande
+1. L'email de refus d'une habilitation
+1. L'email de demande de modification d'une habilitation
+1. L'email de validation d'une habilitation
 
 Ces 3 emails sont à destination du demandeur, et personnalisable depuis
 l'interface d'instruction sur Datapass.
 
 Les emails personnalisables envoyés directement depuis le backend de DataPass:
 
-1. L'email de création d'une demande
-1. L'email d'envoi d'une demande
+1. L'email de création d'une habilitation
+1. L'email d'envoi d'une habilitation
 
 ## Comportement par défaut pour tous les services
 
@@ -64,7 +64,7 @@ api_entreprise:
     validate: *shared_validate_mailer
     request_changes: *shared_request_changes_mailer
     refuse:
-      subject: "Votre demande pour API Entreprise a été refusée"
+      subject: "Votre habilitation pour API Entreprise a été refusée"
     notify_submitted: *shared_notify_submitted_mailer
     create: *shared_create_mailer
     notify: *shared_notify_mailer
@@ -79,11 +79,11 @@ La liste des variables interpolables sont les suivantes:
 
 * `@user`, le demandeur. Il est possible d'avoir accès à des attributs tel que
     le prénom, nom, email etc etc..
-* `@instructor`, l'instructeur qui effectue la modération de la demande. Il est possible
+* `@instructor`, l'instructeur qui effectue l’instruction de l’habilitation. Il est possible
 *   d'avoir accès à des attributs tel que
     le prénom, nom, email etc etc..
-* `@enrollment`, la demande d'habilitation
-* `@url`, lien vers la demande d'habilitation
+* `@enrollment`, l’habilitation
+* `@url`, lien vers l’habilitation
 * `@target_api_label`, nom du service (exemple: `FranceConnect`)
 * `@front_url`, lien vers le site de Datapass
 
@@ -94,6 +94,6 @@ Bonjour <%= "#{@user.given_name} #{@user.family_name}" %>,
 
 Votre demande d’habilitation n°<%= @enrollment.id %> a été traitée par notre service juridique, il nous manque cependant certaines informations pour rendre un avis.
 
-Pour compléter votre demande, suivez le lien suivant <%= @url %>
+Pour compléter votre demande d’habilitation, suivez le lien suivant <%= @url %>
 <%= @instructor.given_name %> pour <%= @target_api_label %>
 ```

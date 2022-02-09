@@ -12,7 +12,7 @@ const initialContacts = {
     header: 'Demandeur',
     description: (
       <>
-        <b>Le demandeur</b>, c'est vous, dépose la demande.
+        <b>Le demandeur</b>, c'est vous, dépose la demande d’habilitation.
       </>
     ),
     forceDisable: true,

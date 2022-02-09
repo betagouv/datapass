@@ -1,11 +1,11 @@
 Bonjour <%= "#{@user.given_name} #{@user.family_name}" %>,
 
-Votre demande d’habilitation n°<%= @enrollment.id %> a bien été validée ✅ par notre service juridique !
+Votre habilitation n°<%= @enrollment.id %> a bien été validée ✅ par notre service juridique !
 Votre jeton d’accès a été créé 🔑 et est disponible dans votre portail à l’adresse suivante https://mon.portail.api.gouv.fr
 
 Votre contact technique et vous-même pouvez vous y connecter pour le récupérer.
 
-Pour consulter cette demande, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
 
 À bientôt 👋,
 <%= @instructor.given_name %> pour API Particulier

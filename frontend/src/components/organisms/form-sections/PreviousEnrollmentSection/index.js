@@ -85,7 +85,8 @@ const PreviousEnrollmentSection = ({ steps }) => {
       {!disabled && !isUserEnrollmentLoading && (
         <>
           <p>
-            La procédure consiste en {steps.length} habilitations distinctes :
+            La procédure consiste en {steps.length} demandes d’habilitation
+            distinctes :
           </p>
           <Stepper
             steps={steps}
@@ -121,15 +122,15 @@ const PreviousEnrollmentSection = ({ steps }) => {
                 demander votre habilitation à{' '}
                 <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
               </ReactRouterLink>{' '}
-              avant de continuer cette habilitation.
+              avant de continuer cette demande d’habilitation.
             </p>
             {previousTargetApi === 'franceconnect' && (
               <p>
                 Vous avez déjà accès à FranceConnect mais vous ne retrouvez pas
                 l’habilitation correspondante ? Vos accès datent probablement
                 d’avant la mise en place de ce dispositif. Merci de remplir une
-                nouvelle habilitation FranceConnect. Cette nouvelle habilitation
-                n’interférera pas avec vos accès précédents.
+                nouvelle demande d’habilitation FranceConnect. Cette nouvelle
+                habilitation n’interférera pas avec vos accès précédents.
               </p>
             )}
           </Alert>
@@ -140,7 +141,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
             <ExpandableQuote title="Pourquoi associer une habilitation FranceConnect ?">
               <>
                 <p>
-                  Lorsque cette habilitation à{' '}
+                  Lorsque cette demande d’habilitation à{' '}
                   {DATA_PROVIDER_PARAMETERS[target_api]?.label} sera validée
                   vous disposerez des périmètres de données supplémentaires
                   demandés.

@@ -17,8 +17,8 @@ const ModalContent = {
         </p>
         <p>
           <b>
-            Une demande non conforme fera l’objet d’un retour pour
-            rectification, et donc d’un délai supplémentaire.
+            Une demande d’habilitation non conforme fera l’objet d’un retour
+            pour rectification, et donc d’un délai supplémentaire.
           </b>
         </p>
       </>

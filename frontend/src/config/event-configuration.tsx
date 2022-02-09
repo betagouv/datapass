@@ -38,7 +38,7 @@ export const eventConfigurations: {
   },
   destroy: {
     displayProps: {
-      label: 'Supprimer la demande',
+      label: 'Supprimer l’habilitation',
       icon: 'delete',
       type: 'error',
     },
@@ -56,7 +56,7 @@ export const eventConfigurations: {
   },
   submit: {
     displayProps: {
-      label: 'Soumettre la demande',
+      label: 'Soumettre la demande d’habilitation',
       icon: 'checkbox',
       type: 'info',
     },

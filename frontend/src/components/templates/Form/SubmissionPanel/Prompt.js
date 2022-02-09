@@ -38,7 +38,7 @@ const Prompt = ({
   const promptLabel = {
     notify: 'Votre message :',
     changes_requested:
-      'Précisez au demandeur les modifications à apporter à sa demande :',
+      'Précisez au demandeur les modifications à apporter à sa demande d’habilitation :',
     refuse: 'Précisez au demandeur le motif de votre refus :',
     validate: 'Votre message :',
   }[selectedEvent];
@@ -56,7 +56,7 @@ const Prompt = ({
       )}
       {templates.length > 0 && (
         <ExpandableQuote
-          title="Voir les réponses que vous avez apportés précédemment pour des demandes similaires"
+          title="Voir les réponses que vous avez apportés précédemment pour des demandes d’habilitation similaires"
           large
         >
           {templates.map((template) => (

@@ -160,7 +160,7 @@ class EnrollmentsController < ApplicationController
         end
         selected_organization = refreshed_user.organizations.find { |o| o["id"] == @enrollment.organization_id }
         if selected_organization.nil?
-          raise ApplicationController::Forbidden, "Vous ne pouvez pas déposer une demande pour une organisation à laquelle vous n’appartenez pas. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/join-organization?siret_hint=#{@enrollment.siret} puis de cliquer sur 'Rejoindre l’organisation'"
+          raise ApplicationController::Forbidden, "Vous ne pouvez pas déposer une habilitation pour une organisation à laquelle vous n’appartenez pas. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/join-organization?siret_hint=#{@enrollment.siret} puis de cliquer sur 'Rejoindre l’organisation'"
         end
       rescue ApplicationController::BadGateway => e
         if e.http_code != 401

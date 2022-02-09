@@ -6,7 +6,7 @@ import Stepper from '../../molecules/Stepper';
 const ApiImpotParticulierSandboxWelcomeMessage = () => (
   <>
     <h3>Habilitation à l’API Impôt particulier</h3>
-    <p>La procédure consiste en 2 habilitations distinctes :</p>
+    <p>La procédure consiste en 2 demandes d’habilitation distinctes :</p>
     <Stepper
       steps={[
         'api_impot_particulier_sandbox',
@@ -30,8 +30,8 @@ const ApiImpotParticulierSandboxWelcomeMessage = () => (
       </li>
     </ol>
     <p>
-      Pour commencer, merci de créer un compte pour déposer votre demande et
-      suivre son traitement.
+      Pour commencer, merci de créer un compte pour déposer votre demande
+      d’habilitation et suivre son traitement.
     </p>
   </>
 );

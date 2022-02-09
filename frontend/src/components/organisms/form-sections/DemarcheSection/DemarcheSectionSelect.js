@@ -71,8 +71,8 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
         {body || (
           <p>
             Nous avons identifié plusieurs cas d’usage de cette API. Si votre
-            demande s’inscrit dans un des cas ci-dessous, sélectionnez-le pour
-            gagner du temps.
+            demande d’habilitation s’inscrit dans un des cas ci-dessous,
+            sélectionnez-le pour gagner du temps.
           </p>
         )}
         <SelectInput

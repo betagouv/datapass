@@ -21,7 +21,7 @@ Object {
   "errorMessages": Array [],
   "redirectToHome": false,
   "successMessages": Array [
-    "Votre demande a été sauvegardée.",
+    "Votre habilitation a été sauvegardée.",
   ],
 }
 `;

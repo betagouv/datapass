@@ -28,7 +28,7 @@ export const HeadSection = () => {
         <>Vous demandez l’accès à</>
         <h1>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</h1>
         <TagContainer>
-          {id && <Tag>Demande n°{id}</Tag>}
+          {id && <Tag>Habilitation n°{id}</Tag>}
           {copied_from_enrollment_id && (
             <Tag
               href={`/authorization-request/${copied_from_enrollment_id}`}

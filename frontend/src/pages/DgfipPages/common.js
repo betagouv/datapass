@@ -4,7 +4,7 @@ export const DataAreInTermsOfUseDescription = () => (
   <>
     <p>
       Les données restituées par l’API sont décrites dans les CGU attachées à
-      cette demande.
+      cette habilitation.
     </p>
   </>
 );

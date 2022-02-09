@@ -29,7 +29,7 @@ const CopyEnrollment = () => {
         setCopyErrorMessage(getErrorMessages(e)[0]);
       } else {
         setCopyErrorMessage(
-          'Erreur inconnue lors de la copie de la demande d’habilitation.'
+          'Erreur inconnue lors de la copie de l’habilitation.'
         );
       }
     }
@@ -61,7 +61,7 @@ const CopyEnrollment = () => {
       <div className="full-page">
         <Alert title="Erreur" type="error">
           <Linkify
-            message={`${copyErrorMessage} La demande #${enrollmentId} n’a pas été copiée.`}
+            message={`${copyErrorMessage} L’habilitation #${enrollmentId} n’a pas été copiée.`}
           />
         </Alert>
       </div>

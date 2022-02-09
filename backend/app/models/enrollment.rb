@@ -158,7 +158,7 @@ class Enrollment < ActiveRecord::Base
     copied_enrollment.events.create(
       name: "copy",
       user_id: current_user.id,
-      comment: "Demande d’origine : ##{id}"
+      comment: "Habilitation d’origine : ##{id}"
     )
     documents.each do |document|
       copied_document = document.dup
@@ -264,7 +264,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def previous_enrollment_id_validation
-    errors[:previous_enrollment_id] << "Vous devez associer cette demande à une habilitation Franceconnect validée" unless previous_enrollment_id.present?
+    errors[:previous_enrollment_id] << "Vous devez associer cette demande d’habilitation à une habilitation Franceconnect validée" unless previous_enrollment_id.present?
   end
 
   def technical_team_validation

@@ -91,7 +91,9 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
               )}
             </>
           ) : (
-            <>Cette demande n’a pas utilisé de modèle de pré-remplissage.</>
+            <>
+              Cette habilitation n’a pas utilisé de modèle de pré-remplissage.
+            </>
           )}
         </div>
       </ScrollablePanel>

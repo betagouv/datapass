@@ -147,7 +147,7 @@ const DonneesSection = ({
               <FileInput
                 label="Joindre l’expression de besoin"
                 meta={
-                  'Attention : seule l’expression de besoin en données ayant déjà été partagée avec la DGFiP peut être rattachée à votre demande.'
+                  'Attention : seule l’expression de besoin en données ayant déjà été partagée avec la DGFiP peut être rattachée à votre habilitation.'
                 }
                 mimeTypes="*"
                 disabled={disabled}

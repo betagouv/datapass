@@ -56,4 +56,4 @@ bundle exec brakeman -Iconfig/brakeman.ignore
 
 - [Implémentation des webhooks](./docs/webhooks.md)
 - [Personnalisation des emails associés aux
-  demandes](./app/views/enrollment_mailer/README.md)
+  habilitations](./app/views/enrollment_mailer/README.md)

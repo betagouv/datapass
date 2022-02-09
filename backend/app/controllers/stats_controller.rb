@@ -13,7 +13,7 @@ class StatsController < ApplicationController
       "target_api = '#{ActiveRecord::Base.connection.quote_string(target_api)}'" :
       "1 = 1" # equivalent to no filter
 
-    # Demandes d’habilitation déposées
+    # Habilitations déposées
     enrollment_count_query = <<-SQL
       SELECT COUNT(*) FROM enrollments WHERE #{filter_by_target_api_criteria};
     SQL
@@ -22,7 +22,7 @@ class StatsController < ApplicationController
       .execute(enrollment_count_query)
       .getvalue(0, 0)
 
-    # Demandes d’habilitation validées
+    # Habilitations validées
     validated_enrollment_count_query = <<-SQL
       SELECT COUNT(*) FROM enrollments WHERE status = 'validated' AND #{filter_by_target_api_criteria};
     SQL
@@ -31,10 +31,10 @@ class StatsController < ApplicationController
       .execute(validated_enrollment_count_query)
       .getvalue(0, 0)
 
-    # Temps moyen de traitement des demandes
+    # Temps moyen de traitement des habilitation
     average_processing_time_in_days = GetAverageProcessingTimeInDays.call(target_api)
 
-    # Pourcentage de demandes nécessitant un aller retour
+    # Pourcentage de habilitations nécessitant un aller retour
     go_back_ratio_query = <<-SQL
       SELECT round((COUNT(go_back_count)*100)::numeric/NULLIF(COUNT(*), 0), 0) as go_back_ratio
       FROM (
@@ -56,7 +56,7 @@ class StatsController < ApplicationController
       .getvalue(0, 0)
       .to_i
 
-    # Demandes d’habilitation déposées
+    # Habilitations déposées
     monthly_enrollment_count_query = <<-SQL
       SELECT
         date_trunc('month', created_at) AS month,
@@ -76,7 +76,7 @@ class StatsController < ApplicationController
       .exec_query(monthly_enrollment_count_query)
       .to_a
 
-    # Répartition des demandes par API
+    # Répartition des habilitations par API
     enrollment_by_target_api_query = <<-SQL
       SELECT target_api AS name, COUNT(target_api)
       FROM enrollments
@@ -89,7 +89,7 @@ class StatsController < ApplicationController
       .exec_query(enrollment_by_target_api_query)
       .to_a
 
-    # Répartition des demandes par statut
+    # Répartition des habilitations par statut
     enrollment_by_status_query = <<-SQL
       SELECT status AS name, count(status)
       FROM enrollments

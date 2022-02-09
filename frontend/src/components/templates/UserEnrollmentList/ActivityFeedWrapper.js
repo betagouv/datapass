@@ -45,7 +45,8 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   ) {
     return (
       <Alert title={USER_STATUS_LABELS[status]} type="warning">
-        Votre demande est incomplète et requiert les modifications suivantes :
+        Votre demande d’habilitation est incomplète et requiert les
+        modifications suivantes :
         <div style={{ margin: '1em 0' }}>
           <EventItem
             comment={comment}
@@ -66,9 +67,9 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     return (
       <Alert title={USER_STATUS_LABELS[status]}>
         <p>
-          Votre demande est actuellement en cours d’édition. Notre service
-          juridique pourra la consulter lorsque vous cliquerez sur "Soumettre la
-          demande".
+          Votre demande d’habilitation est actuellement en cours d’édition.
+          Notre service juridique pourra la consulter lorsque vous cliquerez sur
+          "Soumettre la demande d’habilitation".
         </p>
       </Alert>
     );
@@ -77,8 +78,9 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   if (status === 'submitted' && majorityPercentileProcessingTimeInDays > 0) {
     return (
       <Alert title={USER_STATUS_LABELS[status]}>
-        La majorité des demandes des 6 derniers mois reçoivent une réponse en
-        moins de <b>{majorityPercentileProcessingTimeInDays} jours</b>.
+        La majorité des demandes d’habilitation des 6 derniers mois reçoivent
+        une réponse en moins de{' '}
+        <b>{majorityPercentileProcessingTimeInDays} jours</b>.
       </Alert>
     );
   }

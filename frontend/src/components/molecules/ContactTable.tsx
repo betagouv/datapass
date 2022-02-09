@@ -16,7 +16,7 @@ const ContactsTable: React.FC = () => {
     <div className="fr-table fr-table--layout-fixed">
       <table>
         <thead>
-          <td>Nature de la demande</td>
+          <td>Nature de l’habilitation</td>
           <td>Contact</td>
         </thead>
         <tbody>

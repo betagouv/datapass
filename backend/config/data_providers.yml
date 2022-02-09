@@ -2,19 +2,19 @@
 shared:
   mailer: &shared_mailer
     submit: &shared_submit_mailer
-      subject: "Nous avons bien reçu votre demande d’accès"
+      subject: "Nous avons bien reçu votre demande d’habilitation"
     validate: &shared_validate_mailer
-      subject: "Votre demande a été validée"
+      subject: "Votre habilitation a été validée"
     request_changes: &shared_request_changes_mailer
-      subject: "Votre demande requiert des modifications"
+      subject: "Votre demande d’habilitation requiert des modifications"
     refuse: &shared_refuse_mailer
-      subject: "Votre demande a été refusée"
+      subject: "Votre habilitation a été refusée"
     notify_submitted: &shared_notify_submitted_mailer
-      subject: "Nouvelle demande sur DataPass"
+      subject: "Nouvelle demande d’habilitation sur DataPass"
     create: &shared_create_mailer
-      subject: "Votre demande a été enregistrée"
+      subject: "Votre demande d’habilitation a été enregistrée"
     notify: &shared_notify_mailer
-      subject: "Vous avez un nouveau message concernant votre demande"
+      subject: "Vous avez un nouveau message concernant votre demande d’habilitation"
 
 franceconnect:
   label: FranceConnect
@@ -78,15 +78,15 @@ api_entreprise:
   mailer:
     <<: *shared_mailer
     create:
-      subject: "💾 Le brouillon de votre demande a bien été enregistré"
+      subject: "💾 Le brouillon de votre demande d’habilitation a bien été enregistré"
     submit:
-      subject: "📬 Votre demande a bien été reçue par API Entreprise"
+      subject: "📬 Votre demande d’habilitation a bien été reçue par API Entreprise"
     request_changes:
-      subject: "✒️ Votre demande requiert des modifications"
+      subject: "✒️ Votre demande d’habilitation requiert des modifications"
     validate:
-      subject: "✅ Votre demande d’accès à l'API Entreprise a été validée"
+      subject: "✅ Votre habilitation à l'API Entreprise a été validée"
     refuse:
-      subject: "🚫 Votre demande d’accès à l’API Entreprise a été refusée"
+      subject: "🚫 Votre habilitation à l’API Entreprise a été refusée"
 
 le_taxi:
   label: le.Taxi

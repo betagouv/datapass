@@ -264,13 +264,13 @@ const initialContacts = {
     header: 'Demandeur',
     description: (
       <>
-        <b>Le demandeur</b> est à l'origine de la demande d'habilitation, c'est
-        vous. Si la demande est validée, vous serez responsable de la clé
+        <b>Le demandeur</b> est à l'origine de la demande d’habilitation, c'est
+        vous. Si l’habilitation est validée, vous serez responsable de la clé
         d'accès (token) que vous pourrez copier/coller ou déléguer aux personnes
         en charge de l'implémentation technique. Vous serez contacté en cas de
         problèmes fonctionnels sur votre service. Vous serez également averti de
         l'expiration du jeton intervenant tous les 18 mois, pour vous permettre
-        de renouveler votre demande.
+        de renouveler votre habilitation.
       </>
     ),
     forceDisable: true,

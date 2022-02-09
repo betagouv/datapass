@@ -36,7 +36,7 @@ class FranceconnectBridge < ApplicationBridge
       # there is no espace partenaire for fc+ yet so we just notify fc support team
       EnrollmentMailer.with(
         target_api: "franceconnect",
-        subject: "[DataPass] la demande FranceConnect+ n°#{id} vient d’être validée",
+        subject: "[DataPass] l’habilitation FranceConnect+ n°#{id} vient d’être validée",
         template_name: "new_franceconnect_plus",
         nom_raison_sociale: nom_raison_sociale,
         enrollment_id: id,

@@ -1,11 +1,11 @@
 ## Implémentation d'un webhook
 
 DataPass possède un système de webhooks permettant de souscrire aux différents
-changement d'état d'une demande. Par défaut ce système est désactivé (en faveur
+changement d'état d'une habilitation. Par défaut ce système est désactivé (en faveur
 d'emails de notifications et d'un appel via un bridge (code spécifique au
-fournisseur de service) lors d'une validation d'une demande).
+fournisseur de service) lors d'une validation d'une habilitation).
 
-Si vous voulez avoir un contrôle plus fin du cycle de vie des demandes, vous
+Si vous voulez avoir un contrôle plus fin du cycle de vie des habilitations, vous
 pouvez utiliser ce système (par exemple pour gérer un CRM, mettre en place des
 statistiques..).
 
@@ -40,7 +40,7 @@ s'effectue en créant un notifier spécifique au système portant le nom de
 `SuperServiceNotifier`, qui hérite de
 [`AbstractNotifier`](./app/notifiers/abstract_notifier.rb).
 
-Chacune des méthodes correspond à un événement associé à la demande datapass,
+Chacune des méthodes correspond à un événement associé à l’habilitation,
 défini dans le modèle `Enrollment` (la description de chacun de ces événements
 se trouve plus bas dans ce document)
 
@@ -70,26 +70,26 @@ un json qui est sous le format ci-dessous :
 
 Avec:
 
-- `event`, `string`: l'événement associé au changement d'état de la demande.
+- `event`, `string`: l'événement associé au changement d'état de l’habilitation.
   Les valeurs possibles sont:
-  - `create`: la demande datapass vient d'être créée ;
-  - `update`: la demande datapass a été mise à jour par le demandeur ;
-  - `submit`: la demande datapass a été envoyée par le demandeur ;
-  - `refuse`: la demande datapass a été refusée par un instructeur ;
-  - `request_changes`: la demande datapass a été instruite par un instructeur et
+  - `create`: l’habilitation vient d'être créée ;
+  - `update`: l’habilitation a été mise à jour par le demandeur ;
+  - `submit`: l’habilitation a été envoyée par le demandeur ;
+  - `refuse`: l’habilitation a été refusée par un instructeur ;
+  - `request_changes`: l’habilitation a été instruite par un instructeur et
     demande des modifications de la part du demandeur ;
-  - `validate`: la demande datapass a été validée par un instructeur ;
-  - `notify`: un instructeur a relancé la demande en cours d'édition par le
+  - `validate`: l’habilitation a été validée par un instructeur ;
+  - `notify`: un instructeur a relancé l’habilitation en cours d’édition par le
     demandeur ;
 - `fired_at`, `timestamp`: timestamp correspondant au moment où le webhook a été
   déclenché ;
 - `model_type`, `string`: correspond au modèle de donnée. Pour le moment il n'y
   a que `Pass` comme valeur
-- `data`, `json`: données ayant à minima les informations de la demande dans la
+- `data`, `json`: données ayant à minima les informations de l’habilitation dans la
   clé `pass`, d'autres clés peuvent être présentes.
   `pass_data` utilise le serializer
   [`WebhookEnrollmentSerializer`](../app/serializers/webhook_enrollment_serializer.rb), et embarque
-  l'ensemble des événements associé à la demande, ce qui permet de retrouver
+  l'ensemble des événements associé à l’habilitation, ce qui permet de retrouver
   l'initiateur de l'événement (théoriquement il s'agit de la première entrée
   `events`) ;
 
@@ -97,7 +97,7 @@ Un exemple de payload pour `pass_data`:
 
 ```json
 {
-  // ID technique de la demande DataPass
+  // ID technique de l’habilitation
   "id": 9001,
   // Correspond au nom du projet dans l'UI
   "intitule": "Marché public",
@@ -107,23 +107,23 @@ Un exemple de payload pour `pass_data`:
   "demarche": "marche_public",
   // Numéro de siret de l'organisation à laquelle le demandeur est associé
   "siret": "13002526500013",
-  // Status de la demande. Les valeurs peuvent être:
+  // Status de l’habilitation. Les valeurs peuvent être:
   // * draft : en attente d'envoi
-  // * submitted : demande envoyée
-  // * changes_requested : la demande a été revue par un instructeur et demande des modifications
-  // * validated : demande validée
-  // * refused : demande refusée
+  // * submitted : habilitation envoyée
+  // * changes_requested : l’habilitation a été revue par un instructeur et demande des modifications
+  // * validated : habilitation validée
+  // * refused : habilitation refusée
   "status": "draft",
-  // ID de la demande qui a été copié (peut être vide si il s'agit d'une nouvelle demande)
+  // ID de la habilitation qui a été copié (peut être vide si il s'agit d'une nouvelle habilitation)
   "copied_from_enrollment_id": 5432,
-  // ID de la précédente demande
+  // ID de la précédente habilitation
   "previous_enrollment_id": 2345,
   // Liste des données associé au service. Cette liste est dynamique en fonction du service cible.
   "scopes": {
     "entreprises": true,
     "exercices": false
   },
-  // Liste des personnes associées à cette demande.
+  // Liste des personnes associées à cette habilitation.
   // Cette liste contient systématiquement le demandeur (type 'demandeur')
   "team_members": [
     {
@@ -155,14 +155,14 @@ Un exemple de payload pour `pass_data`:
       "uid": 26455
     }
   ],
-  // Liste de l'intégralité des événements associée à cette demande
+  // Liste de l'intégralité des événements associée à cette habilitation
   "events": [
     {
       // ID technique interne
       "id": 6789,
       // Nom succinct de l'événement. Une liste non exhaustive: create, update, submit, validate, refuse
       "name": "create",
-      // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de la demande
+      // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de l’habilitation
       "comment": null,
       // Date de l'événement
       "created_at": "2021-09-20 14:41:09 UTC",
@@ -225,7 +225,7 @@ Rack::Utils.secure_compare(hub_signature, compute_hub_signature)
 ```
 
 Lors de l'événement `validate`, si votre système répond avec un ID de jeton
-celui-ci sera affecté à la demande.
+celui-ci sera affecté à l’habilitation.
 
 Le format attendu est au format json:
 

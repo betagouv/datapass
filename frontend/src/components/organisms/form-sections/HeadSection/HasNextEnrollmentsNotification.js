@@ -37,8 +37,10 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
     <Alert
       title={
         <>
-          Cette demande est liée{' '}
-          {severalNexts ? 'aux demandes suivantes' : 'à la demande suivante'}
+          Cette habilitation est liée{' '}
+          {severalNexts
+            ? 'aux habilitations suivantes'
+            : 'à l’habilitation suivante'}
         </>
       }
     >
@@ -46,7 +48,9 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
         <p key={enrollment.id}>
           <IndexPointingRightEmoji />
           {' '}
-          <Linkify message={`Demande ${formatNextEnrollment(enrollment)}`} />
+          <Linkify
+            message={`Habilitation ${formatNextEnrollment(enrollment)}`}
+          />
         </p>
       ))}
     </Alert>
