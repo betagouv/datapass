@@ -59,6 +59,8 @@
     "label": "Marchés publics",
     "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
     "state": {
+      "fondement_juridique_title": "R2143-13 Code de la commande publique",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
       "scopes": {
         "entreprises": true,
         "etablissements": true,
