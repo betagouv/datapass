@@ -144,7 +144,7 @@ export const Stats = () => {
           <Card className="stat_card">
             <div className="stat_card_head">
               <h3>
-                Temps moyen de traitement des habilitations
+                Temps moyen de traitement des demandes d’habilitation
                 <Helper title="temps moyen entre la première soumission d’une demande d’habilitation jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
               </h3>
               <div className="card__meta">(en jours)</div>

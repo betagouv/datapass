@@ -72,14 +72,14 @@ Avec:
 
 - `event`, `string`: l'événement associé au changement d'état de l’habilitation.
   Les valeurs possibles sont:
-  - `create`: l’habilitation vient d'être créée ;
+  - `create`: la demande d’habilitation vient d'être créée ;
   - `update`: l’habilitation a été mise à jour par le demandeur ;
-  - `submit`: l’habilitation a été envoyée par le demandeur ;
+  - `submit`: la demande d’habilitation a été envoyée par le demandeur ;
   - `refuse`: l’habilitation a été refusée par un instructeur ;
-  - `request_changes`: l’habilitation a été instruite par un instructeur et
+  - `request_changes`: la demande d’habilitation a été instruite par un instructeur et
     demande des modifications de la part du demandeur ;
   - `validate`: l’habilitation a été validée par un instructeur ;
-  - `notify`: un instructeur a relancé l’habilitation en cours d’édition par le
+  - `notify`: un instructeur a relancé la demande d’habilitation en cours d’édition par le
     demandeur ;
 - `fired_at`, `timestamp`: timestamp correspondant au moment où le webhook a été
   déclenché ;
@@ -109,12 +109,12 @@ Un exemple de payload pour `pass_data`:
   "siret": "13002526500013",
   // Status de l’habilitation. Les valeurs peuvent être:
   // * draft : en attente d'envoi
-  // * submitted : habilitation envoyée
-  // * changes_requested : l’habilitation a été revue par un instructeur et demande des modifications
+  // * submitted : demande d’habilitation envoyée
+  // * changes_requested : la demande d’habilitation a été revue par un instructeur et demande des modifications
   // * validated : habilitation validée
   // * refused : habilitation refusée
   "status": "draft",
-  // ID de la habilitation qui a été copié (peut être vide si il s'agit d'une nouvelle habilitation)
+  // ID de la habilitation qui a été copiée (peut être vide si il s'agit d'une nouvelle habilitation)
   "copied_from_enrollment_id": 5432,
   // ID de la précédente habilitation
   "previous_enrollment_id": 2345,
@@ -155,14 +155,14 @@ Un exemple de payload pour `pass_data`:
       "uid": 26455
     }
   ],
-  // Liste de l'intégralité des événements associée à cette habilitation
+  // Liste de l'intégralité des événements associés à cette habilitation
   "events": [
     {
       // ID technique interne
       "id": 6789,
       // Nom succinct de l'événement. Une liste non exhaustive: create, update, submit, validate, refuse
       "name": "create",
-      // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de l’habilitation
+      // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de la demande d’habilitation
       "comment": null,
       // Date de l'événement
       "created_at": "2021-09-20 14:41:09 UTC",

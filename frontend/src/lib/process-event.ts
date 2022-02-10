@@ -46,7 +46,7 @@ export const processEvent = async (
       enrollmentId = newEnrollment.id;
 
       resultMessages.successMessages.push(
-        'Votre habilitation a été sauvegardée.'
+        'Votre demande d’habilitation a été sauvegardée.'
       );
     }
 

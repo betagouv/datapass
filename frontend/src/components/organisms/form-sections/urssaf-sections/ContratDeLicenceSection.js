@@ -11,7 +11,7 @@ export const ContratDeLicenceSection = () => (
     <p>
       Suite à la soumission de votre demande d’habilitation via ce formulaire,
       l’Urssaf va analyser et valider ou non votre habilitation. L’octroi de
-      cette habilitation est conditionné entre-autre au respect par le demandeur
+      cette habilitation est conditionné entre autre au respect par le demandeur
       de ses obligations fiscales et sociales et à l’adéquation du service
       proposé avec l’objet de l’API.
     </p>

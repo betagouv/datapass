@@ -31,10 +31,10 @@ class StatsController < ApplicationController
       .execute(validated_enrollment_count_query)
       .getvalue(0, 0)
 
-    # Temps moyen de traitement des habilitation
+    # Temps moyen de traitement des habilitations
     average_processing_time_in_days = GetAverageProcessingTimeInDays.call(target_api)
 
-    # Pourcentage de habilitations nécessitant un aller retour
+    # Pourcentage d’habilitations nécessitant un aller retour
     go_back_ratio_query = <<-SQL
       SELECT round((COUNT(go_back_count)*100)::numeric/NULLIF(COUNT(*), 0), 0) as go_back_ratio
       FROM (

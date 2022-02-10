@@ -62,7 +62,7 @@ class ApplicationController < ActionController::API
 
     error_message = case error_key
     when :copy_enrollment_is_not_validated_nor_refused
-      "Copie impossible, l’habilitation originale n’est ni validée ni refusée."
+      "Copie impossible, la demande d’habilitation originale n’est ni validée ni refusée."
     when :copy_user_do_not_belong_to_organization
       "Copie impossible, l’habilitation originale est déposée au nom d’une organisation à laquelle vous n’appartenez pas."
     when :copy_user_is_not_demandeur

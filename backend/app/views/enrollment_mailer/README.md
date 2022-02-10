@@ -14,8 +14,8 @@ l'interface d'instruction sur Datapass.
 
 Les emails personnalisables envoyés directement depuis le backend de DataPass:
 
-1. L'email de création d'une habilitation
-1. L'email d'envoi d'une habilitation
+1. L'email de création d'une demande d’habilitation
+1. L'email d'envoi d'une demande’habilitation
 
 ## Comportement par défaut pour tous les services
 

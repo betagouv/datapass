@@ -54,16 +54,16 @@ Pour ajouter un formulaire voici la liste des fichiers à modifier :
 Dans DataPass, il y a différents types d’utilisateurs :
 
 - **les demandeurs :** ils viennent déposer leur demande d’accès, ils n’ont accès qu’a leurs habilitations.
-- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des habilitations qu’ils
+- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes d’habilitations qu’ils
   ont à charge.
-- **les rapporteurs :** ils voient, en plus de leurs propres habilitations, toutes les habilitations déposées pour
+- **les rapporteurs :** ils voient, en plus de leurs propres habilitations, toutes les habilitations relatives à
   leur service.
 - **les abonnés :** ils reçoivent une notification par mail à chaque fois qu’un demandeur dépose une
-  nouvelle habilitation pour leur service.
+  nouvelle demande d’habilitation pour leur service.
 
 Ces types sont combinables pour débloquer plus ou moins de fonctionnalités : par exemple un utilisateur qui
 serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d’une nouvelle
-habilitation pour cette API et peut consulter l’habilitation en question. Pour autant, il ne peut pas la valider.
+demande d’habilitation pour cette API et peut consulter la demande d’habilitation en question. Pour autant, il ne peut pas la valider.
 
 À noter que les instructeurs, rapporteurs et abonnés ont une page d’accueil différente des demandeurs.
 Cette page d’accueil ajoute notamment des fonctions de recherche et de filtre des habilitations qui ne sont pas
@@ -79,7 +79,7 @@ Pour devenir instructeur, rapporteur ou abonné pour un type d’habilitation il
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
 de DataPass, vous pouvez utiliser notre plateforme de « staging ». Cette plateforme est disponible ici :
-https://datapass-staging.api.gouv.fr/ (lien direct vers une habilitation API Particulier :
+https://datapass-staging.api.gouv.fr/ (lien direct vers une demande d’habilitation API Particulier :
 https://datapass-staging.api.gouv.fr/api-particulier).
 
 Vous pouvez vous créer un compte utilisateur en entrant n’importe quel numéro SIRET.
