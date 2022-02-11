@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, FunctionComponent, useState } from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
 
-export const Input = ({
+type Props = {
+  type?: string;
+  label: string;
+  helper?: string;
+  meta?: string;
+  name?: string;
+  placeholder?: string;
+  value?: string;
+  disabled?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  ariaLabel?: string;
+  required?: boolean;
+};
+
+export const Input: FunctionComponent<Props> = ({
   type = 'text',
   label,
   helper,
   meta,
   name,
   placeholder = '',
-  value = null,
+  value,
   disabled,
   onChange,
   ariaLabel,
