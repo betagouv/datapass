@@ -20,7 +20,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       let(:message) { "Hello world!" }
 
       it "renders valid headers" do
-        expect(mail.subject).to eq("Votre demande requiert des modifications")
+        expect(mail.subject).to eq("Votre demande d’habilitation requiert des modifications")
         expect(mail.to).to eq([to_email])
         expect(mail.from).to eq(["contact@api.gouv.fr"])
       end
@@ -49,7 +49,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         let(:template) { "create" }
 
         it "renders default subject" do
-          expect(mail.subject).to eq("Votre demande a été enregistrée")
+          expect(mail.subject).to eq("Votre demande d’habilitation a été enregistrée")
         end
 
         it "renders default template" do
@@ -62,7 +62,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         let(:template) { "create" }
 
         it "renders custom subject" do
-          expect(mail.subject).to eq("💾 Le brouillon de votre demande a bien été enregistré")
+          expect(mail.subject).to eq("💾 Le brouillon de votre demande d’habilitation a bien été enregistré")
         end
       end
 

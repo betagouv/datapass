@@ -33,21 +33,19 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <DemandeIcon />
           </div>
-          <div>Remplir sa demande</div>
+          <div>Remplir sa demande d’habilitation</div>
         </div>
         <div>
           <div>
             <HabilitationIcon />
           </div>
-          <div>{isService ? 'Demande acceptée' : 'Être habilité'}</div>
+          <div>{isService ? 'Habilitation validée' : 'Être habilité'}</div>
         </div>
         <div>
           <div>
             <TokenIcon />
           </div>
-          <div>
-            {isService ? 'Avoir accès au service' : 'Recevoir son token'}
-          </div>
+          <div>{isService ? 'Accès au service' : 'Recevoir son token'}</div>
         </div>
       </div>
       <div className="timeline">

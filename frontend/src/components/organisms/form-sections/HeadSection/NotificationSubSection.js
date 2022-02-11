@@ -18,9 +18,9 @@ export const NotificationSubSection = () => {
     <>
       {get(location, 'state.source') === 'copy-authorization-request' && (
         <Alert className="info">
-          Vous trouverez ci-dessous une copie de votre demande initiale. Merci
-          de vérifier que ces informations sont à jour puis cliquez sur
-          "Soumettre la demande".
+          Vous trouverez ci-dessous une copie de votre habilitation initiale.
+          Merci de vérifier que ces informations sont à jour puis cliquez sur
+          "Soumettre la demande d’habilitation".
         </Alert>
       )}
       {!isUserEnrollmentLoading && (

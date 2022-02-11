@@ -57,10 +57,10 @@ const OrganizationPrompt = ({
   return (
     <>
       <ConfirmationModal
-        title="Sélectionnez l’organisation à associer à cette demande"
+        title="Sélectionnez l’organisation à associer à cette habilitation"
         handleCancel={onClose}
         handleConfirm={onJoinOrganization}
-        confirmLabel="Faire une demande pour une autre organisation"
+        confirmLabel="Demander une habilitation pour une autre organisation"
       >
         <RadioInput
           options={options}

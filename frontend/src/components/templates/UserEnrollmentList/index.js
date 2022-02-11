@@ -39,7 +39,7 @@ const UserEnrollmentList = () => {
       <ListHeader title="Toutes mes habilitations">
         <div>
           <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
-            Faire une nouvelle demande pour :
+            Faire une nouvelle demande d’habilitation pour :
           </p>
           <ButtonGroup>
             <Button
@@ -73,14 +73,14 @@ const UserEnrollmentList = () => {
               <IndexPointingRightEmoji />
               {' '}
               <Link inline href={`${API_GOUV_HOST}/datapass/api`}>
-                Soumettre une demande API
+                Soumettre une demande d’habilitation API
               </Link>
             </p>
             <p>
               <IndexPointingRightEmoji />
               {' '}
               <Link inline href="/aidants-connect">
-                Soumettre une demande AidantsConnect
+                Soumettre une demande d’habilitation AidantsConnect
               </Link>
             </p>
           </Alert>

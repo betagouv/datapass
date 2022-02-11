@@ -40,8 +40,8 @@ const WelcomeMessage = ({
           </Link>
         </p>
         <div className="call-to-action">
-          Vous souhaitez suivre le traitement d’une demande d’habilitation,
-          merci de vous identifier afin que nous puissions configurer vos accès.
+          Vous souhaitez suivre le traitement d’une habilitation, merci de vous
+          identifier afin que nous puissions configurer vos accès.
         </div>
       </>
     )}

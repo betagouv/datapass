@@ -46,9 +46,10 @@ const DemarcheSectionNotification = ({
           )}
         <br />
         <br />
-        Certains champs du formulaire ont été pré-remplis afin de faciliter
-        votre demande. Attention, il est <b>tout de même indispensable</b> que
-        vous lisiez la demande et que vous adaptiez les champs selon votre cas.
+        Certains champs du formulaire ont été pré-remplis afin de faciliter la
+        constitution de votre demande d’habilitation. Attention, il est{' '}
+        <b>tout de même indispensable</b> que vous lisiez son contenu et que
+        vous adaptiez les champs selon votre cas.
       </Alert>
     )}
   </>

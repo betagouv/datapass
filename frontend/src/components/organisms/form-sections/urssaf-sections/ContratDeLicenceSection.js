@@ -9,16 +9,16 @@ export const ContratDeLicenceSection = () => (
   <ScrollablePanel scrollableId={SECTION_ID}>
     <h2>{SECTION_LABEL}</h2>
     <p>
-      Suite à la soumission de votre demande via ce formulaire, l’Urssaf va
-      analyser et valider ou non votre demande. L’octroi de cette habilitation
-      est conditionné entre-autre au respect par le demandeur de ses obligations
-      fiscales et sociales et à l’adéquation du service proposé avec l’objet de
-      l’API.
+      Suite à la soumission de votre demande d’habilitation via ce formulaire,
+      l’Urssaf va analyser et valider ou non votre habilitation. L’octroi de
+      cette habilitation est conditionné entre autre au respect par le demandeur
+      de ses obligations fiscales et sociales et à l’adéquation du service
+      proposé avec l’objet de l’API.
     </p>
     <p>
-      Si votre demande est validée, vous recevrez par mail une licence à signer.
-      Sa signature devra impérativement être réalisée électroniquement par un
-      dispositif certifié.
+      Si votre habilitation est validée, vous recevrez par mail une licence à
+      signer. Sa signature devra impérativement être réalisée électroniquement
+      par un dispositif certifié.
     </p>
     <p>
       Dans le cas où votre organisme n’aurait pas de dispositif de signature

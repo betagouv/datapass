@@ -23,7 +23,7 @@ class Enrollment::AidantsConnect < Enrollment
       errors[:has_professional_contact_only] << "Vous devez valider que la liste des aidants à habiliter contient exclusivement des aidants professionnels avant de continuer"
     end
     unless additional_content&.fetch("has_non_elected_contact_only", false)&.present?
-      errors[:has_non_elected_contact_only] << "Vous devez valider qu’aucun élu n’est impliqué dans l’habilitation Aidants Connect"
+      errors[:has_non_elected_contact_only] << "Vous devez valider qu’aucun élu n’est impliqué dans cette demande d’habilitation"
     end
   end
 end

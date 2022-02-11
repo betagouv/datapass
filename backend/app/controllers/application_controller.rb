@@ -62,11 +62,11 @@ class ApplicationController < ActionController::API
 
     error_message = case error_key
     when :copy_enrollment_is_not_validated_nor_refused
-      "Copie impossible, la demande originale n’est ni validée ni refusée."
+      "Copie impossible, la demande d’habilitation originale n’est ni validée ni refusée."
     when :copy_user_do_not_belong_to_organization
-      "Copie impossible, la demande originale est déposée au nom d’une organisation à laquelle vous n’appartenez pas."
+      "Copie impossible, l’habilitation originale est déposée au nom d’une organisation à laquelle vous n’appartenez pas."
     when :copy_user_is_not_demandeur
-      "Copie impossible, vous n’êtes pas le demandeur de la demande originale."
+      "Copie impossible, vous n’êtes pas le demandeur de l’habilitation originale."
     else
       "Vous n’êtes pas autorisé à modifier cette ressource"
     end
@@ -80,7 +80,7 @@ class ApplicationController < ActionController::API
     if e.is_a?(ActiveRecord::RecordInvalid)
       if e.message.to_s.include? "Copied from enrollment"
         render status: :unprocessable_entity, json: {
-          message: "Copie impossible, une copie de cette demande d’habilitation existe déjà."
+          message: "Copie impossible, une copie de cette habilitation existe déjà."
         }
       else
         render status: :unprocessable_entity, json: e.record.errors

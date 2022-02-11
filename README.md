@@ -24,25 +24,6 @@ Dans un deuxième temps, la DINUM a mis en place un outil pour faciliter cette m
 
 Le code de cet outil est [ouvert](https://guides.etalab.gouv.fr/logiciels/#clarifier-quels-degres-d-ouverture-pour-les-codes-sources).
 
-## Fonctionnalités de DataPass
-
-Pour le demandeur d’accès aux « données » :
-
-- centralisation des habilitations pour les administrations à plusieurs API (et pour tout autre type d’organisation, aussi bien publique que privée)
-- accès aux API Managers avec le même compte que celui utilisé pour demander l’accès à l’outil DataPass (SSO)
-- gestion du renouvellement des habilitations
-- sélection des périmètres de données (scopes) dans chaque API
-- automatisation de la délivrance des jetons grâce à une interaction vers l’API Manager de votre organisation
-- notification par mail du Délégué à la protection des données et du responsable de traitement de votre organisation lors de la validation d’une demande
-
-Pour l’instructeur de la demande d’accès aux « données » :
-
-- notification par mail à chaque nouvelle demande d’un demandeur
-- automatisation de la création des comptes d’accès aux API Manager
-- automatisation de la création des jetons grâce à une interaction avec les API Manager
-- publication des habilitations validées sur https://datapass.api.gouv.fr/public conformément au RGPD
-- pilotage de l’activité/tableau de bord statistique : https://datapass.api.gouv.fr/stats
-
 ## Raccorder son service à DataPass
 
 ### Déploiement du formulaire
@@ -72,23 +53,23 @@ Pour ajouter un formulaire voici la liste des fichiers à modifier :
 
 Dans DataPass, il y a différents types d’utilisateurs :
 
-- **les demandeurs :** ils viennent déposer leur demande d’accès, ils n’ont accès qu’a leur demandes.
-- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes qu’ils
+- **les demandeurs :** ils viennent déposer leur demande d’accès, ils n’ont accès qu’a leurs habilitations.
+- **les instructeurs :** ils peuvent valider, refuser ou demander des modifications des demandes d’habilitations qu’ils
   ont à charge.
-- **les rapporteurs :** ils voient, en plus de leurs propres demandes, toutes les demandes déposées pour
+- **les rapporteurs :** ils voient, en plus de leurs propres habilitations, toutes les habilitations relatives à
   leur service.
 - **les abonnés :** ils reçoivent une notification par mail à chaque fois qu’un demandeur dépose une
-  nouvelle demande pour leur service.
+  nouvelle demande d’habilitation pour leur service.
 
 Ces types sont combinables pour débloquer plus ou moins de fonctionnalités : par exemple un utilisateur qui
 serait à la fois « rapporteur » et « abonné » pour une API donnée, est notifié par email d’une nouvelle
-demande pour cette API et peut consulter la demande en question. Pour autant, il ne peut pas la valider.
+demande d’habilitation pour cette API et peut consulter la demande d’habilitation en question. Pour autant, il ne peut pas la valider.
 
 À noter que les instructeurs, rapporteurs et abonnés ont une page d’accueil différente des demandeurs.
-Cette page d’accueil ajoute notamment des fonctions de recherche et de filtre des demandes qui ne sont pas
+Cette page d’accueil ajoute notamment des fonctions de recherche et de filtre des habilitations qui ne sont pas
 disponibles aux demandeurs.
 
-Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut :
+Pour devenir instructeur, rapporteur ou abonné pour un type d’habilitation il faut :
 
 1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
 2. rejoindre l’organisation que l’on représente en renseignant son numéro SIRET
@@ -98,7 +79,7 @@ Pour devenir instructeur, rapporteur ou abonné pour un type de demande il faut 
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
 de DataPass, vous pouvez utiliser notre plateforme de « staging ». Cette plateforme est disponible ici :
-https://datapass-staging.api.gouv.fr/ (lien direct vers une demande API Particulier :
+https://datapass-staging.api.gouv.fr/ (lien direct vers une demande d’habilitation API Particulier :
 https://datapass-staging.api.gouv.fr/api-particulier).
 
 Vous pouvez vous créer un compte utilisateur en entrant n’importe quel numéro SIRET.

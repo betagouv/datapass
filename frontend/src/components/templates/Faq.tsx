@@ -5,13 +5,13 @@ import ExpandableQuote from '../molecules/ExpandableQuote';
 
 const questions = [
   {
-    anchor: 'probleme-demande',
-    title: 'J’ai une question concernant ma demande ?',
+    anchor: 'probleme-habilitation',
+    title: 'J’ai une question concernant mon habilitation ?',
     body: (
       <>
         <p>
           Pour répondre à votre question, vous pouvez contacter l'équipe qui
-          instruit votre demande :
+          instruit votre habilitation :
         </p>
         <ContactsTable />
       </>

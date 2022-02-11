@@ -5,7 +5,7 @@ class GetMajorityPercentileProcessingTimeInDays < ApplicationService
       "1 = 1" # equivalent to no filter
   end
 
-  # Temps moyen de traitement des demandes
+  # Temps moyen de traitement des demandes d’habilitation
   def call
     query = <<-SQL
       WITH selected_enrollments as (

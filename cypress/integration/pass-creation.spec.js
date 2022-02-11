@@ -38,7 +38,7 @@ describe("DataPass", () => {
 
     // Do an intermediate save
     cy.get("button.fr-fi-save-line").as("draftSaveButton").click();
-    cy.contains("user@yopmail.com a créé la demande");
+    cy.contains("user@yopmail.com a créé la demande d’habilitation");
 
     cy.fillField("team_members[1].given_name", "Jean");
     cy.fillField("team_members[1].family_name", "Martin");

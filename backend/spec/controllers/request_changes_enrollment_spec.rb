@@ -12,7 +12,7 @@ RSpec.describe EnrollmentsController, "request_changes", type: :controller do
   let(:instructor) { create(:user, roles: ["franceconnect:instructor", "franceconnect:reporter"]) }
   let(:enrollment) { create(:enrollment, :submitted, :franceconnect) }
 
-  let(:comment) { "Votre demande n'est pas valide" }
+  let(:comment) { "Votre demande d’habilitation n'est pas valide" }
 
   before do
     login(instructor)

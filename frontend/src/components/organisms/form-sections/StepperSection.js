@@ -10,7 +10,7 @@ export const StepperSection = () => {
     <>
       {!isEmpty(get(location, 'state.fromFranceConnectedAPI')) && (
         <div>
-          <p>La procédure consiste en 2 habilitations distinctes :</p>
+          <p>La procédure consiste en 2 demandes d’habilitation distinctes :</p>
           <Stepper
             steps={[
               'franceconnect',
@@ -23,7 +23,7 @@ export const StepperSection = () => {
       {get(location, 'state.fromFranceConnectedAPI') ===
         'api_impot_particulier_fc_sandbox' && (
         <div>
-          <p>La procédure consiste en 3 habilitations distinctes :</p>
+          <p>La procédure consiste en 3 demandes d’habilitation distinctes :</p>
           <Stepper
             steps={[
               'franceconnect',

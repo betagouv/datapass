@@ -25,15 +25,15 @@ const eventToDisplayableContent = {
   },
   create: {
     icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
-    label: 'a créé la demande',
+    label: 'a créé la demande d’habilitation',
   },
   submit: {
     icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
-    label: 'a soumis la demande',
+    label: 'a soumis la demande d’habilitation',
   },
   validate: {
     icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
-    label: 'a validé la demande',
+    label: 'a validé l’habilitation',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
@@ -43,19 +43,19 @@ const eventToDisplayableContent = {
   },
   update: {
     icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
-    label: 'a mis à jour la demande',
+    label: 'a mis à jour l’habilitation',
   },
   refuse: {
     icon: <ErrorIcon color={'var(--text-default-error)'} />,
-    label: 'a refusé la demande',
+    label: 'a refusé l’habilitation',
   },
   copy: {
     icon: <FileCopyIcon color={'var(--text-default-info)'} />,
-    label: 'a copié la demande',
+    label: 'a copié l’habilitation',
   },
   import: {
     icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
-    label: 'a importé la demande',
+    label: 'a importé l’habilitation',
   },
 };
 

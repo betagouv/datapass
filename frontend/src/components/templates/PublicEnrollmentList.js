@@ -162,7 +162,9 @@ class PublicEnrollmentList extends React.Component {
           <TagContainer>
             <NavLink end to="/public">
               {({ isActive }) => (
-                <Tag type={isActive ? 'info' : ''}>Toutes les demandes</Tag>
+                <Tag type={isActive ? 'info' : ''}>
+                  Toutes les habilitations
+                </Tag>
               )}
             </NavLink>
             {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(

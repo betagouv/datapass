@@ -10,7 +10,8 @@ const Accessibilite = () => (
         Dans la suite, nous parlons d’interface utilisable lorsqu’un utilisateur
         a la possibilité de soumettre une demande d’habilitation via DataPass
         bien que l’affichage de certaines fonctionnalités non essentielles à la
-        soumission d’une demande puissent être dégradées ou inaccessibles.
+        soumission d’une demande d’habilitation puissent être dégradées ou
+        inaccessibles.
       </p>
       <p>
         Nous parlons d’interface optimisée lorsque toutes les fonctionnalités du
@@ -36,7 +37,7 @@ const Accessibilite = () => (
       </ul>
       <p>DataPass est utilisable sur les navigateurs suivant :</p>
       <ul>
-        <li>sous windows 7 et ultérieures : Internet Explorer 11 et Edge</li>
+        <li>sous windows 7 et ultérieures : Edge</li>
       </ul>
       <p>
         L’équipe technique teste l’application sur Chrome, Firefox, Firefox 68

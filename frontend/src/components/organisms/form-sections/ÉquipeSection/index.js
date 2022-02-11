@@ -14,8 +14,8 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const getDefaultDemandeurDescription = () => (
   <>
-    <b>Le demandeur</b>, c'est vous, dépose la demande et sera contacté en cas
-    de problème fonctionnel sur votre service.
+    <b>Le demandeur</b>, c'est vous, dépose la demande d’habilitation et sera
+    contacté en cas de problème fonctionnel sur votre service.
   </>
 );
 
@@ -25,8 +25,8 @@ export const getDefaultResponsableTraitementDescription = () => (
     morale qui, seule ou conjointement avec d’autres, détermine les finalités et
     les moyens du traitement des données à caractère personnel. Seule une
     personne appartenant à l’organisme demandeur peut être renseignée. Cette
-    personne sera notifiée par email à la validation de la demande. Ses nom et
-    prénom peuvent également être rendus publics.{' '}
+    personne sera notifiée par email à la validation de l’habilitation. Ses nom
+    et prénom peuvent également être rendus publics.{' '}
     <Link
       inline
       newTab
@@ -45,7 +45,7 @@ export const getDefaultDelegueProtectionDonneesDescription = () => (
     protège convenablement les données à caractère personnel, conformément à la
     législation en vigueur. C'est généralement une personne appartenant à
     l’organisme demandeur. Cette personne sera notifiée par email à la
-    validation de la demande.{' '}
+    validation de l’habilitation.{' '}
     <Link
       inline
       newTab

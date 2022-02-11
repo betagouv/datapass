@@ -248,7 +248,7 @@ const OrganisationSection = ({ editorList = [] }) => {
                 </b>
                 {!disabled && (
                   <Button
-                    title="faire une demande pour une autre organisation"
+                    title="demander une habilitation pour une autre organisation"
                     outline
                     icon="edit"
                     onClick={() => setShowOrganizationPrompt(true)}

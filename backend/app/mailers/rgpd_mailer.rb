@@ -11,7 +11,7 @@ class RgpdMailer < ActionMailer::Base
       to: [{
         email: params[:to]
       }],
-      subject: "Vous avez été désigné #{params[:rgpd_role]} pour l’organisation #{params[:nom_raison_sociale]}",
+      subject: "Vous avez été désigné #{params[:rgpd_role]} pour la démarche « #{params[:intitule]} »",
       sender: {
         name: "L’équipe d’api.gouv.fr",
         email: "contact@api.gouv.fr"
@@ -54,7 +54,7 @@ class RgpdMailer < ActionMailer::Base
       }, {
         email: params[:instructor_email]
       }],
-      subject: "Votre demande d’habilitation à #{target_api_label}",
+      subject: "Votre habilitation à #{target_api_label}",
       sender: {
         name: "L’équipe DataPass",
         email: "datapass@api.gouv.fr"
