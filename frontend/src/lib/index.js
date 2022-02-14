@@ -1,19 +1,19 @@
 import {
   chain,
+  forOwn,
+  isArray,
   isBoolean,
   isEmpty,
+  isEqual,
   isInteger,
   isObject,
   isString,
+  isUndefined,
   mapKeys,
   mapValues,
   mergeWith,
   omitBy,
-  forOwn,
   slice,
-  isArray,
-  isUndefined,
-  isEqual,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -321,12 +321,12 @@ export const isEmailValid = (email) => {
 
   // The local part (before the @) should be no more than 63 characters.
   const localPart = parts[0];
-  if (Buffer.from(localPart).length > 63) {
+  if (localPart.length > 63) {
     return false;
   }
 
   // The total length should be no more than 254 characters.
-  if (Buffer.from(email).length > 254) {
+  if (email.length > 254) {
     return false;
   }
 
