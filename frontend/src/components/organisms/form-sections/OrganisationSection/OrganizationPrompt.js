@@ -47,9 +47,7 @@ const OrganizationPrompt = ({
     () =>
       organizations.map(({ id, siret }) => ({
         id,
-        label: siretToNomRaisonSociale[siret]
-          ? siretToNomRaisonSociale[siret].title
-          : siret,
+        label: siretToNomRaisonSociale[siret]?.title || siret,
       })),
     [organizations, siretToNomRaisonSociale]
   );
