@@ -38,7 +38,7 @@ const ApiProSanteConnect = () => (
       defaultFondementJuridiqueUrl="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043290292"
     />
     <ÉquipeSection />
-    <CguSection cguLink="https://tech.esante.gouv.fr/outils-services/pro-sante-connect-e-cps/conditions-generale-dutilisation-pro-sante-connect" />
+    <CguSection cguLink="https://industriels.esante.gouv.fr/produits-et-services/pro-sante-connect/conditions-generale-d-utilisation-pro-sante-connect" />
   </Form>
 );
 
