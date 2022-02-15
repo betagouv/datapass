@@ -1,17 +1,18 @@
 import {
-  stackLowUseAndUnpublishedApi,
   collectionWithKeyToObject,
+  dataProviderParametersToContactInfo,
   findModifiedFields,
   findModifiedScopes,
   getChangelog,
   getErrorMessages,
   getStateFromUrlParams,
   hashToQueryParams,
+  isEmailValid,
+  isIndividualEmailAddress,
   isValidMobilePhoneNumber,
   isValidNAFCode,
   isValidPhoneNumber,
-  isIndividualEmailAddress,
-  dataProviderParametersToContactInfo,
+  stackLowUseAndUnpublishedApi,
 } from './index';
 import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
 
@@ -501,6 +502,71 @@ describe('utils', () => {
       expect(findModifiedScopes(demarcheState, enrollmentState)).toStrictEqual({
         cnaf_quotient_familial: false,
         entreprise: false,
+      });
+    });
+  });
+
+  /*
+   * duplicated from : api-auth/test/security.test.js
+   */
+  describe('isEmailValid', () => {
+    it('should return false for undefined value', () => {
+      expect(isEmailValid(undefined)).toStrictEqual(false);
+    });
+
+    it('should return false for empty string', () => {
+      expect(isEmailValid('')).toStrictEqual(false);
+    });
+
+    it('should return false if no @ is present', () => {
+      expect(isEmailValid('test')).toStrictEqual(false);
+    });
+
+    it('should return false if no domain is present', () => {
+      expect(isEmailValid('test@')).toStrictEqual(false);
+    });
+
+    it('should return false if two @ are present', () => {
+      expect(isEmailValid('test@test@test')).toStrictEqual(false);
+    });
+
+    it('should return false if domains contain other than letters, numbers, hyphens (-) and periods (.)', () => {
+      expect(isEmailValid('test@test_test')).toStrictEqual(false);
+    });
+
+    it('should return false if local part is longer than 63 characters', () => {
+      expect(
+        isEmailValid(
+          '1234567890123456789012345678901234567890123456789012345678901234@test'
+        )
+      ).toStrictEqual(false);
+    });
+
+    it('should return false if total length is longer than 254 characters', () => {
+      expect(
+        isEmailValid(
+          'test@1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
+        )
+      ).toStrictEqual(false);
+    });
+
+    // this test cases have been taken from
+    // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript/32686261#32686261
+    const validEmailAddresses = [
+      'prettyandsimple@example.com',
+      'very.common@example.com',
+      'disposable.style.email.with+symbol@example.com',
+      'other.email-with-dash@example.com',
+      "#!$%&'*+-/=?^_`{}|~@example.org",
+      '"()[]:,;\\"!#$%&\'*+-/=?^_`{}| ~.a"@example.org',
+      '" "@example.org', // space between the quotes
+      'üñîçøðé@example.com', // Unicode characters in local part
+      'Pelé@example.com', // Latin
+    ];
+
+    validEmailAddresses.forEach((validEmailAddress) => {
+      it('should return true for valid email address', () => {
+        expect(isEmailValid(validEmailAddress)).toStrictEqual(true);
       });
     });
   });
