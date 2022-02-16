@@ -8,10 +8,7 @@ module OmniAuth
       option :client_options, {
         site: ENV["OAUTH_HOST"],
         authorize_url: "/oauth/authorize",
-        auth_scheme: :basic_auth,
-        ssl: {
-          verify: !ENV["BACK_HOST"].include?("development")
-        }
+        auth_scheme: :basic_auth
       }
       option :scope, "openid email profile organizations"
 
