@@ -30,7 +30,7 @@ class TeamMember < ActiveRecord::Base
 
   def set_user
     self.user = if has_linked_user && email.present?
-      User.reconcile({"email" => email.downcase.strip})
+      User.reconcile({"email" => email})
     end
   end
 end
