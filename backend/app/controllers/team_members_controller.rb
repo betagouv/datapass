@@ -4,21 +4,18 @@ class TeamMembersController < ApplicationController
   def update
     @team_member = authorize TeamMember.find(params[:id])
 
-    if @team_member.update(permitted_attributes(@team_member))
-      @team_member.enrollment.events.create(
-        name: "update",
-        user_id: current_user.id,
-        diff: @team_member.enrollment.previous_changes
-      )
-      @team_member.enrollment.notify_event(
-        "team_member_update",
-        team_member_type: @team_member.type
-      )
+    @team_member.update!(permitted_attributes(@team_member))
+    @team_member.enrollment.events.create(
+      name: "update",
+      user_id: current_user.id,
+      diff: @team_member.enrollment.previous_changes
+    )
+    @team_member.enrollment.notify_event(
+      "team_member_update",
+      team_member_type: @team_member.type
+    )
 
-      render json: @team_member
-    else
-      render json: @team_member.errors, status: :unprocessable_entity
-    end
+    render json: @team_member
   end
 
   private
