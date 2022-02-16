@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
       message: "Vous devez renseigner un email valide"
     }
 
+  before_save :downcase_email, if: :will_save_change_to_email?
+
   has_many :team_members
   has_many :enrollments, through: :team_members
   has_many :events
@@ -16,7 +18,7 @@ class User < ActiveRecord::Base
 
   def self.reconcile(external_user_info)
     user = where(
-      email: external_user_info["email"]
+      email: external_user_info["email"].downcase.strip
     ).first_or_create!
 
     # the following data must be used as a cache (do not modify them, use fresh data form api-auth whenever you can)
@@ -65,5 +67,11 @@ class User < ActiveRecord::Base
 
   def is_administrator?
     roles.include?("administrator")
+  end
+
+  protected
+
+  def downcase_email
+    self.email = email.downcase.strip
   end
 end
