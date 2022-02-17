@@ -8,6 +8,8 @@ L’outil de gestion des habilitations juridiques pour les données à accès re
 
 ### Le problème
 
+test du cache
+
 Lorsqu’une administration expose des données à caractère personnel, elle doit pouvoir interdire leur diffusion aux organisations qui n’ont pas le droit d’y accéder. Par exemple, une agence de voyage n’a pas à connaître le revenu fiscal de référence de ses clients.
 
 Pour cela, la plupart des administrations qui fournissent des données demandent aux entités souhaitant exploiter ces données de signer des conventions pour organiser l’échange.
