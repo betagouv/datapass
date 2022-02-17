@@ -49,12 +49,17 @@ class EnrollmentMailer < ActionMailer::Base
 
   def render_mail(attributes)
     subject = data_provider_mailer_config["subject"]
-
-    mail({
+    headers = {
       to: params[:to],
       subject: subject,
       from: data_provider_config["support_email"]
-    }) do |format|
+    }
+
+    if data_provider_config["reply_to"]
+      headers[:reply_to] = data_provider_config["reply_to"]
+    end
+
+    mail(headers) do |format|
       format.text do
         if attributes[:body]
           render plain: attributes[:body]
