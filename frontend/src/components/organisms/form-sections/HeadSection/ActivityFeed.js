@@ -71,7 +71,7 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
           <div>
             <strong>{email} </strong>
             {eventToDisplayableContent[name].label}
-            {!isEmpty(diff) && (
+            {!isEmpty(changelog) && (
               <button
                 className="toogle-detail"
                 onClick={() => setShowDiff(!showDiff)}

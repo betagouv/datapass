@@ -264,6 +264,14 @@ describe('utils', () => {
     it('should return changelog for scopes', () => {
       expect(getChangelog(diff)).toEqual(changelog);
     });
+
+    it('should return empty changelog for modified', () => {
+      const diff = {
+        updated_at: ['2021-12-28T15:51:35.552Z', '2021-12-28T15:51:35.565Z'],
+      };
+      const changelog = [];
+      expect(getChangelog(diff)).toEqual(changelog);
+    });
   });
 
   describe('hashToQueryParams', () => {
