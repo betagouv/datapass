@@ -11,10 +11,10 @@ import Accessibilite from './components/templates/Accessibilite';
 import Admin from './components/templates/Admin';
 import CopyEnrollment from './components/templates/CopyEnrollment';
 import DataProviderList from './components/templates/DataProviderList';
-import Enrollment from './components/templates/Enrollment';
 import FAQ from './components/templates/Faq';
 import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
+import RedirectToEnrollment from './components/templates/RedirectToEnrollment';
 import Stats from './components/templates/Stats';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
 
@@ -53,7 +53,7 @@ export const Routes = () => {
 
       <Route
         path="authorization-request/:enrollmentId"
-        element={<AuthRequired children={<Enrollment />} />}
+        element={<AuthRequired children={<RedirectToEnrollment />} />}
       />
 
       <Route
