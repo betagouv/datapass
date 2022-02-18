@@ -1,4 +1,6 @@
 class EnrollmentsController < ApplicationController
+  include ActionController::MimeResponds
+
   RESPONSABLE_TRAITEMENT_LABEL = "responsable de traitement"
   DELEGUE_PROTECTION_DONNEES_LABEL = "délégué à la protection des données"
 
@@ -69,6 +71,15 @@ class EnrollmentsController < ApplicationController
       meta: pagination_dict(@enrollments),
       adapter: :json,
       root: "enrollments"
+  end
+
+  # GET /enrollments/export
+  def export
+    @enrollments = policy_scope(Enrollment)
+
+    respond_to do |format|
+      format.csv { send_data @enrollments.to_csv, filename: "export-datapass-#{Date.today}.csv" }
+    end
   end
 
   # GET /enrollments/1

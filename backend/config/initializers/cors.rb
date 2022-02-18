@@ -13,6 +13,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource "*",
       methods: %i[get post put patch delete options],
       headers: %i[Authorization DNT User-Agent X-Requested-With If-Modified-Since Cache-Control Content-Type Range],
+      expose: %w[Content-Disposition],
       credentials: true,
       max_age: 1728000
   end
