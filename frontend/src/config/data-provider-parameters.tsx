@@ -1,4 +1,5 @@
 import React from 'react';
+import { Scopes } from '../components/templates/Enrollment';
 import AgentConnectFi from '../pages/AgentConnectFi';
 import AgentConnectFs from '../pages/AgentConnectFs';
 import AidantsConnect from '../pages/AidantsConnect';
@@ -9,7 +10,6 @@ import ApiHistovec from '../pages/ApiHistovec';
 import ApiIndemnisationPoleEmploi from '../pages/ApiIndemnisationPoleEmploi';
 import ApiIndemnitesJournalieresCnam from '../pages/ApiIndemnitesJournalieresCnam';
 import ApiIngres from '../pages/ApiIngres';
-import ApiParticulier from '../pages/ApiParticulier';
 import ApiPrestationsSociales from '../pages/ApiPrestationsSociales';
 import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
 import ApiProSanteConnect from '../pages/ApiProSanteConnect';
@@ -59,13 +59,29 @@ enum DataProviderType {
   service = 'service',
 }
 
+export type EnrollmentConfiguration = {
+  scopes: Scopes[];
+  editorList: { name: string; siret: string }[];
+  demarches: {
+    [k: string]: {
+      label: string;
+      about: string;
+      state: any;
+      team_members?: any;
+    };
+  };
+  cguLink: string;
+  donneesDescription: string;
+  cadreJuridiqueDescription: string;
+};
+
 type DataProviderParameter = {
   label: string;
   icon: string | null;
   email: string | null;
   type: DataProviderType;
   component?: React.FC;
-  formConfiguration?: any;
+  enrollmentConfiguration?: EnrollmentConfiguration;
 };
 
 export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
@@ -103,8 +119,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-beta-gouv.svg',
       email: 'contact@particulier.api.gouv.fr',
       type: DataProviderType.api,
-      component: ApiParticulier,
-      formConfiguration: {
+      enrollmentConfiguration: {
         scopes: [
           {
             value: 'dgfip_declarant1_nom',
@@ -1305,6 +1320,24 @@ collectées ou traitées soient effacées ou rectifiées ;
 Nous vous remercions de sélectionner uniquement les données strictement
 nécessaires à votre téléservice. Le non-respect du principe de
 proportionnalité vous expose vis-à-vis de la CNIL.
+`,
+        cadreJuridiqueDescription: `
+Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
+légal et réglementaire des fournisseurs de service doit permettre à la
+DINUM de transmettre des données personnelles à votre entité
+administrative. Merci de le compléter.
+
+Dans le cas où vous représentez une collectivité, veuillez joindre la
+délibération du conseil municipal explicitant l’usage des données
+demandées.
+
+Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
+Il vous suffit de déposer la dernière délibération tarifaire qui détaille
+les barèmes de facturation des services, ou le règlement qui décrit les
+données nécessaires à une instruction.
+
+Pour en savoir plus, consultez
+[notre guide sur ce qu’est une bonne délibération](https://api.gouv.fr/guides/deliberation-api-part).
 `,
       },
     },
