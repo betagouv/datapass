@@ -12,7 +12,7 @@ import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
 const demarches = {
   default: {
-    label: 'Test cache',
+    label: 'Demande Libre',
     state: {
       fondement_juridique_title:
         'articles L. 3121-11-1 et R3121-24 à R3121-33 du Code des transports',
