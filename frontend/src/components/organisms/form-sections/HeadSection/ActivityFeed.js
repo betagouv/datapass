@@ -63,6 +63,10 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
 
+  if (name === 'update' && isEmpty(changelog)) {
+    return null;
+  }
+
   return (
     <div className="event-item">
       <div className="event-icon">{eventToDisplayableContent[name].icon}</div>
