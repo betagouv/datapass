@@ -19,9 +19,19 @@ server {
   }
 {% endfor %}
 {% endif %}
+  root /opt/apps/{{app_service_name}}/current;
 
   location ~ / {
-    root /opt/apps/{{app_service_name}}/current;
-    try_files $uri /index.html;
+    try_files $uri @index;
+  }
+
+  location @index {
+    # kill cache
+    add_header Last-Modified $date_gmt;
+    add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+    if_modified_since off;
+    expires off;
+    etag off;
+    try_files /index.html =404;
   }
 }
