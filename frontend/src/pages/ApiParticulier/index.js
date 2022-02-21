@@ -274,6 +274,49 @@ const availableScopes = [
     groupTitle: 'Statut étudiant',
     helper: 'Le ou les établissements (nom et indentifiant - UAI).',
   },
+  {
+    value: 'cnous_statut_boursier',
+    label: 'Statut étudiant boursier',
+    groupTitle: 'Statut étudiant boursier',
+    helper:
+      'Indique si l‘étudiant est boursier au moment de l‘interrogation (Booléen)',
+  },
+  {
+    value: 'cnous_echelon_bourse',
+    label: 'Echelon de la bourse',
+    groupTitle: 'Statut étudiant boursier',
+    helper: 'échelon de 0bis à 8',
+  },
+  {
+    value: 'cnous_email',
+    label: 'Email',
+    groupTitle: 'Statut étudiant boursier',
+  },
+  {
+    value: 'cnous_periode_versement',
+    label: 'Période de versement',
+    groupTitle: 'Statut étudiant boursier',
+    helper:
+      'Date de début de rentrée scolaire/universitaire et durée de versement de la bourse',
+  },
+  {
+    value: 'cnous_statut_bourse',
+    label: 'Statut définitif de la bourse',
+    groupTitle: 'Statut étudiant boursier',
+    helper: 'O si définitif, >=1 si provisoire (conditionnel)',
+  },
+  {
+    value: 'cnous_ville_etudes',
+    label: 'Ville d‘étude et établissement',
+    groupTitle: 'Statut étudiant boursier',
+    helper: 'Libellé de la ville d‘études et de l‘établissement',
+  },
+  {
+    value: 'cnous_identite',
+    label: 'Identité',
+    groupTitle: 'Statut étudiant boursier',
+    helper: 'Nom, prénom, date de naissance, lieu de naissance, genre',
+  },
 ];
 
 const editorList = [

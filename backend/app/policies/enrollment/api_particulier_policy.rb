@@ -41,7 +41,14 @@ class Enrollment::ApiParticulierPolicy < EnrollmentPolicy
         :mesri_inscription_etudiant,
         :mesri_inscription_autre,
         :mesri_admission,
-        :mesri_etablissements
+        :mesri_etablissements,
+        :cnous_statut_boursier,
+        :cnous_echelon_bourse,
+        :cnous_email,
+        :cnous_periode_versement,
+        :cnous_statut_bourse,
+        :cnous_ville_etudes,
+        :cnous_identite
       ]
     ])
 

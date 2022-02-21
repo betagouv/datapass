@@ -47,7 +47,14 @@
         "mesri_inscription_etudiant": false,
         "mesri_inscription_autre": false,
         "mesri_admission": false,
-        "mesri_etablissements": false
+        "mesri_etablissements": false,
+        "cnous_statut_boursier": false,
+        "cnous_echelon_bourse": false,
+        "cnous_email": false,
+        "cnous_periode_versement": false,
+        "cnous_statut_bourse": false,
+        "cnous_ville_etudes": false,
+        "cnous_identite": false
       }
     },
     "team_members": {
