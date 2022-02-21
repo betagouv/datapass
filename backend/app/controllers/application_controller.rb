@@ -39,6 +39,17 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from BadGateway do |e|
+    Sentry.set_extras(
+      {
+        endpoint_label: e.endpoint_label,
+        url: e.url,
+        http_code: e.http_code,
+        http_body: e.http_body.to_json,
+        message: e.message
+      }
+    )
+    Sentry.capture_message("Fail to call target's api bridge endpoint")
+
     render status: :bad_gateway, json: {
       message: "Impossible d’envoyer les données à \"#{e.endpoint_label}\".\n\nMerci de communiquer les détails techniques de l’erreur à contact@api.gouv.fr :\n- url: #{e.url}\n- http code: #{e.http_code}\n- http body: #{e.http_body.to_json}\n- message: #{e.message}"
     }
