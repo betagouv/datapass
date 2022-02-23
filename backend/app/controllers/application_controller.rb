@@ -24,7 +24,7 @@ class ApplicationController < ActionController::API
     end
   end
 
-  include Pundit
+  include Pundit::Authorization
 
   rescue_from Unauthorized do |_|
     render status: :unauthorized, json: {
