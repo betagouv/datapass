@@ -1,4 +1,0 @@
----
-allow_duplicates: yes
-dependencies:
-  - nginx

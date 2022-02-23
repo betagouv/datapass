@@ -1,7 +1,0 @@
-app_user: api-auth
-node_env: production
-
-api_auth_domain_name: auth-development.api.gouv.fr
-api_auth_pg_password: api-auth
-
-session_cookie_secret: 'gVxf0KQrjF1rTRPuOucti2cRcok4D5SCzm7oXmPyXS5UEgYz'
