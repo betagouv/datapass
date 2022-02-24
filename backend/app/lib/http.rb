@@ -1,7 +1,6 @@
 module Http
   def self.get(url_as_string, api_key, endpoint_label, auth_header = nil, auth_method = "Bearer")
-    logger = Logger.new($stdout)
-    http = HTTP.use(logging: {logger: logger})
+    http = Rails.logger ? HTTP.use(logging: {logger: Rails.logger}) : HTTP
 
     response = if auth_header.nil?
       http
@@ -42,8 +41,7 @@ module Http
   end
 
   def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method)
-    logger = Logger.new($stdout)
-    http = HTTP.use(logging: {logger: logger})
+    http = Rails.logger ? HTTP.use(logging: {logger: Rails.logger}) : HTTP
 
     response = if auth_header.nil?
       http
