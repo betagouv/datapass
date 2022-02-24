@@ -42,6 +42,8 @@ RSpec.configure do |config|
 
   config.include EntrepriseDataPayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, EntrepriseDataPayloadHelpers)
+  config.include SendinblueDataPayloadHelpers
+  FactoryBot::SyntaxRunner.send(:include, SendinblueDataPayloadHelpers)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
