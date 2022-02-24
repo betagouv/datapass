@@ -51,7 +51,7 @@ class SendinblueWebhooksController < ApplicationController
 
     enrollment_id = email_content["body"][/https:\/\/datapass(-[a-z]+)?.api.gouv.fr\/[a-z-]+\/([0-9]+)/, 2]
     enrollment = Enrollment.find(enrollment_id.to_i)
-    instructor_email = enrollment.events.where(name: "validated")[0].user["email"]
+    instructor_email = enrollment.events.where(name: "validate")[0].user["email"]
 
     # 5. notify enrollment demandeurs that he made an error with the provided rgpd email
     RgpdMailer.with(
