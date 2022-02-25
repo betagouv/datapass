@@ -24,7 +24,7 @@ export const useFileDownloader = () => {
         const contentDispositionHeader =
           response.headers['content-disposition'];
         const filename =
-          contentDispositionHeader?.match(/filename=\"(.*)\"/)?.[1] ||
+          contentDispositionHeader?.match(/filename="(.*)"/)?.[1] ||
           'datapass_download';
         fileDownload(response.data, filename);
         setIsDownloading(false);
