@@ -1,4 +1,0 @@
-[submodule "api-auth"]
-	path = api-auth
-	url = git@github.com:betagouv/api-auth.git
-	branch = master

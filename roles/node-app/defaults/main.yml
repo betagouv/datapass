@@ -1,1 +1,0 @@
-access_log_path: "/var/log/{{app_service_name}}/access.log"

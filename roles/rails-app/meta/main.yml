@@ -1,6 +1,0 @@
----
-dependencies:
-# commented to avoid multiple play of these roles, we keep that as they are actual dependencies
-#  - app-user
-#  - nginx
-#  - ruby

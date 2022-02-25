@@ -1,5 +1,0 @@
-- name: Ensure Redis is installed.
-  apt:
-    name: redis-server
-    update_cache: true
-    cache_valid_time: 86400

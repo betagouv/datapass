@@ -1,7 +1,0 @@
-app_user: datapass
-node_env: production
-
-front_domain_name: datapass-development.api.gouv.fr
-front_host: "https://{{ front_domain_name }}"
-back_domain_name: back.datapass-development.api.gouv.fr
-back_host: "https://{{ back_domain_name }}"
