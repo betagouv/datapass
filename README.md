@@ -100,13 +100,7 @@ Vous pouvez également utiliser les comptes de tests suivants :
 
 ## Contenu de ce dépôt de code
 
-Ce dépôt de code contient les scripts de configuration et de déploiement pour
-déployer les services :
-
-- datapass.api.gouv.fr
-- auth.api.gouv.fr : le SSO des services [api.gouv.fr](https://api.gouv.fr)
-
-En outre, il vous permet d’instancier un environnement de développement local pour ces services.
+Ce dépôt de code vous permet d’instancier un environnement de développement local pour DataPass.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
 ## Installation
@@ -144,7 +138,7 @@ development on the backend.
 
 - [Docker 20.10.8](https://www.docker.com/)
 - [Docker compose 1.29.2](https://docs.docker.com/compose/install/)
-- [Ansible 2.9.10](https://www.ansible.com/)
+- [Ansible 2.11.8](https://www.ansible.com/)
 - [NodeJS 16](https://nodejs.org/)
 
 #### Local environment
@@ -186,69 +180,6 @@ found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.s
 Note that, we use the [`prettier`](https://prettier.io) linter for datapass-frontend.
 Please configure your IDE accordingly: https://prettier.io/docs/en/editors.html.
 
-### API Auth (optional)
-
-#### Dependencies setup
-
-- [Ansible 2.9.10](https://www.ansible.com/)
-- [VirtualBox \^5.2.10](https://www.virtualbox.org)
-- [Vagrant \^2.1.1](https://www.vagrantup.com)
-- NFS
-
-#### Local environment
-
-Clone the repo:
-
-```bash
-git clone git@github.com:betagouv/datapass.git
-```
-
-Add the following hosts in `/etc/hosts`:
-
-```text
-192.168.56.127 auth-development.particulier-infra.api.gouv.fr
-192.168.56.127 auth-development.api.gouv.fr
-```
-
-Then create and configure your virtual machine:
-
-```bash
-vagrant up api-auth # This can take a while, go make a loaf of bread or something
-```
-
-> **If you are using macOS.**
-> The host's `/etc/hosts` configuration file may not take effect in the guest machines.
-> You might need to also alter the guest machine's `/etc/hosts` after running vagrant up.
-> Connect to each guest machine
-
-```bash
-vagrant ssh api-auth
-```
-
-> And copy your hosts to `/etc/hosts`
-
-> **If you are using macOS Catalina 10.15**
-> Vagrant encounters the following error :
-> `NFS is reporting that your exports file is invalid`
-> You must change your source folder in your Vagrantfile as described [here](https://github.com/hashicorp/vagrant/issues/10961#issuecomment-538906659)
-
-#### Interactive mode
-
-```bash
-vagrant ssh api-auth
-sudo systemctl stop api-auth
-sudo su - api-auth
-cd /opt/apps/api-auth/current
-export $(cat /etc/api-auth.conf | xargs)
-npm start
-```
-
-Optional, you can also run api-auth in debug mode:
-
-```
-DEBUG=oidc-provider:* npm start
-```
-
 ### DataPass back & front with Vagrant (optional)
 
 This installation method use a backend launched locally within a Vagrant virtual
@@ -257,76 +188,7 @@ it provides a development environment very close to the production environment
 allowing you to both work on provisioning and applications. It is configured to
 run with a local installation of api-auth in a Vagrant virtual machine.
 
-#### Dependencies setup
-
-- [VirtualBox \^5.2.10](https://www.virtualbox.org)
-- [Vagrant \^2.1.1](https://www.vagrantup.com)
-- NFS
-- [Ansible 2.9.10](https://www.ansible.com/)
-
-#### Installation
-
-Clone the repo:
-
-```bash
-git clone git@github.com:betagouv/datapass.git
-```
-
-Add the following hosts in `/etc/hosts`:
-
-```text
-192.168.56.125 datapass-development.infra.api.gouv.fr
-192.168.56.125 datapass-development.api.gouv.fr
-192.168.56.125 back.datapass-development.api.gouv.fr
-```
-
-Then create and configure your virtual machine:
-
-```bash
-vagrant up datapass # This can take up to 30 minutes
-```
-
-At this point you got a complete environment running. But you may want to run
-the different application interactively.
-
-#### Signup Front in interactive mode
-
-You will run DataPass frontend locally and use the backend in the virtual
-machine.
-
-Additional dependencies setup:
-
-- nodejs ^16.9
-
-Start the app in the interactive mode:
-
-```
-cd frontend
-REACT_APP_BACK_HOST=https://back.datapass-development.api.gouv.fr npm run dev
-```
-
-#### Signup Back
-
-You will run DataPass backend interactively in the virtual machine.
-
-```bash
-vagrant ssh datapass
-sudo systemctl stop datapass-backend
-sudo su - datapass
-cd /opt/apps/datapass-backend/current
-export $(cat /etc/datapass-backend.conf | xargs)
-REDIS_URL=redis://localhost:6379 RAILS_ENV=development rails s
-```
-
-### Production-like deployment (optional)
-
-For development purpose you may want to have a local iso-production application
-running instead of deployment through NFS. You can do it by running the
-deployment script instead of processing to a development deployment:
-
-```bash
-ansible-playbook -i inventories/development deploy.yml
-```
+For details on this installation follow instructions here: https://gitlab.com/etalab/api.gouv.fr/datapass-infrastructure/-/blob/master/README.md
 
 ## Global architecture
 
