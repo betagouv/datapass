@@ -103,18 +103,9 @@ const Header = () => {
                   {user ? (
                     <li>
                       <div className="dropdown">
-                        <Link icon="user" href="#">
+                        <Link icon="logout-box-r" onClick={logout}>
                           {user.given_name} {user.family_name}
                         </Link>
-                        <div className="dropdown-content">
-                          <Link
-                            inline
-                            onClick={logout}
-                            style={{ fontSize: '0.85em' }}
-                          >
-                            Se déconnecter
-                          </Link>
-                        </div>
                       </div>
                     </li>
                   ) : (
