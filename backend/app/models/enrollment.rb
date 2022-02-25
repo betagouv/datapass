@@ -1,3 +1,5 @@
+require "csv"
+
 class Enrollment < ActiveRecord::Base
   self.inheritance_column = "target_api"
 
@@ -167,6 +169,50 @@ class Enrollment < ActiveRecord::Base
     end
 
     copied_enrollment
+  end
+
+  def team_members_json
+    team_members.as_json
+  end
+
+  def self.to_csv
+    attributes = %w[id
+      target_api
+      created_at
+      updated_at
+      status
+      organization_id
+      siret
+      nom_raison_sociale
+      technical_team_type
+      technical_team_value
+      demarche
+      intitule
+      description
+      type_projet
+      date_mise_en_production
+      volumetrie_approximative
+      scopes
+      data_recipients
+      data_retention_period
+      data_retention_comment
+      fondement_juridique_title
+      fondement_juridique_url
+      team_members_json
+      cgu_approved
+      dpo_is_informed
+      additional_content
+      linked_token_manager_id
+      previous_enrollment_id
+      copied_from_enrollment_id]
+
+    CSV.generate do |csv|
+      csv << attributes
+
+      all.each do |enrollment|
+        csv << attributes.map { |attr| enrollment.send(attr) }
+      end
+    end
   end
 
   protected

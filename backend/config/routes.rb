@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       collection do
         get :public
         get :user
+        get :export
       end
       member do
         patch :change_state

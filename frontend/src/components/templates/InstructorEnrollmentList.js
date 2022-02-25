@@ -20,6 +20,8 @@ import ListHeader from '../molecules/ListHeader';
 import FileCopyIcon from '../atoms/icons/file_copy';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import Tag from '../atoms/hyperTexts/Tag';
+import useFileDownloader from './hooks/use-file-downloader';
+import Button from '../atoms/hyperTexts/Button';
 
 const getInboxes = (user) => ({
   primary: {
@@ -378,6 +380,15 @@ class InstructorEnrollmentList extends React.Component {
               </Tag>
             ))}
           </TagContainer>
+          <Button
+            onClick={() => this.props.downloadExport()}
+            disabled={this.props.isExportDownloading}
+            outline
+            icon="file-download"
+            iconRight
+          >
+            Exporter les données
+          </Button>
         </ListHeader>
         <div className="table-container">
           <ReactTable
@@ -446,6 +457,21 @@ class InstructorEnrollmentList extends React.Component {
   }
 }
 
+const withFileDownloader = (Component) => {
+  return (props) => {
+    const { isDownloading, download } = useFileDownloader();
+    const downloadExport = () =>
+      download('/api/enrollments/export', 'text/csv');
+    return (
+      <Component
+        {...props}
+        isExportDownloading={isDownloading}
+        downloadExport={downloadExport}
+      />
+    );
+  };
+};
+
 const withListItemNavigation = (Component) => {
   return (props) => {
     const { goToItem } = useListItemNavigation();
@@ -461,4 +487,6 @@ const withAuth = (Component) => {
   );
 };
 
-export default withListItemNavigation(withAuth(InstructorEnrollmentList));
+export default withFileDownloader(
+  withListItemNavigation(withAuth(InstructorEnrollmentList))
+);

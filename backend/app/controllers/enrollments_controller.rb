@@ -71,6 +71,13 @@ class EnrollmentsController < ApplicationController
       root: "enrollments"
   end
 
+  # GET /enrollments/export
+  def export
+    @enrollments = policy_scope(Enrollment)
+
+    send_data @enrollments.to_csv, filename: "export-datapass-#{Date.today}.csv"
+  end
+
   # GET /enrollments/1
   def show
     @enrollment = authorize Enrollment.find(params[:id])
