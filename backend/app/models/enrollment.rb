@@ -206,7 +206,7 @@ class Enrollment < ActiveRecord::Base
       previous_enrollment_id
       copied_from_enrollment_id]
 
-    CSV.generate(headers: true) do |csv|
+    CSV.generate do |csv|
       csv << attributes
 
       all.each do |enrollment|

@@ -18,7 +18,7 @@ type Props = {
   onChange: ChangeEventHandler<HTMLInputElement>;
   mimeTypes: string;
   meta?: string;
-  documentsToUpload: [DocumentToUpload] | [];
+  documentsToUpload: DocumentToUpload[];
 };
 
 export const FileInput: FunctionComponent<Props> = ({
@@ -33,7 +33,7 @@ export const FileInput: FunctionComponent<Props> = ({
 }) => {
   const [documentsTooLargeError, setDocumentsTooLargeError] = useState(false);
 
-  const areDocumentsTooLarge = (documentsToUpload: [DocumentToUpload] | []) => {
+  const areDocumentsTooLarge = (documentsToUpload: DocumentToUpload[]) => {
     // @ts-ignore
     const documentsSizeInMB = documentsToUpload.reduce(
       // @ts-ignore

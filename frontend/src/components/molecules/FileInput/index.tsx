@@ -28,8 +28,8 @@ type Props = {
   onChange: ChangeEventHandler<HTMLInputElement>;
   mimeTypes: string;
   meta?: string;
-  documentsToUpload: [DocumentToUpload] | [];
-  uploadedDocuments: [Document] | [];
+  documentsToUpload: DocumentToUpload[];
+  uploadedDocuments: Document[];
 };
 
 const Index: FunctionComponent<Props> = ({

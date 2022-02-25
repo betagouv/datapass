@@ -10,7 +10,7 @@ type Props = {
   label: string;
   disabled: boolean;
   onReplaceFile: () => void;
-  uploadedDocuments: [Document] | [];
+  uploadedDocuments: Document[];
   documentType: string;
 };
 
