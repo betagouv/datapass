@@ -21,6 +21,7 @@ import FileCopyIcon from '../atoms/icons/file_copy';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import Tag from '../atoms/hyperTexts/Tag';
 import useFileDownloader from './hooks/use-file-downloader';
+import Button from '../atoms/hyperTexts/Button';
 
 const getInboxes = (user) => ({
   primary: {
@@ -378,14 +379,16 @@ class InstructorEnrollmentList extends React.Component {
                 {getInboxes(this.props.user)[currentInbox].label}
               </Tag>
             ))}
-            <Tag
-              icon="upload-2"
-              onClick={() => this.props.downloadExport()}
-              disabled={this.props.isExportDownloading}
-            >
-              Export
-            </Tag>
           </TagContainer>
+          <Button
+            onClick={() => this.props.downloadExport()}
+            disabled={this.props.isExportDownloading}
+            outline
+            icon="file-download"
+            iconRight
+          >
+            Exporter les données
+          </Button>
         </ListHeader>
         <div className="table-container">
           <ReactTable
