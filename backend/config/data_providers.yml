@@ -236,13 +236,13 @@ api_declaration_cesu:
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
-api_ensu_dad_sandbox:
-  label: API ENSU DAD (Bac à sable)
+api_ensu_documents_sandbox:
+  label: API ENSU Documents (Bac à sable)
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
-api_ensu_dad_production:
-  label: API ENSU DAD (Production)
+api_ensu_documents_production:
+  label: API ENSU Documents (Production)
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
 
