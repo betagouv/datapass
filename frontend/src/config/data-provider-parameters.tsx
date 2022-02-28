@@ -44,8 +44,8 @@ import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
 import ApiHistovec from '../pages/ApiHistovec';
 import ApiPrestationsSociales from '../pages/ApiPrestationsSociales';
 import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
-import ApiEnsuDadSandbox from '../pages/DgfipPages/ApiEnsuDadSandbox';
-import ApiEnsuDadProduction from '../pages/DgfipPages/ApiEnsuDadProduction';
+import ApiEnsuDocumentsSandbox from '../pages/DgfipPages/ApiEnsuDocumentsSandbox';
+import ApiEnsuDocumentsProduction from '../pages/DgfipPages/ApiEnsuDocumentsProduction';
 import ApiIngres from '../pages/ApiIngres';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
@@ -331,17 +331,17 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: null,
       component: ApiPrestationsSocialesFc,
     },
-    api_ensu_dad_sandbox: {
-      label: 'API ENSU DAD (Bac à sable)',
+    api_ensu_documents_sandbox: {
+      label: 'API ENSU Documents (Bac à sable)',
       icon: 'logo-dgfip-with-label.png',
       email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-      component: ApiEnsuDadSandbox,
+      component: ApiEnsuDocumentsSandbox,
     },
-    api_ensu_dad_production: {
-      label: 'API ENSU DAD (Production)',
+    api_ensu_documents_production: {
+      label: 'API ENSU Documents (Production)',
       icon: 'logo-dgfip-with-label.png',
       email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-      component: ApiEnsuDadProduction,
+      component: ApiEnsuDocumentsProduction,
     },
     api_ingres: {
       label: 'API INGRES',
