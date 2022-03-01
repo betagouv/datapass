@@ -1,31 +1,33 @@
 import { useEffect, useState } from 'react';
+import { getHubeeValidatedEnrollments } from '../../../../services/enrollments';
+import { getScopesFromEnrollments } from '../../../../lib';
 
 export const useGetSubscribedDemarcheEnLigne = ({
   isUserEnrollmentLoading,
   siret,
-  target_api,
 }: {
   isUserEnrollmentLoading: boolean;
   siret: string;
-  target_api: string;
 }) => {
-  const [subscribedDemarcheEnLigne, setSubscribedDemarcheEnLigne] = useState<
+  const [subscribedDemarchesEnLigne, setSubscribedDemarchesEnLigne] = useState<
     string[]
   >([]);
 
   useEffect(() => {
-    const getSubscribedDemarcheEnLigne = async () => {
-      if (!isUserEnrollmentLoading && siret && target_api) {
-        await console.log('Let’s find some habs');
-
-        setSubscribedDemarcheEnLigne(['EtatCivil', 'HebergementTourisme']);
+    const fetchSubscribedDemarchesEnLigne = async () => {
+      if (!isUserEnrollmentLoading && siret) {
+        const enrollments = await getHubeeValidatedEnrollments();
+        const demarchesEnLigne = getScopesFromEnrollments(
+          enrollments.filter(({ siret: s }: { siret: string }) => siret === s)
+        );
+        setSubscribedDemarchesEnLigne(demarchesEnLigne);
       }
     };
 
-    getSubscribedDemarcheEnLigne();
-  }, [isUserEnrollmentLoading, siret, target_api]);
+    fetchSubscribedDemarchesEnLigne();
+  }, [isUserEnrollmentLoading, siret]);
 
-  return subscribedDemarcheEnLigne;
+  return subscribedDemarchesEnLigne;
 };
 
 export default useGetSubscribedDemarcheEnLigne;

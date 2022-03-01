@@ -15,13 +15,12 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
     disabled,
     onChange,
     isUserEnrollmentLoading,
-    enrollment: { scopes = {}, siret, target_api },
+    enrollment: { scopes = {}, siret },
   } = useContext(FormContext);
 
   const subscribedDemarcheEnLigne = useGetSubscribedDemarcheEnLigne({
     isUserEnrollmentLoading,
     siret,
-    target_api,
   });
 
   const showAlreadySubscribedWarning = useMemo(
@@ -45,15 +44,17 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
         } ?`}
       >
         <>
-          {!isEmpty(demarchesHubee) && showAlreadySubscribedWarning && (
-            <p>
-              <WarningEmoji /> Votre commune dispose déjà d’un abonnement à une
-              ou plusieurs démarches. Si vous n’y avez pas accès ou si vous
-              rencontrez un problème, merci de contacter le référent HubEE de
-              votre commune. Vous pouvez également nous contacter en cliquant
-              sur le bouton « Nous contacter » dans le menu latéral.
-            </p>
-          )}
+          {!isEmpty(demarchesHubee) &&
+            !disabled &&
+            showAlreadySubscribedWarning && (
+              <p>
+                <WarningEmoji /> Votre commune dispose déjà d’un abonnement à
+                une ou plusieurs démarches. Si vous n’y avez pas accès ou si
+                vous rencontrez un problème, merci de contacter le référent
+                HubEE de votre commune. Vous pouvez également nous contacter en
+                cliquant sur le bouton « Nous contacter » dans le menu latéral.
+              </p>
+            )}
           {!isEmpty(demarchesHubee) &&
             demarchesHubee.map(({ id, label, description }) => (
               <p key={id}>
