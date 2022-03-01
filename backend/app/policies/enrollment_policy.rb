@@ -113,4 +113,11 @@ class EnrollmentPolicy < ApplicationPolicy
         .or(scope.includes(:team_members).where(team_members: {user: user}))
     end
   end
+
+  class OrganizationScope < Scope
+    def resolve
+      siret_scope = user.organizations.map { |o| o["siret"] }
+      scope.where(siret: siret_scope)
+    end
+  end
 end

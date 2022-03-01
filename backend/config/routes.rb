@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         get :public
         get :user
         get :export
+
+        get :hubee_validated, to: "enrollments_hubee_validated#index"
       end
       member do
         patch :change_state

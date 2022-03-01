@@ -1,17 +1,13 @@
 class HubeePortailBridge < ApplicationBridge
   def call
-    email = @enrollment.demandeurs.pluck(:email).first
-    phone_number = @enrollment.demandeurs.pluck(:phone_number).first
-    team_members = @enrollment.team_members
+    responsable_metier = @enrollment.team_members.find { |team_member| team_member["type"] == "responsable_metier" }
     siret = @enrollment[:siret]
     updated_at = @enrollment[:updated_at]
     validated_at = @enrollment.validated_at
     scopes = @enrollment[:scopes].reject { |k, v| !v }.keys
     linked_token_manager_id = create_enrollment_in_token_manager(
       @enrollment.id,
-      email,
-      phone_number,
-      team_members,
+      responsable_metier,
       siret,
       updated_at,
       validated_at,
@@ -24,9 +20,7 @@ class HubeePortailBridge < ApplicationBridge
 
   def create_enrollment_in_token_manager(
     id,
-    email,
-    phone_number,
-    team_members,
+    responsable_metier,
     siret,
     updated_at,
     validated_at,
@@ -78,8 +72,8 @@ class HubeePortailBridge < ApplicationBridge
             country: "France",
             postalCode: code_postal,
             territory: libelle_commune,
-            email: email,
-            phoneNumber: phone_number.delete(" ").delete("."),
+            email: responsable_metier["email"],
+            phoneNumber: responsable_metier["phone_number"].delete(" ").delete("."),
             status: "Actif"
           },
           access_token,
@@ -91,7 +85,6 @@ class HubeePortailBridge < ApplicationBridge
     end
 
     # 3. create subscriptions
-    responsable_metier = team_members.find { |team_member| team_member["type"] == "responsable_metier" }
     subscription_ids = []
     scopes.each do |scope|
       create_subscription_response = Http.post(
@@ -114,7 +107,7 @@ class HubeePortailBridge < ApplicationBridge
           delegationActor: nil,
           rejectionReason: nil,
           status: "Inactif",
-          email: email,
+          email: responsable_metier["email"],
           localAdministrator: {
             email: responsable_metier["email"],
             firstName: responsable_metier["given_name"],

@@ -1,9 +1,9 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { dataProviderParametersToContactInfo } from '../../lib';
 import Link from '../atoms/hyperTexts/Link';
 
-const ContactsTable: React.FC = () => {
+const ContactsTable: FunctionComponent = () => {
   type dataProviderInfoType = {
     label: string;
     email: string;

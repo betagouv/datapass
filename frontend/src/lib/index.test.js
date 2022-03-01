@@ -5,6 +5,7 @@ import {
   findModifiedScopes,
   getChangelog,
   getErrorMessages,
+  getScopesFromEnrollments,
   getStateFromUrlParams,
   hashToQueryParams,
   isEmailValid,
@@ -759,6 +760,36 @@ describe('utils', () => {
       const result = dataProviderParametersToContactInfo(parameters);
 
       expect(result).toStrictEqual(expected);
+    });
+  });
+
+  describe('getScopesFromEnrollments', () => {
+    it('should return scopes', () => {
+      const enrollments = [
+        {
+          id: 1058510684,
+          scopes: {
+            scope1: true,
+            scope2: false,
+          },
+        },
+        {
+          id: 1058510632,
+          scopes: {
+            scope3: true,
+          },
+        },
+        {
+          id: 1058510631,
+          scopes: {
+            scope1: true,
+          },
+        },
+      ];
+
+      const result = getScopesFromEnrollments(enrollments);
+
+      expect(result).toStrictEqual(['scope1', 'scope3']);
     });
   });
 });

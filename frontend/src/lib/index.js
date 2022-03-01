@@ -456,3 +456,15 @@ export const dataProviderParametersToContactInfo = (parameters) =>
     .toPairs()
     .map(([email, label]) => ({ email, label }))
     .value();
+
+export const getScopesFromEnrollments = (enrollments) =>
+  chain(enrollments)
+    .map(({ scopes }) =>
+      chain(scopes)
+        .omitBy((v) => !v)
+        .keys()
+        .value()
+    )
+    .flatten()
+    .uniq()
+    .value();

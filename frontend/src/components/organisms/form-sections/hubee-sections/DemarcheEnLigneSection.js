@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { isEmpty } from 'lodash';
+import useGetSubscribedDemarcheEnLigne from './useGetSubscribedDemarcheEnLigne';
+import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 
 const SECTION_LABEL = 'Démarches en ligne';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -12,8 +14,22 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
   const {
     disabled,
     onChange,
-    enrollment: { scopes = {} },
+    isUserEnrollmentLoading,
+    enrollment: { scopes = {}, siret },
   } = useContext(FormContext);
+
+  const subscribedDemarcheEnLigne = useGetSubscribedDemarcheEnLigne({
+    isUserEnrollmentLoading,
+    siret,
+  });
+
+  const showAlreadySubscribedWarning = useMemo(
+    () =>
+      demarchesHubee
+        .map(({ id }) => id)
+        .some((id) => subscribedDemarcheEnLigne.includes(id)),
+    [demarchesHubee, subscribedDemarcheEnLigne]
+  );
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -29,6 +45,17 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
       >
         <>
           {!isEmpty(demarchesHubee) &&
+            !disabled &&
+            showAlreadySubscribedWarning && (
+              <p>
+                <WarningEmoji /> Votre commune dispose déjà d’un abonnement à
+                une ou plusieurs démarches. Si vous n’y avez pas accès ou si
+                vous rencontrez un problème, merci de contacter le référent
+                HubEE de votre commune. Vous pouvez également nous contacter en
+                cliquant sur le bouton « Nous contacter » dans le menu latéral.
+              </p>
+            )}
+          {!isEmpty(demarchesHubee) &&
             demarchesHubee.map(({ id, label, description }) => (
               <p key={id}>
                 <b>{label} :</b> {description}
@@ -42,9 +69,13 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
             name={`scopes.${id}`}
             key={id}
             value={scopes[id]}
-            label={label}
+            label={`${label}${
+              !disabled && subscribedDemarcheEnLigne.includes(id)
+                ? ' (votre commune est déjà abonnée à cette démarche)'
+                : ''
+            }`}
             onChange={onChange}
-            disabled={disabled}
+            disabled={disabled || subscribedDemarcheEnLigne.includes(id)}
           />
         ))}
     </ScrollablePanel>

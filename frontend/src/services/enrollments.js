@@ -246,3 +246,11 @@ export function copyEnrollment({ id }) {
     })
     .then(({ data }) => data);
 }
+
+export function getHubeeValidatedEnrollments() {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/hubee_validated`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data: { enrollments } }) => enrollments);
+}
