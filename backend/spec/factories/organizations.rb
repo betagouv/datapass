@@ -13,5 +13,11 @@ FactoryBot.define do
       siret { "21920023500014" }
       is_external { false }
     end
+
+    trait :region_reunion do
+      id { 3 }
+      siret { "23974001200012" }
+      is_external { false }
+    end
   end
 end

@@ -345,8 +345,27 @@ FactoryBot.define do
 
       scopes do
         {
-          cert_dc: true
+          CERTDC: true
         }
+      end
+
+      contacts do
+        [
+          {
+            id: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
+
+    trait :hubee_portail_dila do
+      initialize_with do
+        Enrollment::HubeePortailDila.new(attributes)
       end
 
       contacts do
