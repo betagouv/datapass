@@ -3,6 +3,7 @@ import { union, xor } from 'lodash';
 import './style.css';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../atoms/inputs/FieldsetWrapper';
+import Dropdown from '../Dropdown';
 
 export const MultiSelect = ({
   options = [],
@@ -43,10 +44,10 @@ export const MultiSelect = ({
         {overviewLabel}
       </div>
       {isContentOpen && (
-        <>
-          <FieldsetWrapper small className="multiselect-dropdown-content">
+        <Dropdown onOutsideClick={handleOutsideClick}>
+          <FieldsetWrapper small>
             {options.map(({ key, label }) => (
-              <div key={key} className="multiselect-dropdown-item">
+              <div key={key}>
                 <CheckboxInput
                   name={key}
                   label={label}
@@ -57,12 +58,7 @@ export const MultiSelect = ({
               </div>
             ))}
           </FieldsetWrapper>
-
-          <div
-            className="multiselect-dropdown-backdrop"
-            onClick={handleOutsideClick}
-          />
-        </>
+        </Dropdown>
       )}
     </div>
   );
