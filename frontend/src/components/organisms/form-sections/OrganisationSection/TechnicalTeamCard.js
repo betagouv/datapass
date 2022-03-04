@@ -1,14 +1,24 @@
 import React, { useContext, useMemo } from 'react';
 import { Card } from '../../../molecules/Card';
-import SelectInput from '../../../atoms/inputs/SelectInput';
 import { FormContext } from '../../../templates/Form';
+import { TextInputWithSuggestions } from '../../../molecules/TextInputWithSuggestions';
+import RadioInput from '../../../atoms/inputs/RadioInput';
+import Button from '../../../atoms/hyperTexts/Button';
 import TextInput from '../../../atoms/inputs/TextInput';
-import TextInputWithSuggestions from '../../../molecules/TextInputWithSuggestions';
+import Alert from '../../../atoms/Alert';
+import Link from '../../../atoms/hyperTexts/Link';
+
+const typeOptions = [
+  { id: 'software_company', label: 'Votre éditeur de logiciel' },
+  { id: 'internal_team', label: 'Votre équipe de développeurs' },
+  { id: 'other', label: 'Autre' },
+];
 
 export const TechnicalTeamCard = ({ editorList = [] }) => {
   const {
     disabled,
     onChange,
+    isUserEnrollmentLoading,
     enrollment: { technical_team_type, technical_team_value },
   } = useContext(FormContext);
 
@@ -16,6 +26,17 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),
     [editorList]
   );
+
+  const selectedTypeLabel = useMemo(
+    () => typeOptions.find(({ id }) => id === technical_team_type)?.label,
+    [technical_team_type]
+  );
+
+  const resetType = () => {
+    onChange({
+      target: { name: 'technical_team_type', value: '' },
+    });
+  };
 
   const onTypeChange = ({ target: { value } }) => {
     onChange({
@@ -44,33 +65,64 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
 
   return (
     <Card>
-      <h3>Pour implémenter l‘API</h3>
-      <SelectInput
-        label="Qui va implémenter l’API ?"
-        options={[
-          { id: '', label: 'Sélectionner une option' },
-          { id: 'internal_team', label: 'Développeurs en interne' },
-          { id: 'software_company', label: 'Éditeur de logiciel' },
-          { id: 'other', label: 'Autre' },
-        ]}
-        name="technical_team_type"
-        value={technical_team_type}
-        disabled={disabled}
-        onChange={onTypeChange}
-        required
-      />
-      {technical_team_type === 'software_company' && (
-        <TextInputWithSuggestions
-          label="Quel est votre éditeur de logiciel ?"
-          options={editorOptions}
-          name="technical_team_value"
-          value={technicalTeamValueLabel}
-          disabled={disabled}
-          onChange={onValueChange}
-          required
-        />
+      <h3>Qui implémentera l’API ?</h3>
+      {!isUserEnrollmentLoading && !technical_team_type && (
+        <>
+          <Alert>
+            Pour lire les données vous aurez besoin d’un logiciel ou d’un
+            service en ligne. <br />
+            <Link href="/faq#champ-editeur" inline newTab>
+              En savoir plus
+            </Link>
+          </Alert>
+          <RadioInput
+            label="Qui s’occupera des aspects techniques et informatiques ?"
+            options={typeOptions}
+            name="technical_team_type"
+            value={technical_team_type}
+            disabled={disabled}
+            onChange={onTypeChange}
+            required
+          />
+        </>
       )}
-      {technical_team_type === 'other' && (
+      {!isUserEnrollmentLoading && technical_team_type && (
+        <>
+          {!disabled && (
+            <div
+              style={{
+                marginBottom: '0.5rem',
+              }}
+            >
+              <Button onClick={resetType} icon="arrow-left" outline>
+                retour
+              </Button>
+            </div>
+          )}
+          <RadioInput
+            label="Qui s’occupera des aspects techniques et informatiques ?"
+            options={[{ id: '', label: selectedTypeLabel }]}
+            name="technical_team_type"
+            value=""
+            disabled={disabled}
+            onChange={() => null}
+            required
+          />
+        </>
+      )}
+      {!isUserEnrollmentLoading &&
+        technical_team_type === 'software_company' && (
+          <TextInputWithSuggestions
+            label="Quel est votre éditeur de logiciel ?"
+            options={editorOptions}
+            name="technical_team_value"
+            value={technicalTeamValueLabel}
+            disabled={disabled}
+            onChange={onValueChange}
+            required
+          />
+        )}
+      {!isUserEnrollmentLoading && technical_team_type === 'other' && (
         <TextInput
           label="Précisez ?"
           name="technical_team_value"

@@ -92,17 +92,18 @@ const questions = [
     body: (
       <>
         Sur quelques formulaires d’habilitation, la question « Qui va
-        implémenter l’API » vous est posée. Cette question permet au fournisseur
-        de l’API de vous accompagner au mieux dans son utilisation. 3 options
-        sont possibles :
+        implémenter l’API ? » vous est posée. Cette question permet au
+        fournisseur de l’API de vous accompagner au mieux dans son utilisation.
+        3 options sont possibles :
         <ul>
           <li>
-            Développeurs en interne : les personnes qui vont implémenter l’API
-            travaillent dans la même organisation que vous (ou c’est vous-même).
+            Votre éditeur de logiciel : vous utilisez un logiciel, et c’est via
+            cet outil que vous allez exploiter les données.
           </li>
           <li>
-            Éditeur de logiciel : vous utilisez un logiciel, et c’est via cet
-            outil que vous allez exploiter les données.
+            Votre équipe de développeurs : les personnes qui vont implémenter
+            l’API travaillent dans la même organisation que vous (ou c’est
+            vous-même).
           </li>
           <li>
             Autre : si les deux options ci-dessus ne vous conviennent pas, vous
