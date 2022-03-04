@@ -22,6 +22,7 @@ import useListItemNavigation from './hooks/use-list-item-navigation';
 import Tag from '../atoms/hyperTexts/Tag';
 import useFileDownloader from './hooks/use-file-downloader';
 import Button from '../atoms/hyperTexts/Button';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const getInboxes = (user) => ({
   primary: {
@@ -307,6 +308,12 @@ class InstructorEnrollmentList extends React.Component {
       filtered = filter(this.state.filtered, ({ id }) => id !== 'status');
     }
 
+    this.props.matomoTrackEvent({
+      category: 'instructor-enrollment-list',
+      action: 'on-select-inbox',
+      name: newInbox,
+    });
+
     this.setState({
       inbox: newInbox,
       sorted: getInboxes(this.props.user)[newInbox].sorted,
@@ -457,6 +464,13 @@ class InstructorEnrollmentList extends React.Component {
   }
 }
 
+const withMatomoTrackEvent = (Component) => {
+  return (props) => {
+    const { trackEvent } = useMatomo();
+    return <Component {...props} matomoTrackEvent={trackEvent} />;
+  };
+};
+
 const withFileDownloader = (Component) => {
   return (props) => {
     const { isDownloading, download } = useFileDownloader();
@@ -487,6 +501,6 @@ const withAuth = (Component) => {
   );
 };
 
-export default withFileDownloader(
-  withListItemNavigation(withAuth(InstructorEnrollmentList))
+export default withMatomoTrackEvent(
+  withFileDownloader(withListItemNavigation(withAuth(InstructorEnrollmentList)))
 );
