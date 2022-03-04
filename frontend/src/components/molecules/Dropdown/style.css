@@ -1,0 +1,30 @@
+.datapass-dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.datapass-dropdown-content {
+  display: block;
+  position: absolute;
+  min-width: 160px;
+  max-height: 500px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  right: 0;
+  z-index: 1001;
+  padding: 2px;
+  background-color: #fff;
+  text-align: left;
+  /* the following rules are taken from Chrome stylesheet for native select element */
+  align-items: flex-start;
+  border: 1px inset gray;
+  border-radius: initial;
+  overflow-x: hidden;
+  overflow-y: auto;
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  content: '\00a0\00a0\00a0\00a0';
+}

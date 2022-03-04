@@ -1,8 +1,10 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { useAuth } from '../../AuthContext';
-import { getCachedOrganizationActivityDetails } from '../../../../services/external';
-import { getCachedOrganizationInformation } from '../../../../services/external';
+import {
+  getCachedOrganizationActivityDetails,
+  getCachedOrganizationInformation,
+} from '../../../../services/external';
 import { isValidNAFCode } from '../../../../lib';
 import OrganizationPrompt from './OrganizationPrompt';
 import { ScrollablePanel } from '../../Scrollable';
@@ -191,7 +193,7 @@ const OrganisationSection = ({ editorList = [] }) => {
       <h2>L’organisation</h2>
       <CardContainer>
         <Card>
-          <h3>Vous êtes :</h3>
+          <h3>Vous êtes</h3>
           <CardHead>
             <b>
               {personalInformation.given_name} {personalInformation.family_name}
@@ -217,7 +219,7 @@ const OrganisationSection = ({ editorList = [] }) => {
             <Loader />
           ) : (
             <>
-              <h3>Vous faites cette demande pour :</h3>
+              <h3>Vous faites cette demande pour</h3>
               {activite && !isValidNAFCode(target_api, activite) && (
                 <Alert type="warning">
                   Votre organisme ne semble pas être éligible

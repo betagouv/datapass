@@ -6,6 +6,7 @@ type Props = {
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   outline?: boolean;
   large?: boolean;
+  xLarge?: boolean;
   type?: ButtonType;
   icon?: string;
   iconRight?: boolean;
@@ -18,6 +19,7 @@ const Button: React.FC<Props> = ({
   onClick,
   outline = false,
   large = false,
+  xLarge = false,
   type,
   icon,
   iconRight = false,
@@ -28,8 +30,12 @@ const Button: React.FC<Props> = ({
 }) => {
   className += ' fr-btn';
 
-  if (!large) {
+  if (!large && !xLarge) {
     className += ' fr-btn--sm';
+  }
+
+  if (xLarge) {
+    className += ' fr-btn--lg';
   }
 
   if (outline) {

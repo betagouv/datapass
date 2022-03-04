@@ -22,7 +22,7 @@ export const FieldsetWrapper = ({
         }`}
       >
         {title && (
-          <legend className="fr-fieldset__legend">
+          <legend className="fr-fieldset__legend fr-text--regular">
             {title}
             {required && ' *'}
           </legend>
