@@ -3,7 +3,7 @@ import { Card } from '../../../molecules/Card';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import { FormContext } from '../../../templates/Form';
 import TextInput from '../../../atoms/inputs/TextInput';
-import { SearchableSelect } from '../../../molecules/SearchableSelect';
+import TextInputWithSuggestions from '../../../molecules/TextInputWithSuggestions';
 
 export const TechnicalTeamCard = ({ editorList = [] }) => {
   const {
@@ -26,6 +26,22 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
     });
   };
 
+  const technicalTeamValueLabel = useMemo(
+    () =>
+      editorList.find(({ siret }) => siret === technical_team_value)?.name ||
+      technical_team_value,
+    [editorList, technical_team_value]
+  );
+
+  const onValueChange = ({ target: { value: valueLabel } }) => {
+    const value =
+      editorList.find(({ name }) => name === valueLabel)?.siret || valueLabel;
+
+    onChange({
+      target: { name: 'technical_team_value', value: value },
+    });
+  };
+
   return (
     <Card>
       <h3>Pour implémenter l‘API</h3>
@@ -44,13 +60,13 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
         required
       />
       {technical_team_type === 'software_company' && (
-        <SearchableSelect
-          label="Quel est le nom de l’éditeur ?"
+        <TextInputWithSuggestions
+          label="Quel est votre éditeur de logiciel ?"
           options={editorOptions}
           name="technical_team_value"
-          value={technical_team_value}
+          value={technicalTeamValueLabel}
           disabled={disabled}
-          onChange={onChange}
+          onChange={onValueChange}
           required
         />
       )}
