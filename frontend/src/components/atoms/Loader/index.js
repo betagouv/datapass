@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const Loader = ({ message = null, small = false }) => {
+const Loader = ({ message = '', small = false }) => {
   if (small) {
     return (
       <span className="loader-container small">

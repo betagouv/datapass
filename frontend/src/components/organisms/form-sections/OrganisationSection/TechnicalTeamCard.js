@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { Card } from '../../../molecules/Card';
 import { FormContext } from '../../../templates/Form';
 import { TextInputWithSuggestions } from '../../../molecules/TextInputWithSuggestions';
@@ -7,6 +7,7 @@ import Button from '../../../atoms/hyperTexts/Button';
 import TextInput from '../../../atoms/inputs/TextInput';
 import Alert from '../../../atoms/Alert';
 import Link from '../../../atoms/hyperTexts/Link';
+import { HideSectionsContext } from '../../../templates/Form/HideSectionsContainer';
 
 const typeOptions = [
   { id: 'software_company', label: 'Votre éditeur de logiciel' },
@@ -21,6 +22,25 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
     isUserEnrollmentLoading,
     enrollment: { technical_team_type, technical_team_value },
   } = useContext(FormContext);
+
+  const { setReadyForNextSteps } = useContext(HideSectionsContext);
+
+  const areInputValid = useMemo(() => {
+    if (!technical_team_type) {
+      return false;
+    }
+    if (technical_team_type === 'internal_team') {
+      return true;
+    }
+    if (technical_team_value) {
+      return true;
+    }
+    return false;
+  }, [technical_team_type, technical_team_value]);
+
+  useEffect(() => {
+    !isUserEnrollmentLoading && setReadyForNextSteps(areInputValid);
+  }, [isUserEnrollmentLoading, setReadyForNextSteps, areInputValid]);
 
   const editorOptions = useMemo(
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),
