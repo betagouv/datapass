@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { groupBy, isEmpty } from 'lodash';
 import './style.css';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
-import Button from '../../atoms/hyperTexts/Button';
-import ButtonGroup from '../../molecules/ButtonGroup';
 import Alert from '../../atoms/Alert';
-import IndexPointingRightEmoji from '../../atoms/icons/IndexPointingRightEmoji';
 import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
-import Link from '../../atoms/hyperTexts/Link';
-
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,27 +32,7 @@ const UserEnrollmentList = () => {
   return (
     <main className="user-enrollments-page">
       <ListHeader title="Toutes mes habilitations">
-        <div>
-          <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
-            Faire une nouvelle demande d’habilitation pour :
-          </p>
-          <ButtonGroup>
-            <Button
-              large
-              href={`${API_GOUV_HOST}/datapass/api`}
-              className="call-to-action-button"
-            >
-              une API
-            </Button>
-            <Button
-              large
-              href="/aidants-connect"
-              className="call-to-action-button"
-            >
-              Aidants Connect
-            </Button>
-          </ButtonGroup>
-        </div>
+        <NewEnrollmentButton />
       </ListHeader>
 
       {isLoading && (
@@ -68,22 +43,7 @@ const UserEnrollmentList = () => {
 
       {!isLoading && isEmpty(enrollmentsByOrganization) && (
         <div className="full-page">
-          <Alert title="Vous n’avez aucune habilitation en cours">
-            <p>
-              <IndexPointingRightEmoji />
-              {' '}
-              <Link inline href={`${API_GOUV_HOST}/datapass/api`}>
-                Soumettre une demande d’habilitation API
-              </Link>
-            </p>
-            <p>
-              <IndexPointingRightEmoji />
-              {' '}
-              <Link inline href="/aidants-connect">
-                Soumettre une demande d’habilitation AidantsConnect
-              </Link>
-            </p>
-          </Alert>
+          <Alert title="Vous n’avez aucune habilitation" />
         </div>
       )}
 
