@@ -7,7 +7,10 @@ ERROR_OUTPUT_FILE = "./hubee_excluded_import.csv"
 hubee_prepared_import_file = CSV.open(OUTPUT_FILE, "w")
 hubee_prepared_import_file << %w[siret nom_raison_sociale scope demandeur_email responsable_metier_email]
 hubee_excluded_import_file = CSV.open(ERROR_OUTPUT_FILE, "w")
-hubee_excluded_import_file << %w[demarche siret rejection_reason]
+hubee_excluded_import_file << ["Démarche", "Siret SI", "Branch Code SI", "N° DataPass", "Modalité d'accès", "DT", "Statut", "Date d'activation", "Date de suspension", "Date de validation", "Date de mise à jour", "Date de refus", "Motif du refus", "Fréquence de notification", "Email de notification", "Administrateur local", "Délégué technique", "rejection_reason"]
+def to_csv_line(row, rejection_reason)
+  [row["Démarche"], row["Siret SI"], row["Branch Code SI"], row["N° DataPass"], row["Modalité d'accès"], row["DT"], row["Statut"], row["Date d'activation"], row["Date de suspension"], row["Date de validation"], row["Date de mise à jour"], row["Date de refus"], row["Motif du refus"], row["Fréquence de notification"], row["Email de notification"], row["Administrateur local"], row["Délégué technique"], rejection_reason]
+end
 
 puts "Import preparation started from #{INPUT_FILE}..."
 
@@ -16,41 +19,47 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   siret = row["Siret SI"]
   puts "Processing: #{siret} - #{scope}"
   pass_id = row["N° DataPass"]
+  modalite_acces = row["Modalité d'accès"]
   demandeur_email = row["Email de notification"]
   responsable_metier_email = row["Administrateur local"]
 
   # validate inputs
   unless scope.in?(%w[EtatCivil depotDossierPACS recensementCitoyen HebergementTourisme JeChangeDeCoordonnees CERTDC])
-    hubee_excluded_import_file << [scope, siret, "Démarche non gérée : #{scope}"]
-    puts "\e[31mDémarche non gérée : #{scope}\e[0m"
+    rejection_reason = "Démarche non gérée : #{scope}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
   unless siret.match?(/^\d{14}$/)
-    hubee_excluded_import_file << [scope, siret, "siret - Format invalide : #{siret}"]
-    puts "\e[31msiret - Format invalide : #{siret}\e[0m"
+    rejection_reason = "siret - Format invalide : #{siret}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
   unless !demandeur_email || demandeur_email.match(URI::MailTo::EMAIL_REGEXP)
-    hubee_excluded_import_file << [scope, siret, "demandeur_email - Format invalide : #{demandeur_email}"]
-    puts "\e[31mdemandeur_email - Format invalide : #{demandeur_email}\e[0m"
+    rejection_reason = "demandeur_email - Format invalide : #{demandeur_email}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
   unless !responsable_metier_email || responsable_metier_email.match(URI::MailTo::EMAIL_REGEXP)
-    hubee_excluded_import_file << [scope, siret, "responsable_metier_email - Format invalide #{responsable_metier_email}"]
-    puts "\e[31mresponsable_metier_email - Format invalide #{responsable_metier_email}\e[0m"
+    rejection_reason = "responsable_metier_email - Format invalide #{responsable_metier_email}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
 
   # exclude non eligible subscriptions
-  modalite_acces = row["Modalité d'accès"]
-  unless modalite_acces == "PORTAIL"
-    hubee_excluded_import_file << [scope, siret, "Modalité d’accès non gérée : #{modalite_acces}"]
-    puts "\e[31mModalité d’accès non gérée : #{modalite_acces}\e[0m"
+  unless modalite_acces == "PORTAIL" || modalite_acces.nil?
+    rejection_reason = "Modalité d’accès non gérée : #{modalite_acces}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
   unless pass_id == "0"
-    hubee_excluded_import_file << [scope, siret, "DataPass déjà présent : #{pass_id}"]
-    puts "\e[31mDataPass déjà présent : #{pass_id}\e[0m"
+    rejection_reason = "DataPass déjà présent : #{pass_id}"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
   sleep 0.75
@@ -58,8 +67,9 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   # There might be unwanted concurrency issues.
   response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{siret}")
   unless response.status.success? && response.parse["etablissement"]["etat_administratif"] == "A"
-    hubee_excluded_import_file << [scope, siret, "Organisation inactive"]
-    puts "\e[31mOrganisation inactive\e[0m"
+    rejection_reason = "Organisation inactive"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
 
