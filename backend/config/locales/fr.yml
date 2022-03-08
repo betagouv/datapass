@@ -1,4 +1,4 @@
 fr:
   errors:
     messages:
-      extension_whitelist_error: "Format de fichier invalide. Merci de joindre uniquement des documents au format %{allowed_types}."
+      extension_allowlist_error: "Format de fichier invalide. Merci de joindre uniquement des documents au format %{allowed_types}."
