@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::Dgfip::SandboxEnrollment
+class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::SandboxEnrollment
   protected
 
   def submit_validation
