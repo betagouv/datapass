@@ -50,5 +50,13 @@ module Users
     def translation_scope
       "devise.omniauth_callbacks"
     end
+
+    def _url_host_allowed?(url)
+      ENV.fetch("ALLOWED_ORIGINS").split(",").any? do |e|
+        url.match Regexp.new("^#{Regexp.escape(e).gsub('\*', "[a-zA-Z0-9-]*")}(/.*)?$")
+      end
+    rescue ArgumentError, URI::Error
+      false
+    end
   end
 end
