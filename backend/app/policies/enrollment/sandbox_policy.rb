@@ -1,4 +1,4 @@
-class Enrollment::Dgfip::SandboxPolicy < EnrollmentPolicy
+class Enrollment::SandboxPolicy < EnrollmentPolicy
   def permitted_attributes
     res = super
 

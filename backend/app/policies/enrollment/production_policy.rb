@@ -1,4 +1,4 @@
-class Enrollment::Dgfip::ProductionPolicy < EnrollmentPolicy
+class Enrollment::ProductionPolicy < EnrollmentPolicy
   def permitted_attributes
     res = []
 

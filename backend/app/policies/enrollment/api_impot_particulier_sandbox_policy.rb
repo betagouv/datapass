@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierFcSandboxPolicy < Enrollment::Dgfip::SandboxPolicy
+class Enrollment::ApiImpotParticulierSandboxPolicy < Enrollment::SandboxPolicy
   def permitted_attributes
     res = super
 
@@ -41,9 +41,15 @@ class Enrollment::ApiImpotParticulierFcSandboxPolicy < Enrollment::Dgfip::Sandbo
         :dgfip_PaDeduc_EnfMaj,
         :dgfip_PaDeduc_Autres,
         :dgfip_EpargRetrDeduc,
+        :dgfip_IndLep,
         :dgfip_annee_n_moins_1,
         :dgfip_annee_n_moins_2,
         :dgfip_annee_n_moins_3
+      ],
+      additional_content: [
+        :rgpd_general_agreement,
+        :acces_spi,
+        :acces_etat_civil
       ]
     ])
 
