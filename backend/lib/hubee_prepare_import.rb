@@ -19,7 +19,6 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   siret = row["Siret SI"]
   puts "Processing: #{siret} - #{scope}"
   pass_id = row["N° DataPass"]
-  modalite_acces = row["Modalité d'accès"]
   demandeur_email = row["Email de notification"]
   responsable_metier_email = row["Administrateur local"]
 
@@ -50,12 +49,6 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   end
 
   # exclude non eligible subscriptions
-  unless modalite_acces == "PORTAIL" || modalite_acces.nil?
-    rejection_reason = "Modalité d’accès non gérée : #{modalite_acces}"
-    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
-    puts "\e[31m#{rejection_reason}\e[0m"
-    next
-  end
   unless pass_id == "0"
     rejection_reason = "DataPass déjà présent : #{pass_id}"
     hubee_excluded_import_file << to_csv_line(row, rejection_reason)
