@@ -51,6 +51,7 @@ import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import ApiCaptchetat from '../pages/ApiCaptchetat';
 import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
+import ApiIndemnisationPoleEmploi from '../pages/ApiIndemnisationPoleEmploi';
 
 type DataProviderParameter = {
   label: string;
@@ -372,6 +373,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-cnous.png',
       email: 'api-boursier@cnous.fr',
       component: ApiStatutEtudiantBoursier,
+    },
+    api_indemnisation_pole_emploi: {
+      label: 'API Indemnisation Pôle emploi',
+      icon: 'logo-pole-emploi.png',
+      email: 'support@pole-emploi.io',
+      component: ApiIndemnisationPoleEmploi,
     },
   };
 
