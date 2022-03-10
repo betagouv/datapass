@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import moment from 'moment';
 import {
@@ -240,6 +240,13 @@ export const Stats = () => {
                     verticalAlign={'middle'}
                     formatter={(value) => USER_STATUS_LABELS[value]}
                   />
+                  <Tooltip
+                    formatter={(value, name, props) => [
+                      value,
+                      USER_STATUS_LABELS[name],
+                      props,
+                    ]}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -265,9 +272,9 @@ export const Stats = () => {
                   <Tooltip
                     formatter={(value, name, props) => [
                       value,
-                      value === 'others'
+                      name === 'others'
                         ? 'Autres'
-                        : DATA_PROVIDER_PARAMETERS[value]?.label,
+                        : DATA_PROVIDER_PARAMETERS[name]?.label,
                       props,
                     ]}
                   />
@@ -279,7 +286,7 @@ export const Stats = () => {
                       (value === 'others'
                         ? 'Autres'
                         : DATA_PROVIDER_PARAMETERS[value]?.label
-                      ).substring(0, 25)
+                      ).substring(0, 32)
                     }
                   />
                 </PieChart>
