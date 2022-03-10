@@ -70,13 +70,8 @@ export const CadreJuridiqueDescription = () => (
 
 export const availableScopes = [
   {
-    value: 'codeStatutIndividu',
-    label: 'Code du statut demandeur d’emploi',
-    required: true,
-  },
-  {
-    value: 'libelleStatutIndividu',
-    label: 'Libellé du statut demandeur d’emploi',
+    value: 'api_fc-statutaugmentev1',
+    label: 'Statut demandeur d’emploi',
     required: true,
   },
 ];
