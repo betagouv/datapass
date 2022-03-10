@@ -1,12 +1,14 @@
 require "csv"
 require "./config/environment"
 
-INPUT_FILE = "./hubee_prepared_import.csv"
-IMPORT_ERRORS_FILE = "./hubee_import_errors.csv"
-INSTRUCTOR_EMAIL = "support@hubee.numerique.gouv.fr"
+INPUT_FILE = "./FINAL_hubee_prepared_import.csv"
+IMPORT_ERRORS_FILE = "./FINAL_hubee_import_errors.csv"
+IMPORT_WARNING_FILE = "./FINAL_hubee_import_warnings.csv"
 
 import_errors_file = CSV.open(IMPORT_ERRORS_FILE, "w")
 import_errors_file << %w[siret nom_raison_sociale scope demandeur_email responsable_metier_email rejection_reason]
+import_warnings_file = CSV.open(IMPORT_WARNING_FILE, "w")
+import_warnings_file << %w[siret nom_raison_sociale scope demandeur_email responsable_metier_email warning]
 
 puts "Importing data from #{INPUT_FILE}..."
 
@@ -17,6 +19,14 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   puts "Processing: #{nom_raison_sociale} - #{scope}"
   demandeur_email = row["demandeur_email"]
   responsable_metier_email = row["responsable_metier_email"]
+
+  email_blacklist = %w[migration@hubee.fr contact@hubee.numerique.gouv.fr sebastien.assali@cgi.com]
+  if demandeur_email.in? email_blacklist
+    demandeur_email = nil
+  end
+  if responsable_metier_email.in? email_blacklist
+    responsable_metier_email = nil
+  end
 
   existing_enrollments = Enrollment
     .where(siret: siret)
@@ -38,12 +48,20 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
     enrollment.update(scopes: scopes)
 
     saved_demandeur_email = enrollment.team_members.where(type: "demandeur").pluck(:email).first
-    if saved_demandeur_email != demandeur_email
-      puts "\e[33mL’adresse email du demandeur #{demandeur_email} ne correspond pas à la valeur enregistrée en base : #{saved_demandeur_email}.\e[0m"
+    if saved_demandeur_email.nil?
+      enrollment.team_members.where(type: "demandeur").first.update(email: demandeur_email)
+    elsif !demandeur_email.nil? && demandeur_email != saved_demandeur_email
+      warning = "L’adresse email du demandeur #{demandeur_email} ne correspond pas à la valeur enregistrée en base : #{saved_demandeur_email}."
+      import_warnings_file << [siret, nom_raison_sociale, scope, demandeur_email, responsable_metier_email, warning]
+      puts "\e[33m#{warning}\e[0m"
     end
-    saved_responsable_metier_email = enrollment.team_members.where(type: "delegue_responsable_metier").pluck(:email).first
-    if saved_responsable_metier_email != responsable_metier_email
-      puts "\e[33mL’adresse email du responsable_metier #{responsable_metier_email} ne correspond pas à la valeur enregistrée en base : #{saved_responsable_metier_email}.\e[0m"
+    saved_responsable_metier_email = enrollment.team_members.where(type: "responsable_metier").pluck(:email).first
+    if saved_responsable_metier_email.nil?
+      enrollment.team_members.where(type: "responsable_metier").first.update(email: responsable_metier_email)
+    elsif !responsable_metier_email.nil? && responsable_metier_email != saved_responsable_metier_email
+      warning = "L’adresse email du responsable_metier #{responsable_metier_email} ne correspond pas à la valeur enregistrée en base : #{saved_responsable_metier_email}."
+      import_warnings_file << [siret, nom_raison_sociale, scope, demandeur_email, responsable_metier_email, warning]
+      puts "\e[33m#{warning}\e[0m"
     end
     next
   end
@@ -78,10 +96,11 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   )
 
   enrollment.save(validate: false)
-  enrollment.events.create!(name: "import", user: User.find_by_email(INSTRUCTOR_EMAIL))
+  enrollment.events.create!(name: "import", user: User.find_by_email(scope == "CERTDC" ? "dgs-certdc@sante.gouv.fr" : "support-demarches-sp@dila.gouv.fr"))
   enrollment.team_members.create!(type: "demandeur", email: demandeur_email)
   enrollment.team_members.create!(type: "responsable_metier", email: responsable_metier_email)
 end
 
 puts "Import completed!"
 puts "Errors can be found in #{IMPORT_ERRORS_FILE}"
+puts "Warnings can be found in #{IMPORT_WARNING_FILE}"
