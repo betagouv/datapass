@@ -1,10 +1,10 @@
-class Enrollment::ApiStatutDemandeurEmploiPolicy < EnrollmentPolicy
+class Enrollment::ApiIndemnisationPoleEmploiPolicy < EnrollmentPolicy
   def permitted_attributes
     res = super
 
     res.concat([
       scopes: [
-        :'api_fc-statutaugmentev1'
+        :'api_fc-liste-paiementsv1'
       ]
     ])
 
