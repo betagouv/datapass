@@ -5,8 +5,8 @@ class Enrollment::ApiStatutDemandeurEmploiPolicy < EnrollmentPolicy
     res.concat([
       scopes: [
         :'api_fc-statutaugmentev1'
-        ]
-      ])
+      ]
+    ])
   
     res
   end
