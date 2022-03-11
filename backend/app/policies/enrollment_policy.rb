@@ -95,8 +95,10 @@ class EnrollmentPolicy < ApplicationPolicy
       :technical_team_value,
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
       documents_attributes: [
+        :id,
         :attachment,
-        :type
+        :type,
+        :_destroy
       ]
     ])
 

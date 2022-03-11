@@ -23,7 +23,7 @@ class Enrollment < ActiveRecord::Base
   before_save :set_company_info, if: :will_save_change_to_organization_id?
 
   has_many :documents, as: :attachable
-  accepts_nested_attributes_for :documents
+  accepts_nested_attributes_for :documents, allow_destroy: true
   has_many :events, dependent: :destroy
   belongs_to :copied_from_enrollment, class_name: :Enrollment, foreign_key: :copied_from_enrollment_id, optional: true
   validates :copied_from_enrollment, uniqueness: true, if: -> { copied_from_enrollment.present? }

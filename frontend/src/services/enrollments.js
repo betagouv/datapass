@@ -23,11 +23,7 @@ export function createOrUpdateEnrollment({
     ...enrollment
   },
 }) {
-  const formattedEnrollment = {
-    ...enrollment,
-    team_members_attributes: team_members,
-  };
-  const serializedEnrollment = serializeEnrollment(formattedEnrollment);
+  const serializedEnrollment = serializeEnrollment(enrollment);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
