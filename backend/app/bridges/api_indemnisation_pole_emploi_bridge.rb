@@ -1,0 +1,2 @@
+class ApiIndemnisationPoleEmploiBridge < FcDataProviderBridge
+end
