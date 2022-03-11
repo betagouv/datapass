@@ -1,6 +1,6 @@
 class Enrollment::ApiIndemnisationPoleEmploi < Enrollment
   protected
-  
+
   def submit_validation
     super
   
