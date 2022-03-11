@@ -7,7 +7,7 @@ class Enrollment::ApiStatutDemandeurEmploiPolicy < EnrollmentPolicy
         :'api_fc-statutaugmentev1'
       ]
     ])
-  
+
     res
   end
 end
