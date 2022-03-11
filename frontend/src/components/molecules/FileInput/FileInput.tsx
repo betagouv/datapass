@@ -49,32 +49,6 @@ export const FileInput: FunctionComponent<Props> = ({
     setDocumentsTooLargeError(areDocumentsTooLarge(documentsToUpload));
   }, [documentsToUpload]);
 
-  const handleChange = ({
-    target: { files, name },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    const documentsWithoutThisDocument = documentsToUpload.filter(
-      ({ type }) => type !== documentType
-    );
-
-    const updatedDocumentsToUpload = [
-      ...documentsWithoutThisDocument,
-      {
-        attachment: files?.[0],
-        type: name,
-      },
-    ];
-
-    // note that if files is an empty array (ie. file selection as been canceled)
-    // this will result in unchanged documents_attributes
-    return onChange({
-      target: {
-        name: 'documents_attributes',
-        // @ts-ignore
-        value: updatedDocumentsToUpload,
-      },
-    });
-  };
-
   return (
     <>
       <Label
@@ -88,7 +62,7 @@ export const FileInput: FunctionComponent<Props> = ({
         className="fr-upload"
         type="file"
         accept={mimeTypes}
-        onChange={handleChange}
+        onChange={onChange}
         disabled={disabled}
         name={documentType}
         id={id}

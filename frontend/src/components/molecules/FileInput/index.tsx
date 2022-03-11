@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { uniqueId } from 'lodash';
+import { isEmpty, uniqueId } from 'lodash';
 import DownloadButton from './DownloadButton';
 import FileInput from './FileInput';
 
@@ -52,7 +52,56 @@ const Index: FunctionComponent<Props> = ({
     );
   }, [uploadedDocuments, documentType, documentsToUpload]);
 
+  const onFileChange = ({
+    target: { files, name },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedDocumentsToUpload = documentsToUpload.filter(
+      ({ type }) => type !== documentType
+    );
+
+    if (!isEmpty(files)) {
+      updatedDocumentsToUpload.push({
+        type: name,
+        // @ts-ignore
+        attachment: files[0],
+      });
+    }
+
+    return onChange({
+      target: {
+        name: 'documents_attributes',
+        // @ts-ignore
+        value: updatedDocumentsToUpload,
+      },
+    });
+  };
+
   const onReplaceFile = () => {
+    const uploadedDocumentsWithoutThisDocument = uploadedDocuments.filter(
+      ({ type }) => type !== documentType
+    );
+    onChange({
+      target: {
+        name: 'documents',
+        // @ts-ignore
+        value: uploadedDocumentsWithoutThisDocument,
+      },
+    });
+    const updatedDocumentsToUpload = [
+      ...documentsToUpload,
+      {
+        type: documentType,
+        id: uploadedDocuments.find(({ type }) => type === documentType)?.id,
+        _destroy: '1',
+      },
+    ];
+    onChange({
+      target: {
+        name: 'documents_attributes',
+        // @ts-ignore
+        value: updatedDocumentsToUpload,
+      },
+    });
     setShowDownloadButton(false);
   };
 
@@ -73,7 +122,7 @@ const Index: FunctionComponent<Props> = ({
           label={label}
           documentType={documentType}
           disabled={disabled}
-          onChange={onChange}
+          onChange={onFileChange}
           meta={meta}
           mimeTypes={mimeTypes}
           documentsToUpload={documentsToUpload}

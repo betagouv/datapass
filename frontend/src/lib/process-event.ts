@@ -1,12 +1,12 @@
 import { getErrorMessages } from '.';
 import {
-  EventConfiguration,
   EnrollmentEvent,
+  EventConfiguration,
 } from '../config/event-configuration';
 import {
+  changeEnrollmentState,
   createOrUpdateEnrollment,
   deleteEnrollment,
-  changeEnrollmentState,
 } from '../services/enrollments';
 
 export const processEvent = async (
@@ -39,9 +39,14 @@ export const processEvent = async (
     }
 
     if (eventConfiguration.createOrUpdate) {
+      const formattedEnrollment = {
+        ...enrollment,
+        team_members_attributes: enrollment.team_members,
+      };
       const newEnrollment = await createOrUpdateEnrollment({
-        enrollment,
+        enrollment: formattedEnrollment,
       });
+      updateEnrollment({ target: { name: 'documents_attributes', value: [] } });
       updateEnrollment(newEnrollment);
       enrollmentId = newEnrollment.id;
 
