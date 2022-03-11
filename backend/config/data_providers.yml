@@ -285,3 +285,8 @@ api_statut_etudiant_boursier:
   label: API Statut étudiant boursier
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+api_indemnisation_pole_emploi:
+  label: API Indemnisation Pôle emploi
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
