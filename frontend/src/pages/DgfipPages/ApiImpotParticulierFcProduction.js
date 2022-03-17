@@ -17,7 +17,7 @@ const ApiImpotParticulierProduction = () => (
   <Form
     target_api={target_api}
     contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
-    documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
+    documentationUrl="https://api.gouv.fr/documentation/impot-particulier"
   >
     <ÉquipeInitializerSection />
     <PreviousEnrollmentSection steps={steps} />
