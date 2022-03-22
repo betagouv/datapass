@@ -45,7 +45,7 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
     enrollment = existing_enrollments.first
     scopes = enrollment.scopes
     scopes[scope] = true
-    enrollment.update(scopes: scopes)
+    enrollment.update_attribute("scopes", scopes)
 
     saved_demandeur_email = enrollment.team_members.where(type: "demandeur").pluck(:email).first
     if saved_demandeur_email.nil?
