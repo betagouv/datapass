@@ -9,6 +9,7 @@ import PiecesJustificativesSection from '../../components/organisms/form-section
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
+import InformationsBancairesSection from '../../components/organisms/form-sections/urssaf-sections/InformationsBancairesSection';
 
 const target_api = 'api_tiers_de_prestation';
 
@@ -75,6 +76,7 @@ const ApiTiersDePrestation = () => (
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection />
+    <InformationsBancairesSection />
     <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1.pdf" />
   </Form>
 );
