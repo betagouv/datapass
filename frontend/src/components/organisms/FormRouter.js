@@ -1,46 +1,47 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
 import { AuthRequired } from './AuthContext';
 import NotFound from './NotFound';
 import { isEmpty } from 'lodash';
+import Loader from '../atoms/Loader';
+import { useFormConfiguration } from './hooks/use-form-configuration';
 import Enrollment from '../templates/Enrollment';
 
 const FormRouter = () => {
   const { targetApi } = useParams();
   const { goBackToList } = useListItemNavigation();
+  const { Component, configuration, notFound } = useFormConfiguration({
+    targetApi: targetApi.replace(/-/g, '_'),
+  });
 
-  const DataProviderParameter =
-    DATA_PROVIDER_PARAMETERS[targetApi.replace(/-/g, '_')];
-
-  if (isEmpty(DataProviderParameter)) {
-    setTimeout(() => goBackToList(), 3000);
+  if (notFound) {
+    setTimeout(() => goBackToList(), 3000 * 10000);
 
     return <NotFound />;
   }
 
-  if (!isEmpty(DataProviderParameter?.component)) {
+  if (Component) {
     return (
       <AuthRequired>
-        <DataProviderParameter.component />
+        <Component />
       </AuthRequired>
     );
   }
 
-  if (!isEmpty(DataProviderParameter?.enrollmentConfiguration)) {
+  if (!isEmpty(configuration)) {
     return (
       <AuthRequired>
         <Enrollment
           target_api={targetApi.replace(/-/g, '_')}
-          email={DataProviderParameter.email}
-          configuration={DataProviderParameter.enrollmentConfiguration}
+          email={configuration.email}
+          configuration={configuration.enrollmentConfiguration}
         />
       </AuthRequired>
     );
   }
 
-  return <NotFound />;
+  return <Loader />;
 };
 
 export default FormRouter;

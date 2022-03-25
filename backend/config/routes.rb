@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       end
     end
 
+    get "/enrollment_configurations/:target_api", to: "enrollment_configurations#show"
+
     get "/users/me", to: "users#me"
     get "/users/join_organization", to: "users#join_organization"
     get "/users/personal_information", to: "users#personal_information"
