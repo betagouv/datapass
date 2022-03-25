@@ -41,18 +41,22 @@ module Http
     ), e.message
   end
 
-  def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method)
+  def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method, content_type)
     logger = Logger.new($stdout)
     http = HTTP.use(logging: {logger: logger})
 
-    response = if auth_header.nil?
-      http
-        .auth("#{auth_method} #{api_key}")
-        .headers(accept: "application/json")
-        .send(http_verb, url_as_string, json: body)
+    http_with_auth = if auth_header.nil?
+      http.auth("#{auth_method} #{api_key}")
     else
-      http
-        .headers(auth_header => api_key)
+      http.headers(auth_header => api_key)
+    end
+
+    response = if content_type == "application/x-www-form-urlencoded"
+      http_with_auth
+        .headers(accept: "application/x-www-form-urlencoded")
+        .send(http_verb, url_as_string, form: body)
+    else
+      http_with_auth
         .headers(accept: "application/json")
         .send(http_verb, url_as_string, json: body)
     end
@@ -83,11 +87,11 @@ module Http
     ), e.message
   end
 
-  def self.post(url_as_string, body, api_key, endpoint_label, auth_header = nil, auth_method = "Bearer")
-    request(:post, url_as_string, body, api_key, endpoint_label, auth_header, auth_method)
+  def self.post(url_as_string, body, api_key, endpoint_label, auth_header = nil, auth_method = "Bearer", content_type = "application/json")
+    request(:post, url_as_string, body, api_key, endpoint_label, auth_header, auth_method, content_type)
   end
 
   def self.patch(url_as_string, body, api_key, endpoint_label, auth_header = nil, auth_method = "Bearer")
-    request(:patch, url_as_string, body, api_key, endpoint_label, auth_header, auth_method)
+    request(:patch, url_as_string, body, api_key, endpoint_label, auth_header, auth_method, "application/json")
   end
 end
