@@ -127,7 +127,7 @@ Un exemple de payload pour `pass_data`:
   // Cette liste contient systématiquement le demandeur (type 'demandeur')
   "team_members": [
     {
-      // ID technique interne de la personne
+      // ID technique interne du contact
       "id": 678,
       // Email de la personne
       "email": "technique@cambrai.fr",
@@ -141,7 +141,7 @@ Un exemple de payload pour `pass_data`:
       "phone_number": "0636656565",
       // Type de contact. Une liste non-exhautive: responsable_technique, responsable_traitement, contact_metier, delegue_protection_donnees, demandeur
       "type": "responsable_technique",
-      // ID interne issue de l'OAuth api-auth (autorité de connexion sur DataPass)
+      // ID interne issue du Compte DataPass. Contrairement à "id", cet identifiant est attaché à la personne et reste le même à travers différentes habilitations.
       "uid": 23455
     },
     {
@@ -160,7 +160,7 @@ Un exemple de payload pour `pass_data`:
     {
       // ID technique interne
       "id": 6789,
-      // Nom succinct de l'événement. Une liste non exhaustive: create, update, submit, validate, refuse
+      // Nom de l'événement (cf. liste ci-dessus)
       "name": "create",
       // Commentaire associé à cet événement. Il s'agit généralement d'un commentaire d'instructeur lors de la modération de la demande d’habilitation
       "comment": null,
