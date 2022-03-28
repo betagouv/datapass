@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
 
   def validate_comment
     if name.in?(%w[refuse request_changes validate notify]) && !comment.present?
-      errors.add(:comment, :invalid, "Vous devez renseigner un commentaire")
+      errors.add(:comment, :invalid, message: "Vous devez renseigner un commentaire")
     end
   end
 
@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   #   You tried to define an enum named "name" on the model "Event", but this will generate a class method "create", which is already defined by Active Record.
   def validate_name
     unless name.in?(%w[create update_contacts update request_changes notify submit import validate copy refuse])
-      errors.add(:name, :invalid, "Une erreur inattendue est survenue: nom d’évènement inconnu")
+      errors.add(:name, :invalid, message: "Une erreur inattendue est survenue: nom d’évènement inconnu")
     end
   end
 end
