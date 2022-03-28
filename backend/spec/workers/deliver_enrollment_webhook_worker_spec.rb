@@ -146,7 +146,7 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
           let(:tries_count) { ([*1..100] - [4]).sample }
 
           it "does not send an email through WebhookMailer" do
-            expect(ActionMailer::Parameterized::DeliveryJob).not_to(
+            expect(ActionMailer::MailDeliveryJob).not_to(
               have_been_enqueued.with(
                 "WebhookMailer",
                 "fail",
@@ -168,7 +168,7 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
           it "sends an email through WebhookMailer" do
             subject
 
-            expect(ActionMailer::Parameterized::DeliveryJob).to(
+            expect(ActionMailer::MailDeliveryJob).to(
               have_been_enqueued.with(
                 "WebhookMailer",
                 "fail",
