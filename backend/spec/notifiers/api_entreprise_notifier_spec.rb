@@ -78,7 +78,7 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
       it "delivers an email" do
         expect {
           subject
-        }.to have_enqueued_job
+        }.to have_enqueued_job.on_queue("mailers")
       end
     end
   end

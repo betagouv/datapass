@@ -1,5 +1,5 @@
 class PdfUploader < DocumentUploader
-  def extension_allowlist
+  def extension_whitelist
     ["pdf"]
   end
 end

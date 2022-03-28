@@ -263,10 +263,10 @@ class Enrollment < ActiveRecord::Base
   end
 
   def update_validation
-    errors.add(:intitule, :invalid, message: "Vous devez renseigner le nom du projet avant de continuer. Aucun changement n’a été sauvegardé.") unless intitule.present?
+    errors[:intitule] << "Vous devez renseigner le nom du projet avant de continuer. Aucun changement n’a été sauvegardé." unless intitule.present?
     # the following 2 errors should never occur #defensiveprogramming
-    errors.add(:target_api, :invalid, message: "Une erreur inattendue est survenue: pas d’API cible. Aucun changement n’a été sauvegardé.") unless target_api.present?
-    errors.add(:organization_id, :invalid, message: "Une erreur inattendue est survenue: pas d’organisation. Aucun changement n’a été sauvegardé.") unless organization_id.present?
+    errors[:target_api] << "Une erreur inattendue est survenue: pas d’API cible. Aucun changement n’a été sauvegardé." unless target_api.present?
+    errors[:organization_id] << "Une erreur inattendue est survenue: pas d’organisation. Aucun changement n’a été sauvegardé." unless organization_id.present?
   end
 
   def team_members_validation(type, label, validate_full_profile = true)
@@ -275,16 +275,16 @@ class Enrollment < ActiveRecord::Base
     phone_number_regex = /^\+?(?:[0-9][ -]?){6,14}[0-9]$/
 
     unless team_members.exists?(type: type)
-      errors.add(:team_members, :invalid, message: "Vous devez renseigner un contact #{label} avant de continuer")
+      errors[:team_members] << "Vous devez renseigner un contact #{label} avant de continuer"
     end
     team_members.where(type: type).each do |team_member|
-      errors.add(:team_members, :invalid, message: "Vous devez renseigner un email valide pour le #{label} avant de continuer") unless email_regex.match?(team_member.email)
-      errors.add(:team_members, :invalid, message: "Vous devez renseigner un numéro de téléphone valide pour le #{label} avant de continuer") unless phone_number_regex.match?(team_member.phone_number)
+      errors[:team_members] << "Vous devez renseigner un email valide pour le #{label} avant de continuer" unless email_regex.match?(team_member.email)
+      errors[:team_members] << "Vous devez renseigner un numéro de téléphone valide pour le #{label} avant de continuer" unless phone_number_regex.match?(team_member.phone_number)
 
       if validate_full_profile
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un intitulé de poste valide pour le #{label} avant de continuer") unless team_member.job.present?
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un nom valide pour le #{label} avant de continuer") unless team_member.given_name.present?
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un prénom valide pour le #{label} avant de continuer") unless team_member.family_name.present?
+        errors[:team_members] << "Vous devez renseigner un intitulé de poste valide pour le #{label} avant de continuer" unless team_member.job.present?
+        errors[:team_members] << "Vous devez renseigner un nom valide pour le #{label} avant de continuer" unless team_member.given_name.present?
+        errors[:team_members] << "Vous devez renseigner un prénom valide pour le #{label} avant de continuer" unless team_member.family_name.present?
       end
     end
   end
@@ -294,34 +294,34 @@ class Enrollment < ActiveRecord::Base
   end
 
   def rgpd_validation
-    errors.add(:data_retention_period, :invalid, message: "Vous devez renseigner la conservation des données avant de continuer") unless data_retention_period.present?
-    errors.add(:data_recipients, :invalid, message: "Vous devez renseigner les destinataires des données avant de continuer") unless data_recipients.present?
+    errors[:data_retention_period] << "Vous devez renseigner la conservation des données avant de continuer" unless data_retention_period.present?
+    errors[:data_recipients] << "Vous devez renseigner les destinataires des données avant de continuer" unless data_recipients.present?
     team_members_validation("delegue_protection_donnees", EnrollmentsController::DELEGUE_PROTECTION_DONNEES_LABEL)
     team_members_validation("responsable_traitement", EnrollmentsController::RESPONSABLE_TRAITEMENT_LABEL)
   end
 
   def cadre_juridique_validation
-    errors.add(:fondement_juridique_title, :invalid, message: "Vous devez renseigner la nature du texte vous autorisant à traiter les données avant de continuer") unless fondement_juridique_title.present?
-    errors.add(:fondement_juridique_url, :invalid, message: "Vous devez joindre l’URL ou le document du texte relatif au traitement avant de continuer") unless fondement_juridique_url.present? || documents.where(type: "Document::LegalBasis").present?
+    errors[:fondement_juridique_title] << "Vous devez renseigner la nature du texte vous autorisant à traiter les données avant de continuer" unless fondement_juridique_title.present?
+    errors[:fondement_juridique_url] << "Vous devez joindre l’URL ou le document du texte relatif au traitement avant de continuer" unless fondement_juridique_url.present? || documents.where(type: "Document::LegalBasis").present?
   end
 
   def scopes_validation
-    errors.add(:scopes, :invalid, message: "Vous devez cocher au moins un périmètre de données avant de continuer") unless scopes.any? { |_, v| v }
+    errors[:scopes] << "Vous devez cocher au moins un périmètre de données avant de continuer" unless scopes.any? { |_, v| v }
   end
 
   def previous_enrollment_id_validation
-    errors.add(:previous_enrollment_id, :invalid, message: "Vous devez associer cette demande d’habilitation à une habilitation Franceconnect validée") unless previous_enrollment_id.present?
+    errors[:previous_enrollment_id] << "Vous devez associer cette demande d’habilitation à une habilitation Franceconnect validée" unless previous_enrollment_id.present?
   end
 
   def technical_team_validation
     unless technical_team_type.present?
-      errors.add(:technical_team_type, :invalid, message: "Vous devez préciser qui va implémenter l’API avant de continuer")
+      errors[:technical_team_type] << "Vous devez préciser qui va implémenter l’API avant de continuer"
     end
     if technical_team_type == "software_company" && !technical_team_value.present?
-      errors.add(:technical_team_value, :invalid, message: "Vous devez préciser le nom de l’éditeur avant de continuer")
+      errors[:technical_team_value] << "Vous devez préciser le nom de l’éditeur avant de continuer"
     end
     if technical_team_type == "other" && !technical_team_value.present?
-      errors.add(:technical_team_value, :invalid, message: "Vous devez préciser qui va implémenter l’API avant de continuer")
+      errors[:technical_team_value] << "Vous devez préciser qui va implémenter l’API avant de continuer"
     end
   end
 
@@ -329,9 +329,9 @@ class Enrollment < ActiveRecord::Base
     rgpd_validation
     cadre_juridique_validation
 
-    errors.add(:description, :invalid, message: "Vous devez renseigner la description de la démarche avant de continuer") unless description.present?
-    errors.add(:siret, :invalid, message: "Vous devez renseigner un SIRET d’organisation valide avant de continuer") unless nom_raison_sociale
-    errors.add(:cgu_approved, :invalid, message: "Vous devez valider les modalités d’utilisation avant de continuer") unless cgu_approved?
-    errors.add(:dpo_is_informed, :invalid, message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer") unless dpo_is_informed?
+    errors[:description] << "Vous devez renseigner la description de la démarche avant de continuer" unless description.present?
+    errors[:siret] << "Vous devez renseigner un SIRET d’organisation valide avant de continuer" unless nom_raison_sociale
+    errors[:cgu_approved] << "Vous devez valider les modalités d’utilisation avant de continuer" unless cgu_approved?
+    errors[:dpo_is_informed] << "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer" unless dpo_is_informed?
   end
 end
