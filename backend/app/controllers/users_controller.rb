@@ -41,14 +41,14 @@ class UsersController < ApplicationController
   def join_organization
     # we clear DataPass session here to trigger organization sync with api-auth
     clear_user_session!
-    redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/join-organization"
+    redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/join-organization", allow_other_host: true
   end
 
   # GET /users/personal_information
   def personal_information
     # we clear DataPass session here to trigger organization sync with api-auth
     clear_user_session!
-    redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/personal-information"
+    redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/personal-information", allow_other_host: true
   end
 
   private

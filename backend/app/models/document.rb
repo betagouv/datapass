@@ -17,10 +17,10 @@ class Document < ActiveRecord::Base
 
   def content_type_validation
     if attachment&.file && !MagicPdfValidator.new(File.new(attachment.file.file, "r")).valid?
-      errors["documents.attachment"] << "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf."
+      errors.add("documents.attachment", :invalid, message: "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf.")
     end
   rescue RuntimeError
-    errors["documents.attachment"] << "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf."
+    errors.add("documents.attachment", :invalid, message: "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf.")
   end
 
   def touch_enrollment
