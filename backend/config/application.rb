@@ -50,6 +50,10 @@ module DataPass
       config.action_mailer.perform_deliveries = false
       config.action_mailer.delivery_method = :test
     end
+
+    if ENV.fetch("ALLOWED_ORIGINS").include? "localhost"
+      Rails.application.config.action_dispatch.cookies_same_site_protection = :none
+    end
   end
 end
 
