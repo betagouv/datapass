@@ -152,10 +152,13 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
                 "fail",
                 anything,
                 {
-                  target_api: target_api,
-                  payload: payload,
-                  webhook_response_status: status,
-                  webhook_response_body: body
+                  params: {
+                    target_api: target_api,
+                    payload: payload,
+                    webhook_response_status: status,
+                    webhook_response_body: body
+                  },
+                  args: []
                 }
               )
             )
@@ -174,10 +177,13 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
                 "fail",
                 anything,
                 {
-                  target_api: target_api,
-                  payload: payload,
-                  webhook_response_status: status,
-                  webhook_response_body: body
+                  params: {
+                    target_api: target_api,
+                    payload: payload,
+                    webhook_response_status: status,
+                    webhook_response_body: body
+                  },
+                  args: []
                 }
               )
             )
