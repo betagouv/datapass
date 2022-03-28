@@ -58,7 +58,7 @@
     "typescript": "^4.5.5"
   },
   "devDependencies": {
-    "@axe-core/react": "^4.4.0",
+    "@axe-core/react": "^4.4.2",
     "@testing-library/react-hooks": "^7.0.2",
     "http-proxy-middleware": "^2.0.3",
     "jest-mock-extended": "^2.0.4",
