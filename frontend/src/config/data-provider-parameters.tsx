@@ -71,13 +71,13 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
     hubee_portail: {
       label: 'Portail HubEE - Démarche CertDC',
       icon: 'logo-hubee.png',
-      email: 'support@hubee.numerique.gouv.fr',
+      email: 'contact@hubee.numerique.gouv.fr',
       component: HubeePortail,
     },
     hubee_portail_dila: {
       label: 'Portail HubEE - Démarches DILA',
       icon: 'logo-hubee.png',
-      email: 'support@hubee.numerique.gouv.fr',
+      email: 'contact@hubee.numerique.gouv.fr',
       component: HubeePortailDila,
     },
     franceconnect: {
