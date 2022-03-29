@@ -11,7 +11,7 @@ class Enrollment::ApiDeclarationAutoEntrepreneur < Enrollment
     responsable_technique_validation
 
     unless documents.where(type: "Document::AttestationFiscale").present?
-      errors.add(:documents_attributes, :invalid, message: "Vous devez joindre l’attestation fiscale avant de continuer")
+      errors.add(:documents, :invalid, message: "Vous devez joindre l’attestation fiscale avant de continuer")
     end
   end
 end

@@ -28,7 +28,7 @@ class Enrollment::ProductionEnrollment < Enrollment
     date_regex = /^\d{4}-\d{2}-\d{2}$/
     errors.add(:date_homologation, :invalid, message: "Vous devez renseigner la date de début de l’homologation au format AAAA-MM-JJ avant de continuer") unless date_regex.match?(additional_content&.fetch("date_homologation", ""))
     errors.add(:date_fin_homologation, :invalid, message: "Vous devez renseigner la date de fin de l’homologation au format AAAA-MM-JJ avant de continuer") unless date_regex.match?(additional_content&.fetch("date_fin_homologation", ""))
-    errors.add(:documents_attributes, :invalid, message: "Vous devez joindre le document de décision d’homologation avant de continuer") unless documents.where(type: "Document::DecisionHomologation").present?
+    errors.add(:documents, :invalid, message: "Vous devez joindre le document de décision d’homologation avant de continuer") unless documents.where(type: "Document::DecisionHomologation").present?
 
     # Volumétrie
     errors.add(:volumetrie_appels_par_minute, :invalid, message: "Vous devez renseigner la limitation d’appels par minute avant de continuer") unless additional_content&.fetch("volumetrie_appels_par_minute", false)&.present?
