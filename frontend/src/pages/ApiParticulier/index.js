@@ -335,6 +335,7 @@ const editorList = [
   { name: 'Nord France Informatique (NFI)', siret: '37996323400032' },
   { name: 'NUMESIA', siret: '81418189700012' },
   { name: 'Amiciel', siret: '44884396100021' },
+  { name: 'Qiis', siret: '52834311400021' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',
