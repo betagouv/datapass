@@ -459,7 +459,7 @@
       "data_recipients": "Adresse du foyer",
       "data_retention_period": 12,
       "fondement_juridique_title": "En pièce jointe la délibération du conseil municipal ou la nature du texte qui justifie l'accès aux données",
-      "technical_team_type": "Qiis",
+      "technical_team_type": "software_company",
       "technical_team_value": "52834311400021",
       "scopes": {
         "cnaf_quotient_familial": true,
