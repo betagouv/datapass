@@ -11,6 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require "./app/middleware/validate_request_params"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -54,6 +55,8 @@ module DataPass
     if ENV.fetch("ALLOWED_ORIGINS").include? "localhost"
       Rails.application.config.action_dispatch.cookies_same_site_protection = :none
     end
+
+    config.middleware.insert_before Rack::Head, ValidateRequestParams
   end
 end
 
