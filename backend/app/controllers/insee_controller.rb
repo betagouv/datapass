@@ -1,4 +1,17 @@
 class InseeController < ApplicationController
+  # GET /insee/etablissement/1
+  def etablissement
+    data = ApiSirene.call(params.fetch(:siret))
+
+    if data.nil?
+      return render status: :not_found, json: {}
+    end
+
+    render status: :ok, json: {
+      etablissement: data
+    }
+  end
+
   # GET /insee/code_naf/1
   def code_naf
     process_code_action(:code_naf, params.fetch(:id).delete("."))

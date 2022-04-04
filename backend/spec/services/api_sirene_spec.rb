@@ -14,13 +14,15 @@ RSpec.describe ApiSirene, type: :service do
         siret: "21920023500014",
         denomination: "COMMUNE DE CLAMART",
         sigle: nil,
+        adresse: "1 PL MAURICE GUNSBOURG",
         code_postal: "92140",
         code_commune: "92023",
         libelle_commune: "CLAMART",
         activite_principale: "84.11Z",
         activite_principale_label: "Administration publique générale",
         categorie_juridique: "7210",
-        categorie_juridique_label: "Commune et commune nouvelle"
+        categorie_juridique_label: "Commune et commune nouvelle",
+        etat_administratif: "A"
       })
     end
   end

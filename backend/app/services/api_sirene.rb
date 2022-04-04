@@ -10,6 +10,8 @@ class ApiSirene < ApplicationService
       return nil
     end
 
+    etat_administratif = response.parse["etablissement"]["etat_administratif"]
+
     nom_raison_sociale = response.parse["etablissement"]["unite_legale"]["denomination"]
     nom_raison_sociale ||= response.parse["etablissement"]["denomination_usuelle"]
     nom = response.parse["etablissement"]["unite_legale"]["nom"]
@@ -18,6 +20,12 @@ class ApiSirene < ApplicationService
     prenom_3 = response.parse["etablissement"]["unite_legale"]["prenom_3"]
     prenom_4 = response.parse["etablissement"]["unite_legale"]["prenom_4"]
     nom_raison_sociale ||= [prenom_1, prenom_2, prenom_3, prenom_4, nom].reject(&:nil?).join(" ")
+
+    numero_voie = response.parse["etablissement"]["numero_voie"]
+    indice_repetition = response.parse["etablissement"]["indice_repetition"]
+    type_voie = response.parse["etablissement"]["type_voie"]
+    libelle_voie = response.parse["etablissement"]["libelle_voie"]
+    adresse = [numero_voie, indice_repetition, type_voie, libelle_voie].reject(&:nil?).join(" ")
 
     denomination = response.parse["etablissement"]["unite_legale"]["denomination"]
     sigle = response.parse["etablissement"]["unite_legale"]["sigle"]
@@ -35,13 +43,15 @@ class ApiSirene < ApplicationService
       siret: @siret,
       denomination: denomination,
       sigle: sigle,
+      adresse: adresse,
       code_postal: code_postal,
       code_commune: code_commune,
       libelle_commune: libelle_commune,
       activite_principale: activite_principale,
       activite_principale_label: activite_principale_label,
       categorie_juridique: categorie_juridique,
-      categorie_juridique_label: categorie_juridique_label
+      categorie_juridique_label: categorie_juridique_label,
+      etat_administratif: etat_administratif
     }
   end
 
