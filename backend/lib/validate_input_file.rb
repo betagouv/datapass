@@ -7,23 +7,18 @@ email_to_validate_file = File.open(OUTPUT_FILE, "w")
 
 CSV.foreach(INPUT_FILE, headers: true, strip: true, liberal_parsing: true) do |row|
   sleep 0.75
-  # Mind that the usage of API v3 was not tested.
-  # There might be unwanted concurrency issues.
-  response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{row["siret"]}")
-  unless response.status.success? && response.parse["etablissement"]["etat_administratif"] == "A"
-    puts "\e[31m#{row["siret"]} not found!\e[0m"
+  # Mind that the usage of ApiSirene service has not been tested.
+  response = ApiSirene.call(enrollment.siret)
+  if response.nil?
+    rejection_reason = "Organisation inactive"
+    hubee_excluded_import_file << to_csv_line(row, rejection_reason)
+    puts "\e[31m#{rejection_reason}\e[0m"
     next
   end
 
-  activite_principale = response.parse["etablissement"]["activite_principale"]
-  nom_raison_sociale = response.parse["etablissement"]["unite_legale"]["denomination"]
-  nom_raison_sociale ||= response.parse["etablissement"]["denomination_usuelle"]
-  nom = response.parse["etablissement"]["unite_legale"]["nom"]
-  prenom_1 = response.parse["etablissement"]["unite_legale"]["prenom_1"]
-  prenom_2 = response.parse["etablissement"]["unite_legale"]["prenom_2"]
-  prenom_3 = response.parse["etablissement"]["unite_legale"]["prenom_3"]
-  prenom_4 = response.parse["etablissement"]["unite_legale"]["prenom_4"]
-  nom_raison_sociale ||= "#{nom + "*" unless nom.nil?}#{prenom_1 unless prenom_1.nil?}#{" " + prenom_2 unless prenom_2.nil?}#{" " + prenom_3 unless prenom_3.nil?}#{" " + prenom_4 unless prenom_4.nil?}"
+  activite_principale = response[:activite_principale]
+  nom_raison_sociale = response[:nom_raison_sociale]
+
   puts "#{row["siret"]} - #{nom_raison_sociale}"
 
   unless [
