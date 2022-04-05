@@ -8,18 +8,6 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const tracker = new MatomoTracker(matomoConfiguration);
 
-function getOrganizationActivityDetails(NafCode) {
-  return httpClient
-    .get(`${BACK_HOST}/api/insee/code_naf/${NafCode}`, {
-      headers: { 'Content-type': 'application/json' },
-    })
-    .then(({ data }) => data);
-}
-
-export const getCachedOrganizationActivityDetails = memoize(
-  getOrganizationActivityDetails
-);
-
 const limiter = new RateLimiter({ tokensPerInterval: 2, interval: 300 });
 
 const getOrganizationInformation = async (siret) => {
@@ -36,6 +24,7 @@ const getOrganizationInformation = async (siret) => {
       code_postal,
       libelle_commune,
       activite_principale,
+      activite_principale_label,
       etat_administratif,
     },
   } = await httpClient
@@ -47,6 +36,7 @@ const getOrganizationInformation = async (siret) => {
   return {
     title: nom_raison_sociale,
     activite: activite_principale,
+    activite_label: activite_principale_label,
     adresse,
     code_postal,
     ville: libelle_commune,

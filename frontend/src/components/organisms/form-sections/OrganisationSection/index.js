@@ -1,10 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { useAuth } from '../../AuthContext';
-import {
-  getCachedOrganizationActivityDetails,
-  getCachedOrganizationInformation,
-} from '../../../../services/external';
+import { getCachedOrganizationInformation } from '../../../../services/external';
 import { isValidNAFCode } from '../../../../lib';
 import OrganizationPrompt from './OrganizationPrompt';
 import { ScrollablePanel } from '../../Scrollable';
@@ -108,6 +105,7 @@ const OrganisationSection = ({ editorList = [] }) => {
         const {
           title,
           activite,
+          activite_label,
           adresse,
           code_postal,
           ville,
@@ -130,6 +128,7 @@ const OrganisationSection = ({ editorList = [] }) => {
           setCodePostal(code_postal);
           setVille(ville);
           setActivite(activite);
+          setActiviteLabel(activite_label);
           setIsOrganizationInfoLoading(false);
           setShowOrganizationInfoNotFound(false);
           setShowOrganizationInfoError(false);
@@ -151,22 +150,6 @@ const OrganisationSection = ({ editorList = [] }) => {
       fetchOrganizationInfo(siret);
     }
   }, [siret]);
-
-  useEffect(() => {
-    const fetchOrganizationActivityLabel = async (activite) => {
-      try {
-        const { message } = await getCachedOrganizationActivityDetails(
-          activite
-        );
-        setActiviteLabel(message);
-      } catch (e) {
-        setActiviteLabel('Code inconnu');
-      }
-    };
-    if (activite) {
-      fetchOrganizationActivityLabel(activite);
-    }
-  }, [activite]);
 
   const onOrganizationChange = (new_organization_id) => {
     setShowOrganizationPrompt(false);
