@@ -28,7 +28,7 @@ const getOrganizationInformation = async (siret) => {
       etat_administratif,
     },
   } = await httpClient
-    .get(`${BACK_HOST}/api/insee/etablissement/${siret}`, {
+    .get(`${BACK_HOST}/api/insee/etablissements/${siret}`, {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data);

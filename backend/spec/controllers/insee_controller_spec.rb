@@ -1,7 +1,7 @@
 RSpec.describe InseeController, type: :controller do
   describe "#code_naf" do
-    subject(:get_code_naf) do
-      get :code_naf, params: {
+    subject(:get_codes_naf) do
+      get :codes_naf, params: {
         id: code_naf
       }
     end
@@ -12,7 +12,7 @@ RSpec.describe InseeController, type: :controller do
       it { is_expected.to have_http_status(:ok) }
 
       it do
-        expect(JSON.parse(get_code_naf.body)).to eq({
+        expect(JSON.parse(get_codes_naf.body)).to eq({
           "message" => "Conseil en systèmes et logiciels informatiques"
         })
       end
@@ -26,8 +26,8 @@ RSpec.describe InseeController, type: :controller do
   end
 
   describe "#categorie_juridique" do
-    subject(:get_categorie_juridique) do
-      get :categorie_juridique, params: {
+    subject(:get_categories_juridiques) do
+      get :categories_juridiques, params: {
         id: categorie_juridique
       }
     end
@@ -38,7 +38,7 @@ RSpec.describe InseeController, type: :controller do
       it { is_expected.to have_http_status(:ok) }
 
       it do
-        expect(JSON.parse(get_categorie_juridique.body)).to eq({
+        expect(JSON.parse(get_categories_juridiques.body)).to eq({
           "message" => "SAS, société par actions simplifiée"
         })
       end
