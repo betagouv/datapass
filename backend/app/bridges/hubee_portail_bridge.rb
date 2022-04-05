@@ -26,12 +26,13 @@ class HubeePortailBridge < ApplicationBridge
     validated_at,
     scopes
   )
-    response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{siret}")
-    denomination = response.parse["etablissement"]["unite_legale"]["denomination"]
-    sigle = response.parse["etablissement"]["unite_legale"]["sigle"]
-    code_postal = response.parse["etablissement"]["code_postal"]
-    code_commune = response.parse["etablissement"]["code_commune"]
-    libelle_commune = response.parse["etablissement"]["libelle_commune"]
+    response = ApiSirene.call(siret)
+
+    denomination = response[:denomination]
+    sigle = response[:sigle]
+    code_postal = response[:code_postal]
+    code_commune = response[:code_commune]
+    libelle_commune = response[:libelle_commune]
 
     api_host = ENV.fetch("HUBEE_HOST")
     hubee_auth_url = ENV.fetch("HUBEE_AUTH_URL")
