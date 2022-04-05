@@ -480,7 +480,7 @@
   },
 
   "aiga": {
-    "label": "Facturation activités périscolaires, garderies et centres de loisirs",
+    "label": "Facturation activités périscolaires, garderies et centres de loisirs AIGA",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
     "state": {
       "intitule": "Facturation des familles inscrites aux CLSH, services périscolaires … des collectivités",
