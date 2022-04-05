@@ -478,6 +478,33 @@
       }
     }
   },
+
+  "aiga": {
+    "label": "Facturation activités périscolaires, garderies et centres de loisirs",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Facturation des familles inscrites aux CLSH, services périscolaires … des collectivités",
+      "description": "iNoé permet la facturation des prestations des activités périscolaires, garderies et centres de loisirs des collectivités. La tarification aux familles est dépendante du quotient familial, au plus juste quand récupéré auprès de la CNAF. ",
+      "data_recipients": "Adresse du foyer",
+      "data_retention_period": 12,
+      "fondement_juridique_title": "En pièce jointe la délibération du conseil municipal ou la nature du texte qui justifie l'accès aux données",
+      "technical_team_type": "software_company",
+      "technical_team_value": "39825361700045",
+      "scopes": {
+        "cnaf_quotient_familial": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Fabrice",
+        "family_name": "Biollet",
+        "job": "CEO",
+        "email": "fabrice.biollet@free.fr",
+        "phone_number": "0472532200"
+      }
+    }
+  },
+
   "waigeo": {
     "label": "Tarification des services liés à l'enfance avec la solution MyPérischool de l'éditeur Waigéo",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",

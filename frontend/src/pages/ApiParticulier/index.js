@@ -336,6 +336,7 @@ const editorList = [
   { name: 'NUMESIA', siret: '81418189700012' },
   { name: 'Amiciel', siret: '44884396100021' },
   { name: 'Qiis', siret: '52834311400021' },
+  { name: 'Aiga', siret: '39825361700045' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',
