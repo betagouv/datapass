@@ -4,6 +4,16 @@ class ApiSirene < ApplicationService
   end
 
   def call
+    cached_etablissement
+  end
+
+  def cached_etablissement
+    Rails.cache.fetch("etablissements/#{@siret}", expires_in: 1.hours) do
+      etablissement
+    end
+  end
+
+  def etablissement
     response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{@siret}")
 
     unless response.status.success?
