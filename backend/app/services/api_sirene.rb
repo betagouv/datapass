@@ -6,11 +6,30 @@ class ApiSirene < ApplicationService
   def call
     response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{@siret}")
 
-    if !response.status.success? || response.parse["etablissement"]["etat_administratif"] != "A"
+    unless response.status.success?
+      puts "#{response.inspect} response"
       return nil
     end
 
     etat_administratif = response.parse["etablissement"]["etat_administratif"]
+
+    if etat_administratif != "A"
+      return {
+        nom_raison_sociale: nil,
+        siret: @siret,
+        denomination: nil,
+        sigle: nil,
+        adresse: nil,
+        code_postal: nil,
+        code_commune: nil,
+        libelle_commune: nil,
+        activite_principale: nil,
+        activite_principale_label: nil,
+        categorie_juridique: nil,
+        categorie_juridique_label: nil,
+        etat_administratif: etat_administratif
+      }
+    end
 
     nom_raison_sociale = response.parse["etablissement"]["unite_legale"]["denomination"]
     nom_raison_sociale ||= response.parse["etablissement"]["denomination_usuelle"]

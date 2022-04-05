@@ -50,4 +50,34 @@ RSpec.describe InseeController, type: :controller do
       it { is_expected.to have_http_status(:not_found) }
     end
   end
+
+  describe "#etablissements" do
+    subject(:get_etablissements) do
+      get :etablissements, params: {
+        siret: siret
+      }
+    end
+
+    before do
+      stub_entreprise_data_etablissement_call(siret)
+    end
+
+    context "with valid siret" do
+      let(:siret) { "21920023500014" }
+
+      it { is_expected.to have_http_status(:ok) }
+
+      it do
+        expect(
+          JSON.parse(get_etablissements.body)["etablissement"]["nom_raison_sociale"]
+        ).to eq("COMMUNE DE CLAMART")
+      end
+    end
+
+    context "with invalid siret" do
+      let(:siret) { "88888888800011" }
+
+      it { is_expected.to have_http_status(:not_found) }
+    end
+  end
 end

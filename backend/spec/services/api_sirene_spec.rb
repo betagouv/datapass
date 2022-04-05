@@ -33,4 +33,34 @@ RSpec.describe ApiSirene, type: :service do
       expect(subject[:nom_raison_sociale]).to eq("PAUL JACQUES JEAN PIERRE")
     end
   end
+
+  context "for a closed individual organization" do
+    let(:siret) { "83951732300011" }
+
+    it "return siret and etat_administratif" do
+      expect(subject).to eq({
+        nom_raison_sociale: nil,
+        siret: "83951732300011",
+        denomination: nil,
+        sigle: nil,
+        adresse: nil,
+        code_postal: nil,
+        code_commune: nil,
+        libelle_commune: nil,
+        activite_principale: nil,
+        activite_principale_label: nil,
+        categorie_juridique: nil,
+        categorie_juridique_label: nil,
+        etat_administratif: "F"
+      })
+    end
+  end
+
+  context "for an unknown siret" do
+    let(:siret) { "88888888800011" }
+
+    it "return given name and family name as nom_raison_sociale" do
+      expect(subject).to eq(nil)
+    end
+  end
 end

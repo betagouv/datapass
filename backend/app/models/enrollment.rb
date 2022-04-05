@@ -246,7 +246,7 @@ class Enrollment < ActiveRecord::Base
 
     response = ApiSirene.call(siret)
 
-    if response.nil?
+    if response.nil? || response[:etat_administratif] != "A"
       throw :abort
     else
       self.siret = siret

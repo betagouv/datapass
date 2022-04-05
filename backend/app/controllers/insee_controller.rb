@@ -4,7 +4,7 @@ class InseeController < ApplicationController
     data = ApiSirene.call(params.fetch(:siret))
 
     if data.nil?
-      return render status: :not_found, json: {}
+      return render status: :not_found, json: {etablissement: nil}
     end
 
     render status: :ok, json: {

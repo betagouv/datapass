@@ -12,7 +12,7 @@ Enrollment.where(status: %w[validated refused]).find_each do |enrollment|
   sleep 0.75
   puts "#{enrollment.id} - #{enrollment.nom_raison_sociale} - #{enrollment.target_api} - #{enrollment.status}"
   response = ApiSirene.call(enrollment.siret)
-  if !enrollment.siret || enrollment.siret == "" || response.nil?
+  if !enrollment.siret || enrollment.siret == "" || response.nil? || response[:etat_administratif] != "A"
     puts "\e[31m#{enrollment.siret} not found!\e[0m"
   else
     activite_principale = response[:activite_principale]

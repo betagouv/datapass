@@ -10,10 +10,7 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
   before do
     login(user)
 
-    allow_any_instance_of(ApiSirene).to receive(:call).and_return({
-      nom_raison_sociale: "COMMUNE DE CLAMART",
-      siret: "21920023500014"
-    })
+    stub_entreprise_data_etablissement_call("21920023500014")
   end
 
   context "with valid enrollment attributes" do

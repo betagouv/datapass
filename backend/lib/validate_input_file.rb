@@ -9,7 +9,7 @@ CSV.foreach(INPUT_FILE, headers: true, strip: true, liberal_parsing: true) do |r
   sleep 0.75
   # Mind that the usage of ApiSirene service has not been tested.
   response = ApiSirene.call(enrollment.siret)
-  if response.nil?
+  if response.nil? || response[:etat_administratif] != "A"
     rejection_reason = "Organisation inactive"
     hubee_excluded_import_file << to_csv_line(row, rejection_reason)
     puts "\e[31m#{rejection_reason}\e[0m"
