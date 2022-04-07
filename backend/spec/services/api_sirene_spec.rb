@@ -2,7 +2,7 @@ RSpec.describe ApiSirene, type: :service do
   subject { described_class.new(siret).call }
 
   before do
-    stub_entreprise_data_etablissement_call(siret)
+    stub_api_insee_etablissement_call(siret)
   end
 
   context "for an administration" do

@@ -75,7 +75,7 @@ FactoryBot.define do
     end
 
     before(:create) do |enrollment|
-      stub_entreprise_data_etablissement_call(enrollment.siret)
+      stub_api_insee_etablissement_call(enrollment.siret)
     end
 
     trait :complete do

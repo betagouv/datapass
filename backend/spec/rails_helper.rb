@@ -40,8 +40,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include DeviseControllerLoginHelpers, type: :controller
 
-  config.include EntrepriseDataPayloadHelpers
-  FactoryBot::SyntaxRunner.send(:include, EntrepriseDataPayloadHelpers)
+  config.include ApiInseePayloadHelpers
+  FactoryBot::SyntaxRunner.send(:include, ApiInseePayloadHelpers)
   config.include SendinblueDataPayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, SendinblueDataPayloadHelpers)
 
