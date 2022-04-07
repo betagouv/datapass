@@ -11,7 +11,13 @@ module ApiInseePayloadHelpers
     )
 
     stub_request(:get, "#{insee_host}/entreprises/sirene/V3/siret/#{siret}").to_return(
-      status: siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012]) ? 200 : 404,
+      status: if siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012])
+                200
+              elsif siret == "24340081900120"
+                403
+              else
+                404
+              end,
       headers: {
         "Content-Type" => "application/json"
       },
@@ -408,11 +414,18 @@ module ApiInseePayloadHelpers
           "adresseEtablissement" => {}
         }
       }
+    when "24340081900120"
+      {
+        "header" => {
+          "statut" => 403,
+          "message" => "Établissement non diffusable (24340081900120)"
+        }
+      }
     else
       {
-        header: {
-          statut: 404,
-          message: "Aucun élément trouvé pour le siret #{siret}"
+        "header" => {
+          "statut" => 404,
+          "message" => "Aucun élément trouvé pour le siret #{siret}"
         }
       }
     end

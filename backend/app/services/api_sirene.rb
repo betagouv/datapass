@@ -36,6 +36,8 @@ class ApiSirene < ApplicationService
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
         return nil
+      elsif e.http_code == 403
+        return nil
       else
         raise
       end

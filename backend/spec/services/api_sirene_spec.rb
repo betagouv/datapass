@@ -56,10 +56,18 @@ RSpec.describe ApiSirene, type: :service do
     end
   end
 
+  context "for a non diffusable organization" do
+    let(:siret) { "15700033200013" }
+
+    it "return nil" do
+      expect(subject).to eq(nil)
+    end
+  end
+
   context "for an unknown siret" do
     let(:siret) { "88888888800011" }
 
-    it "return given name and family name as nom_raison_sociale" do
+    it "return nil" do
       expect(subject).to eq(nil)
     end
   end
