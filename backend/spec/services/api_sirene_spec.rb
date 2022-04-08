@@ -64,6 +64,14 @@ RSpec.describe ApiSirene, type: :service do
     end
   end
 
+  context "for an over quota query" do
+    let(:siret) { "12345678901234" }
+
+    it "raise error ApplicationController::BadGateway" do
+      expect { subject }.to raise_error(ApplicationController::BadGateway)
+    end
+  end
+
   context "for an unknown siret" do
     let(:siret) { "88888888800011" }
 
