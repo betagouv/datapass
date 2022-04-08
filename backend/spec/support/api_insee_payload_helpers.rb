@@ -14,7 +14,11 @@ module ApiInseePayloadHelpers
       status: if siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012])
                 200
               elsif siret == "24340081900120"
+                # non diffusable
                 403
+              elsif siret == "12345678901234"
+                # over quota
+                429
               else
                 404
               end,
@@ -419,6 +423,15 @@ module ApiInseePayloadHelpers
         "header" => {
           "statut" => 403,
           "message" => "Établissement non diffusable (24340081900120)"
+        }
+      }
+    when "12345678901234"
+      {
+        "fault" => {
+          "code" => 900804,
+          "message" => "Message throttled out",
+          "description" => "You have exceeded your quota",
+          "nextAccessTime" => "2022-avr.-08 10:03:00+0000 UTC"
         }
       }
     else
