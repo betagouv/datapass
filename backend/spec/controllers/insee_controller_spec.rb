@@ -59,7 +59,7 @@ RSpec.describe InseeController, type: :controller do
     end
 
     before do
-      stub_entreprise_data_etablissement_call(siret)
+      stub_api_insee_etablissement_call(siret)
     end
 
     context "with valid siret" do

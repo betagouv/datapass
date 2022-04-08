@@ -44,6 +44,7 @@ module Http
   def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method, content_type)
     logger = Logger.new($stdout)
     http = HTTP.use(logging: {logger: logger})
+      .headers(accept: "application/json")
 
     http_with_auth = if auth_header.nil?
       http.auth("#{auth_method} #{api_key}")
@@ -53,11 +54,9 @@ module Http
 
     response = if content_type == "application/x-www-form-urlencoded"
       http_with_auth
-        .headers(accept: "application/x-www-form-urlencoded")
         .send(http_verb, url_as_string, form: body)
     else
       http_with_auth
-        .headers(accept: "application/json")
         .send(http_verb, url_as_string, json: body)
     end
 

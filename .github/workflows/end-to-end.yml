@@ -22,6 +22,9 @@ jobs:
       RAILS_ENV: production
       DATAPASS_OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
       DATAPASS_OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+      INSEE_HOST: https://api.insee.fr
+      INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
+      INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
     services:
       redis:
         image: redis

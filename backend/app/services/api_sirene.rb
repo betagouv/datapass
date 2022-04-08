@@ -14,14 +14,38 @@ class ApiSirene < ApplicationService
   end
 
   def etablissement
-    response = HTTP.get("https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{@siret}")
+    token_response = Http.post(
+      "#{insee_host}/token",
+      {grant_type: "client_credentials"},
+      Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
+      "API Insee",
+      nil,
+      "Basic",
+      "application/x-www-form-urlencoded"
+    )
 
-    unless response.status.success?
-      puts "#{response.inspect} response"
-      return nil
+    token = token_response.parse
+    access_token = token["access_token"]
+
+    begin
+      response = Http.get(
+        "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
+        access_token,
+        "API Insee"
+      )
+    rescue ApplicationController::BadGateway => e
+      if e.http_code == 404
+        return nil
+      elsif e.http_code == 403
+        return nil
+      else
+        raise
+      end
     end
 
-    etat_administratif = response.parse["etablissement"]["etat_administratif"]
+    etablissement = response.parse["etablissement"]
+    last_periode_etablissement = etablissement["periodesEtablissement"][0]
+    etat_administratif = last_periode_etablissement["etatAdministratifEtablissement"]
 
     if etat_administratif != "A"
       return {
@@ -41,30 +65,33 @@ class ApiSirene < ApplicationService
       }
     end
 
-    nom_raison_sociale = response.parse["etablissement"]["unite_legale"]["denomination"]
-    nom_raison_sociale ||= response.parse["etablissement"]["denomination_usuelle"]
-    nom = response.parse["etablissement"]["unite_legale"]["nom"]
-    prenom_1 = response.parse["etablissement"]["unite_legale"]["prenom_1"]
-    prenom_2 = response.parse["etablissement"]["unite_legale"]["prenom_2"]
-    prenom_3 = response.parse["etablissement"]["unite_legale"]["prenom_3"]
-    prenom_4 = response.parse["etablissement"]["unite_legale"]["prenom_4"]
+    unite_legale = etablissement["uniteLegale"]
+    adresse_etablissement = etablissement["adresseEtablissement"]
+
+    nom_raison_sociale = unite_legale["denominationUniteLegale"]
+    nom_raison_sociale ||= last_periode_etablissement["denominationUsuelleEtablissement"]
+    nom = unite_legale["nomUniteLegale"]
+    prenom_1 = unite_legale["prenom1UniteLegale"]
+    prenom_2 = unite_legale["prenom2UniteLegale"]
+    prenom_3 = unite_legale["prenom3UniteLegale"]
+    prenom_4 = unite_legale["prenom4UniteLegale"]
     nom_raison_sociale ||= [prenom_1, prenom_2, prenom_3, prenom_4, nom].reject(&:nil?).join(" ")
 
-    numero_voie = response.parse["etablissement"]["numero_voie"]
-    indice_repetition = response.parse["etablissement"]["indice_repetition"]
-    type_voie = response.parse["etablissement"]["type_voie"]
-    libelle_voie = response.parse["etablissement"]["libelle_voie"]
+    numero_voie = adresse_etablissement["numeroVoieEtablissement"]
+    indice_repetition = adresse_etablissement["indiceRepetitionEtablissement"]
+    type_voie = adresse_etablissement["typeVoieEtablissement"]
+    libelle_voie = adresse_etablissement["libelleVoieEtablissement"]
     adresse = [numero_voie, indice_repetition, type_voie, libelle_voie].reject(&:nil?).join(" ")
 
-    denomination = response.parse["etablissement"]["unite_legale"]["denomination"]
-    sigle = response.parse["etablissement"]["unite_legale"]["sigle"]
-    code_postal = response.parse["etablissement"]["code_postal"]
-    code_commune = response.parse["etablissement"]["code_commune"]
-    libelle_commune = response.parse["etablissement"]["libelle_commune"]
-    activite_principale = response.parse["etablissement"]["activite_principale"]
-    activite_principale ||= response.parse["etablissement"]["unite_legale"]["activite_principale"]
+    denomination = unite_legale["denominationUniteLegale"]
+    sigle = unite_legale["sigleUniteLegale"]
+    code_postal = adresse_etablissement["codePostalEtablissement"]
+    code_commune = adresse_etablissement["codeCommuneEtablissement"]
+    libelle_commune = adresse_etablissement["libelleCommuneEtablissement"]
+    activite_principale = last_periode_etablissement["activitePrincipaleEtablissement"]
+    activite_principale ||= unite_legale["activitePrincipaleUniteLegale"]
     activite_principale_label = codes_naf[activite_principale.delete(".")]
-    categorie_juridique = response.parse["etablissement"]["unite_legale"]["categorie_juridique"]
+    categorie_juridique = unite_legale["categorieJuridiqueUniteLegale"]
     categorie_juridique_label = categories_juridiques[categorie_juridique]
 
     {
@@ -85,6 +112,18 @@ class ApiSirene < ApplicationService
   end
 
   private
+
+  def insee_host
+    ENV.fetch("INSEE_HOST")
+  end
+
+  def insee_consumer_key
+    ENV.fetch("INSEE_CONSUMER_KEY")
+  end
+
+  def insee_consumer_secret
+    ENV.fetch("INSEE_CONSUMER_SECRET")
+  end
 
   def codes_naf
     JSON.parse(File.read("./public/codes_naf.json"))
