@@ -67,6 +67,10 @@ class EnrollmentPolicy < ApplicationPolicy
     record.can_refuse_status? && user.is_instructor?(record.target_api)
   end
 
+  def revoke?
+    record.can_revoke_status? && user.is_administrator?
+  end
+
   def get_email_templates?
     user.is_instructor?(record.target_api)
   end

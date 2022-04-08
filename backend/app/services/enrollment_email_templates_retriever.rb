@@ -88,6 +88,7 @@ class EnrollmentEmailTemplatesRetriever
       refuse
       request_changes
       validate
+      revoke
     ].freeze
   end
 

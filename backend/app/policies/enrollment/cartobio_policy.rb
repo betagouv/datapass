@@ -46,4 +46,8 @@ class Enrollment::CartobioPolicy < EnrollmentPolicy
   def refuse?
     false
   end
+
+  def revoke?
+    false
+  end
 end

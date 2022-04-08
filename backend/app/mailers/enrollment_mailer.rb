@@ -71,12 +71,7 @@ class EnrollmentMailer < ActionMailer::Base
   end
 
   def manual_review_from_instructor?
-    %w[
-      notify
-      refuse
-      request_changes
-      validate
-    ].include?(params[:template])
+    Event::MANUALLY_REVIEWED_EVENT_NAMES.include?(params[:template])
   end
 
   def extract_template_path(template_name)

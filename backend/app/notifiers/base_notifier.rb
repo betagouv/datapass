@@ -43,4 +43,8 @@ class BaseNotifier < AbstractNotifier
       deliver_rgpd_email_for("delegue_protection_donnees")
     end
   end
+
+  def revoke(comment:, current_user:)
+    deliver_event_mailer(__method__, comment)
+  end
 end

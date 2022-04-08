@@ -9,6 +9,8 @@ shared:
       subject: "Votre demande d’habilitation requiert des modifications"
     refuse: &shared_refuse_mailer
       subject: "Votre habilitation a été refusée"
+    revoke: &shared_revoke_mailer
+      subject: "Votre habilitation a été révoquée"
     notify_submitted: &shared_notify_submitted_mailer
       subject: "Nouvelle demande d’habilitation sur DataPass"
     create: &shared_create_mailer

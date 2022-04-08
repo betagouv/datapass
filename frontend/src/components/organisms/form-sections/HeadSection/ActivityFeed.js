@@ -49,6 +49,10 @@ const eventToDisplayableContent = {
     icon: <ErrorIcon color={'var(--text-default-error)'} />,
     label: 'a refusé l’habilitation',
   },
+  revoke: {
+    icon: <ErrorIcon color={'var(--text-default-error)'} />,
+    label: 'a révoqué l’habilitation',
+  },
   copy: {
     icon: <FileCopyIcon color={'var(--text-default-info)'} />,
     label: 'a copié l’habilitation',

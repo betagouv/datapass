@@ -39,6 +39,7 @@ class Enrollment < ActiveRecord::Base
     state :changes_requested
     state :validated
     state :refused
+    state :revoked
 
     event :notify do
       transition changes_requested: same
@@ -50,6 +51,10 @@ class Enrollment < ActiveRecord::Base
 
     event :refuse do
       transition from: [:changes_requested, :submitted], to: :refused
+    end
+
+    event :revoke do
+      transition from: :validated, to: :revoked
     end
 
     event :request_changes do

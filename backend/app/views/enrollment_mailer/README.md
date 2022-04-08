@@ -27,7 +27,7 @@ utilisée est:
 * [validate.text.erb](validate.text.erb) pour une validaton
 * [create.text.erb](create.text.erb) pour une création
 * [submit.text.erb](submit.text.erb) pour un envoi
-* [validate.text.erb](validate.text.erb) pour une validaton
+* [revoke.text.erb](revoke.text.erb) pour une révocation
 
 L'ensemble de l'email au format text se trouve au sein des fichiers ci-dessus.
 
@@ -68,6 +68,7 @@ api_entreprise:
     notify_submitted: *shared_notify_submitted_mailer
     create: *shared_create_mailer
     notify: *shared_notify_mailer
+    revoke: *shared_notify_mailer
 ```
 
 A noter qu'il faut obligatoirement inclure tous les templates si vous voulez

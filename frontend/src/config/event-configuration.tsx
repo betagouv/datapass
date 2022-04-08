@@ -4,6 +4,7 @@ export enum EnrollmentEvent {
   update = 'update',
   submit = 'submit',
   refuse = 'refuse',
+  revoke = 'revoke',
   request_changes = 'request_changes',
   validate = 'validate',
 }
@@ -67,6 +68,16 @@ export const eventConfigurations: {
   refuse: {
     displayProps: {
       label: 'Refuser',
+      icon: 'alert',
+      type: 'error',
+    },
+    changeEnrollmentState: true,
+    promptForComment: true,
+    redirectToHome: true,
+  },
+  revoke: {
+    displayProps: {
+      label: 'Révoquer',
       icon: 'alert',
       type: 'error',
     },

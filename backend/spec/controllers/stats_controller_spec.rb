@@ -53,6 +53,7 @@ RSpec.describe StatsController, type: :controller do
           "submitted" => 0,
           "validated" => 2,
           "refused" => 1,
+          "revoked" => 0,
           "total" => 4
         }
       ])

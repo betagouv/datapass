@@ -76,6 +76,7 @@ Avec:
   - `update`: l’habilitation a été mise à jour par le demandeur ;
   - `submit`: la demande d’habilitation a été envoyée par le demandeur ;
   - `refuse`: l’habilitation a été refusée par un instructeur ;
+  - `revoke`: l’habilitation a été refusée par un administrateur ;
   - `request_changes`: la demande d’habilitation a été instruite par un instructeur et
     demande des modifications de la part du demandeur ;
   - `validate`: l’habilitation a été validée par un instructeur ;
@@ -113,6 +114,7 @@ Un exemple de payload pour `pass_data`:
   // * changes_requested : la demande d’habilitation a été revue par un instructeur et demande des modifications
   // * validated : habilitation validée
   // * refused : habilitation refusée
+  // * revoked : habilitation révoquée
   "status": "draft",
   // ID de la habilitation qui a été copiée (peut être vide si il s'agit d'une nouvelle habilitation)
   "copied_from_enrollment_id": 5432,
