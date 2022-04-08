@@ -4,6 +4,7 @@ export enum EnrollmentStatus {
   validated = 'validated',
   changes_requested = 'changes_requested',
   refused = 'refused',
+  revoked = 'revoked',
 }
 
 export const INSTRUCTOR_STATUS_LABELS: {
@@ -14,6 +15,7 @@ export const INSTRUCTOR_STATUS_LABELS: {
   validated: 'Validée',
   changes_requested: 'Retour',
   refused: 'Refusée',
+  revoked: 'Révoquée',
 };
 
 export const USER_STATUS_LABELS: {
@@ -24,6 +26,7 @@ export const USER_STATUS_LABELS: {
   validated: 'Validée',
   changes_requested: 'Modifications demandées',
   refused: 'Refusée',
+  revoked: 'Révoquée',
 };
 
 export const STATUS_TO_BUTTON_TYPE: {
@@ -34,4 +37,5 @@ export const STATUS_TO_BUTTON_TYPE: {
   validated: 'success',
   changes_requested: 'warning',
   refused: 'error',
+  revoked: 'error',
 };
