@@ -8,6 +8,7 @@ RSpec.describe Event, type: :model do
       notify
       validate
       refuse
+      revoke
       request_changes
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
@@ -25,6 +26,7 @@ RSpec.describe Event, type: :model do
         request_changes
         validate
         notify
+        revoke
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }

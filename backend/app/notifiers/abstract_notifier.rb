@@ -37,5 +37,9 @@ class AbstractNotifier
   def validate(comment:, current_user:)
     fail NotImplementedError
   end
+
+  def revoke(comment:, current_user:)
+    fail NotImplementedError
+  end
   # :nocov:
 end

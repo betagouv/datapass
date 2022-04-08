@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
-  EVENT_NAMES = %w[create update_contacts update request_changes notify submit import validate copy refuse].freeze
-  MANUALLY_REVIEWED_EVENT_NAMES = %w[refuse request_changes validate notify].freeze
+  EVENT_NAMES = %w[create update_contacts update request_changes notify submit import validate copy refuse revoke].freeze
+  MANUALLY_REVIEWED_EVENT_NAMES = %w[refuse request_changes validate notify revoke].freeze
 
   belongs_to :enrollment
   belongs_to :user

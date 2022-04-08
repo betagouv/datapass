@@ -22,14 +22,15 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
               "notify" => mailer_template_payload,
               "refuse" => mailer_template_payload,
               "request_changes" => mailer_template_payload,
-              "validate" => mailer_template_payload
+              "validate" => mailer_template_payload,
+              "revoke" => mailer_template_payload
             }
           }
         )
       end
 
-      it "renders 4 templates, one for each action" do
-        expect(subject.count).to eq(4)
+      it "renders 5 templates, one for each action" do
+        expect(subject.count).to eq(5)
 
         expect(subject.map(&:event)).to include(
           *%w[
@@ -37,6 +38,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
             refuse
             request_changes
             validate
+            revoke
           ]
         )
       end
@@ -91,8 +93,8 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
     context "with a target api which has custom templates" do
       let(:target_api) { "api_entreprise" }
 
-      it "renders 4 templates, one for each action" do
-        expect(subject.count).to eq(4)
+      it "renders 5 templates, one for each action" do
+        expect(subject.count).to eq(5)
 
         expect(subject.map(&:event)).to include(
           *%w[
@@ -100,6 +102,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
             refuse
             request_changes
             validate
+            revoke
           ]
         )
       end

@@ -43,5 +43,11 @@ FactoryBot.define do
 
       with_comment
     end
+
+    trait :revoke do
+      name { "revoke" }
+
+      with_comment
+    end
   end
 end
