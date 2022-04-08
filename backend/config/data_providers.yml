@@ -123,13 +123,13 @@ hubee_portail:
   label: Portail HubEE
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
-  reply_to: support@hubee.numerique.gouv.fr
+  reply_to: contact@hubee.numerique.gouv.fr
 
 hubee_portail_dila:
   label: Portail HubEE
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
-  reply_to: support@hubee.numerique.gouv.fr
+  reply_to: contact@hubee.numerique.gouv.fr
 
 api_pro_sante_connect:
   label: API Pro Santé Connect
