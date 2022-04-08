@@ -17,7 +17,10 @@ import {
 } from 'recharts';
 import './Stats.css';
 import { getAPIStats } from '../../services/stats';
-import { USER_STATUS_LABELS } from '../../config/status-parameters';
+import {
+  EnrollmentStatus,
+  USER_STATUS_LABELS,
+} from '../../config/status-parameters';
 import {
   DATA_PROVIDER_PARAMETERS,
   DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
@@ -189,33 +192,18 @@ export const Stats = () => {
                   />
                   <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
                   <CartesianGrid vertical={false} />
-                  <Bar
-                    stackId="count"
-                    dataKey="draft"
-                    fill={USER_STATUS_COLORS['draft']}
-                  />
-                  <Bar
-                    stackId="count"
-                    dataKey="changes_requested"
-                    fill={USER_STATUS_COLORS['changes_requested']}
-                  />
-                  <Bar
-                    stackId="count"
-                    dataKey="submitted"
-                    fill={USER_STATUS_COLORS['submitted']}
-                  />
-                  <Bar
-                    stackId="count"
-                    dataKey="validated"
-                    fill={USER_STATUS_COLORS['validated']}
-                  />
-                  <Bar
-                    stackId="count"
-                    dataKey="refused"
-                    fill={USER_STATUS_COLORS['refused']}
-                  >
-                    <LabelList dataKey="total" position="top" />
-                  </Bar>
+                  {Object.keys(EnrollmentStatus).map((status, index, array) => (
+                    <Bar
+                      key={status}
+                      stackId="count"
+                      dataKey={status}
+                      fill={USER_STATUS_COLORS[status]}
+                    >
+                      {index === array.length - 1 && (
+                        <LabelList dataKey="total" position="top" />
+                      )}
+                    </Bar>
+                  ))}
                 </BarChart>
               </ResponsiveContainer>
             </div>
