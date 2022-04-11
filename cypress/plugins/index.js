@@ -19,4 +19,11 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  // source: https://stackoverflow.com/questions/68561394/cypress-doesnt-work-with-an-external-login#answer-68564514
+  on('before:browser:launch', (browser, launchOptions) => {
+    if (browser.name === 'chrome') {
+      launchOptions.args.push('--disable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure');
+    }
+    return launchOptions;
+  });
 };
