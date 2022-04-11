@@ -350,10 +350,10 @@ GEM
     sentry-rails (5.1.0)
       railties (>= 5.0)
       sentry-ruby-core (~> 5.1.0)
-    sentry-ruby (5.1.0)
+    sentry-ruby (5.1.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      sentry-ruby-core (= 5.1.0)
-    sentry-ruby-core (5.1.0)
+      sentry-ruby-core (= 5.1.1)
+    sentry-ruby-core (5.1.1)
       concurrent-ruby
     shellany (0.0.1)
     sib-api-v3-sdk (8.0.0)
