@@ -59,6 +59,18 @@ const CadreJuridiqueDescription = () => (
   </p>
 );
 
+const initialContacts = {
+  comptable: {
+    header: 'Contact comptable',
+    description: (
+      <>
+        <b>Le contact comptable</b> sera contacté pour tous les échanges
+        relatifs aux différents versements.
+      </>
+    ),
+  },
+};
+
 const ApiTiersDePrestation = () => (
   <Form
     target_api={target_api}
@@ -73,7 +85,10 @@ const ApiTiersDePrestation = () => (
       defaultFondementJuridiqueTitle="Contrat de licence"
       defaultFondementJuridiqueUrl="non applicable"
     />
-    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
+    <ÉquipeSection
+      initialContacts={initialContacts}
+      responsableTechniqueNeedsMobilePhone={true}
+    />
     <PiecesJustificativesSection />
     <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1.pdf" />
   </Form>
