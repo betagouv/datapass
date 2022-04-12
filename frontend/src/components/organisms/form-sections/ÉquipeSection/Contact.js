@@ -40,7 +40,7 @@ export const Contact = ({
     <CardHead>
       <h3>
         {heading}
-        {displayIdForAdministrator && <> (id: {id})</>}
+        {displayIdForAdministrator && id && <> (id: {id})</>}
       </h3>
       {!disabled && onDelete && (
         <Button
