@@ -1,0 +1,25 @@
+.new-enrollment-button-container {
+  display: flex;
+  flex-direction: row;
+  margin: -2px;
+  padding: 0.5rem;
+  background-color: var(--datapass-background-grey);
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.new-enrollment-button-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 150px;
+  padding: 0.5rem;
+}
+
+.new-enrollment-button-item img {
+  width: 100%;
+}
+
+.new-enrollment-button-item a {
+  box-shadow: none;
+}

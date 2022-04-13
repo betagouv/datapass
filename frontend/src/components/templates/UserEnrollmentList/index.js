@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { groupBy, isEmpty } from 'lodash';
-import './style.css';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
@@ -30,7 +29,7 @@ const UserEnrollmentList = () => {
   }, []);
 
   return (
-    <main className="user-enrollments-page">
+    <main className="list-page">
       <ListHeader title="Toutes mes habilitations">
         <NewEnrollmentButton />
       </ListHeader>
@@ -48,13 +47,10 @@ const UserEnrollmentList = () => {
       )}
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
-        <div
-          className="page-container user-enrollments-list-container"
-          style={{ marginTop: 0 }}
-        >
+        <div className="page-container list-container">
           {Object.keys(enrollmentsByOrganization).map((group) => (
             <React.Fragment key={group}>
-              <div className="user-enrollments-organisation-label fr-text--lead">
+              <div className="list-title fr-text--lead">
                 {enrollmentsByOrganization[group][0].nom_raison_sociale}
               </div>
               {enrollmentsByOrganization[group].map((enrollment) => (
