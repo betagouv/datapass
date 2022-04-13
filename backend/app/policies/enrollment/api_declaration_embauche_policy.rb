@@ -3,8 +3,7 @@ class Enrollment::ApiDeclarationEmbauche < EnrollmentPolicy
     res = super
 
     res.concat([
-      scopes: [
-        ]
+      scopes: []
       ])
 
     res
