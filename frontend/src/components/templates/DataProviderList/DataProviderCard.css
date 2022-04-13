@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 15px 10px;
+  padding: 1.5rem 1.5rem 1.5rem 0.5rem;
   background-color: white;
   width: 100%;
   text-decoration: none;
@@ -10,15 +10,14 @@
   border-radius: 0.28571429rem;
   overflow: hidden;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 
 .data-provider-card > .data-provider-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  margin: 0 20px;
+  width: 100px;
+  margin: 0 0.5rem;
   height: auto;
   flex-shrink: 0;
 }
@@ -32,6 +31,7 @@
   flex-direction: column;
   flex-grow: 1;
   margin-right: 20px;
+  margin-left: 20px;
 }
 
 .data-provider-card > .data-provider-cta {

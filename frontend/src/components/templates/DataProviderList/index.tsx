@@ -31,7 +31,7 @@ export const DataProviderList = () => {
           <DataProviderCard
             key={target_api}
             label={DATA_PROVIDER_PARAMETERS[target_api]?.label}
-            iconPath={`/images/${DATA_PROVIDER_PARAMETERS[target_api]?.icon}`}
+            iconPath={`/images/logo-hubee-small.png`}
             passPath={`/${target_api}`}
             description={description}
             aboutLink="https://hubee.numerique.gouv.fr/datapass/"
