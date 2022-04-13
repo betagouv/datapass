@@ -19,15 +19,8 @@ export const NewEnrollmentButton: FunctionComponent = () => {
           <p>
             <IndexPointingRightEmoji />
             {' '}
-            <Link inline href="/hubee-portail">
-              Demander une habilitation portail HubEE - Démarche CertDC
-            </Link>
-          </p>
-          <p>
-            <IndexPointingRightEmoji />
-            {' '}
-            <Link inline href="/hubee-portail-dila">
-              Demander une habilitation portail HubEE - Démarches DILA
+            <Link inline href="/data-providers">
+              Demander une habilitation portail HubEE
             </Link>
           </p>
           <p>

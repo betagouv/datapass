@@ -16,6 +16,7 @@ import Admin from './components/templates/Admin';
 import FAQ from './components/templates/Faq';
 import FormRouter from './components/organisms/FormRouter';
 import { AuthRequired, useAuth } from './components/organisms/AuthContext';
+import DataProviderList from './components/templates/DataProviderList';
 
 export const Routes = () => {
   const { user } = useAuth();
@@ -35,6 +36,8 @@ export const Routes = () => {
       <Route path="accessibilite" element={<Accessibilite />} />
 
       <Route path="faq" element={<FAQ />} />
+
+      <Route path="data-providers" element={<DataProviderList />} />
 
       <Route path="admin" element={<AuthRequired children={<Admin />} />} />
 
