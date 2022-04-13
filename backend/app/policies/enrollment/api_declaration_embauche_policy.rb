@@ -5,7 +5,7 @@ class Enrollment::ApiDeclarationEmbauche < EnrollmentPolicy
     res.concat([
       scopes: [
       ]
-      ])
+    ])
 
     res
   end
