@@ -294,6 +294,6 @@ api_indemnisation_pole_emploi:
   mailer: *shared_mailer
 
 api_declaration_embauche:
-  label: API Déclaration préalable à l'embauche
+  label: API Déclaration préalable à l’embauche
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
