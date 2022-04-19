@@ -250,7 +250,7 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (4.0.6)
+    public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
     pundit (2.2.0)
@@ -356,7 +356,7 @@ GEM
     sentry-ruby-core (5.2.1)
       concurrent-ruby
     shellany (0.0.1)
-    sib-api-v3-sdk (8.0.0)
+    sib-api-v3-sdk (8.1.0)
       addressable (~> 2.3, >= 2.3.0)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
