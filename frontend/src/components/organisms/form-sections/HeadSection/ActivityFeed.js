@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, last, sortBy } from 'lodash';
+import { chain, isEmpty, last } from 'lodash';
 import moment from 'moment';
 
 import CheckCircleIcon from '../../../atoms/icons/check-circle';
@@ -66,10 +66,6 @@ const eventToDisplayableContent = {
 export const EventItem = ({ comment, name, updated_at, email, diff }) => {
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
-
-  if (name === 'update' && isEmpty(changelog)) {
-    return null;
-  }
 
   return (
     <div className="event-item">
@@ -139,7 +135,12 @@ class ActivityFeed extends React.Component {
 
     const { events } = this.props;
 
-    let eventsToDisplay = sortBy(events, 'updated_at');
+    let eventsToDisplay = chain(events)
+      .sortBy('updated_at')
+      .reject(
+        ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
+      )
+      .value();
 
     if (!showDetails && events.length > 0) {
       eventsToDisplay = [last(eventsToDisplay)];
