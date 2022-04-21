@@ -115,8 +115,7 @@ RSpec.describe Enrollment, type: :model do
     context "with changes on intitule" do
       before do
         enrollment.update!(
-          intitule: "Nouvel intitulé",
-          cgu_approved: true
+          intitule: "Nouvel intitulé"
         )
       end
 
@@ -124,17 +123,10 @@ RSpec.describe Enrollment, type: :model do
         expect(subject["_v"]).to eq("2")
       end
 
-      it "returns a diff" do
+      it "returns a diff for modified field" do
         expect(subject["intitule"]).to eq([
           "Délivrance des titres de transport de la ville de Clamart",
           "Nouvel intitulé"
-        ])
-      end
-
-      it "returns a diff" do
-        expect(subject["cgu_approved"]).to eq([
-          nil,
-          true
         ])
       end
     end
@@ -149,9 +141,34 @@ RSpec.describe Enrollment, type: :model do
         )
       end
 
-      it "returns a diff" do
+      it "returns a nested diff for object" do
         expect(subject["scopes"]).to eq({
           "dgfip_montant_impot" => [false, true]
+        })
+      end
+    end
+
+    context "with added fields" do
+      before do
+        enrollment.update!(
+          cgu_approved: true,
+          scopes: {
+            dgfip_annee_revenus: true,
+            dgfip_montant_impot: false,
+            dgfip_nombre_parts: false
+          }
+        )
+      end
+
+      it "returns a diff for added field" do
+        expect(subject["cgu_approved"]).to eq([
+          true
+        ])
+      end
+
+      it "returns a diff for nested added field" do
+        expect(subject["scopes"]).to eq({
+          "dgfip_nombre_parts" => [false]
         })
       end
     end
