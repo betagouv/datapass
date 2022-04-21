@@ -138,5 +138,22 @@ RSpec.describe Enrollment, type: :model do
         ])
       end
     end
+
+    context "with changes on scopes" do
+      before do
+        enrollment.update!(
+          scopes: {
+            dgfip_annee_revenus: true,
+            dgfip_montant_impot: true
+          }
+        )
+      end
+
+      it "returns a diff" do
+        expect(subject["scopes"]).to eq({
+          "dgfip_montant_impot" => [false, true]
+        })
+      end
+    end
   end
 end

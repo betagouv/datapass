@@ -221,7 +221,19 @@ class Enrollment < ActiveRecord::Base
   end
 
   def diff_with_associations
-    res = previous_changes
+    res = {}
+    previous_changes.keys.each do |k|
+      if previous_changes[k][0].is_a? Hash
+        res[k] = {}
+        previous_changes[k][0].keys.each do |sub_k|
+          if previous_changes[k][0][sub_k] != previous_changes[k][1][sub_k]
+            res[k][sub_k] = [previous_changes[k][0][sub_k], previous_changes[k][1][sub_k]]
+          end
+        end
+      else
+        res[k] = previous_changes[k]
+      end
+    end
     res["_v"] = "2"
     res
   end

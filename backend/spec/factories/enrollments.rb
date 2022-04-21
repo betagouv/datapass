@@ -190,7 +190,8 @@ FactoryBot.define do
 
       scopes do
         {
-          pole_emploi_identite: true
+          dgfip_annee_revenus: true,
+          dgfip_montant_impot: false
         }
       end
 
