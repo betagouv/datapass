@@ -220,6 +220,12 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
+  def diff_with_associations
+    res = previous_changes
+    res["_v"] = "2"
+    res
+  end
+
   protected
 
   def clean_and_format_scopes

@@ -137,8 +137,8 @@ class EnrollmentsController < ApplicationController
   def update
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.update!(permitted_attributes(@enrollment))
-    @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.previous_changes)
-    @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.previous_changes)
+    @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.diff_with_associations)
+    @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.diff_with_associations)
 
     render json: @enrollment
   end

@@ -98,4 +98,45 @@ RSpec.describe Enrollment, type: :model do
       end
     end
   end
+
+  describe "diff_with_associations" do
+    subject { enrollment.diff_with_associations }
+
+    let(:user) { create(:user) }
+    let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
+    before do
+      Timecop.freeze
+    end
+
+    after do
+      Timecop.return
+    end
+
+    context "with changes on intitule" do
+      before do
+        enrollment.update!(
+          intitule: "Nouvel intitulé",
+          cgu_approved: true
+        )
+      end
+
+      it "returns a version" do
+        expect(subject["_v"]).to eq("2")
+      end
+
+      it "returns a diff" do
+        expect(subject["intitule"]).to eq([
+          "Délivrance des titres de transport de la ville de Clamart",
+          "Nouvel intitulé"
+        ])
+      end
+
+      it "returns a diff" do
+        expect(subject["cgu_approved"]).to eq([
+          nil,
+          true
+        ])
+      end
+    end
+  end
 end
