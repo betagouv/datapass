@@ -19,7 +19,7 @@ FactoryBot.define do
 
     transient do
       organization_kind { :clamart }
-      contacts { [] }
+      team_members { [] }
 
       user { nil }
       delegue_protection_donnees { nil }
@@ -43,14 +43,14 @@ FactoryBot.define do
 
       demandeur.user.save!
 
-      if evaluator.contacts.any?
-        evaluator.contacts.each do |contact_payload|
-          next if enrollment.team_members.where(type: contact_payload[:id].underscore.classify).present?
+      if evaluator.team_members.any?
+        evaluator.team_members.each do |team_member_payload|
+          next if enrollment.team_members.where(type: team_member_payload[:type].underscore.classify).present?
 
           enrollment.team_members << build(
             :team_member,
-            contact_payload[:id],
-            contact_payload.except(:id)
+            team_member_payload[:type].to_sym,
+            team_member_payload.except(:type)
           )
         end
       end
@@ -156,15 +156,15 @@ FactoryBot.define do
       target_api { "api_entreprise" }
       intitule { "Marché publics de la ville de Clamart" }
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_technique",
+            type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0636656565"
           },
           {
-            id: "contact_metier",
+            type: "contact_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0636656565"
           }
@@ -195,16 +195,12 @@ FactoryBot.define do
         }
       end
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_technique",
+            type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0636656565"
-          },
-          {
-            id: "contact_metier",
-            email: "user-metier@clamart.fr"
           }
         ]
       end
@@ -233,10 +229,10 @@ FactoryBot.define do
         }
       end
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_technique",
+            type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0626656565"
           }
@@ -251,10 +247,10 @@ FactoryBot.define do
 
       previous_enrollment { create(:enrollment, :franceconnect, :validated) }
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_technique",
+            type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0626656565"
           }
@@ -275,10 +271,10 @@ FactoryBot.define do
 
       previous_enrollment { create(:enrollment, :franceconnect, :validated) }
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_technique",
+            type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0626656565",
             given_name: "Jean",
@@ -307,10 +303,10 @@ FactoryBot.define do
 
       type_projet { "association" }
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_metier",
+            type: "responsable_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0626656565",
             job: "Directeur",
@@ -350,10 +346,10 @@ FactoryBot.define do
         }
       end
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_metier",
+            type: "responsable_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0626656565",
             job: "Directeur",
@@ -369,10 +365,10 @@ FactoryBot.define do
         Enrollment::HubeePortailDila.new(attributes)
       end
 
-      contacts do
+      team_members do
         [
           {
-            id: "responsable_metier",
+            type: "responsable_metier",
             email: "user-metier@clamart.fr",
             phone_number: "0626656565",
             job: "Directeur",

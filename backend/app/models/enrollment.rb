@@ -221,26 +221,57 @@ class Enrollment < ActiveRecord::Base
   end
 
   def diff_with_associations
+    res = diff(previous_changes)
+
+    Enrollment
+      .reflect_on_all_associations(:has_many)
+      .map(&:name).each do |collection|
+      res[collection.to_s] = {}
+
+      send(collection).each_with_index do |item, i|
+        unless item.previous_changes.empty?
+          res[collection.to_s][i.to_s] = diff(item.previous_changes)
+        end
+      end
+
+      if res[collection.to_s].empty?
+        res.delete(collection)
+      else
+        res[collection.to_s]["_t"] = "a"
+      end
+    end
+
+    res["_v"] = "2"
+    res
+  end
+
+  private
+
+  def diff(changes)
     res = {}
-    previous_changes.keys.each do |k|
-      if previous_changes[k][0].is_a? Hash
-        res[k] = {}
-        previous_changes[k][1].keys.each do |sub_k|
-          if previous_changes[k][0][sub_k].nil?
-            res[k][sub_k] = [previous_changes[k][1][sub_k]]
-          elsif previous_changes[k][0][sub_k] != previous_changes[k][1][sub_k]
-            res[k][sub_k] = [previous_changes[k][0][sub_k], previous_changes[k][1][sub_k]]
+
+    changes.keys.each do |key|
+      previous_value = changes[key][0]
+      new_value = changes[key][1]
+
+      if previous_value.is_a? Hash
+        res[key] = {}
+        new_value.keys.each do |sub_key|
+          if previous_value[sub_key].nil?
+            res[key][sub_key] = [new_value[sub_key]]
+          elsif previous_value[sub_key] != new_value[sub_key]
+            res[key][sub_key] = [previous_value[sub_key], new_value[sub_key]]
           end
         end
       else
-        res[k] = if previous_changes[k][0].nil?
-          [previous_changes[k][1]]
+        res[key] = if previous_value.nil?
+          [new_value]
         else
-          previous_changes[k]
+          [previous_value, new_value]
         end
       end
     end
-    res["_v"] = "2"
+
     res
   end
 
