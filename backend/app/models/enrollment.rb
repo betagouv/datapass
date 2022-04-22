@@ -228,14 +228,14 @@ class Enrollment < ActiveRecord::Base
       .map(&:name).each do |collection|
       res[collection.to_s] = {}
 
-      send(collection).each_with_index do |item, i|
+      send(collection).sort_by { |item| item.id }.each_with_index do |item, i|
         unless item.previous_changes.empty?
           res[collection.to_s][i.to_s] = diff(item.previous_changes)
         end
       end
 
       if res[collection.to_s].empty?
-        res.delete(collection)
+        res.delete(collection.to_s)
       else
         res[collection.to_s]["_t"] = "a"
       end
