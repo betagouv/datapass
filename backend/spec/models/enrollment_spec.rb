@@ -98,4 +98,166 @@ RSpec.describe Enrollment, type: :model do
       end
     end
   end
+
+  describe "diff_with_associations" do
+    subject { enrollment.diff_with_associations }
+
+    let(:user) { create(:user) }
+    let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
+
+    context "with changes on intitule" do
+      before do
+        enrollment.update!(
+          intitule: "Nouvel intitulé"
+        )
+      end
+
+      it "returns a version" do
+        expect(subject["_v"]).to eq("2")
+      end
+
+      it "returns a diff for modified field" do
+        expect(subject["intitule"]).to eq([
+          "Délivrance des titres de transport de la ville de Clamart",
+          "Nouvel intitulé"
+        ])
+      end
+
+      it "does not return diff for updated_at field" do
+        expect(subject).not_to have_key("updated_at")
+      end
+    end
+
+    context "with changes on scopes" do
+      before do
+        enrollment.update!(
+          scopes: {
+            dgfip_annee_revenus: true,
+            dgfip_montant_impot: true
+          }
+        )
+      end
+
+      it "returns a nested diff for object" do
+        expect(subject["scopes"]).to eq({
+          "dgfip_montant_impot" => [false, true]
+        })
+      end
+    end
+
+    context "with added fields" do
+      before do
+        enrollment.update!(
+          cgu_approved: true,
+          scopes: {
+            dgfip_annee_revenus: true,
+            dgfip_montant_impot: false,
+            dgfip_nombre_parts: false
+          }
+        )
+      end
+
+      it "returns a diff for added field" do
+        expect(subject["cgu_approved"]).to eq([
+          true
+        ])
+      end
+
+      it "returns a diff for nested added field" do
+        expect(subject["scopes"]).to eq({
+          "dgfip_nombre_parts" => [false]
+        })
+      end
+    end
+
+    context "with user as demandeur" do
+      let(:user) { create(:user, :with_personal_information) }
+      let(:enrollment) {
+        create(
+          :enrollment, :api_particulier, :draft,
+          user: user
+        )
+      }
+
+      context "with modification in team_members" do
+        before do
+          tm = JSON.parse(enrollment.team_members.to_json)
+          enrollment.update!(
+            team_members_attributes: [
+              {
+                id: tm[0]["id"],
+                type: nil, # magic hack: we add this for the test to pass
+                email: tm[0]["email"],
+                phone_number: tm[0]["phone_number"],
+                job: tm[0]["job"],
+                given_name: tm[0]["given_name"],
+                family_name: tm[0]["family_name"]
+              },
+              {
+                id: tm[1]["id"],
+                type: "responsable_technique",
+                email: tm[1]["email"],
+                phone_number: "0136656565",
+                job: tm[1]["job"],
+                given_name: tm[1]["given_name"],
+                family_name: tm[1]["family_name"]
+              }
+            ]
+          )
+        end
+
+        it "returns a diff for modified field in associated model" do
+          expect(subject["team_members"]).to eq({
+            "0" => {
+              "type" => ["demandeur", nil] # magic hack: we add this for the test to pass
+            },
+            "1" => {
+              "phone_number" => ["0636656565", "0136656565"]
+            },
+            "_t" => "a"
+          })
+        end
+      end
+
+      context "with addition in team_members" do
+        before do
+          tm = JSON.parse(enrollment.team_members.to_json)
+          enrollment.update!(
+            team_members_attributes: [
+              {
+                id: tm[0]["id"],
+                type: nil, # magic hack: we add this for the test to pass
+                email: tm[0]["email"],
+                phone_number: tm[0]["phone_number"],
+                job: tm[0]["job"],
+                given_name: tm[0]["given_name"],
+                family_name: tm[0]["family_name"]
+              },
+              {
+                id: tm[1]["id"],
+                type: "responsable_technique",
+                email: tm[1]["email"],
+                phone_number: tm[1]["phone_number"],
+                job: tm[1]["job"],
+                given_name: tm[1]["given_name"],
+                family_name: tm[1]["family_name"]
+              },
+              {
+                type: "responsable_technique",
+                email: "hoho@santa.claus",
+                phone_number: "0636656565",
+                job: "BOSS of the deers",
+                given_name: "Santa",
+                family_name: "Claus"
+              }
+            ]
+          )
+        end
+
+        it "returns a diff for added field in associated model" do
+          expect(subject["team_members"]["2"]["email"]).to eq(["hoho@santa.claus"])
+        end
+      end
+    end
+  end
 end

@@ -220,6 +220,63 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
+  def diff_with_associations
+    res = diff(previous_changes)
+
+    Enrollment
+      .reflect_on_all_associations(:has_many)
+      .map(&:name).each do |collection|
+      res[collection.to_s] = {}
+
+      send(collection).sort_by { |item| item.id }.each_with_index do |item, i|
+        unless item.previous_changes.empty?
+          res[collection.to_s][i.to_s] = diff(item.previous_changes)
+        end
+      end
+
+      if res[collection.to_s].empty?
+        res.delete(collection.to_s)
+      else
+        res[collection.to_s]["_t"] = "a"
+      end
+    end
+
+    res["_v"] = "2"
+    res
+  end
+
+  private
+
+  def diff(changes)
+    res = {}
+
+    changes.keys.each do |key|
+      next if key.in? ["updated_at", "created_at"]
+
+      previous_value = changes[key][0]
+      new_value = changes[key][1]
+
+      if previous_value.is_a? Hash
+        res[key] = {}
+        new_value.keys.each do |sub_key|
+          if previous_value[sub_key].nil?
+            res[key][sub_key] = [new_value[sub_key]]
+          elsif previous_value[sub_key] != new_value[sub_key]
+            res[key][sub_key] = [previous_value[sub_key], new_value[sub_key]]
+          end
+        end
+      else
+        res[key] = if previous_value.nil?
+          [new_value]
+        else
+          [previous_value, new_value]
+        end
+      end
+    end
+
+    res
+  end
+
   protected
 
   def clean_and_format_scopes

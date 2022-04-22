@@ -8,7 +8,7 @@ class TeamMembersController < ApplicationController
     @team_member.enrollment.events.create(
       name: "update",
       user_id: current_user.id,
-      diff: @team_member.enrollment.previous_changes
+      diff: @team_member.enrollment.diff_with_associations
     )
     @team_member.enrollment.notify_event(
       "team_member_update",
