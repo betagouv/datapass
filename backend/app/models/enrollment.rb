@@ -180,6 +180,10 @@ class Enrollment < ActiveRecord::Base
     team_members.as_json
   end
 
+  def link
+    "#{ENV.fetch("FRONT_HOST")}/#{target_api.tr("_", "-")}/#{id}"
+  end
+
   def self.to_csv
     attributes = %w[id
       target_api
@@ -209,7 +213,8 @@ class Enrollment < ActiveRecord::Base
       additional_content
       linked_token_manager_id
       previous_enrollment_id
-      copied_from_enrollment_id]
+      copied_from_enrollment_id
+      link]
 
     CSV.generate do |csv|
       csv << attributes
