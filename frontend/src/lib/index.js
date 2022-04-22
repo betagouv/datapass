@@ -14,6 +14,7 @@ import {
   mergeWith,
   omitBy,
   slice,
+  transform,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -128,6 +129,27 @@ const diffFieldLabels = {
   'contacts.1.nom': 'du nom du contact 2',
   'contacts.1.email': 'de l’email du contact 2',
   'contacts.1.phone_number': 'du numéro de téléphone du contact 2',
+  'team_members.0.given_name': 'du prénom du demandeur',
+  'team_members.0.family_name': 'de l’email du demandeur',
+  'team_members.0.phone_number': 'du numéro de téléphone du demandeur',
+  'team_members.0.email': 'de l’email du demandeur',
+  'team_members.0.job': 'du numéro de téléphone du demandeur',
+  'team_members.1.given_name': 'du prénom du deuxième contact',
+  'team_members.1.family_name': 'de l’email du deuxième contact',
+  'team_members.1.phone_number': 'du numéro de téléphone du deuxième contact',
+  'team_members.1.email': 'de l’email du deuxième contact',
+  'team_members.1.job': 'du numéro de téléphone du deuxième contact',
+  'team_members.2.given_name': 'du prénom du troisième contact',
+  'team_members.2.family_name': 'de l’email du troisième contact',
+  'team_members.2.phone_number': 'du numéro de téléphone du troisième contact',
+  'team_members.2.email': 'de l’email du troisième contact',
+  'team_members.2.job': 'du numéro de téléphone du troisième contact',
+  'team_members.3.given_name': 'du prénom du quatrième contact',
+  'team_members.3.family_name': 'de l’email du quatrième contact',
+  'team_members.3.phone_number': 'du numéro de téléphone du quatrième contact',
+  'team_members.3.email': 'de l’email du quatrième contact',
+  'team_members.3.job': 'du numéro de téléphone du quatrième contact',
+  dpo_is_informed: 'de la case "le DPD est informé de ma demande"',
 };
 
 const getLabel = (key) => {
@@ -148,17 +170,17 @@ const getDisplayValue = (rawValue) => {
   }
 
   if (isUndefined(rawValue)) {
-    return 'vide';
+    return 'non renseigné';
   }
 
   return rawValue;
 };
 
-function changelogFormatTransformer(
-  accumulatorArray,
-  [valueBefore, valueAfter],
-  key
-) {
+function changelogFormatTransformer(accumulatorArray, changes, key) {
+  let valueBefore, valueAfter;
+  if (changes.length === 2) [valueBefore, valueAfter] = changes;
+  if (changes.length === 1) [valueAfter] = changes;
+
   const label = getLabel(key);
   let displayedValueBefore = getDisplayValue(valueBefore);
   const displayedValueAfter = getDisplayValue(valueAfter);
@@ -177,18 +199,49 @@ function changelogFormatTransformer(
   return accumulatorArray;
 }
 
+const getChangelogV1 = (diff) =>
+  chain(diff)
+    // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
+    .omit(['updated_at'])
+    .transform(flattenDiffTransformer, {})
+    // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
+    .transform(changelogFormatTransformer, [])
+    // ['changement d’intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
+    .value();
+
+export const flattenDiffTransformerV2Factory =
+  (keyPrefix = null) =>
+  (accumulatorObject, objectValue, objectKey) => {
+    const key = [keyPrefix, objectKey].filter((e) => e).join('.');
+
+    if (isArray(objectValue)) {
+      accumulatorObject[key] = objectValue;
+    }
+
+    // { scope: { nom: [false, true] } }
+    if (isObject(objectValue)) {
+      transform(
+        objectValue,
+        flattenDiffTransformerV2Factory(key),
+        accumulatorObject
+      );
+    }
+
+    return accumulatorObject;
+  };
+
+const getChangelogV2 = (diff) =>
+  chain(diff)
+    // { intitule: ['a', 'b'], team_members: { "_t": "a", "0": { 'name': ['c','e'], email: ['d'] } } }
+    .transform(flattenDiffTransformerV2Factory(), {})
+    // { intitule: ['a', 'b'], team_members.0.name: ['c', 'e'] , team_members.0.email: ['d'] }
+    .transform(changelogFormatTransformer, [])
+    // ['changement d’intitule de "a" en "b"', ...]
+    .value();
+
 export function getChangelog(diff) {
   try {
-    return (
-      chain(diff)
-        // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
-        .omit(['updated_at'])
-        .transform(flattenDiffTransformer, {})
-        // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
-        .transform(changelogFormatTransformer, [])
-        // ['changement d’intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
-        .value()
-    );
+    return diff?.['_v'] === '2' ? getChangelogV2(diff) : getChangelogV1(diff);
   } catch (e) {
     // There is a lot of operation involved in this function.
     // We rather fail silently than causing the entire page not to render.

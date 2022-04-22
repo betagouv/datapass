@@ -3,6 +3,7 @@ import {
   dataProviderParametersToContactInfo,
   findModifiedFields,
   findModifiedScopes,
+  flattenDiffTransformerV2Factory,
   getChangelog,
   getErrorMessages,
   getScopesFromEnrollments,
@@ -16,6 +17,7 @@ import {
   stackLowUseAndUnpublishedApi,
 } from './index';
 import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
+import { transform } from 'lodash';
 
 describe('utils', () => {
   describe('getErrorMessages', () => {
@@ -247,7 +249,7 @@ describe('utils', () => {
       'Changement du périmètre de données "birthcountry" de "coché" en "décoché"',
       'Changement du périmètre de données "birthdate" de "décoché" en "coché"',
       'Changement du périmètre de données "preferred_username" de "décoché" en "coché"',
-      'Changement du champ "additional_content.eidas_level" de "vide" en "1"',
+      'Changement du champ "additional_content.eidas_level" de "non renseigné" en "1"',
     ];
 
     it('should return changelog for simple string field', () => {
@@ -272,6 +274,147 @@ describe('utils', () => {
       };
       const changelog = [];
       expect(getChangelog(diff)).toEqual(changelog);
+    });
+  });
+
+  describe('flattenDiffTransformerV2Factory', () => {
+    it('should return flattened diff', () => {
+      const diff = { intitule: ['a', 'b'] };
+      expect(transform(diff, flattenDiffTransformerV2Factory(), {})).toEqual({
+        intitule: ['a', 'b'],
+      });
+    });
+    it('should return flattened diff', () => {
+      const diff = { _v: '2' };
+      expect(transform(diff, flattenDiffTransformerV2Factory(), {})).toEqual(
+        {}
+      );
+    });
+    it('should return flattened diff', () => {
+      const diff = { scope: { nom: [false, true], prenom: { a: ['a', 'b'] } } };
+      expect(transform(diff, flattenDiffTransformerV2Factory(), {})).toEqual({
+        'scope.nom': [false, true],
+        'scope.prenom.a': ['a', 'b'],
+      });
+    });
+    it('should return flattened diff', () => {
+      const diff = {
+        team_members: { _t: 'a', 3: { prenom: { a: ['a', 'b'] } } },
+      };
+      expect(transform(diff, flattenDiffTransformerV2Factory(), {})).toEqual({
+        'team_members.3.prenom.a': ['a', 'b'],
+      });
+    });
+  });
+
+  describe('getChangelog v2', () => {
+    it('should return changelog for simple string field', () => {
+      const diff = {
+        _v: '2',
+        data_retention_period: [12, 11],
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement de la durée de conservation des données de "12" en "11"',
+      ]);
+    });
+
+    it('should return changelog for simple string field with initial null value', () => {
+      const diff = {
+        _v: '2',
+        fondement_juridique_url: [
+          'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479/',
+        ],
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement de l’url du cadre juridique de "non renseigné" en "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479/"',
+      ]);
+    });
+    it('should return changelog for several simple field', () => {
+      const diff = {
+        _v: '2',
+        fondement_juridique_title: [
+          'Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai 2017.',
+          'Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai 2017',
+        ],
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement de la référence du cadre juridique de \n\nConvention d\'accès à "Mon compte ' +
+          'partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la ' +
+          'convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai ' +
+          '2017.\n\n en \n\nConvention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - ' +
+          'Contrat de service pris en application de la convention d\'accès à "Mon Compte ' +
+          'Partenaire" (mode gestion déléguée) signés le 11 mai 2017\n\n',
+      ]);
+    });
+    it('should return changelog for contact field', () => {
+      const diff = {
+        _v: '2',
+        team_members: {
+          0: {
+            family_name: ['Dubigny', 'Dubigny2'],
+          },
+        },
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement de l’email du demandeur de "Dubigny" en "Dubigny2"',
+      ]);
+    });
+    it('should return changelog for adding team_member or document', () => {
+      const diff = {
+        _v: '2',
+        team_members: {
+          1: {
+            job: ['Chef'],
+            email: ['datapass@yopmail.com'],
+            user_id: [417269330],
+            given_name: ['Administrator'],
+            family_name: ['Test'],
+            phone_number: ['0000000000'],
+          },
+          _t: 'a',
+        },
+        documents: {
+          0: {
+            id: [195],
+            type: ['Document::LegalBasis'],
+            attachment: [
+              'A06_-_Mode_d_emploi_-_avance_imme_diate_de_cre_dit_d_impo_t.pdf',
+            ],
+            attachable_id: [1058510802],
+            attachable_type: ['Enrollment'],
+          },
+        },
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement du numéro de téléphone du deuxième contact de "non renseigné" en "Chef"',
+        'Changement de l’email du deuxième contact de "non renseigné" en "datapass@yopmail.com"',
+        'Changement du champ "team_members.1.user_id" de "non renseigné" en "417269330"',
+        'Changement du prénom du deuxième contact de "non renseigné" en "Administrator"',
+        'Changement de l’email du deuxième contact de "non renseigné" en "Test"',
+        'Changement du numéro de téléphone du deuxième contact de "non renseigné" en "0000000000"',
+        'Changement du champ "documents.0.id" de "non renseigné" en "195"',
+        'Changement du champ "documents.0.type" de "non renseigné" en "Document::LegalBasis"',
+        'Changement du champ "documents.0.attachment" de "non renseigné" en "A06_-_Mode_d_emploi_-_avance_imme_diate_de_cre_dit_d_impo_t.pdf"',
+        'Changement du champ "documents.0.attachable_id" de "non renseigné" en "1058510802"',
+        'Changement du champ "documents.0.attachable_type" de "non renseigné" en "Enrollment"',
+      ]);
+    });
+    it('should return changelog for scopes', () => {
+      const diff = {
+        _v: '2',
+        scopes: {
+          birthcountry: [true, false],
+          birthdate: [false, true],
+        },
+        additional_content: {
+          eidas_level: ['1'],
+        },
+      };
+      expect(getChangelog(diff)).toEqual([
+        'Changement du périmètre de données "birthcountry" de "coché" en "décoché"',
+        'Changement du périmètre de données "birthdate" de "décoché" en "coché"',
+        'Changement du champ "additional_content.eidas_level" de "non renseigné" en "1"',
+      ]);
     });
   });
 
