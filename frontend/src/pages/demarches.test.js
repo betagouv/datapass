@@ -64,7 +64,10 @@ describe('demarches', () => {
       let everyFields = true;
       Object.entries(apiDemarcheskVp[1]).forEach((keyValue) => {
         Object.keys(keyValue[1].state).forEach((field) => {
-          if (defaultDemarche.state[field] === undefined) {
+          if (
+            defaultDemarche.state[field] === undefined &&
+            !['technical_team_type', 'technical_team_value'].includes(field)
+          ) {
             console.log(
               `field ${field} not present in default demarche of ${apiDemarcheskVp[0]}`
             );
