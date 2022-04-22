@@ -251,6 +251,8 @@ class Enrollment < ActiveRecord::Base
     res = {}
 
     changes.keys.each do |key|
+      next if key.in? ["updated_at", "created_at"]
+
       previous_value = changes[key][0]
       new_value = changes[key][1]
 

@@ -104,13 +104,6 @@ RSpec.describe Enrollment, type: :model do
 
     let(:user) { create(:user) }
     let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
-    before do
-      Timecop.freeze
-    end
-
-    after do
-      Timecop.return
-    end
 
     context "with changes on intitule" do
       before do
@@ -128,6 +121,10 @@ RSpec.describe Enrollment, type: :model do
           "Délivrance des titres de transport de la ville de Clamart",
           "Nouvel intitulé"
         ])
+      end
+
+      it "does not return diff for updated_at field" do
+        expect(subject).not_to have_key("updated_at")
       end
     end
 
