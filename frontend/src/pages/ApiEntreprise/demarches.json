@@ -359,5 +359,57 @@
         "extrait_court_inpi": true
       }
     }
+  },
+  "mgdis": {
+    "label": "Éditeur MGDIS - Portail des aides - Solution de dématérialisation et de pilotage des aides",
+    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "team_members": {
+      "contact_metier": {
+        "email": "assistance@mgdis.fr",
+        "phone_number": "0297681828"
+      },
+      "responsable_technique": {
+        "email": "assistance@mgdis.fr",
+        "phone_number": "0297681828"
+      }
+    },
+    "state": {
+      "intitule": "Solution de dématérialisation et de pilotage des aides - Solution Portail des aides",
+      "description": "Dans un objectif de dématérialisation des aides publiques, nous mettons en place un outil, à destination des usagers de notre organisme leur permettant de déposer des demandes d'aides/subventions, qui seront ensuite instruites par nos agents dans ce même outil.\nLa demande d’accès à API Entreprise est effectuée dans le but de faciliter le dépôt et l’instruction des demandes d’aides publiques pour les entreprises et associations du territoire, et de récupérer les justificatifs administratifs de ces organisations demandant des aides publiques, sans avoir à les demander aux demandeurs d'aides.\n\nLa plateforme, mise en place pour permettre le dépôt de ces aides publiques et l'instruction de ces demandes, s'appuie sur la solution « Portail des Aides » de l’éditeur MGDIS.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "32816124500027",
+      "fondement_juridique_title": "Décret n° 2019-31 du 18 janvier 2019 relatif aux échanges d’informations et de données entre administrations dans le cadre des démarches administratives et à l’expérimentation prévue par l’article 40 de la loi n° 2018-727 du 10 août 2018 pour un Etat au service d’une société de confiance",
+      "fondement_juridique_url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038029589/",
+      "data_retention_period": 36,
+      "data_recipients": "",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": false,
+        "conventions_collectives": false,
+        "entreprises_artisanales": false,
+        "effectifs_acoss": false,
+        "eori_douanes": false,
+        "exercices": false,
+        "bilans_inpi": false,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
+        "attestations_agefiph": false,
+        "msa_cotisations": false,
+        "probtp": false,
+        "fntp_carte_pro": false,
+        "certificat_cnetp": false,
+        "certificat_agence_bio": false,
+        "certificat_rge_ademe": false,
+        "qualibat": false,
+        "certificat_opqibi": false,
+        "extrait_court_inpi": false
+      }
+    }
   }
 }
