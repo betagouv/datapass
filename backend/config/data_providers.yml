@@ -131,7 +131,7 @@ hubee_portail_dila:
   label: Portail HubEE
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
-  reply_to: support-partenaires@service-public.fr
+  reply_to: support.partenaires@service-public.fr
 
 api_pro_sante_connect:
   label: API Pro Santé Connect

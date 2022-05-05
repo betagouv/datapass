@@ -77,7 +77,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
     hubee_portail_dila: {
       label: 'Portail HubEE - Démarches DILA',
       icon: 'logo-hubee.png',
-      email: 'support-partenaires@service-public.fr',
+      email: 'support.partenaires@service-public.fr',
       component: HubeePortailDila,
     },
     franceconnect: {
