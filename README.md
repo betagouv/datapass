@@ -138,7 +138,6 @@ development on the backend.
 
 - [Docker 20.10.8](https://www.docker.com/)
 - [Docker compose 1.29.2](https://docs.docker.com/compose/install/)
-- [Ansible 2.11.8](https://www.ansible.com/)
 - [NodeJS 16](https://nodejs.org/)
 
 #### Local environment
@@ -158,6 +157,15 @@ Then create and configure your backend docker containers:
 ```bash
 docker-compose up # This can take a while, go make a loaf of bread or something
 ```
+
+If you have a Macbook pro M1 Apple, here's the configuration to run docker-compose.
+
+In `Dockerfile` change the following line
+`FROM ruby:2.7.3`
+by
+`FROM ruby:2.7-bullseye`
+
+Then in `Gemfile`, replace the ruby version with `ruby "2.7.6"`
 
 And finally, you can start the frontend:
 
@@ -189,6 +197,7 @@ allowing you to both work on provisioning and applications. It is configured to
 run with a local installation of api-auth in a Vagrant virtual machine.
 
 For details on this installation follow instructions here: https://gitlab.com/etalab/api.gouv.fr/datapass-infrastructure/-/blob/master/README.md
+Ask a colleague to give you access to the Gitlab Infratrusture repository.
 
 ## Global architecture
 
