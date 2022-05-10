@@ -64,9 +64,9 @@ const availableScopes = [
   },
 ];
 
-const target_api = 'agent-connect-fi';
+const target_api = 'agent-connect-fs';
 
-const AgentConnectFi = () => (
+const AgentConnectFs = () => (
   <Form
     target_api={target_api}
     contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
@@ -81,24 +81,8 @@ const AgentConnectFi = () => (
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
     />
     <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_agentconnect_fi.pdf"
-      additionalTermsOfUse={[
-        {
-          id: 'authorize_access_to_service_providers',
-          label: (
-            <>
-              J’autorise tous les fournisseurs de services de la fonction
-              publique d’État (administrations centrales et services
-              déconcentrés) et tous les fournisseurs de services des opérateurs
-              de l’État à utiliser les données transmises par AgentConnect pour
-              procéder à l’authentification de leurs agents utilisateurs.
-            </>
-          ),
-        },
-      ]}
-    />
+    <CguSection cguLink="/docs/cgu_agentconnect_fs.pdf" />
   </Form>
 );
 
-export default AgentConnectFi;
+export default AgentConnectFs;
