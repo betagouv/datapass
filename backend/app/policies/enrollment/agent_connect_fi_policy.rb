@@ -12,11 +12,12 @@ class Enrollment::AgentConnectFi < EnrollmentPolicy
         :Siren,
         :Siret,
         :Organizational_unit
-      ]
+      ],
       additional_content: [
         :additional_content.access_rie,
         :additional_content.access_internet,
         :authorize_access_to_service_providers
+      ]
     ])
 
     res
