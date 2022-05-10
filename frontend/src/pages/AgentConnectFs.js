@@ -77,7 +77,7 @@ const AgentConnectFs = () => (
     <DonneesSection availableScopes={availableScopes} />
     <AgentConnectNetworkSection />
     <CadreJuridiqueSection
-      defaultFondementJuridiqueTitle="la décision du 18 juin 2021"
+      defaultFondementJuridiqueTitle="La décision du 18 juin 2021"
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
     />
     <ÉquipeSection />
