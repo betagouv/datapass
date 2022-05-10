@@ -1,11 +1,11 @@
 import React from 'react';
-import { hashToQueryParams } from '../../../lib';
-import './style.css';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
-import WelcomeMessage from './WelcomeMessage';
+import { hashToQueryParams } from '../../../lib';
+import Button from '../../atoms/hyperTexts/Button';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
-import Button from '../../atoms/hyperTexts/Button';
+import './style.css';
+import WelcomeMessage from './WelcomeMessage';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -41,6 +41,15 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         />
       );
     case 'hubee_portail':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+          isService
+          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+        />
+      );
+    case 'hubee_portail_dila':
       return (
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}

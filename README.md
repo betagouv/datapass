@@ -158,7 +158,7 @@ Then create and configure your backend docker containers:
 docker-compose up # This can take a while, go make a loaf of bread or something
 ```
 
-If you have a Macbook pro M1 Apple, here's the configuration to run docker-compose.
+If you have a Macbook pro M1 Apple, here's the configuration to run the docker-compose.
 
 In `Dockerfile` change the following line
 `FROM ruby:2.7.3`
@@ -166,6 +166,11 @@ by
 `FROM ruby:2.7-bullseye`
 
 Then in `Gemfile`, replace the ruby version with `ruby "2.7.6"`
+
+Then run
+```bash
+docker-compose up
+```
 
 And finally, you can start the frontend:
 
