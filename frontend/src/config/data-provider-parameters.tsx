@@ -52,6 +52,7 @@ import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import ApiCaptchetat from '../pages/ApiCaptchetat';
 import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
 import ApiIndemnisationPoleEmploi from '../pages/ApiIndemnisationPoleEmploi';
+import AgentConnectFi from '../pages/AgentConnectFi';
 
 type DataProviderParameter = {
   label: string;
@@ -379,6 +380,12 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       icon: 'logo-pole-emploi.png',
       email: 'support@pole-emploi.io',
       component: ApiIndemnisationPoleEmploi,
+    },
+    agent_connect_fi: {
+      label: 'AgentConnect - fournisseur d‘identité',
+      icon: 'logo-agentconnect.png',
+      email: 'support.partenaires@agentconnect.gouv.fr',
+      component: AgentConnectFi,
     },
   };
 
