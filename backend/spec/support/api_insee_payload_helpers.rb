@@ -13,8 +13,11 @@ module ApiInseePayloadHelpers
     stub_request(:get, "#{insee_host}/entreprises/sirene/V3/siret/#{siret}").to_return(
       status: if siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012])
                 200
-              elsif siret == "24340081900120"
+              elsif siret == "30002490800026"
                 # non diffusable
+                200
+              elsif siret == "15700033200013"
+                # absent from INSEE database
                 403
               elsif siret == "12345678901234"
                 # over quota
@@ -402,6 +405,7 @@ module ApiInseePayloadHelpers
         "etablissement" => {
           "siren" => siret.first(9),
           "siret" => siret,
+          "statutDiffusionEtablissement" => "O",
           "uniteLegale" => {
             "denominationUniteLegale" => "DEFAULT ORGANIZATION",
             "nomUniteLegale" => nil,
@@ -418,11 +422,113 @@ module ApiInseePayloadHelpers
           "adresseEtablissement" => {}
         }
       }
-    when "24340081900120"
+    when "30002490800026"
+      {
+        "header" => {
+          "statut" => 200,
+          "message" => "ok"
+        },
+        "etablissement" => {
+          "siren" => "300024908",
+          "nic" => "00026",
+          "siret" => "30002490800026",
+          "statutDiffusionEtablissement" => "N",
+          "dateCreationEtablissement" => "2018-02-26",
+          "trancheEffectifsEtablissement" => nil,
+          "anneeEffectifsEtablissement" => nil,
+          "activitePrincipaleRegistreMetiersEtablissement" => nil,
+          "dateDernierTraitementEtablissement" => "2019-11-14T14:01:05",
+          "etablissementSiege" => true,
+          "nombrePeriodesEtablissement" => 1,
+          "uniteLegale" => {
+            "etatAdministratifUniteLegale" => "A",
+            "statutDiffusionUniteLegale" => "N",
+            "dateCreationUniteLegale" => "1980-01-01",
+            "categorieJuridiqueUniteLegale" => "1000",
+            "denominationUniteLegale" => nil,
+            "sigleUniteLegale" => nil,
+            "denominationUsuelle1UniteLegale" => nil,
+            "denominationUsuelle2UniteLegale" => nil,
+            "denominationUsuelle3UniteLegale" => nil,
+            "sexeUniteLegale" => "M",
+            "nomUniteLegale" => "LE DU",
+            "nomUsageUniteLegale" => nil,
+            "prenom1UniteLegale" => "JEAN",
+            "prenom2UniteLegale" => nil,
+            "prenom3UniteLegale" => nil,
+            "prenom4UniteLegale" => nil,
+            "prenomUsuelUniteLegale" => "JEAN",
+            "pseudonymeUniteLegale" => nil,
+            "activitePrincipaleUniteLegale" => "68.20A",
+            "nomenclatureActivitePrincipaleUniteLegale" => "NAFRev2",
+            "identifiantAssociationUniteLegale" => nil,
+            "economieSocialeSolidaireUniteLegale" => nil,
+            "caractereEmployeurUniteLegale" => "N",
+            "trancheEffectifsUniteLegale" => "NN",
+            "anneeEffectifsUniteLegale" => nil,
+            "nicSiegeUniteLegale" => "00026",
+            "dateDernierTraitementUniteLegale" => "2018-04-26T09:14:05",
+            "categorieEntreprise" => nil,
+            "anneeCategorieEntreprise" => nil
+          },
+          "adresseEtablissement" => {
+            "complementAdresseEtablissement" => nil,
+            "numeroVoieEtablissement" => "10",
+            "indiceRepetitionEtablissement" => nil,
+            "typeVoieEtablissement" => "AV",
+            "libelleVoieEtablissement" => "DE LA GARE",
+            "codePostalEtablissement" => "93220",
+            "libelleCommuneEtablissement" => "GAGNY",
+            "libelleCommuneEtrangerEtablissement" => nil,
+            "distributionSpecialeEtablissement" => nil,
+            "codeCommuneEtablissement" => "93032",
+            "codeCedexEtablissement" => nil,
+            "libelleCedexEtablissement" => nil,
+            "codePaysEtrangerEtablissement" => nil,
+            "libellePaysEtrangerEtablissement" => nil
+          },
+          "adresse2Etablissement" => {
+            "complementAdresse2Etablissement" => nil,
+            "numeroVoie2Etablissement" => nil,
+            "indiceRepetition2Etablissement" => nil,
+            "typeVoie2Etablissement" => nil,
+            "libelleVoie2Etablissement" => nil,
+            "codePostal2Etablissement" => nil,
+            "libelleCommune2Etablissement" => nil,
+            "libelleCommuneEtranger2Etablissement" => nil,
+            "distributionSpeciale2Etablissement" => nil,
+            "codeCommune2Etablissement" => nil,
+            "codeCedex2Etablissement" => nil,
+            "libelleCedex2Etablissement" => nil,
+            "codePaysEtranger2Etablissement" => nil,
+            "libellePaysEtranger2Etablissement" => nil
+          },
+          "periodesEtablissement" => [
+            {
+              "dateFin" => nil,
+              "dateDebut" => "2018-02-26",
+              "etatAdministratifEtablissement" => "A",
+              "changementEtatAdministratifEtablissement" => false,
+              "enseigne1Etablissement" => nil,
+              "enseigne2Etablissement" => nil,
+              "enseigne3Etablissement" => nil,
+              "changementEnseigneEtablissement" => false,
+              "denominationUsuelleEtablissement" => nil,
+              "changementDenominationUsuelleEtablissement" => false,
+              "activitePrincipaleEtablissement" => "68.20A",
+              "nomenclatureActivitePrincipaleEtablissement" => "NAFRev2",
+              "changementActivitePrincipaleEtablissement" => false,
+              "caractereEmployeurEtablissement" => "N",
+              "changementCaractereEmployeurEtablissement" => false
+            }
+          ]
+        }
+      }
+    when "15700033200013"
       {
         "header" => {
           "statut" => 403,
-          "message" => "Établissement non diffusable (24340081900120)"
+          "message" => "Établissement non diffusable (15700033200013)"
         }
       }
     when "12345678901234"
