@@ -1,27 +1,32 @@
+import { isEmpty } from 'lodash';
 import React, { useLayoutEffect } from 'react';
 import {
   Route,
   Routes as ReactRouterRoutes,
   useLocation,
 } from 'react-router-dom';
+import { AuthRequired, useAuth } from './components/organisms/AuthContext';
+import FormRouter from './components/organisms/FormRouter';
+import Accessibilite from './components/templates/Accessibilite';
+import Admin from './components/templates/Admin';
+import CopyEnrollment from './components/templates/CopyEnrollment';
+import DataProviderList from './components/templates/DataProviderList';
+import Enrollment from './components/templates/Enrollment';
+import FAQ from './components/templates/Faq';
+import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
 import Stats from './components/templates/Stats';
-import Accessibilite from './components/templates/Accessibilite';
-import { isEmpty } from 'lodash';
-import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
-import CopyEnrollment from './components/templates/CopyEnrollment';
-import Enrollment from './components/templates/Enrollment';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
-import Admin from './components/templates/Admin';
-import FAQ from './components/templates/Faq';
-import FormRouter from './components/organisms/FormRouter';
-import { AuthRequired, useAuth } from './components/organisms/AuthContext';
-import DataProviderList from './components/templates/DataProviderList';
 
 export const Routes = () => {
   const { user } = useAuth();
   const location = useLocation();
-  useLayoutEffect(() => window.scrollTo(0, 0), [location.pathname]);
+
+  useLayoutEffect(() => {
+    if (!location.state?.noScroll) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.state?.noScroll]);
 
   return (
     <ReactRouterRoutes>
