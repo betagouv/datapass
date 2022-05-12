@@ -158,6 +158,7 @@ const FAQ: React.FC<{}> = () => (
           <ExpandableQuote
             title={question.title}
             openOnMount={window.location.hash === `#${question.anchor}`}
+            scrollOnMount={window.location.hash === `#${question.anchor}`}
           >
             {question.body}
           </ExpandableQuote>
