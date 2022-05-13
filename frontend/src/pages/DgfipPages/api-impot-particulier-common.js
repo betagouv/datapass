@@ -33,6 +33,7 @@ export const demarches = {
         dgfip_annee_n_moins_1: false,
         dgfip_annee_n_moins_2: false,
         dgfip_annee_n_moins_3: false,
+        dgfip_annee_n_moins_4: false,
         dgfip_nmUsaDec1: false,
         dgfip_nmNaiDec1: false,
         dgfip_prnmDec1: false,
@@ -51,6 +52,7 @@ export const demarches = {
         dgfip_pac_nbPac: false,
         dgfip_pac: false,
         dgfip_pariso: false,
+        dgfip_dfDeces: false,
         dgfip_rfr: false,
         dgfip_mntRevbareme: false,
         dgfip_inddeficit: false,
@@ -162,6 +164,12 @@ export const availableScopes = [
     groupTitle: 'Années sur lesquelles porte votre demande',
   },
   {
+    value: 'dgfip_annee_n_moins_4',
+    label:
+      'Avant-dernière année de revenu, si la dernière année de revenu est indisponible',
+    groupTitle: 'Années sur lesquelles porte votre demande',
+  },
+  {
     value: 'dgfip_nmUsaDec1',
     label: 'Nom',
     groupTitle: 'État civil - déclarant 1',
@@ -250,6 +258,12 @@ export const availableScopes = [
   {
     value: 'dgfip_pariso',
     label: 'Parent isolé (case T)',
+    groupTitle: 'Situation du foyer fiscal',
+  },
+  {
+    value: 'dgfip_dfDeces',
+    label:
+      "Données fiscales au 31/12 en cas de décès d'un contribuable marié ou pacsé",
     groupTitle: 'Situation du foyer fiscal',
   },
   {
