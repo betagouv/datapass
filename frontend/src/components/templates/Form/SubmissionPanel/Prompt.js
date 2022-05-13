@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import useMostUsedComments from './hooks/use-most-used-comments';
-import useEmailTemplate from './hooks/use-email-template';
-import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
-import ExpandableQuote from '../../../molecules/ExpandableQuote';
+import { useEffect, useRef, useState } from 'react';
 import Button from '../../../atoms/hyperTexts/Button';
+import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
 import ButtonGroup from '../../../molecules/ButtonGroup';
+import ExpandableQuote from '../../../molecules/ExpandableQuote';
+import useEmailTemplate from './hooks/use-email-template';
+import useMostUsedComments from './hooks/use-most-used-comments';
 
 const Prompt = ({
   onAccept,
@@ -19,12 +19,17 @@ const Prompt = ({
   const [disabled, setDisabled] = useState(false);
   const templates = useMostUsedComments(selectedEvent, targetApi);
   const { plain_text_content } = useEmailTemplate(id, selectedEvent);
+  const refPanel = useRef(null);
 
   useEffect(() => {
     if (!input && plain_text_content) {
       setInput(plain_text_content);
     }
   }, [input, plain_text_content]);
+
+  useEffect(() => {
+    refPanel.current.scrollIntoView();
+  }, []);
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
@@ -44,7 +49,7 @@ const Prompt = ({
   }[selectedEvent];
 
   return (
-    <div className="panel">
+    <div ref={refPanel} className="panel">
       {typeof input !== 'undefined' && (
         <TextAreaInput
           label={promptLabel}
