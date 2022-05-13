@@ -1,20 +1,19 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse } from './common';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import {
-  demarches as fcAvailableDemarches,
   availableScopes as fcAvailableScopes,
+  demarches as fcAvailableDemarches,
   DonneesDescription,
 } from './api-impot-particulier-common';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
-import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import { additionalTermsOfUse } from './common';
 
 const demarches = {
   ...JSON.parse(JSON.stringify(fcAvailableDemarches)),
@@ -39,8 +38,6 @@ const availableScopes = [
   {
     value: 'dgfip_IndLep',
     label: 'Indicateur d’éligibilité au LEP',
-    helper:
-      'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici le 7 avril 2021.',
     groupTitle:
       'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
   },
