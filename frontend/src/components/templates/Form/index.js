@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import React, {
   useCallback,
   useEffect,
@@ -6,22 +7,20 @@ import React, {
   useState,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { isEmpty } from 'lodash';
-
-import { getUserEnrollment } from '../../../services/enrollments';
-import SubmissionPanel from './SubmissionPanel';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams } from '../../../lib';
-import Nav from '../../organisms/Nav';
-import { Linkify } from '../../molecules/Linkify';
-import { enrollmentReducerFactory } from './enrollmentReducer';
-import './style.css';
+import { getUserEnrollment } from '../../../services/enrollments';
 import Alert from '../../atoms/Alert';
 import WarningEmoji from '../../atoms/icons/WarningEmoji';
+import { Linkify } from '../../molecules/Linkify';
 import HeadSection from '../../organisms/form-sections/HeadSection';
 import StepperSection from '../../organisms/form-sections/StepperSection';
-import useListItemNavigation from '../hooks/use-list-item-navigation';
+import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
+import useListItemNavigation from '../hooks/use-list-item-navigation';
+import { enrollmentReducerFactory } from './enrollmentReducer';
+import './style.css';
+import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();
 
@@ -116,7 +115,10 @@ export const Form = ({
 
   useEffect(() => {
     if (enrollment.id && !window.location.pathname.includes(enrollment.id)) {
-      navigate(`${enrollment.id}`, { replace: true });
+      navigate(`${enrollment.id}`, {
+        replace: true,
+        state: { noScroll: true },
+      });
     }
   }, [enrollment.id, navigate]);
 
