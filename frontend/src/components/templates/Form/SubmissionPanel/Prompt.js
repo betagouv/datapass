@@ -28,7 +28,7 @@ const Prompt = ({
   }, [input, plain_text_content]);
 
   useEffect(() => {
-    refPanel.current.scrollIntoView();
+    refPanel.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   const handleInputChange = (event) => {
