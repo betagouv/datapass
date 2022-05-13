@@ -1,7 +1,7 @@
 module Http
   def self.get(url_as_string, api_key, endpoint_label, auth_header = nil, auth_method = "Bearer")
     logger = Logger.new($stdout)
-    http = HTTP.use(logging: {logger: logger})
+    http = HTTP.timeout(10).use(logging: {logger: logger})
 
     response = if auth_header.nil?
       http
@@ -43,7 +43,7 @@ module Http
 
   def self.request(http_verb, url_as_string, body, api_key, endpoint_label, auth_header, auth_method, content_type)
     logger = Logger.new($stdout)
-    http = HTTP.use(logging: {logger: logger})
+    http = HTTP.timeout(10).use(logging: {logger: logger})
       .headers(accept: "application/json")
 
     http_with_auth = if auth_header.nil?
