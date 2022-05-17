@@ -133,6 +133,7 @@ npm run dev-with-remote-backend
 This installation method use a backend launched locally with docker. This method
 is longer and more complex than the first method, but you will be able to make
 development on the backend.
+This installation is compatible with MacbookPro M1.
 
 #### Dependencies setup
 
@@ -156,20 +157,6 @@ Then create and configure your backend docker containers:
 
 ```bash
 docker-compose up # This can take a while, go make a loaf of bread or something
-```
-
-If you have a Macbook pro M1 Apple, here's the configuration to run the docker-compose.
-
-In `Dockerfile` change the following line
-`FROM ruby:2.7.3`
-by
-`FROM ruby:2.7-bullseye`
-
-Then in `Gemfile`, replace the ruby version with `ruby "2.7.6"`
-
-Then run
-```bash
-docker-compose up
 ```
 
 And finally, you can start the frontend:
