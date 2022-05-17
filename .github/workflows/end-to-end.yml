@@ -51,7 +51,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: 2.7.3
+          ruby-version: 2.7.6
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
       - name: Link libffi7 to libffi6 since the version 6 is not available anymore in Ubuntu 20.04

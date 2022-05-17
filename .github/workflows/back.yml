@@ -9,7 +9,7 @@ on:
 env:
   CI: true
   COVERAGE: true
-  RUBY_VERSION: 2.7.3
+  RUBY_VERSION: 2.7.6
   PG_HOST: localhost
   PG_USER: datapass
   PG_PASSWORD: datapass
