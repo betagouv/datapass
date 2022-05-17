@@ -10,7 +10,7 @@ Pour le développement en local, suivez les instructions ci-dessous:
 
 ## Dépendances
 
-- ruby 2.7.3
+- ruby 2.7.6
 - postgresql 9.5
 
 ## Installation

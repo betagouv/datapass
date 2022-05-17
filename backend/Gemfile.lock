@@ -370,10 +370,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    spring (2.1.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     ssrf_filter (1.0.7)
     standard (1.7.2)
       rubocop (= 1.25.1)
@@ -443,15 +439,13 @@ DEPENDENCIES
   sib-api-v3-sdk
   sidekiq (~> 6.4)
   simplecov
-  spring
-  spring-watcher-listen (~> 2.0.0)
   standardrb
   state_machines-activerecord
   timecop
   webmock
 
 RUBY VERSION
-   ruby 2.7.3p183
+   ruby 2.7.6p219
 
 BUNDLED WITH
    2.1.4
