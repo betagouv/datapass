@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:2.7.3
+FROM ruby:2.7-bullseye
 WORKDIR /myapp
 COPY ./Gemfile Gemfile
 COPY ./Gemfile.lock Gemfile.lock
