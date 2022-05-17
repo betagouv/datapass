@@ -383,7 +383,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       component: ApiIndemnisationPoleEmploi,
     },
     agent_connect_fi: {
-      label: 'AgentConnect - fournisseur d‘identité',
+      label: 'AgentConnect - fournisseur d’identité',
       icon: 'logo-agentconnect.png',
       email: 'support.partenaires@agentconnect.gouv.fr',
       component: AgentConnectFi,

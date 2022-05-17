@@ -9,7 +9,7 @@ import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
 
-const availableScopes = [
+export const availableScopes = [
   {
     value: 'usual_name',
     label: 'Nom de l‘agent',
@@ -64,7 +64,7 @@ const availableScopes = [
   },
 ];
 
-const target_api = 'agent-connect-fi';
+const target_api = 'agent_connect_fi';
 
 const AgentConnectFi = () => (
   <Form

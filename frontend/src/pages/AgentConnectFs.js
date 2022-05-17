@@ -8,63 +8,9 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
 import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
+import { availableScopes } from './AgentConnectFi';
 
-const availableScopes = [
-  {
-    value: 'usual_name',
-    label: 'Nom de l‘agent',
-    required: true,
-  },
-  {
-    value: 'given_name',
-    label: 'Prénom',
-    required: true,
-  },
-  {
-    value: 'email',
-    label: 'Adresse électronique professionnelle de l’agent',
-    required: true,
-  },
-  {
-    value: 'uid',
-    label: 'Identifiant technique',
-    required: true,
-    helper: '« sub » de l’utilisateur au format OpenIDConnect',
-  },
-  {
-    value: 'phone',
-    label: 'Numéro de téléphone professionnel de l’agent',
-    required: false,
-  },
-  {
-    value: 'Siren',
-    label: 'Numéro SIREN de l’organisation de rattachement',
-    required: false,
-  },
-  {
-    value: 'Siret',
-    label: 'Numéro SIRET de l’organisation de rattachement',
-    required: false,
-  },
-  {
-    value: 'Organizational_unit',
-    label: 'Unité d’affectation de l’agent',
-    required: false,
-  },
-  {
-    value: 'Belonging_population',
-    label: 'Population d’appartenance de l’agent',
-    required: false,
-    helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
-  },
-  {
-    value: 'chorus_uid',
-    label: 'Identifiant unique créé par l’application ChorusDT',
-    required: false,
-  },
-];
-
-const target_api = 'agent-connect-fs';
+const target_api = 'agent_connect_fs';
 
 const AgentConnectFs = () => (
   <Form

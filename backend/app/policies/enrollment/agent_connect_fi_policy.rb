@@ -1,4 +1,4 @@
-class Enrollment::AgentConnectFi < EnrollmentPolicy
+class Enrollment::AgentConnectFiPolicy < EnrollmentPolicy
   def permitted_attributes
     res = super
 
@@ -14,8 +14,8 @@ class Enrollment::AgentConnectFi < EnrollmentPolicy
         :Organizational_unit
       ],
       additional_content: [
-        :additional_content.access_rie,
-        :additional_content.access_internet,
+        :acces_rie,
+        :acces_internet,
         :authorize_access_to_service_providers
       ]
     ])
