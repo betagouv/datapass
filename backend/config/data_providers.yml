@@ -292,3 +292,13 @@ api_indemnisation_pole_emploi:
   label: API Indemnisation Pôle emploi
   support_email: contact@api.gouv.fr
   mailer: *shared_mailer
+
+agent_connect_fi:
+  label: AgentConnect - fournisseur d’identité
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
+
+agent_connect_fs:
+  label: AgentConnect - fournisseur de service
+  support_email: contact@api.gouv.fr
+  mailer: *shared_mailer
