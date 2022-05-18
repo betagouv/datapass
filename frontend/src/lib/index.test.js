@@ -356,7 +356,7 @@ describe('utils', () => {
         },
       };
       expect(getChangelog(diff)).toEqual([
-        'Changement de l’email du demandeur de "Dubigny" en "Dubigny2"',
+        'Changement du nom du demandeur de "Dubigny" en "Dubigny2"',
       ]);
     });
     it('should return changelog for adding team_member or document', () => {
@@ -386,11 +386,11 @@ describe('utils', () => {
         },
       };
       expect(getChangelog(diff)).toEqual([
-        'Changement du numéro de téléphone du deuxième contact de "non renseigné" en "Chef"',
+        'Changement du poste du deuxième contact de "non renseigné" en "Chef"',
         'Changement de l’email du deuxième contact de "non renseigné" en "datapass@yopmail.com"',
         'Changement du champ "team_members.1.user_id" de "non renseigné" en "417269330"',
         'Changement du prénom du deuxième contact de "non renseigné" en "Administrator"',
-        'Changement de l’email du deuxième contact de "non renseigné" en "Test"',
+        'Changement du nom du deuxième contact de "non renseigné" en "Test"',
         'Changement du numéro de téléphone du deuxième contact de "non renseigné" en "0000000000"',
         'Changement du champ "documents.0.id" de "non renseigné" en "195"',
         'Changement du champ "documents.0.type" de "non renseigné" en "Document::LegalBasis"',
