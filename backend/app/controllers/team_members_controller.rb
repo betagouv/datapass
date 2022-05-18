@@ -4,7 +4,16 @@ class TeamMembersController < ApplicationController
   def update
     @team_member = authorize TeamMember.find(params[:id])
 
-    @team_member.update!(permitted_attributes(@team_member))
+    params = {
+      team_members_attributes: [
+        {
+          id: @team_member.id,
+          **permitted_attributes(@team_member)
+        }
+      ]
+    }
+
+    @team_member.enrollment.update!(params)
     @team_member.enrollment.events.create(
       name: "update",
       user_id: current_user.id,
