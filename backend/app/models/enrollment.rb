@@ -250,6 +250,19 @@ class Enrollment < ActiveRecord::Base
     res
   end
 
+  def update_team_member_through_enrollment(id, params)
+    params = {
+      team_members_attributes: [
+        {
+          id: id,
+          **params
+        }
+      ]
+    }
+
+    update!(params)
+  end
+
   private
 
   def diff(changes)
