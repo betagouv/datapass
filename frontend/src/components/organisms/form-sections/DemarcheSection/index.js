@@ -3,7 +3,7 @@ import DemarcheSectionReadOnly from './DemarcheSectionReadOnly';
 import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../../templates/Form';
 
-const SECTION_LABEL = 'Les modèles préremplis';
+const SECTION_LABEL = 'Les modèles pré-remplis';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const DemarcheSection = ({ body, availableScopes }) => {

@@ -26,7 +26,7 @@ const DescriptionSection = () => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le projet</h2>
-      <h3>Quel projet êtes vous en train de réaliser ?</h3>
+      <h3>Quel projet êtes-vous en train de réaliser ?</h3>
       <TextInput
         label="Nom du projet"
         meta="Cette information peut être rendue publique"
