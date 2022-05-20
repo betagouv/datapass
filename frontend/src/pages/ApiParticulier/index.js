@@ -46,7 +46,7 @@ const CadreJuridiqueDescription = () => (
       Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
       légal et réglementaire des fournisseurs de service doit permettre à la
       DINUM de transmettre des données personnelles à votre entité
-      administrative.
+      administrative. Merci de le compléter.
     </p>
     <p>
       Dans le cas où vous représentez une collectivité, veuillez joindre la
@@ -332,6 +332,8 @@ const editorList = [
   { name: 'Amiciel', siret: '44884396100021' },
   { name: 'Qiis', siret: '52834311400021' },
   { name: 'Aiga', siret: '39825361700045' },
+  { name: 'Teamnet', siret: '33922000600078' },
+  { name: 'JVS', siret: '32855218700069' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',
