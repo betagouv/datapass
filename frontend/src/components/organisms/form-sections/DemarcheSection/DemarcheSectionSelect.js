@@ -10,9 +10,10 @@ import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotificati
 export const DemarcheSectionSelect = ({ body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
+  const technicalTeamValue = enrollment.technical_team_value;
+
   const [isLoading, setIsLoading] = useState(false);
   const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
-  const technicalTeamValue = enrollment.technical_team_value;
 
   // reducer expects onChange events from HTML Element
   const selectNewDemarche = useCallback(
@@ -26,14 +27,14 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
     () =>
       pickBy(demarches, function (value, key) {
         return (
-          value.state.technical_team_value === technicalTeamValue ||
+          value.state?.technical_team_value === technicalTeamValue ||
           !value.state?.technical_team_value
         );
       }),
     [demarches, technicalTeamValue]
   );
 
-  function onSelectDemarche(event) {
+  const onSelectDemarche = (event) => {
     let newDemarcheId = event.target.value || 'default';
 
     const preFilledEnrollment = merge(
@@ -53,7 +54,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
       // update Enrollment Context with new demarche
       selectNewDemarche(newDemarcheId);
     }
-  }
+  };
 
   useEffect(() => {
     if (selectedDemarcheId !== 'default') {
