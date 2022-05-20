@@ -1,24 +1,18 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import { isEmpty, merge, get, has } from 'lodash';
-import { FormContext } from '../../../templates/Form';
-import { ScrollablePanel } from '../../Scrollable';
-import ConfirmationModal from '../../ConfirmationModal';
+import { get, has, isEmpty, merge, pickBy } from 'lodash';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { findModifiedFields } from '../../../../lib';
-import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 import SelectInput from '../../../atoms/inputs/SelectInput';
+import { FormContext } from '../../../templates/Form';
+import ConfirmationModal from '../../ConfirmationModal';
+import { ScrollablePanel } from '../../Scrollable';
+import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 
 export const DemarcheSectionSelect = ({ body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
-
   const [isLoading, setIsLoading] = useState(false);
   const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
+  const technicalTeamValue = enrollment.technical_team_value;
 
   // reducer expects onChange events from HTML Element
   const selectNewDemarche = useCallback(
@@ -28,7 +22,18 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
     [onChange]
   );
 
-  const onSelectDemarche = (event) => {
+  const filteredDemarches = useMemo(
+    () =>
+      pickBy(demarches, function (value, key) {
+        return (
+          value.state.technical_team_value === technicalTeamValue ||
+          !value.state?.technical_team_value
+        );
+      }),
+    [demarches, technicalTeamValue]
+  );
+
+  function onSelectDemarche(event) {
     let newDemarcheId = event.target.value || 'default';
 
     const preFilledEnrollment = merge(
@@ -48,7 +53,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
       // update Enrollment Context with new demarche
       selectNewDemarche(newDemarcheId);
     }
-  };
+  }
 
   useEffect(() => {
     if (selectedDemarcheId !== 'default') {
@@ -78,7 +83,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
         <SelectInput
           label="Sélectionnez le modèle correspondant à votre projet"
           name="demarche"
-          options={Object.keys(demarches).map((demarcheId) => ({
+          options={Object.keys(filteredDemarches).map((demarcheId) => ({
             id: demarcheId,
             label: get(demarches, demarcheId, {}).label,
           }))}
