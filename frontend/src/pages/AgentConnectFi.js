@@ -92,19 +92,10 @@ const AgentConnectFi = () => (
               publique d’État (administrations centrales et services
               déconcentrés) et tous les fournisseurs de services des opérateurs
               de l’État à utiliser les données transmises par AgentConnect pour
-              procéder à l’authentification de leurs agents utilisateurs.
-            </>
-          ),
-        },
-        {
-          id: 'authorize_access_to_service_providers2',
-          label: (
-            <>
-              Je n’autorise qu’une sélection de fournisseurs de services à
-              utiliser les données transmises par AgentConnect pour procéder à
-              l’authentification de leurs agents utilisateurs. Dans ce cas,
+              procéder à l’authentification de leurs agents utilisateurs. Si je
+              n'autaurise l'accès qu'à certains fournisseurs de service,
               j’indique à la DINUM par email :
-              agentconnect.supportpartenaires@modernisation.gouv.fr, le nom des
+              agentconnect.supportpartenaires@modernisation.gouv.fr le nom des
               fournisseurs de services sélectionnés.
             </>
           ),
