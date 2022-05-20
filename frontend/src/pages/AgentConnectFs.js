@@ -26,7 +26,7 @@ const AgentConnectFs = () => (
       defaultFondementJuridiqueTitle="La décision du 18 juin 2021"
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
     />
-    <ÉquipeSection />
+    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <CguSection cguLink="/docs/cgu_agentconnect_fs.pdf" />
   </Form>
 );

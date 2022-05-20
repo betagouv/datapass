@@ -80,7 +80,7 @@ const AgentConnectFi = () => (
       defaultFondementJuridiqueTitle="la décision du 18 juin 2021"
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
     />
-    <ÉquipeSection />
+    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <CguSection
       cguLink="/docs/cgu_agentconnect_fi.pdf"
       additionalTermsOfUse={[
@@ -93,6 +93,19 @@ const AgentConnectFi = () => (
               déconcentrés) et tous les fournisseurs de services des opérateurs
               de l’État à utiliser les données transmises par AgentConnect pour
               procéder à l’authentification de leurs agents utilisateurs.
+            </>
+          ),
+        },
+        {
+          id: 'authorize_access_to_service_providers2',
+          label: (
+            <>
+              Je n’autorise qu’une sélection de fournisseurs de services à
+              utiliser les données transmises par AgentConnect pour procéder à
+              l’authentification de leurs agents utilisateurs. Dans ce cas,
+              j’indique à la DINUM par email :
+              agentconnect.supportpartenaires@modernisation.gouv.fr, le nom des
+              fournisseurs de services sélectionnés.
             </>
           ),
         },

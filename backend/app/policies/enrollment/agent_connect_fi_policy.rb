@@ -16,7 +16,8 @@ class Enrollment::AgentConnectFiPolicy < EnrollmentPolicy
       additional_content: [
         :acces_rie,
         :acces_internet,
-        :authorize_access_to_service_providers
+        :authorize_access_to_service_providers,
+        :authorize_access_to_service_providers2
       ]
     ])
 
