@@ -69,11 +69,11 @@
   },
 
   "abelium": {
-    "label": "Domino web, Tarification services municipaux / Portail Famille, Données CNAF",
+    "label": "Domino web 2.0, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
       "intitule": "Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des loisirs",
-      "description": "Le logiciel Domino 'Web permet la facturation des prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est réalisé selon un ou plusieurs critères suivants : en fonction des revenus des familles, en fonction de leur quotient familial.\nModule DIABOLO (Gestion des structures enfance, restauration, périscolaire, extrascolaire et jeunesse), le calcul du tarif des consommations (tarif repas, tarif de l’accueil périscolaire, tarif demi-journée ou journée ALSH, etc.) est lié soit au montant du quotient familial soit au revenu de la famille (Revenu brut global).\nAbelium Collectivités accompagne le demandeur lors de la mise en place de la demande des informations sur l'application API.",
+      "description": "Le logiciel Domino 'Web 2.0 permet la facturation des prestations pour les services suivants : périscolaire (par exemple : tarifs garderie matin, soir, etc.), restauration (par exemple : tarif repas enfant et adulte), centres de loisirs (par exemple : tarif demi-journée ou journée ALSH, etc.), jeunesse (par exemple : tarif journée, tarif activité, etc.), petite enfance (tarif d'accueil horaire) et temps libre (école d'art, école de danse et de musique). Le calcul du montant des prestations est réalisé selon un ou plusieurs critères suivants : revenu déclaré du foyer, quotient familial du foyer, nombre d'enfants à charge et /ou nombre total d'enfants. Abelium Collectivités accompagne le demandeur lors de la mise en place de la demande des informations sur l'application API particulier.",
       "data_recipients": "Agents du service",
       "data_retention_period": 60,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement",
@@ -82,6 +82,15 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Marina",
+        "family_name": "MOROZOVA",
+        "job": "Support client",
+        "email": "marina.morozova@abelium.fr",
+        "phone_number": "00.00.00.00.00"
       }
     }
   },
@@ -248,12 +257,25 @@
       "intitule": "Calcul du prix du repas pour un enfant scolarisé",
       "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
       "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
-      "data_retention_period": 11,
+      "data_retention_period": 20,
       "scopes": {
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_revenus": true,
+        "dgfip_situation_partielle": true,
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
-        "cnaf_enfants": true,
-        "cnaf_adresse": false
+        "cnaf_enfants": true
       }
     }
   },
