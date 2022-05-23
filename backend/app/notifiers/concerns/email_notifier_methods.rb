@@ -42,4 +42,13 @@ module EmailNotifierMethods
       demandeur_email: enrollment.demandeurs.pluck(:email).first
     ).notification_email.deliver_later
   end
+
+  def notify_administrators_by_email_for_unknowned_siret_enrollment
+    EnrollementMailer.with(
+      to: enrollment.demandeurs.pluck(:email),
+      target_api: enrollment.target_api,
+      enrollment_id: enrollment.id,
+      template: 'notify_unknowned_siret')
+      .notification_email.deliver_later
+  end
 end
