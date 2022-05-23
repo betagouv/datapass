@@ -17,11 +17,11 @@ class BaseNotifier < AbstractNotifier
   def submit(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
 
-    if enrollment.technical_team_value.match(/^[0-9]{14}$/).present?
+    if enrollment.technical_team_value.match?(/^\d{14}$/)
       notify_subscribers_by_email_for_submitted_enrollment
     end
 
-    notify_administrators_by_email_for_unknowned_siret_enrollment
+    notify_administrators_by_email_for_unknown_siret_enrollment
   end
 
   def notify(comment:, current_user:)

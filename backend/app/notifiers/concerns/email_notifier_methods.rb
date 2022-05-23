@@ -43,12 +43,12 @@ module EmailNotifierMethods
     ).notification_email.deliver_later
   end
 
-  def notify_administrators_by_email_for_unknowned_siret_enrollment
+  def notify_administrators_by_email_for_unknown_siret_enrollment
     EnrollementMailer.with(
-      to: enrollment.demandeurs.pluck(:email),
+      to: "datapass@api.gouv.fr",
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      template: 'notify_unknowned_siret')
+      template: 'notify_unknown_siret')
       .notification_email.deliver_later
   end
 end
