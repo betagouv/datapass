@@ -112,6 +112,18 @@ FactoryBot.define do
       technical_team_type { nil }
     end
 
+    trait :with_technical_team_software do
+      technical_team_type { "software_company" }
+    end
+
+    trait :technical_team_value do
+      technical_team_type { "50382936800045" }
+    end
+
+    trait :technical_team_value_wrong do
+      technical_team_type { "software_unknown" }
+    end
+
     trait :with_delegue_protection_donnees do
       after(:build) do |enrollment|
         enrollment.team_members << build(:team_member, :delegue_protection_donnees, enrollment: enrollment)
