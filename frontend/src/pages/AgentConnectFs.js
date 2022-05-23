@@ -13,7 +13,7 @@ const target_api = 'agent_connect_fs';
 
 export const availableScopes = [
   {
-    value: 'OpenID',
+    value: 'openid',
     label: 'OpenID',
     required: true,
   },

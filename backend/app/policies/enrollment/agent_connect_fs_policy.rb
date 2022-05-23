@@ -4,7 +4,7 @@ class Enrollment::AgentConnectFsPolicy < EnrollmentPolicy
 
     res.concat([
       scopes: [
-        :OpenID,
+        :openid,
         :usual_name,
         :given_name,
         :email,
