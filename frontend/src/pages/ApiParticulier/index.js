@@ -46,7 +46,7 @@ const CadreJuridiqueDescription = () => (
       Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
       légal et réglementaire des fournisseurs de service doit permettre à la
       DINUM de transmettre des données personnelles à votre entité
-      administrative.
+      administrative. Merci de le compléter.
     </p>
     <p>
       Dans le cas où vous représentez une collectivité, veuillez joindre la
@@ -323,20 +323,17 @@ const editorList = [
   { name: 'Arpège', siret: '35142130000036' },
   { name: 'Abelium Collectivités', siret: '42172024400050' },
   { name: 'Agora Plus', siret: '48017088500010' },
-  { name: 'Jdéalise', siret: '89255569900016' },
+  { name: 'Jdéalise/Cantine de France', siret: '89255569900016' },
   { name: 'Berger-Levrault', siret: '75580064600373' },
-  { name: 'Up Citizen', siret: '64204436600069' },
   { name: 'Ciril GROUP', siret: '30516304000119' },
   { name: 'Docaposte FAST', siret: '48847870200027' },
-  { name: 'DOCAPOSTE', siret: '49337600800030' },
-  { name: 'Odyssée Informatique', siret: '38812677300026' },
-  { name: 'Technocarte', siret: '38873581300056' },
-  { name: 'Communauté CapDémat', siret: '79529105300010' },
   { name: 'Nord France Informatique (NFI)', siret: '37996323400032' },
-  { name: 'NUMESIA', siret: '81418189700012' },
+  { name: 'Mushroom Software', siret: '81122842800017' },
   { name: 'Amiciel', siret: '44884396100021' },
   { name: 'Qiis', siret: '52834311400021' },
   { name: 'Aiga', siret: '39825361700045' },
+  { name: 'Teamnet', siret: '33922000600078' },
+  { name: 'JVS', siret: '32855218700069' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',
