@@ -15,7 +15,6 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
       enrollment_api_target,
       :complete,
       enrollment_technical_team_type,
-      enrollment_technical_team_value,
       organization_kind: :clamart,
       user: user
     )
