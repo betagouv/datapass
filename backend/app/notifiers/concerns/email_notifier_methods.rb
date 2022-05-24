@@ -48,7 +48,7 @@ module EmailNotifierMethods
       to: "datapass@api.gouv.fr",
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      template: "notify_unknown_siret")
-      .notification_email.deliver_later
+      template: "notify_unknown_siret"
+    ).notification_email.deliver_later
   end
 end

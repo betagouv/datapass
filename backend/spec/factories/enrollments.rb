@@ -120,7 +120,7 @@ FactoryBot.define do
       technical_team_type { "50382936800045" }
     end
 
-    trait :technical_team_value_wrong do
+    trait :technical_team_value_invalid do
       technical_team_type { "software_unknown" }
     end
 
