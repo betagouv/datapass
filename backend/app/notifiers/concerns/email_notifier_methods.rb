@@ -44,7 +44,7 @@ module EmailNotifierMethods
   end
 
   def notify_administrators_by_email_for_unknown_siret_enrollment
-    EnrollementMailer.with(
+    EnrollmentMailer.with(
       to: "datapass@api.gouv.fr",
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
