@@ -112,16 +112,14 @@ FactoryBot.define do
       technical_team_type { nil }
     end
 
-    trait :with_technical_team_software do
+    trait :technical_team_software do
       technical_team_type { "software_company" }
+      technical_team_value { "50382936800045" }
     end
 
-    trait :technical_team_value do
-      technical_team_type { "50382936800045" }
-    end
-
-    trait :technical_team_value_invalid do
-      technical_team_type { "software_unknown" }
+    trait :technical_team_software_invalid do
+      technical_team_type { "software_company" }
+      technical_team_value { "hello" }
     end
 
     trait :with_delegue_protection_donnees do
