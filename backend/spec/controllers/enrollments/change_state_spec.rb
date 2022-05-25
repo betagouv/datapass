@@ -191,7 +191,6 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
             it "sends an email to datapass administrator" do
               make_request
-              byebug
 
               enrollment_administrator_email = ActionMailer::Base.deliveries.last
 
