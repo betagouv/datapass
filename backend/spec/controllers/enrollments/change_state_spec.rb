@@ -157,6 +157,52 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           expect(enrollment_user_email.body.encoded).to include(submit_email_sample)
         end
       end
+
+      # BEGIN
+      describe "email sends to datapass administrator" do
+        let(:event) { "submit" }
+        let(:enrollment_api_target) { :api_particulier }
+        let(:enrollment_technical_team_type) { :technical_team_software_invalid }
+
+        before do
+          login(user)
+        end
+
+        before do
+          allow_any_instance_of(RefreshUser).to receive(:call).and_return(
+            user
+          )
+        end
+
+        let(:notify_unknown_siret_sample) do
+          File.open(Rails.root.join("app/views/enrollment_mailer/notify_unknown_siret.text.erb")) { |f| f.readline }.chomp[0..30]
+        end
+
+        before do
+          ActiveJob::Base.queue_adapter = :inline
+        end
+
+        after do
+          ActiveJob::Base.queue_adapter = :test
+        end
+
+        context "when target_api is api_particulier" do
+          context "when technical_team_value has not a valid siret number" do
+            it "sends an email to datapass administrator" do
+              # byebug
+              make_request
+              # Logs
+              # => {\"description\":[\""Vous devez renseigner la description de la démarche avant de continuer\"]}"]
+
+              expect(ActionMailer::Base.deliveries.count).to eq(1)
+              # => 0
+              expect(ActionMailer::Base.deliveries.last.to).to include("datapass@api.gouv.fr")
+              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_siret_sample)
+            end
+          end
+        end
+      end
+      # END TEST
     end
   end
 
