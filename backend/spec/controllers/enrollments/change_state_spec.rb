@@ -88,6 +88,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
             it { is_expected.to have_http_status(:unprocessable_entity) }
           end
+          context "when target_api is api_particulier" do
+            let(:enrollment_api_target) { :api_particulier }
+            let(:enrollment_technical_team_type) { :with_technical_team }
+
+            it { is_expected.to have_http_status(:ok) }
+          end
         end
       end
     end
@@ -158,27 +164,18 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         end
       end
 
-      # BEGIN
       describe "email sends to datapass administrator" do
         let(:event) { "submit" }
-        let(:enrollment_api_target) { :api_particulier }
-        let(:enrollment_technical_team_type) { :technical_team_software_invalid }
+
+        let(:notify_unknown_siret_sample) do
+          File.open(Rails.root.join("app/views/enrollment_mailer/notify_unknown_softawre.text.erb")) { |f| f.readline }.chomp[0..30]
+        end
 
         before do
           login(user)
-        end
-
-        before do
           allow_any_instance_of(RefreshUser).to receive(:call).and_return(
             user
           )
-        end
-
-        let(:notify_unknown_siret_sample) do
-          File.open(Rails.root.join("app/views/enrollment_mailer/notify_unknown_siret.text.erb")) { |f| f.readline }.chomp[0..30]
-        end
-
-        before do
           ActiveJob::Base.queue_adapter = :inline
         end
 
@@ -187,22 +184,36 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         end
 
         context "when target_api is api_particulier" do
-          context "when technical_team_value has not a valid siret number" do
-            it "sends an email to datapass administrator" do
-              # byebug
-              make_request
-              # Logs
-              # => {\"description\":[\""Vous devez renseigner la description de la démarche avant de continuer\"]}"]
+          let(:enrollment_api_target) { :api_particulier }
 
-              expect(ActionMailer::Base.deliveries.count).to eq(1)
-              # => 0
+          context "when technical_team_value has not a valid siret number" do
+            let(:enrollment_technical_team_type) { :technical_team_unknown_software }
+
+            it "sends an email to datapass administrator" do
+              make_request
+              byebug
+
+              enrollment_administrator_email = ActionMailer::Base.deliveries.last
+
+              expect(ActionMailer::Base.deliveries.count).to eq(2)
               expect(ActionMailer::Base.deliveries.last.to).to include("datapass@api.gouv.fr")
-              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_siret_sample)
+              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_software)
+            end
+          end
+          context "when technical_team_value has a valid siret number" do
+            let(:enrollment_technical_team_type) { :technical_team_software }
+
+            it "it does not sends email to datapass administrator" do
+              make_request
+
+              enrollment_administrator_email = ActionMailer::Base.deliveries.last
+
+              expect(ActionMailer::Base.deliveries.count).to eq(2)
+              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_software)
             end
           end
         end
       end
-      # END TEST
     end
   end
 

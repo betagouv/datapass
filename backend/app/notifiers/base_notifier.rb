@@ -21,7 +21,7 @@ class BaseNotifier < AbstractNotifier
 
     if enrollment.technical_team_type == "software_company"
       unless enrollment.technical_team_value.match?(/^\d{14}$/)
-        notify_administrators_by_email_for_unknown_siret_enrollment
+        notify_administrators_for_unknown_software_enrollment
       end
     else
       notify_subscribers_by_email_for_submitted_enrollment

@@ -86,6 +86,12 @@ FactoryBot.define do
 
       cgu_approved { true }
       dpo_is_informed { true }
+
+      after(:build) do |enrollment|
+        enrollment.description ||= "description"
+        enrollment.fondement_juridique_title ||= "title"
+        enrollment.fondement_juridique_url ||= "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
+      end
     end
 
     trait :submitted do
@@ -95,12 +101,6 @@ FactoryBot.define do
         enrollment.update!(
           status: "submitted"
         )
-      end
-
-      after(:build) do |enrollment|
-        enrollment.description ||= "description"
-        enrollment.fondement_juridique_title ||= "title"
-        enrollment.fondement_juridique_url ||= "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
       end
     end
 
@@ -117,7 +117,7 @@ FactoryBot.define do
       technical_team_value { "50382936800045" }
     end
 
-    trait :technical_team_software_invalid do
+    trait :technical_team_unknown_software do
       technical_team_type { "software_company" }
       technical_team_value { "hello" }
     end
