@@ -45,6 +45,20 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def notification_email_unknown_software
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @user = @enrollment.demandeurs.first
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: "datapass@api.gouv.fr",
+      subject: "Editeur avec un siret inconnu",
+      template_path: "enrollment_mailer/admin",
+      template_name: "notify_unknown_software"
+    )
+  end
+
   private
 
   def render_mail(attributes)
