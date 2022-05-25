@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe EnrollmentsController, "#change_state", type: :controller do
   subject(:make_request) { change_state_request }
 
