@@ -50,8 +50,7 @@ module EmailNotifierMethods
       to: "datapass@api.gouv.fr",
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      template: "notify_unknown_software",
-      demandeur_email: enrollment.demandeurs.pluck(:email).first
+      template: "notify_unknown_software"
     ).notification_email_unknown_software.deliver_later
   end
 end
