@@ -169,7 +169,7 @@ export const availableScopes = [
       'Avant-dernière année de revenu, si la dernière année de revenu est indisponible',
     groupTitle: 'Années sur lesquelles porte votre demande',
     helper:
-      'En cochant cette case, vous optez pour récupérer les informations de l’avant-dernière année, lorsque celles de la dernière année ne sont pas disponibles.\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique "Comment choisir les données?"',
+      'En cochant cette case, vous optez pour récupérer les informations de l’avant-dernière année, lorsque celles de la dernière année ne sont pas disponibles.\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
   },
   {
     value: 'dgfip_nmUsaDec1',
@@ -268,7 +268,7 @@ export const availableScopes = [
       "Données fiscales au 31/12 en cas de décès d'un contribuable marié ou pacsé",
     groupTitle: 'Situation du foyer fiscal',
     helper:
-      'En cochant cette case, vous optez pour récupérer les données fiscales de la période après décès d’un contribuable marié ou pacsé (à défaut aucune données fiscale n’est transmise).\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique "Comment choisir les données ? "',
+      'En cochant cette case, vous optez pour récupérer les données fiscales de la période après décès d’un contribuable marié ou pacsé (à défaut aucune données fiscale n’est transmise).\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
   },
   {
     value: 'dgfip_rfr',
@@ -280,7 +280,7 @@ export const availableScopes = [
     label: 'Montant de l’impôt sur les revenus soumis au barème (ligne 14)',
     groupTitle: 'Agrégats fiscaux',
     helper:
-      'Cette donnée n’intègre pas la taxation des revenus au taux effectif ou au taux proportionnel. Une expression de besoin spécifique est à réaliser si, après échanges avec DGFIP, ces types de taxation sont nécéssaires.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique "Comment choisir les données ?"',
+      'Cette donnée n’intègre pas la taxation des revenus au taux effectif ou au taux proportionnel. Une expression de besoin spécifique est à réaliser si, après échanges avec DGFIP, ces types de taxation sont nécéssaires.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
   },
   {
     value: 'dgfip_inddeficit',
