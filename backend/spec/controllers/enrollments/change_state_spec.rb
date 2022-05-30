@@ -165,22 +165,17 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
       end
 
       describe "email sends to datapass administrator" do
-        let(:event) { "submit" }
+        include ActiveJob::TestHelper
 
-        let(:notify_unknown_siret_sample) do
-          File.open(Rails.root.join("app/views/enrollment_mailer/notify_unknown_softawre.text.erb")) { |f| f.readline }.chomp[0..30]
-        end
+        let(:event) { "submit" }
 
         before do
           login(user)
-          allow_any_instance_of(RefreshUser).to receive(:call).and_return(
-            user
-          )
-          ActiveJob::Base.queue_adapter = :inline
         end
 
-        after do
-          ActiveJob::Base.queue_adapter = :test
+        after(:all) do
+          clear_enqueued_jobs
+          clear_performed_jobs
         end
 
         context "when target_api is api_particulier" do
@@ -192,23 +187,23 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
             it "sends an email to datapass administrator" do
               make_request
 
-              enrollment_administrator_email = ActionMailer::Base.deliveries.last
+              datapass_email = ActiveJob::Base.queue_adapter.enqueued_jobs.last
 
-              expect(ActionMailer::Base.deliveries.count).to eq(2)
-              expect(ActionMailer::Base.deliveries.last.to).to include("datapass@api.gouv.fr")
-              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_software)
+              expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
+              expect(datapass_email["arguments"][1]).to include("notification_email_unknown_software")
             end
           end
+
           context "when technical_team_value has a valid siret number" do
             let(:enrollment_technical_team_type) { :technical_team_software }
 
-            it "it does not sends email to datapass administrator" do
+            it "does not sends email to datapass administrator" do
               make_request
 
-              enrollment_administrator_email = ActionMailer::Base.deliveries.last
+              datapass_email = ActiveJob::Base.queue_adapter.enqueued_jobs.last
 
-              expect(ActionMailer::Base.deliveries.count).to eq(2)
-              expect(enrollment_administrator_email.body.encoded).to include(notify_unknown_software)
+              expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
+              expect(datapass_email["arguments"][1]).to include("notification_email")
             end
           end
         end

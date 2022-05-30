@@ -53,7 +53,7 @@ class EnrollmentMailer < ActionMailer::Base
 
     mail(
       to: "datapass@api.gouv.fr",
-      subject: "Editeur avec un siret inconnu",
+      subject: "Editeur avec un Siret inconnu",
       template_path: "enrollment_mailer/admin",
       template_name: "notify_unknown_software"
     )
