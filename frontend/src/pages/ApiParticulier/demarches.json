@@ -497,7 +497,7 @@
   },
 
   "ccas-arpege": {
-    "label": "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur Arpège",
+    "label": "Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF",
     "about": "https://api.gouv.fr/guides/ccas",
     "state": {
       "intitule": "Récupération du Quotient Familial et des Impôts pour les aides sociales facultatives et les services à la personne du CCAS",
