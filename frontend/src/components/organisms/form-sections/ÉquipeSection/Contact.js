@@ -113,7 +113,7 @@ export const Contact = ({
     <EmailInput
       label={
         displayIndividualEmailLabel
-          ? 'Email individuel et nominatif'
+          ? 'Email professionnel et nominatif'
           : displayGroupEmailLabel
           ? 'Email générique'
           : 'Email'
