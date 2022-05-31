@@ -133,7 +133,11 @@ const DonneesSection = ({
               Les partenaires ayant convenu avec la DGFiP un périmètre de
               données particulier peuvent rattacher leur expression de besoin
               listant l’ensemble des données strictement nécessaires à leur cas
-              d’usage.
+              d’usage. Si vous n'avez pas encore contacté la DGFiP, vous pouvez
+              les joindre à l'adresse
+              <a href="mailto:dp.part-api-impot-particulier@dgfip.finances.gouv.fr?subject=Expression%20sde%20besoin%20spécifique">
+                dp.part-api-impot-particulier@dgfip.finances.gouv.fr
+              </a>
             </p>
             <CheckboxInput
               label="J’ai une expression de besoin spécifique"
