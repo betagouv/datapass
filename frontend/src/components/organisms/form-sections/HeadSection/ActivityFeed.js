@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { chain, isEmpty, last } from 'lodash';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
-import CheckCircleIcon from '../../../atoms/icons/check-circle';
-import InfoIcon from '../../../atoms/icons/info';
-import ErrorIcon from '../../../atoms/icons/error';
-import FileCopyIcon from '../../../atoms/icons/file_copy';
-import WarningIcon from '../../../atoms/icons/warning';
-import NotificationsIcon from '../../../atoms/icons/notifications';
-import './ActivityFeed.css';
 import { getChangelog } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
+import CheckCircleIcon from '../../../atoms/icons/check-circle';
+import ErrorIcon from '../../../atoms/icons/error';
+import FileCopyIcon from '../../../atoms/icons/file_copy';
+import InfoIcon from '../../../atoms/icons/info';
+import NotificationsIcon from '../../../atoms/icons/notifications';
+import WarningIcon from '../../../atoms/icons/warning';
 import { Linkify } from '../../../molecules/Linkify';
+import './ActivityFeed.css';
 
 const eventToDisplayableContent = {
   request_changes: {
@@ -158,13 +158,21 @@ class ActivityFeed extends React.Component {
           </Button>
         </div>
         {eventsToDisplay.map(
-          ({ id, comment, name, updated_at, user: { email }, diff }) => (
+          ({
+            id,
+            comment,
+            name,
+            updated_at,
+            user: { given_name, family_name },
+            diff,
+          }) => (
             <EventItem
               key={id}
               comment={comment}
               name={name}
               updated_at={updated_at}
-              email={email}
+              given_name={given_name}
+              family_name={family_name}
               diff={diff}
             />
           )
