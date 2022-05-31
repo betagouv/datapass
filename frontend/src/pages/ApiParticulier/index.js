@@ -335,6 +335,8 @@ const editorList = [
   { name: 'Teamnet', siret: '33922000600078' },
   { name: 'JVS', siret: '32855218700069' },
   { name: '3D Ouest', siret: '44973625500018' },
+  { name: 'Entrouvert', siret: '49108189900032' },
+  { name: 'Waigeo', siret: '80321944300014' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',

@@ -103,6 +103,8 @@
       "data_recipients": "Adresse du foyer",
       "data_retention_period": 12,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement",
+      "technical_team_type": "software_company",
+      "technical_team_value": "48017088500010",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -126,6 +128,8 @@
       "data_recipients": "Agents instructeurs gérant les inscriptions et les facturations des prestations Petite Enfance, Scolaire et Extra-Scolaire",
       "data_retention_period": 60,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement",
+      "technical_team_type": "software_company",
+      "technical_team_value": "44884396100021",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -157,6 +161,8 @@
       "data_retention_period": 12,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement ",
       "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "35142130000036",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -174,6 +180,8 @@
       "data_recipients": "Agent de la collectivité ( ou association) en charge de l’inscription des familles ou en charge de la facturation des activités, agent du service guichet unique.",
       "data_retention_period": 36,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "75580064600373",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -196,6 +204,8 @@
       "description": "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\n\nLa consommation se fait le cadre de l'utilisation du logiciel Cantine de France de la société Jdéalise.",
       "data_retention_period": 36,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "89255569900016",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -219,6 +229,8 @@
       "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
       "data_retention_period": 24,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "81122842800017",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": false,
@@ -242,6 +254,8 @@
       "data_recipients": "Agents instructeurs en charge de la tarification et de la facturation des prestations aux familles",
       "data_retention_period": 36,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "48847870200027",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -258,6 +272,8 @@
       "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
       "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
       "data_retention_period": 20,
+      "technical_team_type": "software_company",
+      "technical_team_value": "49108189900032",
       "scopes": {
         "dgfip_declarant1_nom": true,
         "dgfip_declarant1_nom_naissance": true,
@@ -288,6 +304,8 @@
       "data_recipients": "Agents instructeurs des dossiers d’inscription (périscolaire, multi-accueil, guichet unique)",
       "data_retention_period": 24,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "32855218700069",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
@@ -305,6 +323,8 @@
       "data_recipients": "Agents de la collectivité en charge des services enfance, petite enfance et jeunesse de la ville.",
       "data_retention_period": 36,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "30516304000119",
       "scopes": {
         "dgfip_declarant1_nom": true,
         "dgfip_declarant1_nom_naissance": true,
@@ -358,6 +378,8 @@
       "data_recipients": "Agents instructeurs qui gèrent la facturation des prestations de la Petite Enfance, du Scolaire et de l'extra-scolaire",
       "data_retention_period": 36,
       "fondement_juridique_title": "Préciser la référence et le texte et de la délibération au format PDF vous autorisant à traiter les données.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "33922000600078",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": false,
@@ -430,6 +452,8 @@
       "data_recipients": "Agents de la collectivité en charge des services enfance et jeunesse de la ville.",
       "data_retention_period": 36,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "80321944300014",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": false,
@@ -482,6 +506,8 @@
       "data_retention_period": 12,
       "fondement_juridique_title": "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision.",
       "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "35142130000036",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": false,
