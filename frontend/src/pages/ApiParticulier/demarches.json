@@ -444,6 +444,34 @@
       }
     }
   },
+  "3D Ouest": {
+    "label": "3D Ouest, Tarification services municipaux / Portail Famille, Données CNAF",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarification",
+    "state": {
+      "intitule": "Tarification Services Enfance et récupération des quotients familiaux avec le logiciel Enfance 3D OUEST",
+      "description": "Dans un esprit de simplification et de sécurité, les collectivités pourront utiliser API Particulier pour récupérer les quotients familiaux des administrés afin de faciliter la facturation des services enfance et périscolaire. L’utilisation d’API Particulier est un vrai plus pour dématérialiser les mises à jour de ces informations",
+      "data_recipients": "Agents des services publics de la ville",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "44973625500018",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Laurent",
+        "family_name": "DELATTRE",
+        "job": "Directeur R&D",
+        "email": "laurent.delattre@3douest.com",
+        "phone_number": "0256662007"
+      }
+    }
+  },
+
   "ccas-arpege": {
     "label": "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur Arpège",
     "about": "https://api.gouv.fr/guides/ccas",
