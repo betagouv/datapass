@@ -76,6 +76,8 @@
       "data_recipients": "Agents du service",
       "data_retention_period": 60,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement",
+      "technical_team_type": "software_company",
+      "technical_team_value": "42172024400050",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": false,
@@ -356,10 +358,12 @@
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
       "intitule": "Gestion de la relation client sur le portail famille",
-      "description": "Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI).",
+      "description": "Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\r\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\r\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\r\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI).",
       "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
       "data_retention_period": 24,
       "fondement_juridique_title": "Délibération de la commune au format PDF en pièce jointe",
+      "technical_team_type": "software_company",
+      "technical_team_value": "37996323400032",
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
