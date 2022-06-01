@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { get, has, isEmpty, find, merge } from 'lodash';
+import { find, get, has, isEmpty, merge } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import { useAuth } from '../../AuthContext';

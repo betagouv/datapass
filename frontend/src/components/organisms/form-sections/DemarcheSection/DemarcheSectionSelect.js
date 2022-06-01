@@ -1,17 +1,11 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import { isEmpty, merge, get, has } from 'lodash';
-import { FormContext } from '../../../templates/Form';
-import { ScrollablePanel } from '../../Scrollable';
-import ConfirmationModal from '../../ConfirmationModal';
+import { get, has, isEmpty, merge, pickBy } from 'lodash';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { findModifiedFields } from '../../../../lib';
-import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 import SelectInput from '../../../atoms/inputs/SelectInput';
+import { FormContext } from '../../../templates/Form';
+import ConfirmationModal from '../../ConfirmationModal';
+import { ScrollablePanel } from '../../Scrollable';
+import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 
 export const DemarcheSectionSelect = ({ body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
@@ -26,6 +20,20 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
       onChange({ target: { value: newDemarcheId, name: 'demarche' } });
     },
     [onChange]
+  );
+
+  const filteredDemarches = useMemo(
+    () =>
+      pickBy(demarches, function (value, key) {
+        return (
+          !value.state?.technical_team_value ||
+          !enrollment.technical_team_value ||
+          value.state.technical_team_value ===
+            enrollment.technical_team_value ||
+          key === selectedDemarcheId
+        );
+      }),
+    [demarches, enrollment.technical_team_value, selectedDemarcheId]
   );
 
   const onSelectDemarche = (event) => {
@@ -78,7 +86,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
         <SelectInput
           label="Sélectionnez le modèle correspondant à votre projet"
           name="demarche"
-          options={Object.keys(demarches).map((demarcheId) => ({
+          options={Object.keys(filteredDemarches).map((demarcheId) => ({
             id: demarcheId,
             label: get(demarches, demarcheId, {}).label,
           }))}
