@@ -19,7 +19,7 @@ export const availableScopes = [
   },
   {
     value: 'usual_name',
-    label: 'Nom de l‘agent',
+    label: 'Nom de l’agent',
     required: false,
   },
   {
@@ -36,7 +36,7 @@ export const availableScopes = [
     value: 'uid',
     label: 'Identifiant technique',
     required: false,
-    helper: '« sub » de l’utilisateur au format OpenIDConnect',
+    helper: '« sub » de l’utilisateur au format OpenIDConnect',
   },
   {
     value: 'phone',

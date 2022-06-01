@@ -12,7 +12,7 @@ import AgentConnectNetworkSection from '../components/organisms/form-sections/Ag
 export const availableScopes = [
   {
     value: 'usual_name',
-    label: 'Nom de l‘agent',
+    label: 'Nom de l’agent',
     required: true,
   },
   {
@@ -29,7 +29,7 @@ export const availableScopes = [
     value: 'uid',
     label: 'Identifiant technique',
     required: true,
-    helper: '« sub » de l’utilisateur au format OpenIDConnect',
+    helper: '« sub » de l’utilisateur au format OpenIDConnect',
   },
   {
     value: 'phone',
