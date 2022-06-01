@@ -74,7 +74,7 @@ export const availableScopes = [
     value: 'cnous_statut_boursier',
     label: 'Statut étudiant boursier',
     helper:
-      'Indique si l‘étudiant est boursier au moment de l‘interrogation  (Booléen)',
+      'Indique si l’étudiant est boursier au moment de l’interrogation (Booléen)',
   },
   {
     value: 'cnous_echelon_bourse',
@@ -89,7 +89,7 @@ export const availableScopes = [
     value: 'cnous_periode_versement',
     label: 'Période de versement',
     helper:
-      'Date de début de rentrée scolaire / universitaire  et Durée de versement de la bourse',
+      'Date de début de rentrée scolaire / universitaire et Durée de versement de la bourse',
   },
   {
     value: 'cnous_statut_bourse',
@@ -99,7 +99,7 @@ export const availableScopes = [
   {
     value: 'cnous_ville_etudes',
     label: 'Ville d‘étude',
-    helper: 'Libellé de la ville d‘études',
+    helper: 'Libellé de la ville d’études',
   },
 ];
 

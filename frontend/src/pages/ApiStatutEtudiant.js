@@ -79,7 +79,7 @@ export const availableScopes = [
     value: 'mesri_inscription_autre',
     label: 'Inscriptions en formation continue',
     helper:
-      'Permet d’interroger les données des étudiants en formation continue. Données : date de début, de fin d’inscription, et code COG de la commune du lieu d’étude.',
+      'Permet d’interroger les données des étudiants en formation continue. Données : date de début, de fin d’inscription et code COG de la commune du lieu d’étude.',
   },
   {
     value: 'mesri_inscription_etudiant',
