@@ -134,10 +134,13 @@ const DonneesSection = ({
               données particulier peuvent rattacher leur expression de besoin
               listant l’ensemble des données strictement nécessaires à leur cas
               d’usage. Si vous n'avez pas encore contacté la DGFiP, vous pouvez
-              les joindre à l'adresse
-              <a href="mailto:dp.part-api-impot-particulier@dgfip.finances.gouv.fr?subject=Expression%20sde%20besoin%20spécifique">
+              les joindre à l'adresse{' '}
+              <Link
+                inline
+                href="mailto:dp.part-api-impot-particulier@dgfip.finances.gouv.fr?subject=Expression%20de%20besoin%20spécifique"
+              >
                 dp.part-api-impot-particulier@dgfip.finances.gouv.fr
-              </a>
+              </Link>
             </p>
             <CheckboxInput
               label="J’ai une expression de besoin spécifique"
