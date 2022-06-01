@@ -67,7 +67,6 @@
       }
     }
   },
-
   "abelium": {
     "label": "Domino web 2.0, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -416,7 +415,6 @@
       }
     }
   },
-
   "aiga": {
     "label": "iNoé, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -442,7 +440,6 @@
       }
     }
   },
-
   "waigeo": {
     "label": "MyPerischool, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -468,7 +465,7 @@
       }
     }
   },
-  "3D Ouest": {
+  "3d-ouest": {
     "label": "3D Ouest, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
@@ -495,7 +492,6 @@
       }
     }
   },
-
   "ccas-arpege": {
     "label": "Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF",
     "about": "https://api.gouv.fr/guides/ccas",
