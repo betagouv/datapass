@@ -20,6 +20,7 @@ import NotFound from '../../organisms/NotFound';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
 import './style.css';
+import HideSectionsContainer from './HideSectionsContainer';
 import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();
@@ -158,7 +159,17 @@ export const Form = ({
         >
           <HeadSection />
           <StepperSection />
-          {children}
+          <HideSectionsContainer
+            SubmissionPanel={() => (
+              <SubmissionPanel
+                enrollment={enrollment}
+                handlePostEvent={handlePostEvent}
+                updateEnrollment={dispatchSetEnrollment}
+              />
+            )}
+          >
+            {children}
+          </HideSectionsContainer>
         </FormContext.Provider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
@@ -181,12 +192,6 @@ export const Form = ({
             )}
           </div>
         )}
-
-        <SubmissionPanel
-          enrollment={enrollment}
-          updateEnrollment={dispatchSetEnrollment}
-          handlePostEvent={handlePostEvent}
-        />
       </div>
     </main>
   );
