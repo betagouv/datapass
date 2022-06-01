@@ -26,12 +26,14 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
     () =>
       pickBy(demarches, function (value, key) {
         return (
-          value.state?.technical_team_value ===
+          !value.state?.technical_team_value ||
+          !enrollment.technical_team_value ||
+          value.state.technical_team_value ===
             enrollment.technical_team_value ||
-          !value.state?.technical_team_value
+          key === selectedDemarcheId
         );
       }),
-    [demarches, enrollment.technical_team_value]
+    [demarches, enrollment.technical_team_value, selectedDemarcheId]
   );
 
   const onSelectDemarche = (event) => {
