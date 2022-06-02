@@ -8,7 +8,7 @@
   vertical-align: middle;
 }
 
-.helper-large::after {
+.helper.helper-large::after {
   white-space: pre-line;
   min-width: 350px;
   text-align: left;
