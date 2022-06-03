@@ -75,12 +75,10 @@ export const EventItem = ({
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
 
-  const eventName = () => {
-    if (given_name && family_name) {
-      return given_name + ' ' + family_name;
-    } else if (!given_name || !family_name) {
-      return given_name || family_name || email;
-    }
+  const userLabel = () => {
+    return given_name && family_name
+      ? `${given_name} ${family_name} `
+      : `${given_name} ` || `${family_name} ` || `${email} `;
   };
 
   return (
@@ -89,7 +87,7 @@ export const EventItem = ({
       <div className="event-content">
         <div className="event-head">
           <div>
-            <strong>{eventName()}&nbsp;</strong>
+            <strong>{userLabel()}</strong>
             {eventToDisplayableContent[name].label}
             {!isEmpty(changelog) && (
               <button
@@ -156,11 +154,10 @@ class ActivityFeed extends React.Component {
     let eventsToDisplay = chain(events)
       .sortBy('updated_at')
       .reject(
-        ({ given_name, family_name, email, diff }) =>
-          (given_name, family_name, email) === 'update' &&
-          isEmpty(getChangelog(diff))
+        ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
       )
       .value();
+
     if (!showDetails && events.length > 0) {
       eventsToDisplay = [last(eventsToDisplay)];
     }
