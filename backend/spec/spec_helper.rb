@@ -19,9 +19,9 @@
 require "dotenv"
 
 Dotenv.load(
-".env.test.local",
-".env.local",
-".env"
+  ".env.test.local",
+  ".env.local",
+  ".env"
 )
 
 require "webmock/rspec"
