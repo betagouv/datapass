@@ -63,9 +63,25 @@ const eventToDisplayableContent = {
   },
 };
 
-export const EventItem = ({ comment, name, updated_at, email, diff }) => {
+export const EventItem = ({
+  comment,
+  name,
+  updated_at,
+  email,
+  family_name,
+  given_name,
+  diff,
+}) => {
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
+
+  const eventName = () => {
+    if (given_name && family_name) {
+      return given_name + ' ' + family_name;
+    } else if (!given_name || !family_name) {
+      return given_name || family_name || email;
+    }
+  };
 
   return (
     <div className="event-item">
@@ -73,7 +89,7 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
       <div className="event-content">
         <div className="event-head">
           <div>
-            <strong>{email} </strong>
+            <strong>{eventName()}&nbsp;</strong>
             {eventToDisplayableContent[name].label}
             {!isEmpty(changelog) && (
               <button
@@ -113,6 +129,8 @@ EventItem.propTypes = {
   name: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  family_name: PropTypes.string.isRequired,
+  given_name: PropTypes.string.isRequired,
   diff: PropTypes.object,
 };
 
@@ -138,10 +156,11 @@ class ActivityFeed extends React.Component {
     let eventsToDisplay = chain(events)
       .sortBy('updated_at')
       .reject(
-        ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
+        ({ given_name, family_name, email, diff }) =>
+          (given_name, family_name, email) === 'update' &&
+          isEmpty(getChangelog(diff))
       )
       .value();
-
     if (!showDetails && events.length > 0) {
       eventsToDisplay = [last(eventsToDisplay)];
     }
@@ -163,7 +182,7 @@ class ActivityFeed extends React.Component {
             comment,
             name,
             updated_at,
-            user: { given_name, family_name },
+            user: { email, given_name, family_name },
             diff,
           }) => (
             <EventItem
@@ -171,8 +190,9 @@ class ActivityFeed extends React.Component {
               comment={comment}
               name={name}
               updated_at={updated_at}
-              given_name={given_name}
+              email={email}
               family_name={family_name}
+              given_name={given_name}
               diff={diff}
             />
           )
