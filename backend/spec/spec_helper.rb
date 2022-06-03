@@ -16,12 +16,12 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'dotenv'
+require "dotenv"
 
 Dotenv.load(
-'.env.test.local',
-'.env.local',
-'.env'
+".env.test.local",
+".env.local",
+".env"
 )
 
 require "webmock/rspec"
