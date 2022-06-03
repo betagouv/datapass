@@ -23,9 +23,8 @@ class BaseNotifier < AbstractNotifier
       unless enrollment.technical_team_value.match?(/^\d{14}$/)
         notify_administrators_for_unknown_software_enrollment
       end
-    else
-      notify_subscribers_by_email_for_submitted_enrollment
     end
+    notify_subscribers_by_email_for_submitted_enrollment
   end
 
   def notify(comment:, current_user:)
