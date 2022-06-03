@@ -203,7 +203,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
               make_request
 
               enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
-              notif_unknown_software = enqueued_jobs.find {|job| job["arguments"][1] == "notification_email_unknown_software"}
+              notif_unknown_software = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email_unknown_software" }
 
               expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
               expect(notif_unknown_software).to be_falsey
