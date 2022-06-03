@@ -46,11 +46,6 @@ module EmailNotifierMethods
   end
 
   def notify_administrators_for_unknown_software_enrollment
-    EnrollmentMailer.with(
-      to: "datapass@api.gouv.fr",
-      target_api: enrollment.target_api,
-      enrollment_id: enrollment.id,
-      template: "notify_unknown_software"
-    ).notification_email_unknown_software.deliver_later
+    EnrollmentMailer.notification_email_unknown_software.deliver_later
   end
 end
