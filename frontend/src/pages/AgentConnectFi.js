@@ -12,12 +12,12 @@ import AgentConnectNetworkSection from '../components/organisms/form-sections/Ag
 export const availableScopes = [
   {
     value: 'usual_name',
-    label: 'Nom de l‘agent',
+    label: 'Nom de l’agent',
     required: true,
   },
   {
     value: 'given_name',
-    label: 'Prénom',
+    label: 'Prénom de l’agent',
     required: true,
   },
   {

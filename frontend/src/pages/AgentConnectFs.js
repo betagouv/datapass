@@ -19,12 +19,12 @@ export const availableScopes = [
   },
   {
     value: 'usual_name',
-    label: 'Nom de l‘agent',
+    label: 'Nom de l’agent',
     required: false,
   },
   {
     value: 'given_name',
-    label: 'Prénom de l‘agent',
+    label: 'Prénom de l’agent',
     required: false,
   },
   {
