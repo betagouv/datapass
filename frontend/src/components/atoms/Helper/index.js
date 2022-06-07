@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import HelpIcon from '../icons/help';
 import './style.css';
 
-const Helper = ({ title }) => {
+const Helper = ({ title = '' }) => {
   let helperClass = 'helper';
 
   if (title.length > 140) {
