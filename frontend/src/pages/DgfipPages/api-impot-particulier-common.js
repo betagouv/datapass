@@ -268,7 +268,7 @@ export const availableScopes = [
       "Données fiscales au 31/12 en cas de décès d'un contribuable marié ou pacsé",
     groupTitle: 'Situation du foyer fiscal',
     helper:
-      'En cochant cette case, vous optez pour récupérer les données fiscales de la période après décès d’un contribuable marié ou pacsé (à défaut aucune données fiscale n’est transmise).\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
+      'En cochant cette case, vous optez pour récupérer les données fiscales de la période après décès d’un contribuable marié ou pacsé (à défaut aucune donnée fiscale n’est transmise).\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_rfr',
