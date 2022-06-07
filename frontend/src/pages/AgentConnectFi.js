@@ -37,28 +37,28 @@ export const availableScopes = [
     required: false,
   },
   {
-    value: 'Siren',
+    value: 'siren',
     label: 'Numéro SIREN de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Siret',
+    value: 'siret',
     label: 'Numéro SIRET de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Organizational_unit',
+    value: 'organizational_unit',
     label: 'Unité d’affectation de l’agent',
     required: false,
   },
   {
-    value: 'Belonging_population',
+    value: 'belonging_population',
     label: 'Population d’appartenance de l’agent',
     required: false,
     helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
   },
   {
-    value: 'chorus_uid',
+    value: 'chorusdt',
     label: 'Identifiant unique créé par l’application ChorusDT',
     required: false,
   },

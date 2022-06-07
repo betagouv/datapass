@@ -24,7 +24,7 @@ export const availableScopes = [
   },
   {
     value: 'given_name',
-    label: 'Prénom',
+    label: 'Prénom de l‘agent',
     required: false,
   },
   {
@@ -44,28 +44,28 @@ export const availableScopes = [
     required: false,
   },
   {
-    value: 'Siren',
+    value: 'siren',
     label: 'Numéro SIREN de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Siret',
+    value: 'siret',
     label: 'Numéro SIRET de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Organizational_unit',
+    value: 'organizational_unit',
     label: 'Unité d’affectation de l’agent',
     required: false,
   },
   {
-    value: 'Belonging_population',
+    value: 'belonging_population',
     label: 'Population d’appartenance de l’agent',
     required: false,
     helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
   },
   {
-    value: 'chorus_uid',
+    value: 'chorusdt',
     label: 'Identifiant unique créé par l’application ChorusDT',
     required: false,
   },
@@ -86,7 +86,21 @@ const AgentConnectFs = () => (
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
-    <CguSection cguLink="/docs/cgu_agentconnect_fs.pdf" />
+    <CguSection
+      cguLink="/docs/cgu_agentconnect_fs.pdf"
+      additionalTermsOfUse={[
+        {
+          id: 'accept_agentconnect_implementation_alternative',
+          label: (
+            <>
+              J’atteste que mon service propose une alternative à la connexion
+              avec AgentConnect, et que cette alternative permet l’accès, dans
+              des conditions analogues, au même service.
+            </>
+          ),
+        },
+      ]}
+    />
   </Form>
 );
 
