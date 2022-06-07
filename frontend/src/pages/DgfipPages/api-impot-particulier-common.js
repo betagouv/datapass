@@ -280,7 +280,7 @@ export const availableScopes = [
     label: 'Montant de l’impôt sur les revenus soumis au barème (ligne 14)',
     groupTitle: 'Agrégats fiscaux',
     helper:
-      'Cette donnée n’intègre pas la taxation des revenus au taux effectif ou au taux proportionnel. Une expression de besoin spécifique est à réaliser si, après échanges avec DGFIP, ces types de taxation sont nécéssaires.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
+      'Cette donnée n’intègre pas la taxation des revenus au taux effectif ou au taux proportionnel. Une expression de besoin spécifique est à réaliser si, après échanges avec DGFiP, ces types de taxation sont nécessaires.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_inddeficit',
