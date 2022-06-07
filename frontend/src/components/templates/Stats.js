@@ -110,8 +110,10 @@ export const Stats = () => {
           </NavLink>
           {Object.keys(DATA_PROVIDER_PARAMETERS)
             .filter(
-              (HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV) =>
-                HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.isActive
+              (apiLabel) =>
+                !HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.includes(
+                  apiLabel
+                )
             )
             .map((targetApi) => (
               <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
