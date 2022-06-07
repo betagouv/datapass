@@ -1,13 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import './style.css';
 import HelpIcon from '../icons/help';
+import './style.css';
 
-const Helper = ({ title }) => (
-  <span tooltip={title} className="helper">
-    <HelpIcon color={'var(--text-default-grey)'} />
-  </span>
-);
+const Helper = ({ title = '' }) => {
+  let helperClass = 'helper';
+
+  if (title.length > 140) {
+    helperClass += ' helper-large';
+  }
+  return (
+    <span tooltip={title} className={helperClass}>
+      <HelpIcon color={'var(--text-default-grey)'} />
+    </span>
+  );
+};
 
 Helper.propTypes = {
   title: PropTypes.string,
