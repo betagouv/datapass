@@ -48,7 +48,6 @@ class EnrollmentMailer < ActionMailer::Base
   def notification_email_unknown_software
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
-    @user = @enrollment.demandeurs.first
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
 
     mail(
