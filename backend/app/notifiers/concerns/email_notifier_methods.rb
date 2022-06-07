@@ -46,14 +46,9 @@ module EmailNotifierMethods
   end
 
   def notify_administrators_for_unknown_software_enrollment
-<<<<<<< HEAD
     EnrollmentMailer.with(
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      demandeur_email: enrollment.demandeurs.pluck(:email).first
     ).notification_email_unknown_software.deliver_later
-=======
-    EnrollmentMailer.notification_email_unknown_software.deliver_later
->>>>>>> fbf667c7b987e444e6140f12b4791c58034aff0c
   end
 end
