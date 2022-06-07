@@ -16,6 +16,5 @@ Cypress.Commands.add("checkBox", (checkbox) => {
 });
 
 Cypress.Commands.add("fillField", (fieldName, value, fieldType = "input") => {
-  cy.get(`${fieldType}[name="${fieldName}"]`).should("be.visible");
   cy.get(`${fieldType}[name="${fieldName}"]`).clear().type(value);
 });
