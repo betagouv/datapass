@@ -1,23 +1,23 @@
 import React from 'react';
-import Form from '../components/templates/Form';
-import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
+import Form from '../components/templates/Form';
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
-import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
 
 export const availableScopes = [
   {
     value: 'usual_name',
-    label: 'Nom de l‘agent',
+    label: 'Nom de l’agent',
     required: true,
   },
   {
     value: 'given_name',
-    label: 'Prénom',
+    label: 'Prénom de l’agent',
     required: true,
   },
   {
@@ -37,28 +37,28 @@ export const availableScopes = [
     required: false,
   },
   {
-    value: 'Siren',
+    value: 'siren',
     label: 'Numéro SIREN de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Siret',
+    value: 'siret',
     label: 'Numéro SIRET de l’organisation de rattachement',
     required: false,
   },
   {
-    value: 'Organizational_unit',
+    value: 'organizational_unit',
     label: 'Unité d’affectation de l’agent',
     required: false,
   },
   {
-    value: 'Belonging_population',
+    value: 'belonging_population',
     label: 'Population d’appartenance de l’agent',
     required: false,
     helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
   },
   {
-    value: 'chorus_uid',
+    value: 'chorusdt',
     label: 'Identifiant unique créé par l’application ChorusDT',
     required: false,
   },

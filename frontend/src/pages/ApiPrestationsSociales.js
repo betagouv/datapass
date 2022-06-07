@@ -96,7 +96,7 @@ const ApiPrestationsSociales = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
+    <CguSection cguLink="https://apisecu.fr/static/ressources/cgu_datapass_api_secu.pdf" />
   </Form>
 );
 

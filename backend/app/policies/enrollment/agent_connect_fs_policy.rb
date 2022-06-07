@@ -10,13 +10,16 @@ class Enrollment::AgentConnectFsPolicy < EnrollmentPolicy
         :email,
         :uid,
         :phone,
-        :Siren,
-        :Siret,
-        :Organizational_unit
+        :siren,
+        :siret,
+        :organizational_unit,
+        :belonging_population,
+        :chorusdt
       ],
       additional_content: [
         :acces_rie,
-        :acces_internet
+        :acces_internet,
+        :accept_agentconnect_implementation_alternative
       ]
     ])
 
