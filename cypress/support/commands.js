@@ -5,6 +5,7 @@ Cypress.Commands.add("login", (email, password) => {
     }); // Directly visit the backend login page to avoid CORS issues with the cookies "Same-site: lax" policy
 
     cy.get('input[name="login"]').type(email);
+    cy.get("form").submit();
     cy.get('input[name="password"]').type(password);
     cy.get("form").submit();
   });
@@ -15,6 +16,5 @@ Cypress.Commands.add("checkBox", (checkbox) => {
 });
 
 Cypress.Commands.add("fillField", (fieldName, value, fieldType = "input") => {
-  cy.get(`${fieldType}[name="${fieldName}"]`).should("be.visible");
   cy.get(`${fieldType}[name="${fieldName}"]`).clear().type(value);
 });
