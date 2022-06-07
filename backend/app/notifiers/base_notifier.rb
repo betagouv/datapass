@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BaseNotifier < AbstractNotifier
   include EmailNotifierMethods
 
@@ -17,6 +19,9 @@ class BaseNotifier < AbstractNotifier
   def submit(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
 
+    if enrollment.technical_team_type == "software_company" && !enrollment.technical_team_value.match?(/^\d{14}$/)
+      notify_administrators_for_unknown_software_enrollment
+    end
     notify_subscribers_by_email_for_submitted_enrollment
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe EnrollmentsController, "#change_state", type: :controller do
   subject(:make_request) { change_state_request }
 
@@ -86,6 +88,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
             it { is_expected.to have_http_status(:unprocessable_entity) }
           end
+          context "when target_api is api_particulier" do
+            let(:enrollment_api_target) { :api_particulier }
+            let(:enrollment_technical_team_type) { :with_technical_team }
+
+            it { is_expected.to have_http_status(:ok) }
+          end
         end
       end
     end
@@ -153,6 +161,54 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
           expect(enrollment_user_email.to).to eq([enrollment.demandeurs.first.email])
           expect(enrollment_user_email.body.encoded).to include(submit_email_sample)
+        end
+      end
+
+      describe "email sends to datapass administrator" do
+        include ActiveJob::TestHelper
+
+        let(:event) { "submit" }
+
+        before do
+          login(user)
+        end
+
+        after do
+          clear_enqueued_jobs
+          clear_performed_jobs
+        end
+
+        context "when target_api is api_particulier" do
+          let(:enrollment_api_target) { :api_particulier }
+
+          context "when technical_team_value has not a valid siret number" do
+            let(:enrollment_technical_team_type) { :technical_team_unknown_software }
+
+            it "sends an email to datapass administrator" do
+              make_request
+
+              enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+              notif_unknown_software = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email_unknown_software" }
+
+              expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 3
+              expect(notif_unknown_software[:args]).to include("notification_email_unknown_software")
+              expect(notif_unknown_software).to be_truthy
+            end
+          end
+
+          context "when technical_team_value has a valid siret number" do
+            let(:enrollment_technical_team_type) { :technical_team_software }
+
+            it "does not sends email to datapass administrator" do
+              make_request
+
+              enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+              notif_unknown_software = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email_unknown_software" }
+
+              expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
+              expect(notif_unknown_software).to be_falsey
+            end
+          end
         end
       end
     end
