@@ -417,3 +417,24 @@ export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_pro_sante_connect',
   'api_tiers_de_prestation',
 ];
+
+export const HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
+  'api_hermes_sandbox',
+  'api_hermes_production',
+  'api_e_contacts_sandbox',
+  'api_e_contacts_production',
+  'api_opale_sandbox',
+  'api_opale_production',
+  'api_mire_sandbox',
+  'api_mire_production',
+  'api_ocfi_sandbox',
+  'api_ocfi_production',
+  'api_e_pro_sandbox',
+  'api_e_pro_production',
+  'api_robf_sandbox',
+  'api_robf_production',
+  'api_cpr_pro_sandbox',
+  'api_cpr_pro_production',
+  'api_infinoe_sandbox',
+  'api_infinoe_production',
+];

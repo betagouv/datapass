@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 import {
   Bar,
   BarChart,
@@ -15,25 +15,25 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import './Stats.css';
-import { getAPIStats } from '../../services/stats';
+import {
+  DATA_PROVIDER_PARAMETERS,
+  HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+} from '../../config/data-provider-parameters';
 import {
   EnrollmentStatus,
   USER_STATUS_LABELS,
 } from '../../config/status-parameters';
-import {
-  DATA_PROVIDER_PARAMETERS,
-  DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
-} from '../../config/data-provider-parameters';
+import { getAPIStats } from '../../services/stats';
+import './Stats.css';
 
-import Helper from '../atoms/Helper';
-import Loader from '../atoms/Loader';
-import ListHeader from '../molecules/ListHeader';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
-import { Card, CardContainer } from '../molecules/Card';
-import TagContainer from '../atoms/TagContainer';
+import Helper from '../atoms/Helper';
 import Link from '../atoms/hyperTexts/Link';
 import Tag from '../atoms/hyperTexts/Tag';
+import Loader from '../atoms/Loader';
+import TagContainer from '../atoms/TagContainer';
+import { Card, CardContainer } from '../molecules/Card';
+import ListHeader from '../molecules/ListHeader';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -81,7 +81,7 @@ export const Stats = () => {
       setStats({
         ...result.data,
         enrollment_by_target_api: stackLowUseAndUnpublishedApi(
-          DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+          HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
           result.data.enrollment_by_target_api,
           10
         ),
@@ -108,15 +108,20 @@ export const Stats = () => {
               <Tag type={isActive ? 'info' : ''}>Toutes les APIs</Tag>
             )}
           </NavLink>
-          {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
-            <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
-              {({ isActive }) => (
-                <Tag type={isActive ? 'info' : ''}>
-                  {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
-                </Tag>
-              )}
-            </NavLink>
-          ))}
+          {Object.keys(DATA_PROVIDER_PARAMETERS)
+            .filter(
+              (HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV) =>
+                HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.isActive
+            )
+            .map((targetApi) => (
+              <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
+                {({ isActive }) => (
+                  <Tag type={isActive ? 'info' : ''}>
+                    {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
+                  </Tag>
+                )}
+              </NavLink>
+            ))}
         </TagContainer>
       </ListHeader>
       <div className="table-container">
