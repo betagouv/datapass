@@ -1,13 +1,13 @@
 import React from 'react';
-import Form from '../components/templates/Form';
-import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
+import Form from '../components/templates/Form';
 import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
-import AgentConnectNetworkSection from '../components/organisms/form-sections/AgentConnectNetworkSection';
 
 export const availableScopes = [
   {
