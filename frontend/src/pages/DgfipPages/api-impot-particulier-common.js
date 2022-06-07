@@ -1,5 +1,5 @@
-import { DonneesDescription as CommonDonneesDescription } from './common';
 import Link from '../../components/atoms/hyperTexts/Link';
+import { DonneesDescription as CommonDonneesDescription } from './common';
 
 export const DonneesDescription = () => (
   <>

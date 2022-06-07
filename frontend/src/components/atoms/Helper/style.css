@@ -8,6 +8,12 @@
   vertical-align: middle;
 }
 
+.helper.helper-large::after {
+  white-space: pre-line;
+  min-width: 350px;
+  text-align: left;
+}
+
 /*CSS tooltip is heavily inspired from https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346*/
 [tooltip] {
   position: relative;
