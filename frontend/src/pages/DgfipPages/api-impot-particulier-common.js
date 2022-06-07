@@ -169,7 +169,7 @@ export const availableScopes = [
       'Avant-dernière année de revenu, si la dernière année de revenu est indisponible',
     groupTitle: 'Années sur lesquelles porte votre demande',
     helper:
-      'En cochant cette case, vous optez pour récupérer les informations de l’avant-dernière année, lorsque celles de la dernière année ne sont pas disponibles.\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique «Comment choisir les données ?»',
+      'En cochant cette case, vous optez pour récupérer les informations de l’avant-dernière année, lorsque celles de la dernière année ne sont pas disponibles.\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_nmUsaDec1',
