@@ -39,8 +39,10 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
   }, [technical_team_type, technical_team_value]);
 
   useEffect(() => {
-    !isUserEnrollmentLoading && setReadyForNextSteps(areInputValid);
-  }, [isUserEnrollmentLoading, setReadyForNextSteps, areInputValid]);
+    !isUserEnrollmentLoading &&
+      !disabled &&
+      setReadyForNextSteps(areInputValid);
+  }, [isUserEnrollmentLoading, disabled, setReadyForNextSteps, areInputValid]);
 
   const editorOptions = useMemo(
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),
