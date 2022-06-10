@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import { Card } from '../../../molecules/Card';
-import { FormContext } from '../../../templates/Form';
-import { TextInputWithSuggestions } from '../../../molecules/TextInputWithSuggestions';
-import RadioInput from '../../../atoms/inputs/RadioInput';
-import Button from '../../../atoms/hyperTexts/Button';
-import TextInput from '../../../atoms/inputs/TextInput';
 import Alert from '../../../atoms/Alert';
+import Button from '../../../atoms/hyperTexts/Button';
 import Link from '../../../atoms/hyperTexts/Link';
+import RadioInput from '../../../atoms/inputs/RadioInput';
+import TextInput from '../../../atoms/inputs/TextInput';
+import { Card } from '../../../molecules/Card';
+import { TextInputWithSuggestions } from '../../../molecules/TextInputWithSuggestions';
+import { FormContext } from '../../../templates/Form';
 import { HideSectionsContext } from '../../../templates/Form/HideSectionsContainer';
 
 const typeOptions = [
@@ -39,8 +39,10 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
   }, [technical_team_type, technical_team_value]);
 
   useEffect(() => {
-    !isUserEnrollmentLoading && setReadyForNextSteps(areInputValid);
-  }, [isUserEnrollmentLoading, setReadyForNextSteps, areInputValid]);
+    !isUserEnrollmentLoading &&
+      !disabled &&
+      setReadyForNextSteps(areInputValid);
+  }, [isUserEnrollmentLoading, disabled, setReadyForNextSteps, areInputValid]);
 
   const editorOptions = useMemo(
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),

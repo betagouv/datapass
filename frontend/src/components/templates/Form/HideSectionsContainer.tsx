@@ -42,7 +42,7 @@ export const HideSectionsContainer: FunctionComponent<Props> = ({
     setTimeout(() => {
       setAreNextStepLoading(false);
       setShowOnlyFirstStep(false);
-    }, 1800);
+    }, 900);
   };
 
   useEffect(() => {

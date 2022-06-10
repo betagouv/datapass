@@ -8,7 +8,7 @@ class ApiSirene < ApplicationService
   end
 
   def cached_etablissement
-    Rails.cache.fetch("etablissements/#{@siret}", expires_in: 1.hours) do
+    Rails.cache.fetch("etablissements/#{@siret}", expires_in: 12.hours) do
       etablissement
     end
   end
