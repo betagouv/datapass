@@ -16,8 +16,8 @@ RSpec.describe WebhookEnrollmentSerializer, type: :serializer do
 
   it "renders valid data" do
     expect(payload).to have_key(:id)
+    expect(payload).to have_key(:data_provider)
     expect(payload).to have_key(:demarche)
-
     expect(payload).to have_key(:team_members)
 
     %w[
