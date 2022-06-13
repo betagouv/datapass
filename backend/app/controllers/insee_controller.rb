@@ -1,4 +1,11 @@
 class InseeController < ApplicationController
+  # GET /insee/ping
+  def ping
+    ApiSirene.new("13002526500013").etablissement # we use DINUM siret for the ping route
+
+    render status: :ok, json: {}
+  end
+
   # GET /insee/etablissements/1
   def etablissements
     data = ApiSirene.call(params.fetch(:siret))
