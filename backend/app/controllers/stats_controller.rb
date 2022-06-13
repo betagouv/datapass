@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StatsController < ApplicationController
   # GET /stats
   def show
@@ -6,26 +8,26 @@ class StatsController < ApplicationController
     # - there was a unique constraint that does not allow multiple event of the same type
     #   on the same enrollments. Consequently, some submit and request_changes
     #   events are missing in production database.
+    target_api_list = []
 
-    begin
-      target_api_list = JSON.parse(params.permit(:target_api_list)[:target_api_list])
-      target_api_list.any? do |target_api|
-        unless DataProvidersConfiguration.instance.exists?(target_api)
-          raise ActionController::BadRequest, "Invalid target_api"
+    if params.permit(:target_api_list).key?(:target_api_list)
+      begin
+        target_api_list = JSON.parse(params.permit(:target_api_list)[:target_api_list])
+        has_only_existing_target_api = target_api_list.all? do |target_api|
+          DataProvidersConfiguration.instance.exists?(target_api)
         end
-      end
 
-      if target_api_list.count.positive?
-        target_api_list.each { |target_api| "target_api_list = ANY.('#{ActiveRecord::Base.connection.quote_string(target_api)}').join(', ')" }
+        unless has_only_existing_target_api
+          raise ActionController::BadRequest, "Invalid target_api_list"
+        end
+
+      rescue JSON::ParserError
+        raise ActionController::BadRequest, "Invalid target_api_list"
       end
-    rescue JSON::ParserError
     end
 
-    do_filter_by_target_api = params.permit(:target_api).key?(:target_api)
-    target_api = params.permit(:target_api)[:target_api]
-    filter_by_target_api_criteria = do_filter_by_target_api ?
-      "target_api = '#{ActiveRecord::Base.connection.quote_string(target_api)}'" :
-      "1 = 1" # equivalent to no filter
+    filter_by_target_api_criteria = target_api_list.count > 0 ?
+      "target_api = any('{#{target_api_list.join(', ')}}')" : "1 = 1" # equivalent to no filter
 
     # Habilitations déposées
     enrollment_count_query = <<-SQL
@@ -46,7 +48,7 @@ class StatsController < ApplicationController
       .getvalue(0, 0)
 
     # Temps moyen de traitement des habilitations
-    average_processing_time_in_days = GetAverageProcessingTimeInDays.call(target_api)
+    average_processing_time_in_days = GetAverageProcessingTimeInDays.call(filter_by_target_api_criteria)
 
     # Pourcentage d’habilitations nécessitant un aller retour
     go_back_ratio_query = <<-SQL

@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class GetAverageProcessingTimeInDays < ApplicationService
-  def initialize(target_api)
-    @filter_by_target_api_criteria = target_api ?
-      "target_api = '#{ActiveRecord::Base.connection.quote_string(target_api)}'" :
-      "1 = 1" # equivalent to no filter
+  def initialize(filter_by_target_api_criteria)
+    @filter_by_target_api_criteria = filter_by_target_api_criteria
   end
 
   # Temps moyen de traitement des demandes d’habilitation
