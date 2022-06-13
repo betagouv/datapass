@@ -8,17 +8,14 @@ class StatsController < ApplicationController
     #   events are missing in production database.
 
     begin
-      raw_target_api_list = params.permit(:target_api_list)[:target_api_list]
-      target_api_list = JSON.parse(raw_target_api_list)
-
+      target_api_list = JSON.parse(params.permit(:target_api_list)[:target_api_list])
       target_api_list.any? do |target_api|
         unless DataProvidersConfiguration.instance.exists?(target_api)
-          puts "#{DataProvidersConfiguration.instance.exists?(target_api)}"
           raise ActionController::BadRequest, "Invalid target_api"
         end
       end
 
-      if target_api_list.count > 0
+      if target_api_list.count.positive?
         target_api_list.each { |target_api| "target_api_list = ANY.('#{ActiveRecord::Base.connection.quote_string(target_api)}').join(', ')" }
       end
     rescue JSON::ParserError
