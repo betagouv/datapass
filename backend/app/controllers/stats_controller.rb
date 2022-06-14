@@ -12,7 +12,7 @@ class StatsController < ApplicationController
 
     if params.permit(:target_api_list).key?(:target_api_list)
       begin
-        target_api_list = JSON.parse(params.permit(:target_api_list)[:target_api_list])
+        target_api_list = JSON.parse(params[:target_api_list])
         has_only_existing_target_api = target_api_list.all? do |target_api|
           DataProvidersConfiguration.instance.exists?(target_api)
         end
