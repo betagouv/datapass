@@ -32,7 +32,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     comment = '',
     name: lastEventName = '',
     updated_at = '',
-    user: { email = '' } = {},
+    user: { email = '', given_name, family_name } = {},
     diff,
   } = useMemo(
     () => chain(events).sortBy('updated_at').last().value() || {},
@@ -53,6 +53,8 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
             name={lastEventName}
             updated_at={updated_at}
             email={email}
+            given_name={given_name}
+            family_name={family_name}
             diff={diff}
           />
         </div>
