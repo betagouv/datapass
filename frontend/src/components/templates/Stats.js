@@ -1,4 +1,5 @@
 import moment from 'moment';
+
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import {
@@ -85,7 +86,7 @@ export const Stats = () => {
 
   useEffect(() => {
     async function fetchStats() {
-      const result = await getAPIStats(targetApi);
+      const result = await getAPIStats([targetApi]);
 
       setStats({
         ...result.data,
