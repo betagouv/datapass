@@ -1,7 +1,7 @@
 import { chain, isEmpty, last } from 'lodash';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { getChangelog } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
@@ -75,11 +75,11 @@ export const EventItem = ({
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
 
-  const userLabel = () => {
+  const userLabel = useMemo(() => {
     return given_name && family_name
-      ? `${given_name} ${family_name} `
-      : `${given_name} ` || `${family_name} ` || `${email} `;
-  };
+      ? `${given_name} ${family_name}`
+      : given_name || family_name || email;
+  }, [given_name, family_name, email]);
 
   return (
     <div className="event-item">
@@ -87,7 +87,7 @@ export const EventItem = ({
       <div className="event-content">
         <div className="event-head">
           <div>
-            <strong>{userLabel()}</strong>
+            <strong>{userLabel} </strong>
             {eventToDisplayableContent[name].label}
             {!isEmpty(changelog) && (
               <button
