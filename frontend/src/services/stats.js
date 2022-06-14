@@ -7,7 +7,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 export async function getAPIStats(target_api_list) {
   return httpClient.get(
     `${BACK_HOST}/api/stats${hashToQueryParams({
-      target_api_list: target_api_list,
+      target_api_list,
     })}`,
     {
       headers: { 'Content-type': 'application/json' },
