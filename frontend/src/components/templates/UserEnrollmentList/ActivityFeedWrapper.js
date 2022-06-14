@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { chain } from 'lodash';
 import PropTypes from 'prop-types';
-
-import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
+import React, { useEffect, useMemo, useState } from 'react';
+import { USER_STATUS_LABELS } from '../../../config/status-parameters';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert from '../../atoms/Alert';
-import { USER_STATUS_LABELS } from '../../../config/status-parameters';
-import { chain } from 'lodash';
+import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
 
 const ActivityFeedWrapper = ({ events, status, target_api }) => {
   const [
@@ -32,7 +31,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     comment = '',
     name: lastEventName = '',
     updated_at = '',
-    user: { email = '' } = {},
+    user: { email = '', given_name, family_name } = {},
     diff,
   } = useMemo(
     () => chain(events).sortBy('updated_at').last().value() || {},
@@ -53,6 +52,8 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
             name={lastEventName}
             updated_at={updated_at}
             email={email}
+            given_name={given_name}
+            family_name={family_name}
             diff={diff}
           />
         </div>
