@@ -3,7 +3,7 @@
 RSpec.describe StatsController, type: :controller do
   describe "#show" do
     subject(:show_stats) do
-      get :show, params: {target_api_list: target_api_list}
+      get :show, params: {target_api_list: target_api_list.to_json}
     end
 
     before do
