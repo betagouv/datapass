@@ -23,14 +23,6 @@ export const NewEnrollmentButton: FunctionComponent = () => {
               </Link>
             </div>
             <div className="new-enrollment-button-item">
-              <Link inline href="/aidants-connect">
-                <img
-                  src="/images/aidants-connect_logo.png"
-                  alt="Logo AidantsConnect"
-                />
-              </Link>
-            </div>
-            <div className="new-enrollment-button-item">
               <Link inline href={`${API_GOUV_HOST}/datapass/api`}>
                 <img src="/images/new-api-pass.png" alt="Logo AidantsConnect" />
               </Link>
