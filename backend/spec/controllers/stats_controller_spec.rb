@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 RSpec.describe StatsController, type: :controller do
   describe "#show" do
     subject(:show_stats) do
-      get :show
+      get :show, params: {target_api_list: target_api_list}
     end
 
-    let!(:some_enrollments_for_stats) do
+    before do
       Timecop.freeze(Time.now.change(day: 25))
 
       enrollment = create(:enrollment, :franceconnect, :draft)
@@ -34,55 +36,69 @@ RSpec.describe StatsController, type: :controller do
       Timecop.return
     end
 
-    it { is_expected.to have_http_status(:ok) }
+    context "has invalid target_api_list params" do
+      let(:target_api_list) { ["invalid", "target_api"] }
 
-    it "renders valid payload" do
-      stats_json = JSON.parse(show_stats.body)
+      it "raise a bad request error" do
+        expect(target_api_list).to eq(["invalid", "target_api"])
+        expect { show_stats }.to raise_error(ActionController::BadRequest)
+      end
+    end
 
-      expect(stats_json["enrollment_count"]).to eq(4)
-      expect(stats_json["validated_enrollment_count"]).to eq(2)
+    context "has a valid target_api_list params" do
+      let(:target_api_list) { ["franceconnect", "api_entreprise"] }
 
-      expect(stats_json["average_processing_time_in_days"]).to eq("2")
-      expect(stats_json["go_back_ratio"]).to eq(((2.0 / 3) * 100).ceil)
+      it { expect(target_api_list).to eq(["franceconnect", "api_entreprise"]) }
+      it { is_expected.to have_http_status(:ok) }
 
-      expect(stats_json["monthly_enrollment_count"]).to eq([
-        {
-          "month" => "#{Time.now.year}-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
-          "draft" => 1,
-          "changes_requested" => 0,
-          "submitted" => 0,
-          "validated" => 2,
-          "refused" => 1,
-          "revoked" => 0,
-          "total" => 4
-        }
-      ])
+      it "renders valid payload" do
+        stats_json = JSON.parse(show_stats.body)
 
-      expect(stats_json["enrollment_by_target_api"]).to contain_exactly(
-        {
-          "name" => "franceconnect",
-          "count" => 2
-        },
-        {
-          "name" => "api_entreprise",
-          "count" => 2
-        }
-      )
+        expect(stats_json["enrollment_count"]).to eq(4)
+        expect(stats_json["validated_enrollment_count"]).to eq(2)
 
-      expect(stats_json["enrollment_by_status"]).to contain_exactly(
-        {
-          "name" => "refused",
-          "count" => 1
-        },
-        {
-          "name" => "draft",
-          "count" => 1
-        },
-        {
-          "name" => "validated",
-          "count" => 2
-        }
-      )
+        expect(stats_json["average_processing_time_in_days"]).to eq("2")
+        expect(stats_json["go_back_ratio"]).to eq(((2.0 / 3) * 100).ceil)
+
+        expect(stats_json["monthly_enrollment_count"]).to eq([
+          {
+            "month" => "#{Time.now.year}-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
+            "draft" => 1,
+            "changes_requested" => 0,
+            "submitted" => 0,
+            "validated" => 2,
+            "refused" => 1,
+            "revoked" => 0,
+            "total" => 4
+          }
+        ])
+
+        expect(stats_json["enrollment_by_target_api"]).to contain_exactly(
+          {
+            "name" => "franceconnect",
+            "count" => 2
+          },
+          {
+            "name" => "api_entreprise",
+            "count" => 2
+          }
+        )
+
+        expect(stats_json["enrollment_by_status"]).to contain_exactly(
+          {
+            "name" => "refused",
+            "count" => 1
+          },
+          {
+            "name" => "draft",
+            "count" => 1
+          },
+          {
+            "name" => "validated",
+            "count" => 2
+          }
+        )
+      end
     end
   end
 end
