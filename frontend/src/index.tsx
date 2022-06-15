@@ -7,11 +7,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 
 if (process.env.NODE_ENV === 'production') {
-  const serverErrorsRegex = new RegExp(`401 Unauthorized`, 'mi');
-
   Sentry.init({
     dsn: 'https://7ccf44097ef645f8835408b9d73e7781@sentry.data.gouv.fr/8',
-    ignoreErrors: [serverErrorsRegex],
+    ignoreErrors: ['Error: Request failed with status code 401'],
   });
 }
 
