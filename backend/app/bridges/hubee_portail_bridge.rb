@@ -40,7 +40,7 @@ class HubeePortailBridge < ApplicationBridge
     client_secret = ENV.fetch("HUBEE_CLIENT_SECRET")
 
     # 1. get token
-    token_response = Http.post(
+    token_response = Http.instance.post(
       "#{hubee_auth_url}/token",
       {grant_type: "client_credentials", scope: "ADMIN"},
       Base64.strict_encode64("#{client_id}:#{client_secret}"),
@@ -54,7 +54,7 @@ class HubeePortailBridge < ApplicationBridge
 
     # 2.1 get organization
     begin
-      Http.get(
+      Http.instance.get(
         "#{api_host}/referential/v1/organizations/SI-#{siret}-#{code_commune}",
         access_token,
         "Portail HubEE"
@@ -62,7 +62,7 @@ class HubeePortailBridge < ApplicationBridge
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
         # 2.2 if organization does not exist, create the organization
-        Http.post(
+        Http.instance.post(
           "#{api_host}/referential/v1/organizations",
           {
             type: "SI",
@@ -88,7 +88,7 @@ class HubeePortailBridge < ApplicationBridge
     # 3. create subscriptions
     subscription_ids = []
     scopes.each do |scope|
-      create_subscription_response = Http.post(
+      create_subscription_response = Http.instance.post(
         "#{api_host}/referential/v1/subscriptions",
         {
           datapassId: id,
