@@ -14,7 +14,7 @@ class FranceconnectBridge < ApplicationBridge
   def create_enrollment_in_token_manager(id, intitule, nom_raison_sociale, email, scopes, eidas_level, copied_from_enrollment_id)
     if eidas_level == "1"
       # note that the FC team test this call with this bash script: https://gitlab.com/france-connect/FranceConnect/snippets/1828712
-      response = Http.post(
+      response = Http.instance.post(
         "#{ENV.fetch("FRANCECONNECT_PARTICULIER_HOST")}/api/v2/service-provider/integration/create",
         {
           name: "#{nom_raison_sociale} - #{id}",

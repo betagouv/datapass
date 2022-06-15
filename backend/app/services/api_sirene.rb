@@ -14,7 +14,7 @@ class ApiSirene < ApplicationService
   end
 
   def etablissement
-    token_response = Http.post(
+    token_response = Http.instance.post(
       "#{insee_host}/token",
       {grant_type: "client_credentials"},
       Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
@@ -28,7 +28,7 @@ class ApiSirene < ApplicationService
     access_token = token["access_token"]
 
     begin
-      response = Http.get(
+      response = Http.instance.get(
         "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
         access_token,
         "API Insee"

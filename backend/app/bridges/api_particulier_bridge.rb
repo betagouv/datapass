@@ -17,7 +17,7 @@ class ApiParticulierBridge < ApplicationBridge
   private
 
   def create_enrollment_in_token_manager(id, name, responsable_technique_email, demandeur_email, scopes)
-    response = Http.post(
+    response = Http.instance.post(
       "#{ENV.fetch("API_PARTICULIER_HOST")}/api/applications",
       {
         name: name,

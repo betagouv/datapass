@@ -12,7 +12,7 @@ class SendinblueWebhooksController < ApplicationController
     # 2. get message metadata
     body = JSON.parse request.body.read
     message_id = body["message-id"]
-    get_transactional_email_reponse = Http.get(
+    get_transactional_email_reponse = Http.instance.get(
       "https://api.sendinblue.com/v3/smtp/emails?messageId=#{ERB::Util.url_encode(message_id)}",
       sendinblue_api_key,
       "Sendinblue API v3",
@@ -34,7 +34,7 @@ class SendinblueWebhooksController < ApplicationController
     rgpd_role = transactional_email["transactionalEmails"][0]["subject"][/(#{EnrollmentsController::RESPONSABLE_TRAITEMENT_LABEL}|#{EnrollmentsController::DELEGUE_PROTECTION_DONNEES_LABEL})/o, 1]
 
     # 4. get email content
-    get_email_content_response = Http.get(
+    get_email_content_response = Http.instance.get(
       "https://api.sendinblue.com/v3/smtp/emails/#{email_uuid}",
       sendinblue_api_key,
       "Sendinblue API v3",

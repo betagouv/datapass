@@ -4,7 +4,7 @@ class RefreshUser < ApplicationService
   end
 
   def call
-    response = Http.get(
+    response = Http.instance.get(
       "#{ENV.fetch("OAUTH_HOST")}/oauth/userinfo",
       @access_token,
       "Comptes DataPass"

@@ -1,6 +1,6 @@
 class AidantsConnectBridge < ApplicationBridge
   def call
-    Http.post(
+    Http.instance.post(
       "#{ENV.fetch("AIDANTS_CONNECT_HOST")}/datapass_receiver/",
       {
         data_pass_id: @enrollment.id,
@@ -18,7 +18,7 @@ class AidantsConnectBridge < ApplicationBridge
     aidants = @enrollment.team_members.filter { |tm| tm.type == "aidant" }
 
     aidants.each do |team_member|
-      Http.post(
+      Http.instance.post(
         "#{ENV.fetch("AIDANTS_CONNECT_HOST")}/datapass_habilitation/",
         {
           data_pass_id: @enrollment.id,

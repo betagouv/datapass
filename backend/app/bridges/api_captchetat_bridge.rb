@@ -20,7 +20,7 @@ class ApiCaptchetatBridge < ApplicationBridge
     client_secret = ENV.fetch("PISTE_CLIENT_SECRET")
 
     # 1. get token
-    token_response = Http.post(
+    token_response = Http.instance.post(
       "#{auth_host}/api/oauth/token",
       {grant_type: "client_credentials", scope: nil},
       Base64.strict_encode64("#{client_id}:#{client_secret}"),
@@ -34,7 +34,7 @@ class ApiCaptchetatBridge < ApplicationBridge
     access_token = token["access_token"]
 
     # 2. Send pass to Piste
-    create_subscription_response = Http.post(
+    create_subscription_response = Http.instance.post(
       "#{api_host}/datapass/v1/approve",
       {
         requestor_email: responsable_technique_email,
