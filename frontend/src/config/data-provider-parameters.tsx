@@ -17,7 +17,6 @@ import ApiServiceNational from '../pages/ApiServiceNational';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
-import ApiSystemeImmatriculationVehicules from '../pages/ApiSystemeImmatriculationVehicules';
 import CartoBio from '../pages/CartoBio';
 import ApiCprProProduction from '../pages/DgfipPages/ApiCprProProduction';
 import ApiCprProSandbox from '../pages/DgfipPages/ApiCprProSandbox';
@@ -344,13 +343,6 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
       type: 'api',
       component: ApiIndemnitesJournalieresCnam,
-    },
-    api_systeme_immatriculation_vehicules: {
-      label: 'API Système d’Immatriculation des Véhicules',
-      icon: null,
-      email: null,
-      type: 'draft',
-      component: ApiSystemeImmatriculationVehicules,
     },
     api_declaration_cesu: {
       label: 'API Tierce Déclaration CESU',
