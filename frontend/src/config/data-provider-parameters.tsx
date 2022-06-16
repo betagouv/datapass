@@ -349,7 +349,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       label: 'API Système d’Immatriculation des Véhicules',
       icon: null,
       email: null,
-      type: 'api',
+      type: 'draft',
       component: ApiSystemeImmatriculationVehicules,
     },
     api_declaration_cesu: {

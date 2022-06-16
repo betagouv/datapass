@@ -1,3 +1,4 @@
+import { pickBy } from 'lodash';
 import moment from 'moment';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -24,7 +25,6 @@ import {
   EnrollmentStatus,
   USER_STATUS_LABELS,
 } from '../../config/status-parameters';
-
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { getAPIStats } from '../../services/stats';
 import Helper from '../atoms/Helper';
@@ -86,7 +86,34 @@ export const Stats = () => {
 
   useEffect(() => {
     async function fetchStats() {
-      const result = await getAPIStats([targetApi]);
+      let result = null;
+
+      if (targetApi === 'allApi') {
+        const ApiTargetConfiguration = pickBy(
+          DATA_PROVIDER_PARAMETERS,
+          (dataProviderConfig) => dataProviderConfig.type === 'api'
+        );
+        const apiList = Object.keys(ApiTargetConfiguration);
+        result = await getAPIStats(apiList);
+      } else if (targetApi === 'allServices') {
+        const serviceTargetConfiguration = pickBy(
+          DATA_PROVIDER_PARAMETERS,
+          (dataProviderConfig) => dataProviderConfig.type === 'service'
+        );
+        const serviceList = Object.keys(serviceTargetConfiguration);
+        result = await getAPIStats(serviceList);
+      } else if (targetApi === undefined) {
+        const undefinedTargetConfiguration = pickBy(
+          DATA_PROVIDER_PARAMETERS,
+          (dataProviderConfig) =>
+            dataProviderConfig.type === 'api' &&
+            dataProviderConfig.type === 'service'
+        );
+        const allList = Object.keys(undefinedTargetConfiguration);
+        result = await getAPIStats(undefinedTargetConfiguration);
+      } else {
+        result = await getAPIStats([targetApi]);
+      }
 
       setStats({
         ...result.data,
@@ -115,7 +142,17 @@ export const Stats = () => {
         <TagContainer>
           <NavLink end to="/stats">
             {({ isActive }) => (
-              <Tag type={isActive ? 'info' : ''}>Toutes les APIs</Tag>
+              <Tag type={isActive ? 'info' : ''}>Toutes les habilitations</Tag>
+            )}
+          </NavLink>
+          <NavLink end to={`/stats/allApi`}>
+            {({ isActive }) => (
+              <Tag type={isActive ? 'info' : ''}>Toutes les API</Tag>
+            )}
+          </NavLink>
+          <NavLink end to={`/stats/allServices`}>
+            {({ isActive }) => (
+              <Tag type={isActive ? 'info' : ''}>Tous les services</Tag>
             )}
           </NavLink>
           {dataProviderKeyList.map((targetApi) => (
