@@ -73,7 +73,7 @@ const USER_STATUS_COLORS = {
 
 export const Stats = () => {
   const [stats, setStats] = useState(null);
-  const { targetApi } = useParams();
+  const {targetApi} = useParams();
 
   const dataProviderKeyList = useMemo(
     () =>
@@ -84,29 +84,34 @@ export const Stats = () => {
     []
   );
 
+  async function getTargetAPIList(targetApi) {
+    let result = [];
+
+    if (targetApi === 'allApi') {
+      const ApiTargetConfiguration = pickBy(
+        DATA_PROVIDER_PARAMETERS,
+        (dataProviderConfig) => dataProviderConfig.type === 'api'
+      );
+      const apiList = Object.keys(ApiTargetConfiguration);
+      result = await getAPIStats(apiList);
+    } else if (targetApi === 'allServices') {
+      const serviceTargetConfiguration = pickBy(
+        DATA_PROVIDER_PARAMETERS,
+        (dataProviderConfig) => dataProviderConfig.type === 'service'
+      );
+      const serviceList = Object.keys(serviceTargetConfiguration);
+      result = await getAPIStats(serviceList);
+    } else if (targetApi === undefined) {
+      result = await getAPIStats([]);
+    } else {
+      result = await getAPIStats([targetApi]);
+    }
+    return result;
+  }
+
   useEffect(() => {
     async function fetchStats() {
-      let result = null;
-
-      if (targetApi === 'allApi') {
-        const ApiTargetConfiguration = pickBy(
-          DATA_PROVIDER_PARAMETERS,
-          (dataProviderConfig) => dataProviderConfig.type === 'api'
-        );
-        const apiList = Object.keys(ApiTargetConfiguration);
-        result = await getAPIStats(apiList);
-      } else if (targetApi === 'allServices') {
-        const serviceTargetConfiguration = pickBy(
-          DATA_PROVIDER_PARAMETERS,
-          (dataProviderConfig) => dataProviderConfig.type === 'service'
-        );
-        const serviceList = Object.keys(serviceTargetConfiguration);
-        result = await getAPIStats(serviceList);
-      } else if (targetApi === undefined) {
-        result = await getAPIStats([]);
-      } else {
-        result = await getAPIStats([targetApi]);
-      }
+      let result = await getTargetAPIList(targetApi);
 
       setStats({
         ...result.data,
@@ -124,7 +129,7 @@ export const Stats = () => {
   if (!stats) {
     return (
       <section className="full-page">
-        <Loader />
+        <Loader/>
       </section>
     );
   }
@@ -134,23 +139,23 @@ export const Stats = () => {
       <ListHeader title="Statistiques d’utilisation">
         <TagContainer>
           <NavLink end to="/stats">
-            {({ isActive }) => (
+            {({isActive}) => (
               <Tag type={isActive ? 'info' : ''}>Toutes les habilitations</Tag>
             )}
           </NavLink>
           <NavLink end to={`/stats/allApi`}>
-            {({ isActive }) => (
+            {({isActive}) => (
               <Tag type={isActive ? 'info' : ''}>Toutes les API</Tag>
             )}
           </NavLink>
           <NavLink end to={`/stats/allServices`}>
-            {({ isActive }) => (
+            {({isActive}) => (
               <Tag type={isActive ? 'info' : ''}>Tous les services</Tag>
             )}
           </NavLink>
           {dataProviderKeyList.map((targetApi) => (
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
-              {({ isActive }) => (
+              {({isActive}) => (
                 <Tag type={isActive ? 'info' : ''}>
                   {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
                 </Tag>
@@ -189,7 +194,8 @@ export const Stats = () => {
             <div className="stat_card_head">
               <h3>
                 Temps moyen de traitement des demandes d’habilitation
-                <Helper title="temps moyen entre la première soumission d’une demande d’habilitation jusqu’à la première réponse d'un instructeur sur les 6 derniers mois" />
+                <Helper
+                  title="temps moyen entre la première soumission d’une demande d’habilitation jusqu’à la première réponse d'un instructeur sur les 6 derniers mois"/>
               </h3>
               <div className="card__meta">(en jours)</div>
             </div>
@@ -201,7 +207,7 @@ export const Stats = () => {
             <div className="stat_card_head">
               <h3>
                 Pourcentage des habilitations nécessitant un aller retour
-                <Helper title="sur les 6 derniers mois" />
+                <Helper title="sur les 6 derniers mois"/>
               </h3>
               <div className="card__meta">(en % des habilitations totales)</div>
             </div>
@@ -220,7 +226,7 @@ export const Stats = () => {
                     dataKey="month"
                     tickFormatter={(value) => moment(value).format('MMM YY')}
                   />
-                  <YAxis />
+                  <YAxis/>
                   <Tooltip
                     formatter={(value, name, props) => [
                       value,
@@ -229,8 +235,8 @@ export const Stats = () => {
                     ]}
                     labelFormatter={(value) => moment(value).format('MMM YYYY')}
                   />
-                  <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
-                  <CartesianGrid vertical={false} />
+                  <Legend formatter={(value) => USER_STATUS_LABELS[value]}/>
+                  <CartesianGrid vertical={false}/>
                   {Object.keys(EnrollmentStatus).map((status, index, array) => (
                     <Bar
                       key={status}
@@ -239,7 +245,7 @@ export const Stats = () => {
                       fill={USER_STATUS_COLORS[status]}
                     >
                       {index === array.length - 1 && (
-                        <LabelList dataKey="total" position="top" />
+                        <LabelList dataKey="total" position="top"/>
                       )}
                     </Bar>
                   ))}
@@ -258,7 +264,7 @@ export const Stats = () => {
                 <PieChart>
                   <Pie data={stats.enrollment_by_status} dataKey="count" label>
                     {stats.enrollment_by_status.map((entry, index) => (
-                      <Cell key={index} fill={USER_STATUS_COLORS[entry.name]} />
+                      <Cell key={index} fill={USER_STATUS_COLORS[entry.name]}/>
                     ))}
                   </Pie>
                   <Legend
@@ -293,7 +299,7 @@ export const Stats = () => {
                     label
                   >
                     {stats.enrollment_by_target_api.map((entry, index) => (
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                      <Cell key={index} fill={COLORS[index % COLORS.length]}/>
                     ))}
                   </Pie>
                   <Tooltip
@@ -311,8 +317,8 @@ export const Stats = () => {
                     verticalAlign={'middle'}
                     formatter={(value) =>
                       (value === 'others'
-                        ? 'Autres'
-                        : DATA_PROVIDER_PARAMETERS[value]?.label
+                          ? 'Autres'
+                          : DATA_PROVIDER_PARAMETERS[value]?.label
                       ).substring(0, 32)
                     }
                   />
