@@ -103,14 +103,7 @@ export const Stats = () => {
         const serviceList = Object.keys(serviceTargetConfiguration);
         result = await getAPIStats(serviceList);
       } else if (targetApi === undefined) {
-        const undefinedTargetConfiguration = pickBy(
-          DATA_PROVIDER_PARAMETERS,
-          (dataProviderConfig) =>
-            dataProviderConfig.type === 'api' &&
-            dataProviderConfig.type === 'service'
-        );
-        const allList = Object.keys(undefinedTargetConfiguration);
-        result = await getAPIStats(undefinedTargetConfiguration);
+        result = await getAPIStats([]);
       } else {
         result = await getAPIStats([targetApi]);
       }
