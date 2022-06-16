@@ -35,7 +35,7 @@ class GetAverageProcessingTimeInDays < ApplicationService
 
     ActiveRecord::Base
       .connection
-      .execute(query)
+      .execute(sanitize_sql_array([query]))
       .getvalue(0, 0)
   end
 end

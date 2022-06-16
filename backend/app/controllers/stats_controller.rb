@@ -26,7 +26,7 @@ class StatsController < ApplicationController
     end
 
     filter_by_target_api_criteria = target_api_list.count > 0 ?
-      "target_api = any('{#{target_api_list.join(", ")}}')" : "1 = 1" # equivalent to no filter
+      "target_api = any('{#{sanitize_sql_array([target_api_list.join(", ")])}}')" : "1 = 1" # equivalent to no filter
 
     # Habilitations déposées
     enrollment_count_query = <<-SQL
