@@ -43,10 +43,10 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 16.14
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: "16.14"
+          node-version: "16.x"
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
