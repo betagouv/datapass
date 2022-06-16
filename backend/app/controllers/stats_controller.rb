@@ -18,10 +18,10 @@ class StatsController < ApplicationController
         end
 
         unless has_only_existing_target_api
-          raise ActionController::BadRequest, "Invalid target_api_list"
+          raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
         end
       rescue JSON::ParserError
-        raise ActionController::BadRequest, "Invalid target_api_list"
+        raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
       end
     end
 
