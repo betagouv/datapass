@@ -48,7 +48,7 @@ class ApplicationController < ActionController::API
         message: e.message
       }
     )
-    Sentry.capture_message("Fail to call target's api bridge endpoint #{e.url}")
+    Sentry.capture_message("Fail to call target's api bridge endpoint #{e.endpoint_label}")
 
     render status: :bad_gateway, json: {
       message: "Impossible d’envoyer les données à \"#{e.endpoint_label}\".\n\nMerci de communiquer les détails techniques de l’erreur à contact@api.gouv.fr :\n- url: #{e.url}\n- http code: #{e.http_code}\n- http body: #{e.http_body.to_json}\n- message: #{e.message}"
