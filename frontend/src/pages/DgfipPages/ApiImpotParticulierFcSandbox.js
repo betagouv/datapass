@@ -1,20 +1,20 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse } from './common';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { editorList } from '../ApiParticulier';
 import {
-  demarches,
   availableScopes,
+  demarches,
   DonneesDescription,
 } from './api-impot-particulier-common';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
-import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import { additionalTermsOfUse } from './common';
 
 export const CadreJuridiqueDescription = () => (
   <>
@@ -57,7 +57,7 @@ const ApiImpotParticulierFcSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection

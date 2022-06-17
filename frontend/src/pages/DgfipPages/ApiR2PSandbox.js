@@ -1,15 +1,15 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
-import { additionalTermsOfUse, DonneesDescription } from './common';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { editorList } from '../ApiParticulier';
+import { additionalTermsOfUse, DonneesDescription } from './common';
 
 const demarches = {
   default: {
@@ -93,7 +93,7 @@ const ApiR2PSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection />
     <DescriptionSection />
     <DonneesSection

@@ -1,14 +1,14 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { editorList } from '../ApiParticulier';
+import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
 
 const target_api = 'api_mire_sandbox';
 const steps = [target_api, 'api_mire_production'];
@@ -20,7 +20,7 @@ const ApiMireSandbox = () => (
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DescriptionSection />
     <DonneesSection
       AvailableScopesDescription={DataAreInTermsOfUseDescription}

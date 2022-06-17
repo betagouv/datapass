@@ -8,6 +8,7 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { editorList } from '../ApiParticulier';
 import {
   availableScopes as fcAvailableScopes,
   demarches as fcAvailableDemarches,
@@ -94,7 +95,7 @@ const ApiImpotParticulierSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection
