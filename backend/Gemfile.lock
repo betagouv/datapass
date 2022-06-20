@@ -360,7 +360,7 @@ GEM
       addressable (~> 2.3, >= 2.3.0)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
-    sidekiq (6.4.2)
+    sidekiq (6.5.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -437,7 +437,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sib-api-v3-sdk
-  sidekiq (~> 6.4)
+  sidekiq (~> 6.5)
   simplecov
   standardrb
   state_machines-activerecord
