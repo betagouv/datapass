@@ -8,6 +8,8 @@ import Loader from '../../../atoms/Loader';
 import { Card, CardHead } from '../../../molecules/Card';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
+import ConfirmationModal from '../../ConfirmationModal';
+import OrganizationPrompt from './OrganizationPrompt';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -201,6 +203,27 @@ export const OrganisationCard = ({}) => {
             Code NAF : {activite} {activiteLabel ? '- ' + activiteLabel : null}
           </div>
         </>
+      )}
+
+      {!disabled && !isLoading && showOrganizationPrompt && (
+        <OrganizationPrompt
+          selectedOrganizationId={organization_id}
+          onSelect={onOrganizationChange}
+          onJoinOrganization={onJoinOrganization}
+          onClose={() => setShowOrganizationPrompt(false)}
+          organizations={user.organizations}
+        />
+      )}
+
+      {!disabled && !isLoading && urlForDisconnectionPrompt && (
+        <ConfirmationModal
+          title="Vous allez être déconnecté"
+          handleConfirm={() => (window.location = urlForDisconnectionPrompt)}
+          handleCancel={() => setUrlForDisconnectionPrompt('')}
+        >
+          Afin de mettre à jour vos informations personnelles, vous allez être
+          déconnecté.
+        </ConfirmationModal>
       )}
     </Card>
   );
