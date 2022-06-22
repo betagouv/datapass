@@ -7,7 +7,6 @@ import OrganisationCard from './OrganisationCard';
 import PersonalInformationCard from './PersonalInformationCard';
 import TechnicalTeamCard from './TechnicalTeamCard';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
