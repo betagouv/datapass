@@ -18,29 +18,10 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 const OrganisationSection = ({ editorList = [] }) => {
   const {
     disabled,
-    isUserEnrollmentLoading,
     onChange,
-    enrollment: {
-      organization_id = null,
-      nom_raison_sociale,
-      siret = '',
-      target_api,
-      team_members,
-    },
+    enrollment: { organization_id = null, team_members },
   } = useContext(FormContext);
 
-  const [title, setTitle] = useState('');
-  const [adresse, setAdresse] = useState('');
-  const [codePostal, setCodePostal] = useState('');
-  const [ville, setVille] = useState('');
-  const [activite, setActivite] = useState('');
-  const [activiteLabel, setActiviteLabel] = useState('');
-  const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] =
-    useState(false);
-  const [showOrganizationInfoNotFound, setShowOrganizationInfoNotFound] =
-    useState(false);
-  const [showOrganizationInfoError, setShowOrganizationInfoError] =
-    useState(false);
   const [showOrganizationPrompt, setShowOrganizationPrompt] = useState(false);
   const [urlForDisconnectionPrompt, setUrlForDisconnectionPrompt] =
     useState('');
@@ -73,80 +54,6 @@ const OrganisationSection = ({ editorList = [] }) => {
     },
     [onChange]
   );
-
-  useEffect(() => {
-    // initialize organization_id & siret if needed
-    if (
-      !isUserEnrollmentLoading &&
-      !disabled &&
-      !organization_id &&
-      !isEmpty(user.organizations)
-    ) {
-      updateOrganizationInfo({
-        organization_id: user.organizations[0].id,
-        siret: user.organizations[0].siret,
-      });
-    }
-  }, [
-    isUserEnrollmentLoading,
-    organization_id,
-    disabled,
-    updateOrganizationInfo,
-    user,
-  ]);
-
-  useEffect(() => {
-    const fetchOrganizationInfo = async (siret) => {
-      try {
-        setIsOrganizationInfoLoading(true);
-        const {
-          title,
-          activite,
-          activite_label,
-          adresse,
-          code_postal,
-          ville,
-          etat_administratif,
-        } = await getCachedOrganizationInformation(siret);
-
-        if (etat_administratif !== 'A') {
-          setTitle('');
-          setAdresse('');
-          setCodePostal('');
-          setVille('');
-          setActivite('');
-          setActiviteLabel('');
-          setIsOrganizationInfoLoading(false);
-          setShowOrganizationInfoNotFound(true);
-          setShowOrganizationInfoError(false);
-        } else {
-          setTitle(title);
-          setAdresse(adresse);
-          setCodePostal(code_postal);
-          setVille(ville);
-          setActivite(activite);
-          setActiviteLabel(activite_label);
-          setIsOrganizationInfoLoading(false);
-          setShowOrganizationInfoNotFound(false);
-          setShowOrganizationInfoError(false);
-        }
-      } catch (e) {
-        setTitle('');
-        setAdresse('');
-        setCodePostal('');
-        setVille('');
-        setActivite('');
-        setActiviteLabel('');
-        setIsOrganizationInfoLoading(false);
-        setShowOrganizationInfoNotFound(false);
-        setShowOrganizationInfoError(true);
-      }
-    };
-
-    if (siret) {
-      fetchOrganizationInfo(siret);
-    }
-  }, [siret]);
 
   const onOrganizationChange = (new_organization_id) => {
     setShowOrganizationPrompt(false);
@@ -194,61 +101,9 @@ const OrganisationSection = ({ editorList = [] }) => {
           <div>{personalInformation.phone_number}</div>
           <div>{personalInformation.job}</div>
         </Card>
-        <Card>
-          {isUserEnrollmentLoading || isOrganizationInfoLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <h3>Vous faites cette demande pour</h3>
-              {activite && !isValidNAFCode(target_api, activite) && (
-                <Alert type="warning">
-                  Votre organisme ne semble pas être éligible
-                </Alert>
-              )}
-              {showOrganizationInfoNotFound && (
-                <Alert type="warning">
-                  Cet établissement est fermé ou le SIRET est invalide.
-                </Alert>
-              )}
-              {showOrganizationInfoError && (
-                <Alert type="error">
-                  Erreur inconnue lors de la récupération des informations de
-                  cet établissement.
-                </Alert>
-              )}
-              <CardHead>
-                <b>
-                  {title || (disabled && nom_raison_sociale)}{' '}
-                  <Button
-                    title="Plus d’information sur la donnée"
-                    outline
-                    icon="eye"
-                    href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                </b>
-                {!disabled && (
-                  <Button
-                    title="demander une habilitation pour une autre organisation"
-                    outline
-                    icon="edit"
-                    onClick={() => setShowOrganizationPrompt(true)}
-                  />
-                )}
-              </CardHead>
-              <div>{adresse}</div>
-              <div>
-                {codePostal} {ville}
-              </div>
-              <div>SIRET : {siret}</div>
-              <div>
-                Code NAF : {activite}{' '}
-                {activiteLabel ? '- ' + activiteLabel : null}
-              </div>
-            </>
-          )}
-        </Card>
+
+        <OrganisationCard />
+
         {!isEmpty(editorList) && <TechnicalTeamCard editorList={editorList} />}
 
         {!disabled && !isLoading && showOrganizationPrompt && (
