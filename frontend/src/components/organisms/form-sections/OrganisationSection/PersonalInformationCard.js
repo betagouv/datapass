@@ -5,7 +5,7 @@ import { Card, CardHead } from '../../../molecules/Card';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
-import ConfirmationModal from '../../ConfirmationModal';
+import DisconnectionModalCard from './DisconnectionModalCard';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -36,6 +36,9 @@ export const PersonalInformationCard = ({}) => {
   const onUpdatePersonalInformation = () =>
     setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/personal_information`);
 
+  // const onDisconnectionModal = () =>
+  //   `${BACK_HOST}/api/users/personal_information`;
+
   return (
     <Card>
       <h3>Vous êtes</h3>
@@ -60,14 +63,10 @@ export const PersonalInformationCard = ({}) => {
       <div>{personalInformation.job}</div>
 
       {!disabled && !isLoading && urlForDisconnectionPrompt && (
-        <ConfirmationModal
-          title="Vous allez être déconnecté"
-          handleConfirm={() => (window.location = urlForDisconnectionPrompt)}
-          handleCancel={() => setUrlForDisconnectionPrompt('')}
-        >
-          Afin de mettre à jour vos informations personnelles, vous allez être
-          déconnecté.
-        </ConfirmationModal>
+        <DisconnectionModalCard
+          urlForDisconnectionPrompt={urlForDisconnectionPrompt}
+          setUrlForDisconnectionPrompt={setUrlForDisconnectionPrompt}
+        />
       )}
     </Card>
   );

@@ -8,7 +8,7 @@ import Loader from '../../../atoms/Loader';
 import { Card, CardHead } from '../../../molecules/Card';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
-import ConfirmationModal from '../../ConfirmationModal';
+import DisconnectionModalCard from './DisconnectionModalCard';
 import OrganizationPrompt from './OrganizationPrompt';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -216,14 +216,10 @@ export const OrganisationCard = ({}) => {
       )}
 
       {!disabled && !isLoading && urlForDisconnectionPrompt && (
-        <ConfirmationModal
-          title="Vous allez être déconnecté"
-          handleConfirm={() => (window.location = urlForDisconnectionPrompt)}
-          handleCancel={() => setUrlForDisconnectionPrompt('')}
-        >
-          Afin de mettre à jour vos informations personnelles, vous allez être
-          déconnecté.
-        </ConfirmationModal>
+        <DisconnectionModalCard
+          urlForDisconnectionPrompt={urlForDisconnectionPrompt}
+          setUrlForDisconnectionPrompt={setUrlForDisconnectionPrompt}
+        />
       )}
     </Card>
   );
