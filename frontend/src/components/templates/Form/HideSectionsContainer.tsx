@@ -1,5 +1,6 @@
 import React, {
   Children,
+  cloneElement,
   createContext,
   FunctionComponent,
   useEffect,
@@ -71,9 +72,15 @@ export const HideSectionsContainer: FunctionComponent<Props> = ({
           showOnlyFirstStep && index > 0 ? (
             // we render the child in a display none div instead of not rendering the component
             // in that way, section that has initialisation action on formContext can do it.
-            <div style={{ display: 'none' }}>{child}</div>
+            <div style={{ display: 'none' }}>
+              {
+                // @ts-ignore
+                cloneElement(child, { sectionIndex: index })
+              }
+            </div>
           ) : (
-            child
+            // @ts-ignore
+            cloneElement(child, { sectionIndex: index })
           )
         )}
       </HideSectionsContext.Provider>

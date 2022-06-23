@@ -1,24 +1,24 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { useAuth } from '../../AuthContext';
-import { getCachedOrganizationInformation } from '../../../../services/external';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isValidNAFCode } from '../../../../lib';
-import OrganizationPrompt from './OrganizationPrompt';
-import { ScrollablePanel } from '../../Scrollable';
-import { FormContext } from '../../../templates/Form';
-import Loader from '../../../atoms/Loader';
-import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
-import Button from '../../../atoms/hyperTexts/Button';
-import { Card, CardContainer, CardHead } from '../../../molecules/Card';
-import TechnicalTeamCard from './TechnicalTeamCard';
+import { getCachedOrganizationInformation } from '../../../../services/external';
 import Alert from '../../../atoms/Alert';
+import Button from '../../../atoms/hyperTexts/Button';
+import Loader from '../../../atoms/Loader';
+import { Card, CardContainer, CardHead } from '../../../molecules/Card';
+import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
+import { FormContext } from '../../../templates/Form';
+import { useAuth } from '../../AuthContext';
 import ConfirmationModal from '../../ConfirmationModal';
+import { ScrollablePanel } from '../../Scrollable';
+import OrganizationPrompt from './OrganizationPrompt';
+import TechnicalTeamCard from './TechnicalTeamCard';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const OrganisationSection = ({ editorList = [] }) => {
+const OrganisationSection = ({ editorList = [], sectionIndex }) => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -252,7 +252,12 @@ const OrganisationSection = ({ editorList = [] }) => {
             </>
           )}
         </Card>
-        {!isEmpty(editorList) && <TechnicalTeamCard editorList={editorList} />}
+        {!isEmpty(editorList) && (
+          <TechnicalTeamCard
+            editorList={editorList}
+            sectionIndex={sectionIndex}
+          />
+        )}
 
         {!disabled && !isLoading && showOrganizationPrompt && (
           <OrganizationPrompt

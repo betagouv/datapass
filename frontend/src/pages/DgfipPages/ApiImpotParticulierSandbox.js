@@ -94,7 +94,12 @@ const ApiImpotParticulierSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection
+      editorList={[
+        { name: 'Arpège', siret: '35142130000036' },
+        { name: 'Abelium Collectivités', siret: '42172024400050' },
+      ]}
+    />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection

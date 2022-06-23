@@ -15,7 +15,7 @@ const typeOptions = [
   { id: 'other', label: 'Autre' },
 ];
 
-export const TechnicalTeamCard = ({ editorList = [] }) => {
+export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
   const {
     disabled,
     onChange,
@@ -85,9 +85,11 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
     });
   };
 
+  console.log(sectionIndex, 'sectionIndex');
+
   return (
     <Card>
-      <h3>Qui implémentera l’API ?</h3>
+      <h3>Qui implémentera l’API ?</h3>
       {!isUserEnrollmentLoading && !technical_team_type && (
         <>
           <Alert>
