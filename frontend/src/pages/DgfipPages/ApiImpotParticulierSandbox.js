@@ -8,7 +8,6 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
-import { editorList } from '../ApiParticulier';
 import {
   availableScopes as fcAvailableScopes,
   demarches as fcAvailableDemarches,
