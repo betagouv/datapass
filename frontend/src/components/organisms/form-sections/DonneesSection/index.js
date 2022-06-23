@@ -137,9 +137,9 @@ const DonneesSection = ({
               les joindre à l'adresse{' '}
               <Link
                 inline
-                href="mailto:dp.part-api-impot-particulier@dgfip.finances.gouv.fr?subject=Expression%20de%20besoin%20spécifique"
+                href="mailto:dtnum.donnees.demande-acces@dgfip.finances.gouv.fr?subject=Expression%20de%20besoin%20spécifique"
               >
-                dp.part-api-impot-particulier@dgfip.finances.gouv.fr
+                dtnum.donnees.demande-acces@dgfip.finances.gouv.fr
               </Link>
             </p>
             <CheckboxInput
