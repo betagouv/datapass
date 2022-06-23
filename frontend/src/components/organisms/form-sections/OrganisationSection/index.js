@@ -18,7 +18,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const OrganisationSection = ({ editorList = [] }) => {
+const OrganisationSection = ({ editorList = [], sectionIndex }) => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -252,7 +252,14 @@ const OrganisationSection = ({ editorList = [] }) => {
             </>
           )}
         </Card>
-        {!isEmpty(editorList) && <TechnicalTeamCard editorList={editorList} />}
+        {!isEmpty(editorList) && (
+          <TechnicalTeamCard
+            editorList={editorList}
+            sectionIndex={sectionIndex}
+          />
+        )}
+
+        {console.log(sectionIndex)}
 
         {!disabled && !isLoading && showOrganizationPrompt && (
           <OrganizationPrompt

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import Alert from '../../../atoms/Alert';
 import Button from '../../../atoms/hyperTexts/Button';
 import Link from '../../../atoms/hyperTexts/Link';
@@ -15,7 +15,7 @@ const typeOptions = [
   { id: 'other', label: 'Autre' },
 ];
 
-export const TechnicalTeamCard = ({ editorList = [] }) => {
+export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
   const {
     disabled,
     onChange,
@@ -24,25 +24,36 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
   } = useContext(FormContext);
 
   const { setReadyForNextSteps } = useContext(HideSectionsContext);
+  console.log(sectionIndex, 'sectionIndex');
 
-  const areInputValid = useMemo(() => {
-    if (!technical_team_type) {
+  const areInputValid = useMemo(
+    (sectionIndex) => {
+      if (!technical_team_type) {
+        return false;
+      }
+      if (technical_team_type === 'internal_team') {
+        return true;
+      }
+      if (technical_team_value) {
+        return true;
+      }
       return false;
-    }
-    if (technical_team_type === 'internal_team') {
-      return true;
-    }
-    if (technical_team_value) {
-      return true;
-    }
-    return false;
-  }, [technical_team_type, technical_team_value]);
+    },
+    [technical_team_type, technical_team_value]
+  );
+
+  console.log(areInputValid, 'areInputValid');
 
   useEffect(() => {
     !isUserEnrollmentLoading &&
       !disabled &&
       setReadyForNextSteps(areInputValid);
   }, [isUserEnrollmentLoading, disabled, setReadyForNextSteps, areInputValid]);
+
+  console.log(
+    setReadyForNextSteps(areInputValid),
+    'setReadyForNextSteps(areInputValid)'
+  );
 
   const editorOptions = useMemo(
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),
@@ -84,6 +95,8 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
       target: { name: 'technical_team_value', value: value },
     });
   };
+
+  console.log(sectionIndex, 'sectionIndex');
 
   return (
     <Card>
