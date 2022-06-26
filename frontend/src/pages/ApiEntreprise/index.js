@@ -25,7 +25,8 @@ const DonneesDescription = () => (
           catalogue de API
         </Link>
         . Il présente l’ensemble des API disponibles accompagnées d’une
-        documentation métier et d’un accès aux spécifications techniques (swagger).
+        documentation métier et d’un accès aux spécifications techniques
+        (swagger).
       </li>
       <li>
         des{' '}
@@ -45,7 +46,8 @@ const DonneesDescription = () => (
 const availableScopes = [
   {
     value: 'entreprises',
-    label: 'Données des unités légales du répertoire Sirene et de leurs sièges sociaux & mandataires sociaux - Insee & Infogreffe ',
+    label:
+      'Données des unités légales du répertoire Sirene et de leurs sièges sociaux & mandataires sociaux - Insee & Infogreffe ',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue?Endpoint[query]=insee%20unite%20legale',
   },
@@ -165,7 +167,8 @@ const availableScopes = [
   },
   {
     value: 'certificat_cnetp',
-    label: '🔐 Attestation de cotisations congés payés & chômage-intempéries - CNETP',
+    label:
+      '🔐 Attestation de cotisations congés payés & chômage-intempéries - CNETP',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/cnetp/attestations_cotisations_conges_payes_chomage_intemperies',
   },
