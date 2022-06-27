@@ -11,10 +11,12 @@ import Loader from '../../atoms/Loader';
 
 export type HideSectionsContextType = {
   setReadyForNextSteps: (v: boolean) => void;
+  setLastIndexToShow: (v: number) => void;
 };
 
 export const HideSectionsContext = createContext<HideSectionsContextType>({
   setReadyForNextSteps: () => null,
+  setLastIndexToShow: () => null,
 });
 
 type Props = {
@@ -30,6 +32,7 @@ export const HideSectionsContainer: FunctionComponent<Props> = ({
     useState(false);
   const [areNextStepsLoading, setAreNextStepLoading] = useState(false);
   const [readyForNextSteps, setReadyForNextSteps] = useState(true);
+  const [lastIndexToShow, setLastIndexToShow] = useState(0);
 
   useEffect(() => {
     if (showOnlyFirstStep) {
@@ -66,10 +69,11 @@ export const HideSectionsContainer: FunctionComponent<Props> = ({
       <HideSectionsContext.Provider
         value={{
           setReadyForNextSteps,
+          setLastIndexToShow,
         }}
       >
         {Children.map(children, (child, index) =>
-          showOnlyFirstStep && index > 0 ? (
+          showOnlyFirstStep && index > lastIndexToShow ? (
             // we render the child in a display none div instead of not rendering the component
             // in that way, section that has initialisation action on formContext can do it.
             <div style={{ display: 'none' }}>

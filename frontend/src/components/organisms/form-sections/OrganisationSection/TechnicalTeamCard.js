@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import { useContext, useEffect, useMemo } from 'react';
 import Alert from '../../../atoms/Alert';
 import Button from '../../../atoms/hyperTexts/Button';
@@ -23,24 +24,22 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
     enrollment: { technical_team_type, technical_team_value },
   } = useContext(FormContext);
 
-  const { setReadyForNextSteps } = useContext(HideSectionsContext);
+  const { setReadyForNextSteps, setLastIndexToShow } =
+    useContext(HideSectionsContext);
   console.log(sectionIndex, 'sectionIndex');
 
-  const areInputValid = useMemo(
-    (sectionIndex) => {
-      if (!technical_team_type) {
-        return false;
-      }
-      if (technical_team_type === 'internal_team') {
-        return true;
-      }
-      if (technical_team_value) {
-        return true;
-      }
+  const areInputValid = useMemo(() => {
+    if (!technical_team_type) {
       return false;
-    },
-    [technical_team_type, technical_team_value]
-  );
+    }
+    if (technical_team_type === 'internal_team') {
+      return true;
+    }
+    if (technical_team_value) {
+      return true;
+    }
+    return false;
+  }, [technical_team_type, technical_team_value]);
 
   console.log(areInputValid, 'areInputValid');
 
@@ -49,6 +48,12 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       !disabled &&
       setReadyForNextSteps(areInputValid);
   }, [isUserEnrollmentLoading, disabled, setReadyForNextSteps, areInputValid]);
+
+  useEffect(() => {
+    if (isNumber(sectionIndex)) {
+      setLastIndexToShow(sectionIndex);
+    }
+  }, [setLastIndexToShow, sectionIndex]);
 
   console.log(
     setReadyForNextSteps(areInputValid),
