@@ -5,7 +5,7 @@ RSpec.describe StatsController, type: :controller do
     end
 
     let!(:some_enrollments_for_stats) do
-      Timecop.freeze(Time.new(2021, 12, 24))
+      Timecop.freeze(Time.now)
 
       enrollment = create(:enrollment, :franceconnect, :draft)
       create(:event, :create, enrollment: enrollment)
@@ -47,7 +47,7 @@ RSpec.describe StatsController, type: :controller do
 
       expect(stats_json["monthly_enrollment_count"]).to eq([
         {
-          "month" => "2021-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
+          "month" => "#{Time.now.year}-#{Time.now.strftime("%m")}-01T00:00:00.000Z",
           "draft" => 1,
           "changes_requested" => 0,
           "submitted" => 0,

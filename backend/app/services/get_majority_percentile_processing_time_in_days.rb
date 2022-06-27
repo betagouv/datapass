@@ -38,10 +38,13 @@ class GetMajorityPercentileProcessingTimeInDays < ApplicationService
       .execute(query)
       .getvalue(0, 0)
 
+    # Si aucune demandes traitées, on affiche un temps moyen de 3 semaines
     if majority_percentile_processing_time_in_days.nil?
       majority_percentile_processing_time_in_days = "21"
     end
 
+    # Temps moyen de traitement des demandes d’habilitation n'exclu pas les Week end
+    # On préfère afficher 3 jours minimum pour éviter d'afficher un temps de traitement trop court.
     if majority_percentile_processing_time_in_days.to_i < 3
       majority_percentile_processing_time_in_days = "3"
     end
