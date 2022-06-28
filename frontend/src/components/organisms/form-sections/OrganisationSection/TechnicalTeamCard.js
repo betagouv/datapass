@@ -26,7 +26,6 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
 
   const { setReadyForNextSteps, setLastIndexToShow } =
     useContext(HideSectionsContext);
-  console.log(sectionIndex, 'sectionIndex');
 
   const areInputValid = useMemo(() => {
     if (!technical_team_type) {
@@ -41,8 +40,6 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
     return false;
   }, [technical_team_type, technical_team_value]);
 
-  console.log(areInputValid, 'areInputValid');
-
   useEffect(() => {
     !isUserEnrollmentLoading &&
       !disabled &&
@@ -54,11 +51,6 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       setLastIndexToShow(sectionIndex);
     }
   }, [setLastIndexToShow, sectionIndex]);
-
-  console.log(
-    setReadyForNextSteps(areInputValid),
-    'setReadyForNextSteps(areInputValid)'
-  );
 
   const editorOptions = useMemo(
     () => editorList.map(({ siret, name }) => ({ id: siret, label: name })),
@@ -100,8 +92,6 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       target: { name: 'technical_team_value', value: value },
     });
   };
-
-  console.log(sectionIndex, 'sectionIndex');
 
   return (
     <Card>

@@ -259,8 +259,6 @@ const OrganisationSection = ({ editorList = [], sectionIndex }) => {
           />
         )}
 
-        {console.log(sectionIndex)}
-
         {!disabled && !isLoading && showOrganizationPrompt && (
           <OrganizationPrompt
             selectedOrganizationId={organization_id}
