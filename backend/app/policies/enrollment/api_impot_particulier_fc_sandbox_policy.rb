@@ -22,6 +22,7 @@ class Enrollment::ApiImpotParticulierFcSandboxPolicy < Enrollment::SandboxPolicy
         :dgfip_pac_nbPac,
         :dgfip_pac,
         :dgfip_pariso,
+        :dgfip_annee_df_au_3112_si_deces_ctb_mp,
         :dgfip_rfr,
         :dgfip_mntRevbareme,
         :dgfip_inddeficit,
@@ -43,7 +44,8 @@ class Enrollment::ApiImpotParticulierFcSandboxPolicy < Enrollment::SandboxPolicy
         :dgfip_EpargRetrDeduc,
         :dgfip_annee_n_moins_1,
         :dgfip_annee_n_moins_2,
-        :dgfip_annee_n_moins_3
+        :dgfip_annee_n_moins_3,
+        :dgfip_annee_n_moins_2_si_indispo_n_moins_1
       ]
     ])
 
