@@ -343,6 +343,8 @@ const editorList = [
   { name: '3D Ouest', siret: '44973625500018' },
   { name: 'Entrouvert', siret: '49108189900032' },
   { name: 'Waigeo', siret: '80321944300014' },
+  { name: 'AFI', siret: '32275019100031' },
+  { name: 'Arche MC2', siret: '38251931200088' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',

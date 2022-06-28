@@ -496,6 +496,83 @@
       }
     }
   },
+  "ccas-Melissandre-afi": {
+    "label": "AFI, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF/DGFIP/MESRI/Pole Emploi/CROUS",
+    "about": "https://api.gouv.fr/guides/ccas",
+    "state": {
+      "intitule": "Instructions des dossiers d'aides sociales",
+      "description": "Les agents du CCAS instruisent des dossiers de demandes d'aides légales et facultatives. Pour définir si un usager est éligible, les agents analysent la situation fiscal et familiale (toutes les ressources perçues, le quotient familial, la composition du ménage, si l'adresse est bien sur la commune, etc.). L'accès à certaines informations, certifiées via l'API Particulier, permet un gain de temps dans le traitement des dossiers par les instructeurs et simplifie les démarches des familles. Logiciel utilisé : Melissande, édité par la Société A.F.I.",
+      "data_recipients": "agents instructeurs des demandes d'aides, agents instructeurs des demandes d'inscriptions aux services à la personne, ...",
+      "data_retention_period": 12,
+      "fondement_juridique_title": "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\r\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision.",
+      "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "32275019100031",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Avelinda",
+        "family_name": "Jess",
+        "job": "Chef produit",
+        "email": "ajess@afi-sa.fr",
+        "phone_number": "0614677910"
+      }
+    }
+  },
+
+  "ccas-ArcheMC2": {
+    "label": "Arche MC2, Dématérialisation de l'instruction des dossiers dans un CCAS/CIAS, Données CNAF/DGFIP",
+    "about": "https://api.gouv.fr/guides/ccas",
+    "state": {
+      "intitule": "Instructions des dossiers d'aides sociales",
+      "description": "Les agents sociaux de la collectivité (CCAS/CIAS) instruisent des dossiers de demande d'aides légales et/ou facultatives. Dans ce contexte, ils ont besoin de connaître la composition familiale et la situation financière du foyer du demandeur : état civil (nom prénom date de naissance), structure familiale (nom prénom date de naissance des enfants et parents), adresse du foyer, quotient familial calculé par la CAF et les données fiscales de la DGFIP. Toutes ces informations leur permettent de vérifier les conditions d'éligibilité aux aides sociales. Ainsi, dans une volonté de simplification de la démarche pour les citoyens et agents, nous souhaitons exploiter les données déjà connues de l'API Particulier. Pour cela, la collectivité utilise la solution Millésime édité par la société Arche MC2.",
+      "data_recipients": "agents instructeurs des demandes d'aides, agents instructeurs des demandes d'inscriptions aux services à la personne, ...",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Article L. 312-1 et Article R123-5 du code de l'action sociale et des familles. Article L114-8 et Article R. 114-9-3 du code des relations entre le public et l'administration.",
+      "fondement_juridique_url": "Joindre les délibérations ou procédures internes concernées.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "38251931200088",
+      "scopes": {
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true,
+        "dgfip_revenu_brut_global": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_impot": true,
+        "dgfip_annee_revenus": true,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Pascal",
+        "family_name": "BALIGOUT",
+        "job": "Chef produit",
+        "email": "pascal.baligout@arche‑mc2.fr",
+        "phone_number": "0352829363"
+      }
+    }
+  },
+
   "ccas-arpege": {
     "label": "Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF",
     "about": "https://api.gouv.fr/guides/ccas",
