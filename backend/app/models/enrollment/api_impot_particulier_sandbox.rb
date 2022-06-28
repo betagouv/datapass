@@ -4,7 +4,7 @@ class Enrollment::ApiImpotParticulierSandbox < Enrollment::SandboxEnrollment
   def submit_validation
     super
 
-    unless scopes.any? { |k, v| v && %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3].include?(k) }
+    unless scopes.any? { |k, v| v && %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3 dgfip_annee_n_moins_2_si_indispo_n_moins_1].include?(k) }
       errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une année de revenus souhaitée avant de continuer")
     end
     unless additional_content.any? { |k, v| v && %w[acces_spi acces_etat_civil].include?(k) }
