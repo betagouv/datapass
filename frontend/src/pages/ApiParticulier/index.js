@@ -324,7 +324,6 @@ const editorList = [
   { name: 'Abelium Collectivités', siret: '42172024400050' },
   { name: 'Agora Plus', siret: '48017088500010' },
   { name: 'Jdéalise/Cantine de France', siret: '89255569900016' },
-  { name: 'Up Citizen', siret: '64204436600069' },
   { name: 'Berger-Levrault', siret: '75580064600373' },
   { name: 'Ciril GROUP', siret: '30516304000119' },
   { name: 'Docaposte FAST', siret: '48847870200027' },
