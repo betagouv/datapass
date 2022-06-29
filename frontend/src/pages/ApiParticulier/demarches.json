@@ -392,6 +392,15 @@
         "cnaf_enfants": true,
         "cnaf_adresse": true
       }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Richard",
+        "family_name": "GHESQUIERE",
+        "job": "Chef Produit",
+        "email": "richard.ghesquiere@nfi.fr",
+        "phone_number": "0632362572"
+      }
     }
   },
 
