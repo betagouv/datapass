@@ -1,16 +1,15 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import Link from '../../components/atoms/hyperTexts/Link';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import demarches from './demarches.json';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
-import Link from '../../components/atoms/hyperTexts/Link';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import demarches from './demarches.json';
 
 const DonneesDescription = () => (
   <>
@@ -324,7 +323,6 @@ const editorList = [
   { name: 'Abelium Collectivités', siret: '42172024400050' },
   { name: 'Agora Plus', siret: '48017088500010' },
   { name: 'Jdéalise/Cantine de France', siret: '89255569900016' },
-  { name: 'Up Citizen', siret: '64204436600069' },
   { name: 'Berger-Levrault', siret: '75580064600373' },
   { name: 'Ciril GROUP', siret: '30516304000119' },
   { name: 'Docaposte FAST', siret: '48847870200027' },
@@ -343,6 +341,8 @@ const editorList = [
   { name: '3D Ouest', siret: '44973625500018' },
   { name: 'Entrouvert', siret: '49108189900032' },
   { name: 'Waigeo', siret: '80321944300014' },
+  { name: 'AFI', siret: '32275019100031' },
+  { name: 'Arche MC2', siret: '38251931200088' },
   {
     name: 'Société d’assistance et gestion du stationnement (SAGS)',
     siret: '38933781700065',
