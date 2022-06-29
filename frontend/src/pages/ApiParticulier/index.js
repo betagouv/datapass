@@ -1,16 +1,15 @@
-import React from 'react';
-import Form from '../../components/templates/Form';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import Link from '../../components/atoms/hyperTexts/Link';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import demarches from './demarches.json';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
-import Link from '../../components/atoms/hyperTexts/Link';
+import Form from '../../components/templates/Form';
+import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import demarches from './demarches.json';
 
 const DonneesDescription = () => (
   <>
