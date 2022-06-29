@@ -272,12 +272,12 @@
     }
   },
 
-  "entrouvert-publik": {
-    "label": "Publik, Tarification services municipaux / Portail Famille, Données CNAF",
+  "entr'ouvert-publik": {
+    "label": "Publik Famille, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
-      "intitule": "Calcul du prix du repas pour un enfant scolarisé",
-      "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\r\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
+      "intitule": "Calcul du tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour les enfants ou les adultes inscrits",
+      "description": "Calculer le tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour la facturation des familles qui effectuent leurs démarches en ligne via la plateforme de Gestion de la relation usager Publik de la collectivité, éditée par la société Entrouvert",
       "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
       "data_retention_period": 20,
       "technical_team_type": "software_company",
@@ -293,10 +293,8 @@
         "dgfip_declarant2_date_naissance": true,
         "dgfip_nombre_parts": true,
         "dgfip_nombre_personnes_a_charge": true,
-        "dgfip_revenu_imposable": true,
         "dgfip_revenu_fiscal_reference": true,
         "dgfip_annee_revenus": true,
-        "dgfip_situation_partielle": true,
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
         "cnaf_enfants": true
