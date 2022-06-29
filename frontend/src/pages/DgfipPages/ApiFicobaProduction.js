@@ -24,7 +24,7 @@ const ApiFicobaProduction = () => (
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[200]} />
-    <CguSection cguLink="/docs/cgu_api_ficoba_production_decembre2020_v1.1.pdf" />
+    <CguSection cguLink="/docs/cgu_api_ficoba_production.pdf" />
   </Form>
 );
 
