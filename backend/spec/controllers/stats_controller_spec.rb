@@ -40,7 +40,6 @@ RSpec.describe StatsController, type: :controller do
       let(:target_api_list) { ["invalid", "target_api"] }
 
       it "raise a bad request error" do
-        expect(target_api_list).to eq(["invalid", "target_api"])
         expect { show_stats }.to raise_error(ActionController::BadRequest)
       end
     end
@@ -48,7 +47,6 @@ RSpec.describe StatsController, type: :controller do
     context "has a valid target_api_list params" do
       let(:target_api_list) { ["franceconnect", "api_entreprise"] }
 
-      it { expect(target_api_list).to eq(["franceconnect", "api_entreprise"]) }
       it { is_expected.to have_http_status(:ok) }
 
       it "renders valid payload" do
