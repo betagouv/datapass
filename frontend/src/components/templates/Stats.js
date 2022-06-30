@@ -17,7 +17,7 @@ import {
 } from 'recharts';
 import {
   DATA_PROVIDER_PARAMETERS,
-  HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+  HIDDEN_DATA_PROVIDER_LABELS,
 } from '../../config/data-provider-parameters';
 import {
   EnrollmentStatus,
@@ -81,7 +81,7 @@ export const Stats = () => {
       setStats({
         ...result.data,
         enrollment_by_target_api: stackLowUseAndUnpublishedApi(
-          HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+          HIDDEN_DATA_PROVIDER_LABELS,
           result.data.enrollment_by_target_api,
           10
         ),
@@ -110,10 +110,7 @@ export const Stats = () => {
           </NavLink>
           {Object.keys(DATA_PROVIDER_PARAMETERS)
             .filter(
-              (apiLabel) =>
-                !HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.includes(
-                  apiLabel
-                )
+              (apiLabel) => !HIDDEN_DATA_PROVIDER_LABELS.includes(apiLabel)
             )
             .map((targetApi) => (
               <NavLink key={targetApi} end to={`/stats/${targetApi}`}>

@@ -396,7 +396,7 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
     },
   };
 
-export const HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
+export const HIDDEN_DATA_PROVIDER_LABELS = [
   'api_hermes_sandbox',
   'api_hermes_production',
   'api_e_contacts_sandbox',

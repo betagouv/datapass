@@ -5,7 +5,7 @@ import ReactTable from 'react-table-6';
 import 'react-table-6/react-table.css';
 import {
   DATA_PROVIDER_PARAMETERS,
-  HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+  HIDDEN_DATA_PROVIDER_LABELS,
 } from '../../config/data-provider-parameters';
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
 import enrollmentListStyle from './enrollmentListStyle';
@@ -169,10 +169,7 @@ class PublicEnrollmentList extends React.Component {
             </NavLink>
             {Object.keys(DATA_PROVIDER_PARAMETERS)
               .filter(
-                (apiLabel) =>
-                  !HIDDEN_DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.includes(
-                    apiLabel
-                  )
+                (apiLabel) => !HIDDEN_DATA_PROVIDER_LABELS.includes(apiLabel)
               )
               .map((targetApi) => (
                 <NavLink key={targetApi} end to={`/public/${targetApi}`}>
