@@ -74,6 +74,10 @@ export const Stats = () => {
   const [stats, setStats] = useState(null);
   const { targetApi } = useParams();
 
+  const dataProviderList = Object.keys(DATA_PROVIDER_PARAMETERS).filter(
+    (apiLabel) => !HIDDEN_DATA_PROVIDER_LABELS.includes(apiLabel)
+  );
+
   useEffect(() => {
     async function fetchStats() {
       const result = await getAPIStats(targetApi);
@@ -108,19 +112,15 @@ export const Stats = () => {
               <Tag type={isActive ? 'info' : ''}>Toutes les APIs</Tag>
             )}
           </NavLink>
-          {Object.keys(DATA_PROVIDER_PARAMETERS)
-            .filter(
-              (apiLabel) => !HIDDEN_DATA_PROVIDER_LABELS.includes(apiLabel)
-            )
-            .map((targetApi) => (
-              <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
-                {({ isActive }) => (
-                  <Tag type={isActive ? 'info' : ''}>
-                    {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
-                  </Tag>
-                )}
-              </NavLink>
-            ))}
+          {dataProviderList.map((targetApi) => (
+            <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
+              {({ isActive }) => (
+                <Tag type={isActive ? 'info' : ''}>
+                  {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
+                </Tag>
+              )}
+            </NavLink>
+          ))}
         </TagContainer>
       </ListHeader>
       <div className="table-container">
