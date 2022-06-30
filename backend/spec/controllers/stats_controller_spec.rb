@@ -44,6 +44,14 @@ RSpec.describe StatsController, type: :controller do
       end
     end
 
+    context "has an invalid string target_api_list" do
+      let(:target_api_list) { "oops, this is an invalid list" }
+
+      it "raise a bad request error" do
+        expect { raise show_stats }.to raise_error(NoMethodError)
+      end
+    end
+
     context "has a valid target_api_list params" do
       let(:target_api_list) { ["franceconnect", "api_entreprise"] }
 
