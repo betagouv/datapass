@@ -9,7 +9,7 @@ import DisconnectionModalCard from './DisconnectionModalCard';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export const PersonalInformationCard = ({}) => {
+export const PersonalInformationCard = () => {
   const {
     disabled,
     enrollment: { team_members },
@@ -35,9 +35,6 @@ export const PersonalInformationCard = ({}) => {
 
   const onUpdatePersonalInformation = () =>
     setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/personal_information`);
-
-  // const onDisconnectionModal = () =>
-  //   `${BACK_HOST}/api/users/personal_information`;
 
   return (
     <Card>

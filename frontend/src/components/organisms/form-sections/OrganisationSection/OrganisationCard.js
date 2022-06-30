@@ -13,7 +13,7 @@ import OrganizationPrompt from './OrganizationPrompt';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export const OrganisationCard = ({}) => {
+export const OrganisationCard = () => {
   const {
     disabled,
     isUserEnrollmentLoading,
