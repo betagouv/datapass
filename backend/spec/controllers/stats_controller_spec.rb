@@ -30,6 +30,11 @@ RSpec.describe StatsController, type: :controller do
       create(:event, :request_changes, enrollment: enrollment, created_at: 9.days.ago)
       create(:event, :submit, enrollment: enrollment, created_at: 8.days.ago)
       create(:event, :refuse, enrollment: enrollment, created_at: 7.days.ago)
+
+      enrollment = create(:enrollment, :api_particulier, :validated, created_at: 30.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 30.days.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 30.days.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: 27.days.ago)
     end
 
     after do
@@ -48,7 +53,7 @@ RSpec.describe StatsController, type: :controller do
       let(:target_api_list) { "oops, this is an invalid list" }
 
       it "raise a bad request error" do
-        expect { raise show_stats }.to raise_error(NoMethodError)
+        expect { show_stats }.to raise_error(ActionController::BadRequest)
       end
     end
 
