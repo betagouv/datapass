@@ -5,7 +5,7 @@ import httpClient from '../lib/http-client';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export async function getAPIStats(target_api_list) {
-  return await httpClient.get(
+  return httpClient.get(
     `${BACK_HOST}/api/stats${hashToQueryParams({
       target_api_list,
     })}`,

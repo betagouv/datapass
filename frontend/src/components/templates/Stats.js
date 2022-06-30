@@ -85,49 +85,44 @@ export const Stats = () => {
   );
 
   async function getTargetAPIList(targetApi) {
-    let result = [];
+    let targetApiList;
 
-    if (targetApi === 'allApi') {
-      const ApiTargetConfiguration = pickBy(
-        DATA_PROVIDER_PARAMETERS,
-        (dataProviderConfig) => dataProviderConfig.type === 'api'
-      );
-      const apiList = Object.keys(ApiTargetConfiguration);
-      result = await getAPIStats(apiList);
-    } else if (targetApi === 'allServices') {
-      const serviceTargetConfiguration = pickBy(
-        DATA_PROVIDER_PARAMETERS,
-        (dataProviderConfig) => dataProviderConfig.type === 'service'
-      );
-      const serviceList = Object.keys(serviceTargetConfiguration);
-      result = await getAPIStats(serviceList);
-    } else if (targetApi === undefined) {
-      result = await getAPIStats([]);
-    } else {
-      result = await getAPIStats([targetApi]);
+    switch (targetApi) {
+      case 'allApi':
+        const ApiTargetConfiguration = pickBy(
+          DATA_PROVIDER_PARAMETERS,
+          (dataProviderConfig) => dataProviderConfig.type === 'api'
+        );
+        targetApiList = Object.keys(ApiTargetConfiguration);
+        break;
+      case 'allServices':
+        const serviceTargetConfiguration = pickBy(
+          DATA_PROVIDER_PARAMETERS,
+          (dataProviderConfig) => dataProviderConfig.type === 'service'
+        );
+        targetApiList = Object.keys(serviceTargetConfiguration);
+        break;
+      case undefined:
+        targetApiList = [];
+        break;
+      default:
+        targetApiList = [targetApi];
     }
-    return result;
+    return getAPIStats(targetApiList);
   }
 
   useEffect(() => {
     async function fetchStats() {
-      let result = [];
-      try {
-        result = await getTargetAPIList(targetApi);
+      const result = await getTargetAPIList(targetApi);
 
-        setStats({
-          ...result.data,
-          enrollment_by_target_api: stackLowUseAndUnpublishedApi(
-            dataProviderKeyList,
-            result.data.enrollment_by_target_api,
-            10
-          ),
-        });
-      } catch (error) {
-        console.error(
-          'An API or Service name is not valid : check DataProviderConfig Key'
-        );
-      }
+      setStats({
+        ...result.data,
+        enrollment_by_target_api: stackLowUseAndUnpublishedApi(
+          dataProviderKeyList,
+          result.data.enrollment_by_target_api,
+          10
+        ),
+      });
     }
 
     fetchStats();
