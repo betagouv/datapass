@@ -13,16 +13,16 @@ class StatsController < ApplicationController
     if params.permit(:target_api_list).key?(:target_api_list)
       begin
         target_api_list = JSON.parse(params[:target_api_list])
-        raise_error_if_string(target_api_list)
+        raise_error_if_not_an_array(target_api_list)
         has_only_existing_target_api = target_api_list.all? do |target_api|
           DataProvidersConfiguration.instance.exists?(target_api)
         end
 
         unless has_only_existing_target_api
-          raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
+          raise ActionController::BadRequest, "Unknown target_api_list"
         end
       rescue JSON::ParserError
-        raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
+        raise ActionController::BadRequest, "Invalid JSON target_api_list format"
       end
     end
 
@@ -141,9 +141,9 @@ class StatsController < ApplicationController
 
   private
 
-  def raise_error_if_string(target_api_list)
-    if target_api_list.is_a? String
-      raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
+  def raise_error_if_not_an_array(target_api_list)
+    unless target_api_list.is_a? Array
+      raise ActionController::BadRequest, "target_api_list is not an Array"
     end
   end
 end

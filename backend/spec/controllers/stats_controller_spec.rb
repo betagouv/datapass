@@ -57,6 +57,14 @@ RSpec.describe StatsController, type: :controller do
       end
     end
 
+    context "has an invalid Hash format target_api_list" do
+      let(:target_api_list) { {invalid_format: "invalid_format_hash"} }
+
+      it "raise a bad request error" do
+        expect { show_stats }.to raise_error(ActionController::BadRequest)
+      end
+    end
+
     context "has a valid target_api_list params" do
       let(:target_api_list) { ["franceconnect", "api_entreprise"] }
 
