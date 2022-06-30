@@ -1,8 +1,5 @@
 module Users
   class SessionsController < Devise::SessionsController
-    clear_respond_to
-    respond_to :json
-
     # GET /users/auth/api_gouv/callback
     def api_gouv
       session[:id_token] = request.env["omniauth.auth"]["credentials"].id_token
@@ -65,6 +62,16 @@ module Users
       end
     rescue ArgumentError, URI::Error
       false
+    end
+
+    private
+
+    # Override Devise::SessionsController to bypass respond_to_on_destroy which throw an error, undefined method respond_to,
+    # when calling destroy with a sign out user (ex: when calling it 2 times in a row).
+    def verify_signed_out_user
+      if all_signed_out?
+        redirect_to ENV["FRONT_HOST"], allow_other_host: true
+      end
     end
   end
 end
