@@ -191,9 +191,7 @@ export const Stats = () => {
                       USER_STATUS_LABELS[name],
                       props,
                     ]}
-                    labelFormatter={(value) =>
-                      moment(value).format('MMMM YYYY')
-                    }
+                    labelFormatter={(value) => moment(value).format('MMM YYYY')}
                   />
                   <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
                   <CartesianGrid vertical={false} />
