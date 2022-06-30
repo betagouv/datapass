@@ -8,7 +8,7 @@ import Loader from '../../../atoms/Loader';
 import { Card, CardHead } from '../../../molecules/Card';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
-import DisconnectionModalCard from './DisconnectionModalCard';
+import { DisconnectionModal } from './DisconnectionModal';
 import OrganizationPrompt from './OrganizationPrompt';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -39,9 +39,7 @@ export const OrganisationCard = () => {
   const [showOrganizationInfoError, setShowOrganizationInfoError] =
     useState(false);
   const [showOrganizationPrompt, setShowOrganizationPrompt] = useState(false);
-  const [urlForDisconnectionPrompt, setUrlForDisconnectionPrompt] =
-    useState('');
-
+  const [showDisconnectionPrompt, setShowDisconnectionPrompt] = useState(false);
   const { user, isLoading } = useAuth();
 
   const updateOrganizationInfo = useCallback(
@@ -147,7 +145,7 @@ export const OrganisationCard = () => {
 
   const onJoinOrganization = () => {
     setShowOrganizationPrompt(false);
-    setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/join_organization`);
+    setShowDisconnectionPrompt(true);
   };
 
   return (
@@ -215,10 +213,10 @@ export const OrganisationCard = () => {
         />
       )}
 
-      {!disabled && !isLoading && urlForDisconnectionPrompt && (
-        <DisconnectionModalCard
-          urlForDisconnectionPrompt={urlForDisconnectionPrompt}
-          setUrlForDisconnectionPrompt={setUrlForDisconnectionPrompt}
+      {!disabled && !isLoading && showDisconnectionPrompt && (
+        <DisconnectionModal
+          handleCancel={() => setShowDisconnectionPrompt(false)}
+          disconnectionUrl={`${BACK_HOST}/api/users/join_organization`}
         />
       )}
     </Card>

@@ -5,7 +5,7 @@ import { Card, CardHead } from '../../../molecules/Card';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
-import DisconnectionModalCard from './DisconnectionModalCard';
+import { DisconnectionModal } from './DisconnectionModal';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -17,10 +17,8 @@ export const PersonalInformationCard = () => {
 
   const { user, isLoading } = useAuth();
 
-  const [urlForDisconnectionPrompt, setUrlForDisconnectionPrompt] =
-    useState('');
-
   const [personalInformation, setPersonalInformation] = useState({});
+  const [showDisconnectionPrompt, setShowDisconnectionPrompt] = useState(false);
 
   useEffect(() => {
     const firstDemandeur =
@@ -33,8 +31,7 @@ export const PersonalInformationCard = () => {
     }
   }, [team_members]);
 
-  const onUpdatePersonalInformation = () =>
-    setUrlForDisconnectionPrompt(`${BACK_HOST}/api/users/personal_information`);
+  const onUpdatePersonalInformation = () => setShowDisconnectionPrompt(true);
 
   return (
     <Card>
@@ -59,10 +56,10 @@ export const PersonalInformationCard = () => {
       <div>{personalInformation.phone_number}</div>
       <div>{personalInformation.job}</div>
 
-      {!disabled && !isLoading && urlForDisconnectionPrompt && (
-        <DisconnectionModalCard
-          urlForDisconnectionPrompt={urlForDisconnectionPrompt}
-          setUrlForDisconnectionPrompt={setUrlForDisconnectionPrompt}
+      {!disabled && !isLoading && showDisconnectionPrompt && (
+        <DisconnectionModal
+          handleCancel={() => setShowDisconnectionPrompt(false)}
+          disconnectionUrl={`${BACK_HOST}/api/users/personal_information`}
         />
       )}
     </Card>
