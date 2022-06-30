@@ -13,6 +13,7 @@ class StatsController < ApplicationController
     if params.permit(:target_api_list).key?(:target_api_list)
       begin
         target_api_list = JSON.parse(params[:target_api_list])
+        raise_error_if_string(target_api_list)
         has_only_existing_target_api = target_api_list.all? do |target_api|
           DataProvidersConfiguration.instance.exists?(target_api)
         end
@@ -136,5 +137,13 @@ class StatsController < ApplicationController
     render json: {
       majority_percentile_processing_time_in_days: majority_percentile_processing_time_in_days
     }
+  end
+
+  private
+
+  def raise_error_if_string(target_api_list)
+    if target_api_list.is_a? String
+      raise ActionController::BadRequest, "Invalid DataProviderConfig keys in target_api_list"
+    end
   end
 end
