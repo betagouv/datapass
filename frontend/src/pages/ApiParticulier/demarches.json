@@ -172,7 +172,64 @@
       }
     }
   },
-  "bl-enfance-berger-levrault": {
+
+  "bl-enfance-berger-levrault-cnaf-dgfip": {
+    "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarification",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs",
+      "description": "La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\r\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault.",
+      "data_recipients": "Agent de la collectivité ( ou association) en charge de l’inscription des familles ou en charge de la facturation des activités, agent du service guichet unique.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "75580064600373",
+      "scopes": {
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_adresse": true,
+        "dgfip_revenu_fiscal_reference": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Jean-François",
+        "family_name": "Pommier",
+        "job": "Produit",
+        "email": "jf.pommier@berger-levrault.com",
+        "phone_number": "0628770862"
+      }
+    }
+  },
+
+  "bl-enfance-berger-levrault-dgfip": {
+    "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données DGFIP",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarification",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs",
+      "description": "La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\r\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault.",
+      "data_recipients": "Agent de la collectivité ( ou association) en charge de l’inscription des familles ou en charge de la facturation des activités, agent du service guichet unique.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "75580064600373",
+      "scopes": {
+        "dgfip_revenu_fiscal_reference": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Jean-François",
+        "family_name": "Pommier",
+        "job": "Produit",
+        "email": "jf.pommier@berger-levrault.com",
+        "phone_number": "0628770862"
+      }
+    }
+  },
+
+
+  "bl-enfance-berger-levrault-cnaf": {
     "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
@@ -186,17 +243,21 @@
       "scopes": {
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
-        "cnaf_enfants": false,
         "cnaf_adresse": true
       }
     },
     "team_members": {
       "responsable_technique": {
-        "email": "enfance.mes@berger-levrault.com",
-        "phone_number": "0561395284"
+        "given_name": "Jean-François",
+        "family_name": "Pommier",
+        "job": "Produit",
+        "email": "jf.pommier@berger-levrault.com",
+        "phone_number": "0628770862"
       }
     }
   },
+
+
   "cantine-de-france": {
     "label": "Cantines-de-France, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -221,7 +282,7 @@
       }
     }
   },
-  "city-family-mushroom-software": {
+  "city-family-mushroom-software-cnaf": {
     "label": "City Family, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
@@ -234,18 +295,112 @@
       "technical_team_value": "81122842800017",
       "scopes": {
         "cnaf_quotient_familial": true,
-        "cnaf_allocataires": false,
-        "cnaf_enfants": false,
-        "cnaf_adresse": false
+        "cnaf_allocataires": true,
+        "cnaf_adresse": true
       }
     },
     "team_members": {
       "responsable_technique": {
+        "given_name": "Jean-Charles",
+        "family_name": "Geeraert",
+        "job": "Produit",
         "email": "technique@mushroom-software.com",
         "phone_number": "0674577622"
       }
     }
   },
+
+  "city-family-mushroom-software-CNAF-DGFIP": {
+    "label": "City Family, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarification",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturations des crèches, du périscolaire, du scolaire et de l’extrascolaire",
+      "description": "La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\r\nNous utilisons la solution CityFamily de Mushroom Software.",
+      "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "81122842800017",
+      "scopes": {
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_date_recouvrement": true,
+        "dgfip_date_etablissement": true,
+        "dgfip_adresse_fiscale_taxation": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true,
+        "dgfip_revenu_brut_global": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_impot": true,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_adresse": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Jean-Charles",
+        "family_name": "Geeraert",
+        "job": "Produit",
+        "email": "technique@mushroom-software.com",
+        "phone_number": "0674577622"
+      }
+    }
+  },
+
+  "city-family-mushroom-software-dgfip": {
+    "label": "City Family, Tarification services municipaux / Portail Famille, Données DGFIP",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarification",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturations des crèches, du périscolaire, du scolaire et de l’extrascolaire",
+      "description": "La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\r\nNous utilisons la solution CityFamily de Mushroom Software.",
+      "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement.",
+      "technical_team_type": "software_company",
+      "technical_team_value": "81122842800017",
+      "scopes": {
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_date_recouvrement": true,
+        "dgfip_date_etablissement": true,
+        "dgfip_adresse_fiscale_taxation": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true,
+        "dgfip_revenu_brut_global": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_impot": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Jean-Charles",
+        "family_name": "Geeraert",
+        "job": "Produit",
+        "email": "technique@mushroom-software.com",
+        "phone_number": "0674577622"
+      }
+    }
+  },
+
   "docaposte-fast": {
     "label": "Docaposte, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
