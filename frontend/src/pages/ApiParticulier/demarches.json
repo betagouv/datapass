@@ -95,7 +95,6 @@
       }
     }
   },
-
   "agora-plus": {
     "label": "Agora Famille Premium, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -121,7 +120,6 @@
       }
     }
   },
-
   "amiciel-malice": {
     "label": "Malice, Tarification services municipaux / Portail Famille, Données CNAF et DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -154,7 +152,6 @@
       }
     }
   },
-
   "arpege-concerto": {
     "label": "Concerto, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -200,7 +197,6 @@
       }
     }
   },
-
   "cantine-de-france": {
     "label": "Cantines-de-France, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -225,7 +221,6 @@
       }
     }
   },
-
   "city-family-mushroom-software": {
     "label": "City Family, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -251,7 +246,6 @@
       }
     }
   },
-
   "docaposte-fast": {
     "label": "Docaposte, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -271,7 +265,6 @@
       }
     }
   },
-
   "entr'ouvert-publik": {
     "label": "Publik Famille, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -301,7 +294,6 @@
       }
     }
   },
-
   "jvs-parascol": {
     "label": "Parascol, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -321,7 +313,6 @@
       }
     }
   },
-
   "civil-enfance-ciril-group": {
     "label": "Civil, Tarification services municipaux / Portail Famille, Données CNAF et DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -372,7 +363,6 @@
       }
     }
   },
-
   "nfi-grc": {
     "label": "NFI, Tarification services municipaux / Portail Famille, Données CNAF et DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -401,7 +391,6 @@
       }
     }
   },
-
   "teamnet": {
     "label": "Axel, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -421,7 +410,6 @@
       }
     }
   },
-
   "qiis": {
     "label": "eTicket, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -583,7 +571,6 @@
       }
     }
   },
-
   "ccas-ArcheMC2": {
     "label": "Arche MC2, Dématérialisation de l'instruction des dossiers dans un CCAS/CIAS, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/ccas",
@@ -630,7 +617,6 @@
       }
     }
   },
-
   "ccas-arpege": {
     "label": "Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF",
     "about": "https://api.gouv.fr/guides/ccas",
