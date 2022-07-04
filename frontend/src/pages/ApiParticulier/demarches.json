@@ -411,12 +411,12 @@
       }
     }
   },
-  "entrouvert-publik": {
-    "label": "Publik, Tarification services municipaux / Portail Famille, Données CNAF",
+  "entr'ouvert-publik": {
+    "label": "Publik Famille, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
-      "intitule": "Calcul du prix du repas pour un enfant scolarisé",
-      "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\r\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
+      "intitule": "Calcul du tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour les enfants ou les adultes inscrits",
+      "description": "Calculer le tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour la facturation des familles qui effectuent leurs démarches en ligne via la plateforme de Gestion de la relation usager Publik de la collectivité, éditée par la société Entrouvert",
       "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
       "data_retention_period": 20,
       "technical_team_type": "software_company",
@@ -432,10 +432,8 @@
         "dgfip_declarant2_date_naissance": true,
         "dgfip_nombre_parts": true,
         "dgfip_nombre_personnes_a_charge": true,
-        "dgfip_revenu_imposable": true,
         "dgfip_revenu_fiscal_reference": true,
         "dgfip_annee_revenus": true,
-        "dgfip_situation_partielle": true,
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
         "cnaf_enfants": true
@@ -495,7 +493,19 @@
         "dgfip_annee_revenus": true,
         "dgfip_erreur_correctif": true,
         "dgfip_situation_partielle": true,
-        "cnaf_quotient_familial": true
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Romain",
+        "family_name": "Jalabert",
+        "job": "Chef Produit",
+        "email": "rjalabert@cirilgroup.com",
+        "phone_number": "0472691680"
       }
     }
   },
@@ -515,6 +525,15 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
         "cnaf_adresse": true
+      }
+    },
+    "team_members": {
+      "responsable_technique": {
+        "given_name": "Richard",
+        "family_name": "GHESQUIERE",
+        "job": "Chef Produit",
+        "email": "richard.ghesquiere@nfi.fr",
+        "phone_number": "0632362572"
       }
     }
   },
@@ -602,10 +621,7 @@
       "technical_team_type": "software_company",
       "technical_team_value": "80321944300014",
       "scopes": {
-        "cnaf_quotient_familial": true,
-        "cnaf_allocataires": false,
-        "cnaf_enfants": false,
-        "cnaf_adresse": false
+        "cnaf_quotient_familial": true
       }
     },
     "team_members": {
@@ -655,40 +671,40 @@
       "technical_team_type": "software_company",
       "technical_team_value": "32275019100031",
       "scopes": {
-        "dgfip_declarant1_nom": false,
-        "dgfip_declarant1_nom_naissance": false,
-        "dgfip_declarant1_prenoms": false,
-        "dgfip_declarant1_date_naissance": false,
-        "dgfip_declarant2_nom": false,
-        "dgfip_declarant2_nom_naissance": false,
-        "dgfip_declarant2_prenoms": false,
-        "dgfip_declarant2_date_naissance": false,
-        "dgfip_date_recouvrement": false,
-        "dgfip_date_etablissement": false,
-        "dgfip_adresse_fiscale_taxation": false,
-        "dgfip_adresse_fiscale_annee": false,
-        "dgfip_nombre_parts": false,
-        "dgfip_nombre_personnes_a_charge": false,
-        "dgfip_situation_familiale": false,
-        "dgfip_revenu_brut_global": false,
-        "dgfip_revenu_imposable": false,
-        "dgfip_impot_revenu_net_avant_corrections": false,
-        "dgfip_montant_impot": false,
-        "dgfip_revenu_fiscal_reference": false,
-        "dgfip_annee_impot": false,
-        "dgfip_annee_revenus": false,
-        "cnaf_quotient_familial": false,
-        "cnaf_allocataires": false,
-        "cnaf_enfants": false,
-        "cnaf_adresse": false,
-        "pole_emploi_identite": false,
-        "pole_emploi_contact": false,
-        "pole_emploi_adresse": false,
-        "pole_emploi_inscription": false,
-        "mesri_identifiant": false,
-        "mesri_identite": false,
-        "cnous_statut_bourse": false,
-        "cnous_identite": false
+        "dgfip_declarant1_nom": true,
+        "dgfip_declarant1_nom_naissance": true,
+        "dgfip_declarant1_prenoms": true,
+        "dgfip_declarant1_date_naissance": true,
+        "dgfip_declarant2_nom": true,
+        "dgfip_declarant2_nom_naissance": true,
+        "dgfip_declarant2_prenoms": true,
+        "dgfip_declarant2_date_naissance": true,
+        "dgfip_date_recouvrement": true,
+        "dgfip_date_etablissement": true,
+        "dgfip_adresse_fiscale_taxation": true,
+        "dgfip_adresse_fiscale_annee": true,
+        "dgfip_nombre_parts": true,
+        "dgfip_nombre_personnes_a_charge": true,
+        "dgfip_situation_familiale": true,
+        "dgfip_revenu_brut_global": true,
+        "dgfip_revenu_imposable": true,
+        "dgfip_impot_revenu_net_avant_corrections": true,
+        "dgfip_montant_impot": true,
+        "dgfip_revenu_fiscal_reference": true,
+        "dgfip_annee_impot": true,
+        "dgfip_annee_revenus": true,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true,
+        "pole_emploi_identite": true,
+        "pole_emploi_contact": true,
+        "pole_emploi_adresse": true,
+        "pole_emploi_inscription": true,
+        "mesri_identifiant": true,
+        "mesri_identite": true,
+        "cnous_statut_bourse": true,
+        "cnous_identite": true
       }
     },
     "team_members": {
