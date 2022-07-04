@@ -1,6 +1,8 @@
 require "csv"
 
 class Enrollment < ActiveRecord::Base
+  extend DatapassAdministratorNotifier
+
   self.inheritance_column = "target_api"
 
   # enable Single Table Inheritance with target_api as discriminatory field
@@ -46,11 +48,11 @@ class Enrollment < ActiveRecord::Base
     end
 
     event :submit do
-      transition from: [:draft, :changes_requested], to: :submitted
+      transition from: %i[draft changes_requested], to: :submitted
     end
 
     event :refuse do
-      transition from: [:changes_requested, :submitted], to: :refused
+      transition from: %i[changes_requested submitted], to: :refused
     end
 
     event :revoke do
@@ -71,10 +73,16 @@ class Enrollment < ActiveRecord::Base
 
     before_transition do |enrollment, transition|
       enrollment.events.create!(
-        name: transition.event.to_s,
+        name: transition.event.to_s,gst
         user_id: transition.args[0][:user_id],
         comment: transition.args[0][:comment]
       )
+    end
+
+    before_transition from: %i[draft changes_requested], to: :submitted do |enrollment|
+      if enrollment.technical_team_type == "software_company" && !enrollment.technical_team_value.match?(/^\d{14}$/)
+        Enrollment.notify_administrators_for_unknown_software_enrollment
+      end
     end
 
     before_transition from: :submitted, to: :validated do |enrollment|
@@ -181,40 +189,40 @@ class Enrollment < ActiveRecord::Base
   end
 
   def link
-    "#{ENV.fetch("FRONT_HOST")}/#{target_api.tr("_", "-")}/#{id}"
+    "#{ENV.fetch('FRONT_HOST')}/#{target_api.tr('_', '-')}/#{id}"
   end
 
   def self.to_csv
     attributes = %w[id
-      target_api
-      created_at
-      updated_at
-      status
-      organization_id
-      siret
-      nom_raison_sociale
-      technical_team_type
-      technical_team_value
-      demarche
-      intitule
-      description
-      type_projet
-      date_mise_en_production
-      volumetrie_approximative
-      scopes
-      data_recipients
-      data_retention_period
-      data_retention_comment
-      fondement_juridique_title
-      fondement_juridique_url
-      team_members_json
-      cgu_approved
-      dpo_is_informed
-      additional_content
-      linked_token_manager_id
-      previous_enrollment_id
-      copied_from_enrollment_id
-      link]
+                    target_api
+                    created_at
+                    updated_at
+                    status
+                    organization_id
+                    siret
+                    nom_raison_sociale
+                    technical_team_type
+                    technical_team_value
+                    demarche
+                    intitule
+                    description
+                    type_projet
+                    date_mise_en_production
+                    volumetrie_approximative
+                    scopes
+                    data_recipients
+                    data_retention_period
+                    data_retention_comment
+                    fondement_juridique_title
+                    fondement_juridique_url
+                    team_members_json
+                    cgu_approved
+                    dpo_is_informed
+                    additional_content
+                    linked_token_manager_id
+                    previous_enrollment_id
+                    copied_from_enrollment_id
+                    link]
 
     CSV.generate do |csv|
       csv << attributes
