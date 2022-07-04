@@ -172,7 +172,6 @@
       }
     }
   },
-
   "bl-enfance-berger-levrault-cnaf-dgfip": {
     "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -201,7 +200,6 @@
       }
     }
   },
-
   "bl-enfance-berger-levrault-dgfip": {
     "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -227,8 +225,6 @@
       }
     }
   },
-
-
   "bl-enfance-berger-levrault-cnaf": {
     "label": "BL Enfance, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -256,8 +252,6 @@
       }
     }
   },
-
-
   "cantine-de-france": {
     "label": "Cantines-de-France, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -309,7 +303,6 @@
       }
     }
   },
-
   "city-family-mushroom-software-CNAF-DGFIP": {
     "label": "City Family, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -356,7 +349,6 @@
       }
     }
   },
-
   "city-family-mushroom-software-dgfip": {
     "label": "City Family, Tarification services municipaux / Portail Famille, Données DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -400,7 +392,6 @@
       }
     }
   },
-
   "docaposte-fast": {
     "label": "Docaposte, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
@@ -710,7 +701,6 @@
       }
     }
   },
-
   "ccas-ArcheMC2": {
     "label": "Arche MC2, Dématérialisation de l'instruction des dossiers dans un CCAS/CIAS, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/ccas",
@@ -757,7 +747,6 @@
       }
     }
   },
-
   "ccas-arpege": {
     "label": "Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS, Données CNAF",
     "about": "https://api.gouv.fr/guides/ccas",
