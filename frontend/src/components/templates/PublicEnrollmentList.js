@@ -1,20 +1,20 @@
+import moment from 'moment';
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
-import moment from 'moment';
-import { getPublicValidatedEnrollments } from '../../services/enrollments';
-import enrollmentListStyle from './enrollmentListStyle';
+import 'react-table-6/react-table.css';
 import {
   DATA_PROVIDER_PARAMETERS,
-  DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+  HIDDEN_DATA_PROVIDER_KEYS,
 } from '../../config/data-provider-parameters';
+import { getPublicValidatedEnrollments } from '../../services/enrollments';
+import enrollmentListStyle from './enrollmentListStyle';
 
-import ScheduleIcon from '../atoms/icons/schedule';
-import ListHeader from '../molecules/ListHeader';
 import { debounce } from 'lodash';
-import TagContainer from '../atoms/TagContainer';
 import Tag from '../atoms/hyperTexts/Tag';
+import ScheduleIcon from '../atoms/icons/schedule';
+import TagContainer from '../atoms/TagContainer';
+import ListHeader from '../molecules/ListHeader';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -167,8 +167,11 @@ class PublicEnrollmentList extends React.Component {
                 </Tag>
               )}
             </NavLink>
-            {DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
-              (targetApi) => (
+            {Object.keys(DATA_PROVIDER_PARAMETERS)
+              .filter(
+                (apiLabel) => !HIDDEN_DATA_PROVIDER_KEYS.includes(apiLabel)
+              )
+              .map((targetApi) => (
                 <NavLink key={targetApi} end to={`/public/${targetApi}`}>
                   {({ isActive }) => (
                     <Tag type={isActive ? 'info' : ''}>
@@ -176,8 +179,7 @@ class PublicEnrollmentList extends React.Component {
                     </Tag>
                   )}
                 </NavLink>
-              )
-            )}
+              ))}
           </TagContainer>
         </ListHeader>
         <div className="table-container">

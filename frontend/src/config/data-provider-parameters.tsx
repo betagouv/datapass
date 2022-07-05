@@ -1,59 +1,59 @@
 import React from 'react';
-import ApiParticulier from '../pages/ApiParticulier';
-import FranceConnect from '../pages/FranceConnect';
-import ApiEntreprise from '../pages/ApiEntreprise';
-import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
-import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
-import ApiImpotParticulierFcSandbox from '../pages/DgfipPages/ApiImpotParticulierFcSandbox';
-import ApiImpotParticulierFcProduction from '../pages/DgfipPages/ApiImpotParticulierFcProduction';
-import ApiR2PSandbox from '../pages/DgfipPages/ApiR2PSandbox';
-import ApiR2PProduction from '../pages/DgfipPages/ApiR2PProduction';
-import ApiHermesSandbox from '../pages/DgfipPages/ApiHermesSandbox';
-import ApiHermesProduction from '../pages/DgfipPages/ApiHermesProduction';
-import ApiEContactsSandbox from '../pages/DgfipPages/ApiEContactsSandbox';
-import ApiEContactsProduction from '../pages/DgfipPages/ApiEContactsProduction';
-import ApiOpaleSandbox from '../pages/DgfipPages/ApiOpaleSandbox';
-import ApiOpaleProduction from '../pages/DgfipPages/ApiOpaleProduction';
-import ApiMireSandbox from '../pages/DgfipPages/ApiMireSandbox';
-import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
-import ApiOcfiSandbox from '../pages/DgfipPages/ApiOcfiSandbox';
-import ApiOcfiProduction from '../pages/DgfipPages/ApiOcfiProduction';
-import ApiEProSandbox from '../pages/DgfipPages/ApiEProSandbox';
-import ApiEProProduction from '../pages/DgfipPages/ApiEProProduction';
-import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
-import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
-import ApiCprProSandbox from '../pages/DgfipPages/ApiCprProSandbox';
-import ApiCprProProduction from '../pages/DgfipPages/ApiCprProProduction';
-import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
-import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
-import ApiFicobaSandbox from '../pages/DgfipPages/ApiFicobaSandbox';
-import ApiFicobaProduction from '../pages/DgfipPages/ApiFicobaProduction';
-import ApiDroitsCnam from '../pages/ApiDroitsCnam';
-import LeTaxi from '../pages/LeTaxi';
-import CartoBio from '../pages/CartoBio';
-import AidantsConnect from '../pages/AidantsConnect';
-import ApiServiceNational from '../pages/ApiServiceNational';
-import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
-import HubeePortail from '../pages/HubeePortail';
-import HubeePortailDila from '../pages/HubeePortailDila';
-import ApiProSanteConnect from '../pages/ApiProSanteConnect';
-import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
-import ApiIndemnitesJournalieresCnam from '../pages/ApiIndemnitesJournalieresCnam';
-import ApiSystemeImmatriculationVehicules from '../pages/ApiSystemeImmatriculationVehicules';
-import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
-import ApiHistovec from '../pages/ApiHistovec';
-import ApiPrestationsSociales from '../pages/ApiPrestationsSociales';
-import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
-import ApiEnsuDocumentsSandbox from '../pages/DgfipPages/ApiEnsuDocumentsSandbox';
-import ApiEnsuDocumentsProduction from '../pages/DgfipPages/ApiEnsuDocumentsProduction';
-import ApiIngres from '../pages/ApiIngres';
-import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
-import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
-import ApiCaptchetat from '../pages/ApiCaptchetat';
-import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
-import ApiIndemnisationPoleEmploi from '../pages/ApiIndemnisationPoleEmploi';
 import AgentConnectFi from '../pages/AgentConnectFi';
 import AgentConnectFs from '../pages/AgentConnectFs';
+import AidantsConnect from '../pages/AidantsConnect';
+import ApiCaptchetat from '../pages/ApiCaptchetat';
+import ApiDroitsCnam from '../pages/ApiDroitsCnam';
+import ApiEntreprise from '../pages/ApiEntreprise';
+import ApiHistovec from '../pages/ApiHistovec';
+import ApiIndemnisationPoleEmploi from '../pages/ApiIndemnisationPoleEmploi';
+import ApiIndemnitesJournalieresCnam from '../pages/ApiIndemnitesJournalieresCnam';
+import ApiIngres from '../pages/ApiIngres';
+import ApiParticulier from '../pages/ApiParticulier';
+import ApiPrestationsSociales from '../pages/ApiPrestationsSociales';
+import ApiPrestationsSocialesFc from '../pages/ApiPrestationsSocialesFc';
+import ApiProSanteConnect from '../pages/ApiProSanteConnect';
+import ApiServiceNational from '../pages/ApiServiceNational';
+import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
+import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
+import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
+import ApiSystemeImmatriculationVehicules from '../pages/ApiSystemeImmatriculationVehicules';
+import CartoBio from '../pages/CartoBio';
+import ApiCprProProduction from '../pages/DgfipPages/ApiCprProProduction';
+import ApiCprProSandbox from '../pages/DgfipPages/ApiCprProSandbox';
+import ApiEContactsProduction from '../pages/DgfipPages/ApiEContactsProduction';
+import ApiEContactsSandbox from '../pages/DgfipPages/ApiEContactsSandbox';
+import ApiEnsuDocumentsProduction from '../pages/DgfipPages/ApiEnsuDocumentsProduction';
+import ApiEnsuDocumentsSandbox from '../pages/DgfipPages/ApiEnsuDocumentsSandbox';
+import ApiEProProduction from '../pages/DgfipPages/ApiEProProduction';
+import ApiEProSandbox from '../pages/DgfipPages/ApiEProSandbox';
+import ApiFicobaProduction from '../pages/DgfipPages/ApiFicobaProduction';
+import ApiFicobaSandbox from '../pages/DgfipPages/ApiFicobaSandbox';
+import ApiHermesProduction from '../pages/DgfipPages/ApiHermesProduction';
+import ApiHermesSandbox from '../pages/DgfipPages/ApiHermesSandbox';
+import ApiImpotParticulierFcProduction from '../pages/DgfipPages/ApiImpotParticulierFcProduction';
+import ApiImpotParticulierFcSandbox from '../pages/DgfipPages/ApiImpotParticulierFcSandbox';
+import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
+import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
+import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
+import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
+import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
+import ApiMireSandbox from '../pages/DgfipPages/ApiMireSandbox';
+import ApiOcfiProduction from '../pages/DgfipPages/ApiOcfiProduction';
+import ApiOcfiSandbox from '../pages/DgfipPages/ApiOcfiSandbox';
+import ApiOpaleProduction from '../pages/DgfipPages/ApiOpaleProduction';
+import ApiOpaleSandbox from '../pages/DgfipPages/ApiOpaleSandbox';
+import ApiR2PProduction from '../pages/DgfipPages/ApiR2PProduction';
+import ApiR2PSandbox from '../pages/DgfipPages/ApiR2PSandbox';
+import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
+import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
+import FranceConnect from '../pages/FranceConnect';
+import HubeePortail from '../pages/HubeePortail';
+import HubeePortailDila from '../pages/HubeePortailDila';
+import LeTaxi from '../pages/LeTaxi';
+import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
+import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
+import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
 
 type DataProviderParameter = {
   label: string;
@@ -396,24 +396,23 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
     },
   };
 
-export const DATA_PROVIDER_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
-  'franceconnect',
-  'api_entreprise',
-  'api_particulier',
-  'cartobio',
-  'api_impot_particulier_sandbox',
-  'api_impot_particulier_production',
-  'api_r2p_sandbox',
-  'api_r2p_production',
-  'api_impot_particulier_fc_sandbox',
-  'api_impot_particulier_fc_production',
-  'le_taxi',
-  'api_droits_cnam',
-  'api_ficoba_sandbox',
-  'api_ficoba_production',
-  'aidants_connect',
-  'hubee_portail',
-  'hubee_portail_dila',
-  'api_pro_sante_connect',
-  'api_tiers_de_prestation',
+export const HIDDEN_DATA_PROVIDER_KEYS = [
+  'api_hermes_sandbox',
+  'api_hermes_production',
+  'api_e_contacts_sandbox',
+  'api_e_contacts_production',
+  'api_opale_sandbox',
+  'api_opale_production',
+  'api_mire_sandbox',
+  'api_mire_production',
+  'api_ocfi_sandbox',
+  'api_ocfi_production',
+  'api_e_pro_sandbox',
+  'api_e_pro_production',
+  'api_robf_sandbox',
+  'api_robf_production',
+  'api_cpr_pro_sandbox',
+  'api_cpr_pro_production',
+  'api_infinoe_sandbox',
+  'api_infinoe_production',
 ];
