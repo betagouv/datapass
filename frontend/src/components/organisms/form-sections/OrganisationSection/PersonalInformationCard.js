@@ -15,7 +15,7 @@ export const PersonalInformationCard = () => {
     enrollment: { team_members },
   } = useContext(FormContext);
 
-  const { user, isLoading } = useAuth();
+  const { isLoading } = useAuth();
 
   const [personalInformation, setPersonalInformation] = useState({});
   const [showDisconnectionPrompt, setShowDisconnectionPrompt] = useState(false);
