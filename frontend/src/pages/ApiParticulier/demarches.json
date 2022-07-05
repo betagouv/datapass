@@ -411,12 +411,12 @@
       }
     }
   },
-  "entr'ouvert-publik": {
+  "entrouvert-publik": {
     "label": "Publik Famille, Tarification services municipaux / Portail Famille, Données CNAF/DGFIP",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
       "intitule": "Calcul du tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour les enfants ou les adultes inscrits",
-      "description": "Calculer le tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour la facturation des familles qui effectuent leurs démarches en ligne via la plateforme de Gestion de la relation usager Publik de la collectivité, éditée par la société Entrouvert",
+      "description": "Calculer le tarif des activités péri-extrascolaires, petite enfance, socio-culturelles et sportives pour la facturation des familles qui effectuent leurs démarches en ligne via la plateforme de Gestion de la relation usager Publik de la collectivité, éditée par la société Entr'ouvert",
       "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
       "data_retention_period": 20,
       "technical_team_type": "software_company",
