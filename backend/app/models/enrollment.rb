@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require "csv"
 
 class Enrollment < ActiveRecord::Base
+  extend DatapassAdministratorNotifier
+
   self.inheritance_column = "target_api"
 
   # enable Single Table Inheritance with target_api as discriminatory field
@@ -46,11 +50,11 @@ class Enrollment < ActiveRecord::Base
     end
 
     event :submit do
-      transition from: [:draft, :changes_requested], to: :submitted
+      transition from: %i[draft changes_requested], to: :submitted
     end
 
     event :refuse do
-      transition from: [:changes_requested, :submitted], to: :refused
+      transition from: %i[changes_requested submitted], to: :refused
     end
 
     event :revoke do
@@ -75,6 +79,12 @@ class Enrollment < ActiveRecord::Base
         user_id: transition.args[0][:user_id],
         comment: transition.args[0][:comment]
       )
+    end
+
+    before_transition from: %i[draft changes_requested], to: :submitted do |enrollment|
+      if enrollment.technical_team_type == "software_company" && !enrollment.technical_team_value.match?(/^\d{14}$/)
+        Enrollment.notify_administrators_for_unknown_software_enrollment
+      end
     end
 
     before_transition from: :submitted, to: :validated do |enrollment|
@@ -112,6 +122,7 @@ class Enrollment < ActiveRecord::Base
     unless DataProvidersConfiguration.instance.exists?(target_api)
       raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: API cible invalide."
     end
+
     # Pure string conditions in a where query is dangerous!
     # see https://guides.rubyonrails.org/active_record_querying.html#pure-string-conditions
     # As long as the injected parameters is verified against a whitelist, we consider this safe.
@@ -233,10 +244,8 @@ class Enrollment < ActiveRecord::Base
       .map(&:name).each do |collection|
       res[collection.to_s] = {}
 
-      send(collection).sort_by { |item| item.id }.each_with_index do |item, i|
-        unless item.previous_changes.empty?
-          res[collection.to_s][i.to_s] = diff(item.previous_changes)
-        end
+      send(collection).sort_by(&:id).each_with_index do |item, i|
+        res[collection.to_s][i.to_s] = diff(item.previous_changes) unless item.previous_changes.empty?
       end
 
       if res[collection.to_s].empty?
@@ -268,15 +277,15 @@ class Enrollment < ActiveRecord::Base
   def diff(changes)
     res = {}
 
-    changes.keys.each do |key|
-      next if key.in? ["updated_at", "created_at"]
+    changes.each_key do |key|
+      next if key.in? %w[updated_at created_at]
 
       previous_value = changes[key][0]
       new_value = changes[key][1]
 
       if previous_value.is_a? Hash
         res[key] = {}
-        new_value.keys.each do |sub_key|
+        new_value.each_key do |sub_key|
           if previous_value[sub_key].nil?
             res[key][sub_key] = [new_value[sub_key]]
           elsif previous_value[sub_key] != new_value[sub_key]
@@ -335,10 +344,19 @@ class Enrollment < ActiveRecord::Base
   end
 
   def update_validation
-    errors.add(:intitule, :invalid, message: "Vous devez renseigner le nom du projet avant de continuer. Aucun changement n’a été sauvegardé.") unless intitule.present?
+    unless intitule.present?
+      errors.add(:intitule, :invalid,
+        message: "Vous devez renseigner le nom du projet avant de continuer. Aucun changement n’a été sauvegardé.")
+    end
     # the following 2 errors should never occur #defensiveprogramming
-    errors.add(:target_api, :invalid, message: "Une erreur inattendue est survenue: pas d’API cible. Aucun changement n’a été sauvegardé.") unless target_api.present?
-    errors.add(:organization_id, :invalid, message: "Une erreur inattendue est survenue: pas d’organisation. Aucun changement n’a été sauvegardé.") unless organization_id.present?
+    unless target_api.present?
+      errors.add(:target_api, :invalid,
+        message: "Une erreur inattendue est survenue: pas d’API cible. Aucun changement n’a été sauvegardé.")
+    end
+    unless organization_id.present?
+      errors.add(:organization_id, :invalid,
+        message: "Une erreur inattendue est survenue: pas d’organisation. Aucun changement n’a été sauvegardé.")
+    end
   end
 
   def team_members_validation(type, label, validate_full_profile = true)
@@ -350,13 +368,28 @@ class Enrollment < ActiveRecord::Base
       errors.add(:team_members, :invalid, message: "Vous devez renseigner un contact #{label} avant de continuer")
     end
     team_members.where(type: type).each do |team_member|
-      errors.add(:team_members, :invalid, message: "Vous devez renseigner un email valide pour le #{label} avant de continuer") unless email_regex.match?(team_member.email)
-      errors.add(:team_members, :invalid, message: "Vous devez renseigner un numéro de téléphone valide pour le #{label} avant de continuer") unless phone_number_regex.match?(team_member.phone_number)
+      unless email_regex.match?(team_member.email)
+        errors.add(:team_members, :invalid,
+          message: "Vous devez renseigner un email valide pour le #{label} avant de continuer")
+      end
+      unless phone_number_regex.match?(team_member.phone_number)
+        errors.add(:team_members, :invalid,
+          message: "Vous devez renseigner un numéro de téléphone valide pour le #{label} avant de continuer")
+      end
 
-      if validate_full_profile
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un intitulé de poste valide pour le #{label} avant de continuer") unless team_member.job.present?
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un nom valide pour le #{label} avant de continuer") unless team_member.given_name.present?
-        errors.add(:team_members, :invalid, message: "Vous devez renseigner un prénom valide pour le #{label} avant de continuer") unless team_member.family_name.present?
+      next unless validate_full_profile
+
+      unless team_member.job.present?
+        errors.add(:team_members, :invalid,
+          message: "Vous devez renseigner un intitulé de poste valide pour le #{label} avant de continuer")
+      end
+      unless team_member.given_name.present?
+        errors.add(:team_members, :invalid,
+          message: "Vous devez renseigner un nom valide pour le #{label} avant de continuer")
+      end
+      unless team_member.family_name.present?
+        errors.add(:team_members, :invalid,
+          message: "Vous devez renseigner un prénom valide pour le #{label} avant de continuer")
       end
     end
   end
@@ -366,34 +399,56 @@ class Enrollment < ActiveRecord::Base
   end
 
   def rgpd_validation
-    errors.add(:data_retention_period, :invalid, message: "Vous devez renseigner la conservation des données avant de continuer") unless data_retention_period.present?
-    errors.add(:data_recipients, :invalid, message: "Vous devez renseigner les destinataires des données avant de continuer") unless data_recipients.present?
+    unless data_retention_period.present?
+      errors.add(:data_retention_period, :invalid,
+        message: "Vous devez renseigner la conservation des données avant de continuer")
+    end
+    unless data_recipients.present?
+      errors.add(:data_recipients, :invalid,
+        message: "Vous devez renseigner les destinataires des données avant de continuer")
+    end
     team_members_validation("delegue_protection_donnees", EnrollmentsController::DELEGUE_PROTECTION_DONNEES_LABEL)
     team_members_validation("responsable_traitement", EnrollmentsController::RESPONSABLE_TRAITEMENT_LABEL)
   end
 
   def cadre_juridique_validation
-    errors.add(:fondement_juridique_title, :invalid, message: "Vous devez renseigner la nature du texte vous autorisant à traiter les données avant de continuer") unless fondement_juridique_title.present?
-    errors.add(:fondement_juridique_url, :invalid, message: "Vous devez joindre l’URL ou le document du texte relatif au traitement avant de continuer") unless fondement_juridique_url.present? || documents.where(type: "Document::LegalBasis").present?
+    unless fondement_juridique_title.present?
+      errors.add(:fondement_juridique_title, :invalid,
+        message: "Vous devez renseigner la nature du texte vous autorisant à traiter les données avant de continuer")
+    end
+    unless fondement_juridique_url.present? || documents.where(type: "Document::LegalBasis").present?
+      errors.add(:fondement_juridique_url, :invalid,
+        message: "Vous devez joindre l’URL ou le document du texte relatif au traitement avant de continuer")
+    end
   end
 
   def scopes_validation
-    errors.add(:scopes, :invalid, message: "Vous devez cocher au moins un périmètre de données avant de continuer") unless scopes.any? { |_, v| v }
+    unless scopes.any? do |_, v|
+             v
+           end
+      errors.add(:scopes, :invalid,
+        message: "Vous devez cocher au moins un périmètre de données avant de continuer")
+    end
   end
 
   def previous_enrollment_id_validation
-    errors.add(:previous_enrollment_id, :invalid, message: "Vous devez associer cette demande d’habilitation à une habilitation Franceconnect validée") unless previous_enrollment_id.present?
+    unless previous_enrollment_id.present?
+      errors.add(:previous_enrollment_id, :invalid,
+        message: "Vous devez associer cette demande d’habilitation à une habilitation Franceconnect validée")
+    end
   end
 
   def technical_team_validation
     unless technical_team_type.present?
-      errors.add(:technical_team_type, :invalid, message: "Vous devez préciser qui va implémenter l’API avant de continuer")
+      errors.add(:technical_team_type, :invalid,
+        message: "Vous devez préciser qui va implémenter l’API avant de continuer")
     end
     if technical_team_type == "software_company" && !technical_team_value.present?
       errors.add(:technical_team_value, :invalid, message: "Vous devez préciser le nom de l’éditeur avant de continuer")
     end
     if technical_team_type == "other" && !technical_team_value.present?
-      errors.add(:technical_team_value, :invalid, message: "Vous devez préciser qui va implémenter l’API avant de continuer")
+      errors.add(:technical_team_value, :invalid,
+        message: "Vous devez préciser qui va implémenter l’API avant de continuer")
     end
   end
 
@@ -401,9 +456,21 @@ class Enrollment < ActiveRecord::Base
     rgpd_validation
     cadre_juridique_validation
 
-    errors.add(:description, :invalid, message: "Vous devez renseigner la description de la démarche avant de continuer") unless description.present?
-    errors.add(:siret, :invalid, message: "Vous devez renseigner un SIRET d’organisation valide avant de continuer") unless nom_raison_sociale
-    errors.add(:cgu_approved, :invalid, message: "Vous devez valider les modalités d’utilisation avant de continuer") unless cgu_approved?
-    errors.add(:dpo_is_informed, :invalid, message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer") unless dpo_is_informed?
+    unless description.present?
+      errors.add(:description, :invalid,
+        message: "Vous devez renseigner la description de la démarche avant de continuer")
+    end
+    unless nom_raison_sociale
+      errors.add(:siret, :invalid,
+        message: "Vous devez renseigner un SIRET d’organisation valide avant de continuer")
+    end
+    unless cgu_approved?
+      errors.add(:cgu_approved, :invalid,
+        message: "Vous devez valider les modalités d’utilisation avant de continuer")
+    end
+    unless dpo_is_informed?
+      errors.add(:dpo_is_informed, :invalid,
+        message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer")
+    end
   end
 end
