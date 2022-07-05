@@ -98,7 +98,7 @@ export const Stats = () => {
     }
 
     fetchStats();
-  }, [targetApi]);
+  }, [targetApi, dataProviderKeyList]);
 
   if (!stats) {
     return (
