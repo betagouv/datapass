@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import {
   Bar,
@@ -17,16 +17,15 @@ import {
 } from 'recharts';
 import {
   DATA_PROVIDER_PARAMETERS,
-  HIDDEN_DATA_PROVIDER_LABELS,
+  HIDDEN_DATA_PROVIDER_KEYS,
 } from '../../config/data-provider-parameters';
 import {
   EnrollmentStatus,
   USER_STATUS_LABELS,
 } from '../../config/status-parameters';
-import { getAPIStats } from '../../services/stats';
-import './Stats.css';
 
 import { stackLowUseAndUnpublishedApi } from '../../lib';
+import { getAPIStats } from '../../services/stats';
 import Helper from '../atoms/Helper';
 import Link from '../atoms/hyperTexts/Link';
 import Tag from '../atoms/hyperTexts/Tag';
@@ -34,6 +33,7 @@ import Loader from '../atoms/Loader';
 import TagContainer from '../atoms/TagContainer';
 import { Card, CardContainer } from '../molecules/Card';
 import ListHeader from '../molecules/ListHeader';
+import './Stats.css';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -74,8 +74,13 @@ export const Stats = () => {
   const [stats, setStats] = useState(null);
   const { targetApi } = useParams();
 
-  const dataProviderList = Object.keys(DATA_PROVIDER_PARAMETERS).filter(
-    (apiLabel) => !HIDDEN_DATA_PROVIDER_LABELS.includes(apiLabel)
+  const dataProviderKeyList = useMemo(
+    () =>
+      Object.keys(DATA_PROVIDER_PARAMETERS).filter(
+        (dataProviderKey) =>
+          !HIDDEN_DATA_PROVIDER_KEYS.includes(dataProviderKey)
+      ),
+    []
   );
 
   useEffect(() => {
@@ -85,7 +90,7 @@ export const Stats = () => {
       setStats({
         ...result.data,
         enrollment_by_target_api: stackLowUseAndUnpublishedApi(
-          HIDDEN_DATA_PROVIDER_LABELS,
+          dataProviderKeyList,
           result.data.enrollment_by_target_api,
           10
         ),
@@ -112,7 +117,7 @@ export const Stats = () => {
               <Tag type={isActive ? 'info' : ''}>Toutes les APIs</Tag>
             )}
           </NavLink>
-          {dataProviderList.map((targetApi) => (
+          {dataProviderKeyList.map((targetApi) => (
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
               {({ isActive }) => (
                 <Tag type={isActive ? 'info' : ''}>
