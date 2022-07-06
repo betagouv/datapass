@@ -65,8 +65,7 @@ const availableScopes = [
   },
   {
     value: 'associations',
-    label:
-      'Données du RNA d’une association - Ministère de l’Intérieur',
+    label: 'Données du RNA d’une association - Ministère de l’Intérieur',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/rna',
   },
