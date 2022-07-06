@@ -65,8 +65,7 @@ const availableScopes = [
   },
   {
     value: 'associations',
-    label:
-      'Informations déclaratives d’une association - Ministère de l’Intérieur',
+    label: 'Données du RNA d’une association - Ministère de l’Intérieur',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/rna',
   },
@@ -174,7 +173,7 @@ const availableScopes = [
   },
   {
     value: 'certificat_agence_bio',
-    label: 'Certification en BIO',
+    label: 'Certification en BIO - Agence BIO',
     groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/agence_bio/certifications_bio',
   },
