@@ -27,7 +27,7 @@ export function getErrorMessages(error) {
     'Merci de réessayer ultérieurement. ' +
     'Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.';
 
-  if (!isEmpty(error.response)) {
+  if (!isEmpty(error.response) && error.message !== 'Network Error') {
     return [
       `Une erreur est survenue. Le code de l’erreur est ${error.response.status} (${error.response.statusText}). ${errorMessageEnd}`,
     ];
