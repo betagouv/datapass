@@ -10,6 +10,18 @@ require "rspec/rails"
 require "sidekiq/testing"
 require "spec_helper"
 
+if Rails::VERSION::MAJOR >= 7
+  require 'rspec/rails/version'
+
+  RSpec::Core::ExampleGroup.module_eval do
+    include ActiveSupport::Testing::TaggedLogging
+
+    def name
+      'foobar'
+    end
+  end
+end
+
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
 # Add additional requires below this line. Rails is not loaded until this point!
