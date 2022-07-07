@@ -3,8 +3,6 @@
 require "csv"
 
 class Enrollment < ActiveRecord::Base
-  extend DatapassAdministratorNotifier
-
   self.inheritance_column = "target_api"
 
   # enable Single Table Inheritance with target_api as discriminatory field
@@ -81,12 +79,6 @@ class Enrollment < ActiveRecord::Base
       )
     end
 
-    before_transition from: %i[draft changes_requested], to: :submitted do |enrollment|
-      if enrollment.technical_team_type == "software_company" && !enrollment.technical_team_value.match?(/^\d{14}$/)
-        Enrollment.notify_administrators_for_unknown_software_enrollment
-      end
-    end
-
     before_transition from: :submitted, to: :validated do |enrollment|
       bridge_disable = ENV.fetch("DISABLE_#{enrollment.target_api.upcase}_BRIDGE", "") == "True"
 
@@ -95,6 +87,15 @@ class Enrollment < ActiveRecord::Base
           enrollment
         )
       end
+    end
+  end
+
+  def notify_datapass_administrators
+    if technical_team_type == "software_company" && !technical_team_value.match?(/^\d{14}$/)
+      EnrollmentMailer.with(
+        target_api: target_api,
+        enrollment_id: id
+      ).notification_email_unknown_software.deliver_later
     end
   end
 

@@ -190,7 +190,9 @@ class EnrollmentsController < ApplicationController
         comment: params[:comment],
         current_user: current_user
       )
-
+      if event == "submit"
+        @enrollment.notify_datapass_administrators
+      end
       render json: @enrollment
     else
       render status: :unprocessable_entity, json: @enrollment.errors
