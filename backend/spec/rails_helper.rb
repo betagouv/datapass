@@ -11,13 +11,13 @@ require "sidekiq/testing"
 require "spec_helper"
 
 if Rails::VERSION::MAJOR >= 7
-  require 'rspec/rails/version'
+  require "rspec/rails/version"
 
   RSpec::Core::ExampleGroup.module_eval do
     include ActiveSupport::Testing::TaggedLogging
 
     def name
-      'foobar'
+      "foobar"
     end
   end
 end
