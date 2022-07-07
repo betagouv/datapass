@@ -184,7 +184,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           context "when technical_team_value has not a valid siret number" do
             let(:enrollment_technical_team_type) { :technical_team_unknown_software }
 
-            describe 'non-regression test' do
+            describe "non-regression test" do
               it "enqueues an EnrollmentMailer#notification_email_unknown_software which does not raise an error" do
                 Sidekiq::Testing.inline!
 
