@@ -35,3 +35,4 @@ rspec_results.html
 .DS_Store
 
 .env.local
+.env.test.local
