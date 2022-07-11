@@ -58,7 +58,6 @@ Par exemple pour API Entreprise, si on modifie seulement le sujet de
 ```yaml
 api_entreprise:
   label: API Entreprise
-  support_email: support@entreprise.api.gouv.fr
   mailer:
     submit: *shared_submit_mailer
     validate: *shared_validate_mailer

@@ -17,7 +17,6 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         allow_any_instance_of(described_class).to receive(:target_api_data).and_return(
           {
             "label" => "DINUM rockstars",
-            "support_email" => "rockstars@beta.gouv.fr",
             "mailer" => {
               "notify" => mailer_template_payload,
               "refuse" => mailer_template_payload,
