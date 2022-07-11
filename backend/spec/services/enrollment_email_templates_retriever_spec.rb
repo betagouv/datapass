@@ -50,7 +50,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
 
         it "has a valid sender_email, which is the target api support email" do
-          expect(subject.sender_email).to eq("rockstars@beta.gouv.fr")
+          expect(subject.sender_email).to eq("contact@api.gouv.fr")
         end
 
         it "has a valid user_email, which is the enrollment's user email" do
