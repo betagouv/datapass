@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EnrollmentMailer < ActionMailer::Base
   layout false
 
