@@ -434,6 +434,7 @@
         "dgfip_nombre_personnes_a_charge": true,
         "dgfip_revenu_fiscal_reference": true,
         "dgfip_annee_revenus": true,
+        "dgfip_situation_familiale": true,
         "cnaf_quotient_familial": true,
         "cnaf_allocataires": true,
         "cnaf_enfants": true
