@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails"
@@ -46,8 +48,22 @@ module DataPass
     config.action_mailer.raise_delivery_errors = false
     config.action_mailer.default charset: "utf-8"
 
-    config.action_mailer.delivery_method = :mailjet
-    if ENV["DO_NOT_SEND_MAIL"].present?
+    config.action_mailer.perform_deliveries = true
+
+    # remove scheme from url
+    uri = URI(ENV["BACK_HOST"])
+    config.action_mailer.default_url_options = {host: uri.hostname + uri.path}
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "smtp-relay.sendinblue.com",
+      port: 587,
+      user_name: ENV["SENDINBLUE_USERNAME"], # See: https://account.sendinblue.com/advanced/api
+      password: ENV["SENDINBLUE_SMTP_KEY"], # See: https://account.sendinblue.com/advanced/api
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
+
+    if ENV["DO_NOT_SEND_MAIL"] == "True"
       config.action_mailer.perform_deliveries = false
       config.action_mailer.delivery_method = :test
     end
@@ -58,7 +74,7 @@ module DataPass
 
     config.middleware.insert_before Rack::Head, ValidateRequestParams
 
-    config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }}
+    config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
   end
 end
 

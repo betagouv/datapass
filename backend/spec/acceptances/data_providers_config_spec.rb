@@ -14,14 +14,11 @@ RSpec.describe "Providers config", type: :acceptance do
       next if provider == "shared"
 
       %w[
-        support_email
         label
         mailer
       ].each do |key|
         expect(config[key]).to be_present, "Provider '#{provider}': missing key '#{key}'"
       end
-
-      expect(config["support_email"]).to match(URI::MailTo::EMAIL_REGEXP), "Provider '#{provider}' has an invalid 'support_email' email format"
 
       if config["reply_to"]
         expect(config["reply_to"]).to match(URI::MailTo::EMAIL_REGEXP), "Provider '#{provider}' has an invalid 'reply_to' email format"

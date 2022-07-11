@@ -39,8 +39,7 @@ RSpec.describe DataProvidersConfiguration, type: :service do
 
       it "renders config" do
         is_expected.to include(
-          "label",
-          "support_email"
+          "label"
         )
       end
     end

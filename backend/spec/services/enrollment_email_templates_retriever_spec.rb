@@ -17,7 +17,6 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         allow_any_instance_of(described_class).to receive(:target_api_data).and_return(
           {
             "label" => "DINUM rockstars",
-            "support_email" => "rockstars@beta.gouv.fr",
             "mailer" => {
               "notify" => mailer_template_payload,
               "refuse" => mailer_template_payload,
@@ -51,7 +50,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
 
         it "has a valid sender_email, which is the target api support email" do
-          expect(subject.sender_email).to eq("rockstars@beta.gouv.fr")
+          expect(subject.sender_email).to eq("contact@api.gouv.fr")
         end
 
         it "has a valid user_email, which is the enrollment's user email" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WebhookMailer < ActionMailer::Base
   layout false
 

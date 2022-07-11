@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EnrollmentMailer < ActionMailer::Base
   layout false
 
@@ -65,7 +67,7 @@ class EnrollmentMailer < ActionMailer::Base
     headers = {
       to: params[:to],
       subject: subject,
-      from: data_provider_config["support_email"]
+      from: "contact@api.gouv.fr"
     }
 
     if data_provider_config["reply_to"]
