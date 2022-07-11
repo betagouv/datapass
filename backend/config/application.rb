@@ -63,7 +63,7 @@ module DataPass
       enable_starttls_auto: true
     }
 
-    if ENV["DO_NOT_SEND_MAIL"].present?
+    if ENV["DO_NOT_SEND_MAIL"] == "True"
       config.action_mailer.perform_deliveries = false
       config.action_mailer.delivery_method = :test
     end
