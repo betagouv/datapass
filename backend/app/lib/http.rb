@@ -20,9 +20,8 @@ class Http
     http = HTTP.timeout(10).use(logging: {logger: Rails.logger})
       .headers(accept: "application/json")
 
-    http_with_auth = unless api_key.empty?
-      http.headers(auth_header => "#{auth_method}#{api_key}")
-    end
+    http_with_auth = api_key.empty? ?
+      http : http.headers(auth_header => "#{auth_method}#{api_key}")
 
     response = if body.empty?
       http_with_auth

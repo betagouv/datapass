@@ -18,12 +18,11 @@ class Debounce < ApplicationService
       return true
     end
 
-    http = HTTP.timeout(10).use(logging: {logger: Rails.logger})
-      .headers(accept: "application/json")
+    response = Http.instance.get({
+      url: "#{debounce_host}/v1/?email=#{@email}&api=#{debounce_api_key}",
+      tag: "API Debounce"
+    })
 
-    response = http.get(
-      "#{debounce_host}/v1/?email=#{@email}&api=#{debounce_api_key}"
-    )
     send_transactional = response.parse["debounce"]["send_transactional"]
 
     send_transactional == "1"
