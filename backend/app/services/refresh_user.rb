@@ -4,11 +4,11 @@ class RefreshUser < ApplicationService
   end
 
   def call
-    response = Http.instance.get(
-      "#{ENV.fetch("OAUTH_HOST")}/oauth/userinfo",
-      @access_token,
-      "Comptes DataPass"
-    )
+    response = Http.instance.get({
+      url: "#{ENV.fetch("OAUTH_HOST")}/oauth/userinfo",
+      api_key: @access_token,
+      tag: "Comptes DataPass"
+    })
 
     User.reconcile(response.parse)
   end

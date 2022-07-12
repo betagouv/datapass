@@ -12,12 +12,12 @@ class SendinblueWebhooksController < ApplicationController
     # 2. get message metadata
     body = JSON.parse request.body.read
     message_id = body["message-id"]
-    get_transactional_email_reponse = Http.instance.get(
-      "https://api.sendinblue.com/v3/smtp/emails?messageId=#{ERB::Util.url_encode(message_id)}",
-      sendinblue_api_key,
-      "Sendinblue API v3",
-      "api-key"
-    )
+    get_transactional_email_reponse = Http.instance.get({
+      url: "https://api.sendinblue.com/v3/smtp/emails?messageId=#{ERB::Util.url_encode(message_id)}",
+      api_key: sendinblue_api_key,
+      auth_header: "api-key",
+      tag: "Sendinblue API v3"
+    })
     transactional_email = get_transactional_email_reponse.parse
 
     # 3. exit if email was not about notifying rgpd contacts
@@ -34,12 +34,12 @@ class SendinblueWebhooksController < ApplicationController
     rgpd_role = transactional_email["transactionalEmails"][0]["subject"][/(#{EnrollmentsController::RESPONSABLE_TRAITEMENT_LABEL}|#{EnrollmentsController::DELEGUE_PROTECTION_DONNEES_LABEL})/o, 1]
 
     # 4. get email content
-    get_email_content_response = Http.instance.get(
-      "https://api.sendinblue.com/v3/smtp/emails/#{email_uuid}",
-      sendinblue_api_key,
-      "Sendinblue API v3",
-      "api-key"
-    )
+    get_email_content_response = Http.instance.get({
+      url: "https://api.sendinblue.com/v3/smtp/emails/#{email_uuid}",
+      auth_header: "api-key",
+      api_key: sendinblue_api_key,
+      tag: "Sendinblue API v3"
+    })
     email_content = get_email_content_response.parse
 
     environment = email_content["body"][/https:\/\/datapass(-[a-z]+)?.api.gouv.fr\/[a-z-]+\/([0-9]+)/, 1]

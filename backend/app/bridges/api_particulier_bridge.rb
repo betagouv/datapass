@@ -17,19 +17,19 @@ class ApiParticulierBridge < ApplicationBridge
   private
 
   def create_enrollment_in_token_manager(id, name, responsable_technique_email, demandeur_email, scopes)
-    response = Http.instance.post(
-      "#{ENV.fetch("API_PARTICULIER_HOST")}/api/applications",
-      {
+    response = Http.instance.post({
+      url: "#{ENV.fetch("API_PARTICULIER_HOST")}/api/applications",
+      body: {
         name: name,
         technical_contact_email: responsable_technique_email,
         author_email: demandeur_email,
         data_pass_id: id,
         scopes: scopes
       },
-      ENV.fetch("API_PARTICULIER_API_KEY"),
-      "API Particulier",
-      "X-Api-Key"
-    )
+      auth_header: "X-Api-Key",
+      api_key: ENV.fetch("API_PARTICULIER_API_KEY"),
+      tag: "API Particulier"
+    })
 
     response.parse["id"]
   end
