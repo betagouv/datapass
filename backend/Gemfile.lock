@@ -422,6 +422,7 @@ DEPENDENCIES
   rails-i18n
   redis
   rspec-rails
+  rubocop
   sentry-rails
   sentry-ruby
   sib-api-v3-sdk

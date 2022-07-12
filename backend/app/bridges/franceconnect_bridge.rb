@@ -14,9 +14,9 @@ class FranceconnectBridge < ApplicationBridge
   def create_enrollment_in_token_manager(id, intitule, nom_raison_sociale, email, scopes, eidas_level, copied_from_enrollment_id)
     if eidas_level == "1"
       # note that the FC team test this call with this bash script: https://gitlab.com/france-connect/FranceConnect/snippets/1828712
-      response = Http.instance.post(
-        "#{ENV.fetch("FRANCECONNECT_PARTICULIER_HOST")}/api/v2/service-provider/integration/create",
-        {
+      response = Http.instance.post({
+        url: "#{ENV.fetch("FRANCECONNECT_PARTICULIER_HOST")}/api/v2/service-provider/integration/create",
+        body: {
           name: "#{nom_raison_sociale} - #{id}",
           service_name: intitule,
           corporate_name: nom_raison_sociale,
@@ -26,9 +26,9 @@ class FranceconnectBridge < ApplicationBridge
           scopes: scopes,
           copied_from_datapass_id: copied_from_enrollment_id
         },
-        ENV.fetch("FRANCECONNECT_PARTICULIER_API_KEY"),
-        "Espace Partenaire FranceConnect"
-      )
+        api_key: ENV.fetch("FRANCECONNECT_PARTICULIER_API_KEY"),
+        tag: "Espace Partenaire FranceConnect"
+      })
 
       # The id returned here is the DataPass id. It is not a generated id from "espace partenaires".
       response.parse["_id"]

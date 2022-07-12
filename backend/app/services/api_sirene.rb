@@ -14,25 +14,24 @@ class ApiSirene < ApplicationService
   end
 
   def etablissement
-    token_response = Http.instance.post(
-      "#{insee_host}/token",
-      {grant_type: "client_credentials"},
-      Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
-      "API Insee",
-      nil,
-      "Basic",
-      "application/x-www-form-urlencoded"
-    )
+    token_response = Http.instance.post({
+      url: "#{insee_host}/token",
+      body: {grant_type: "client_credentials"},
+      api_key: Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
+      use_basic_auth_method: true,
+      use_form_content_type: true,
+      tag: "API Insee"
+    })
 
     token = token_response.parse
     access_token = token["access_token"]
 
     begin
-      response = Http.instance.get(
-        "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
-        access_token,
-        "API Insee"
-      )
+      response = Http.instance.get({
+        url: "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
+        api_key: access_token,
+        tag: "API Insee"
+      })
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
         return nil

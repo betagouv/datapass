@@ -25,6 +25,7 @@ jobs:
       INSEE_HOST: https://api.insee.fr
       INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
       INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
+      DO_NOT_VALIDATE_MAIL: "True"
     services:
       redis:
         image: redis

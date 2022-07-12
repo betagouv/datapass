@@ -17,6 +17,7 @@ env:
   INSEE_HOST: http://localhost
   INSEE_CONSUMER_KEY: fake_key
   INSEE_CONSUMER_SECRET: fake_secret
+  DO_NOT_VALIDATE_MAIL: "True"
 
 jobs:
   test:

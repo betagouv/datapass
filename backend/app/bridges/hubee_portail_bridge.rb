@@ -40,31 +40,30 @@ class HubeePortailBridge < ApplicationBridge
     client_secret = ENV.fetch("HUBEE_CLIENT_SECRET")
 
     # 1. get token
-    token_response = Http.instance.post(
-      "#{hubee_auth_url}/token",
-      {grant_type: "client_credentials", scope: "ADMIN"},
-      Base64.strict_encode64("#{client_id}:#{client_secret}"),
-      "Portail HubEE",
-      nil,
-      "Basic"
-    )
+    token_response = Http.instance.post({
+      url: "#{hubee_auth_url}/token",
+      body: {grant_type: "client_credentials", scope: "ADMIN"},
+      api_key: Base64.strict_encode64("#{client_id}:#{client_secret}"),
+      use_basic_auth_method: true,
+      tag: "Portail HubEE"
+    })
 
     token = token_response.parse
     access_token = token["access_token"]
 
     # 2.1 get organization
     begin
-      Http.instance.get(
-        "#{api_host}/referential/v1/organizations/SI-#{siret}-#{code_commune}",
-        access_token,
-        "Portail HubEE"
-      )
+      Http.instance.get({
+        url: "#{api_host}/referential/v1/organizations/SI-#{siret}-#{code_commune}",
+        api_key: access_token,
+        tag: "Portail HubEE"
+      })
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
         # 2.2 if organization does not exist, create the organization
-        Http.instance.post(
-          "#{api_host}/referential/v1/organizations",
-          {
+        Http.instance.post({
+          url: "#{api_host}/referential/v1/organizations",
+          body: {
             type: "SI",
             companyRegister: siret,
             branchCode: code_commune,
@@ -77,9 +76,9 @@ class HubeePortailBridge < ApplicationBridge
             phoneNumber: responsable_metier["phone_number"].delete(" ").delete(".").delete("-"),
             status: "Actif"
           },
-          access_token,
-          "Portail HubEE"
-        )
+          api_key: access_token,
+          tag: "Portail HubEE"
+        })
       else
         raise
       end
@@ -88,9 +87,9 @@ class HubeePortailBridge < ApplicationBridge
     # 3. create subscriptions
     subscription_ids = []
     scopes.each do |scope|
-      create_subscription_response = Http.instance.post(
-        "#{api_host}/referential/v1/subscriptions",
-        {
+      create_subscription_response = Http.instance.post({
+        url: "#{api_host}/referential/v1/subscriptions",
+        body: {
           datapassId: id,
           processCode: scope,
           subscriber: {
@@ -118,9 +117,9 @@ class HubeePortailBridge < ApplicationBridge
             mobileNumber: nil
           }
         },
-        access_token,
-        "Portail HubEE"
-      )
+        api_key: access_token,
+        tag: "Portail HubEE"
+      })
 
       subscription_ids.push create_subscription_response.parse["id"]
     end
