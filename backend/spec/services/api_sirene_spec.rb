@@ -87,4 +87,42 @@ RSpec.describe ApiSirene, type: :service do
       expect(subject).to eq(nil)
     end
   end
+
+  describe "cache management" do
+    let(:siret) { "21920023500014" }
+    let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store, expires_in: 0) }
+    let(:cache) { Rails.cache }
+
+    before do
+      allow(Rails).to receive(:cache).and_return(memory_store)
+      Rails.cache.clear
+    end
+
+    context "when service is called once" do
+      it "insee_host/token is called once" do
+        subject
+        expect(a_request(:post, "#{ENV.fetch("INSEE_HOST")}/token"))
+          .to have_been_made.once
+      end
+    end
+
+    context "when service is called twice" do
+      subject { 10.times { described_class.new(siret).call } }
+      let(:run_call_insee) { proc { described_class.new(siret).call } }
+
+      it "subject is called twice but insee_host/token is called once" do
+        run_call_insee.call
+        run_call_insee.call
+
+        expect(a_request(:post, "#{ENV.fetch("INSEE_HOST")}/token"))
+          .to have_been_made.once
+      end
+
+      it "stores access_tocken in the cache" do
+        expect(cache.exist?("insee/access_token")).to be(false)
+        subject
+        expect(cache.exist?("insee/access_token")).to be(true)
+      end
+    end
+  end
 end
