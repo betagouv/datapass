@@ -54,8 +54,6 @@ RSpec.configure do |config|
 
   config.include ApiInseePayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, ApiInseePayloadHelpers)
-  config.include SendinblueDataPayloadHelpers
-  FactoryBot::SyntaxRunner.send(:include, SendinblueDataPayloadHelpers)
   config.include DebouncePayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, DebouncePayloadHelpers)
 
