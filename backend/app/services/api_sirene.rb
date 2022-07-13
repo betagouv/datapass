@@ -14,22 +14,10 @@ class ApiSirene < ApplicationService
   end
 
   def etablissement
-    token_response = Http.instance.post({
-      url: "#{insee_host}/token",
-      body: {grant_type: "client_credentials"},
-      api_key: Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
-      use_basic_auth_method: true,
-      use_form_content_type: true,
-      tag: "API Insee"
-    })
-
-    token = token_response.parse
-    access_token = token["access_token"]
-
     begin
       response = Http.instance.get({
         url: "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
-        api_key: access_token,
+        api_key: cached_access_token,
         tag: "API Insee"
       })
     rescue ApplicationController::BadGateway => e
@@ -136,5 +124,29 @@ class ApiSirene < ApplicationService
 
   def categories_juridiques
     JSON.parse(File.read("./public/categories_juridiques_20200701.json"))
+  end
+
+  def get_token
+    token_response = Http.instance.post({
+      url: "#{insee_host}/token",
+      body: {grant_type: "client_credentials"},
+      api_key: Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
+      use_basic_auth_method: true,
+      use_form_content_type: true,
+      tag: "API Insee"
+    })
+    token_response.parse
+  end
+
+  def cached_access_token
+    cached_access_token = Rails.cache.read("insee/access_token")
+
+    if cached_access_token.nil?
+      token = get_token
+      Rails.cache.write("insee/access_token", token["access_token"], expires_in: token["expires_in"])
+      token["access_token"]
+    else
+      cached_access_token
+    end
   end
 end
