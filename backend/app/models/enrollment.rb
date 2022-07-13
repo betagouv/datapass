@@ -373,11 +373,10 @@ class Enrollment < ActiveRecord::Base
       errors.add(:team_members, :invalid, message: "Vous devez renseigner un contact #{label} avant de continuer")
     end
     team_members.where(type: type).each do |team_member|
-      unless email_regex.match?(team_member.email)
+      if !email_regex.match?(team_member.email)
         errors.add(:team_members, :invalid,
           message: "Vous devez renseigner un email valide pour le #{label} avant de continuer")
-      end
-      unless Debounce.call(team_member.email)
+      elsif !Debounce.call(team_member.email)
         errors.add(:team_members, :invalid,
           message: "Vous devez renseigner un email valide pour le #{label} avant de continuer")
       end
