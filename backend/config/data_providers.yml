@@ -26,6 +26,7 @@ franceconnect:
 api_particulier:
   label: API Particulier
   mailer: *shared_mailer
+  reply_to: contact@particulier.api.gouv.fr
 
 api_impot_particulier_sandbox:
   label: API Impôt particulier (Bac à sable)
@@ -66,6 +67,7 @@ api_droits_cnam:
 api_entreprise:
   label: API Entreprise
   api_manager_label: dashboard API Entreprise
+  reply_to: support@entreprise.api.gouv.fr
   mailer:
     <<: *shared_mailer
     create:
