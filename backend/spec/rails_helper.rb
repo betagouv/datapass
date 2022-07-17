@@ -51,6 +51,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include DeviseControllerLoginHelpers, type: :controller
+  config.include DeviseRequestLoginHelpers, type: :request
 
   config.include ApiInseePayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, ApiInseePayloadHelpers)
