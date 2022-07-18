@@ -1,11 +1,15 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { uniqueId } from 'lodash';
 import PropTypes from 'prop-types';
-import { collectionWithKeyToObject } from '../../../../lib';
-import { isEmpty } from 'lodash';
-import { getCachedOrganizationInformationPool } from '../../../../services/external';
-import RadioInput from '../../../atoms/inputs/RadioInput';
+import React, { useEffect, useState } from 'react';
+import { getCachedOrganizationInformation } from '../../../../services/external';
+import WarningIcon from '../../../atoms/icons/warning';
+import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
+import Label from '../../../atoms/inputs/Label';
+import Loader from '../../../atoms/Loader';
 import ConfirmationModal from '../../ConfirmationModal';
 
+// This function contains temporary code as auth.api.gouv.fr should soon return organisation title in /userinfo
+// All the to do should be resolved then
 const OrganizationPrompt = ({
   selectedOrganizationId,
   onSelect,
@@ -15,42 +19,7 @@ const OrganizationPrompt = ({
 }) => {
   const handleChange = ({ target: { value } }) => onSelect(parseInt(value));
 
-  const [siretToNomRaisonSociale, setSiretToNomRaisonSociale] = useState(
-    collectionWithKeyToObject(organizations.map(({ siret }) => ({ id: siret })))
-  );
-
-  useEffect(() => {
-    const fetchCachedOrganizationInformationPool = async (organizations) => {
-      try {
-        const organizationInformationPool =
-          await getCachedOrganizationInformationPool(
-            organizations.map(({ siret }) => siret)
-          );
-        const organizationInformationPoolWithKey =
-          organizationInformationPool.map(({ title, siret }) => ({
-            id: siret,
-            title,
-          }));
-        setSiretToNomRaisonSociale(
-          collectionWithKeyToObject(organizationInformationPoolWithKey)
-        );
-      } catch (e) {
-        // silently fail
-      }
-    };
-    if (!isEmpty(organizations)) {
-      fetchCachedOrganizationInformationPool(organizations);
-    }
-  }, [organizations]);
-
-  const options = useMemo(
-    () =>
-      organizations.map(({ id, siret }) => ({
-        id,
-        label: siretToNomRaisonSociale[siret]?.title || siret,
-      })),
-    [organizations, siretToNomRaisonSociale]
-  );
+  const [id] = useState(uniqueId('organization_id'));
 
   return (
     <>
@@ -60,14 +29,82 @@ const OrganizationPrompt = ({
         handleConfirm={onJoinOrganization}
         confirmLabel="Demander une habilitation pour une autre organisation"
       >
-        <RadioInput
-          options={options}
-          name="organization_id"
-          value={selectedOrganizationId}
-          onChange={handleChange}
-        />
+        {
+          // TODO use RadioInput
+        }
+        <FieldsetWrapper>
+          {organizations.map(({ id: optionId, siret }) => (
+            <OrganizationPromptInput
+              id={optionId}
+              siret={siret}
+              value={selectedOrganizationId}
+              fieldSetId={id}
+              onChange={handleChange}
+            />
+          ))}
+        </FieldsetWrapper>
       </ConfirmationModal>
     </>
+  );
+};
+
+// TODO use a separate file
+const OrganizationPromptInput = ({
+  id,
+  siret,
+  value,
+  fieldSetId,
+  onChange,
+}) => {
+  const [label, setLabel] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    const fetchCachedOrganizationInformation = async (siret) => {
+      try {
+        const { title } = await getCachedOrganizationInformation(siret);
+        setLabel(title);
+        setLoading(false);
+        setError(false);
+      } catch (e) {
+        setLoading(false);
+        setError(true);
+      }
+    };
+
+    if (!label) {
+      fetchCachedOrganizationInformation(siret);
+    }
+  }, [label, siret]);
+
+  return (
+    <div key={`${fieldSetId}-${id}`} className="fr-radio-group">
+      <input
+        type="radio"
+        name="organization_id"
+        id={`${fieldSetId}-${id}`}
+        value={id}
+        checked={value === id}
+        onChange={onChange}
+        disabled={false}
+        required={false}
+      />
+      {label ? (
+        <Label id={`${fieldSetId}-${id}`} label={label} />
+      ) : (
+        <Label
+          id={`${fieldSetId}-${id}`}
+          label={
+            <>
+              {siret}
+              {' '}
+              {loading ? <Loader small /> : ''}
+              {error ? <WarningIcon color={'orange'} /> : ''}
+            </>
+          }
+        />
+      )}
+    </div>
   );
 };
 

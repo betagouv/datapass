@@ -1,6 +1,6 @@
-import httpClient from '../lib/http-client';
-import { memoize } from 'lodash';
 import { RateLimiter } from 'limiter';
+import { memoize } from 'lodash';
+import httpClient from '../lib/http-client';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -37,14 +37,13 @@ const getOrganizationInformation = async (siret) => {
   };
 };
 
-export const getCachedOrganizationInformation = memoize(
-  getOrganizationInformation
-);
+const memoizedGetOrganizationInformation = memoize(getOrganizationInformation);
 
-export const getCachedOrganizationInformationPool = async (sirets) => {
-  const promises = sirets.map((siret) =>
-    getCachedOrganizationInformation(siret)
-  );
-
-  return await Promise.all(promises);
+export const getCachedOrganizationInformation = async (siret) => {
+  try {
+    return await memoizedGetOrganizationInformation(siret);
+  } catch (e) {
+    memoizedGetOrganizationInformation.cache.delete(siret);
+    throw e;
+  }
 };
