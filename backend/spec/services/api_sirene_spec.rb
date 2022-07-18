@@ -90,7 +90,7 @@ RSpec.describe ApiSirene, type: :service do
 
   describe "cache management" do
     let(:siret) { "21920023500014" }
-    let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store, expires_in: 0) }
+    let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store, expires_in: 514532) }
     let(:cache) { Rails.cache }
 
     before do
@@ -131,7 +131,6 @@ RSpec.describe ApiSirene, type: :service do
 
       it "stores access_token in the cache for 6 days" do
         subject
-        # API INSEE token "expires_in" => 514532 (6 days)
 
         Timecop.travel(Time.now + 3.days) do
           expect(cache.exist?("insee/access_token")).to be(true)
