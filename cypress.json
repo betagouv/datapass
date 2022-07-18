@@ -1,5 +1,0 @@
-{
-  "chromeWebSecurity": false,
-  "experimentalSessionSupport": true,
-  "defaultCommandTimeout": 10000
-}
