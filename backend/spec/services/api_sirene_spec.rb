@@ -94,8 +94,13 @@ RSpec.describe ApiSirene, type: :service do
     let(:cache) { Rails.cache }
 
     before do
+      Timecop.freeze(Time.now)
       allow(Rails).to receive(:cache).and_return(memory_store)
       Rails.cache.clear
+    end
+
+    after do
+      Timecop.return
     end
 
     context "when service is called once" do
@@ -122,6 +127,23 @@ RSpec.describe ApiSirene, type: :service do
         expect(cache.exist?("insee/access_token")).to be(false)
         subject
         expect(cache.exist?("insee/access_token")).to be(true)
+      end
+
+      it "stores access_token in the cache for 6 days" do
+        subject
+        # API INSEE token "expires_in" => 514532 (6 days)
+
+        Timecop.travel(Time.now + 3.days) do
+          expect(cache.exist?("insee/access_token")).to be(true)
+        end
+
+        Timecop.travel(Time.now + 514531) do
+          expect(cache.exist?("insee/access_token")).to be(true)
+        end
+
+        Timecop.travel(Time.now + 514532) do
+          expect(cache.exist?("insee/access_token")).to be(false)
+        end
       end
     end
   end

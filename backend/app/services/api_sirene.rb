@@ -143,7 +143,7 @@ class ApiSirene < ApplicationService
 
     if cached_access_token.nil?
       token = get_token
-      Rails.cache.write("insee/access_token", token["access_token"], expires_in: 0)
+      Rails.cache.write("insee/access_token", token["access_token"], expires_in: token["expires_in"])
       token["access_token"]
     else
       cached_access_token
