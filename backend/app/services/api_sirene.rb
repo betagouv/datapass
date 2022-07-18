@@ -141,12 +141,16 @@ class ApiSirene < ApplicationService
   def cached_access_token
     cached_access_token = Rails.cache.read("insee/access_token")
 
-    if cached_access_token.nil?
-      token = get_token
-      Rails.cache.write("insee/access_token", token["access_token"], expires_in: token["expires_in"])
-      token["access_token"]
-    else
-      cached_access_token
+    unless cached_access_token.nil?
+      return cached_access_token
     end
+
+    token = get_token
+    Rails.cache.write("insee/access_token", token["access_token"], expires_in: (token["expires_in"] - safe_renewal_interval))
+    token["access_token"]
+  end
+
+  def safe_renewal_interval
+    1.minute
   end
 end
