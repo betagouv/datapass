@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
-import { ScrollablePanel } from '../../Scrollable';
+import { isEmpty } from 'lodash';
+import { useContext } from 'react';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
-import TagContainer from '../../../atoms/TagContainer';
-import FileCopyIcon from '../../../atoms/icons/file_copy';
 import {
   STATUS_TO_BUTTON_TYPE,
   USER_STATUS_LABELS,
 } from '../../../../config/status-parameters';
-import { FormContext } from '../../../templates/Form';
-import ActivityFeed from './ActivityFeed';
-import { isEmpty } from 'lodash';
-import NotificationSubSection from './NotificationSubSection';
 import Tag from '../../../atoms/hyperTexts/Tag';
+import FileCopyIcon from '../../../atoms/icons/file_copy';
+import TagContainer from '../../../atoms/TagContainer';
+import { FormContext } from '../../../templates/Form';
+import { ScrollablePanel } from '../../Scrollable';
+import ActivityFeed from './ActivityFeed';
+import MessageFeed from './MessageFeed';
+import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
   const {
