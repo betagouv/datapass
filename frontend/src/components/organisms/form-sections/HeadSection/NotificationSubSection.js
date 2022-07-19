@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
 import { get } from 'lodash';
-import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
+import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
-import { useLocation } from 'react-router-dom';
+import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 
 export const NotificationSubSection = () => {
