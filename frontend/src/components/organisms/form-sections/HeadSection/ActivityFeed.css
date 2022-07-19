@@ -34,3 +34,32 @@
   white-space: pre-line;
   padding: 1em;
 }
+.message-feed-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5em;
+  justify-content: flex-end;
+  align-content: stretch;
+}
+
+.message-feed-container .message-head {
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 20em;
+}
+
+.message-head {
+  margin-top: 2.5em;
+  white-space: pre-line;
+  padding: 2em;
+  justify-content: space-between;
+}
+
+.message-btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.message-btn {
+  margin-top: 2.5em;
+}

@@ -151,6 +151,8 @@ class ActivityFeed extends React.Component {
 
     const { events } = this.props;
 
+    const { writeMessage } = this.state;
+
     let eventsToDisplay = chain(events)
       .sortBy('updated_at')
       .reject(
@@ -194,6 +196,26 @@ class ActivityFeed extends React.Component {
             />
           )
         )}
+        <div className="message-feed-container">
+          <div class="fr-highlight message-head">
+            <h5>Message</h5>
+            <p>
+              Si vous avez une question vous pouvez à présent laisser un message
+              aux instructeurs, nous vous répondrons dans les meilleurs délais.
+            </p>
+          </div>
+          <div className="message-btn-container">
+            <div className="message-btn">
+              <Button
+                outline
+                icon="edit"
+                onClick={() => this.setState({ writeMessage: !writeMessage })}
+              >
+                {writeMessage ? 'Rédiger un message' : 'Rédiger un message'}
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
