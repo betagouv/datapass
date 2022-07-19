@@ -1,7 +1,54 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './style.css';
 
-const Loader = ({ message = '', small = false }) => {
+const Loader = ({
+  message = '',
+  small = false,
+  enableBePatientMessage = false,
+}) => {
+  const [bePatientMessage, setBePatientMessage] = useState('');
+
+  const bePatientEffect = useCallback(
+    (message, timeInSecond) => {
+      if (enableBePatientMessage) {
+        const timer = setTimeout(
+          () => setBePatientMessage(message),
+          timeInSecond * 1000
+        );
+
+        return () => clearTimeout(timer);
+      }
+    },
+    [enableBePatientMessage]
+  );
+
+  useEffect(
+    () =>
+      bePatientEffect(
+        'Le traitement prend plus longtemps que prévu, merci de patienter...',
+        10
+      ),
+    [bePatientEffect]
+  );
+
+  useEffect(
+    () =>
+      bePatientEffect(
+        'Nous interrogeons des systèmes tiers ce qui peut prendre jusqu’à une minute...',
+        30
+      ),
+    [bePatientEffect]
+  );
+
+  useEffect(
+    () =>
+      bePatientEffect(
+        'Le traitement est anormalement long. Vous pouvez signaler ce problème à contact@api.gouv.fr.',
+        60
+      ),
+    [bePatientEffect]
+  );
+
   if (small) {
     return (
       <span className="loader-container small">
@@ -12,7 +59,10 @@ const Loader = ({ message = '', small = false }) => {
 
   return (
     <div className="loader-container">
-      {!!message && <div className="message">{message}</div>}
+      {!bePatientMessage && !!message && (
+        <div className="message">{message}</div>
+      )}
+      {bePatientMessage && <div className="message">{bePatientMessage}</div>}
       <div className="loader" />
     </div>
   );

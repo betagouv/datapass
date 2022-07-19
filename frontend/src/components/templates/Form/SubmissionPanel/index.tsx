@@ -41,7 +41,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
         onEventButtonClick={onEventButtonClick}
       />
 
-      {loading && <Loader />}
+      {loading && <Loader enableBePatientMessage />}
 
       {waitingForUserInput && (
         <Prompt
