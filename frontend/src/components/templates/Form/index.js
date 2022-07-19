@@ -159,16 +159,13 @@ export const Form = ({
         >
           <HeadSection />
           <StepperSection />
-          <HideSectionsContainer
-            SubmissionPanel={() => (
-              <SubmissionPanel
-                enrollment={enrollment}
-                handlePostEvent={handlePostEvent}
-                updateEnrollment={dispatchSetEnrollment}
-              />
-            )}
-          >
+          <HideSectionsContainer>
             {children}
+            <SubmissionPanel
+              enrollment={enrollment}
+              handlePostEvent={handlePostEvent}
+              updateEnrollment={dispatchSetEnrollment}
+            />
           </HideSectionsContainer>
         </FormContext.Provider>
 
