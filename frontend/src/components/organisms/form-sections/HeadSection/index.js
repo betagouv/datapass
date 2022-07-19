@@ -55,6 +55,7 @@ export const HeadSection = () => {
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
       <NotificationSubSection />
+      {!isEmpty(events) && <MessageFeed events={events} />}
     </ScrollablePanel>
   );
 };
