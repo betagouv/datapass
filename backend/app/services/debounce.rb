@@ -20,7 +20,8 @@ class Debounce < ApplicationService
 
     response = Http.instance.get({
       url: "#{debounce_host}/v1/?email=#{@email}&api=#{debounce_api_key}",
-      tag: "API Debounce"
+      tag: "API Debounce",
+      timeout: 60
     })
 
     send_transactional = response.parse["debounce"]["send_transactional"]
