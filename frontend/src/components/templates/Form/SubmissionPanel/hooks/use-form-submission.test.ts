@@ -78,7 +78,7 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.loading).toBeTruthy();
+    expect(result.current.waitingForUserInput).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.notify);
   });
 
@@ -96,7 +96,7 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.loading).toBeTruthy();
+    expect(result.current.waitingForUserInput).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.notify);
 
     await act(async () => {

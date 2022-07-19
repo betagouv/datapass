@@ -19,8 +19,8 @@ import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
-import './style.css';
 import HideSectionsContainer from './HideSectionsContainer';
+import './style.css';
 import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();

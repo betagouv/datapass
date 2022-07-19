@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react';
-import Prompt from './Prompt';
-import EventButtonList from '../../../molecules/EventButtonList';
 import { eventConfigurations } from '../../../../config/event-configuration';
-import { useFormSubmission } from './hooks/use-form-submission';
 import { processEvent } from '../../../../lib/process-event';
+import Loader from '../../../atoms/Loader';
+import EventButtonList from '../../../molecules/EventButtonList';
 import ConfirmationModal from '../../../organisms/ConfirmationModal';
+import { useFormSubmission } from './hooks/use-form-submission';
+import Prompt from './Prompt';
 
 type Props = {
   enrollment: any;
@@ -35,11 +36,12 @@ const SubmissionPanel: FunctionComponent<Props> = ({
   return (
     <>
       <EventButtonList
-        pendingEvent={pendingEvent}
+        disabled={waitingForUserInput || waitingForUserConfirmation || loading}
         acl={enrollment.acl}
-        loading={loading}
         onEventButtonClick={onEventButtonClick}
       />
+
+      {loading && <Loader />}
 
       {waitingForUserInput && (
         <Prompt

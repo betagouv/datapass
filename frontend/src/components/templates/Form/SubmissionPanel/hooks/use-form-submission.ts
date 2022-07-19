@@ -11,7 +11,7 @@ export const useFormSubmission = (
   processEvent: Function
 ) => {
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
-  const loading = pendingEvent !== undefined;
+  const [loading, setLoading] = useState<boolean>(false);
 
   const waitingForUserInput =
     pendingEvent !== undefined &&
@@ -32,31 +32,31 @@ export const useFormSubmission = (
       !eventConfiguration.promptForComment &&
       !eventConfiguration.promptForConfirmation
     ) {
-      handlePostEvent(
-        await processEvent(
-          event,
-          eventConfiguration,
-          enrollment,
-          updateEnrollment
-        )
-      );
-
+      setLoading(true);
       setPendingEvent(undefined);
+      const postEventConfiguration = await processEvent(
+        event,
+        eventConfiguration,
+        enrollment,
+        updateEnrollment
+      );
+      setLoading(false);
+      handlePostEvent(postEventConfiguration);
     }
   };
 
   const onPromptConfirmation = async (message?: string) => {
-    handlePostEvent(
-      await processEvent(
-        pendingEvent!,
-        pendingEventConfiguration!,
-        enrollment,
-        updateEnrollment,
-        message
-      )
-    );
-
+    setLoading(true);
     setPendingEvent(undefined);
+    const postEventConfiguration = await processEvent(
+      pendingEvent!,
+      pendingEventConfiguration!,
+      enrollment,
+      updateEnrollment,
+      message
+    );
+    setLoading(false);
+    handlePostEvent(postEventConfiguration);
   };
 
   const onPromptCancellation = () => {
