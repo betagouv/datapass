@@ -5,6 +5,7 @@ import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
+import MessageFeed from './MessageFeed';
 
 export const NotificationSubSection = () => {
   const location = useLocation();
@@ -32,6 +33,7 @@ export const NotificationSubSection = () => {
               Pensez à enregistrer régulièrement vos modifications.
             </Alert>
           )}
+          {id && <MessageFeed enrollmentId={id} />}
         </>
       )}
     </>

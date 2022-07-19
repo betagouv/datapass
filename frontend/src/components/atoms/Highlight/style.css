@@ -1,0 +1,14 @@
+.fr-container--fluid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.fr-container--fluid .fr-highlight {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.fr-highlight {
+  white-space: pre-line;
+}

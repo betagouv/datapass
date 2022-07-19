@@ -11,7 +11,6 @@ import TagContainer from '../../../atoms/TagContainer';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import ActivityFeed from './ActivityFeed';
-import MessageFeed from './MessageFeed';
 import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
@@ -55,7 +54,6 @@ export const HeadSection = () => {
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
       <NotificationSubSection />
-      {!isEmpty(events) && <MessageFeed events={events} />}
     </ScrollablePanel>
   );
 };
