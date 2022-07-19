@@ -16,14 +16,7 @@ export const HideSectionsContext = createContext<HideSectionsContextType>({
   setReadyForNextSteps: () => null,
 });
 
-type Props = {
-  SubmissionPanel: FunctionComponent;
-};
-
-export const HideSectionsContainer: FunctionComponent<Props> = ({
-  SubmissionPanel,
-  children,
-}) => {
+export const HideSectionsContainer: FunctionComponent = ({ children }) => {
   const [showOnlyFirstStep, setShowOnlyFirstStep] = useState(false);
   const [isShowNextStepButtonDisabled, setIsShowNextStepButtonDisabled] =
     useState(false);
@@ -101,8 +94,6 @@ export const HideSectionsContainer: FunctionComponent<Props> = ({
       {showOnlyFirstStep && areNextStepsLoading && (
         <Loader message="Nous pré-remplissons le formulaire en fonction de vos réponses." />
       )}
-
-      {!showOnlyFirstStep && <SubmissionPanel />}
     </>
   );
 };

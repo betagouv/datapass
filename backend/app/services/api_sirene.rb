@@ -18,7 +18,8 @@ class ApiSirene < ApplicationService
       response = Http.instance.get({
         url: "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
         api_key: cached_access_token,
-        tag: "API Insee"
+        tag: "API Insee",
+        timeout: 5
       })
     rescue ApplicationController::BadGateway => e
       if e.http_code == 404
@@ -133,7 +134,8 @@ class ApiSirene < ApplicationService
       api_key: Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
       use_basic_auth_method: true,
       use_form_content_type: true,
-      tag: "API Insee"
+      tag: "API Insee",
+      timeout: 5
     })
     token_response.parse
   end

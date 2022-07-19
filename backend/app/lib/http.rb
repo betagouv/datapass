@@ -16,8 +16,9 @@ class Http
     api_key = options.fetch(:api_key, "")
     body = options.fetch(:body, {})
     tag = options.fetch(:tag)
+    timeout = options.fetch(:timeout, 30)
 
-    http = HTTP.timeout(10).use(logging: {logger: Rails.logger})
+    http = HTTP.timeout(timeout).use(logging: {logger: Rails.logger})
       .headers(accept: "application/json")
 
     http_with_auth = api_key.empty? ?

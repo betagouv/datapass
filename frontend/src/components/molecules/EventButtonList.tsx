@@ -13,15 +13,13 @@ export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
 
 type Props = {
   acl: Record<string, boolean>;
-  loading: boolean;
-  pendingEvent?: EnrollmentEvent;
+  disabled: boolean;
   onEventButtonClick: Function;
 };
 
 export const EventButtonList: FunctionComponent<Props> = ({
   acl,
-  loading,
-  pendingEvent,
+  disabled,
   onEventButtonClick,
 }) => {
   const authorizedEvents = listAuthorizedEvents(acl);
@@ -34,13 +32,11 @@ export const EventButtonList: FunctionComponent<Props> = ({
           e.preventDefault();
           onEventButtonClick(event);
         };
-        const isEventPending = event === pendingEvent;
         return (
           <EventButton
             key={event}
-            disabled={loading}
+            disabled={disabled}
             onClick={onClick}
-            loading={isEventPending}
             {...eventConfiguration.displayProps}
           />
         );
