@@ -26,7 +26,7 @@ const Loader = ({
     () =>
       bePatientEffect(
         'Le traitement prend plus longtemps que prévu, merci de patienter...',
-        10
+        5
       ),
     [bePatientEffect]
   );
@@ -35,7 +35,7 @@ const Loader = ({
     () =>
       bePatientEffect(
         'Nous interrogeons des systèmes tiers ce qui peut prendre jusqu’à une minute...',
-        30
+        20
       ),
     [bePatientEffect]
   );
