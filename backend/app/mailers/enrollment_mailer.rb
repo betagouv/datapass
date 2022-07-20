@@ -21,6 +21,10 @@ class EnrollmentMailer < ActionMailer::Base
 
     if manual_review_from_instructor?
       render_mail(
+        template_name: params[:template]
+      )
+    elsif message_from_demandeur?
+      render_mail(
         body: params[:message]
       )
     else
@@ -87,7 +91,11 @@ class EnrollmentMailer < ActionMailer::Base
   end
 
   def manual_review_from_instructor?
-    Event::MANUALLY_REVIEWED_EVENT_NAMES.include?(params[:template])
+    Event::REVIEW_FROM_INSTRUCTORS_EVENT_NAMES.include?(params[:template])
+  end
+
+  def message_from_demandeur?
+    Event::FROM_DEMANDEUR_EVENT_NAMES.include?(params[:template])
   end
 
   def extract_template_path(template_name)
