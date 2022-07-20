@@ -27,7 +27,9 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def notify?
-    record.can_notify_status? && user.is_instructor?(record.target_api)
+    record.can_notify_status? &&
+      (user.is_instructor?(record.target_api) ||
+      user.is_demandeur?(record))
   end
 
   def copy?
