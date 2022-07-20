@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   EVENT_NAMES = %w[create update_contacts update request_changes notify submit import validate copy refuse revoke].freeze
-  MANUALLY_REVIEWED_EVENT_NAMES = %w[refuse request_changes validate notify revoke].freeze
+  REVIEW_FROM_INSTRUCTORS_EVENT_NAMES = %w[refuse request_changes validate notify revoke].freeze
+  FROM_DEMANDEUR_EVENT_NAMES = %w[notify].freeze
 
   belongs_to :enrollment
   belongs_to :user
@@ -11,7 +12,7 @@ class Event < ActiveRecord::Base
   protected
 
   def validate_comment
-    if name.in?(MANUALLY_REVIEWED_EVENT_NAMES) && !comment.present?
+    if name.in?(REVIEW_FROM_INSTRUCTORS_EVENT_NAMES) && !comment.present?
       errors.add(:comment, :invalid, message: "Vous devez renseigner un commentaire")
     end
   end
