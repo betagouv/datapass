@@ -44,4 +44,14 @@ module EmailNotifierMethods
       demandeur_email: enrollment.demandeurs.pluck(:email).first
     ).notification_email.deliver_later
   end
+
+  def deliver_message_from_demandeur_to_enrollment_instructor(event, comment)
+    EnrollmentMailer.with(
+      to: enrollment.subscribers.pluck(:email),
+      target_api: enrollment.target_api,
+      enrollment_id: enrollment.id,
+      template: event.to_s,
+      message: comment
+    ).notification_email.deliver_later
+  end
 end

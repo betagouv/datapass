@@ -22,6 +22,15 @@ class BaseNotifier < AbstractNotifier
     notify_subscribers_by_email_for_submitted_enrollment
   end
 
+  # TODO
+  # if comment comes from demandeur
+  #    then deliver_message_from_demandeur_to_enrollment_instructors(event, comment)
+  # else
+  #     deliver_event_mailer(__method__, comment)
+  # end
+  #
+  # Think to use Guard Clause
+
   def notify(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
   end
