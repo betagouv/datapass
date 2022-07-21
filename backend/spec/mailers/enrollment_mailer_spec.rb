@@ -11,13 +11,13 @@ RSpec.describe EnrollmentMailer, type: :mailer do
           to: to_email,
           target_api: target_api,
           enrollment_id: enrollment.id,
-          template: template,
-          message: message
+          event_name: event_name,
+          comment: comment
         ).notification_email
       end
 
-      let(:template) { "request_changes" }
-      let(:message) { "Hello world!" }
+      let(:event_name) { "request_changes" }
+      let(:comment) { "Hello world!" }
 
       it "renders valid headers" do
         expect(mail.subject).to eq("Votre demande d’habilitation requiert des modifications")
@@ -25,8 +25,8 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         expect(mail.from).to eq(["contact@api.gouv.fr"])
       end
 
-      it "renders valid body with message only" do
-        expect(mail.body.encoded).to eq(message)
+      it "renders valid body with comment only" do
+        expect(mail.body.encoded).to eq(comment)
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
           to: to_email,
           target_api: target_api,
           enrollment_id: enrollment.id,
-          template: template
+          event_name: event_name
         ).notification_email
       end
 
@@ -46,7 +46,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
 
       describe "default template for a target API" do
         let(:target_api) { "aidants_connect" }
-        let(:template) { "create" }
+        let(:event_name) { "create" }
 
         it "renders default subject" do
           expect(mail.subject).to eq("Votre demande d’habilitation a été enregistrée")
@@ -59,7 +59,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
 
       describe "custom subject for a target API" do
         let(:target_api) { "api_entreprise" }
-        let(:template) { "create" }
+        let(:event_name) { "create" }
 
         it "renders custom subject" do
           expect(mail.subject).to eq("💾 Le brouillon de votre demande d’habilitation a bien été enregistré")
@@ -67,7 +67,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       end
 
       describe "custom template for a target API" do
-        let(:template) { "submit" }
+        let(:event_name) { "submit" }
 
         context "when skip layout option is true" do
           let(:target_api) { "api_entreprise" }

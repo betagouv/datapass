@@ -8,24 +8,24 @@ class EnrollmentMailer < ActionMailer::Base
     @user = @enrollment.demandeurs.first
 
     @target_api_label = data_provider_config["label"]
-    @message = params[:message]
+    @message = params[:comment]
     @demandeur_email = params[:demandeur_email]
 
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
     @front_host = ENV.fetch("FRONT_HOST")
 
     @majority_percentile_processing_time_in_days = nil
-    if params[:template] == "submit"
+    if params[:event_name] == "submit"
       @majority_percentile_processing_time_in_days = GetMajorityPercentileProcessingTimeInDays.call(params[:target_api])
     end
 
-    if manual_review_from_instructor?
+    if Event::EVENTS_WITH_COMMENT_AS_EMAIL_BODY.include?(params[:event_name])
       render_mail(
-        body: params[:message]
+        body: params[:comment]
       )
     else
       render_mail(
-        template_name: params[:template]
+        template_name: params[:event_name]
       )
     end
   end
@@ -84,10 +84,6 @@ class EnrollmentMailer < ActionMailer::Base
         end
       end
     end
-  end
-
-  def manual_review_from_instructor?
-    Event::MANUALLY_REVIEWED_EVENT_NAMES.include?(params[:template])
   end
 
   def extract_template_path(template_name)

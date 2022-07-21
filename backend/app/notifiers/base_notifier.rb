@@ -4,7 +4,7 @@ class BaseNotifier < AbstractNotifier
   include EmailNotifierMethods
 
   def create
-    deliver_created_mail_to_enrollment_creator
+    deliver_created_mail_to_enrollment_demandeurs
   end
 
   def update(diff:, user_id:)
