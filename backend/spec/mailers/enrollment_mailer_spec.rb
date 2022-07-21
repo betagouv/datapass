@@ -28,6 +28,10 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       it "renders valid body with message only" do
         expect(mail.body.encoded).to eq(message)
       end
+
+      it "renders valid body with message only" do
+        expect(mail.body.encoded).to eq(message)
+      end
     end
 
     describe "email triggered from backend" do
@@ -35,8 +39,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         described_class.with(
           to: to_email,
           target_api: target_api,
-          enrollment_id: enrollment.id,
-          template: template
+          enrollment_id: enrollment.id
         ).notification_email
       end
 
