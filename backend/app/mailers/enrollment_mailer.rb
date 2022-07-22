@@ -38,6 +38,7 @@ class EnrollmentMailer < ActionMailer::Base
     @front_host = ENV.fetch("FRONT_HOST")
 
     mail(
+      to: @enrollment.subscribers.pluck(:email),
       from: "contact@api.gouv.fr",
       subject: "Vous avez un nouveau message concernant une habilitation",
       template_path: "enrollment_mailer/admin",
