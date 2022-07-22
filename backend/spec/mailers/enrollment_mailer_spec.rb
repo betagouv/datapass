@@ -39,7 +39,8 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         described_class.with(
           to: to_email,
           target_api: target_api,
-          enrollment_id: enrollment.id
+          enrollment_id: enrollment.id,
+          template: template
         ).notification_email
       end
 
