@@ -25,7 +25,7 @@ class BaseNotifier < AbstractNotifier
   def notify(comment:, current_user:)
     demandeurs_id = enrollment.demandeurs.pluck(:user_id)
     if demandeurs_id.include?(current_user.id)
-      deliver_message_to_enrollment_instructor(__method__, comment)
+      deliver_message_to_enrollment_instructor
     end
 
     if current_user.is_instructor?(enrollment.target_api)
