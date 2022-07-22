@@ -45,12 +45,11 @@ module EmailNotifierMethods
     ).notification_email.deliver_later
   end
 
-  def deliver_message_to_enrollment_instructor(event, comment)
+  def deliver_message_to_enrollment_instructor
     EnrollmentMailer.with(
       to: enrollment.subscribers.pluck(:email),
       target_api: enrollment.target_api,
-      enrollment_id: enrollment.id,
-      message: comment
+      enrollment_id: enrollment.id
     ).notification_email_to_instructors.deliver_later
   end
 end
