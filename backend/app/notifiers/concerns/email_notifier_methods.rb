@@ -47,7 +47,6 @@ module EmailNotifierMethods
 
   def deliver_message_to_enrollment_instructor(comment)
     EnrollmentMailer.with(
-      to: enrollment.subscribers.pluck(:email),
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
       message: comment

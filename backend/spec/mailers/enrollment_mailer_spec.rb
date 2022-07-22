@@ -83,11 +83,15 @@ RSpec.describe EnrollmentMailer, type: :mailer do
   end
 
   describe "#notification_email_to_instructors" do
-    let(:to_email) { instructor.email }
     let(:target_api) { "franceconnect" }
     let(:enrollment) { create(:enrollment, :franceconnect, user: user) }
     let(:user) { create(:user, :with_all_infos) }
     let(:instructor) { create(:user, :with_all_infos) }
+
+    before do
+      instructor.roles = ["franceconnect:subscriber"]
+      instructor.save
+    end
 
     subject(:mail) do
       described_class.with(
@@ -100,16 +104,13 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     end
 
     let(:template) { "notify_instructor" }
-    let(:message) { "Bonjour, j'ai une question..." }
+    let(:message) { "We all live in a yellow submarine" }
 
     let(:create_email_sample) do
       File.open(Rails.root.join("app/views/enrollment_mailer/admin/notify_instructor.text.erb")) { |f| f.readline }.chomp
     end
 
     it "renders valid headers" do
-      instructor.roles = ["franceconnect:instructor"]
-      instructor.save
-
       expect(mail.subject).to eq("Vous avez un nouveau message concernant une habilitation")
       expect(mail.to).to eq([instructor.email])
       expect(mail.from).to eq(["contact@api.gouv.fr"])
