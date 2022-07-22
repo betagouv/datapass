@@ -94,11 +94,13 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         to: instructor.email,
         target_api: target_api,
         enrollment_id: enrollment.id,
-        template: template
+        template: template,
+        message: message
       ).notification_email_to_instructors
     end
 
     let(:template) { "notify_instructor" }
+    let(:message) { "Bonjour, j'ai une question..." }
 
     let(:create_email_sample) do
       File.open(Rails.root.join("app/views/enrollment_mailer/admin/notify_instructor.text.erb")) { |f| f.readline }.chomp
@@ -115,6 +117,10 @@ RSpec.describe EnrollmentMailer, type: :mailer do
 
     it "renders notify_instructor template" do
       expect(mail.body.encoded).to include(create_email_sample)
+    end
+
+    it "renders notify_instructor template with body" do
+      expect(mail.body.encoded).to include(message)
     end
   end
 end
