@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import Highlight from '../../../atoms/Highlight';
+import { OpenMessagePromptContext } from '../../../templates/Form';
 
-export const MessageFeed = ({ title, onClick }) => {
+export const MessageFeed = ({ title }) => {
+  const { onClick } = useContext(OpenMessagePromptContext);
+
   return (
-    <Highlight title={'Message'} onClick={() => console.log('click')}>
+    <Highlight title={'Message'} onClick={onClick}>
       Si vous avez une question vous pouvez à présent laisser un message aux
       instructeurs,
       <br />

@@ -24,6 +24,7 @@ import './style.css';
 import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();
+export const OpenMessagePromptContext = React.createContext();
 
 export const Form = ({
   target_api,
@@ -135,6 +136,10 @@ export const Form = ({
     [goBackToList]
   );
 
+  const [onMessagePromptClick, setOnMessagePromptClick] = useState(
+    () => () => null
+  );
+
   if (hasNotFoundError) {
     return <NotFound />;
   }
@@ -148,26 +153,33 @@ export const Form = ({
         sectionLabels={sectionLabels}
       />
       <div className="form-container">
-        <FormContext.Provider
+        <OpenMessagePromptContext.Provider
           value={{
-            disabled: !enrollment.acl.submit,
-            onChange: dispatchSetEnrollment,
-            enrollment,
-            isUserEnrollmentLoading,
-            demarches,
+            setOnClick: setOnMessagePromptClick,
+            onClick: onMessagePromptClick,
           }}
         >
-          <HeadSection />
-          <StepperSection />
-          <HideSectionsContainer>
-            {children}
-            <SubmissionPanel
-              enrollment={enrollment}
-              handlePostEvent={handlePostEvent}
-              updateEnrollment={dispatchSetEnrollment}
-            />
-          </HideSectionsContainer>
-        </FormContext.Provider>
+          <FormContext.Provider
+            value={{
+              disabled: !enrollment.acl.submit,
+              onChange: dispatchSetEnrollment,
+              enrollment,
+              isUserEnrollmentLoading,
+              demarches,
+            }}
+          >
+            <HeadSection />
+            <StepperSection />
+            <HideSectionsContainer>
+              {children}
+              <SubmissionPanel
+                enrollment={enrollment}
+                handlePostEvent={handlePostEvent}
+                updateEnrollment={dispatchSetEnrollment}
+              />
+            </HideSectionsContainer>
+          </FormContext.Provider>
+        </OpenMessagePromptContext.Provider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div>
