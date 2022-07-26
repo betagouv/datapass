@@ -3,7 +3,7 @@ import {
   EnrollmentEvent,
   eventConfigurations,
 } from '../../../../../config/event-configuration';
-import { OpenMessagePromptContext } from '../../index.js';
+import { OpenMessagePromptContext } from '../../FormSectionsContainer';
 
 export const useFormSubmission = (
   handlePostEvent: Function,
