@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Highlight from '../../../atoms/Highlight';
-import { OpenMessagePromptContext } from '../../../templates/Form';
+import { OpenMessagePromptContext } from '../../../templates/Form/FormSectionsContainer';
 
 export const MessageFeed = ({ title }) => {
   const { onClick } = useContext(OpenMessagePromptContext);

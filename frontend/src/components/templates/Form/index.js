@@ -19,12 +19,12 @@ import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
+import FormSectionsContainer from './FormSectionsContainer';
 import HideSectionsContainer from './HideSectionsContainer';
 import './style.css';
 import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();
-export const OpenMessagePromptContext = React.createContext();
 
 export const Form = ({
   target_api,
@@ -136,10 +136,6 @@ export const Form = ({
     [goBackToList]
   );
 
-  const [onMessagePromptClick, setOnMessagePromptClick] = useState(
-    () => () => null
-  );
-
   if (hasNotFoundError) {
     return <NotFound />;
   }
@@ -153,12 +149,7 @@ export const Form = ({
         sectionLabels={sectionLabels}
       />
       <div className="form-container">
-        <OpenMessagePromptContext.Provider
-          value={{
-            setOnClick: setOnMessagePromptClick,
-            onClick: onMessagePromptClick,
-          }}
-        >
+        <FormSectionsContainer>
           <FormContext.Provider
             value={{
               disabled: !enrollment.acl.submit,
@@ -179,7 +170,7 @@ export const Form = ({
               />
             </HideSectionsContainer>
           </FormContext.Provider>
-        </OpenMessagePromptContext.Provider>
+        </FormSectionsContainer>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div>
