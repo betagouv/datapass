@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import {
   EnrollmentEvent,
   eventConfigurations,
 } from '../../../../../config/event-configuration';
+import { OpenMessagePromptContext } from '../../index.js';
 
 export const useFormSubmission = (
   handlePostEvent: Function,
@@ -12,6 +13,7 @@ export const useFormSubmission = (
 ) => {
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
   const [loading, setLoading] = useState<boolean>(false);
+  const { onClick, setOnClick } = useContext(OpenMessagePromptContext);
 
   const waitingForUserInput =
     pendingEvent !== undefined &&
@@ -24,26 +26,35 @@ export const useFormSubmission = (
     pendingEvent !== undefined &&
     eventConfigurations[pendingEvent]?.promptForConfirmation === true;
 
-  const onEventButtonClick = async (event: EnrollmentEvent) => {
-    setPendingEvent(event);
+  const onEventButtonClick = useCallback(
+    async (event: EnrollmentEvent) => {
+      setPendingEvent(event);
 
-    const eventConfiguration = eventConfigurations[event];
-    if (
-      !eventConfiguration.promptForComment &&
-      !eventConfiguration.promptForConfirmation
-    ) {
-      setLoading(true);
-      setPendingEvent(undefined);
-      const postEventConfiguration = await processEvent(
-        event,
-        eventConfiguration,
-        enrollment,
-        updateEnrollment
-      );
-      setLoading(false);
-      handlePostEvent(postEventConfiguration);
-    }
-  };
+      const eventConfiguration = eventConfigurations[event];
+      if (
+        !eventConfiguration.promptForComment &&
+        !eventConfiguration.promptForConfirmation
+      ) {
+        setLoading(true);
+        setPendingEvent(undefined);
+        const postEventConfiguration = await processEvent(
+          event,
+          eventConfiguration,
+          enrollment,
+          updateEnrollment
+        );
+        setLoading(false);
+        handlePostEvent(postEventConfiguration);
+      }
+    },
+    [enrollment, handlePostEvent, processEvent, updateEnrollment]
+  );
+
+  useEffect(() => {
+    setOnClick(() => () => {
+      onEventButtonClick(EnrollmentEvent.notify);
+    });
+  }, [setOnClick, onEventButtonClick]);
 
   const onPromptConfirmation = async (message?: string) => {
     setLoading(true);
