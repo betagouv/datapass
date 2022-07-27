@@ -1,9 +1,11 @@
 import { renderHook } from '@testing-library/react-hooks';
+import { FunctionComponent } from 'react';
 import { act } from 'react-dom/test-utils';
 import {
   EnrollmentEvent,
   eventConfigurations,
 } from '../../../../../config/event-configuration';
+import { OpenMessagePromptContext } from '../../FormSectionsContainer';
 import { useFormSubmission } from './use-form-submission';
 
 describe('The form submission hook', () => {
@@ -12,14 +14,27 @@ describe('The form submission hook', () => {
   const updateEnrollment = jest.fn();
   const processEvent = jest.fn();
 
+  const wrapper: FunctionComponent = ({ children }) => (
+    <OpenMessagePromptContext.Provider
+      value={{
+        onClick: jest.fn(),
+        setOnClick: jest.fn(),
+      }}
+    >
+      {children}
+    </OpenMessagePromptContext.Provider>
+  );
+
   it('sets default state when mounted for the first time', () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     expect(result.current.loading).toBeFalsy();
@@ -27,13 +42,15 @@ describe('The form submission hook', () => {
   });
 
   it('waits for user input when an event needing user input is pending', () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     expect(result.current.waitingForUserInput).toBeFalsy();
@@ -46,13 +63,15 @@ describe('The form submission hook', () => {
   });
 
   it('provides event configuration when an event is pending', () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     act(() => {
@@ -65,13 +84,15 @@ describe('The form submission hook', () => {
   });
 
   it('provides a button click handler', () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     act(() => {
@@ -83,13 +104,15 @@ describe('The form submission hook', () => {
   });
 
   it('provides a prompt confirmation handler', async () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     act(() => {
@@ -108,13 +131,15 @@ describe('The form submission hook', () => {
   });
 
   it('triggers the pending event if no user input is required', async () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
     const eventResult = Symbol('event result');
     processEvent.mockResolvedValue(eventResult);
@@ -134,13 +159,15 @@ describe('The form submission hook', () => {
   });
 
   it('provides a prompt cancellation handler', () => {
-    const { result } = renderHook(() =>
-      useFormSubmission(
-        handlePostEvent,
-        enrollment,
-        updateEnrollment,
-        processEvent
-      )
+    const { result } = renderHook(
+      () =>
+        useFormSubmission(
+          handlePostEvent,
+          enrollment,
+          updateEnrollment,
+          processEvent
+        ),
+      { wrapper }
     );
 
     act(() => {

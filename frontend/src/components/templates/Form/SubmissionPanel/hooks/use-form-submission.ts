@@ -13,7 +13,7 @@ export const useFormSubmission = (
 ) => {
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
   const [loading, setLoading] = useState<boolean>(false);
-  const { onClick, setOnClick } = useContext(OpenMessagePromptContext);
+  const { setOnClick } = useContext(OpenMessagePromptContext);
 
   const waitingForUserInput =
     pendingEvent !== undefined &&
