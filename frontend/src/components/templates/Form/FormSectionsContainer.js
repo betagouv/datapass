@@ -10,8 +10,8 @@ export const FormSectionsContainer = ({ children }) => {
   return (
     <OpenMessagePromptContext.Provider
       value={{
-        setOnClick: setOnMessagePromptClick,
         onClick: onMessagePromptClick,
+        setOnClick: setOnMessagePromptClick,
       }}
     >
       {children}
