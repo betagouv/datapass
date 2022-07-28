@@ -23,8 +23,8 @@ class BaseNotifier < AbstractNotifier
   end
 
   def notify(comment:, current_user:)
-    demandeurs_id = enrollment.demandeurs.pluck(:user_id)
-    if demandeurs_id.include?(current_user.id)
+    demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+    if demandeurs_ids.include?(current_user.id)
       deliver_message_to_enrollment_instructor(comment)
     end
 
