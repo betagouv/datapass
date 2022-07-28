@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export const OpenMessagePromptContext = React.createContext();
 
-export const FormSectionsContainer = ({ children }) => {
+export const OpenMessagePromptContextProvider = ({ children }) => {
   const [onMessagePromptClick, setOnMessagePromptClick] = useState(
     () => () => null
   );
@@ -19,4 +19,4 @@ export const FormSectionsContainer = ({ children }) => {
   );
 };
 
-export default FormSectionsContainer;
+export default OpenMessagePromptContextProvider;

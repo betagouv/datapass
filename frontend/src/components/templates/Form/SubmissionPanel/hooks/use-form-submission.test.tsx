@@ -5,7 +5,7 @@ import {
   EnrollmentEvent,
   eventConfigurations,
 } from '../../../../../config/event-configuration';
-import { OpenMessagePromptContext } from '../../FormSectionsContainer';
+import { OpenMessagePromptContext } from '../../OpenMessagePromptContextProvider';
 import { useFormSubmission } from './use-form-submission';
 
 describe('The form submission hook', () => {

@@ -19,8 +19,8 @@ import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
-import FormSectionsContainer from './FormSectionsContainer';
 import HideSectionsContainer from './HideSectionsContainer';
+import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
 import SubmissionPanel from './SubmissionPanel';
 
@@ -149,7 +149,7 @@ export const Form = ({
         sectionLabels={sectionLabels}
       />
       <div className="form-container">
-        <FormSectionsContainer>
+        <OpenMessagePromptContextProvider>
           <FormContext.Provider
             value={{
               disabled: !enrollment.acl.submit,
@@ -170,7 +170,7 @@ export const Form = ({
               />
             </HideSectionsContainer>
           </FormContext.Provider>
-        </FormSectionsContainer>
+        </OpenMessagePromptContextProvider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div>
