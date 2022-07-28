@@ -1,16 +1,3 @@
-.fr-container--fluid {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.fr-container--fluid .fr-highlight {
-  flex-grow: 1;
-  flex-basis: 0;
-}
-
-.fr-highlight {
+.datapass-highlight {
   white-space: pre-line;
 }
