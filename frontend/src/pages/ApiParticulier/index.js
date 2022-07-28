@@ -337,7 +337,7 @@ const editorList = [
   { name: 'Qiis', siret: '52834311400021' },
   { name: 'Aiga', siret: '39825361700045' },
   { name: 'Teamnet', siret: '33922000600078' },
-  { name: 'JVS-MAIRISTEM', siret: '32855218700069' },
+  { name: 'JVS-Mairistem', siret: '32855218700069' },
   { name: '3D Ouest', siret: '44973625500018' },
   { name: 'Entrouvert', siret: '49108189900032' },
   { name: 'Waigeo', siret: '80321944300014' },
