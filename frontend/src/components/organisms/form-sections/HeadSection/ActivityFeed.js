@@ -8,8 +8,8 @@ import Button from '../../../atoms/hyperTexts/Button';
 import CheckCircleIcon from '../../../atoms/icons/check-circle';
 import ErrorIcon from '../../../atoms/icons/error';
 import FileCopyIcon from '../../../atoms/icons/file_copy';
+import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
 import InfoIcon from '../../../atoms/icons/info';
-import NotificationsIcon from '../../../atoms/icons/notifications';
 import WarningIcon from '../../../atoms/icons/warning';
 import { Linkify } from '../../../molecules/Linkify';
 import './ActivityFeed.css';
@@ -20,7 +20,7 @@ const eventToDisplayableContent = {
     label: 'a demandé des modifications',
   },
   notify: {
-    icon: <NotificationsIcon color={'var(--text-default-warning)'} />,
+    icon: <MailIcon color={'var(--text-default-info)'} />,
     label: 'a écrit',
   },
   create: {
