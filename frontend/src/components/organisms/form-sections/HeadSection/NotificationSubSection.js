@@ -3,9 +3,9 @@ import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
+import CallToWriteMessageNotification from './CallToWriteMessageNotification';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
-import MessageFeed from './MessageFeed';
 
 export const NotificationSubSection = () => {
   const location = useLocation();
@@ -33,7 +33,7 @@ export const NotificationSubSection = () => {
               Pensez à enregistrer régulièrement vos modifications.
             </Alert>
           )}
-          {id && <MessageFeed enrollmentId={id} />}
+          {id && <CallToWriteMessageNotification enrollmentId={id} />}
         </>
       )}
     </>
