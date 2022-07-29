@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
+import CallToProcessedMessageNotification from './CallToProcessedMessageNotification';
 import CallToWriteMessageNotification from './CallToWriteMessageNotification';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
@@ -29,6 +30,17 @@ export const NotificationSubSection = () => {
       .includes(email);
   }, [team_members, email]);
 
+  // TODO add isUserAnInstructor userMemo to display 'CallToProcessedMessageNotification'
+  // const isUserAnInstructor = useMemo(() => {
+  // if (isEmpty(team_members)) {
+  //   return false;
+  // }
+  //   return user
+  //     .filter(({ roles }) => roles === 'instructor')
+  //     .map(({ email }) => email)
+  //     .includes(email);
+  // }, [user, email]);
+
   return (
     <>
       {get(location, 'state.source') === 'copy-authorization-request' && (
@@ -50,6 +62,9 @@ export const NotificationSubSection = () => {
           {isUserADemandeur && id && (
             <CallToWriteMessageNotification enrollmentId={id} />
           )}
+
+          {/* TODO Add a condition to display Only if Instructors */}
+          <CallToProcessedMessageNotification enrollment={id} />
         </>
       )}
     </>
