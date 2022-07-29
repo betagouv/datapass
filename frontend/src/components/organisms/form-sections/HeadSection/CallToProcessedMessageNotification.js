@@ -3,7 +3,7 @@ import HighlightWithTwoButtons from '../../../molecules/HighlightWithTwoButtons'
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 
 const CallToProcessedMessageNotification = ({ title }) => {
-  const onClick = useContext(OpenMessagePromptContext);
+  const { onClick } = useContext(OpenMessagePromptContext);
 
   return (
     <HighlightWithTwoButtons
