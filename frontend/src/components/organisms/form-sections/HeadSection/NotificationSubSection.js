@@ -1,19 +1,33 @@
-import { get } from 'lodash';
-import { useContext } from 'react';
+import { get, isEmpty } from 'lodash';
+import { useContext, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
+import { useAuth } from '../../AuthContext';
 import CallToWriteMessageNotification from './CallToWriteMessageNotification';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 
 export const NotificationSubSection = () => {
   const location = useLocation();
+  const {
+    user: { email },
+  } = useAuth();
 
   const {
     isUserEnrollmentLoading,
-    enrollment: { id, acl = {} },
+    enrollment: { id, team_members, acl = {} },
   } = useContext(FormContext);
+
+  const isUserADemandeur = useMemo(() => {
+    if (isEmpty(team_members)) {
+      return false;
+    }
+    return team_members
+      .filter(({ type }) => type === 'demandeur')
+      .map(({ email }) => email)
+      .includes(email);
+  }, [team_members, email]);
 
   return (
     <>
@@ -33,7 +47,9 @@ export const NotificationSubSection = () => {
               Pensez à enregistrer régulièrement vos modifications.
             </Alert>
           )}
-          {id && <CallToWriteMessageNotification enrollmentId={id} />}
+          {isUserADemandeur && id && (
+            <CallToWriteMessageNotification enrollmentId={id} />
+          )}
         </>
       )}
     </>
