@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
   validate :validate_comment
   validate :validate_name
 
+  def mark_as_processed
+    update!(processed_at: Time.now)
+  end
+
   protected
 
   def validate_comment

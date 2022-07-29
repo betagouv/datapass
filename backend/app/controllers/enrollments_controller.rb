@@ -224,6 +224,24 @@ class EnrollmentsController < ApplicationController
       root: "enrollments"
   end
 
+  # GET enrollment/1/mark_demandeur_notify_events_as_processed/1
+  def mark_demandeur_notify_events_as_processed
+    @enrollment = authorize Enrollment.find(params[:id])
+    demandeurs_user_id = @enrollment.demandeurs.pluck(:user_id)
+    @event = Event.find(params[:id])
+
+    @enrollment.events.each do |event|
+      event_to_be_mark_as_processed = event.name == "notify" &&
+        event.processed_at.nil? &&
+        demandeurs_user_id.include?(event.user_id) &&
+        event.id == @event.id
+
+      if event_to_be_mark_as_processed
+        event.mark_as_processed
+      end
+    end
+  end
+
   def destroy
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.destroy
