@@ -27,7 +27,7 @@
     "@gouvfr/dsfr": "1.2.1",
     "@justfixnyc/react-aria-modal": "^5.1.4-alpha.0",
     "@sentry/react": "^6.19.2",
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^28.1.6",
     "@types/lodash": "^4.14.180",
     "@types/node": "^18.0.1",
     "@types/react": "^17.0.43",
