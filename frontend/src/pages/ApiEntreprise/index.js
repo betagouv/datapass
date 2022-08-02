@@ -219,6 +219,7 @@ const editorList = [
   { name: 'Klekoon', siret: '42140180300042' },
   { name: 'Mgdis', siret: '32816124500027' },
   { name: 'Provigis', siret: '43196025100061' },
+  { name: 'SETEC', siret: '70200590100104' },
   { name: 'Territoires Numériques BFC', siret: '13000493000025' },
 ];
 
