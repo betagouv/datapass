@@ -50,7 +50,9 @@ const CadreJuridiqueDescription = () => (
     <p>
       Dans le cas où vous représentez une collectivité, veuillez joindre la
       délibération du conseil municipal explicitant l’usage des données
-      demandées.
+      demandées. Viser l'article 114-8 du code des relations entre le public et
+      l'administration ne peut pas se substituer à la présence d’une
+      délibération du conseil municipal.
     </p>
     <p>
       Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
