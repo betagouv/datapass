@@ -9,7 +9,7 @@ const CallToProcessedMessageNotification = ({ title }) => {
     <HighlightWithTwoButtons
       title={'1 Message de demandeur'}
       onClick={onClick}
-      onHandle={'markAsRead'}
+      handleClick={() => console.log('click')}
     >
       Un message de demandeur est en attente de traitement
     </HighlightWithTwoButtons>

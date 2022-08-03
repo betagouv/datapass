@@ -6,7 +6,7 @@ export const HighlightWithTwoButtons = ({
   title,
   children,
   onClick,
-  onHandle,
+  handleClick,
 }) => (
   <div className="datapass-container-two-btn">
     <Highlight className="datapass-highlight">
@@ -20,7 +20,7 @@ export const HighlightWithTwoButtons = ({
         </Button>
       </div>
       <div>
-        <Button outline onHandle={onHandle}>
+        <Button outline handleClick={handleClick}>
           Marquer comme traité
         </Button>
       </div>

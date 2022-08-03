@@ -12,12 +12,13 @@ import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 export const NotificationSubSection = () => {
   const location = useLocation();
   const {
+    user,
     user: { email },
   } = useAuth();
 
   const {
     isUserEnrollmentLoading,
-    enrollment: { id, team_members, acl = {} },
+    enrollment: { id, team_members, target_api, acl = {} },
   } = useContext(FormContext);
 
   const isUserADemandeur = useMemo(() => {
@@ -30,23 +31,12 @@ export const NotificationSubSection = () => {
       .includes(email);
   }, [team_members, email]);
 
-  // TODO add isUserAnInstructor userMemo to display 'CallToProcessedMessageNotification'
-  // Get is user roles (`{target_api}:instructor`) ?
-  // est ce que le user roles match avec la target_api de l'enrollment ?
-  // Si oui
-  // Display CallToProcessedMessageNotification
-  // Si non ne pas display CallToProcessedMessageNotification
+  const isUserAnInstructor = useMemo(() => {
+    const targetApiInstructorRole = `${target_api}:instructor`;
+    const userInstructor = user.roles.includes(targetApiInstructorRole);
 
-  // const isUserAnInstructor = useMemo(() => {
-  //   if (isEmpty(user.roles.includes(`${targetApi}:'instructor'`))) {
-  //     return false;
-  //   }
-  //   const enrollmentTargetApi = enrollment.target_api;
-  //   const userRole = user.roles.includes(`${targetApi}:'instructor'`);
-  //   const userEmail = userRole.map(({ email }) => email);
-  //   const currentUser = userEmail.includes(email);
-  //   return userRole;
-  // }, [target_api, user, email]);
+    return userInstructor;
+  }, [user, target_api]);
 
   return (
     <>
@@ -69,9 +59,9 @@ export const NotificationSubSection = () => {
           {isUserADemandeur && id && (
             <CallToWriteMessageNotification enrollmentId={id} />
           )}
-          {/* {isUserAnInstructor && id && ( */}
-          <CallToProcessedMessageNotification enrollment={id} />
-          {/* )} */}
+          {isUserAnInstructor && id && (
+            <CallToProcessedMessageNotification enrollment={id} />
+          )}
         </>
       )}
     </>
