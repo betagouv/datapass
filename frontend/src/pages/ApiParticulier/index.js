@@ -48,9 +48,9 @@ const CadreJuridiqueDescription = () => (
       administrative. Merci de le compléter.
     </p>
     <p>
-      Dans le cas où vous représentez une collectivité, veuillez joindre la
+      Dans le cas où vous représenteriez une collectivité, veuillez joindre la
       délibération du conseil municipal explicitant l’usage des données
-      demandées. Viser l'article 114-8 du code des relations entre le public et
+      demandées. Citer l'article 114-8 du code des relations entre le public et
       l'administration ne peut pas se substituer à la présence d’une
       délibération du conseil municipal.
     </p>
