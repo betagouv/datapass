@@ -57,7 +57,7 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
     context "when instructor mark demandeur's event as processed" do
       it "is expected to change demandeurs event's processed_at field with a date" do
         subject
-        expect(event_notify.processed_at).to eq(DateTime)
+        expect(event_notify.processed_at).to_not eq(nil)
       end
 
       it "is expected to not change instructor's event processed_at field" do
