@@ -8,7 +8,7 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
       }
     end
 
-    let!(:instructor) { create(:user, roles: ["franceconnect:instructor", "franceconnect:reporter"]) }
+    let!(:instructor) { create(:instructor, target_api: "franceconnect") }
     let!(:enrollment) do
       create(
         :enrollment,

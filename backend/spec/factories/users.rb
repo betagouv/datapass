@@ -47,5 +47,19 @@ FactoryBot.define do
         ]
       end
     end
+
+    factory :instructor do
+      transient do
+        target_api { "franceconnect" }
+      end
+
+      after(:build) do |instructor, evaluator|
+        instructor.roles ||= []
+
+        %w[instructor reporter].each do |role|
+          instructor.roles << "#{evaluator.target_api}:#{role}"
+        end
+      end
+    end
   end
 end
