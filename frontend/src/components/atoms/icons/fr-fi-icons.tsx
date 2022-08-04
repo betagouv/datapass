@@ -22,3 +22,7 @@ export const InfoIcon: React.FC<Props> = ({ color }) => (
 export const ExternalLinkIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="external-link-line" color={color} />
 );
+
+export const MailIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="mail-line" color={color} />
+);
