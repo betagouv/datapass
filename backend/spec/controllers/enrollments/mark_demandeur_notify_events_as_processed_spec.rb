@@ -8,14 +8,12 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
       }
     end
 
-    let!(:user) { create(:user) }
-    let!(:instructor) { create(:user, roles: ["franceconnect:instructor"]) }
+    let!(:instructor) { create(:user, roles: ["franceconnect:instructor", "franceconnect:reporter"]) }
     let!(:enrollment) do
       create(
         :enrollment,
         :franceconnect,
-        :draft,
-        user: user
+        :draft
       )
     end
 
@@ -32,13 +30,12 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
         :event,
         name: :notify,
         enrollment_id: enrollment.id,
-        user_id: user.id,
+        user_id: enrollment.demandeurs.first.user.id,
         comment: "A meaningful comment here"
       )
     }
 
     before do
-      login(user)
       login(instructor)
     end
 
@@ -55,9 +52,20 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
     end
 
     context "when instructor mark demandeur's event as processed" do
+      it { is_expected.to have_http_status(:ok) }
+
+      before do
+        Timecop.freeze
+      end
+
+      after do
+        Timecop.return
+      end
+
       it "is expected to change demandeurs event's processed_at field with a date" do
-        subject
-        expect(event_notify.processed_at).to_not eq(nil)
+        expect {
+          subject
+        }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
       end
 
       it "is expected to not change instructor's event processed_at field" do

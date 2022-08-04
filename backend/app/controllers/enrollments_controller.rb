@@ -227,19 +227,20 @@ class EnrollmentsController < ApplicationController
   # GET enrollment/1/mark_demandeur_notify_events_as_processed
   def mark_demandeur_notify_events_as_processed
     @enrollment = policy_scope(Enrollment)
-      .where(id: params[:id])
+      .find(params[:id])
 
-    demandeurs = @enrollment.joins(:team_members).where(team_members: {type: "demandeurs"})
+    demandeurs = @enrollment.demandeurs
 
     should_be_mark_as_processed =
-      @enrollment.joins(:events).where(events: {
+      @enrollment.events.where(
         name: "notify",
         processed_at: nil,
-        user_id: demandeurs
-      })
+        user_id: demandeurs.pluck(:user_id)
+      )
 
     should_be_mark_as_processed.each { |event| event.mark_as_processed }
-    render json: @enrollments
+
+    render head: :ok
   end
 
   def destroy
