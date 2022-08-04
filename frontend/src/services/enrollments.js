@@ -1,6 +1,6 @@
-import jsonToFormData from '../lib/json-form-data';
-import httpClient from '../lib/http-client';
 import { hashToQueryParams } from '../lib';
+import httpClient from '../lib/http-client';
+import jsonToFormData from '../lib/json-form-data';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -249,4 +249,12 @@ export function getHubeeValidatedEnrollments() {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data: { enrollments } }) => enrollments);
+}
+
+export function markEventsAsProcessed({ id }) {
+  return httpClient
+    .patch(`${BACK_HOST}/api/enrollments/${id}/email_templates`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data: enrollment }) => enrollment);
 }
