@@ -253,8 +253,11 @@ export function getHubeeValidatedEnrollments() {
 
 export function markEventsAsProcessed({ id }) {
   return httpClient
-    .patch(`${BACK_HOST}/api/enrollments/${id}/email_templates`, {
-      headers: { 'Content-type': 'application/json' },
-    })
+    .patch(
+      `${BACK_HOST}/api/enrollments/${id}/mark_demandeur_notify_events_as_processed`,
+      {
+        headers: { 'Content-type': 'application/json' },
+      }
+    )
     .then(({ data: enrollment }) => enrollment);
 }
