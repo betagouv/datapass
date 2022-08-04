@@ -5,8 +5,10 @@ import './style.css';
 export const HighlightWithTwoButtons = ({
   title,
   children,
-  onClick,
-  handleClick,
+  labelAction1,
+  labelAction2,
+  onClickAction1,
+  onClickAction2,
 }) => (
   <div className="datapass-container-two-btn">
     <Highlight className="datapass-highlight">
@@ -15,13 +17,13 @@ export const HighlightWithTwoButtons = ({
     </Highlight>
     <div className="datapass-two-btn">
       <div>
-        <Button outline icon="edit" onClick={onClick}>
-          Régider un message
+        <Button outline icon="edit" onClick={onClickAction1}>
+          {labelAction1}
         </Button>
       </div>
       <div>
-        <Button outline handleClick={handleClick}>
-          Marquer comme traité
+        <Button outline onClick={onClickAction2}>
+          {labelAction2}
         </Button>
       </div>
     </div>
