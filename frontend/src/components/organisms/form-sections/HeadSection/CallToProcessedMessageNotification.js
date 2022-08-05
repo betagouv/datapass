@@ -13,7 +13,7 @@ const CallToProcessedMessageNotification = () => {
   const { goBackToList } = useListItemNavigation;
 
   const markAsProcessed = async () => {
-    await markEventsAsProcessed(id);
+    await markEventsAsProcessed({ id });
     goBackToList();
   };
 
