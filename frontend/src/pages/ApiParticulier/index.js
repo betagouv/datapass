@@ -14,12 +14,14 @@ import demarches from './demarches.json';
 const DonneesDescription = () => (
   <>
     <p>
-      Les données particulier de la DGFIP ne sont plus délivrées par l’API
-      Particulier. Pour accéder aux données fiscales des particuliers, utiliser{' '}
+      ⚠️ Les données fiscales des particuliers ne sont plus disponibles via
+      l’API Particulier, produit opéré par la DINUM. Pour obtenir ces données
+      (ex : le revenu fiscal de référence, les informations sur les déclarants
+      et le nombre de parts du foyer fiscal), veuillez désormais interroger
+      directement l’api dédié à l’accès aux données fiscales des particuliers{' '}
       <Link inline newTab href="https://api.gouv.fr/les-api/impot-particulier">
-        l’API Impôt Particulier - DGFIP
+        **l’API Impôt particulier** de la DGFiP
       </Link>
-      .
     </p>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
