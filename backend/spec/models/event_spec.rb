@@ -52,6 +52,7 @@ RSpec.describe Event, type: :model do
         request_changes
         validate
         revoke
+        notify
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }
@@ -75,7 +76,6 @@ RSpec.describe Event, type: :model do
       %w[
         create
         update
-        notify
         submit
       ].each do |name|
         context "when name is '#{name}'" do
