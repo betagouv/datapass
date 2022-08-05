@@ -1,8 +1,8 @@
-.tag-container {
+.tag-section {
   margin-bottom: 1em;
 }
 
-.feed-container {
+.feed-section {
   margin-bottom: 2em;
   padding-top: 2em;
   border-top: 1px solid var(--border-default-grey);
@@ -10,4 +10,5 @@
 
 .notification-sub-section {
   border-bottom: 1px solid var(--border-default-grey);
+  padding-bottom: 2em;
 }
