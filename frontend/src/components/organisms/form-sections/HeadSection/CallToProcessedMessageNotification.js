@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { markEventsAsProcessed } from '../../../../services/enrollments';
-import HighlightWithTwoButtons from '../../../molecules/HighlightWithTwoButtons';
+import AlertWithTwoButtons from '../../../molecules/AlertWithTwoButtons';
 import { FormContext } from '../../../templates/Form';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 import useListItemNavigation from '../../../templates/hooks/use-list-item-navigation';
@@ -10,7 +10,7 @@ const CallToProcessedMessageNotification = () => {
   const {
     enrollment: { id },
   } = useContext(FormContext);
-  const { goBackToList } = useListItemNavigation;
+  const { goBackToList } = useListItemNavigation();
 
   const markAsProcessed = async () => {
     await markEventsAsProcessed({ id });
@@ -18,7 +18,7 @@ const CallToProcessedMessageNotification = () => {
   };
 
   return (
-    <HighlightWithTwoButtons
+    <AlertWithTwoButtons
       title="1 Message de demandeur"
       labelAction1="Rédiger un message"
       labelAction2="Marquer comme traité"
@@ -26,7 +26,7 @@ const CallToProcessedMessageNotification = () => {
       onClickAction2={markAsProcessed}
     >
       Un message de demandeur est en attente de traitement
-    </HighlightWithTwoButtons>
+    </AlertWithTwoButtons>
   );
 };
 

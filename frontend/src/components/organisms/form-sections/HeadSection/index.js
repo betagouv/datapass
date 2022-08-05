@@ -11,6 +11,7 @@ import TagContainer from '../../../atoms/TagContainer';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import ActivityFeed from './ActivityFeed';
+import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
@@ -20,11 +21,7 @@ export const HeadSection = () => {
 
   return (
     <ScrollablePanel scrollableId="head">
-      <div
-        style={{
-          marginBottom: '2em',
-        }}
-      >
+      <div className="tag-container">
         <>Vous demandez l’accès à</>
         <h1>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</h1>
         <TagContainer>
@@ -46,14 +43,12 @@ export const HeadSection = () => {
           </Tag>
         </TagContainer>
       </div>
-      <div
-        style={{
-          marginBottom: '2em',
-        }}
-      >
+      <div className="feed-container">
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
-      <NotificationSubSection />
+      <div className="notification-sub-section">
+        <NotificationSubSection />
+      </div>
     </ScrollablePanel>
   );
 };

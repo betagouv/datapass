@@ -1,14 +1,18 @@
 .datapass-container-two-btn {
   display: flex;
-  justify-content: space-between;
   gap: 1rem;
   padding-bottom: 5rem;
-  border-bottom: 1px solid var(--border-default-grey);
+  margin-top: 1rem;
+}
+
+.datapass-container-two-btn > .fr-alert {
+  flex-grow: 3;
+  margin-top: 1rem;
 }
 
 .datapass-two-btn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 1rem;
+  align-self: center;
 }

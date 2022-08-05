@@ -240,7 +240,7 @@ class EnrollmentsController < ApplicationController
 
     should_be_mark_as_processed.each { |event| event.mark_as_processed }
 
-    render head: :ok
+    render status: :ok
   end
 
   def destroy

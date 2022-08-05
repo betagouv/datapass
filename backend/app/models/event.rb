@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   protected
 
   def validate_comment
-    if name.in?(EVENTS_WITH_COMMENT_AS_EMAIL_BODY) && !comment.present?
+    if (name.in?(EVENTS_WITH_COMMENT_AS_EMAIL_BODY) || name == "notify") && !comment.present?
       errors.add(:comment, :invalid, message: "Vous devez renseigner un commentaire")
     end
   end

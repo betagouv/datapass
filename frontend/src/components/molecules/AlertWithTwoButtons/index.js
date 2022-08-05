@@ -1,8 +1,8 @@
-import Highlight from '../../atoms/Highlight';
+import Alert from '../../atoms/Alert';
 import Button from '../../atoms/hyperTexts/Button';
 import './style.css';
 
-export const HighlightWithTwoButtons = ({
+export const AlertWithTwoButtons = ({
   title,
   children,
   labelAction1,
@@ -11,10 +11,10 @@ export const HighlightWithTwoButtons = ({
   onClickAction2,
 }) => (
   <div className="datapass-container-two-btn">
-    <Highlight className="datapass-highlight">
+    <Alert type="warning">
       <p className="fr-h5 fr-mb-3w">{title}</p>
       {children}
-    </Highlight>
+    </Alert>
     <div className="datapass-two-btn">
       <div>
         <Button outline icon="edit" onClick={onClickAction1}>
@@ -30,4 +30,4 @@ export const HighlightWithTwoButtons = ({
   </div>
 );
 
-export default HighlightWithTwoButtons;
+export default AlertWithTwoButtons;
