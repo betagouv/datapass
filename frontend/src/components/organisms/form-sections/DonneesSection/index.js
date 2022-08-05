@@ -112,7 +112,7 @@ const DonneesSection = ({
               handleChange={onChange}
             />
           ))}
-          {disabled && !isEmpty(outdatedScopes) && (
+          {!isEmpty(outdatedScopes) && (
             <Scopes
               title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
               scopes={outdatedScopes.map((value) => ({ value, label: value }))}
@@ -120,8 +120,8 @@ const DonneesSection = ({
                 outdatedScopes,
                 Array(outdatedScopes.length).fill(true)
               )}
-              disabledApplication
-              handleChange={() => null}
+              disabledApplication={disabled}
+              handleChange={onChange}
             />
           )}
         </>
