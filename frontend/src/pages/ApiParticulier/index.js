@@ -18,7 +18,7 @@ const DonneesDescription = () => (
       l’API Particulier, produit opéré par la DINUM. Pour obtenir ces données
       (ex : le revenu fiscal de référence, les informations sur les déclarants
       et le nombre de parts du foyer fiscal), veuillez désormais interroger
-      directement l’api dédiée à l’accès aux données fiscales des particuliers{' '}
+      directement l’API dédiée à l’accès aux données fiscales des particuliers{' '}
       <Link inline newTab href="https://api.gouv.fr/les-api/impot-particulier">
         **l’API Impôt particulier** de la DGFiP
       </Link>
