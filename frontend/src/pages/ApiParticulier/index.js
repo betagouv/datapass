@@ -14,8 +14,8 @@ import demarches from './demarches.json';
 const DonneesDescription = () => (
   <>
     <p>
-      ⚠️ Les données fiscales des particuliers ne sont plus disponibles via
-      l’API Particulier, produit opéré par la DINUM. Pour obtenir ces données
+      ⚠️ **Les données fiscales des particuliers ne sont plus disponibles via
+      l’API Particulier, produit opéré par la DINUM**. Pour obtenir ces données
       (ex : le revenu fiscal de référence, les informations sur les déclarants
       et le nombre de parts du foyer fiscal), veuillez désormais interroger
       directement l’API dédiée à l’accès aux données fiscales des particuliers{' '}
