@@ -342,7 +342,9 @@ export const findModifiedScopes = (
   }
 
   return omitBy(enrollmentState.scopes, function (v, k) {
-    return demarcheState.scopes[k] === v;
+    return (
+      isUndefined(demarcheState.scopes[k]) || demarcheState.scopes[k] === v
+    );
   });
 };
 

@@ -648,13 +648,45 @@ describe('utils', () => {
         scopes: {
           dgfip_declarant1_nom: true,
           cnaf_quotient_familial: false,
-          entreprise: false,
         },
       };
       expect(findModifiedScopes(demarcheState, enrollmentState)).toStrictEqual({
         cnaf_quotient_familial: false,
-        entreprise: false,
       });
+    });
+
+    it('should not return scopes that have been removed', () => {
+      const demarcheState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+        },
+      };
+      const enrollmentState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+          entreprise: false,
+        },
+      };
+      expect(findModifiedScopes(demarcheState, enrollmentState)).toStrictEqual(
+        {}
+      );
+    });
+
+    it('should not return scopes that have been added', () => {
+      const demarcheState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+          entreprise: false,
+        },
+      };
+      const enrollmentState = {
+        scopes: {
+          dgfip_declarant1_nom: true,
+        },
+      };
+      expect(findModifiedScopes(demarcheState, enrollmentState)).toStrictEqual(
+        {}
+      );
     });
   });
 
