@@ -41,17 +41,17 @@ export const useAuth = () => {
 };
 
 /**
- * Do not try this at home: trying to modify a state of a component outside react is not recommended!
+ * Do not try this at home: trying to modify a state of a component outside React is not recommended!
  * We needed a convenient way to expire frontend session when the backend session expire.
  * (frontend session = user property in this state)
  * At page load, the state of the backend session is synced with a call to /users/me:
- * if we get a 401 their is no active session, if not the user is connected.
+ * if we get a 401 there is no active session, if not the user is connected.
  * But when the session expire in the backend, while the app has been loaded some time ago,
  * the frontend need a way to know it.
  * A convenient way to do it is to detect when a call to the backend result in a 401 error.
  * We use axios interceptors to detect this.
  * At this moment we need to remove the front end session (ie. delete user property in
- * this state). The only react way to do it is to use components.
+ * this state). The only React way to do it is to use components.
  * The problem is, it's hard to have a function which is an axios interceptor and a
  * component at the same time.
  * The solution we found is to expose a reference of the setState function of this component.
