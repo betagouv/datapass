@@ -201,18 +201,5 @@ Ask a colleague to give you access to the Gitlab Infratrusture repository.
 
 [![technical architecture](https://docs.google.com/drawings/d/e/2PACX-1vRQgClO24uIMZMY-7DZCqz2QqaaDUjepysMv2zHEY4hrOkgGTz8FFXBMxNnNR-uD3F-ZknXHeHbksCj/pub?w=960&h=903)](https://docs.google.com/drawings/d/1rJl6g-BFKO--4EWmbSgn3Wq7H8LCxDUvey_xlN-3Sp4/edit?usp=sharing)
 
-## Troubleshooting
-
-### Unable to join organization on development environment
-
-The incrementation of organization id might not have been done properly when
-loading fixtures in api-auth database.
-
-You can fix this in api-auth database with:
-
-```postgres-sql
-SELECT setval('organizations_id_seq', 3);
-```
-
 Powered
 by: [<img src="http://www.browserstack.com/images/layout/browserstack-logo-600x315.png" height="100"/>](https://www.browserstack.com/)
