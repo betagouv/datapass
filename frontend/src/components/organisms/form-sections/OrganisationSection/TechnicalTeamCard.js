@@ -1,3 +1,4 @@
+import { isNumber } from 'lodash';
 import React, { useContext, useEffect, useMemo } from 'react';
 import Alert from '../../../atoms/Alert';
 import Button from '../../../atoms/hyperTexts/Button';
@@ -15,7 +16,7 @@ const typeOptions = [
   { id: 'other', label: 'Autre' },
 ];
 
-export const TechnicalTeamCard = ({ editorList = [] }) => {
+export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
   const {
     disabled,
     onChange,
@@ -23,7 +24,14 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
     enrollment: { technical_team_type, technical_team_value },
   } = useContext(FormContext);
 
-  const { setReadyForNextSteps } = useContext(HideSectionsContext);
+  const { setReadyForNextSteps, setLastIndexToShow } =
+    useContext(HideSectionsContext);
+
+  useEffect(() => {
+    if (isNumber(sectionIndex)) {
+      setLastIndexToShow(sectionIndex);
+    }
+  }, [setLastIndexToShow, sectionIndex]);
 
   const areInputValid = useMemo(() => {
     if (!technical_team_type) {
@@ -87,7 +95,7 @@ export const TechnicalTeamCard = ({ editorList = [] }) => {
 
   return (
     <Card>
-      <h3>Qui implémentera l’API ?</h3>
+      <h3>Qui implémentera l’API ?</h3>
       {!isUserEnrollmentLoading && !technical_team_type && (
         <>
           <Alert>
