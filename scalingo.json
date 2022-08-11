@@ -1,7 +1,6 @@
 {
   "env": {
     "PROJECT_DIR": "frontend",
-    "BUILDPACK_NAME": "node.js",
     "NODE_ENV": "development",
     "REACT_APP_API_GOUV_HOST": "https://www-staging.api.gouv.fr",
     "REACT_APP_BACK_HOST": "https://back.datapass-test.api.gouv.fr",
