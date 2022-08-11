@@ -5,7 +5,7 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse } from './common';
+import { additionalTermsOfUse, editorList } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
@@ -138,7 +138,7 @@ const ApiFicobaSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}

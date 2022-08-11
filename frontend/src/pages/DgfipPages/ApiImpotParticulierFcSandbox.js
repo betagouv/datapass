@@ -6,7 +6,7 @@ import DemarcheSection from '../../components/organisms/form-sections/DemarcheSe
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse } from './common';
+import { additionalTermsOfUse, editorList } from './common';
 import {
   demarches,
   availableScopes,
@@ -58,7 +58,7 @@ const ApiImpotParticulierFcSandbox = () => (
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <PreviousEnrollmentSection steps={steps} />
-    <OrganisationSection />
+    <OrganisationSection editorList={editorList} />
     <DemarcheSection availableScopes={availableScopes} />
     <DescriptionSection />
     <DonneesSection
