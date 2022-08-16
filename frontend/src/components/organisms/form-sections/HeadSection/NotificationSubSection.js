@@ -18,7 +18,7 @@ export const NotificationSubSection = () => {
 
   const {
     isUserEnrollmentLoading,
-    enrollment: { id, team_members, target_api, acl = {} },
+    enrollment: { id, team_members, target_api, acl = {}, events = {} },
   } = useContext(FormContext);
 
   const isUserADemandeur = useMemo(() => {
@@ -37,6 +37,22 @@ export const NotificationSubSection = () => {
 
     return userInstructor;
   }, [user, target_api]);
+
+  const isEventNotifyFromDemandeur = useMemo(() => {
+    const filteredEvents = events.filter((event) => {
+      return (
+        event.name === 'notify' &&
+        event.processed_at === null &&
+        event.user.email !== email
+      );
+    });
+
+    if (isEmpty(filteredEvents)) {
+      return false;
+    }
+
+    return filteredEvents;
+  }, [events, email]);
 
   return (
     <>
@@ -59,7 +75,7 @@ export const NotificationSubSection = () => {
           {isUserADemandeur && id && (
             <CallToWriteMessageNotification enrollmentId={id} />
           )}
-          {isUserAnInstructor && id && (
+          {isUserAnInstructor && id && isEventNotifyFromDemandeur && (
             <CallToProcessedMessageNotification enrollment={id} />
           )}
         </>
