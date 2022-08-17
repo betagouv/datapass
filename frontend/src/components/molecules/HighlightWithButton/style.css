@@ -9,3 +9,7 @@
   flex-grow: 1;
   flex-basis: 0;
 }
+
+.datapass-span {
+  margin-bottom: 1.5rem;
+}

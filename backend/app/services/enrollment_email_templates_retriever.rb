@@ -83,13 +83,7 @@ class EnrollmentEmailTemplatesRetriever
   end
 
   def email_kinds
-    %w[
-      notify
-      refuse
-      request_changes
-      validate
-      revoke
-    ].freeze
+    Event::EVENTS_WITH_COMMENT_AS_EMAIL_BODY
   end
 
   def target_api_data

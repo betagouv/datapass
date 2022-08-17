@@ -17,15 +17,15 @@ const Prompt = ({
 
   const [input, setInput] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const templates = useMostUsedComments(selectedEvent, targetApi);
-  const { plain_text_content } = useEmailTemplate(id, selectedEvent);
+  const mostUsedComments = useMostUsedComments(selectedEvent, targetApi);
+  const emailTemplate = useEmailTemplate(id, selectedEvent, targetApi);
   const refPanel = useRef(null);
 
   useEffect(() => {
-    if (!input && plain_text_content) {
-      setInput(plain_text_content);
+    if (!input && emailTemplate) {
+      setInput(emailTemplate);
     }
-  }, [input, plain_text_content]);
+  }, [input, emailTemplate]);
 
   useEffect(() => {
     refPanel.current.scrollIntoView({ behavior: 'smooth' });
@@ -59,15 +59,15 @@ const Prompt = ({
           value={input}
         />
       )}
-      {templates.length > 0 && (
+      {mostUsedComments.length > 0 && (
         <ExpandableQuote
           title="Voir les réponses que vous avez apportées précédemment pour des demandes d’habilitation similaires"
           large
         >
-          {templates.map((template) => (
-            <div key={template}>
+          {mostUsedComments.map((comment) => (
+            <div key={comment}>
               <p>-----------</p>
-              <p style={{ whiteSpace: 'pre-line' }}>{template}</p>
+              <p style={{ whiteSpace: 'pre-line' }}>{comment}</p>
             </div>
           ))}
         </ExpandableQuote>

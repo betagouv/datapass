@@ -5,7 +5,8 @@ import './style.css';
 export const HighlightWithButton = ({ title, children, onClick, label }) => (
   <div className="fr-container--fluid fr-mt-5w datapass-container">
     <Highlight className="datapass-highlight">
-      <p className="fr-h5 fr-mb-3w">{title}</p>
+      <span className="fr-h5 fr-mb-3w">{title}</span>
+      <br className="datapass-span" />
       {children}
     </Highlight>
     <div className="fr-container--fluid datapass-container">

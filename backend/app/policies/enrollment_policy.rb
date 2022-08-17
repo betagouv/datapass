@@ -77,6 +77,10 @@ class EnrollmentPolicy < ApplicationPolicy
     user.is_instructor?(record.target_api)
   end
 
+  def mark_demandeur_notify_events_as_processed?
+    user.is_instructor?(record.target_api)
+  end
+
   def permitted_attributes
     res = []
 

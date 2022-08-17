@@ -180,6 +180,10 @@ class EnrollmentsController < ApplicationController
       end
     end
 
+    if %w[refuse validate revoke request_changes].include?(event)
+      @enrollment.mark_demandeur_notify_events_as_processed
+    end
+
     if @enrollment.send(
       "#{event}_status".to_sym,
       user_id: current_user.id,
@@ -226,28 +230,17 @@ class EnrollmentsController < ApplicationController
 
   # GET enrollment/1/mark_demandeur_notify_events_as_processed
   def mark_demandeur_notify_events_as_processed
-    @enrollment = policy_scope(Enrollment)
-      .find(params[:id])
+    @enrollment = authorize Enrollment.find(params[:id])
 
-    demandeurs = @enrollment.demandeurs
-
-    should_be_mark_as_processed =
-      @enrollment.events.where(
-        name: "notify",
-        processed_at: nil,
-        user_id: demandeurs.pluck(:user_id)
-      )
-
-    should_be_mark_as_processed.each { |event| event.mark_as_processed }
-
-    render status: :ok
+    @enrollment.mark_demandeur_notify_events_as_processed
+    render head: :ok
   end
 
   def destroy
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.destroy
 
-    render status: :ok
+    render json: @enrollment
   end
 
   private
