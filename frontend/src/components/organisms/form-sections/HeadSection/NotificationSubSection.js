@@ -1,9 +1,8 @@
-import { get, isEmpty } from 'lodash';
-import { useContext, useMemo } from 'react';
+import { get } from 'lodash';
+import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
-import { useAuth } from '../../AuthContext';
 import CallToProcessedMessageNotification from './CallToProcessedMessageNotification';
 import CallToWriteMessageNotification from './CallToWriteMessageNotification';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
@@ -11,48 +10,11 @@ import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 
 export const NotificationSubSection = () => {
   const location = useLocation();
-  const {
-    user,
-    user: { email },
-  } = useAuth();
 
   const {
     isUserEnrollmentLoading,
     enrollment: { id, team_members, target_api, acl = {}, events = {} },
   } = useContext(FormContext);
-
-  const isUserADemandeur = useMemo(() => {
-    if (isEmpty(team_members)) {
-      return false;
-    }
-    return team_members
-      .filter(({ type }) => type === 'demandeur')
-      .map(({ email }) => email)
-      .includes(email);
-  }, [team_members, email]);
-
-  const isUserAnInstructor = useMemo(() => {
-    const targetApiInstructorRole = `${target_api}:instructor`;
-    const userInstructor = user.roles.includes(targetApiInstructorRole);
-
-    return userInstructor;
-  }, [user, target_api]);
-
-  const isEventNotifyFromDemandeur = useMemo(() => {
-    const filteredEvents = events.filter((event) => {
-      return (
-        event.name === 'notify' &&
-        event.processed_at === null &&
-        event.user.email !== email
-      );
-    });
-
-    if (isEmpty(filteredEvents)) {
-      return false;
-    }
-
-    return filteredEvents;
-  }, [events, email]);
 
   return (
     <>
@@ -72,12 +34,15 @@ export const NotificationSubSection = () => {
               Pensez à enregistrer régulièrement vos modifications.
             </Alert>
           )}
-          {isUserADemandeur && id && (
-            <CallToWriteMessageNotification enrollmentId={id} />
-          )}
-          {isUserAnInstructor && id && isEventNotifyFromDemandeur && (
-            <CallToProcessedMessageNotification enrollment={id} />
-          )}
+          <CallToWriteMessageNotification
+            enrollmentId={id}
+            team_members={team_members}
+          />
+          <CallToProcessedMessageNotification
+            enrollmentId={id}
+            events={events}
+            target_api={target_api}
+          />
         </>
       )}
     </>

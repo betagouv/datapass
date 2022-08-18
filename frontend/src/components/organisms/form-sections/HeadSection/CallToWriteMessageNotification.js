@@ -1,9 +1,29 @@
-import { useContext } from 'react';
+import { isEmpty } from 'lodash';
+import { useContext, useMemo } from 'react';
 import HighlightWithButton from '../../../molecules/notification-with-buttons/HighlightWithButton';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
+import { useAuth } from '../../AuthContext';
 
-export const CallToWriteMessageNotification = () => {
+export const CallToWriteMessageNotification = ({
+  enrollmentId,
+  team_members,
+}) => {
   const { onClick } = useContext(OpenMessagePromptContext);
+  const {
+    user: { email },
+  } = useAuth();
+
+  const isUserADemandeur = useMemo(() => {
+    if (isEmpty(team_members)) {
+      return false;
+    }
+    return team_members
+      .filter(({ type }) => type === 'demandeur')
+      .map(({ email }) => email)
+      .includes(email);
+  }, [team_members, email]);
+
+  if (!isUserADemandeur || !enrollmentId) return null;
 
   return (
     <HighlightWithButton
