@@ -1,0 +1,23 @@
+.datapass-notification-with-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.fr-alert + .datapass-notification-with-buttons,
+.datapass-notification-with-buttons + .fr-alert,
+.datapass-notification-with-buttons + .datapass-notification-with-buttons {
+  margin-top: 1rem;
+}
+
+.datapass-notification-with-buttons > .fr-alert,
+.datapass-notification-with-buttons > .fr-highlight {
+  flex-grow: 1;
+  margin-top: 0;
+}
+
+.datapass-notification-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-self: center;
+}

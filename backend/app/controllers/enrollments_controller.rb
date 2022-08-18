@@ -180,6 +180,10 @@ class EnrollmentsController < ApplicationController
       end
     end
 
+    if current_user.is_instructor?(@enrollment.target_api)
+      @enrollment.mark_demandeur_notify_events_as_processed
+    end
+
     if @enrollment.send(
       "#{event}_status".to_sym,
       user_id: current_user.id,
@@ -222,6 +226,14 @@ class EnrollmentsController < ApplicationController
       each_serializer: LightEnrollmentSerializer,
       adapter: :json,
       root: "enrollments"
+  end
+
+  # GET enrollment/1/mark_demandeur_notify_events_as_processed
+  def mark_demandeur_notify_events_as_processed
+    @enrollment = authorize Enrollment.find(params[:id])
+
+    @enrollment.mark_demandeur_notify_events_as_processed
+    render json: @enrollment
   end
 
   def destroy

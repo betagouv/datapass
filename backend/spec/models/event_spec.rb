@@ -15,18 +15,44 @@ RSpec.describe Event, type: :model do
     end
   end
 
+  describe "#mark_as_processed" do
+    let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
+    subject do
+      create(
+        :event,
+        name: :notify,
+        enrollment_id: enrollment.id,
+        user_id: enrollment.demandeurs.first.user_id,
+        comment: "some comment"
+      )
+    end
+
+    context "when event notify is created" do
+      it "is expected to have a processed_at field at nil" do
+        expect(subject.processed_at).to be(nil)
+      end
+    end
+
+    context "when event notify is #mark_as_processed" do
+      it "is expected to have a processed_at field not nil" do
+        subject.mark_as_processed
+
+        expect(subject.processed_at).to_not be(nil)
+      end
+    end
+  end
+
   describe "comment validation" do
     subject { event }
 
     let(:event) { build(:event, name: name, comment: comment) }
-
     describe "events which require comment presence" do
       %w[
         refuse
         request_changes
         validate
-        notify
         revoke
+        notify
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :updated_at, :name, :comment, :diff
+  attributes :id, :comment, :created_at, :diff, :name, :processed_at, :updated_at
 
   has_one :user
 end

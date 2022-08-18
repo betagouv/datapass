@@ -5,7 +5,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     let(:enrollment) { create(:enrollment, :franceconnect, user: user) }
     let(:user) { create(:user, :with_all_infos) }
 
-    describe "manual review from instructor" do
+    describe "condition Event::EVENTS_WITH_COMMENT_AS_EMAIL_BODY" do
       subject(:mail) do
         described_class.with(
           to: to_email,
@@ -79,6 +79,49 @@ RSpec.describe EnrollmentMailer, type: :mailer do
           end
         end
       end
+    end
+  end
+
+  describe "#notification_email_to_instructors" do
+    let(:target_api) { "franceconnect" }
+    let(:enrollment) { create(:enrollment, :franceconnect, user: user) }
+    let(:user) { create(:user, :with_all_infos) }
+    let(:instructor) { create(:user, :with_all_infos) }
+
+    before do
+      instructor.roles = ["franceconnect:subscriber"]
+      instructor.save
+    end
+
+    subject(:mail) do
+      described_class.with(
+        to: instructor.email,
+        target_api: target_api,
+        enrollment_id: enrollment.id,
+        template: template,
+        message: message
+      ).notification_email_to_instructors
+    end
+
+    let(:template) { "notify_instructor" }
+    let(:message) { "We all live in a yellow submarine" }
+
+    let(:create_email_sample) do
+      File.open(Rails.root.join("app/views/enrollment_mailer/admin/notification_email_to_instructors.text.erb")) { |f| f.readline }.chomp
+    end
+
+    it "renders valid headers" do
+      expect(mail.subject).to eq("Vous avez un nouveau message concernant une habilitation")
+      expect(mail.to).to eq([instructor.email])
+      expect(mail.from).to eq(["contact@api.gouv.fr"])
+    end
+
+    it "renders notify_instructor template" do
+      expect(mail.body.encoded).to include(create_email_sample)
+    end
+
+    it "renders notify_instructor template with body" do
+      expect(mail.body.encoded).to include(message)
     end
   end
 end

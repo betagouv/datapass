@@ -3,7 +3,7 @@
 module EmailNotifierMethods
   protected
 
-  def deliver_created_mail_to_enrollment_creator
+  def deliver_created_mail_to_enrollment_demandeurs
     EnrollmentMailer.with(
       to: enrollment.demandeurs.pluck(:email),
       target_api: enrollment.target_api,
@@ -43,5 +43,13 @@ module EmailNotifierMethods
       template: "notify_submitted",
       demandeur_email: enrollment.demandeurs.pluck(:email).first
     ).notification_email.deliver_later
+  end
+
+  def deliver_message_to_enrollment_instructor(comment)
+    EnrollmentMailer.with(
+      target_api: enrollment.target_api,
+      enrollment_id: enrollment.id,
+      message: comment
+    ).notification_email_to_instructors.deliver_later
   end
 end

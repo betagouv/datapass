@@ -44,7 +44,7 @@ class Enrollment < ActiveRecord::Base
     state :revoked
 
     event :notify do
-      transition changes_requested: same
+      transition from: all, to: same
     end
 
     event :submit do
@@ -94,6 +94,15 @@ class Enrollment < ActiveRecord::Base
         )
       end
     end
+  end
+
+  def mark_demandeur_notify_events_as_processed
+    should_be_mark_as_processed = events.where(
+      name: "notify",
+      processed_at: nil,
+      user_id: demandeurs.pluck(:user_id)
+    )
+    should_be_mark_as_processed.each { |event| event.mark_as_processed }
   end
 
   def notify_event(event, *args)

@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
 import { get } from 'lodash';
-import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
+import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Alert from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
-import { useLocation } from 'react-router-dom';
+import CallToProcessedMessageNotification from './CallToProcessedMessageNotification';
+import CallToWriteMessageNotification from './CallToWriteMessageNotification';
+import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
 
 export const NotificationSubSection = () => {
@@ -11,7 +13,7 @@ export const NotificationSubSection = () => {
 
   const {
     isUserEnrollmentLoading,
-    enrollment: { id, acl = {} },
+    enrollment: { id, team_members, target_api, acl = {}, events = {} },
   } = useContext(FormContext);
 
   return (
@@ -32,6 +34,15 @@ export const NotificationSubSection = () => {
               Pensez à enregistrer régulièrement vos modifications.
             </Alert>
           )}
+          <CallToWriteMessageNotification
+            enrollmentId={id}
+            team_members={team_members}
+          />
+          <CallToProcessedMessageNotification
+            enrollmentId={id}
+            events={events}
+            target_api={target_api}
+          />
         </>
       )}
     </>

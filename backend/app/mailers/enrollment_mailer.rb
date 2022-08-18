@@ -19,7 +19,7 @@ class EnrollmentMailer < ActionMailer::Base
       @majority_percentile_processing_time_in_days = GetMajorityPercentileProcessingTimeInDays.call(params[:target_api])
     end
 
-    if manual_review_from_instructor?
+    if Event::EVENTS_WITH_COMMENT_AS_EMAIL_BODY.include?(params[:template])
       render_mail(
         body: params[:message]
       )
@@ -28,6 +28,20 @@ class EnrollmentMailer < ActionMailer::Base
         template_name: params[:template]
       )
     end
+  end
+
+  def notification_email_to_instructors
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @message = params[:message]
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @enrollment.subscribers.pluck(:email),
+      from: "contact@api.gouv.fr",
+      subject: "Vous avez un nouveau message concernant une habilitation",
+      template_path: "enrollment_mailer/admin",
+      template_name: "notification_email_to_instructors"
+    )
   end
 
   def notify_support_franceconnect
@@ -84,10 +98,6 @@ class EnrollmentMailer < ActionMailer::Base
         end
       end
     end
-  end
-
-  def manual_review_from_instructor?
-    Event::MANUALLY_REVIEWED_EVENT_NAMES.include?(params[:template])
   end
 
   def extract_template_path(template_name)

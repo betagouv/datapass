@@ -27,7 +27,9 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def notify?
-    record.can_notify_status? && user.is_instructor?(record.target_api)
+    record.can_notify_status? &&
+      (user.is_instructor?(record.target_api) ||
+      user.is_demandeur?(record))
   end
 
   def copy?
@@ -72,6 +74,10 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def get_email_templates?
+    user.is_instructor?(record.target_api)
+  end
+
+  def mark_demandeur_notify_events_as_processed?
     user.is_instructor?(record.target_api)
   end
 

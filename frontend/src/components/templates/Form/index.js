@@ -20,6 +20,7 @@ import NotFound from '../../organisms/NotFound';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
+import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
 import SubmissionPanel from './SubmissionPanel';
 
@@ -148,26 +149,28 @@ export const Form = ({
         sectionLabels={sectionLabels}
       />
       <div className="form-container">
-        <FormContext.Provider
-          value={{
-            disabled: !enrollment.acl.submit,
-            onChange: dispatchSetEnrollment,
-            enrollment,
-            isUserEnrollmentLoading,
-            demarches,
-          }}
-        >
-          <HeadSection />
-          <StepperSection />
-          <HideSectionsContainer>
-            {children}
-            <SubmissionPanel
-              enrollment={enrollment}
-              handlePostEvent={handlePostEvent}
-              updateEnrollment={dispatchSetEnrollment}
-            />
-          </HideSectionsContainer>
-        </FormContext.Provider>
+        <OpenMessagePromptContextProvider>
+          <FormContext.Provider
+            value={{
+              disabled: !enrollment.acl.submit,
+              onChange: dispatchSetEnrollment,
+              enrollment,
+              isUserEnrollmentLoading,
+              demarches,
+            }}
+          >
+            <HeadSection />
+            <StepperSection />
+            <HideSectionsContainer>
+              {children}
+              <SubmissionPanel
+                enrollment={enrollment}
+                handlePostEvent={handlePostEvent}
+                updateEnrollment={dispatchSetEnrollment}
+              />
+            </HideSectionsContainer>
+          </FormContext.Provider>
+        </OpenMessagePromptContextProvider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div>

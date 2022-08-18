@@ -4,7 +4,7 @@ class BaseNotifier < AbstractNotifier
   include EmailNotifierMethods
 
   def create
-    deliver_created_mail_to_enrollment_creator
+    deliver_created_mail_to_enrollment_demandeurs
   end
 
   def update(diff:, user_id:)
@@ -23,7 +23,14 @@ class BaseNotifier < AbstractNotifier
   end
 
   def notify(comment:, current_user:)
-    deliver_event_mailer(__method__, comment)
+    demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+    if demandeurs_ids.include?(current_user.id)
+      deliver_message_to_enrollment_instructor(comment)
+    end
+
+    if current_user.is_instructor?(enrollment.target_api)
+      deliver_event_mailer(__method__, comment)
+    end
   end
 
   def request_changes(comment:, current_user:)

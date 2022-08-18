@@ -18,7 +18,6 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
           {
             "label" => "DINUM rockstars",
             "mailer" => {
-              "notify" => mailer_template_payload,
               "refuse" => mailer_template_payload,
               "request_changes" => mailer_template_payload,
               "validate" => mailer_template_payload,
@@ -28,12 +27,11 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         )
       end
 
-      it "renders 5 templates, one for each action" do
-        expect(subject.count).to eq(5)
+      it "renders 4 templates, one for each action" do
+        expect(subject.count).to eq(4)
 
         expect(subject.map(&:event)).to include(
           *%w[
-            notify
             refuse
             request_changes
             validate
@@ -93,11 +91,10 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
       let(:target_api) { "api_entreprise" }
 
       it "renders 5 templates, one for each action" do
-        expect(subject.count).to eq(5)
+        expect(subject.count).to eq(4)
 
         expect(subject.map(&:event)).to include(
           *%w[
-            notify
             refuse
             request_changes
             validate

@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
-import { ScrollablePanel } from '../../Scrollable';
+import { isEmpty } from 'lodash';
+import { useContext } from 'react';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
-import TagContainer from '../../../atoms/TagContainer';
-import FileCopyIcon from '../../../atoms/icons/file_copy';
 import {
   STATUS_TO_BUTTON_TYPE,
   USER_STATUS_LABELS,
 } from '../../../../config/status-parameters';
-import { FormContext } from '../../../templates/Form';
-import ActivityFeed from './ActivityFeed';
-import { isEmpty } from 'lodash';
-import NotificationSubSection from './NotificationSubSection';
 import Tag from '../../../atoms/hyperTexts/Tag';
+import FileCopyIcon from '../../../atoms/icons/file_copy';
+import TagContainer from '../../../atoms/TagContainer';
+import { FormContext } from '../../../templates/Form';
+import { ScrollablePanel } from '../../Scrollable';
+import ActivityFeed from './ActivityFeed';
+import './index.css';
+import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
   const {
@@ -20,11 +21,7 @@ export const HeadSection = () => {
 
   return (
     <ScrollablePanel scrollableId="head">
-      <div
-        style={{
-          marginBottom: '2em',
-        }}
-      >
+      <div className="tag-sub-section">
         <>Vous demandez l’accès à</>
         <h1>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</h1>
         <TagContainer>
@@ -46,14 +43,12 @@ export const HeadSection = () => {
           </Tag>
         </TagContainer>
       </div>
-      <div
-        style={{
-          marginBottom: '2em',
-        }}
-      >
+      <div className="feed-sub-section">
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
-      <NotificationSubSection />
+      <div className="notification-sub-section">
+        <NotificationSubSection />
+      </div>
     </ScrollablePanel>
   );
 };
