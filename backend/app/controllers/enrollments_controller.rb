@@ -240,7 +240,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.destroy
 
-    render json: @enrollment
+    render status: :ok
   end
 
   private
