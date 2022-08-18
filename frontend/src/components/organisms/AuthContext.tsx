@@ -26,6 +26,7 @@ type AuthContextType = {
   connectionError: string | null;
   login: () => void;
   logout: () => void;
+  getIsUserAnInstructor: (target_api: string) => boolean;
 };
 
 export const AuthContext = React.createContext<AuthContextType>({
@@ -34,6 +35,7 @@ export const AuthContext = React.createContext<AuthContextType>({
   connectionError: null,
   login: () => {},
   logout: () => {},
+  getIsUserAnInstructor: (target_api) => false,
 });
 
 export const useAuth = () => {
@@ -116,6 +118,12 @@ export class AuthStore extends React.Component {
     window.location.href = `${BACK_HOST}/api/users/sign_out`;
   };
 
+  getIsUserAnInstructor = (target_api: string) => {
+    const targetApiInstructorRole = `${target_api}:instructor`;
+
+    return this.state.user.roles.includes(targetApiInstructorRole);
+  };
+
   render() {
     const { children } = this.props;
     const { user, isLoading, connectionError } = this.state;
@@ -128,6 +136,7 @@ export class AuthStore extends React.Component {
           connectionError,
           login: this.login,
           logout: this.logout,
+          getIsUserAnInstructor: this.getIsUserAnInstructor,
         }}
       >
         {children}

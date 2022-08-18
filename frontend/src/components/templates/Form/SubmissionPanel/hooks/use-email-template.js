@@ -5,14 +5,11 @@ import { useAuth } from '../../../../organisms/AuthContext';
 const useEmailTemplate = (enrollmentId, event, targetApi) => {
   const [emailTemplate, setEmailTemplate] = useState(null);
 
-  const { user } = useAuth();
+  const { getIsUserAnInstructor } = useAuth();
 
   const isUserAnInstructor = useMemo(() => {
-    const targetApiInstructorRole = `${targetApi}:instructor`;
-    const userInstructor = user.roles.includes(targetApiInstructorRole);
-
-    return userInstructor;
-  }, [user, targetApi]);
+    return getIsUserAnInstructor(targetApi);
+  }, [getIsUserAnInstructor, targetApi]);
 
   useEffect(() => {
     async function fetchEmailTemplate() {

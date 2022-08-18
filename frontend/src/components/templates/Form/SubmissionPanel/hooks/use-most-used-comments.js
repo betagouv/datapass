@@ -5,14 +5,11 @@ import { useAuth } from '../../../../organisms/AuthContext';
 const useMostUsedComments = (event, targetApi) => {
   const [comments, setComments] = useState([]);
 
-  const { user } = useAuth();
+  const { getIsUserAnInstructor } = useAuth();
 
   const isUserAnInstructor = useMemo(() => {
-    const targetApiInstructorRole = `${targetApi}:instructor`;
-    const userInstructor = user.roles.includes(targetApiInstructorRole);
-
-    return userInstructor;
-  }, [user, targetApi]);
+    return getIsUserAnInstructor(targetApi);
+  }, [getIsUserAnInstructor, targetApi]);
 
   useEffect(() => {
     async function fetchMostUsedComments() {

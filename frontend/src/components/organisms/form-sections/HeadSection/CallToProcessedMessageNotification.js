@@ -14,8 +14,8 @@ const CallToProcessedMessageNotification = ({
   const { onClick: openMessagePrompt } = useContext(OpenMessagePromptContext);
   const { goBackToList } = useListItemNavigation();
   const {
-    user,
     user: { email },
+    getIsUserAnInstructor,
   } = useAuth();
 
   const markAsProcessed = async () => {
@@ -24,10 +24,8 @@ const CallToProcessedMessageNotification = ({
   };
 
   const isUserAnInstructor = useMemo(() => {
-    const targetApiInstructorRole = `${target_api}:instructor`;
-
-    return user.roles.includes(targetApiInstructorRole);
-  }, [user, target_api]);
+    return getIsUserAnInstructor(target_api);
+  }, [getIsUserAnInstructor, target_api]);
 
   const isEventNotifyFromDemandeur = useMemo(() => {
     const filteredEvents = events.filter((event) => {
