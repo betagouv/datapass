@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import HighlightWithButton from '../../../molecules/HighlightWithButton';
+import HighlightWithButton from '../../../molecules/notification-with-buttons/HighlightWithButton';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 
 export const CallToWriteMessageNotification = () => {

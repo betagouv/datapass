@@ -10,12 +10,12 @@ export const AlertWithTwoButtons = ({
   onClickAction1,
   onClickAction2,
 }) => (
-  <div className="datapass-container-two-btn">
+  <div className="datapass-notification-with-buttons">
     <Alert type="warning">
       <p className="fr-h5 fr-mb-3w">{title}</p>
       {children}
     </Alert>
-    <div className="datapass-two-btn">
+    <div className="datapass-notification-buttons">
       <div>
         <Button outline icon="edit" onClick={onClickAction1}>
           {labelAction1}
