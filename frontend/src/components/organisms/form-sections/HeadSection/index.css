@@ -1,13 +1,14 @@
-.tag-section {
-  margin-bottom: 1em;
+.tag-sub-section {
+  margin-bottom: 1.5rem;
 }
 
-.feed-section {
-  padding-top: 2em;
+.feed-sub-section {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   border-top: 1px solid var(--border-default-grey);
 }
 
 .notification-sub-section {
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--border-default-grey);
-  padding-bottom: 2em;
 }

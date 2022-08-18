@@ -32,17 +32,15 @@ class EnrollmentMailer < ActionMailer::Base
 
   def notification_email_to_instructors
     @enrollment = Enrollment.find(params[:enrollment_id])
-    @target_api_label = data_provider_config["label"]
     @message = params[:message]
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
-    @front_host = ENV.fetch("FRONT_HOST")
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
       from: "contact@api.gouv.fr",
       subject: "Vous avez un nouveau message concernant une habilitation",
       template_path: "enrollment_mailer/admin",
-      template_name: "notify_instructor"
+      template_name: "notification_email_to_instructors"
     )
   end
 

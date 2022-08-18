@@ -180,7 +180,7 @@ class EnrollmentsController < ApplicationController
       end
     end
 
-    if %w[refuse validate revoke request_changes].include?(event)
+    if current_user.is_instructor?(@enrollment.target_api)
       @enrollment.mark_demandeur_notify_events_as_processed
     end
 
@@ -233,7 +233,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = authorize Enrollment.find(params[:id])
 
     @enrollment.mark_demandeur_notify_events_as_processed
-    render head: :ok
+    render json: @enrollment
   end
 
   def destroy

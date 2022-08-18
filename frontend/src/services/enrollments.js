@@ -259,5 +259,5 @@ export function markEventsAsProcessed({ id }) {
         headers: { 'Content-type': 'application/json' },
       }
     )
-    .then(({ data: { enrollment } }) => enrollment);
+    .then(({ data }) => data);
 }

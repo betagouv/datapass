@@ -19,13 +19,13 @@ const CallToProcessedMessageNotification = () => {
 
   return (
     <AlertWithTwoButtons
-      title="Message de demandeur"
+      title="Message"
       labelAction1="Rédiger un message"
       labelAction2="Marquer comme traité"
       onClickAction1={openMessagePrompt}
       onClickAction2={markAsProcessed}
     >
-      Un ou plusieurs messages de demandeur est en attente de traitement
+      Un ou plusieurs messages sont en attente de traitement
     </AlertWithTwoButtons>
   );
 };

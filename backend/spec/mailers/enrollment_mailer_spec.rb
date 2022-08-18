@@ -107,7 +107,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     let(:message) { "We all live in a yellow submarine" }
 
     let(:create_email_sample) do
-      File.open(Rails.root.join("app/views/enrollment_mailer/admin/notify_instructor.text.erb")) { |f| f.readline }.chomp
+      File.open(Rails.root.join("app/views/enrollment_mailer/admin/notification_email_to_instructors.text.erb")) { |f| f.readline }.chomp
     end
 
     it "renders valid headers" do

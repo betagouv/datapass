@@ -21,7 +21,7 @@ export const HeadSection = () => {
 
   return (
     <ScrollablePanel scrollableId="head">
-      <div className="tag-section">
+      <div className="tag-sub-section">
         <>Vous demandez l’accès à</>
         <h1>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</h1>
         <TagContainer>
@@ -43,7 +43,7 @@ export const HeadSection = () => {
           </Tag>
         </TagContainer>
       </div>
-      <div className="feed-section">
+      <div className="feed-sub-section">
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
       <div className="notification-sub-section">

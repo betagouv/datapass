@@ -11,21 +11,16 @@ export const AlertWithTwoButtons = ({
   onClickAction2,
 }) => (
   <div className="datapass-notification-with-buttons">
-    <Alert type="warning">
-      <p className="fr-h5 fr-mb-3w">{title}</p>
+    <Alert type="warning" title={title}>
       {children}
     </Alert>
     <div className="datapass-notification-buttons">
-      <div>
-        <Button outline icon="edit" onClick={onClickAction1}>
-          {labelAction1}
-        </Button>
-      </div>
-      <div>
-        <Button outline onClick={onClickAction2}>
-          {labelAction2}
-        </Button>
-      </div>
+      <Button outline icon="edit" onClick={onClickAction1}>
+        {labelAction1}
+      </Button>
+      <Button outline onClick={onClickAction2}>
+        {labelAction2}
+      </Button>
     </div>
   </div>
 );
