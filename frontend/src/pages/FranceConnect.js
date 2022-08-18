@@ -37,9 +37,9 @@ const CadreJuridiqueDescription = () => (
         <Link
           inline
           newTab
-          href="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/06/20210618_decision_dinum.pdf"
+          href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479/"
         >
-          la décision du 18 juin 2021
+          l’arrêté du 8 novembre 2018
         </Link>
         . N’oubliez pas de justifier la nécessité d’identification de la
         personne dans le champs de description de votre cas d’usage.{' '}
