@@ -20,7 +20,7 @@ const CallToProcessedMessageNotification = ({
   } = useAuth();
 
   const markAsProcessed = async () => {
-    await markEventsAsProcessed({ enrollmentId });
+    await markEventsAsProcessed({ id: enrollmentId });
     goBackToList();
   };
 
