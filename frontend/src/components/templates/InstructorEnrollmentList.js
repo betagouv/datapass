@@ -1,28 +1,29 @@
-import React from 'react';
-import 'react-table-6/react-table.css';
-import ReactTable from 'react-table-6';
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
+import React from 'react';
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 
 import './InstructorEnrollmentList.css';
 
-import { getStateFromUrlParams, setUrlParamsFromState } from '../../lib';
-import { getEnrollments } from '../../services/enrollments';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
+import { getStateFromUrlParams, setUrlParamsFromState } from '../../lib';
+import { getEnrollments } from '../../services/enrollments';
 import enrollmentListStyle from './enrollmentListStyle';
 
+import { useMatomo } from '@datapunt/matomo-tracker-react';
+import Button from '../atoms/hyperTexts/Button';
+import Tag from '../atoms/hyperTexts/Tag';
+import FileCopyIcon from '../atoms/icons/file_copy';
+import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import ScheduleIcon from '../atoms/icons/schedule';
-import { AuthContext } from '../organisms/AuthContext';
-import MultiSelect from '../molecules/MultiSelect';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
-import FileCopyIcon from '../atoms/icons/file_copy';
-import useListItemNavigation from './hooks/use-list-item-navigation';
-import Tag from '../atoms/hyperTexts/Tag';
+import MultiSelect from '../molecules/MultiSelect';
+import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
-import Button from '../atoms/hyperTexts/Button';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
+import useListItemNavigation from './hooks/use-list-item-navigation';
 
 const getInboxes = (user) => ({
   primary: {
@@ -144,6 +145,33 @@ class InstructorEnrollmentList extends React.Component {
         const color =
           daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
         return <span style={{ color }}>{daysFromToday}j</span>;
+      },
+    },
+    {
+      Header: <MailIcon color={'var(--datapass-dark-grey)'} />,
+      accessor: 'count_notify_events_from_demandeurs',
+      headerStyle: {
+        ...enrollmentListStyle.header,
+        ...enrollmentListStyle.updateAtHeader,
+      },
+      style: {
+        ...enrollmentListStyle.cell,
+        ...enrollmentListStyle.centeredCell,
+      },
+      width: 50,
+      Cell: ({ value: count_notify_events_from_demandeurs }) => {
+        if (this.state.inbox !== 'primary') {
+          return <small>{count_notify_events_from_demandeurs}</small>;
+        }
+        const color =
+          count_notify_events_from_demandeurs > 5
+            ? 'red'
+            : count_notify_events_from_demandeurs > 4
+            ? 'orange'
+            : 'green';
+        return (
+          <span style={{ color }}>{count_notify_events_from_demandeurs}</span>
+        );
       },
     },
     {
