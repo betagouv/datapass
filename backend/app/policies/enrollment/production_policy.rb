@@ -1,4 +1,8 @@
 class Enrollment::ProductionPolicy < EnrollmentPolicy
+  def notify?
+    false
+  end
+
   def permitted_attributes
     res = []
 
