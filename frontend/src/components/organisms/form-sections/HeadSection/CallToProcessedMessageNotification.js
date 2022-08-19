@@ -8,6 +8,7 @@ import { useAuth } from '../../AuthContext';
 
 const CallToProcessedMessageNotification = ({
   enrollmentId,
+  aclNotify,
   events,
   target_api,
 }) => {
@@ -43,7 +44,7 @@ const CallToProcessedMessageNotification = ({
     return filteredEvents;
   }, [events, email]);
 
-  if (!isUserAnInstructor || !enrollmentId || !isEventNotifyFromDemandeur)
+  if (!isUserAnInstructor || !aclNotify || !isEventNotifyFromDemandeur)
     return null;
 
   return (

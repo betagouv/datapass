@@ -4,10 +4,7 @@ import HighlightWithButton from '../../../molecules/notification-with-buttons/Hi
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 import { useAuth } from '../../AuthContext';
 
-export const CallToWriteMessageNotification = ({
-  enrollmentId,
-  team_members,
-}) => {
+export const CallToWriteMessageNotification = ({ aclNotify, team_members }) => {
   const { onClick } = useContext(OpenMessagePromptContext);
   const {
     user: { email },
@@ -23,7 +20,7 @@ export const CallToWriteMessageNotification = ({
       .includes(email);
   }, [team_members, email]);
 
-  if (!isUserADemandeur || !enrollmentId) return null;
+  if (!isUserADemandeur || !aclNotify) return null;
 
   return (
     <HighlightWithButton
