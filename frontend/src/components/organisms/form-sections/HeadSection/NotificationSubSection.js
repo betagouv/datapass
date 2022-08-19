@@ -41,6 +41,7 @@ export const NotificationSubSection = () => {
           <CallToProcessedMessageNotification
             enrollmentId={id}
             aclNotify={acl.notify}
+            team_members={team_members}
             events={events}
             target_api={target_api}
           />

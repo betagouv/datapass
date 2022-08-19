@@ -9,15 +9,13 @@ import { useAuth } from '../../AuthContext';
 const CallToProcessedMessageNotification = ({
   enrollmentId,
   aclNotify,
+  team_members = [],
   events,
   target_api,
 }) => {
   const { onClick: openMessagePrompt } = useContext(OpenMessagePromptContext);
   const { goBackToList } = useListItemNavigation();
-  const {
-    user: { email },
-    getIsUserAnInstructor,
-  } = useAuth();
+  const { getIsUserAnInstructor } = useAuth();
 
   const markAsProcessed = async () => {
     await markEventsAsProcessed({ id: enrollmentId });
@@ -28,12 +26,15 @@ const CallToProcessedMessageNotification = ({
     return getIsUserAnInstructor(target_api);
   }, [getIsUserAnInstructor, target_api]);
 
-  const isEventNotifyFromDemandeur = useMemo(() => {
+  const isThereAnyNotifyEventFromDemandeur = useMemo(() => {
+    const demandeurEmails = team_members
+      .filter(({ type }) => type === 'demandeur')
+      .map(({ email }) => email);
     const filteredEvents = events.filter((event) => {
       return (
         event.name === 'notify' &&
         event.processed_at === null &&
-        event.user.email !== email
+        demandeurEmails.includes(event.user.email)
       );
     });
 
@@ -42,9 +43,9 @@ const CallToProcessedMessageNotification = ({
     }
 
     return filteredEvents;
-  }, [events, email]);
+  }, [events, team_members]);
 
-  if (!isUserAnInstructor || !aclNotify || !isEventNotifyFromDemandeur)
+  if (!isUserAnInstructor || !aclNotify || !isThereAnyNotifyEventFromDemandeur)
     return null;
 
   return (
