@@ -12,6 +12,7 @@ const CallToProcessedMessageNotification = ({
   team_members = [],
   events,
   target_api,
+  countMessage,
 }) => {
   const { onClick: openMessagePrompt } = useContext(OpenMessagePromptContext);
   const { goBackToList } = useListItemNavigation();
@@ -56,7 +57,11 @@ const CallToProcessedMessageNotification = ({
       onClickAction1={openMessagePrompt}
       onClickAction2={markAsProcessed}
     >
-      Un ou plusieurs messages sont en attente de traitement
+      Vous avez{' '}
+      {countMessage > 1
+        ? `${countMessage} messages`
+        : `${countMessage} message`}{' '}
+      en attente de traitement
     </AlertWithTwoButtons>
   );
 };
