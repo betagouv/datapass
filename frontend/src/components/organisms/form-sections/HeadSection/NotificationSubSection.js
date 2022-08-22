@@ -13,7 +13,14 @@ export const NotificationSubSection = () => {
 
   const {
     isUserEnrollmentLoading,
-    enrollment: { id, team_members, target_api, acl = {}, events = {} },
+    enrollment: {
+      id,
+      team_members,
+      target_api,
+      acl = {},
+      events = {},
+      notify_events_from_demandeurs_count,
+    },
   } = useContext(FormContext);
 
   return (
@@ -44,6 +51,7 @@ export const NotificationSubSection = () => {
             team_members={team_members}
             events={events}
             target_api={target_api}
+            countMessage={notify_events_from_demandeurs_count}
           />
         </>
       )}
