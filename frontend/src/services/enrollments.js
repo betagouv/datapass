@@ -1,6 +1,6 @@
 import jsonToFormData from '../lib/json-form-data';
-import httpClient from '../lib/http-client';
 import { hashToQueryParams } from '../lib';
+import axios from 'axios';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -31,13 +31,13 @@ export function createOrUpdateEnrollment({
   };
 
   if (id) {
-    return httpClient
+    return axios
       .patch(`${BACK_HOST}/api/enrollments/${id}`, serializedEnrollment, config)
       .then(({ data: enrollment }) => enrollment);
   }
 
   return (
-    httpClient
+    axios
       .post(`${BACK_HOST}/api/enrollments/`, serializedEnrollment, config)
       // format contact to a more usable structure
       // the backend should be able to use this structure to in the future
@@ -47,7 +47,7 @@ export function createOrUpdateEnrollment({
 
 export function getUserEnrollment(id) {
   return (
-    httpClient
+    axios
       .get(`${BACK_HOST}/api/enrollments/${id}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export function hasAccessToEnrollment(id) {
 }
 
 export function getEnrollmentCopies(id) {
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/${id}/copies`, {
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export function getEnrollmentCopies(id) {
 }
 
 export function getNextEnrollments(id) {
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/${id}/next_enrollments`, {
       headers: {
         'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export function getPublicValidatedEnrollments({
     size,
   });
 
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/public${queryParam}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export function getEnrollments({
     filter: formatedFilter,
   });
 
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/${queryParam}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -149,7 +149,7 @@ export function getUserValidatedEnrollments(targetApi) {
 }
 
 export function getUserEnrollments() {
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/user`, {
       headers: {
         'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ export function changeEnrollmentState({ event, id, comment }) {
     options.comment = comment;
   }
 
-  return httpClient.patch(
+  return axios.patch(
     `${BACK_HOST}/api/enrollments/${id}/change_state`,
     options,
     {
@@ -193,7 +193,7 @@ export function updateTeamMember({
   if (phoneNumber) team_member[`phone_number`] = phoneNumber;
   if (job) team_member[`job`] = job;
   const serializedTeamMember = jsonToFormData({ team_member });
-  return httpClient
+  return axios
     .patch(
       `${BACK_HOST}/api/team_members/${teamMemberId}`,
       serializedTeamMember,
@@ -207,7 +207,7 @@ export function updateTeamMember({
 }
 
 export function deleteEnrollment({ id }) {
-  return httpClient.delete(`${BACK_HOST}/api/enrollments/${id}`, {
+  return axios.delete(`${BACK_HOST}/api/enrollments/${id}`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -220,7 +220,7 @@ export function getMostUsedComments({ event, targetApi } = {}) {
     target_api: targetApi,
   });
 
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/events/most-used-comments${queryParam}`, {
       headers: { 'Content-type': 'application/json' },
     })
@@ -228,7 +228,7 @@ export function getMostUsedComments({ event, targetApi } = {}) {
 }
 
 export function getEmailTemplates({ id }) {
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/${id}/email_templates`, {
       headers: { 'Content-type': 'application/json' },
     })
@@ -236,7 +236,7 @@ export function getEmailTemplates({ id }) {
 }
 
 export function copyEnrollment({ id }) {
-  return httpClient
+  return axios
     .post(`${BACK_HOST}/api/enrollments/${id}/copy`, {
       headers: { 'Content-type': 'application/json' },
     })
@@ -244,7 +244,7 @@ export function copyEnrollment({ id }) {
 }
 
 export function getHubeeValidatedEnrollments() {
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/enrollments/hubee_validated`, {
       headers: { 'Content-type': 'application/json' },
     })

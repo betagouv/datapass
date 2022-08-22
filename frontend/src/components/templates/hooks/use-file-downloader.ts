@@ -1,6 +1,6 @@
-import httpClient from '../../../lib/http-client';
 import fileDownload from 'js-file-download';
 import { useState } from 'react';
+import axios from 'axios';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -15,7 +15,7 @@ export const useFileDownloader = () => {
       headers['Accept'] = acceptHeader;
     }
 
-    httpClient
+    axios
       .get(`${BACK_HOST}${fileUrl}`, {
         responseType: 'blob',
         headers,

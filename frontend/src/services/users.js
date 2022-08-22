@@ -1,5 +1,5 @@
 import { hashToQueryParams } from '../lib';
-import httpClient from '../lib/http-client';
+import axios from 'axios';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -7,7 +7,7 @@ export function getUsers({ usersWithRolesOnly = true }) {
   const queryParam = hashToQueryParams({
     users_with_roles_only: usersWithRolesOnly,
   });
-  return httpClient
+  return axios
     .get(`${BACK_HOST}/api/users${queryParam}`)
     .then(({ data }) => data);
 }
@@ -19,7 +19,7 @@ export function updateUser({ id, roles = [] }) {
     },
   };
 
-  return httpClient
+  return axios
     .patch(`${BACK_HOST}/api/users/${id}`, { user: { roles } }, config)
     .then(({ data }) => data);
 }
@@ -31,7 +31,7 @@ export function createUser({ email }) {
     },
   };
 
-  return httpClient
+  return axios
     .post(`${BACK_HOST}/api/users`, { user: { email } }, config)
     .then(({ data }) => data);
 }

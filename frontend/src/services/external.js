@@ -1,6 +1,6 @@
 import { RateLimiter } from 'limiter';
 import { memoize } from 'lodash';
-import httpClient from '../lib/http-client';
+import axios from 'axios';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -19,7 +19,7 @@ const getOrganizationInformation = async (siret) => {
       activite_principale_label,
       etat_administratif,
     },
-  } = await httpClient
+  } = await axios
     .get(`${BACK_HOST}/api/insee/etablissements/${siret}`, {
       headers: { 'Content-type': 'application/json' },
     })

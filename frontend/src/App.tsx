@@ -7,7 +7,7 @@ import {
 import './App.css';
 import Footer from './components/organisms/Footer';
 import Header from './components/organisms/Header';
-import { AuthStore, useAuth } from './components/organisms/AuthContext';
+import { useAuth } from './components/organisms/AuthContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
 import Alert from './components/atoms/Alert';
@@ -15,6 +15,7 @@ import React, { useEffect } from 'react';
 import { ErrorBoundary } from '@sentry/react';
 import ErrorBoundaryFallback from './components/organisms/ErrorBoundaryFallback';
 import matomoConfiguration from './config/matomo-configuration';
+import { AuthProvider } from './components/organisms/AuthProvider';
 
 const instance = createInstance(matomoConfiguration);
 
@@ -49,13 +50,13 @@ const Page: React.FC = () => {
 
 const App = () => (
   <ErrorBoundary fallback={ErrorBoundaryFallback}>
-    <MatomoProvider value={instance}>
-      <BrowserRouter>
-        <AuthStore>
+    <AuthProvider>
+      <MatomoProvider value={instance}>
+        <BrowserRouter>
           <Page />
-        </AuthStore>
-      </BrowserRouter>
-    </MatomoProvider>
+        </BrowserRouter>
+      </MatomoProvider>
+    </AuthProvider>
   </ErrorBoundary>
 );
 

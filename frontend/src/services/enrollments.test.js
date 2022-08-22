@@ -4,15 +4,23 @@ import {
   getUserEnrollment,
   serializeEnrollment,
 } from './enrollments';
-import * as UserContext from '../components/organisms/AuthContext';
 import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment.json';
 import ENROLLMENTS from '../../mock/api/get-user-enrollments-response.json';
 import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment.json';
+import axiosHttpAdapter from 'axios/lib/adapters/http'
+import axios from 'axios';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
+// TODO this should be in a jest setup (jest.setup.ts) file this is for demo only
+// axios will default to using the XHR adapter which
+// can't be intercepted by nock. So, configure axios to use the node adapter.
+axios.defaults.adapter = axiosHttpAdapter
+
+
 describe('getEnrollments', () => {
   describe('When there is a response', () => {
+
     nock(BACK_HOST, {
       reqheaders: {
         'Content-Type': 'application/json',
@@ -20,7 +28,6 @@ describe('getEnrollments', () => {
     })
       .get('/api/enrollments/')
       .reply(200, ENROLLMENTS);
-    UserContext.resetUserContext = jest.fn();
 
     it('should return the data', () => {
       return getEnrollments({}).then((response) => {
@@ -39,7 +46,6 @@ describe('getUserEnrollment', () => {
     })
       .get('/api/enrollments/1')
       .reply(200, SENT_ENROLLMENT);
-    UserContext.resetUserContext = jest.fn();
 
     it('should return a 200 status', () => {
       return getUserEnrollment(1).then((response) => {
