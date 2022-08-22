@@ -1,9 +1,8 @@
 import { chain, isEmpty, last } from 'lodash';
-import React, { useContext, useMemo, useState } from 'react';
-import { FormContext } from '../../../templates/Form';
-
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import React, { useMemo, useState } from 'react';
+
 import { getChangelog } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
 import CheckCircleIcon from '../../../atoms/icons/check-circle';
@@ -76,20 +75,6 @@ export const EventItem = ({
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
 
-  const {
-    enrollment: { team_members },
-  } = useContext(FormContext);
-
-  let eventCommentClass = 'event-comment';
-
-  const demandeursEmails = team_members
-    .filter(({ type }) => type === 'demandeur')
-    .map(({ email }) => email);
-
-  if (demandeursEmails.includes(email)) {
-    eventCommentClass += ' event-comment-demandeurs';
-  }
-
   const userLabel = useMemo(() => {
     return given_name && family_name
       ? `${given_name} ${family_name}`
@@ -121,12 +106,12 @@ export const EventItem = ({
           </div>
         </div>
         {comment && (
-          <div className={eventCommentClass}>
+          <div className="event-comment">
             <Linkify message={comment} />
           </div>
         )}
         {!isEmpty(changelog) && showDiff && (
-          <div className={eventCommentClass}>
+          <div className="event-comment">
             {changelog.map((log) => (
               <p key={log.slice(20)}>{log}</p>
             ))}

@@ -1,5 +1,5 @@
 .expandable-quote {
-  background-color: var(--datapass-light-blue);
+  background-color: #f0f8ff;
   color: var(--datapass-blue);
   border-radius: 3px;
 }
