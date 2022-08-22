@@ -15,7 +15,7 @@ export const enrollmentListStyle = {
     borderRight: 'none',
     outline: '0',
   },
-  updateAtHeader: {
+  iconHeader: {
     padding: '0.7em 0',
   },
   footer: {},

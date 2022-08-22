@@ -105,7 +105,7 @@ class Enrollment < ActiveRecord::Base
     should_be_mark_as_processed.each { |event| event.mark_as_processed }
   end
 
-  def count_notify_events_from_demandeurs
+  def notify_events_from_demandeurs_count
     events.where(
       name: "notify",
       processed_at: nil,
