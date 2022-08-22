@@ -10,13 +10,13 @@
 }
 
 .event-icon {
-  width: 3em;
-  padding: 0.5em 0;
+  width: 3rem;
+  padding: 0.5rem 0;
 }
 
 .event-content {
   flex: 1 100%;
-  padding: 0.5em 0;
+  padding: 0.5rem 0;
 }
 
 .event-item + .event-item > .event-content {
@@ -29,8 +29,14 @@
 }
 
 .event-comment {
-  background-color: white;
-  margin-top: 0.4em;
+  background-color: var(--background-contrast-grey);
+  color: var(--text-label-grey);
+  border-radius: 1rem;
+  margin-top: 0.4rem;
   white-space: pre-line;
-  padding: 1em;
+  padding: 1rem;
+}
+
+.event-comment-demandeurs {
+  background-color: var(--datapass-light-blue);
 }
