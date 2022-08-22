@@ -72,27 +72,15 @@ export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
   prompt: 'login',
 })}`;
 
-const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
-  prompt: 'create_account',
-})}`;
-
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">
-    <form
-      action={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
-      method="post"
-      style={{ margin: 0 }}
-    >
+    <form action={loginUrl} method="post" style={{ margin: 0 }}>
       <Button outline large submit>
         {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
       </Button>
     </form>
     <span className="login-buttons-or">ou</span>
-    <form
-      action={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
-      method="post"
-      style={{ margin: 0 }}
-    >
+    <form action={loginUrl} method="post" style={{ margin: 0 }}>
       <Button large submit>
         {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
       </Button>

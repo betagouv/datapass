@@ -20,14 +20,6 @@ module OmniAuth
         "#{ENV["BACK_HOST"]}/users/auth/api_gouv/callback"
       end
 
-      def authorize_params
-        if request.params["prompt"] == "create_account"
-          return super.merge(prompt: "create_account")
-        end
-
-        super
-      end
-
       credentials do
         hash = {"token" => access_token.token}
         hash["refresh_token"] = access_token.refresh_token if access_token.expires? && access_token.refresh_token
