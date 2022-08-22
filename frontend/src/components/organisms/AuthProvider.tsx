@@ -27,7 +27,9 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 
     // Using axios directly for this request as useBackendClient depends on this provider
     axios
-      .get(`${process.env.REACT_APP_BACK_HOST}/api/users/me`)
+      .get(`${process.env.REACT_APP_BACK_HOST}/api/users/me`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setUser(response.data);
         setIsLoading(false);
