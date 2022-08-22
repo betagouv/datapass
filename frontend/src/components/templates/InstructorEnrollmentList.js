@@ -163,14 +163,10 @@ class InstructorEnrollmentList extends React.Component {
         if (this.state.inbox !== 'primary') {
           return <small>{count_notify_events_from_demandeurs}</small>;
         }
-        const color =
-          count_notify_events_from_demandeurs > 5
-            ? 'red'
-            : count_notify_events_from_demandeurs > 4
-            ? 'orange'
-            : 'green';
         return (
-          <span style={{ color }}>{count_notify_events_from_demandeurs}</span>
+          <Tag type={count_notify_events_from_demandeurs > 0 ? 'warning' : ''}>
+            <span>{count_notify_events_from_demandeurs}</span>
+          </Tag>
         );
       },
     },
