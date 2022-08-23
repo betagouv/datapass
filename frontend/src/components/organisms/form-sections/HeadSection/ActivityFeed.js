@@ -77,8 +77,8 @@ export const EventItem = ({
   const changelog = getChangelog(diff);
 
   const {
-    enrollment: { team_members },
-  } = useContext(FormContext);
+    enrollment: { team_members = [] },
+  } = useContext(FormContext) || { enrollment: {} };
 
   let eventCommentClass = 'event-comment';
 
