@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import { useContext, useMemo } from 'react';
+import { getDemandeursEmails } from '../../../../lib';
 import { markEventsAsProcessed } from '../../../../services/enrollments';
 import AlertWithTwoButtons from '../../../molecules/notification-with-buttons/AlertWithTwoButtons';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
@@ -28,14 +29,11 @@ const CallToProcessedMessageNotification = ({
   }, [getIsUserAnInstructor, target_api]);
 
   const isThereAnyNotifyEventFromDemandeur = useMemo(() => {
-    const demandeurEmails = team_members
-      .filter(({ type }) => type === 'demandeur')
-      .map(({ email }) => email);
     const filteredEvents = events.filter((event) => {
       return (
         event.name === 'notify' &&
         event.processed_at === null &&
-        demandeurEmails.includes(event.user.email)
+        getDemandeursEmails({ team_members }).includes(event.user.email)
       );
     });
 

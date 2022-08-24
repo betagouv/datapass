@@ -82,11 +82,7 @@ export const EventItem = ({
 
   let eventCommentClass = 'event-comment';
 
-  const demandeursEmails = team_members
-    .filter(({ type }) => type === 'demandeur')
-    .map(({ email }) => email);
-
-  if (demandeursEmails.includes(email)) {
+  if (getDemandeursEmails({ team_members }).includes(email)) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
@@ -169,8 +165,8 @@ const ActivityFeed = ({ events }) => {
   const notifyEventsToDisplay = eventsToDisplay.filter(
     ({ name, user, processed_at }) =>
       name === 'notify' &&
-      processed_at === null &&
-      getDemandeursEmails({ team_members }).includes(user.email)
+      getDemandeursEmails({ team_members }).includes(user.email) &&
+      processed_at === null
   );
 
   if (!showDetails && events.length > 0) {
