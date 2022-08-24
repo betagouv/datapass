@@ -523,3 +523,8 @@ export const getScopesFromEnrollments = (enrollments) =>
     .flatten()
     .uniq()
     .value();
+
+export const getDemandeursEmails = (enrollment) =>
+  enrollment.team_members
+    .filter(({ type }) => type === 'demandeur')
+    .map(({ email }) => email);
