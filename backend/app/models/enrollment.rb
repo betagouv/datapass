@@ -105,6 +105,14 @@ class Enrollment < ActiveRecord::Base
     should_be_mark_as_processed.each { |event| event.mark_as_processed }
   end
 
+  def notify_events_from_demandeurs_count
+    events.where(
+      name: "notify",
+      processed_at: nil,
+      user_id: demandeurs.pluck(:user_id)
+    ).count
+  end
+
   def notify_event(event, *args)
     notifier_class.new(self).public_send(event, *args)
   end

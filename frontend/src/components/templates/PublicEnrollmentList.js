@@ -70,7 +70,7 @@ class PublicEnrollmentList extends React.Component {
       accessor: 'updated_at',
       headerStyle: {
         ...enrollmentListStyle.header,
-        ...enrollmentListStyle.updateAtHeader,
+        ...enrollmentListStyle.iconHeader,
       },
       style: {
         ...enrollmentListStyle.cell,
