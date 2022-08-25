@@ -310,6 +310,16 @@ class InstructorEnrollmentList extends React.Component {
       return moment(cellValue).format('llll');
     }
 
+    if (column.id === 'notify_events_from_demandeurs_count') {
+      return cellValue === 0
+        ? 'pas de nouveau message'
+        : cellValue === 1
+        ? `${cellValue} nouveau message`
+        : cellValue > 1
+        ? `${cellValue} nouveaux messages`
+        : '';
+    }
+
     return cellValue;
   };
 
