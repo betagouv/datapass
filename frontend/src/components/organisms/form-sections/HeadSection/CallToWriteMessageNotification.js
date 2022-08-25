@@ -1,8 +1,8 @@
-import { isEmpty } from 'lodash';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import HighlightWithButton from '../../../molecules/notification-with-buttons/HighlightWithButton';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 import { useAuth } from '../../AuthContext';
+import { isUserADemandeur } from '../../../../lib';
 
 export const CallToWriteMessageNotification = ({ aclNotify, team_members }) => {
   const { onClick } = useContext(OpenMessagePromptContext);
@@ -10,17 +10,8 @@ export const CallToWriteMessageNotification = ({ aclNotify, team_members }) => {
     user: { email },
   } = useAuth();
 
-  const isUserADemandeur = useMemo(() => {
-    if (isEmpty(team_members)) {
-      return false;
-    }
-    return team_members
-      .filter(({ type }) => type === 'demandeur')
-      .map(({ email }) => email)
-      .includes(email);
-  }, [team_members, email]);
-
-  if (!isUserADemandeur || !aclNotify) return null;
+  if (!isUserADemandeur({ team_members, user_email: email }) || !aclNotify)
+    return null;
 
   return (
     <HighlightWithButton

@@ -4,7 +4,7 @@ import { FormContext } from '../../../templates/Form';
 
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { getChangelog, getDemandeursEmails } from '../../../../lib';
+import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
 import CheckCircleIcon from '../../../atoms/icons/check-circle';
 import ErrorIcon from '../../../atoms/icons/error';
@@ -82,7 +82,7 @@ export const EventItem = ({
 
   let eventCommentClass = 'event-comment';
 
-  if (getDemandeursEmails({ team_members }).includes(email)) {
+  if (isUserADemandeur({ team_members, user_email: email })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
@@ -162,17 +162,16 @@ const ActivityFeed = ({ events }) => {
     )
     .value();
 
-  const notifyEventsToDisplay = eventsToDisplay.filter(
-    ({ name, user, processed_at }) =>
-      name === 'notify' &&
-      getDemandeursEmails({ team_members }).includes(user.email) &&
-      processed_at === null
-  );
-
   if (!showDetails && events.length > 0) {
-    notifyEventsToDisplay.length > 1
-      ? (eventsToDisplay = notifyEventsToDisplay)
-      : (eventsToDisplay = [last(eventsToDisplay)]);
+    const showFromIndex = eventsToDisplay.findIndex(
+      ({ name, user: { email }, processed_at }) =>
+        name === 'notify' &&
+        isUserADemandeur({ team_members, user_email: email }) &&
+        processed_at === null
+    );
+    // if there is no message from the demandeur then showFromIndex === -1
+    // as a consequence, slice only take the last event from eventsToDisplay
+    eventsToDisplay = eventsToDisplay.slice(showFromIndex);
   }
 
   return (

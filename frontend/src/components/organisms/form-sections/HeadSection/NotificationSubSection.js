@@ -51,7 +51,7 @@ export const NotificationSubSection = () => {
             team_members={team_members}
             events={events}
             target_api={target_api}
-            countMessage={notify_events_from_demandeurs_count}
+            messageCount={notify_events_from_demandeurs_count}
           />
         </>
       )}
