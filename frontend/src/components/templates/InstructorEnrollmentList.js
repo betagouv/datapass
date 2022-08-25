@@ -124,7 +124,7 @@ class InstructorEnrollmentList extends React.Component {
 
   getColumnConfiguration = () => [
     {
-      Header: () => <ScheduleIcon title="date de dernière mise à jour" />,
+      Header: () => <ScheduleIcon />,
       accessor: 'updated_at',
       headerStyle: {
         ...enrollmentListStyle.header,
@@ -294,6 +294,18 @@ class InstructorEnrollmentList extends React.Component {
     },
   ];
 
+  getHeadTitle = ({ column, rowInfo }) => {
+    if (column?.id === 'updated_at') {
+      return 'date de dernière mise à jour';
+    }
+
+    if (column?.id === 'notify_events_from_demandeurs_count') {
+      return 'nombre de nouveaux messages';
+    }
+
+    return 'null';
+  };
+
   getTitle = ({ column, rowInfo }) => {
     if (!rowInfo) {
       return null;
@@ -308,6 +320,16 @@ class InstructorEnrollmentList extends React.Component {
 
     if (column.id === 'updated_at') {
       return moment(cellValue).format('llll');
+    }
+
+    if (column.id === 'notify_events_from_demandeurs_count') {
+      return cellValue === 0
+        ? 'pas de nouveau message'
+        : cellValue === 1
+        ? `${cellValue} nouveau message`
+        : cellValue > 1
+        ? `${cellValue} nouveaux messages`
+        : '';
     }
 
     return cellValue;
@@ -452,6 +474,9 @@ class InstructorEnrollmentList extends React.Component {
                   : null,
             })}
             getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+            getTheadThProps={(state, rowInfo, column) => ({
+              title: this.getHeadTitle({ column, rowInfo }),
+            })}
             getTheadFilterThProps={() => ({
               style: enrollmentListStyle.filterThead,
             })}
