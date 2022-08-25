@@ -4,7 +4,7 @@ import { FormContext } from '../../../templates/Form';
 
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { getChangelog } from '../../../../lib';
+import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
 import CheckCircleIcon from '../../../atoms/icons/check-circle';
 import ErrorIcon from '../../../atoms/icons/error';
@@ -82,11 +82,7 @@ export const EventItem = ({
 
   let eventCommentClass = 'event-comment';
 
-  const demandeursEmails = team_members
-    .filter(({ type }) => type === 'demandeur')
-    .map(({ email }) => email);
-
-  if (demandeursEmails.includes(email)) {
+  if (isUserADemandeur({ team_members, user_email: email })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
@@ -152,67 +148,63 @@ EventItem.defaultProps = {
   diff: {},
 };
 
-class ActivityFeed extends React.Component {
-  constructor(props) {
-    super(props);
+const ActivityFeed = ({ events }) => {
+  const [showDetails, setShowDetails] = useState(false);
 
-    this.state = {
-      showDetails: false,
-    };
-  }
+  const {
+    enrollment: { team_members = [] },
+  } = useContext(FormContext) || { enrollment: {} };
 
-  render() {
-    const { showDetails } = this.state;
+  let eventsToDisplay = chain(events)
+    .sortBy('updated_at')
+    .reject(
+      ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
+    )
+    .value();
 
-    const { events } = this.props;
-
-    let eventsToDisplay = chain(events)
-      .sortBy('updated_at')
-      .reject(
-        ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
-      )
-      .value();
-
-    if (!showDetails && events.length > 0) {
-      eventsToDisplay = [last(eventsToDisplay)];
-    }
-
-    return (
-      <div>
-        <div className="activity-head">
-          <Button
-            outline
-            icon="eye"
-            onClick={() => this.setState({ showDetails: !showDetails })}
-          >
-            {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
-          </Button>
-        </div>
-        {eventsToDisplay.map(
-          ({
-            id,
-            comment,
-            name,
-            updated_at,
-            user: { email, given_name, family_name },
-            diff,
-          }) => (
-            <EventItem
-              key={id}
-              comment={comment}
-              name={name}
-              updated_at={updated_at}
-              email={email}
-              family_name={family_name}
-              given_name={given_name}
-              diff={diff}
-            />
-          )
-        )}
-      </div>
+  if (!showDetails && events.length > 0) {
+    const showFromIndex = eventsToDisplay.findIndex(
+      ({ name, user: { email }, processed_at }) =>
+        name === 'notify' &&
+        isUserADemandeur({ team_members, user_email: email }) &&
+        processed_at === null
     );
+    // if there is no message from the demandeur then showFromIndex === -1
+    // as a consequence, slice only take the last event from eventsToDisplay
+    eventsToDisplay = eventsToDisplay.slice(showFromIndex);
   }
-}
+
+  return (
+    <div>
+      <div className="activity-head">
+        <Button outline icon="eye" onClick={() => setShowDetails(!showDetails)}>
+          {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
+        </Button>
+      </div>
+      {eventsToDisplay.map(
+        ({
+          id,
+          comment,
+          name,
+          updated_at,
+          user: { email, given_name, family_name },
+          diff,
+        }) => (
+          <EventItem
+            key={id}
+            comment={comment}
+            name={name}
+            updated_at={updated_at}
+            email={email}
+            family_name={family_name}
+            given_name={given_name}
+            diff={diff}
+          />
+        )
+      )}
+    </div>
+  );
+};
 
 ActivityFeed.propTypes = {
   events: PropTypes.array,

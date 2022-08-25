@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import { useContext, useMemo } from 'react';
+import { isUserADemandeur } from '../../../../lib';
 import { markEventsAsProcessed } from '../../../../services/enrollments';
 import AlertWithTwoButtons from '../../../molecules/notification-with-buttons/AlertWithTwoButtons';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
@@ -12,6 +13,7 @@ const CallToProcessedMessageNotification = ({
   team_members = [],
   events,
   target_api,
+  messageCount,
 }) => {
   const { onClick: openMessagePrompt } = useContext(OpenMessagePromptContext);
   const { goBackToList } = useListItemNavigation();
@@ -27,16 +29,15 @@ const CallToProcessedMessageNotification = ({
   }, [getIsUserAnInstructor, target_api]);
 
   const isThereAnyNotifyEventFromDemandeur = useMemo(() => {
-    const demandeurEmails = team_members
-      .filter(({ type }) => type === 'demandeur')
-      .map(({ email }) => email);
-    const filteredEvents = events.filter((event) => {
-      return (
-        event.name === 'notify' &&
-        event.processed_at === null &&
-        demandeurEmails.includes(event.user.email)
-      );
-    });
+    const filteredEvents = events.filter(
+      ({ name, processed_at, user: { email } }) => {
+        return (
+          name === 'notify' &&
+          processed_at === null &&
+          isUserADemandeur({ team_members, user_email: email })
+        );
+      }
+    );
 
     if (isEmpty(filteredEvents)) {
       return false;
@@ -56,7 +57,11 @@ const CallToProcessedMessageNotification = ({
       onClickAction1={openMessagePrompt}
       onClickAction2={markAsProcessed}
     >
-      Un ou plusieurs messages sont en attente de traitement
+      Vous avez{' '}
+      {messageCount > 1
+        ? `${messageCount} messages`
+        : `${messageCount} message`}{' '}
+      en attente de traitement
     </AlertWithTwoButtons>
   );
 };
