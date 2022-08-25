@@ -48,6 +48,14 @@ const UserEnrollmentList = () => {
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
         <div className="page-container list-container">
+          <Alert
+            type="success"
+            title="Votre message a bien été envoyé"
+            onAlertClose={() => null}
+          >
+            Vous allez recevoir une notification dans votre boite mail au moment
+            ou il sera traité.
+          </Alert>
           {Object.keys(enrollmentsByOrganization).map((group) => (
             <React.Fragment key={group}>
               <div className="list-title fr-text--lead">
