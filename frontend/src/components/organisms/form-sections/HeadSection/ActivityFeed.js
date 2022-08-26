@@ -1,4 +1,4 @@
-import { chain, isEmpty, last } from 'lodash';
+import { chain, isEmpty } from 'lodash';
 import React, { useContext, useMemo, useState } from 'react';
 import { FormContext } from '../../../templates/Form';
 
