@@ -4,6 +4,7 @@ import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 import Link from '../../../atoms/hyperTexts/Link';
+import Helper from '../../../atoms/Helper';
 
 const ModalContent = {
   rgpd: {
@@ -61,9 +62,23 @@ const Scopes = ({
     setWarningType('rgpd');
   };
 
+  let titleToDisplay = title;
+  if (title === 'Années sur lesquelles porte votre demande') {
+    titleToDisplay = (
+      <>
+        {title}{' '}
+        <Helper
+          title={
+            'Le calendrier de basculement des millésimes est détaillé dans la documentation accessible via la rubrique « Comment choisir les données ? »'
+          }
+        ></Helper>
+      </>
+    );
+  }
+
   return (
     <>
-      <FieldsetWrapper title={title} grid>
+      <FieldsetWrapper title={titleToDisplay} grid>
         {scopes.map(
           ({
             value,
