@@ -126,7 +126,7 @@ export const Form = ({
   const handlePostEvent = useCallback(
     ({ errorMessages = [], successMessages = [], redirectToHome = false }) => {
       if (redirectToHome) {
-        return goBackToList();
+        return goBackToList(successMessages[0]);
       }
 
       setErrorMessages(errorMessages);

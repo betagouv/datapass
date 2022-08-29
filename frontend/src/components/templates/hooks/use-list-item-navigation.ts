@@ -23,18 +23,23 @@ export const useListItemNavigation = () => {
     [location, navigate]
   );
 
-  const goBackToList = useCallback(() => {
-    document.title =
-      'DataPass - gestion des habilitations juridiques pour les données à accès restreint';
+  const goBackToList = useCallback(
+    (successMessage = null) => {
+      document.title =
+        'DataPass - gestion des habilitations juridiques pour les données à accès restreint';
 
-    // @ts-ignore
-    if (!isEmpty(location.state?.previousPath)) {
       // @ts-ignore
-      return navigate(location.state.previousPath);
-    }
+      if (!isEmpty(location.state?.previousPath)) {
+        // @ts-ignore
+        return navigate(location.state.previousPath, {
+          state: { message: successMessage },
+        });
+      }
 
-    return navigate('/');
-  }, [location, navigate]);
+      return navigate('/', { state: { message: successMessage } });
+    },
+    [location, navigate]
+  );
 
   return { goToItem, goBackToList };
 };
