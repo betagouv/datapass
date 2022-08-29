@@ -18,12 +18,11 @@ const initialContacts = {
     forceDisable: true,
   },
   responsable_metier: {
-    header: 'Responsable d’abonnement',
+    header: 'Administrateur métier',
     description: (
       <>
-        <b>Le responsable d’abonnement</b> disposera des droits d’administration
-        sur le portail HubEE : gestion des abonnements et gestion des
-        utilisateurs.
+        <b>L’administrateur métier</b> disposera des droits d’administration
+        portail HubEE : gestion des abonnements et gestion des utilisateurs.
       </>
     ),
     displayIndividualEmailLabel: true,
