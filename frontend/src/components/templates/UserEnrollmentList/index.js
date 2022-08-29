@@ -7,12 +7,14 @@ import Alert from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
+import { useLocation } from 'react-router-dom';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
   const [showAlert, setShowAlert] = useState(false);
 
+  const { state } = useLocation();
   const { goToItem } = useListItemNavigation();
 
   useEffect(() => {
@@ -30,8 +32,14 @@ const UserEnrollmentList = () => {
   }, []);
 
   const handleClose = () => {
-    setShowAlert(!showAlert);
+    setShowAlert(false);
   };
+
+  useEffect(() => {
+    if (state?.message) {
+      setShowAlert(true);
+    }
+  }, [state?.message]);
 
   return (
     <main className="list-page">
@@ -53,14 +61,13 @@ const UserEnrollmentList = () => {
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
         <div className="page-container list-container">
-          {!showAlert && (
+          {showAlert && (
             <Alert
               type="success"
               title="Votre message a bien été envoyé"
               onAlertClose={handleClose}
             >
-              Vous allez recevoir une notification dans votre boite mail au
-              moment ou il sera traité.
+              {state.message}
             </Alert>
           )}
           {Object.keys(enrollmentsByOrganization).map((group) => (
