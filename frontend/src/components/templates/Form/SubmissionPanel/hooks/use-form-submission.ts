@@ -14,6 +14,7 @@ export const useFormSubmission = (
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
   const [loading, setLoading] = useState<boolean>(false);
   const { setOnClick } = useContext(OpenMessagePromptContext);
+  const [showAlert, setShowAlert] = useState(true);
 
   const waitingForUserInput =
     pendingEvent !== undefined &&
@@ -59,6 +60,7 @@ export const useFormSubmission = (
   const onPromptConfirmation = async (message?: string) => {
     setLoading(true);
     setPendingEvent(undefined);
+    setShowAlert(false);
     const postEventConfiguration = await processEvent(
       pendingEvent!,
       pendingEventConfiguration!,
@@ -68,6 +70,7 @@ export const useFormSubmission = (
     );
     setLoading(false);
     handlePostEvent(postEventConfiguration);
+    setShowAlert(true);
   };
 
   const onPromptCancellation = () => {
@@ -83,5 +86,6 @@ export const useFormSubmission = (
     onEventButtonClick,
     onPromptConfirmation,
     onPromptCancellation,
+    showAlert,
   };
 };
