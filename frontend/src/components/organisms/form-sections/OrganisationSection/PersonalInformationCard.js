@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import { useContext, useEffect, useState } from 'react';
 import Button from '../../../atoms/hyperTexts/Button';
 import { Card, CardHead } from '../../../molecules/Card';
-import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
+import CopyToClipboardButton from '../../../molecules/CopyToClipboardButton';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import { DisconnectionModal } from './DisconnectionModal';
@@ -51,7 +51,7 @@ export const PersonalInformationCard = () => {
       </CardHead>
       <div>
         {personalInformation.email}
-        <CopyToCliboardButton textToCopy={personalInformation.email} />
+        <CopyToClipboardButton textToCopy={personalInformation.email} />
       </div>
       <div>{personalInformation.phone_number}</div>
       <div>{personalInformation.job}</div>

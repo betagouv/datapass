@@ -15,7 +15,7 @@ import enrollmentListStyle from './enrollmentListStyle';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import Button from '../atoms/hyperTexts/Button';
 import Tag from '../atoms/hyperTexts/Tag';
-import FileCopyIcon from '../atoms/icons/file_copy';
+import FileCopyIcon from '../atoms/icons/fileCopy';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import ScheduleIcon from '../atoms/icons/schedule';
 import TagContainer from '../atoms/TagContainer';

@@ -6,7 +6,7 @@ import {
   USER_STATUS_LABELS,
 } from '../../../../config/status-parameters';
 import Tag from '../../../atoms/hyperTexts/Tag';
-import FileCopyIcon from '../../../atoms/icons/file_copy';
+import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import TagContainer from '../../../atoms/TagContainer';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
