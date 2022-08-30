@@ -26,3 +26,45 @@ export const ExternalLinkIcon: React.FC<Props> = ({ color }) => (
 export const MailIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="mail-line" color={color} />
 );
+
+// New Icon with update DSFR
+
+export const HelpIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="question-fill" color={color} />
+);
+
+export const AlertIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="alert-line" color={color} />
+);
+
+export const RefreshIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="refresh-line" color={color} />
+);
+
+export const CheckCircleIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="checkbox-circle-fill" color={color} />
+);
+
+export const EditIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="edit-line" color={color} />
+);
+
+export const ControlPointIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="add-circle-line" color={color} />
+);
+
+export const ErrorIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="error-warning-fill" color={color} />
+);
+
+export const WarningIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="warning-fill" color={color} />
+);
+
+// export const ScheduleIcon: React.FC<Props> = ({ color }) => (
+//   <FrFiIcon type="ri-time-line" color={color} />
+// );
+
+// export const ScheduleHistoryIcon: React.FC<Props> = ({ color }) => (
+//   <FrFiIcon type="history-line" color={color} />
+// );
