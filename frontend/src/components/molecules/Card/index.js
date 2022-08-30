@@ -1,6 +1,6 @@
 import React from 'react';
+import { ControlPointIcon } from '../../atoms/icons/fr-fi-icons';
 import './style.css';
-import ControlPointIcon from '../../atoms/icons/control-point';
 
 export const CardHead = ({ children }) => (
   <div className="datapass_card_head">{children}</div>

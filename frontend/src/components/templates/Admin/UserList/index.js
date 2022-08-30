@@ -6,7 +6,7 @@ import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
-import AutorenewIcon from '../../../atoms/icons/autorenew';
+import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Link from '../../../atoms/hyperTexts/Link';
@@ -108,7 +108,7 @@ const UserList = () => {
             Tous les utilisateurs
           </Tag>
           <Tag onClick={handleRefreshData}>
-            <AutorenewIcon size={16} />
+            <RefreshIcon size={16} />
           </Tag>
         </TagContainer>
       </ListHeader>
