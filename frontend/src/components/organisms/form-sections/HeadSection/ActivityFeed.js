@@ -11,8 +11,7 @@ import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
 import { InfoIcon } from '../../../atoms/icons/fr-fi-icons';
-// import { WarningIcon } from '../../../atoms/icons/fr-fi-icons';
-import WarningIcon from '../../../atoms/icons/warning';
+import { WarningIcon } from '../../../atoms/icons/fr-fi-icons';
 import { Linkify } from '../../../molecules/Linkify';
 import './ActivityFeed.css';
 
