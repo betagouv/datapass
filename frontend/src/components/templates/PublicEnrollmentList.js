@@ -12,7 +12,7 @@ import enrollmentListStyle from './enrollmentListStyle';
 
 import { debounce } from 'lodash';
 import Tag from '../atoms/hyperTexts/Tag';
-import ScheduleIcon from '../atoms/icons/schedule';
+import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 

@@ -17,7 +17,7 @@ import Button from '../atoms/hyperTexts/Button';
 import Tag from '../atoms/hyperTexts/Tag';
 import FileCopyIcon from '../atoms/icons/fileCopy';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
-import ScheduleIcon from '../atoms/icons/schedule';
+import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import MultiSelect from '../molecules/MultiSelect';
@@ -124,7 +124,7 @@ class InstructorEnrollmentList extends React.Component {
 
   getColumnConfiguration = () => [
     {
-      Header: () => <ScheduleIcon />,
+      Header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
       accessor: 'updated_at',
       headerStyle: {
         ...enrollmentListStyle.header,

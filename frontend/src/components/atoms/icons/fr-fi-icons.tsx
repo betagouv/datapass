@@ -45,6 +45,10 @@ export const CheckCircleIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="checkbox-circle-fill" color={color} />
 );
 
+export const CheckIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="check-line-fill" color={color} />
+);
+
 export const EditIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="edit-line" color={color} />
 );
@@ -61,9 +65,9 @@ export const WarningIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="warning-fill" color={color} />
 );
 
-// export const ScheduleIcon: React.FC<Props> = ({ color }) => (
-//   <FrFiIcon type="ri-time-line" color={color} />
-// );
+export const ScheduleIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="time-line" color={color} />
+);
 
 // export const ScheduleHistoryIcon: React.FC<Props> = ({ color }) => (
 //   <FrFiIcon type="history-line" color={color} />
