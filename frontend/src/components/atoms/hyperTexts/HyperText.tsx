@@ -33,7 +33,7 @@ const HyperText: React.FC<Props> = ({
   }
 
   if (icon) {
-    className += ` fr-fi-${icon}-line`;
+    className += ` fr-icon-${icon}-line`;
   }
 
   if (icon && children) {
