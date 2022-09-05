@@ -61,14 +61,14 @@ export const Contact = ({
       !email &&
       !phone_number &&
       !job && (
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div className="fr-mb-3w">
           <Button outline onClick={() => onUpdateWithUserInformation(index)}>
             🖐️ c’est moi : remplir avec mes info
           </Button>
         </div>
       )}
     {!disabled && onUpdateWithUserInformation && canUpdatePersonalInformation && (
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className="fr-mb-3w">
         <Button outline onClick={() => onUpdateWithUserInformation(index)}>
           <RefreshIcon color="var(--text-action-high-blue-france)" size={16} />
           {' '}

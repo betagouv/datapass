@@ -14,7 +14,7 @@ export const AlertWithTwoButtons = ({
     <Alert type="warning" title={title}>
       {children}
     </Alert>
-    <div className="datapass-notification-buttons">
+    <div className="datapass-notification-buttons fr-btns-group--equisized">
       <Button outline icon="edit" onClick={onClickAction1}>
         {labelAction1}
       </Button>

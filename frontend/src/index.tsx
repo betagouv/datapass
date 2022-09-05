@@ -3,6 +3,7 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-design/icons-design.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 import * as Sentry from '@sentry/react';
 import 'moment/locale/fr'; // set moment locale to french globally
 import React from 'react';

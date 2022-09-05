@@ -136,7 +136,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
           </Alert>
         )}
       {previousTargetApi && (
-        <div style={{ margin: '1.5rem 0' }}>
+        <div className="fr-m-3w">
           {previousTargetApi === 'franceconnect' && (
             <ExpandableQuote title="Pourquoi associer une habilitation FranceConnect ?">
               <>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ControlPointIcon } from '../../atoms/icons/fr-fi-icons';
 import './style.css';
 
 export const CardHead = ({ children }) => (
@@ -12,7 +11,10 @@ export const Card = ({ children, className = '' }) => (
 
 export const AddCard = ({ onClick, label = '' }) => (
   <div className="datapass_card datapass_add_card" onClick={onClick}>
-    <ControlPointIcon color="var(--text-mention-grey)" size="50px" />
+    <span
+      className="fr-icon-add-circle-line fr-fi--lg"
+      aria-hidden="true"
+    ></span>
     <div>{label}</div>
   </div>
 );

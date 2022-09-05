@@ -32,8 +32,8 @@ export const HeadSection = () => {
               type="info"
             >
               {/* --text-inverted-info: #f4f6ff; */}
-              <FileCopyIcon size={18} color="#f4f6ff" />
-              <span style={{ marginLeft: '4px' }}>
+              <FileCopyIcon size={18} color="var(--text-inverted-info)" />
+              <span className="fr-ml-1v">
                 Copie de n°{copied_from_enrollment_id}
               </span>
             </Tag>

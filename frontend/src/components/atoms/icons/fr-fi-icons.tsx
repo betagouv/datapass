@@ -1,9 +1,9 @@
 import React from 'react';
 
-const FrFiIcon: React.FC<{ color?: string; type: string }> = ({
-  color = 'var(--datapass-blue)',
-  type,
-}) => (
+const FrFiIcon: React.FC<{
+  color?: string;
+  type: string;
+}> = ({ color = 'var(--datapass-blue)', type }) => (
   <span className={`fr-icon-${type}`} aria-hidden="true" style={{ color }} />
 );
 
@@ -17,12 +17,22 @@ export const ArrowDownIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="arrow-down-s-line" color={color} />
 );
 
-export const InfoFillIcon: React.FC<Props> = ({ color }) => (
+// round info icon
+export const InformationFillIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="information-fill" color={color} />
 );
 
-export const InfoIcon: React.FC<Props> = ({ color }) => (
+export const InformationIcon: React.FC<Props> = ({ color }) => (
   <FrFiIcon type="information-line" color={color} />
+);
+
+// Square info icon
+export const InfoFillIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="info-fill" color={color} />
+);
+
+export const InfoIcon: React.FC<Props> = ({ color }) => (
+  <FrFiIcon type="info-line" color={color} />
 );
 
 export const ExternalLinkIcon: React.FC<Props> = ({ color }) => (

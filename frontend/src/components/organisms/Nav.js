@@ -48,7 +48,7 @@ const Nav = ({
             onClick={() => goBackToList()}
             outline
             icon="arrow-left"
-            style={{ margin: '1em 0' }}
+            className="fr-my-2w"
           >
             Toutes mes habilitations
           </Button>
@@ -65,12 +65,12 @@ const Nav = ({
             ))}
           </ul>
           <ul>
-            <li style={{ marginTop: '1em' }}>
+            <li className="fr-mt-2w">
               <Button outline icon="mail" iconRight href={contactLink}>
                 Nous contacter
               </Button>
             </li>
-            <li style={{ marginTop: '1em' }}>
+            <li className="fr-mt-2w">
               <Button
                 href={documentationUrl}
                 outline

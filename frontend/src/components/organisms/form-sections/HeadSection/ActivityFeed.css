@@ -31,12 +31,12 @@
 .event-comment {
   background-color: var(--background-contrast-grey);
   color: var(--text-label-grey);
-  border-radius: 1rem;
+  border-radius: 0.25rem;
   margin-top: 0.4rem;
   white-space: pre-line;
   padding: 1rem;
 }
 
 .event-comment-demandeurs {
-  background-color: var(--datapass-light-blue);
+  background-color: var(--background-contrast-info);
 }

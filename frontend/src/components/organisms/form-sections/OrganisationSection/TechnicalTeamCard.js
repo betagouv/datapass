@@ -98,13 +98,15 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       <h3>Qui implémentera l’API ?</h3>
       {!isUserEnrollmentLoading && !technical_team_type && (
         <>
-          <Alert>
-            Pour lire les données vous aurez besoin d’un logiciel ou d’un
-            service en ligne. <br />
-            <Link href="/faq#champ-editeur" inline newTab>
-              En savoir plus
-            </Link>
-          </Alert>
+          <div className="fr-mb-1w">
+            <Alert>
+              Pour lire les données vous aurez besoin d’un logiciel ou d’un
+              service en ligne. <br />
+              <Link href="/faq#champ-editeur" inline newTab>
+                En savoir plus
+              </Link>
+            </Alert>
+          </div>
           <RadioInput
             label="Qui s’occupera des aspects techniques et informatiques ?"
             options={typeOptions}
@@ -119,11 +121,7 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       {!isUserEnrollmentLoading && technical_team_type && (
         <>
           {!disabled && (
-            <div
-              style={{
-                marginBottom: '0.5rem',
-              }}
-            >
+            <div className="fr-mb-1w">
               <Button onClick={resetType} icon="arrow-left" outline>
                 retour
               </Button>
