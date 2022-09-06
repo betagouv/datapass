@@ -430,7 +430,7 @@ class InstructorEnrollmentList extends React.Component {
             {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
               <Tag
                 key={currentInbox}
-                type={inbox === currentInbox ? 'info' : ''}
+                aria-pressed={inbox === currentInbox ? true : false}
                 onClick={() => this.onSelectInbox(currentInbox)}
               >
                 {getInboxes(this.props.user)[currentInbox].label}

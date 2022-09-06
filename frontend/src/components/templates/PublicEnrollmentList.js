@@ -162,7 +162,7 @@ class PublicEnrollmentList extends React.Component {
           <TagContainer>
             <NavLink end to="/public">
               {({ isActive }) => (
-                <Tag type={isActive ? 'info' : ''}>
+                <Tag href="/public" aria-pressed={isActive ? true : false}>
                   Toutes les habilitations
                 </Tag>
               )}
@@ -174,7 +174,10 @@ class PublicEnrollmentList extends React.Component {
               .map((targetApi) => (
                 <NavLink key={targetApi} end to={`/public/${targetApi}`}>
                   {({ isActive }) => (
-                    <Tag type={isActive ? 'info' : ''}>
+                    <Tag
+                      href={`/public/${targetApi}`}
+                      aria-pressed={isActive ? true : false}
+                    >
                       {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
                     </Tag>
                   )}
