@@ -24,6 +24,7 @@ import MultiSelect from '../molecules/MultiSelect';
 import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
 import useListItemNavigation from './hooks/use-list-item-navigation';
+import Badge from '../atoms/hyperTexts/Badge';
 
 const getInboxes = (user) => ({
   primary: {
@@ -161,14 +162,15 @@ class InstructorEnrollmentList extends React.Component {
       width: 50,
       Cell: ({ value: notify_events_from_demandeurs_count }) => {
         return (
-          <Tag
-            style={{ width: '2rem', padding: '0.25rem 0' }}
+          <Badge
+            className="fr-py-1v"
+            style={{ width: '2rem' }}
             type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
           >
-            <span style={{ margin: 'auto', textOverflow: 'unset' }}>
+            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
               {notify_events_from_demandeurs_count}
             </span>
-          </Tag>
+          </Badge>
         );
       },
     },
@@ -263,7 +265,7 @@ class InstructorEnrollmentList extends React.Component {
         }
 
         return (
-          <Tag type="warning">
+          <Badge type="warning">
             {statusLabel}
             {isRenewal ? (
               <span style={{ marginLeft: '2px' }}>
@@ -272,7 +274,7 @@ class InstructorEnrollmentList extends React.Component {
             ) : (
               ''
             )}
-          </Tag>
+          </Badge>
         );
       },
       Filter: ({ filter, onChange }) => {
