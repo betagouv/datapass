@@ -260,4 +260,22 @@ RSpec.describe Enrollment, type: :model do
       end
     end
   end
+
+  describe ".to_csv" do
+    subject { enrollments.to_csv }
+
+    let!(:enrollments_model) { create_list(:enrollment, 1, :api_entreprise) }
+    let(:enrollments) { Enrollment.all }
+
+    it "is a valid csv" do
+      csv = CSV.parse(subject, headers: true)
+
+      expect(csv.count).to eq(1)
+
+      first_entry = csv.first
+
+      expect(first_entry["id"]).to eq(enrollments.first.id.to_s)
+      expect(first_entry["target_api"]).to eq("api_entreprise")
+    end
+  end
 end
