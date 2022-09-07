@@ -2,21 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1em auto;
+  margin: 1rem auto;
 }
 
 @media (max-width: 576px) {
   .panel > .login-buttons {
     flex-direction: column;
   }
-}
-
-.login-buttons-or {
-  margin: 1em;
-}
-
-.call-to-action {
-  margin-bottom: 3em;
 }
 
 .next-steps,

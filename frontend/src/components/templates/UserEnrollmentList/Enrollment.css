@@ -8,20 +8,20 @@
   justify-content: space-between;
   flex-flow: wrap;
   align-items: center;
-  padding: 1em;
+  padding: 1rem;
   border-bottom: 1px solid var(--border-default-grey);
 }
 
 .enrollment-header .fs {
   display: flex;
   align-items: center;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
 .enrollment-header .fs img {
   height: 40px;
-  margin: 0 0.5em;
+  margin: 0 0.5rem;
 }
 
 .title {
@@ -34,7 +34,7 @@
 .intitule {
   font-weight: 600;
   font-size: large;
-  margin-right: 1em;
+  margin-right: 1rem;
 }
 
 .creation {
@@ -46,12 +46,12 @@
 }
 
 .enrollment-body {
-  padding: 1em;
+  padding: 1rem;
 }
 
 .enrollment-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2em;
+  margin-top: 2rem;
 }

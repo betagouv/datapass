@@ -1,6 +1,6 @@
 import { chain } from 'lodash';
 import PropTypes from 'prop-types';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { USER_STATUS_LABELS } from '../../../config/status-parameters';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert from '../../atoms/Alert';
@@ -46,7 +46,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
       <Alert title={USER_STATUS_LABELS[status]} type="warning">
         Votre demande d’habilitation est incomplète et requiert les
         modifications suivantes :
-        <div style={{ margin: '1em 0' }}>
+        <div style={{ margin: '1rem 0' }}>
           <EventItem
             comment={comment}
             name={lastEventName}
