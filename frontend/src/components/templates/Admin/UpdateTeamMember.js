@@ -67,7 +67,7 @@ export const UpdateTeamMember = () => {
           Les champs non renseignés seront laissés dans leur état d’origine.
         </Alert>
       )}
-      <form onSubmit={onSubmit}>
+      <form className="fr-mt-3w" onSubmit={onSubmit}>
         <TextInput
           label="Identifiant du contact"
           onChange={({ target: { value } }) => setTeamMemberId(value)}

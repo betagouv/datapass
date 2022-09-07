@@ -108,7 +108,7 @@ const UserList = () => {
             Tous les utilisateurs
           </Tag>
           <Tag onClick={handleRefreshData}>
-            <RefreshIcon size={16} />
+            <RefreshIcon color={'var(--text-action-high-blue-france)'} />
           </Tag>
         </TagContainer>
       </ListHeader>
