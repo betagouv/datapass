@@ -203,7 +203,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def team_members_json
-    team_members.to_json
+    team_members.to_json(methods: :type)
   end
 
   def link

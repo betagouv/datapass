@@ -288,6 +288,12 @@ RSpec.describe Enrollment, type: :model do
           JSON.parse(subject)
         }.not_to raise_error
       end
+
+      it "renders type in team member payload" do
+        first_entry = JSON.parse(subject).first
+
+        expect(first_entry).to have_key("type")
+      end
     end
 
     describe "scopes entry" do
