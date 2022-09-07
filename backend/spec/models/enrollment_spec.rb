@@ -277,5 +277,29 @@ RSpec.describe Enrollment, type: :model do
       expect(first_entry["id"]).to eq(enrollments.first.id.to_s)
       expect(first_entry["target_api"]).to eq("api_entreprise")
     end
+
+    describe "team_members_json entry" do
+      subject do
+        CSV.parse(enrollments.to_csv, headers: true).first["team_members_json"]
+      end
+
+      it "is a valid json" do
+        expect {
+          JSON.parse(subject)
+        }.not_to raise_error
+      end
+    end
+
+    describe "scopes entry" do
+      subject do
+        CSV.parse(enrollments.to_csv, headers: true).first["scopes"]
+      end
+
+      it "is a valid json" do
+        expect {
+          JSON.parse(subject)
+        }.not_to raise_error
+      end
+    end
   end
 end

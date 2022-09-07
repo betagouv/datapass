@@ -203,7 +203,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def team_members_json
-    team_members.as_json
+    team_members.to_json
   end
 
   def link
@@ -246,7 +246,13 @@ class Enrollment < ActiveRecord::Base
       csv << attributes
 
       all.each do |enrollment|
-        csv << attributes.map { |attr| enrollment.send(attr) }
+        csv << attributes.map do |attr|
+          if attr == "scopes"
+            enrollment.scopes.to_json
+          else
+            enrollment.send(attr)
+          end
+        end
       end
     end
   end
