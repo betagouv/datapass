@@ -33,6 +33,11 @@ const demarches = {
   ordonnateur: {
     label: 'Ordonnateur (fiabilisation des bases tiers des collectivités)',
     state: {
+      intitule: 'Ordonnateur (fiabilisation des bases tiers des collectivités)',
+      fondement_juridique_title:
+        'Décret n° 2022-814 du 16 mai 2022 relatif aux conditions dans lesquelles les collectivités territoriales, les établissements publics qui leur sont rattachés et les établissements publics sociaux et médico-sociaux peuvent obtenir communication des éléments d’identification de leurs débiteurs en application de l’article L. 135 ZN du livre des procédures fiscales.',
+      fondement_juridique_url:
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045802934',
       additional_content: {
         acces_etat_civil: true,
         acces_spi: true,
@@ -44,6 +49,8 @@ const demarches = {
     label:
       'Restitution du numéro fiscal (SPI) pour appel de l’API Impôt particulier',
     state: {
+      intitule:
+        'Restitution du numéro fiscal (SPI) pour appel de l’API Impôt particulier',
       additional_content: {
         acces_etat_civil_restitution_spi: true,
       },

@@ -119,8 +119,8 @@
     "label": "Concerto, Tarification services municipaux / Portail Famille, Données CNAF",
     "about": "https://api.gouv.fr/guides/portail-famille-tarification",
     "state": {
-      "intitule": "Récupération du Quotient Familial pour les services Petite Enfance et Périscolaire",
-      "description": "Notre commune module la facturation des services liés à la petite enfance et à l’enfance en fonction des QF. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel Concerto, édité par la Société Arpège.",
+      "intitule": "Récupération du Quotient Familial pour le service Périscolaire",
+      "description": "Notre commune module la facturation des services liés à l’enfance en fonction des QF. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel Concerto, édité par la Société Arpège.",
       "data_recipients": "Agents instructeurs des dossiers d’inscription en multi-accueil, Agents instructeurs des dossiers au guichet unique, Agents instructeurs des dossiers d’inscription en accueil périscolaire",
       "data_retention_period": 12,
       "fondement_juridique_title": "L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement ",
