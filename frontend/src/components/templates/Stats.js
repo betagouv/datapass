@@ -142,38 +142,21 @@ export const Stats = () => {
         <TagContainer>
           <NavLink end to="/stats">
             {({ isActive }) => (
-              <Tag href="/stats" aria-pressed={isActive ? true : false}>
-                Toutes les habilitations
-              </Tag>
+              <Tag isActive={!!isActive}>Toutes les habilitations</Tag>
             )}
           </NavLink>
           <NavLink end to={`/stats/allApi`}>
-            {({ isActive }) => (
-              <Tag
-                href={`/stats/allApi`}
-                aria-pressed={isActive ? true : false}
-              >
-                Toutes les API
-              </Tag>
-            )}
+            {({ isActive }) => <Tag isActive={!!isActive}>Toutes les API</Tag>}
           </NavLink>
           <NavLink end to={`/stats/allServices`}>
             {({ isActive }) => (
-              <Tag
-                href={`/stats/allServices`}
-                aria-pressed={isActive ? true : false}
-              >
-                Tous les services
-              </Tag>
+              <Tag isActive={!!isActive}>Tous les services</Tag>
             )}
           </NavLink>
           {dataProviderKeyList.map((targetApi) => (
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
               {({ isActive }) => (
-                <Tag
-                  href={`/stats/${targetApi}`}
-                  aria-pressed={isActive ? true : false}
-                >
+                <Tag isActive={!!isActive}>
                   {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
                 </Tag>
               )}

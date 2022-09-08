@@ -96,13 +96,13 @@ const UserList = () => {
       <ListHeader title="Liste des utilisateurs">
         <TagContainer>
           <Tag
-            aria-pressed={!showAllUsers ? true : false}
+            isActive={!showAllUsers ? true : false}
             onClick={() => setShowAllUsers(false)}
           >
             Utilisateurs avec droits
           </Tag>
           <Tag
-            aria-pressed={showAllUsers ? true : false}
+            isActive={showAllUsers ? true : false}
             onClick={() => setShowAllUsers(true)}
           >
             Tous les utilisateurs

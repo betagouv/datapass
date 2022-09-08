@@ -1,73 +1,46 @@
 import React, { MouseEvent } from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import HyperText from './HyperText';
 
 type Props = {
-  icon?: string;
+  withArrow?: string;
   href?: string;
-  className?: string;
   small?: boolean;
   dismiss?: boolean;
-  ariaPressed?: boolean;
+  isActive?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
 };
 
 export const Tag: React.FC<Props> = ({
-  icon = false,
-  className = '',
+  withArrow = false,
   href,
   small = false,
   dismiss = false,
-  ariaPressed = false,
+  isActive = false,
   onClick,
   children,
   ...props
 }) => {
-  className += ' fr-tag';
+  let className = 'fr-tag';
+
   if (small) {
     className += ' fr-tag--sm';
   }
-  if (icon) {
-    className += ` fr-fi-arrow-right-line`;
-  }
+
   if (dismiss) {
     className += ` fr-tag-dismiss`;
   }
-  if (href) {
-    const isExternalRefPattern = /^(https?:\/\/|mailto:|\/docs\/|#)/;
-    const isExternalRef = isExternalRefPattern.test(href);
-
-    if (isExternalRef) {
-      return (
-        <a className={className} href={href} {...props}>
-          {children}
-        </a>
-      );
-    }
-
-    return (
-      <ReactRouterLink className={className} to={href} {...props}>
-        {children}
-      </ReactRouterLink>
-    );
-  }
-
-  if (onClick) {
-    return (
-      <button
-        className={className}
-        aria-pressed={ariaPressed}
-        onClick={onClick}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
 
   return (
-    <p className={className} {...props}>
-      {children}
-    </p>
+    <HyperText
+      className={className}
+      icon={withArrow ? 'arrow-right' : undefined}
+      href={href}
+      /* we trick the HyperText component to use a button element when href and onClick are not defined */
+      onClick={onClick ? onClick : !onClick && !href ? () => null : undefined}
+      children={children}
+      aria-pressed={isActive}
+      {...props}
+    />
   );
 };
 export default Tag;
