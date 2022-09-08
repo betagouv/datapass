@@ -3,7 +3,7 @@ import React from 'react';
 const FrFiIcon: React.FC<{
   color?: string;
   type: string;
-}> = ({ color = 'var(--datapass-blue)', type }) => (
+}> = ({ color = 'var(--text-default-info)', type }) => (
   <span className={`fr-icon-${type}`} aria-hidden="true" style={{ color }} />
 );
 

@@ -107,7 +107,7 @@ export const Login = () => {
               src={`/images/${DATA_PROVIDER_PARAMETERS[targetApi]?.icon}`}
               alt={`Logo ${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
               height="90"
-              style={{ margin: '1.5rem' }}
+              className="fr-m-3w"
             />
           )}
           <WelcomeMessageRouter
