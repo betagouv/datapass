@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import HyperText, { ButtonType } from './HyperText';
+import HyperText from './HyperText';
 
 type Props = {
   href?: string;
@@ -7,7 +7,6 @@ type Props = {
   outline?: boolean;
   large?: boolean;
   xLarge?: boolean;
-  type?: ButtonType;
   icon?: string;
   iconRight?: boolean;
   className?: string;
@@ -21,7 +20,6 @@ const Button: React.FC<Props> = ({
   outline = false,
   large = false,
   xLarge = false,
-  type,
   icon,
   iconRight = false,
   children,
@@ -53,7 +51,6 @@ const Button: React.FC<Props> = ({
 
   return (
     <HyperText
-      type={type}
       icon={icon}
       iconRight={iconRight}
       onClick={onClick}

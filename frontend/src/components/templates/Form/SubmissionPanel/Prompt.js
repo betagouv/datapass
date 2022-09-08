@@ -77,8 +77,8 @@ const Prompt = ({
           Annuler
         </Button>
         <Button
-          type={displayProps.type}
           icon={displayProps.icon}
+          outline={displayProps.outline}
           onClick={handleAccept}
           disabled={disabled}
         >

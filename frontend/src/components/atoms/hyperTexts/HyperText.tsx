@@ -1,17 +1,9 @@
 import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-export enum ButtonType {
-  grey = 'grey',
-  info = 'info',
-  success = 'success',
-  warning = 'warning',
-  error = 'error',
-}
-
 type Props = {
-  type?: ButtonType;
   icon?: string;
+  outline?: boolean;
   iconRight?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   href?: string;
@@ -19,7 +11,7 @@ type Props = {
 };
 
 const HyperText: React.FC<Props> = ({
-  type,
+  // type,
   icon,
   iconRight = false,
   onClick,
@@ -28,10 +20,6 @@ const HyperText: React.FC<Props> = ({
   children,
   ...props
 }) => {
-  if (type) {
-    className += ` fr-background-flat--${type} fr-text-inverted--${type}`;
-  }
-
   if (icon) {
     className += ` fr-icon-${icon}-line`;
   }

@@ -10,12 +10,18 @@ type Props = EventConfiguration['displayProps'] & {
 const EventButton: React.FC<Props> = ({
   label,
   icon,
-  type,
   disabled,
   onClick,
+  outline = false,
 }) => (
   // @ts-ignore
-  <Button icon={icon} type={type} large onClick={onClick} disabled={disabled}>
+  <Button
+    icon={icon}
+    outline={outline}
+    large
+    onClick={onClick}
+    disabled={disabled}
+  >
     {label}
   </Button>
 );
