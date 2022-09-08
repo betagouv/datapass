@@ -43,7 +43,7 @@ describe('DataPass', () => {
     );
 
     // Do an intermediate save
-    cy.get('button.fr-fi-save-line').as('draftSaveButton').click();
+    cy.get('button.fr-icon-save-line').as('draftSaveButton').click();
     cy.contains('a créé la demande d’habilitation');
 
     cy.fillField('team_members[1].given_name', 'Jean');
@@ -70,7 +70,7 @@ describe('DataPass', () => {
     cy.checkBox('dpo_is_informed');
     cy.checkBox('has_alternative_authentication_methods');
 
-    cy.get('button.fr-fi-checkbox-line').click();
+    cy.get('button.fr-icon-checkbox-line').click();
 
     cy.contains('En cours de validation');
   });
