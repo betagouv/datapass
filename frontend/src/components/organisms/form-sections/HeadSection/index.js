@@ -5,7 +5,6 @@ import {
   STATUS_TO_BADGE_TYPE,
   USER_STATUS_LABELS,
 } from '../../../../config/status-parameters';
-import BadgeContainer from '../../../atoms/BadgeContainer';
 import Badge from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { FormContext } from '../../../templates/Form';
