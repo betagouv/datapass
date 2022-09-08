@@ -78,7 +78,6 @@ const Prompt = ({
         </Button>
         <Button
           icon={displayProps.icon}
-          secondary={displayProps.secondary}
           onClick={handleAccept}
           disabled={disabled}
         >
