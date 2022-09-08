@@ -46,7 +46,7 @@ const Nav = ({
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <Button
             onClick={() => goBackToList()}
-            outline
+            secondary
             icon="arrow-left"
             className="fr-my-2w"
           >
@@ -66,14 +66,14 @@ const Nav = ({
           </ul>
           <ul>
             <li className="fr-mt-2w">
-              <Button outline icon="mail" iconRight href={contactLink}>
+              <Button secondary icon="mail" iconRight href={contactLink}>
                 Nous contacter
               </Button>
             </li>
             <li className="fr-mt-2w">
               <Button
                 href={documentationUrl}
-                outline
+                secondary
                 icon="file"
                 iconRight
                 target="_blank"

@@ -4,7 +4,7 @@ import HyperText from './HyperText';
 type Props = {
   href?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
-  outline?: boolean;
+  secondary?: boolean;
   large?: boolean;
   xLarge?: boolean;
   icon?: string;
@@ -17,7 +17,7 @@ type Props = {
 const Button: React.FC<Props> = ({
   href,
   onClick,
-  outline = false,
+  secondary = false,
   large = false,
   xLarge = false,
   icon,
@@ -37,7 +37,7 @@ const Button: React.FC<Props> = ({
     className += ' fr-btn--lg';
   }
 
-  if (outline) {
+  if (secondary) {
     className += ' fr-btn--secondary';
   }
 

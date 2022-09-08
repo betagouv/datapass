@@ -177,7 +177,11 @@ const ActivityFeed = ({ events }) => {
   return (
     <div>
       <div className="activity-head">
-        <Button outline icon="eye" onClick={() => setShowDetails(!showDetails)}>
+        <Button
+          secondary
+          icon="eye"
+          onClick={() => setShowDetails(!showDetails)}
+        >
           {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
         </Button>
       </div>

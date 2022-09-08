@@ -3,7 +3,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 type Props = {
   icon?: string;
-  outline?: boolean;
+  secondary?: boolean;
   iconRight?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   href?: string;
@@ -11,7 +11,6 @@ type Props = {
 };
 
 const HyperText: React.FC<Props> = ({
-  // type,
   icon,
   iconRight = false,
   onClick,

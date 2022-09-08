@@ -45,7 +45,7 @@ export const Contact = ({
       {!disabled && onDelete && (
         <Button
           title="Supprimer"
-          outline
+          secondary
           icon="delete"
           iconRight
           onClick={() => onDelete(index)}
@@ -62,14 +62,14 @@ export const Contact = ({
       !phone_number &&
       !job && (
         <div className="fr-mb-3w">
-          <Button outline onClick={() => onUpdateWithUserInformation(index)}>
+          <Button secondary onClick={() => onUpdateWithUserInformation(index)}>
             🖐️ c’est moi : remplir avec mes info
           </Button>
         </div>
       )}
     {!disabled && onUpdateWithUserInformation && canUpdatePersonalInformation && (
       <div className="fr-mb-3w">
-        <Button outline onClick={() => onUpdateWithUserInformation(index)}>
+        <Button secondary onClick={() => onUpdateWithUserInformation(index)}>
           <RefreshIcon color="var(--text-action-high-blue-france)" size={16} />
           {' '}
           Mettre à jour avec mes info

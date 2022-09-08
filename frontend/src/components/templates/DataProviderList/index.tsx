@@ -23,7 +23,7 @@ export const DataProviderList = () => {
 
       <div className="page-container list-container">
         <div className="list-title">
-          <Button onClick={() => goBackToList()} outline icon="arrow-left">
+          <Button onClick={() => goBackToList()} secondary icon="arrow-left">
             retour
           </Button>
         </div>

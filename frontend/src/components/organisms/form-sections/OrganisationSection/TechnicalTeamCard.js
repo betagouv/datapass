@@ -122,7 +122,7 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
         <>
           {!disabled && (
             <div className="fr-mb-1w">
-              <Button onClick={resetType} icon="arrow-left" outline>
+              <Button onClick={resetType} icon="arrow-left" secondary>
                 retour
               </Button>
             </div>

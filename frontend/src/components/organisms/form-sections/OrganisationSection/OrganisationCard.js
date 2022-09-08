@@ -176,7 +176,7 @@ export const OrganisationCard = () => {
               {title || (disabled && nom_raison_sociale)}{' '}
               <Button
                 title="Plus d’information sur la donnée"
-                outline
+                secondary
                 icon="eye"
                 href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
                 target="_blank"
@@ -186,7 +186,7 @@ export const OrganisationCard = () => {
             {!disabled && (
               <Button
                 title="demander une habilitation pour une autre organisation"
-                outline
+                secondary
                 icon="edit"
                 onClick={() => setShowOrganizationPrompt(true)}
               />

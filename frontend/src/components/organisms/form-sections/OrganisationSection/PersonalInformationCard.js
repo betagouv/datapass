@@ -43,7 +43,7 @@ export const PersonalInformationCard = () => {
         {!disabled && (
           <Button
             title="Modifier mes informations"
-            outline
+            secondary
             icon="edit"
             onClick={onUpdatePersonalInformation}
           />

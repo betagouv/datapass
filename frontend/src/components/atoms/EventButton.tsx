@@ -12,12 +12,12 @@ const EventButton: React.FC<Props> = ({
   icon,
   disabled,
   onClick,
-  outline = false,
+  secondary = false,
 }) => (
   // @ts-ignore
   <Button
     icon={icon}
-    outline={outline}
+    secondary={secondary}
     large
     onClick={onClick}
     disabled={disabled}

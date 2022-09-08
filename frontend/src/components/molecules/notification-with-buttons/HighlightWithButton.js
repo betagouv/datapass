@@ -10,7 +10,7 @@ export const HighlightWithButton = ({ title, children, onClick, label }) => (
       {children}
     </Highlight>
     <div className="datapass-notification-buttons">
-      <Button outline icon="edit" onClick={onClick}>
+      <Button secondary icon="edit" onClick={onClick}>
         {label}
       </Button>
     </div>

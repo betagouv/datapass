@@ -440,7 +440,7 @@ class InstructorEnrollmentList extends React.Component {
           <Button
             onClick={() => this.props.downloadExport()}
             disabled={this.props.isExportDownloading}
-            outline
+            secondary
             icon="file-download"
             iconRight
           >

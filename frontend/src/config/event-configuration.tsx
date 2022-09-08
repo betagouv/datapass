@@ -13,7 +13,7 @@ export type EventConfiguration = {
   displayProps: {
     label: string;
     icon?: string;
-    outline?: boolean;
+    secondary?: boolean;
   };
   changeEnrollmentState?: boolean;
   promptForComment?: boolean;
@@ -30,7 +30,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Envoyer un message',
       icon: 'mail',
-      outline: true,
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -40,7 +40,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Supprimer l’habilitation',
       icon: 'delete',
-      outline: true,
+      secondary: true,
     },
     delete: true,
     redirectToHome: true,
@@ -50,7 +50,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Enregistrer les modifications',
       icon: 'save',
-      outline: true,
+      secondary: true,
     },
     createOrUpdate: true,
   },
@@ -67,7 +67,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Refuser',
       icon: 'alert',
-      outline: true,
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -77,7 +77,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Révoquer',
       icon: 'alert',
-      outline: true,
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -87,7 +87,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Demander une modification',
       icon: 'edit',
-      outline: true,
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
