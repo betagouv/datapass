@@ -145,6 +145,14 @@ export const demarches = {
         '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\r\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\r\n- Délibération de la collectivité (ou autre fondement juridique)',
     },
   },
+  migration_api_particulier: {
+    label:
+      'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
+    state: {
+      intitule:
+        'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
+    },
+  },
 };
 
 export const availableScopes = [
