@@ -9,7 +9,7 @@ class Enrollment::ApiStatutEtudiantBoursierPolicy < EnrollmentPolicy
         :cnous_email,
         :cnous_periode_versement,
         :cnous_statut_bourse,
-        :cnous_ville_etude
+        :cnous_ville_etudes
       ]
     ])
 
