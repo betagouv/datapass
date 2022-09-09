@@ -151,6 +151,9 @@ export const demarches = {
     state: {
       intitule:
         'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
+      scopes: {
+        dgfip_annee_n_moins_1: true,
+      },
     },
   },
 };
