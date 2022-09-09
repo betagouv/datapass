@@ -12,10 +12,7 @@ class ApiParticulierNotifier < BaseNotifier
   def webhook_payload_for(event)
     WebhookSerializer.new(
       @enrollment,
-      event.to_s,
-      {
-        external_token_id: @enrollment.linked_token_manager_id
-      }
+      event.to_s
     ).serializable_hash
   end
 end
