@@ -1,7 +1,6 @@
 Bonjour,
 
-Vous avez un nouveau message concernant une demande d’habilitation :
-
+Vous avez un nouveau message de <%= @demandeur.given_name %> <%= @demandeur.family_name %> (adresse email :<%= @demandeur_email %>) concernant une demande d’habilitation :
 <%= @message %>
 
 Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .

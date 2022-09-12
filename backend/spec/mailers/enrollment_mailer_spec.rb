@@ -123,5 +123,11 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     it "renders notify_instructor template with body" do
       expect(mail.body.encoded).to include(message)
     end
+
+    it "renders notify_instructor template with demandeurs first name, family name and email," do
+      expect(mail.body.encoded).to include(enrollment.demandeurs.first.given_name)
+      expect(mail.body.encoded).to include(enrollment.demandeurs.first.family_name)
+      expect(mail.body.encoded).to include(enrollment.demandeurs.first.email)
+    end
   end
 end

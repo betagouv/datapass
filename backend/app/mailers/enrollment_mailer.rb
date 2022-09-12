@@ -32,6 +32,8 @@ class EnrollmentMailer < ActionMailer::Base
 
   def notification_email_to_instructors
     @enrollment = Enrollment.find(params[:enrollment_id])
+    @demandeur_email = @enrollment.demandeurs.pluck(:email).first
+    @demandeur = @enrollment.demandeurs.first
     @message = params[:message]
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
 
