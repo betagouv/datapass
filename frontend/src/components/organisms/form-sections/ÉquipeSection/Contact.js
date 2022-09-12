@@ -70,7 +70,7 @@ export const Contact = ({
     {!disabled && onUpdateWithUserInformation && canUpdatePersonalInformation && (
       <div className="fr-mb-3w">
         <Button secondary onClick={() => onUpdateWithUserInformation(index)}>
-          <RefreshIcon color="var(--text-action-high-blue-france)" size={16} />
+          <RefreshIcon color="var(--text-action-high-blue-france)" />
           {' '}
           Mettre à jour avec mes info
         </Button>{' '}

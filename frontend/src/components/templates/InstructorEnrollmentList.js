@@ -268,8 +268,8 @@ class InstructorEnrollmentList extends React.Component {
           <Badge type="warning">
             {statusLabel}
             {isRenewal ? (
-              <span style={{ marginLeft: '2px' }}>
-                <FileCopyIcon color="white" size={14} />
+              <span style={{ marginLeft: '4px' }}>
+                <FileCopyIcon color="var(--text-default-warning)" size={14} />
               </span>
             ) : (
               ''
