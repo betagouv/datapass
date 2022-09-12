@@ -29,17 +29,6 @@ export const USER_STATUS_LABELS: {
   revoked: 'Révoquée',
 };
 
-export const STATUS_TO_BUTTON_TYPE: {
-  [key in EnrollmentStatus]: string;
-} = {
-  draft: '',
-  submitted: 'info',
-  validated: 'success',
-  changes_requested: 'warning',
-  refused: 'error',
-  revoked: 'error',
-};
-
 export const STATUS_TO_BADGE_TYPE: {
   [key in EnrollmentStatus]: string;
 } = {

@@ -164,7 +164,6 @@ class InstructorEnrollmentList extends React.Component {
         return (
           <Badge
             className="fr-py-1v"
-            style={{ width: '2rem' }}
             type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
           >
             <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>

@@ -8,7 +8,9 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 const FrFiIcon: React.FC<{ color?: string; type: string }> = ({
   color = 'var(--text-default-info)',
   type,
-}) => <span className={`fr-fi-${type}`} aria-hidden="true" style={{ color }} />;
+}) => (
+  <span className={`fr-icon-${type}`} aria-hidden="true" style={{ color }} />
+);
 
 type Props = { color?: string };
 
