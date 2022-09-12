@@ -98,7 +98,7 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       <h3>Qui implémentera l’API ?</h3>
       {!isUserEnrollmentLoading && !technical_team_type && (
         <>
-          <div className="fr-mb-1w">
+          <div className="fr-mb-3w">
             <Alert>
               Pour lire les données vous aurez besoin d’un logiciel ou d’un
               service en ligne. <br />
@@ -121,7 +121,7 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
       {!isUserEnrollmentLoading && technical_team_type && (
         <>
           {!disabled && (
-            <div className="fr-mb-1w">
+            <div className="fr-mb-3w">
               <Button onClick={resetType} icon="arrow-left" secondary>
                 retour
               </Button>
