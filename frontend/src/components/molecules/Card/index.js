@@ -12,7 +12,7 @@ export const Card = ({ children, className = '' }) => (
 
 export const AddCard = ({ onClick, label = '' }) => (
   <div className="datapass_card datapass_add_card" onClick={onClick}>
-    <AddCircleIcon />
+    <AddCircleIcon large />
     <div>{label}</div>
   </div>
 );
