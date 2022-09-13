@@ -3,10 +3,8 @@ import './style.css';
 
 export const ListHeader = ({ title, children = null }) => (
   <div className="list-header-container">
-    <div className="list-header">
-      <span style={{ margin: 0 }} className="fr-text--lead">
-        {title}
-      </span>
+    <div className="list-header fr-my-3w fr-mx-auto">
+      <span className="fr-m-0 fr-text--lead">{title}</span>
       {children}
     </div>
   </div>

@@ -15,15 +15,16 @@ import enrollmentListStyle from './enrollmentListStyle';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import Button from '../atoms/hyperTexts/Button';
 import Tag from '../atoms/hyperTexts/Tag';
-import FileCopyIcon from '../atoms/icons/file_copy';
+import FileCopyIcon from '../atoms/icons/fileCopy';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
-import ScheduleIcon from '../atoms/icons/schedule';
+import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import MultiSelect from '../molecules/MultiSelect';
 import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
 import useListItemNavigation from './hooks/use-list-item-navigation';
+import Badge from '../atoms/hyperTexts/Badge';
 
 const getInboxes = (user) => ({
   primary: {
@@ -124,7 +125,7 @@ class InstructorEnrollmentList extends React.Component {
 
   getColumnConfiguration = () => [
     {
-      Header: () => <ScheduleIcon />,
+      Header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
       accessor: 'updated_at',
       headerStyle: {
         ...enrollmentListStyle.header,
@@ -161,14 +162,14 @@ class InstructorEnrollmentList extends React.Component {
       width: 50,
       Cell: ({ value: notify_events_from_demandeurs_count }) => {
         return (
-          <Tag
-            style={{ width: '2rem', padding: '0.25rem 0' }}
+          <Badge
+            className="fr-py-1v"
             type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
           >
-            <span style={{ margin: 'auto', textOverflow: 'unset' }}>
+            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
               {notify_events_from_demandeurs_count}
             </span>
-          </Tag>
+          </Badge>
         );
       },
     },
@@ -263,16 +264,16 @@ class InstructorEnrollmentList extends React.Component {
         }
 
         return (
-          <Tag type="warning">
+          <Badge type="warning">
             {statusLabel}
             {isRenewal ? (
-              <span style={{ marginLeft: '2px' }}>
-                <FileCopyIcon color="white" size={14} />
+              <span style={{ marginLeft: '4px' }}>
+                <FileCopyIcon color="var(--text-default-warning)" size={14} />
               </span>
             ) : (
               ''
             )}
-          </Tag>
+          </Badge>
         );
       },
       Filter: ({ filter, onChange }) => {
@@ -428,7 +429,7 @@ class InstructorEnrollmentList extends React.Component {
             {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
               <Tag
                 key={currentInbox}
-                type={inbox === currentInbox ? 'info' : ''}
+                isActive={inbox === currentInbox ? true : false}
                 onClick={() => this.onSelectInbox(currentInbox)}
               >
                 {getInboxes(this.props.user)[currentInbox].label}
@@ -438,7 +439,7 @@ class InstructorEnrollmentList extends React.Component {
           <Button
             onClick={() => this.props.downloadExport()}
             disabled={this.props.isExportDownloading}
-            outline
+            secondary
             icon="file-download"
             iconRight
           >

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { chain } from 'lodash';
@@ -7,10 +7,10 @@ import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import {
-  STATUS_TO_BUTTON_TYPE,
+  STATUS_TO_BADGE_TYPE,
   USER_STATUS_LABELS,
 } from '../../../config/status-parameters';
-import Tag from '../../atoms/hyperTexts/Tag';
+import Badge from '../../atoms/hyperTexts/Badge';
 
 const Enrollment = ({
   id,
@@ -50,9 +50,9 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <Tag type={STATUS_TO_BUTTON_TYPE[status]}>
+        <Badge type={STATUS_TO_BADGE_TYPE[status]}>
           {USER_STATUS_LABELS[status]}
-        </Tag>
+        </Badge>
       </div>
 
       <div className="enrollment-body">

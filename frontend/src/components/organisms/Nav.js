@@ -46,9 +46,9 @@ const Nav = ({
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <Button
             onClick={() => goBackToList()}
-            outline
+            secondary
             icon="arrow-left"
-            style={{ margin: '1em 0' }}
+            className="fr-my-2w"
           >
             Toutes mes habilitations
           </Button>
@@ -65,15 +65,15 @@ const Nav = ({
             ))}
           </ul>
           <ul>
-            <li style={{ marginTop: '1em' }}>
-              <Button outline icon="mail" iconRight href={contactLink}>
+            <li className="fr-mt-2w">
+              <Button secondary icon="mail" iconRight href={contactLink}>
                 Nous contacter
               </Button>
             </li>
-            <li style={{ marginTop: '1em' }}>
+            <li className="fr-mt-2w">
               <Button
                 href={documentationUrl}
-                outline
+                secondary
                 icon="file"
                 iconRight
                 target="_blank"

@@ -12,7 +12,7 @@ import enrollmentListStyle from './enrollmentListStyle';
 
 import { debounce } from 'lodash';
 import Tag from '../atoms/hyperTexts/Tag';
-import ScheduleIcon from '../atoms/icons/schedule';
+import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 
@@ -162,9 +162,7 @@ class PublicEnrollmentList extends React.Component {
           <TagContainer>
             <NavLink end to="/public">
               {({ isActive }) => (
-                <Tag type={isActive ? 'info' : ''}>
-                  Toutes les habilitations
-                </Tag>
+                <Tag isActive={!!isActive}>Toutes les habilitations</Tag>
               )}
             </NavLink>
             {Object.keys(DATA_PROVIDER_PARAMETERS)
@@ -174,7 +172,7 @@ class PublicEnrollmentList extends React.Component {
               .map((targetApi) => (
                 <NavLink key={targetApi} end to={`/public/${targetApi}`}>
                   {({ isActive }) => (
-                    <Tag type={isActive ? 'info' : ''}>
+                    <Tag isActive={!!isActive}>
                       {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
                     </Tag>
                   )}

@@ -156,27 +156,33 @@ export const OrganisationCard = () => {
         <>
           <h3>Vous faites cette demande pour</h3>
           {activite && !isValidNAFCode(target_api, activite) && (
-            <Alert type="warning">
-              Votre organisme ne semble pas être éligible
-            </Alert>
+            <div className="fr-mb-1w">
+              <Alert type="warning">
+                Votre organisme ne semble pas être éligible
+              </Alert>
+            </div>
           )}
           {showOrganizationInfoNotFound && (
-            <Alert type="warning">
-              Cet établissement est fermé ou le SIRET est invalide.
-            </Alert>
+            <div className="fr-mb-1w">
+              <Alert type="warning">
+                Cet établissement est fermé ou le SIRET est invalide.
+              </Alert>
+            </div>
           )}
           {showOrganizationInfoError && (
-            <Alert type="error">
-              Erreur inconnue lors de la récupération des informations de cet
-              établissement.
-            </Alert>
+            <div className="fr-mb-1w">
+              <Alert type="error">
+                Erreur inconnue lors de la récupération des informations de cet
+                établissement.
+              </Alert>
+            </div>
           )}
           <CardHead>
             <b>
               {title || (disabled && nom_raison_sociale)}{' '}
               <Button
                 title="Plus d’information sur la donnée"
-                outline
+                secondary
                 icon="eye"
                 href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
                 target="_blank"
@@ -186,7 +192,7 @@ export const OrganisationCard = () => {
             {!disabled && (
               <Button
                 title="demander une habilitation pour une autre organisation"
-                outline
+                secondary
                 icon="edit"
                 onClick={() => setShowOrganizationPrompt(true)}
               />

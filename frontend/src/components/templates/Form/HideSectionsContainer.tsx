@@ -86,10 +86,10 @@ export const HideSectionsContainer: FunctionComponent = ({ children }) => {
 
       {showOnlyFirstStep && !areNextStepsLoading && (
         <div
+          className="fr-mb-4w"
           style={{
             display: 'flex',
             alignSelf: 'center',
-            marginBottom: '2rem',
           }}
         >
           <Button

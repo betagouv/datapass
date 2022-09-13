@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
-import AutorenewIcon from '../../atoms/icons/autorenew';
+import { RefreshIcon } from '../../atoms/icons/fr-fi-icons';
 import { getErrorMessages } from '../../../lib';
 import Button from '../../atoms/hyperTexts/Button';
 import Alert from '../../atoms/Alert';
@@ -33,18 +33,21 @@ export const AddUser = () => {
 
   return (
     <div className="page-container">
-      <ListHeader title="Ajouter un utilisateur" />
+      <ListHeader className="fr-text-bold" title="Ajouter un utilisateur" />
       {success && (
-        <Alert type="success" title="Succès">
-          L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
-          liste des utilisateurs en cliquant sur l’icone{' '}
-          <AutorenewIcon size={16} />.
-        </Alert>
+        <div className="fr-mb-2w">
+          <Alert type="success" title="Succès">
+            L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
+            liste des utilisateurs en cliquant sur l’icone <RefreshIcon />.
+          </Alert>
+        </div>
       )}
       {error && (
-        <Alert type="error" title="Erreur">
-          {error}
-        </Alert>
+        <div className="fr-mb-2w">
+          <Alert type="error" title="Erreur">
+            {error}
+          </Alert>
+        </div>
       )}
       <form onSubmit={onSubmit}>
         <TextInput

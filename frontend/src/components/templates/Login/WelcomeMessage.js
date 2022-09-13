@@ -13,7 +13,7 @@ const WelcomeMessage = ({
   <>
     {isOnNewEnrollmentPage ? (
       <>
-        <div className="call-to-action">
+        <div className="fr-mb-3w">
           {newEnrollmentPageMessage || (
             <>
               Vous souhaitez connecter votre service en ligne à{' '}
@@ -39,7 +39,7 @@ const WelcomeMessage = ({
             En savoir plus
           </Link>
         </p>
-        <div className="call-to-action">
+        <div className="fr-mb-3w">
           Vous souhaitez suivre le traitement d’une habilitation, merci de vous
           identifier afin que nous puissions configurer vos accès.
         </div>

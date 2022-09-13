@@ -1,6 +1,6 @@
 import React from 'react';
+import { AddCircleIcon } from '../../atoms/icons/fr-fi-icons';
 import './style.css';
-import ControlPointIcon from '../../atoms/icons/control-point';
 
 export const CardHead = ({ children }) => (
   <div className="datapass_card_head">{children}</div>
@@ -12,7 +12,7 @@ export const Card = ({ children, className = '' }) => (
 
 export const AddCard = ({ onClick, label = '' }) => (
   <div className="datapass_card datapass_add_card" onClick={onClick}>
-    <ControlPointIcon color="var(--text-mention-grey)" size="50px" />
+    <AddCircleIcon large />
     <div>{label}</div>
   </div>
 );

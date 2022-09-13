@@ -56,7 +56,7 @@ export const DownloadButton: FunctionComponent<Props> = ({
         </Button>
         {!disabled && (
           <Button
-            outline
+            secondary
             icon="close"
             onClick={onReplaceFile}
             aria-label="Remplacer le document"

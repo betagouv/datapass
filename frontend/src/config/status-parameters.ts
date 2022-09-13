@@ -29,7 +29,7 @@ export const USER_STATUS_LABELS: {
   revoked: 'Révoquée',
 };
 
-export const STATUS_TO_BUTTON_TYPE: {
+export const STATUS_TO_BADGE_TYPE: {
   [key in EnrollmentStatus]: string;
 } = {
   draft: '',

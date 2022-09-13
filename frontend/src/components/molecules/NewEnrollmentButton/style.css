@@ -21,5 +21,6 @@
 }
 
 .new-enrollment-button-item a {
-  box-shadow: none;
+  background-image: none;
+  background-color: transparent;
 }

@@ -6,7 +6,7 @@ import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
-import AutorenewIcon from '../../../atoms/icons/autorenew';
+import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Link from '../../../atoms/hyperTexts/Link';
@@ -96,19 +96,19 @@ const UserList = () => {
       <ListHeader title="Liste des utilisateurs">
         <TagContainer>
           <Tag
-            type={!showAllUsers ? 'info' : ''}
+            isActive={!showAllUsers ? true : false}
             onClick={() => setShowAllUsers(false)}
           >
             Utilisateurs avec droits
           </Tag>
           <Tag
-            type={showAllUsers ? 'info' : ''}
+            isActive={showAllUsers ? true : false}
             onClick={() => setShowAllUsers(true)}
           >
             Tous les utilisateurs
           </Tag>
           <Tag onClick={handleRefreshData}>
-            <AutorenewIcon size={16} />
+            <RefreshIcon color={'var(--text-action-high-blue-france)'} />
           </Tag>
         </TagContainer>
       </ListHeader>

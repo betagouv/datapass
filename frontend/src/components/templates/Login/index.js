@@ -74,13 +74,13 @@ export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
 
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">
-    <form action={loginUrl} method="post" style={{ margin: 0 }}>
-      <Button outline large submit>
+    <form className="fr-m-0" action={loginUrl} method="post">
+      <Button secondary large submit>
         {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
       </Button>
     </form>
-    <span className="login-buttons-or">ou</span>
-    <form action={loginUrl} method="post" style={{ margin: 0 }}>
+    <span className="fr-m-2w">ou</span>
+    <form action={loginUrl} method="post" className="fr-m-0">
       <Button large submit>
         {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
       </Button>
@@ -107,7 +107,7 @@ export const Login = () => {
               src={`/images/${DATA_PROVIDER_PARAMETERS[targetApi]?.icon}`}
               alt={`Logo ${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
               height="90"
-              style={{ margin: '1.5rem' }}
+              className="fr-m-3w"
             />
           )}
           <WelcomeMessageRouter

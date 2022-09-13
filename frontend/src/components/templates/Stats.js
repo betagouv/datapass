@@ -142,23 +142,21 @@ export const Stats = () => {
         <TagContainer>
           <NavLink end to="/stats">
             {({ isActive }) => (
-              <Tag type={isActive ? 'info' : ''}>Toutes les habilitations</Tag>
+              <Tag isActive={!!isActive}>Toutes les habilitations</Tag>
             )}
           </NavLink>
           <NavLink end to={`/stats/allApi`}>
-            {({ isActive }) => (
-              <Tag type={isActive ? 'info' : ''}>Toutes les API</Tag>
-            )}
+            {({ isActive }) => <Tag isActive={!!isActive}>Toutes les API</Tag>}
           </NavLink>
           <NavLink end to={`/stats/allServices`}>
             {({ isActive }) => (
-              <Tag type={isActive ? 'info' : ''}>Tous les services</Tag>
+              <Tag isActive={!!isActive}>Tous les services</Tag>
             )}
           </NavLink>
           {dataProviderKeyList.map((targetApi) => (
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
               {({ isActive }) => (
-                <Tag type={isActive ? 'info' : ''}>
+                <Tag isActive={!!isActive}>
                   {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
                 </Tag>
               )}

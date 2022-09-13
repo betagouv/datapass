@@ -1,30 +1,46 @@
 import React, { MouseEvent } from 'react';
-import HyperText, { ButtonType } from './HyperText';
+import HyperText from './HyperText';
 
 type Props = {
-  type?: ButtonType;
-  icon?: string;
+  withArrow?: string;
   href?: string;
+  small?: boolean;
+  dismiss?: boolean;
+  isActive?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
 };
 
 export const Tag: React.FC<Props> = ({
-  type,
-  icon,
+  withArrow = false,
   href,
+  small = false,
+  dismiss = false,
+  isActive = false,
   onClick,
   children,
   ...props
-}) => (
-  <HyperText
-    className="fr-tag"
-    type={type}
-    icon={icon}
-    href={href}
-    onClick={onClick}
-    children={children}
-    {...props}
-  />
-);
+}) => {
+  let className = 'fr-tag';
 
+  if (small) {
+    className += ' fr-tag--sm';
+  }
+
+  if (dismiss) {
+    className += ` fr-tag-dismiss`;
+  }
+
+  return (
+    <HyperText
+      className={className}
+      icon={withArrow ? 'arrow-right' : undefined}
+      href={href}
+      /* we trick the HyperText component to use a button element when href and onClick are not defined */
+      onClick={onClick ? onClick : !onClick && !href ? () => null : undefined}
+      children={children}
+      aria-pressed={isActive}
+      {...props}
+    />
+  );
+};
 export default Tag;

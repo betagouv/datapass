@@ -14,7 +14,7 @@ import {
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
 import Alert from '../../../atoms/Alert';
-import AutorenewIcon from '../../../atoms/icons/autorenew';
+import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 
 export const Contact = ({
   heading,
@@ -45,7 +45,7 @@ export const Contact = ({
       {!disabled && onDelete && (
         <Button
           title="Supprimer"
-          outline
+          secondary
           icon="delete"
           iconRight
           onClick={() => onDelete(index)}
@@ -61,19 +61,16 @@ export const Contact = ({
       !email &&
       !phone_number &&
       !job && (
-        <div style={{ marginBottom: '1.5rem' }}>
-          <Button outline onClick={() => onUpdateWithUserInformation(index)}>
+        <div className="fr-mb-3w">
+          <Button secondary onClick={() => onUpdateWithUserInformation(index)}>
             🖐️ c’est moi : remplir avec mes info
           </Button>
         </div>
       )}
     {!disabled && onUpdateWithUserInformation && canUpdatePersonalInformation && (
-      <div style={{ marginBottom: '1.5rem' }}>
-        <Button outline onClick={() => onUpdateWithUserInformation(index)}>
-          <AutorenewIcon
-            color="var(--text-action-high-blue-france)"
-            size={16}
-          />
+      <div className="fr-mb-3w">
+        <Button secondary onClick={() => onUpdateWithUserInformation(index)}>
+          <RefreshIcon color="var(--text-action-high-blue-france)" />
           {' '}
           Mettre à jour avec mes info
         </Button>{' '}

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
-import AlertIcon from '../../atoms/icons/alert';
-import { ArrowDownIcon, ArrowUpIcon } from '../../atoms/icons/fr-fi-icons';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  InfoFillIcon,
+} from '../../atoms/icons/fr-fi-icons';
 
 type Props = {
   title: string;
@@ -40,7 +43,7 @@ export const ExpandableQuote: React.FC<Props> = ({
         className="expandable-quote-header"
         onClick={() => setExpanded(!expanded)}
       >
-        <AlertIcon />
+        <InfoFillIcon />
         <div>{title}</div>
         {expanded ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </div>

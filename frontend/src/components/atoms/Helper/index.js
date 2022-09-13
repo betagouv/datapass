@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import HelpIcon from '../icons/help';
+import { HelpIcon } from '../icons/fr-fi-icons';
 import './style.css';
 
 const Helper = ({ title = '' }) => {

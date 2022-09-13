@@ -6,12 +6,12 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
-import CheckCircleIcon from '../../../atoms/icons/check-circle';
-import ErrorIcon from '../../../atoms/icons/error';
-import FileCopyIcon from '../../../atoms/icons/file_copy';
+import { CheckCircleIcon } from '../../../atoms/icons/fr-fi-icons';
+import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
+import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
-import InfoIcon from '../../../atoms/icons/info';
-import WarningIcon from '../../../atoms/icons/warning';
+import { InfoIcon } from '../../../atoms/icons/fr-fi-icons';
+import { WarningIcon } from '../../../atoms/icons/fr-fi-icons';
 import { Linkify } from '../../../molecules/Linkify';
 import './ActivityFeed.css';
 
@@ -177,7 +177,11 @@ const ActivityFeed = ({ events }) => {
   return (
     <div>
       <div className="activity-head">
-        <Button outline icon="eye" onClick={() => setShowDetails(!showDetails)}>
+        <Button
+          secondary
+          icon="eye"
+          onClick={() => setShowDetails(!showDetails)}
+        >
           {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
         </Button>
       </div>

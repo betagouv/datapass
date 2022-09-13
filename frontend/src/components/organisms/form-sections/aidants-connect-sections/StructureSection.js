@@ -194,7 +194,7 @@ export const StructureSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className="fr-mb-3w">
         Si vous travaillez avec une administration ou un établissement publics
         (prestation, délégation de service public, subvention publique, etc.),
         merci de renseigner l’un des champs suivants :
@@ -217,7 +217,7 @@ export const StructureSection = () => {
         />
       </OrWrapper>
       <h3>Autres caractéristiques de la structure</h3>
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div className="fr-mb-3w">
         Quels labels ou missions sont liés à votre structure ?
       </div>
       <CheckboxInput

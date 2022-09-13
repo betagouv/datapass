@@ -12,9 +12,8 @@ export enum EnrollmentEvent {
 export type EventConfiguration = {
   displayProps: {
     label: string;
-    type?: string;
     icon?: string;
-    outline?: boolean;
+    secondary?: boolean;
   };
   changeEnrollmentState?: boolean;
   promptForComment?: boolean;
@@ -31,7 +30,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Envoyer un message',
       icon: 'mail',
-      type: 'grey',
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -41,7 +40,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Supprimer l’habilitation',
       icon: 'delete',
-      type: 'error',
+      secondary: true,
     },
     delete: true,
     redirectToHome: true,
@@ -51,7 +50,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Enregistrer les modifications',
       icon: 'save',
-      type: 'grey',
+      secondary: true,
     },
     createOrUpdate: true,
   },
@@ -59,7 +58,6 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Soumettre la demande d’habilitation',
       icon: 'checkbox',
-      type: 'info',
     },
     changeEnrollmentState: true,
     createOrUpdate: true,
@@ -69,7 +67,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Refuser',
       icon: 'alert',
-      type: 'error',
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -79,7 +77,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Révoquer',
       icon: 'alert',
-      type: 'error',
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -89,7 +87,7 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Demander une modification',
       icon: 'edit',
-      type: 'grey',
+      secondary: true,
     },
     changeEnrollmentState: true,
     promptForComment: true,
@@ -99,7 +97,6 @@ export const eventConfigurations: {
     displayProps: {
       label: 'Valider',
       icon: 'checkbox',
-      type: 'info',
     },
     changeEnrollmentState: true,
     promptForComment: true,

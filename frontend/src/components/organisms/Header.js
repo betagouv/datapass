@@ -115,7 +115,7 @@ const Header = () => {
                         method="post"
                         style={{ cursor: 'pointer' }}
                       >
-                        <Button icon="lock" outline submit>
+                        <Button icon="lock" secondary submit>
                           Se connecter
                         </Button>
                       </form>

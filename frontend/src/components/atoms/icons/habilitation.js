@@ -1,6 +1,9 @@
 import React from 'react';
 
-const habilitationIcon = ({ color = 'var(--datapass-blue)', size = 56 }) => (
+const habilitationIcon = ({
+  color = 'var(--text-default-info)',
+  size = 56,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

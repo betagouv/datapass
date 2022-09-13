@@ -1,4 +1,4 @@
-import '@gouvfr/dsfr/dist/dsfr/dsfr.css';
+import '@gouvfr/dsfr/dist/dsfr/dsfr.min.css';
 import * as Sentry from '@sentry/react';
 import 'moment/locale/fr'; // set moment locale to french globally
 import React from 'react';

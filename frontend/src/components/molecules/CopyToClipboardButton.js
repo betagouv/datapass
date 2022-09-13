@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash';
 import ClipboardJS from 'clipboard';
-import ContentCopyIcon from '../atoms/icons/content-copy';
+import ContentCopyIcon from '../atoms/icons/contentCopy';
 
-export const CopyToCliboardButton = ({ textToCopy }) => {
+export const CopyToClipboardButton = ({ textToCopy }) => {
   const [id] = useState(uniqueId());
   const clipboard = new ClipboardJS(`#clipboard-${id}`);
 
@@ -29,4 +29,4 @@ export const CopyToCliboardButton = ({ textToCopy }) => {
   );
 };
 
-export default CopyToCliboardButton;
+export default CopyToClipboardButton;

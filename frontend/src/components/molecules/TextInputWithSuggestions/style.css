@@ -3,7 +3,8 @@
   padding: 0.5rem 1rem;
 }
 
-.datapass-text-input-suggestion:hover, .datapass-text-input-active-suggestion {
+.datapass-text-input-suggestion:hover,
+.datapass-text-input-active-suggestion {
   /* inspired from DSFR */
   --a: 0.5;
   --hsla: hsla(var(--blend), var(--a));
@@ -12,5 +13,9 @@
   background-repeat: no-repeat;
   background-size: var(--blend-size);
   background-position: var(--blend-position);
-  background-image: radial-gradient(circle at center, var(--hsla), var(--hsla) 3%);
+  background-image: radial-gradient(
+    circle at center,
+    var(--hsla),
+    var(--hsla) 3%
+  );
 }
