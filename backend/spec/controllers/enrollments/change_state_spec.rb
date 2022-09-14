@@ -535,6 +535,51 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     end
   end
 
+  describe "notify event with enrollment state mode" do
+    let(:event) { "notify" }
+    let(:comment) { "comment" }
+
+    before do
+      login(user)
+    end
+
+    context "when enrollment is in draft mode" do
+      let(:enrollment_status) { :draft }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when enrollment is in change_requested mode" do
+      let(:enrollment_status) { :changes_requested }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when enrollment is in submitted mode" do
+      let(:enrollment_status) { :submitted }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when enrollment is in validated mode" do
+      let(:enrollment_status) { :validated }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+
+    context "when enrollment is in refused mode" do
+      let(:enrollment_status) { :refused }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+
+    context "when enrollment is in revoked mode" do
+      let(:enrollment_status) { :revoked }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
+
   describe "request_changes" do
     let(:event) { "request_changes" }
     let(:comment) { "comment" }
