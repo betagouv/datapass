@@ -40,7 +40,7 @@ class EnrollmentMailer < ActionMailer::Base
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
-      from: "contact@api.gouv.fr",
+      from: "notifications@api.gouv.fr",
       subject: "Vous avez un nouveau message concernant une habilitation",
       template_path: "enrollment_mailer/admin",
       template_name: "notification_email_to_instructors"
@@ -85,7 +85,7 @@ class EnrollmentMailer < ActionMailer::Base
     headers = {
       to: params[:to],
       subject: subject,
-      from: "contact@api.gouv.fr"
+      from: "notifications@api.gouv.fr"
     }
 
     if data_provider_config["reply_to"]

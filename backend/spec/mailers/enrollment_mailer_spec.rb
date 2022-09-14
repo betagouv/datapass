@@ -22,7 +22,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       it "renders valid headers" do
         expect(mail.subject).to eq("Votre demande d’habilitation requiert des modifications")
         expect(mail.to).to eq([to_email])
-        expect(mail.from).to eq(["contact@api.gouv.fr"])
+        expect(mail.from).to eq(["notifications@api.gouv.fr"])
       end
 
       it "renders valid body with message only" do
@@ -113,7 +113,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     it "renders valid headers" do
       expect(mail.subject).to eq("Vous avez un nouveau message concernant une habilitation")
       expect(mail.to).to eq([instructor.email])
-      expect(mail.from).to eq(["contact@api.gouv.fr"])
+      expect(mail.from).to eq(["notifications@api.gouv.fr"])
     end
 
     it "renders notify_instructor template" do
