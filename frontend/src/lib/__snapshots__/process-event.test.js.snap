@@ -12,7 +12,9 @@ exports[`When submitting the enrollment form with the notify event calls for the
 Object {
   "errorMessages": Array [],
   "redirectToHome": true,
-  "successMessages": Array [],
+  "successMessages": Array [
+    "Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.",
+  ],
 }
 `;
 
