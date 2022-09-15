@@ -44,7 +44,7 @@ class Enrollment < ActiveRecord::Base
     state :revoked
 
     event :notify do
-      transition from: %i[draft changes_requested submitted], to: :same
+      transition from: all, to: same
     end
 
     event :submit do

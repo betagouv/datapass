@@ -154,10 +154,6 @@ FactoryBot.define do
       status { "refused" }
     end
 
-    trait :revoked do
-      status { "revoked" }
-    end
-
     trait :public do
       validated
     end
