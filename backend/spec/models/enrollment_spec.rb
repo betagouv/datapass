@@ -21,6 +21,14 @@ RSpec.describe Enrollment, type: :model do
     end
   end
 
+  describe "state_machine" do
+    let(:states) { [:draft, :submitted, :changes_requested, :validated, :refused, :revoked] }
+
+    it "has valid states in state_machine" do
+      expect(Enrollment.state_machine.states.map(&:name)).to eq(states)
+    end
+  end
+
   describe "validate transition" do
     subject { enrollment.validate_status(params) }
 
