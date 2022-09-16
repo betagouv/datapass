@@ -73,7 +73,6 @@ export const Form = ({
       } catch (error) {
         if ([403, 404].includes(error.response?.status)) {
           setHasNotFoundError(true);
-          setTimeout(() => goBackToList(), 3000);
         }
       }
     }
