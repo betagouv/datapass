@@ -1,2 +1,2 @@
-class Document::GeoShape < Document
+class Document::GeoShape < PdfDocument
 end

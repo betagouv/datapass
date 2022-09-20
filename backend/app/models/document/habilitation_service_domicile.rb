@@ -1,2 +1,2 @@
-class Document::HabilitationServiceDomicile < Document
+class Document::HabilitationServiceDomicile < PdfDocument
 end
