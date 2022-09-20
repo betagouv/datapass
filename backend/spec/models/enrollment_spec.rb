@@ -36,11 +36,11 @@ RSpec.describe Enrollment, type: :model do
     let(:enrollment) { create(:enrollment, target_api, :submitted) }
     let(:params) { {user_id: user.id, comment: "whatever"} }
 
-    context "with api_particulier as target api" do
-      let(:target_api) { :api_particulier }
+    context "with aidants_connect as target api" do
+      let(:target_api) { :aidants_connect }
 
       it "runs associated bridge" do
-        expect(ApiParticulierBridge).to receive(:call).with(enrollment)
+        expect(AidantsConnectBridge).to receive(:call).with(enrollment)
 
         subject
       end
@@ -51,16 +51,6 @@ RSpec.describe Enrollment, type: :model do
 
       it "runs associated bridge" do
         expect(FranceconnectBridge).to receive(:call).with(enrollment)
-
-        subject
-      end
-    end
-
-    context "with api_particulier as target api" do
-      let(:target_api) { :api_particulier }
-
-      it "runs associated bridge" do
-        expect(ApiParticulierBridge).to receive(:call).with(enrollment)
 
         subject
       end

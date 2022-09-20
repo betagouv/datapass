@@ -287,7 +287,6 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
                 let(:enrollment_technical_team_type) { :technical_team_missing }
 
                 it {
-                  allow(ApiParticulierBridge).to receive(:call)
                   is_expected.to have_http_status(:ok)
                 }
               end
