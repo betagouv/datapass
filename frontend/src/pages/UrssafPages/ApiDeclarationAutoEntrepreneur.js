@@ -6,7 +6,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import PiecesJustificativesSection from '../../components/organisms/form-sections/urssaf-sections/PiecesJustificativesSection';
-import ContratDeLicenceSection from '../../components/organisms/form-sections/urssaf-sections/ContratDeLicenceSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import { CadreJuridiqueDescription } from './common';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
@@ -75,7 +75,7 @@ const ApiDeclarationAutoEntrepreneur = () => (
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection />
-    <ContratDeLicenceSection />
+    <CguSection cguLink="https://portailapi.urssaf.fr/images/Documentation/CGU_TDAE_V1.pdf" />
   </Form>
 );
 
