@@ -156,7 +156,7 @@ const DonneesSection = ({
                 meta={
                   'Attention : seule l’expression de besoin en données ayant déjà été partagée avec la DGFiP peut être rattachée à votre habilitation.'
                 }
-                mimeTypes="*"
+                mimeTypes=".ods, .xls, .xlsx, .sxc"
                 disabled={disabled}
                 uploadedDocuments={documents}
                 documentsToUpload={documents_attributes}
