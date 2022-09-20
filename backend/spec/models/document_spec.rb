@@ -16,5 +16,29 @@ RSpec.describe Document, type: :model do
 
       it { is_expected.not_to be_valid }
     end
+
+    context "with a xls" do
+      let(:file_extension) { "xls" }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context "with a ods" do
+      let(:file_extension) { "ods" }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context "with a xlsx" do
+      let(:file_extension) { "xlsx" }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context "with a sxc" do
+      let(:file_extension) { "sxc" }
+
+      it { is_expected.not_to be_valid }
+    end
   end
 end
