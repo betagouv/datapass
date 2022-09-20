@@ -46,7 +46,7 @@ const DescriptionSection = () => {
       />
       <FileInput
         label="Maquette du projet"
-        mimeTypes="*"
+        mimeTypes=".pdf"
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::MaquetteProjet'}

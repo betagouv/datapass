@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class Document < ActiveRecord::Base
-  mount_uploader :attachment, PdfUploader
+  mount_uploader :attachment, DocumentUploader
 
   belongs_to :attachable, polymorphic: true, optional: true
 
@@ -16,11 +14,6 @@ class Document < ActiveRecord::Base
   private
 
   def content_type_validation
-    if attachment&.file && !MagicPdfValidator.new(File.new(attachment.file.file, "r")).valid?
-      errors.add("attachment", :invalid, message: "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf.")
-    end
-  rescue RuntimeError
-    errors.add("attachment", :invalid, message: "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf.")
   end
 
   def touch_enrollment
