@@ -75,7 +75,7 @@ const ApiDeclarationAutoEntrepreneur = () => (
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <PiecesJustificativesSection />
-    <CguSection cguLink="https://apisecu.fr/static/ressources/cgu_datapass_api_secu.pdf" />
+    <CguSection cguLink="https://portailapi.urssaf.fr/images/Documentation/CGU_TDAE_V1.pdf" />
   </Form>
 );
 
