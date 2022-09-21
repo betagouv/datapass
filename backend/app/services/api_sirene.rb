@@ -14,6 +14,10 @@ class ApiSirene < ApplicationService
   end
 
   def etablissement
+    unless cached_access_token
+      return nil
+    end
+
     begin
       response = Http.instance.get({
         url: "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
