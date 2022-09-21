@@ -25,8 +25,17 @@ export const NotificationSubSection = () => {
 
   return (
     <>
+      {!isUserEnrollmentLoading && !id && (
+        <Alert type="error" title="Service momentanément indisponible">
+          Suite à une maintenance chez nos partenaires de l’INSEE, il est
+          aujourd’hui impossible de soumettre de nouvelles demandes. Le service
+          sera progressivement rétabli dans la journée du jeudi 22 septembre
+          pour un retour à la normale au vendredi 23 septembre. Veuillez nous
+          excuser pour la gêne occasionnée.
+        </Alert>
+      )}
       {get(location, 'state.source') === 'copy-authorization-request' && (
-        <Alert className="info">
+        <Alert type="info">
           Vous trouverez ci-dessous une copie de votre habilitation initiale.
           Merci de vérifier que ces informations sont à jour puis cliquez sur
           "Soumettre la demande d’habilitation".
