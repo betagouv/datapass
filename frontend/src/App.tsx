@@ -10,7 +10,7 @@ import Header from './components/organisms/Header';
 import { AuthStore, useAuth } from './components/organisms/AuthContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
-import Alert from './components/atoms/Alert';
+import Alert, { AlertType } from './components/atoms/Alert';
 import React, { useEffect } from 'react';
 import { ErrorBoundary } from '@sentry/react';
 import ErrorBoundaryFallback from './components/organisms/ErrorBoundaryFallback';
@@ -36,7 +36,7 @@ const Page: React.FC = () => {
       )}
       {!isLoading && connectionError && (
         <main className="full-page">
-          <Alert type="error" title="Erreur de connexion">
+          <Alert type={AlertType.error} title="Erreur de connexion">
             {connectionError}
           </Alert>
         </main>

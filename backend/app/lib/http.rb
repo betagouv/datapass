@@ -13,7 +13,7 @@ class Http
       ""
     end
     use_form_content_type = options.fetch(:use_form_content_type, false)
-    api_key = options.fetch(:api_key, "")
+    api_key = options.fetch(:api_key, "") || ""
     body = options.fetch(:body, {})
     tag = options.fetch(:tag)
     timeout = options.fetch(:timeout, 30)
