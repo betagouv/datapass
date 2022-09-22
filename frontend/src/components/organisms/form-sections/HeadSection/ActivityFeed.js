@@ -10,9 +10,11 @@ import { CheckCircleIcon } from '../../../atoms/icons/fr-fi-icons';
 import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
+import { MailOpenIcon } from '../../../atoms/icons/fr-fi-icons';
 import { InfoIcon } from '../../../atoms/icons/fr-fi-icons';
 import { WarningIcon } from '../../../atoms/icons/fr-fi-icons';
 import { Linkify } from '../../../molecules/Linkify';
+import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
 
 const eventToDisplayableContent = {
@@ -68,6 +70,7 @@ export const EventItem = ({
   comment,
   name,
   updated_at,
+  processed_at,
   email,
   family_name,
   given_name,
@@ -75,9 +78,10 @@ export const EventItem = ({
 }) => {
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
+  const { getIsUserAnInstructor } = useAuth();
 
   const {
-    enrollment: { team_members = [] },
+    enrollment: { team_members = [], target_api },
   } = useContext(FormContext) || { enrollment: {} };
 
   let eventCommentClass = 'event-comment';
@@ -92,9 +96,17 @@ export const EventItem = ({
       : given_name || family_name || email;
   }, [given_name, family_name, email]);
 
+  const isUserAnInstructor = getIsUserAnInstructor(target_api);
+
+  let notifyIcon = eventToDisplayableContent[name].icon;
+
+  if (isUserAnInstructor && name === 'notify' && processed_at) {
+    notifyIcon = <MailOpenIcon color={'var(--text-default-info)'} />;
+  }
+
   return (
     <div className="event-item">
-      <div className="event-icon">{eventToDisplayableContent[name].icon}</div>
+      <div className="event-icon">{notifyIcon}</div>
       <div className="event-content">
         <div className="event-head">
           <div>
@@ -191,6 +203,7 @@ const ActivityFeed = ({ events }) => {
           comment,
           name,
           updated_at,
+          processed_at,
           user: { email, given_name, family_name },
           diff,
         }) => (
@@ -199,6 +212,7 @@ const ActivityFeed = ({ events }) => {
             comment={comment}
             name={name}
             updated_at={updated_at}
+            processed_at={processed_at}
             email={email}
             family_name={family_name}
             given_name={given_name}
