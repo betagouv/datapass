@@ -25,14 +25,6 @@ export const NotificationSubSection = () => {
 
   return (
     <>
-      {!isUserEnrollmentLoading && !id && (
-        <Alert type="error" title="Service momentanément indisponible">
-          Suite à une maintenance chez nos partenaires de l’INSEE, la soumission
-          de nouvelles demandes est perturbée aujourd’hui. Le service sera
-          progressivement rétabli pour un retour à la normale ce vendredi 23
-          septembre. Veuillez nous excuser pour la gêne occasionnée.
-        </Alert>
-      )}
       {get(location, 'state.source') === 'copy-authorization-request' && (
         <Alert type="info">
           Vous trouverez ci-dessous une copie de votre habilitation initiale.
