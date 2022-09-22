@@ -10,6 +10,8 @@ class EnrollmentMailer < ActionMailer::Base
     @target_api_label = data_provider_config["label"]
     @message = params[:message]
     @demandeur_email = params[:demandeur_email]
+    @responsable_metier = @enrollment.team_members.find_by(type: "responsable_metier")
+    @administrateur_metier = @responsable_metier.email
 
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
     @front_host = ENV.fetch("FRONT_HOST")
