@@ -21,6 +21,7 @@ export type EventConfiguration = {
   createOrUpdate?: boolean;
   delete?: boolean;
   redirectToHome?: boolean;
+  successMessage?: string;
 };
 
 export const eventConfigurations: {
@@ -35,6 +36,8 @@ export const eventConfigurations: {
     changeEnrollmentState: true,
     promptForComment: true,
     redirectToHome: true,
+    successMessage:
+      'Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.',
   },
   destroy: {
     displayProps: {

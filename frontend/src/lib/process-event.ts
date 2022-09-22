@@ -71,6 +71,10 @@ export const processEvent = async (
       resultMessages.redirectToHome = true;
     }
 
+    if (eventConfiguration.successMessage) {
+      resultMessages.successMessages.push(eventConfiguration.successMessage);
+    }
+
     return resultMessages;
   } catch (error) {
     resultMessages.errorMessages.push(...getErrorMessages(error));
