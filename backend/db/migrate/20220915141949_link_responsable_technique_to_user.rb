@@ -1,7 +1,7 @@
 class LinkResponsableTechniqueToUser < ActiveRecord::Migration[7.0]
   def up
     TeamMember.where(type: "responsable_technique").each do |team_member|
-      team_member.user = if team_member.email.present?
+      team_member.user = if team_member.email.present? && team_member.email.match(URI::MailTo::EMAIL_REGEXP)
         User.reconcile({"email" => team_member.email})
       end
       team_member.save!

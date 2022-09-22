@@ -426,6 +426,7 @@ DEPENDENCIES
   sib-api-v3-sdk
   sidekiq (~> 6.5)
   simplecov
+  standard
   standardrb
   state_machines-activerecord
   timecop
