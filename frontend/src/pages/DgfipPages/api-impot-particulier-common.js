@@ -156,7 +156,7 @@ export const demarches = {
       fondement_juridique_title:
         'Si pas disponible, à justifier dans un délai de 6 mois (décret, loi, délibération, autre fondement juridique)',
       scopes: {
-        dgfip_annee_n_moins_2: true,
+        dgfip_annee_n_moins_2_si_indispo_n_moins_1: true,
       },
     },
   },
