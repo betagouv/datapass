@@ -151,8 +151,12 @@ export const demarches = {
     state: {
       intitule:
         'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
+      description:
+        'Veuillez obligatoirement compléter les informations ci-dessous :\r\nLa référence (numéro DataPass) de votre accès actuel à l’API Particulier  :\r\nLe cas d’usage concerné : Sa description ou bien choisir parmi la liste (stationnement résidentiel, place en crèche, activités périscolaires, cantine scolaire, aides sociales facultatives, carte de transport) :\r\nLes coordonnées de votre éditeur de logiciel (si vous en avez) ou préciser si c’est un développement interne :\r\nInformations importantes:\r\n1. L’accès aux données se fait via le numéro fiscal seul en lieu et place du numéro fiscal et de la référence de l’avis d’imposition. Pour un téléservice directement ouvert aux usagers, l’API Impôt particulier est accessible par FranceConnect.\r\n2. Il n’est pas nécessaire de cocher les données nécessaires dans le formulaire. Le périmètre des données sera équivalent à celui de l’API particulier :\r\nMillésime - Dernière année de revenu disponible (sur une profondeur de 2 ans)\r\nDéclarant 1  - Nom de naissance\r\nDéclarant 1  - Nom \r\nDéclarant 1  - Prénom(s) \r\nDéclarant 1  - Date de naissance \r\nDéclarant 2  - Nom de naissance\r\nDéclarant 2  - Nom \r\nDéclarant 2  - Prénom(s) \r\nDéclarant 2  - Date de naissance \r\nAdresse \r\nSituation de famille \r\nNombre de parts \r\nNombre de personnes à charge \r\nRevenu fiscal de référence \r\nRevenu brut global \r\nDate de recouvrement \r\nDate d’établissement \r\nRevenu imposable \r\nImpôt sur le revenu net avant corrections \r\nMontant de l’impôt \r\nAnnée des revenus',
+      fondement_juridique_title:
+        'Si pas disponible, à justifier dans un délai de 6 mois (décret, loi, délibération, autre fondement juridique)',
       scopes: {
-        dgfip_annee_n_moins_1: true,
+        dgfip_annee_n_moins_2: true,
       },
     },
   },
