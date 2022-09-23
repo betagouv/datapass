@@ -10,8 +10,11 @@ class EnrollmentMailer < ActionMailer::Base
     @target_api_label = data_provider_config["label"]
     @message = params[:message]
     @demandeur_email = params[:demandeur_email]
-    @responsable_metier = @enrollment.team_members.find_by(type: "responsable_metier")
-    @administrateur_metier = @responsable_metier.email
+
+    if hubee_portail_dila?
+      @responsable_metier = @enrollment.team_members.find_by(type: "responsable_metier")
+      @administrateur_metier = @responsable_metier.email
+    end
 
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
     @front_host = ENV.fetch("FRONT_HOST")
@@ -129,5 +132,9 @@ class EnrollmentMailer < ActionMailer::Base
 
   def data_provider_config
     @data_provider_config ||= DataProvidersConfiguration.instance.config_for(params[:target_api])
+  end
+
+  def hubee_portail_dila?
+    params[:target_api].eql? "hubee_portail_dila"
   end
 end
