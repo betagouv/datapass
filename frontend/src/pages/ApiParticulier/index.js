@@ -150,9 +150,10 @@ const availableScopes = [
   },
   {
     value: 'mesri_admission',
-    label: 'Admissions',
+    label: 'Pré-inscriptions CROUS',
     groupTitle: 'Statut étudiant',
-    helper: 'Limite la recherche aux seuls étudiants admis (non-inscrits).',
+    helper:
+      'Permet d’interroger les données des étudiants pré-inscrits pour le CROUS.',
   },
   {
     value: 'mesri_etablissements',
