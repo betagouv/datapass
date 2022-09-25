@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "craco start",
-    "dev-with-remote-backend": "REACT_APP_BACK_HOST=https://back.datapass-test.api.gouv.fr craco start",
+    "devr": "REACT_APP_BACK_HOST=https://back.datapass-test.api.gouv.fr craco start",
     "build": "craco build",
     "test-dev": "craco test",
     "test": "CI=true craco test",

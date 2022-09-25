@@ -13,7 +13,7 @@ import CopyEnrollment from './components/templates/CopyEnrollment';
 import DataProviderList from './components/templates/DataProviderList';
 import Enrollment from './components/templates/Enrollment';
 import FAQ from './components/templates/Faq';
-import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
+import InstructorEnrollmentList from './components/templates/InstructorEnrollmentList';
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
 import Stats from './components/templates/Stats';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
@@ -60,11 +60,12 @@ export const Routes = () => {
         index
         element={
           <AuthRequired>
-            {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
+            {/* {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
               <UserEnrollmentList />
             ) : (
               <AdminEnrollmentList />
-            )}
+            )} */}
+            <InstructorEnrollmentList />
           </AuthRequired>
         }
       />

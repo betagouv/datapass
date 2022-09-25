@@ -34,6 +34,7 @@ const Page: React.FC = () => {
           <Loader />
         </main>
       )}
+      {/* if there is an error */}
       {!isLoading && connectionError && (
         <main className="full-page">
           <Alert type={AlertType.error} title="Erreur de connexion">
@@ -41,6 +42,7 @@ const Page: React.FC = () => {
           </Alert>
         </main>
       )}
+      {/* if it's ok */}
       {!isLoading && !connectionError && <Routes />}
       <Footer />
     </div>

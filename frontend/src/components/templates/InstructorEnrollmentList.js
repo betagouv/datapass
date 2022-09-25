@@ -425,6 +425,7 @@ class InstructorEnrollmentList extends React.Component {
     return (
       <main>
         <ListHeader title="Liste des habilitations">
+          {/* tags */}
           <TagContainer>
             {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
               <Tag
@@ -436,6 +437,7 @@ class InstructorEnrollmentList extends React.Component {
               </Tag>
             ))}
           </TagContainer>
+          {/* button export data */}
           <Button
             onClick={() => this.props.downloadExport()}
             disabled={this.props.isExportDownloading}
@@ -538,6 +540,7 @@ const withFileDownloader = (Component) => {
   };
 };
 
+// add ???
 const withListItemNavigation = (Component) => {
   return (props) => {
     const { goToItem } = useListItemNavigation();
@@ -545,6 +548,7 @@ const withListItemNavigation = (Component) => {
   };
 };
 
+// withAuth = let use authcontext var
 const withAuth = (Component) => {
   return (props) => (
     <AuthContext.Consumer>

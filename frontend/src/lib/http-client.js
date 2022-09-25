@@ -6,6 +6,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 axios.defaults.adapter = httpAdapter;
 
+// to know when to send a request with credentials
 axios.interceptors.request.use((config) => {
   if (
     new URL(config.url).origin === BACK_HOST &&
