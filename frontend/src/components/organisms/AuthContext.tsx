@@ -1,6 +1,6 @@
 import React from 'react';
-import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
+import { useCustomGet } from '../clients/HttpClientHooks';
 import { Login } from '../templates/Login';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -36,7 +36,6 @@ export const AuthContext = React.createContext<AuthContextType>({
   login: () => {},
   logout: () => {},
   getIsUserAnInstructor: (target_api) => false,
-  // setContext
 });
 
 export const useAuth = () => {
@@ -101,24 +100,19 @@ export class AuthStore extends React.Component {
     this._isMounted = false;
   }
 
-  login = () => {
+  login = async () => {
     this.setState({ isLoading: true });
-    return httpClient
-      .get(`${BACK_HOST}/api/users/me`)
-      .then((response) => {
-        if (this._isMounted) {
-          this.setState({ user: response.data, isLoading: false });
-        }
-      })
-      .catch((e) => {
-        if (this._isMounted && !(e.response && e.response.status === 401)) {
-          this.setState({
-            user: null,
-            isLoading: false,
-            connectionError: getErrorMessages(e).join(' '),
-          });
-        }
+    const res = await useCustomGet(`${BACK_HOST}/api/users/me`);
+    if (res.connectionError && res.connectionError.response.status === 401) {
+      this.setState({
+        user: null,
+        isLoading: false,
+        connectionError: getErrorMessages(res.connectionError).join(' '),
       });
+    } else {
+      console.log(res.data);
+      this.setState({ user: res.data, isLoading: false });
+    }
   };
 
   logout = () => {
