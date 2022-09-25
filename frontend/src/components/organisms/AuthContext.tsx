@@ -103,6 +103,8 @@ export class AuthStore extends React.Component {
   login = async () => {
     this.setState({ isLoading: true });
     const res = await useCustomGet(`${BACK_HOST}/api/users/me`);
+
+    // handle error resetting context
     if (res.connectionError && res.connectionError.response.status === 401) {
       this.setState({
         user: null,
@@ -110,7 +112,6 @@ export class AuthStore extends React.Component {
         connectionError: getErrorMessages(res.connectionError).join(' '),
       });
     } else {
-      console.log(res.data);
       this.setState({ user: res.data, isLoading: false });
     }
   };
