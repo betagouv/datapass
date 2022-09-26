@@ -11,9 +11,9 @@ class EnrollmentMailer < ActionMailer::Base
     @message = params[:message]
     @demandeur_email = params[:demandeur_email]
 
-    if hubee_portail_dila?
-      @responsable_metier = @enrollment.team_members.find_by(type: "responsable_metier")
-      @administrateur_metier = @responsable_metier.email
+    responsable_metier = @enrollment.team_members.find_by(type: "responsable_metier")
+    unless responsable_metier.nil?
+      @responsable_metier = responsable_metier.email
     end
 
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
@@ -132,9 +132,5 @@ class EnrollmentMailer < ActionMailer::Base
 
   def data_provider_config
     @data_provider_config ||= DataProvidersConfiguration.instance.config_for(params[:target_api])
-  end
-
-  def hubee_portail_dila?
-    params[:target_api].eql? "hubee_portail_dila"
   end
 end
