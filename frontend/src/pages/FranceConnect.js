@@ -42,15 +42,34 @@ const CadreJuridiqueDescription = () => (
           l’arrêté du 8 novembre 2018
         </Link>
         . N’oubliez pas de justifier la nécessité d’identification de la
-        personne dans le champs de description de votre cas d’usage.{' '}
+        personne dans le champ de description de votre cas d’usage.{' '}
       </li>
       <li>
-        Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
-        réglementaire qui s’applique à votre entité. Vous trouverez plus
-        d’information sur{' '}
+        Si vous êtes une <b>entreprise</b>, vous devez citer ici le cadre légal
+        et réglementaire qui s’applique à votre entité. Vous trouverez plus
+        d’informations sur{' '}
         <Link inline newTab href="https://franceconnect.gouv.fr/partenaires">
           notre page dédiée
         </Link>
+        .
+      </li>
+      <li>
+        Si votre projet concerne un <b>service numérique en santé</b>, vous
+        devez citer ici{' '}
+        <Link
+          inline
+          newTab
+          href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045457991"
+        >
+          le référentiel relatif à l'identification électronique des acteurs des
+          secteurs sanitaire, médico-social et social, personnes physiques et
+          morales, et à l'identification électronique des usagers des services
+          numériques en santé
+        </Link>
+        . Vous trouverez plus d’informations{' '}
+        <link href="https://esante.gouv.fr/sites/default/files/media_entity/documents/referentiel-didentification-electronique---usagers_0.zip">
+          sur notre page dédiée
+        </link>
         .
       </li>
     </ul>
