@@ -17,7 +17,6 @@ module EmailNotifierMethods
       to: enrollment.demandeurs.pluck(:email),
       target_api: enrollment.target_api,
       enrollment_id: enrollment.id,
-      responsable_metier_email: enrollment.responsable_metier_email,
       template: event.to_s,
       message: comment
     ).notification_email.deliver_later

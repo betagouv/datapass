@@ -62,7 +62,8 @@ class EnrollmentEmailTemplatesRetriever
       front_host: front_host,
       user: user,
       enrollment: enrollment,
-      instructor: instructor
+      instructor: instructor,
+      responsable_metier_email: responsable_metier_email
     }
   end
 
@@ -80,6 +81,10 @@ class EnrollmentEmailTemplatesRetriever
 
   def user
     @user ||= enrollment.demandeurs.first
+  end
+
+  def responsable_metier_email
+    enrollment.responsable_metier_email
   end
 
   def email_kinds

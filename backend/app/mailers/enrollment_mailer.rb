@@ -11,11 +11,8 @@ class EnrollmentMailer < ActionMailer::Base
     @message = params[:message]
     @demandeur_email = params[:demandeur_email]
 
-    puts "RESPONSABLE METIER #{params[:responsable_metier_email].inspect}"
     if !params[:responsable_metier_email].nil?
       @responsable_metier_email = params[:responsable_metier_email]
-
-      puts "RESPONSABLE METIER EMAIL #{@responsable_metier_email}"
     end
 
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
