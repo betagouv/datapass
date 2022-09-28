@@ -129,7 +129,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
 
         it "includes default validate view" do
-          expect(subject.plain_text_content).to include("#{enrollment.responsable_metier_email}")
+          expect(subject.plain_text_content).to include(enrollment.responsable_metier_email.to_s)
         end
       end
     end
