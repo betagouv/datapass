@@ -64,7 +64,7 @@ const UserEnrollmentList = () => {
           {showAlert && (
             <Alert
               type="success"
-              title="Votre message a bien été envoyé"
+              title="Votre habilitation a été sauvegardée"
               onAlertClose={handleClose}
             >
               {state.message}

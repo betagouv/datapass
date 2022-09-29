@@ -37,7 +37,7 @@ export const eventConfigurations: {
     promptForComment: true,
     redirectToHome: true,
     successMessage:
-      'Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.',
+      'Vous allez recevoir une notification dans votre boite mail lorsque votre message se traité.',
   },
   destroy: {
     displayProps: {
