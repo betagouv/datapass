@@ -58,7 +58,6 @@ export const eventConfigurations: {
     },
     promptForSubmission: true,
     createOrUpdate: true,
-    successMessage: "Votre demande d'habilitation a été sauvegardée.",
   },
   submit: {
     displayProps: {
