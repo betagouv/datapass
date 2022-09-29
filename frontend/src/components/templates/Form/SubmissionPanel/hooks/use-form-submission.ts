@@ -27,6 +27,10 @@ export const useFormSubmission = (
     pendingEvent !== undefined &&
     eventConfigurations[pendingEvent]?.promptForConfirmation === true;
 
+  const waitingForUserPromptForSubmission =
+    pendingEvent !== undefined &&
+    eventConfigurations[pendingEvent]?.promptForSubmission === true;
+
   const onEventButtonClick = useCallback(
     async (event: EnrollmentEvent) => {
       setPendingEvent(event);
@@ -34,7 +38,8 @@ export const useFormSubmission = (
       const eventConfiguration = eventConfigurations[event];
       if (
         !eventConfiguration.promptForComment &&
-        !eventConfiguration.promptForConfirmation
+        !eventConfiguration.promptForConfirmation &&
+        !eventConfiguration.promptForSubmission
       ) {
         setLoading(true);
         setPendingEvent(undefined);
@@ -73,6 +78,24 @@ export const useFormSubmission = (
     setShowAlert(true);
   };
 
+  const onPromptSubmission = async (message?: string) => {
+    setLoading(true);
+    setPendingEvent(undefined);
+    setShowAlert(false);
+    const postEventConfiguration = await processEvent(
+      EnrollmentEvent.submit,
+      eventConfigurations.submit,
+      enrollment,
+      updateEnrollment,
+      message
+    );
+    setLoading(false);
+    handlePostEvent(postEventConfiguration);
+    setShowAlert(true);
+  };
+
+  const onPromptSubmissionCancelation = onPromptConfirmation;
+
   const onPromptCancellation = () => {
     setPendingEvent(undefined);
   };
@@ -81,11 +104,14 @@ export const useFormSubmission = (
     loading,
     waitingForUserInput,
     waitingForUserConfirmation,
+    waitingForUserPromptForSubmission,
     pendingEvent,
     pendingEventConfiguration,
     onEventButtonClick,
     onPromptConfirmation,
     onPromptCancellation,
+    onPromptSubmission,
+    onPromptSubmissionCancelation,
     showAlert,
   };
 };

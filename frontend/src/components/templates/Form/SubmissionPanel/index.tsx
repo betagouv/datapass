@@ -24,8 +24,11 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     onEventButtonClick,
     waitingForUserInput,
     waitingForUserConfirmation,
+    waitingForUserPromptForSubmission,
     onPromptConfirmation,
     onPromptCancellation,
+    onPromptSubmission,
+    onPromptSubmissionCancelation,
   } = useFormSubmission(
     handlePostEvent,
     enrollment,
@@ -51,6 +54,20 @@ const SubmissionPanel: FunctionComponent<Props> = ({
           selectedEvent={pendingEvent as string}
           enrollment={enrollment}
         />
+      )}
+      {waitingForUserPromptForSubmission && (
+        <ConfirmationModal
+          title="Vos modifications vont être enregistrées."
+          handleCancel={onPromptSubmissionCancelation}
+          cancelLabel="Non, je la soumettrai plus tard"
+          handleConfirm={onPromptSubmission}
+          confirmLabel="Soumettre la demande"
+        >
+          <p>
+            Souhaitez-vous soumettre votre habilitation à validation, afin
+            qu'elle soit étudiée par les équipes compétentes ?
+          </p>
+        </ConfirmationModal>
       )}
       {waitingForUserConfirmation && (
         <ConfirmationModal

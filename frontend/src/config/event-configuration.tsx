@@ -18,6 +18,7 @@ export type EventConfiguration = {
   changeEnrollmentState?: boolean;
   promptForComment?: boolean;
   promptForConfirmation?: boolean;
+  promptForSubmission?: boolean;
   createOrUpdate?: boolean;
   delete?: boolean;
   redirectToHome?: boolean;
@@ -55,6 +56,7 @@ export const eventConfigurations: {
       icon: 'save',
       secondary: true,
     },
+    promptForSubmission: true,
     createOrUpdate: true,
   },
   submit: {
