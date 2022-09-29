@@ -67,7 +67,7 @@ const UserEnrollmentList = () => {
               title="Votre message a bien été envoyé"
               onAlertClose={handleClose}
             >
-              {state.message}
+              {state?.message}
             </Alert>
           )}
           {Object.keys(enrollmentsByOrganization).map((group) => (
