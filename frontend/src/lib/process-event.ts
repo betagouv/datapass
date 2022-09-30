@@ -2,6 +2,8 @@ import { getErrorMessages } from '.';
 import {
   EnrollmentEvent,
   EventConfiguration,
+  PromptType,
+  RequestType,
 } from '../config/event-configuration';
 import {
   changeEnrollmentState,
@@ -30,7 +32,7 @@ export const processEvent = async (
     let comment = null;
     let enrollmentId = enrollment.id;
 
-    if (eventConfiguration.promptForComment) {
+    if (eventConfiguration.prompt === PromptType.comment) {
       try {
         comment = message;
       } catch (e) {
@@ -38,7 +40,12 @@ export const processEvent = async (
       }
     }
 
-    if (eventConfiguration.createOrUpdate) {
+    if (
+      [
+        RequestType.create_or_update,
+        RequestType.create_or_update_then_change_state,
+      ].includes(eventConfiguration.request)
+    ) {
       const formattedEnrollment = {
         ...enrollment,
         team_members_attributes: enrollment.team_members,
@@ -55,11 +62,16 @@ export const processEvent = async (
       );
     }
 
-    if (eventConfiguration.delete) {
+    if (eventConfiguration.request === RequestType.delete) {
       await deleteEnrollment({ id: enrollmentId });
     }
 
-    if (eventConfiguration.changeEnrollmentState) {
+    if (
+      [
+        RequestType.change_state,
+        RequestType.create_or_update_then_change_state,
+      ].includes(eventConfiguration.request)
+    ) {
       await changeEnrollmentState({
         event,
         id: enrollmentId,

@@ -9,18 +9,27 @@ export enum EnrollmentEvent {
   validate = 'validate',
 }
 
+export enum PromptType {
+  comment = 'comment',
+  confirm = 'confirm',
+  submit_instead = 'submit_instead',
+}
+
+export enum RequestType {
+  change_state = 'change_state',
+  create_or_update = 'create_or_update',
+  delete = 'delete',
+  create_or_update_then_change_state = 'create_or_update_then_change_state',
+}
+
 export type EventConfiguration = {
   displayProps: {
     label: string;
     icon?: string;
     secondary?: boolean;
   };
-  changeEnrollmentState?: boolean;
-  promptForComment?: boolean;
-  promptForConfirmation?: boolean;
-  promptForSubmission?: boolean;
-  createOrUpdate?: boolean;
-  delete?: boolean;
+  prompt?: PromptType;
+  request: RequestType;
   redirectToHome?: boolean;
   successMessage?: string;
 };
@@ -34,8 +43,8 @@ export const eventConfigurations: {
       icon: 'mail',
       secondary: true,
     },
-    changeEnrollmentState: true,
-    promptForComment: true,
+    prompt: PromptType.comment,
+    request: RequestType.change_state,
     redirectToHome: true,
     successMessage:
       'Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.',
@@ -46,9 +55,9 @@ export const eventConfigurations: {
       icon: 'delete',
       secondary: true,
     },
-    delete: true,
+    prompt: PromptType.confirm,
+    request: RequestType.delete,
     redirectToHome: true,
-    promptForConfirmation: true,
   },
   update: {
     displayProps: {
@@ -56,16 +65,15 @@ export const eventConfigurations: {
       icon: 'save',
       secondary: true,
     },
-    promptForSubmission: true,
-    createOrUpdate: true,
+    prompt: PromptType.submit_instead,
+    request: RequestType.create_or_update,
   },
   submit: {
     displayProps: {
       label: 'Soumettre la demande d’habilitation',
       icon: 'checkbox',
     },
-    changeEnrollmentState: true,
-    createOrUpdate: true,
+    request: RequestType.create_or_update_then_change_state,
     redirectToHome: true,
     successMessage: 'Votre demande d’habilitation a été soumise.',
   },
@@ -75,8 +83,8 @@ export const eventConfigurations: {
       icon: 'alert',
       secondary: true,
     },
-    changeEnrollmentState: true,
-    promptForComment: true,
+    prompt: PromptType.comment,
+    request: RequestType.change_state,
     redirectToHome: true,
   },
   revoke: {
@@ -85,8 +93,8 @@ export const eventConfigurations: {
       icon: 'alert',
       secondary: true,
     },
-    changeEnrollmentState: true,
-    promptForComment: true,
+    prompt: PromptType.comment,
+    request: RequestType.change_state,
     redirectToHome: true,
   },
   request_changes: {
@@ -95,8 +103,8 @@ export const eventConfigurations: {
       icon: 'edit',
       secondary: true,
     },
-    changeEnrollmentState: true,
-    promptForComment: true,
+    prompt: PromptType.comment,
+    request: RequestType.change_state,
     redirectToHome: true,
   },
   validate: {
@@ -104,8 +112,8 @@ export const eventConfigurations: {
       label: 'Valider',
       icon: 'checkbox',
     },
-    changeEnrollmentState: true,
-    promptForComment: true,
+    prompt: PromptType.comment,
+    request: RequestType.change_state,
     redirectToHome: true,
   },
 };

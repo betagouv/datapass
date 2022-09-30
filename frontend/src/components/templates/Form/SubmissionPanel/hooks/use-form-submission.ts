@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import {
   EnrollmentEvent,
   eventConfigurations,
+  PromptType,
 } from '../../../../../config/event-configuration';
 import { OpenMessagePromptContext } from '../../OpenMessagePromptContextProvider';
 
@@ -18,29 +19,25 @@ export const useFormSubmission = (
 
   const waitingForUserInput =
     pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.promptForComment === true;
+    eventConfigurations[pendingEvent]?.prompt === PromptType.comment;
 
   const pendingEventConfiguration =
     pendingEvent !== undefined ? eventConfigurations[pendingEvent] : undefined;
 
   const waitingForUserConfirmation =
     pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.promptForConfirmation === true;
+    eventConfigurations[pendingEvent]?.prompt === PromptType.confirm;
 
   const waitingForUserPromptForSubmission =
     pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.promptForSubmission === true;
+    eventConfigurations[pendingEvent]?.prompt === PromptType.submit_instead;
 
   const onEventButtonClick = useCallback(
     async (event: EnrollmentEvent) => {
       setPendingEvent(event);
 
       const eventConfiguration = eventConfigurations[event];
-      if (
-        !eventConfiguration.promptForComment &&
-        !eventConfiguration.promptForConfirmation &&
-        !eventConfiguration.promptForSubmission
-      ) {
+      if (!eventConfiguration.prompt) {
         setLoading(true);
         setPendingEvent(undefined);
         const postEventConfiguration = await processEvent(
