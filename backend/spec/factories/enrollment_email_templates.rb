@@ -5,5 +5,6 @@ FactoryBot.define do
     user_email { generate(:email) }
     subject { "a subject" }
     plain_text_content { "Hello world!" }
+    responsable_metier_email { generate(:email) }
   end
 end

@@ -1,17 +1,19 @@
 Bonjour,
 
-Votre demande d’abonnement a été validée. La personne que vous avez désignée comme administrateur métier dispose désormais d’un compte d’Administrateur Local sur le Portail HubEE.
+Votre demande d’abonnement a été validée.
 
-Pour finaliser la procédure d’abonnement, merci de transmettre les instructions suivantes à votre administrateur métier :
+L'Administrateur métier vient de recevoir un mail (valide 48h) afin de créer son mot de passe de connexion au Portail HubEE, à l’adresse <%= @responsable_metier_email %>.
+Il devra cliquer sur le bouton « Création du mot de passe » présent dans le mail.
+Passé le délai de 48h, il devra se rendre sur le Portail HubEE : https://portail.hubee.numerique.gouv.fr afin de créer son nouveau mot de passe en cliquant sur le bouton « Mot de passe oublié » (adresse à renseigner : <%= @responsable_metier_email %>).
+Une fois le mot de passe créé, il devra :
 
-Vous devez maintenant finaliser la procédure d’abonnement dans le Portail HubEE, pour activer la transmission des certificats de décès transmis par voie dématérialisée depuis l’application CertDc. 
+- Se connecter au Portail HubEE avec son adresse mail et son nouveau mot de passe ;
+- Cliquer sur le menu « Gestion des comptes » pour créer les comptes utilisateurs des Agents chargés du traitement des télédossiers et/ou Ajouter le rôle « Gestion des télédossiers » à son compte ;
+- Cliquer sur le menu « Gestion des abonnements » puis activer le(s) abonnement(s) concerné(s) en choisissant une date ;
+- En cas de besoin, le guide illustré des abonnements (Guide Abonnement Portail ou Logiciel Métier) et une fiche des premiers pas d’un administrateur sont téléchargeables en cliquant sur le lien suivant : https://github.com/dinum-HubEE/Documentations/releases/latest/download/DocumentationsFonctionnelles.zip.
 
-L’ « Administrateur métier » déclaré dans le formulaire doit finaliser cette procédure. 
-Toutes les informations utiles sont dans le document disponible via le lien suivant : https://tinyurl.com/hubeeabonnements, dans le chapitre : 1.3. Finaliser mon abonnement dans le Portail HubEE.
-
-Attention : en cliquant sur le lien, le document se télécharge automatiquement sur votre poste de travail.
-
-Votre demande d’abonnement reste accessible via le lien suivant <%= @url %> .
+Pour information, votre demande d’abonnement reste accessible via le lien suivant <%= @url %>.
 
 Bien cordialement,
+
 L’équipe <%= @target_api_label %>

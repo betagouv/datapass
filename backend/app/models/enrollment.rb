@@ -156,6 +156,10 @@ class Enrollment < ActiveRecord::Base
     team_members.where(type: "responsable_traitement").pluck(:email).first
   end
 
+  def responsable_metier_email
+    team_members.where(type: "responsable_metier").pluck(:email).first
+  end
+
   def delegue_protection_donnees_email
     team_members.where(type: "delegue_protection_donnees").pluck(:email).first
   end

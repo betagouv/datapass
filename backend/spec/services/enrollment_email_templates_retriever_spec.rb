@@ -117,5 +117,21 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
         end
       end
     end
+
+    context "with a target api which has custom templates" do
+      let(:target_api) { "hubee_portail_dila" }
+
+      describe "a specific template : validate" do
+        subject do
+          described_class.new(enrollment, instructor).perform.find do |template|
+            template.event == "validate"
+          end
+        end
+
+        it "includes default validate view" do
+          expect(subject.plain_text_content).to include(enrollment.responsable_metier_email.to_s)
+        end
+      end
+    end
   end
 end
