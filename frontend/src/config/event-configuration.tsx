@@ -11,7 +11,7 @@ export enum EnrollmentEvent {
 
 export enum PromptType {
   comment = 'comment',
-  confirm = 'confirm',
+  confirm_deletion = 'confirm_deletion',
   submit_instead = 'submit_instead',
 }
 
@@ -55,7 +55,7 @@ export const eventConfigurations: {
       icon: 'delete',
       secondary: true,
     },
-    prompt: PromptType.confirm,
+    prompt: PromptType.confirm_deletion,
     request: RequestType.delete,
     redirectToHome: true,
   },

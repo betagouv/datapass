@@ -53,34 +53,13 @@ describe('The form submission hook', () => {
       { wrapper }
     );
 
-    expect(result.current.waitingForUserInput).toBeFalsy();
+    expect(!!result.current.pendingEvent).toBeFalsy();
 
     act(() => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.waitingForUserInput).toBeTruthy();
-  });
-
-  it('provides event configuration when an event is pending', () => {
-    const { result } = renderHook(
-      () =>
-        useFormSubmission(
-          handlePostEvent,
-          enrollment,
-          updateEnrollment,
-          processEvent
-        ),
-      { wrapper }
-    );
-
-    act(() => {
-      result.current.onEventButtonClick(EnrollmentEvent.notify);
-    });
-
-    expect(result.current.pendingEventConfiguration).toBe(
-      eventConfigurations.notify
-    );
+    expect(!!result.current.pendingEvent).toBeTruthy();
   });
 
   it('provides a button click handler', () => {
@@ -99,7 +78,6 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.waitingForUserInput).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.notify);
   });
 
@@ -119,7 +97,6 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.waitingForUserInput).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.notify);
 
     await act(async () => {
@@ -148,11 +125,10 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.update);
     });
 
-    expect(result.current.waitingForUserPromptForSubmission).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.update);
 
     await act(async () => {
-      result.current.onPromptSubmissionCancellation();
+      result.current.onPromptCancellation();
     });
 
     expect(processEvent).toHaveBeenCalledWith(
@@ -184,11 +160,10 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.update);
     });
 
-    expect(result.current.waitingForUserPromptForSubmission).toBeTruthy();
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.update);
 
     await act(async () => {
-      result.current.onPromptSubmission();
+      result.current.onPromptConfirmation();
     });
 
     expect(processEvent).toHaveBeenCalledWith(
@@ -218,12 +193,12 @@ describe('The form submission hook', () => {
       result.current.onEventButtonClick(EnrollmentEvent.notify);
     });
 
-    expect(result.current.waitingForUserInput).toBeTruthy();
+    expect(!!result.current.pendingEvent).toBeTruthy();
 
     act(() => {
       result.current.onPromptCancellation();
     });
 
-    expect(result.current.waitingForUserInput).toBeFalsy();
+    expect(!!result.current.pendingEvent).toBeFalsy();
   });
 });

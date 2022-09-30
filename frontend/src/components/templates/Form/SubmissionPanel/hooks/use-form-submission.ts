@@ -14,23 +14,9 @@ export const useFormSubmission = (
 ) => {
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
   const [loading, setLoading] = useState<boolean>(false);
-  const { setOnClick } = useContext(OpenMessagePromptContext);
-  const [showAlert, setShowAlert] = useState(true);
-
-  const waitingForUserInput =
-    pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.prompt === PromptType.comment;
-
-  const pendingEventConfiguration =
-    pendingEvent !== undefined ? eventConfigurations[pendingEvent] : undefined;
-
-  const waitingForUserConfirmation =
-    pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.prompt === PromptType.confirm;
-
-  const waitingForUserPromptForSubmission =
-    pendingEvent !== undefined &&
-    eventConfigurations[pendingEvent]?.prompt === PromptType.submit_instead;
+  const { setOnClick: setOnOpenMessagePromptClick } = useContext(
+    OpenMessagePromptContext
+  );
 
   const onEventButtonClick = useCallback(
     async (event: EnrollmentEvent) => {
@@ -54,61 +40,55 @@ export const useFormSubmission = (
   );
 
   useEffect(() => {
-    setOnClick(() => () => {
+    setOnOpenMessagePromptClick(() => () => {
       onEventButtonClick(EnrollmentEvent.notify);
     });
-  }, [setOnClick, onEventButtonClick]);
+  }, [setOnOpenMessagePromptClick, onEventButtonClick]);
 
-  const onPromptConfirmation = async (message?: string) => {
-    setLoading(true);
-    setPendingEvent(undefined);
-    setShowAlert(false);
-    const postEventConfiguration = await processEvent(
-      pendingEvent!,
-      pendingEventConfiguration!,
-      enrollment,
-      updateEnrollment,
-      message
-    );
-    setLoading(false);
-    handlePostEvent(postEventConfiguration);
-    setShowAlert(true);
-  };
+  const onPromptConfirmationFactory =
+    (event: EnrollmentEvent) => async (message?: string) => {
+      setLoading(true);
+      setPendingEvent(undefined);
+      const postEventConfiguration = await processEvent(
+        event,
+        eventConfigurations[event],
+        enrollment,
+        updateEnrollment,
+        message
+      );
+      setLoading(false);
+      handlePostEvent(postEventConfiguration);
+    };
 
-  const onPromptSubmission = async (message?: string) => {
-    setLoading(true);
-    setPendingEvent(undefined);
-    setShowAlert(false);
-    const postEventConfiguration = await processEvent(
-      EnrollmentEvent.submit,
-      eventConfigurations.submit,
-      enrollment,
-      updateEnrollment,
-      message
-    );
-    setLoading(false);
-    handlePostEvent(postEventConfiguration);
-    setShowAlert(true);
-  };
+  const eventToProcess =
+    pendingEvent &&
+    eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+      ? EnrollmentEvent.submit
+      : pendingEvent;
 
-  const onPromptSubmissionCancellation = onPromptConfirmation;
+  const onPromptConfirmation = pendingEvent
+    ? onPromptConfirmationFactory(
+        eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+          ? EnrollmentEvent.submit
+          : eventToProcess!
+      )
+    : () => null;
 
-  const onPromptCancellation = () => {
-    setPendingEvent(undefined);
-  };
+  const onPromptCancellation = pendingEvent
+    ? eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+      ? onPromptConfirmationFactory(pendingEvent)
+      : () => {
+          setPendingEvent(undefined);
+        }
+    : () => null;
+
+  console.log(onPromptConfirmation, 'onPromptConfirmation');
 
   return {
     loading,
-    waitingForUserInput,
-    waitingForUserConfirmation,
-    waitingForUserPromptForSubmission,
     pendingEvent,
-    pendingEventConfiguration,
     onEventButtonClick,
     onPromptConfirmation,
     onPromptCancellation,
-    onPromptSubmission,
-    onPromptSubmissionCancellation,
-    showAlert,
   };
 };
