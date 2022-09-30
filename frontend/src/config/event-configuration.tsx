@@ -47,7 +47,7 @@ export const eventConfigurations: {
     request: RequestType.change_state,
     redirectToHome: true,
     successMessage:
-      'Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.',
+      'Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.',
   },
   destroy: {
     displayProps: {
