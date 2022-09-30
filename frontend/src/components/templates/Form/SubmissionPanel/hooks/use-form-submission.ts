@@ -91,7 +91,7 @@ export const useFormSubmission = (
     setShowAlert(true);
   };
 
-  const onPromptSubmissionCancelation = onPromptConfirmation;
+  const onPromptSubmissionCancellation = onPromptConfirmation;
 
   const onPromptCancellation = () => {
     setPendingEvent(undefined);
@@ -108,7 +108,7 @@ export const useFormSubmission = (
     onPromptConfirmation,
     onPromptCancellation,
     onPromptSubmission,
-    onPromptSubmissionCancelation,
+    onPromptSubmissionCancellation,
     showAlert,
   };
 };

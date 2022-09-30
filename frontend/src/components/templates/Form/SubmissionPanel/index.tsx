@@ -28,7 +28,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     onPromptConfirmation,
     onPromptCancellation,
     onPromptSubmission,
-    onPromptSubmissionCancelation,
+    onPromptSubmissionCancellation,
   } = useFormSubmission(
     handlePostEvent,
     enrollment,
@@ -58,7 +58,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
       {waitingForUserPromptForSubmission && (
         <ConfirmationModal
           title="Vos modifications vont être enregistrées."
-          handleCancel={onPromptSubmissionCancelation}
+          handleCancel={onPromptSubmissionCancellation}
           cancelLabel="Non, je la soumettrai plus tard"
           handleConfirm={onPromptSubmission}
           confirmLabel="Soumettre la demande"

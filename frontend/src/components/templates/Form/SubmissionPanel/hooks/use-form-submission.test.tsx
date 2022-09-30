@@ -152,7 +152,7 @@ describe('The form submission hook', () => {
     expect(result.current.pendingEvent).toBe(EnrollmentEvent.update);
 
     await act(async () => {
-      result.current.onPromptSubmissionCancelation();
+      result.current.onPromptSubmissionCancellation();
     });
 
     expect(processEvent).toHaveBeenCalledWith(
