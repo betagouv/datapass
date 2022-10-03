@@ -44,6 +44,7 @@ describe('DataPass', () => {
 
     // Do an intermediate save
     cy.get('button.fr-icon-save-line').as('draftSaveButton').click();
+    cy.get('.fr-modal__footer button.fr-btn.fr-btn--secondary').click();
     cy.contains('a créé la demande d’habilitation');
 
     cy.fillField('team_members[1].given_name', 'Jean');
