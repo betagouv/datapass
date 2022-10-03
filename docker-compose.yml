@@ -14,13 +14,11 @@ services:
       - 5432:5432
   cache:
     image: redis
-  back:
+  backend:
     build:
       context: backend
-    command: bash -c "rm -f tmp/pids/server.pid && rails db:migrate && bundle exec rails s -p 3001 -b '0.0.0.0'"
     volumes:
-      - ./backend:/myapp
-      - /myapp/vendor
+      - ./backend:/opt/apps/datapass-backend/current
     environment:
       PG_HOST: db
     ports:
@@ -33,10 +31,9 @@ services:
       context: backend
     command: bash -c "bundle exec sidekiq"
     volumes:
-      - ./backend:/myapp
-      - /myapp/vendor
+      - ./backend:/opt/apps/datapass-backend/current
     depends_on:
-      - back
+      - backend
       - db
 
 volumes:
