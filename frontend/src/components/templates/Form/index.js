@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, last } from 'lodash';
 import React, {
   useCallback,
   useEffect,
@@ -126,7 +126,7 @@ export const Form = ({
   const handlePostEvent = useCallback(
     ({ errorMessages = [], successMessages = [], redirectToHome = false }) => {
       if (redirectToHome) {
-        return goBackToList(successMessages[0]);
+        return goBackToList(last(successMessages));
       }
 
       setErrorMessages(errorMessages);

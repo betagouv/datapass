@@ -1,5 +1,8 @@
 import { FunctionComponent } from 'react';
-import { eventConfigurations } from '../../../../config/event-configuration';
+import {
+  eventConfigurations,
+  PromptType,
+} from '../../../../config/event-configuration';
 import { processEvent } from '../../../../lib/process-event';
 import Loader from '../../../atoms/Loader';
 import EventButtonList from '../../../molecules/EventButtonList';
@@ -19,11 +22,9 @@ const SubmissionPanel: FunctionComponent<Props> = ({
   updateEnrollment,
 }) => {
   const {
-    pendingEvent,
     loading,
+    pendingEvent,
     onEventButtonClick,
-    waitingForUserInput,
-    waitingForUserConfirmation,
     onPromptConfirmation,
     onPromptCancellation,
   } = useFormSubmission(
@@ -36,31 +37,50 @@ const SubmissionPanel: FunctionComponent<Props> = ({
   return (
     <>
       <EventButtonList
-        disabled={waitingForUserInput || waitingForUserConfirmation || loading}
+        disabled={!!pendingEvent || loading}
         acl={enrollment.acl}
         onEventButtonClick={onEventButtonClick}
       />
 
       {loading && <Loader enableBePatientMessage />}
 
-      {waitingForUserInput && (
-        <Prompt
-          onAccept={onPromptConfirmation}
-          onCancel={onPromptCancellation}
-          displayProps={eventConfigurations[pendingEvent!].displayProps}
-          selectedEvent={pendingEvent as string}
-          enrollment={enrollment}
-        />
-      )}
-      {waitingForUserConfirmation && (
-        <ConfirmationModal
-          title="La suppression d'une habilitation est irréversible"
-          handleCancel={onPromptCancellation}
-          handleConfirm={onPromptConfirmation}
-        >
-          Voulez vous continuer ?
-        </ConfirmationModal>
-      )}
+      {pendingEvent &&
+        eventConfigurations[pendingEvent].prompt === PromptType.comment && (
+          <Prompt
+            onAccept={onPromptConfirmation}
+            onCancel={onPromptCancellation}
+            displayProps={eventConfigurations[pendingEvent!].displayProps}
+            selectedEvent={pendingEvent as string}
+            enrollment={enrollment}
+          />
+        )}
+      {pendingEvent &&
+        eventConfigurations[pendingEvent].prompt ===
+          PromptType.submit_instead && (
+          <ConfirmationModal
+            title="Vos modifications vont être enregistrées."
+            confirmLabel="Soumettre la demande"
+            handleConfirm={onPromptConfirmation}
+            cancelLabel="Non, je l’enregistre seulement"
+            handleCancel={onPromptCancellation}
+          >
+            <p>
+              Souhaitez-vous soumettre votre habilitation à validation, afin
+              qu'elle soit étudiée par les équipes compétentes ?
+            </p>
+          </ConfirmationModal>
+        )}
+      {pendingEvent &&
+        eventConfigurations[pendingEvent].prompt ===
+          PromptType.confirm_deletion && (
+          <ConfirmationModal
+            title="La suppression d'une habilitation est irréversible"
+            handleCancel={onPromptCancellation}
+            handleConfirm={onPromptConfirmation}
+          >
+            Voulez vous continuer ?
+          </ConfirmationModal>
+        )}
     </>
   );
 };

@@ -4,7 +4,9 @@ exports[`When submitting the enrollment form with the destroy event calls the de
 Object {
   "errorMessages": Array [],
   "redirectToHome": true,
-  "successMessages": Array [],
+  "successMessages": Array [
+    "Votre demande d’habilitation a été supprimée.",
+  ],
 }
 `;
 
@@ -13,7 +15,7 @@ Object {
   "errorMessages": Array [],
   "redirectToHome": true,
   "successMessages": Array [
-    "Vous allez recevoir une notification dans votre boite mail au moment ou il sera traité.",
+    "Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.",
   ],
 }
 `;

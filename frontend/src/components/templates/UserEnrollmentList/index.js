@@ -62,11 +62,7 @@ const UserEnrollmentList = () => {
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
         <div className="page-container list-container">
           {showAlert && (
-            <Alert
-              type="success"
-              title="Votre message a bien été envoyé"
-              onAlertClose={handleClose}
-            >
+            <Alert type="success" onAlertClose={handleClose}>
               {state?.message}
             </Alert>
           )}
