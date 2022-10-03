@@ -68,10 +68,6 @@ module DataPass
       config.action_mailer.delivery_method = :test
     end
 
-    if ENV.fetch("ALLOWED_ORIGINS").include? "localhost"
-      Rails.application.config.action_dispatch.cookies_same_site_protection = :none
-    end
-
     config.middleware.insert_before Rack::Head, ValidateRequestParams
 
     config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
