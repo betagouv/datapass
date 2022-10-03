@@ -56,10 +56,6 @@ export const processEvent = async (
       updateEnrollment({ target: { name: 'documents_attributes', value: [] } });
       updateEnrollment(newEnrollment);
       enrollmentId = newEnrollment.id;
-
-      resultMessages.successMessages.push(
-        'Votre demande d’habilitation a été sauvegardée.'
-      );
     }
 
     if (eventConfiguration.request === RequestType.delete) {

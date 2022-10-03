@@ -67,6 +67,7 @@ export const eventConfigurations: {
     },
     prompt: PromptType.submit_instead,
     request: RequestType.create_or_update,
+    successMessage: 'Votre demande d’habilitation a été sauvegardée.',
   },
   submit: {
     displayProps: {
