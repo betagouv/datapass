@@ -61,7 +61,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
             title="Vos modifications vont être enregistrées."
             confirmLabel="Soumettre la demande"
             handleConfirm={onPromptConfirmation}
-            cancelLabel="Non, je la soumettrai plus tard"
+            cancelLabel="Non, je l’enregistre seulement"
             handleCancel={onPromptCancellation}
           >
             <p>

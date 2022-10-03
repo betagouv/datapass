@@ -58,6 +58,7 @@ export const eventConfigurations: {
     prompt: PromptType.confirm_deletion,
     request: RequestType.delete,
     redirectToHome: true,
+    successMessage: 'Votre demande d’habilitation a été supprimée.',
   },
   update: {
     displayProps: {
