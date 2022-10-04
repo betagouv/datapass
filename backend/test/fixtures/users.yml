@@ -2,6 +2,18 @@
 user:
   email: user@yopmail.com
 
+responsable_traitement:
+  email: responsable_traitement@yopmail.com
+
+delegue_protection_donnees:
+  email: delegue_protection_donnees@yopmail.com
+
+responsable_technique:
+  email: responsable_technique@yopmail.com
+
+contact_metier:
+  email: contact_metier@yopmail.com
+
 api_particulier_instructor:
   email: api-particulier@yopmail.com
   roles:
@@ -44,3 +56,6 @@ administrator:
   email: datapass@yopmail.com
   roles:
     - administrator
+    - api_entreprise:reporter
+    - franceconnect:reporter
+    - api_particulier:reporter

@@ -1,73 +1,115 @@
 DEFAULTS: &DEFAULTS
-  target_api: "franceconnect"
-  previous_enrollment_id: null
-  copied_from_enrollment_id: null
-  cgu_approved: true
-  scopes:
-    email: true
-    gender: true
-    openid: true
-    birthdate: true
-    birthplace: true
-    given_name: true
-    family_name: true
-    birthcountry: true
-  contacts: '{"{\"id\":\"technique\",\"email\":\"user@yopmail.com\"}"}'
-  organization_id: 1
-  siret: "21920023500014"
-  nom_raison_sociale: "COMMUNE DE CLAMART - MAIRIE"
-  linked_token_manager_id: null
-  additional_content:
-    has_alternative_authentication_methods: true
-  intitule: "Ville de Clamart"
-  description: "Permettre aux citoyens de se connecter sur le portail des démarches administratives"
-  fondement_juridique_title: "Arrêté du 8 novembre 2018 "
-  fondement_juridique_url: "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460"
-  data_recipients: "Agents instructeurs des demandes"
-  data_retention_period: 24
-  data_retention_comment: null
-  dpo_family_name: "Test"
-  dpo_given_name: "User"
-  dpo_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  dpo_phone_number: "0123456789"
-  dpo_job: "Directeur technique"
-  responsable_traitement_family_name: "Test"
-  responsable_traitement_given_name: "User"
-  responsable_traitement_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  responsable_traitement_phone_number: "0123456789"
-  responsable_traitement_job: "Maire"
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-
-enrollment_draft:
-  <<: *DEFAULTS
+  siret: "83906810300010"
+  nom_raison_sociale: "Commune d'Hem"
+  data_recipients: "CLAMARAN Claude"
+  organization_id: 211
   created_at: <%= 1.days.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
+  updated_at: <%= 1.days.ago.to_s(:db) %>
+  cgu_approved: true
+  data_retention_period: 24
+  previous_enrollment_id: null 
+  copied_from_enrollment_id: null
+  linked_token_manager_id: null
+  additional_content: {}
+  fondement_juridique_title: "Délibération du 10/10/2022"
+  fondement_juridique_url: "https://www.vosges.gouv.fr/content/download/2491/15483/file/9-2013-siegeCca2014-ModeleDeliberation.pdf"
+  data_retention_comment: null
+  demarche: null
+  technical_team_type: "internal_team"
+  technical_team_value: ""
+  type_projet: null
+  date_mise_en_production: "01/04/2022"
+  volumetrie_approximative: 50
+  dpo_is_informed: true
+
+<% 1.upto(20) do |i| %>
+enrollment_draft_<%= i %>:
+  <<: *DEFAULTS
   status: "draft"
+  target_api: "api_particulier"
+  intitule: "Brouillon API Particulier <%= i %>"
+  description: "Demande d'habiliation pour API Particulier, en cours d'écriture."
+  scopes: {
+    cnous_email: false,
+    cnaf_adresse: false,
+    cnaf_enfants: false,
+    cnous_identite: false,
+    mesri_identite: false,
+    mesri_admission: false,
+    cnaf_allocataires: false,
+    mesri_identifiant: false,
+    cnous_ville_etudes: false,
+    cnous_statut_bourse: false,
+    pole_emploi_adresse: false,
+    pole_emploi_contact: false,
+    cnous_echelon_bourse: false,
+    mesri_etablissements: false,
+    pole_emploi_identite: false,
+    cnous_statut_boursier: false,
+    cnaf_quotient_familial: true,
+    cnous_periode_versement: false,
+    mesri_inscription_autre: false,
+    pole_emploi_inscription: false,
+    mesri_inscription_etudiant: false
+  }
+<% end %>
 
 enrollment_validated:
   <<: *DEFAULTS
-  created_at: <%= 2.days.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
   status: "validated"
+  target_api: "franceconnect"
+  intitule: "Demande d'habilitation FranceConnect"
+  description: "Demande d'habiliation pour FranceConnect, validée."
+  scopes: {
+    email: false,
+    phone: false,
+    gender: false,
+    openid: true,
+    address: false,
+    birthdate: true,
+    birthplace: false,
+    given_name: false,
+    family_name: false,
+    birthcountry: false,
+    preferred_username: false
+  }
 
 enrollment_refused:
   <<: *DEFAULTS
-  created_at: <%= 3.days.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
   status: "refused"
+  target_api: "franceconnect"
+  intitule: "Demande d'habilitation FranceConnect"
+  description: "Demande d'habiliation pour FranceConnect, refusée."
+  scopes: {
+    email: true,
+    phone: false,
+    gender: false,
+    openid: false,
+    address: false,
+    birthdate: false,
+    birthplace: false,
+    given_name: false,
+    family_name: false,
+    birthcountry: true,
+    preferred_username: false
+  }
 
 enrollment_changes_requested:
   <<: *DEFAULTS
-  created_at: <%= 4.days.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
   status: "changes_requested"
-
-<% 1.upto(20) do |i| %>
-enrollment_<%= i %>:
-  <<: *DEFAULTS
-  intitule: "Enrollment <%= i %>"
-  nom_raison_sociale: "Enrollment <%= i %>"
-  created_at: <%= 1.days.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
-  status: <%= ["submitted", "draft", "validated", "refused"].sample %>
-<% end %>
+  target_api: "franceconnect"
+  intitule: "Demande d'habilitation FranceConnect"
+  description: "Demande d'habiliation pour FranceConnect, demande de changement."
+  scopes: {
+    email: false,
+    phone: false,
+    gender: true,
+    openid: false,
+    address: false,
+    birthdate: false,
+    birthplace: false,
+    given_name: true,
+    family_name: false,
+    birthcountry: false,
+    preferred_username: false
+  }

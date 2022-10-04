@@ -1,0 +1,140 @@
+DEFAULTS: &DEFAULTS
+  created_at: <%= 1.days.ago.to_s(:db) %>
+  updated_at: <%= 1.days.ago.to_s(:db) %>
+  given_name: Jean
+
+DEMANDEUR: &DEMANDEUR
+  <<: *DEFAULTS
+  email: user@yopmail.com
+  family_name: Demandeur
+  type: demandeur
+  job: Demandeur
+  phone_number: 0103821213
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+
+RESPONSABLE_TRAITEMENT: &RESPONSABLE_TRAITEMENT
+  <<: *DEFAULTS
+  email: responsable_traitement@yopmail.com
+  family_name: Responsable Traitement
+  type: responsable_traitement
+  job: Responsable Traitement
+  phone_number: 0103821214
+  user_id: <%= ActiveRecord::FixtureSet.identify(:responsable_traitement) %>
+
+DELEGUE_PROTECTION_DONNEES: &DELEGUE_PROTECTION_DONNEES
+  <<: *DEFAULTS
+  email: delegue_protection_donnees@yopmail.com
+  family_name: Délégué à la protection des données
+  type: delegue_protection_donnees
+  job: Délégué à la protection des données
+  phone_number: 0103821215
+  user_id: <%= ActiveRecord::FixtureSet.identify(:delegue_protection_donnees) %>
+
+RESPONSABLE_TECHNIQUE: &RESPONSABLE_TECHNIQUE
+  <<: *DEFAULTS
+  email: responsable_technique@yopmail.com
+  family_name: Responsable Technique
+  type: responsable_technique
+  job: Responsable Technique
+  phone_number: 0103821216
+  user_id: <%= ActiveRecord::FixtureSet.identify(:responsable_technique) %>
+
+CONTACT_METIER: &CONTACT_METIER
+  <<: *DEFAULTS
+  email: contact_metier@yopmail.com
+  family_name: Contact Métier
+  type: contact_metier
+  job: Contact Métier
+  phone_number: 0103821217
+  user_id: <%= ActiveRecord::FixtureSet.identify(:contact_metier) %>
+
+# 📝 DRAFT ENROLLMENTS TEAM MEMBERS
+
+<% 1.upto(20) do |i| %>
+demandeur_draft_<%= i %>:
+  <<: *DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+
+responsable_traitement_draft_<%= i %>:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+  
+delegue_protection_donnees_draft_<%= i %>:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+  
+responsable_technique_draft_<%= i %>:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+  
+contact_metier_draft_<%= i %>:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+<% end %>
+
+
+# ✅ VALIDATED ENROLLMENT TEAM MEMBERS
+
+demandeur_validated:
+  <<: *DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+
+responsable_traitement_validated:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  
+delegue_protection_donnees_validated:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  
+responsable_technique_validated:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  
+contact_metier_validated:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+
+# ❌ REFUSED ENROLLMENT TEAM MEMBERS
+
+demandeur_refused:
+  <<: *DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+
+responsable_traitement_refused:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  
+delegue_protection_donnees_refused:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  
+responsable_technique_refused:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  
+contact_metier_refused:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+
+# 🔄 CHANGES REQUESTED ENROLLMENT TEAM MEMBERS
+
+demandeur_changes_requested:
+  <<: *DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+
+responsable_traitement_changes_requested:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+  
+delegue_protection_donnees_changes_requested:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+  
+responsable_technique_changes_requested:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+  
+contact_metier_changes_requested:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>

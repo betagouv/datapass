@@ -1,87 +1,63 @@
-event_draft_1:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft) %>
+DEFAULTS: &DEFAULTS
   user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
   created_at: <%= 1.days.ago.to_s(:db) %>
   updated_at: <%= 1.days.ago.to_s(:db) %>
   name: "create"
-event_draft_2:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 1.hours.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
-  name: "update"
-  diff:
-    dpo_id:
-      - null
-      - 1
-    dpo_family_name:
-      - "Abitbol"
-      - "Test"
-    dpo_given_name:
-      - "George"
-      - "User"
-    updated_at:
-      - <%= 1.days.ago.to_s(:db) %>
-      - <%= 1.hours.ago.to_s(:db) %>
-    dpo_phone_number:
-      - null
-      - "0123456789"
 
-event_validated_1:
+
+# 📝 DRAFT ENROLLMENT EVENTS
+
+<% 1.upto(20) do |i| %>
+event_enrollment_draft_create<%= i %>:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
+<% end %>
+
+
+# ✅ VALIDATED ENROLLMENT EVENTS
+
+event_enrollment_validated_create:
+  <<: *DEFAULTS
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 2.days.ago.to_s(:db) %>
-  updated_at: <%= 2.days.ago.to_s(:db) %>
-  name: "create"
-event_validated_2:
+
+event_enrollment_validated_submit:
+  <<: *DEFAULTS
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 2.days.ago.to_s(:db) %>
-  updated_at: <%= 2.days.ago.to_s(:db) %>
   name: "submit"
-event_validated_3:
+
+event_enrollment_validated_validate:
+  <<: *DEFAULTS
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
-  created_at: <%= 1.hours.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
   name: "validate"
 
-event_refused_1:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 3.days.ago.to_s(:db) %>
-  updated_at: <%= 3.days.ago.to_s(:db) %>
-  name: "create"
-event_refused_2:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 3.days.ago.to_s(:db) %>
-  updated_at: <%= 3.days.ago.to_s(:db) %>
-  name: "submit"
-event_refused_3:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
-  created_at: <%= 1.hours.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
-  name: "refuse"
-  comment: "Vous n'êtes pas éligible.\nN'hésitez pas à consulter nos autres API sur : https://api.gouv.fr"
+# ❌ REFUSED ENROLLMENT EVENTS
 
-event_changes_requested_1:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 4.days.ago.to_s(:db) %>
-  updated_at: <%= 4.days.ago.to_s(:db) %>
-  name: "create"
-event_changes_requested_2:
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
-  created_at: <%= 4.days.ago.to_s(:db) %>
-  updated_at: <%= 4.days.ago.to_s(:db) %>
+event_enrollment_refused_create:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+
+event_enrollment_refused_submit:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
   name: "submit"
-event_changes_requested_3:
+
+event_enrollment_refused_refused:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_refused) %>
+  name: "refuse"
+
+# 🔄 CHANGES REQUESTED ENROLLMENT EVENTS
+
+event_enrollment_changes_requested_create:
+  <<: *DEFAULTS
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
-  user_id: <%= ActiveRecord::FixtureSet.identify(:franceconnect_instructor) %>
-  created_at: <%= 1.hours.ago.to_s(:db) %>
-  updated_at: <%= 1.hours.ago.to_s(:db) %>
+
+event_enrollment_changes_requested_submit:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+  name: "submit"
+
+event_enrollment_changes_requested_changes_requested:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
   name: "request_changes"
-  comment: "Merci de nous indiquer la durée de conservation des données."
