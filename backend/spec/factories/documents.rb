@@ -23,5 +23,29 @@ FactoryBot.define do
 
       type { "Document::ListeAidants" }
     end
+
+    trait :expression_besoin_specifique do
+      initialize_with do
+        Document::ExpressionBesoinSpecifique.new(attributes)
+      end
+
+      type { "Document::ExpressionBesoinSpecifique" }
+
+      attachable { build(:enrollment, :api_impot_particulier_fc_sandbox) }
+
+      transient do
+        file_extension { "xls" }
+      end
+    end
+
+    trait :geo_shape do
+      initialize_with do
+        Document::GeoShape.new(attributes)
+      end
+
+      type { "Document::GeoShape" }
+
+      attachable { build(:enrollment, :franceconnect) }
+    end
   end
 end

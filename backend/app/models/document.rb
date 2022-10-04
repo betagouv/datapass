@@ -14,6 +14,7 @@ class Document < ActiveRecord::Base
   private
 
   def content_type_validation
+    raise ::NotImplementedError
   end
 
   def touch_enrollment

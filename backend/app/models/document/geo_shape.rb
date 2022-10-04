@@ -1,2 +1,2 @@
-class Document::GeoShape < PdfDocument
+class Document::GeoShape < OutdatedDocument
 end
