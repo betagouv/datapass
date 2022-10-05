@@ -134,7 +134,7 @@
     "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru/",
     "state": {
       "intitule": "Portail de gestion relation usager/citoyen",
-      "description": "Cette demande d'habilitation spécifique au cas d'usage \"Portail gestion relation usager\" vous donne accès aux données ouvertes de l'API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides et subventions publiques ou encore un espace de candidature aux marchés publics et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra demander une habilitation supplémentaire par cas d’usage. Consultez no",
+      "description": "Cette demande d'habilitation spécifique au cas d'usage \"Portail gestion relation usager\" vous donne uniquement accès aux données ouvertes de l'API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides et subventions publiques ou encore un espace de candidature aux marchés publics et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d'habilitation supplémentaire par cas d’usage.",
       "scopes": {
         "entreprises": true,
         "etablissements": true,
