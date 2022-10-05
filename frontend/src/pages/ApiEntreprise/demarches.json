@@ -129,11 +129,46 @@
       }
     }
   },
+  "portail_gru": {
+    "label": "Portail gestion relation usager",
+    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru/",
+    "state": {
+      "intitule": "Portail de gestion relation usager/citoyen",
+      "description": "Cette demande d'habilitation spécifique au cas d'usage \"Portail gestion relation usager\" vous donne accès aux données ouvertes de l'API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides et subventions publiques ou encore un espace de candidature aux marchés publics et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra demander une habilitation supplémentaire par cas d’usage. Consultez no",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "actes_inpi": true,
+        "conventions_collectives": true,
+        "entreprises_artisanales": true,
+        "effectifs_acoss": false,
+        "eori_douanes": true,
+        "exercices": false,
+        "bilans_inpi": false,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": false,
+        "attestations_sociales": false,
+        "msa_cotisations": false,
+        "probtp": false,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": false,
+        "certificat_agence_bio": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
+      }
+    }
+  },
   "detection_fraude": {
     "label": "Détection de la fraude",
     "about": "https://entreprise.api.gouv.fr/use_cases/detection_fraude/",
     "state": {
-      "description": "Ce cas d'usage est EXCLUSIVEMENT réservé aux administrations dont la détection des fraudes fait parti de ses missions.",
+      "description": "Ce cas d'usage est EXCLUSIVEMENT réservé aux administrations dont la détection des fraudes fait partie de ses missions.",
       "scopes": {
         "entreprises": true,
         "etablissements": true,
@@ -147,6 +182,46 @@
         "liasse_fiscale": true,
         "attestations_fiscales": true,
         "attestations_sociales": true
+      }
+    }
+  },
+  "default": {
+    "label": "Demande spécifiques aux éditeurs de logiciels",
+    "about": "https://entreprise.api.gouv.fr/use_cases/editeur/",
+    "state": {
+      "intitule": "Demande spécifiques aux éditeurs de logiciels",
+      "description": "Attention, cette demande concerne exclusivement les prestataires éditeurs de logiciels à destination d'acteurs publics.\r\n\r\nÉditeurs de logiciels, merci de répondre à toutes les questions suivantes :\r\n\r\n1-Quelles sont les différentes activités de votre organisation ? (description et site internet)\r\n\r\n2- Qui sont vos différents clients (privés et/ou publics) ?\r\n\r\n3- Qui seront les clients publics qui bénéficieront des données obtenues par l'API Entreprise ?\r\n\r\n4- À quoi sert le logiciel qui utilisera API Entreprise ? Décrivez-nous le produit et son rôle auprès de vos clients du secteur public.\r\n\r\n5- Quels sont les cas d'usage de vos clients publics ? Exemples : Marchés publics, Aides et subventions publiques, Portail de gestion relation usager, Fiabilisation de base de tiers, Autres ?",
+      "fondement_juridique_title": "",
+      "fondement_juridique_url": "",
+      "data_retention_period": "",
+      "data_recipients": "",
+      "scopes": {
+        "entreprises": false,
+        "etablissements": false,
+        "extraits_rcs": false,
+        "associations": false,
+        "documents_association": false,
+        "actes_inpi": false,
+        "conventions_collectives": false,
+        "entreprises_artisanales": false,
+        "effectifs_acoss": false,
+        "eori_douanes": false,
+        "exercices": false,
+        "bilans_inpi": false,
+        "bilans_entreprise_bdf": false,
+        "liasse_fiscale": false,
+        "attestations_fiscales": false,
+        "attestations_sociales": false,
+        "attestations_agefiph": false,
+        "msa_cotisations": false,
+        "probtp": false,
+        "fntp_carte_pro": false,
+        "certificat_cnetp": false,
+        "certificat_agence_bio": false,
+        "certificat_rge_ademe": false,
+        "qualibat": false,
+        "certificat_opqibi": false,
+        "extrait_court_inpi": false
       }
     }
   },
