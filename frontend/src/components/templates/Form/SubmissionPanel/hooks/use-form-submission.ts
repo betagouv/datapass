@@ -82,8 +82,6 @@ export const useFormSubmission = (
         }
     : () => null;
 
-  console.log(onPromptConfirmation, 'onPromptConfirmation');
-
   return {
     loading,
     pendingEvent,
