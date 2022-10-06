@@ -11,7 +11,6 @@ type Props = {
   icon?: string;
   iconRight?: boolean;
   className?: string;
-  submit?: boolean;
   disabled?: boolean;
 };
 
@@ -26,7 +25,6 @@ const Button: React.FC<Props> = ({
   iconRight = false,
   children,
   className = '',
-  submit = false,
   ...props
 }) => {
   className += ' fr-btn';
@@ -45,14 +43,6 @@ const Button: React.FC<Props> = ({
 
   if (tertiaryNoOutline) {
     className += ' fr-btn--tertiary-no-outline';
-  }
-
-  if (submit) {
-    return (
-      <button type="submit" className={className} {...props}>
-        {children}
-      </button>
-    );
   }
 
   return (

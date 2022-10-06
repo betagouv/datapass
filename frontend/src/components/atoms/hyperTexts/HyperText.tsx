@@ -8,6 +8,7 @@ type Props = {
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   href?: string;
   className?: string;
+  submit?: boolean;
 };
 
 const HyperText: React.FC<Props> = ({
@@ -17,6 +18,8 @@ const HyperText: React.FC<Props> = ({
   href,
   className = '',
   children,
+  submit = false,
+
   ...props
 }) => {
   if (icon) {
@@ -49,6 +52,14 @@ const HyperText: React.FC<Props> = ({
   if (onClick) {
     return (
       <button className={className} onClick={onClick} {...props}>
+        {children}
+      </button>
+    );
+  }
+
+  if (submit) {
+    return (
+      <button type="submit" className={className} {...props}>
         {children}
       </button>
     );
