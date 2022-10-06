@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useReducer,
   useState,
+  useRef,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
@@ -40,6 +41,7 @@ export const Form = ({
   const [hasNotFoundError, setHasNotFoundError] = useState(false);
   const navigate = useNavigate();
   const { goBackToList } = useListItemNavigation();
+  const refAlert = useRef(null);
 
   const sectionLabels = useMemo(() => {
     return React.Children.map(
@@ -135,6 +137,13 @@ export const Form = ({
     [goBackToList]
   );
 
+  useEffect(() => {
+    console.log(refAlert);
+    if (!isEmpty(successMessages) || !isEmpty(errorMessages)) {
+      refAlert.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [successMessages, errorMessages, refAlert]);
+
   if (hasNotFoundError) {
     return <NotFound />;
   }
@@ -172,7 +181,7 @@ export const Form = ({
         </OpenMessagePromptContextProvider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
-          <div>
+          <div ref={refAlert}>
             {successMessages.map((successMessage) => (
               <Alert type="success" key={successMessage}>
                 <Linkify message={successMessage} />
