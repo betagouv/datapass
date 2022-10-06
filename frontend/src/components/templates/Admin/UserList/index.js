@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+import { createColumnHelper } from '@tanstack/react-table';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
-import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
@@ -11,6 +11,7 @@ import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Link from '../../../atoms/hyperTexts/Link';
 import Tag from '../../../atoms/hyperTexts/Tag';
+import Table from './Table';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,29 +26,37 @@ const UserList = () => {
     []
   );
 
+  const columnHelper = createColumnHelper();
+
   const columns = useMemo(
     () => [
-      {
-        Header: 'Email',
+      columnHelper.accessor('email', {
+        header: 'Email',
         accessor: 'email',
+        id: 'email',
         Filter: TextFilter,
         filter: 'text',
-      },
-      ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) => ({
-        Header: () => (
-          <span style={{ writingMode: 'vertical-rl' }}>
-            {`${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
-          </span>
-        ),
-        id: targetApi,
-        columns: ['reporter', 'instructor', 'subscriber'].map((roleType) => ({
-          Header: `${roleType[0]}`,
-          id: `${targetApi}:${roleType}`,
-          accessor: ({ roles }) => roles.includes(`${targetApi}:${roleType}`),
-          Cell: RoleCheckboxCell,
-        })),
-      })),
-      { Header: 'Id', accessor: 'id' },
+      }),
+      ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
+        columnHelper.group({
+          header: () => (
+            <span style={{ writingMode: 'vertical-rl' }}>
+              {`${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
+            </span>
+          ),
+          id: targetApi,
+          columns: ['reporter', 'instructor', 'subscriber'].map((roleType) =>
+            columnHelper.accessor(`${targetApi}:${roleType}`, {
+              header: `${roleType[0]}`,
+              id: `${targetApi}:${roleType}`,
+              cell: (cellProps) => (
+                <RoleCheckboxCell updateData={updateRole} {...cellProps} />
+              ),
+            })
+          ),
+        })
+      ),
+      columnHelper.accessor('id', { header: 'Id', accessor: 'id', id: 'id' }),
     ],
     []
   );
@@ -118,14 +127,15 @@ const UserList = () => {
         </div>
       ) : (
         <>
-          <Table
-            columns={columns}
-            data={users}
-            updateData={updateRole}
-            filterTypes={filterTypes}
-            skipReset={skipReset}
-            initialState={{ hiddenColumns: ['id'] }}
-          />
+          <div className="admin-table">
+            <Table
+              columns={columns}
+              data={users}
+              updateData={updateRole}
+              filterFns={filterTypes}
+              autoResetAll={!skipReset}
+            />
+          </div>
           <div>
             Légende :
             <ul>

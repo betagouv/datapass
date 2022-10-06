@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { updateUser } from '../../../../services/users';
 
-const RoleCheckboxCell = ({
-  value: initialValue,
-  row: { index, original },
-  column: { id },
-  updateData,
-}) => {
+const RoleCheckboxCell = (props) => {
+  const { row, column, updateData } = props;
+  const initialValue = row.original.roles.includes(column.id);
   const [value, setValue] = useState(initialValue);
-
   const onChange = async (e) => {
     const newValue = e.target.checked;
     const newRoles = newValue
-      ? [...original.roles, id]
-      : original.roles.filter((e) => e !== id);
+      ? [...row?.original.roles, column?.id]
+      : row?.original.roles.filter((e) => e !== column?.id);
 
     try {
-      await updateUser({ id: original.id, roles: newRoles });
+      await updateUser({ id: row?.original.id, roles: newRoles });
       setValue(newValue);
-      updateData(index, id, newValue);
+      updateData(row?.index, column?.id, newValue);
     } catch (e) {
       setValue(!newValue);
-      updateData(index, id, !newValue);
+      updateData(row?.index, column?.id, !newValue);
     }
   };
 
