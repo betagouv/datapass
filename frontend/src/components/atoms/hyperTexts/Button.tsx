@@ -5,6 +5,7 @@ type Props = {
   href?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   secondary?: boolean;
+  tertiaryNoOutline?: boolean;
   large?: boolean;
   xLarge?: boolean;
   icon?: string;
@@ -18,6 +19,7 @@ const Button: React.FC<Props> = ({
   href,
   onClick,
   secondary = false,
+  tertiaryNoOutline = false,
   large = false,
   xLarge = false,
   icon,
@@ -39,6 +41,10 @@ const Button: React.FC<Props> = ({
 
   if (secondary) {
     className += ' fr-btn--secondary';
+  }
+
+  if (tertiaryNoOutline) {
+    className += ' fr-btn--tertiary-no-outline';
   }
 
   if (submit) {
