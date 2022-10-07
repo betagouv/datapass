@@ -1,5 +1,5 @@
 class Document::OutdatedDocument < Document
-  mount_uploader :attachment, PdfUploader
+  mount_uploader :attachment, DocumentUploader
 
   private
 
