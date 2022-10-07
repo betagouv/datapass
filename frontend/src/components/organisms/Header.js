@@ -78,44 +78,40 @@ const Header = () => {
             </div>
             <div className="fr-header__tools">
               <div className="fr-header__tools-links">
-                <ul className="fr-links-group">
+                <ul className="fr-btns-group">
                   {displayContactLink && (
                     <li>
-                      <Link icon="question" href="/faq">
+                      <Button icon="question" tertiaryNoOutline href="/faq">
                         Aide
-                      </Link>
+                      </Button>
                     </li>
                   )}
                   {user && user.roles.includes('administrator') && (
                     <li>
-                      <Link icon="calendar" href="/admin">
+                      <Button icon="calendar" href="/admin">
                         Administration
-                      </Link>
+                      </Button>
                     </li>
                   )}
                   {user && user.roles.includes('administrator') && (
                     <li>
-                      <Link icon="eye" href={`${BACK_HOST}/sidekiq/`}>
+                      <Button icon="eye" href={`${BACK_HOST}/sidekiq/`}>
                         Monitoring
-                      </Link>
+                      </Button>
                     </li>
                   )}
                   {user ? (
                     <li>
                       <div className="dropdown">
-                        <Link icon="logout-box-r" onClick={logout}>
+                        <Button icon="logout-box-r" onClick={logout}>
                           {user.given_name} {user.family_name}
-                        </Link>
+                        </Button>
                       </div>
                     </li>
                   ) : (
                     <li>
-                      <form
-                        action={loginUrl}
-                        method="post"
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <Button icon="lock" secondary submit>
+                      <form action={loginUrl} method="post">
+                        <Button icon="lock" tertiaryNoOutline submit>
                           Se connecter
                         </Button>
                       </form>

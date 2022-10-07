@@ -5,12 +5,12 @@ type Props = {
   href?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   secondary?: boolean;
+  tertiaryNoOutline?: boolean;
   large?: boolean;
   xLarge?: boolean;
   icon?: string;
   iconRight?: boolean;
   className?: string;
-  submit?: boolean;
   disabled?: boolean;
 };
 
@@ -18,13 +18,13 @@ const Button: React.FC<Props> = ({
   href,
   onClick,
   secondary = false,
+  tertiaryNoOutline = false,
   large = false,
   xLarge = false,
   icon,
   iconRight = false,
   children,
   className = '',
-  submit = false,
   ...props
 }) => {
   className += ' fr-btn';
@@ -41,12 +41,8 @@ const Button: React.FC<Props> = ({
     className += ' fr-btn--secondary';
   }
 
-  if (submit) {
-    return (
-      <button type="submit" className={className} {...props}>
-        {children}
-      </button>
-    );
+  if (tertiaryNoOutline) {
+    className += ' fr-btn--tertiary-no-outline';
   }
 
   return (
