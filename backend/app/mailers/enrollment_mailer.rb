@@ -51,6 +51,20 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def notify_instructors_submitted_changes_requested
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @demandeur_email = @enrollment.demandeurs.pluck(:email).first
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @enrollment.subscribers.pluck(:email),
+      from: "notifications@api.gouv.fr",
+      subject: "Vous avez un retour sur votre demande de changement",
+      template_path: "enrollment_mailer",
+      template_name: "notify_submitted"
+    )
+  end
+
   def notify_support_franceconnect
     @target_api_label = data_provider_config["label"]
     @nom_raison_sociale = params[:nom_raison_sociale]

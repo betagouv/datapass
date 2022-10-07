@@ -130,4 +130,45 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       expect(mail.body.encoded).to include(enrollment.demandeurs.first.email)
     end
   end
+
+  describe "#notify_instructors_submitted_changes_requested" do
+    let(:target_api) { "api_particulier" }
+    let(:enrollment) { create(:enrollment, :api_particulier, user: user) }
+    let(:user) { create(:user, :with_all_infos) }
+    let(:instructor) { create(:user, :with_all_infos) }
+
+    before do
+      instructor.roles = ["api_particulier:subscriber"]
+      instructor.save
+    end
+
+    subject(:mail) do
+      described_class.with(
+        to: instructor.email,
+        target_api: target_api,
+        enrollment_id: enrollment.id,
+        template: template
+      ).notify_instructors_submitted_changes_requested
+    end
+
+    let(:template) { "notify_submitted" }
+
+    let(:notify_submitted_sample) do
+      File.open(Rails.root.join("app/views/enrollment_mailer/notify_submitted.text.erb")) { |f| f.readline }.chomp
+    end
+
+    it "renders valid headers" do
+      expect(mail.subject).to eq("Vous avez un retour sur votre demande de changement")
+      expect(mail.to).to eq([instructor.email])
+      expect(mail.from).to eq(["notifications@api.gouv.fr"])
+    end
+
+    it "renders notify_instructor template" do
+      expect(mail.body.encoded).to include(notify_submitted_sample)
+    end
+
+    it "renders notify_instructor template with demandeurs email" do
+      expect(mail.body.encoded).to include(enrollment.demandeurs.first.email)
+    end
+  end
 end

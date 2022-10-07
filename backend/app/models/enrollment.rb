@@ -85,6 +85,10 @@ class Enrollment < ActiveRecord::Base
       end
     end
 
+    before_transition from: :changes_requested, to: :submitted do |enrollment|
+      enrollment.notify_subscribers_for_submitted_enrollment_after_request_changes
+    end
+
     before_transition from: :submitted, to: :validated do |enrollment|
       bridge_disable = ENV.fetch("DISABLE_#{enrollment.target_api.upcase}_BRIDGE", "") == "True"
 
@@ -302,6 +306,14 @@ class Enrollment < ActiveRecord::Base
       target_api: target_api,
       enrollment_id: id
     ).notification_email_unknown_software.deliver_later
+  end
+
+  def notify_subscribers_for_submitted_enrollment_after_request_changes
+    EnrollmentMailer.with(
+      target_api: target_api,
+      enrollment_id: id,
+      demandeur_email: demandeurs.pluck(:email).first
+    ).notify_instructors_submitted_changes_requested.deliver_later
   end
 
   private
