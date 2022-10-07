@@ -1,2 +1,2 @@
-class Document::AttestationFiscale < Document
+class Document::AttestationFiscale < Document::PdfDocument
 end

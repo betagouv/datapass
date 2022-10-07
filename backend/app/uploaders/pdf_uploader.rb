@@ -1,5 +1,5 @@
 class PdfUploader < DocumentUploader
   def extension_allowlist
-    ["pdf"]
+    %w[pdf]
   end
 end

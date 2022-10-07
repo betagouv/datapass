@@ -1,2 +1,2 @@
-class Document::DecisionHomologation < Document
+class Document::DecisionHomologation < Document::PdfDocument
 end
