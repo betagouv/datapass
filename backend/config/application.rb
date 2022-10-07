@@ -51,24 +51,24 @@ module DataPass
     config.action_mailer.perform_deliveries = true
 
     # remove scheme from url
-    uri = URI(ENV["BACK_HOST"])
+    uri = URI(ENV.fetch("BACK_HOST"))
     config.action_mailer.default_url_options = {host: uri.hostname + uri.path}
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address: "smtp-relay.sendinblue.com",
       port: 587,
-      user_name: ENV["SENDINBLUE_USERNAME"], # See: https://account.sendinblue.com/advanced/api
-      password: ENV["SENDINBLUE_SMTP_KEY"], # See: https://account.sendinblue.com/advanced/api
+      user_name: ENV.fetch("SENDINBLUE_USERNAME", ""), # See: https://account.sendinblue.com/advanced/api
+      password: ENV.fetch("SENDINBLUE_SMTP_KEY", ""), # See: https://account.sendinblue.com/advanced/api
       authentication: :plain,
       enable_starttls_auto: true
     }
 
-    if ENV["DO_NOT_SEND_MAIL"] == "True"
+    if ENV.fetch("DO_NOT_SEND_MAIL", "False") == "True"
       config.action_mailer.perform_deliveries = false
       config.action_mailer.delivery_method = :test
     end
 
-    if ENV.fetch("FORCE_COOKIES_SAME_SITE_PROTECTION", "False") == "True" ||
+    if ENV.fetch("NO_COOKIES_SAME_SITE_PROTECTION", "False") != "True" &&
         ENV.fetch("ALLOWED_ORIGINS", "").include?("localhost")
       Rails.application.config.action_dispatch.cookies_same_site_protection = :none
     end
