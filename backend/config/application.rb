@@ -68,7 +68,8 @@ module DataPass
       config.action_mailer.delivery_method = :test
     end
 
-    if ENV.fetch("ALLOWED_ORIGINS").include? "localhost"
+    if ENV.fetch("FORCE_COOKIES_SAME_SITE_PROTECTION", "False") == "True" ||
+        ENV.fetch("ALLOWED_ORIGINS", "").include?("localhost")
       Rails.application.config.action_dispatch.cookies_same_site_protection = :none
     end
 
