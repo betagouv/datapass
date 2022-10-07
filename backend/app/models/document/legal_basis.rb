@@ -1,2 +1,2 @@
-class Document::LegalBasis < PdfDocument
+class Document::LegalBasis < Document::PdfDocument
 end

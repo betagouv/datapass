@@ -1,4 +1,4 @@
-class OutdatedDocument < Document
+class Document::OutdatedDocument < Document
   mount_uploader :attachment, PdfUploader
 
   private

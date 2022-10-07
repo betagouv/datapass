@@ -1,4 +1,4 @@
-class SpreadsheetDocument < Document
+class Document::SpreadsheetDocument < Document
   mount_uploader :attachment, SpreadsheetUploader
 
   private

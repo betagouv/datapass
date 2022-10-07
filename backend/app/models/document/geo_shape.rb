@@ -1,2 +1,2 @@
-class Document::GeoShape < OutdatedDocument
+class Document::GeoShape < Document::OutdatedDocument
 end

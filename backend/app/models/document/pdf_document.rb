@@ -1,4 +1,4 @@
-class PdfDocument < Document
+class Document::PdfDocument < Document
   mount_uploader :attachment, PdfUploader
 
   private

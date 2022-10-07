@@ -1,2 +1,2 @@
-class Document::ExpressionBesoinSpecifique < SpreadsheetDocument
+class Document::ExpressionBesoinSpecifique < Document::SpreadsheetDocument
 end

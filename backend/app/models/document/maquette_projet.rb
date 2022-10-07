@@ -1,2 +1,2 @@
-class Document::MaquetteProjet < PdfDocument
+class Document::MaquetteProjet < Document::PdfDocument
 end

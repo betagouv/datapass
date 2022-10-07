@@ -1,2 +1,2 @@
-class Document::DelegationServicePublic < PdfDocument
+class Document::DelegationServicePublic < Document::PdfDocument
 end
