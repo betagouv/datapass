@@ -331,7 +331,7 @@ FactoryBot.define do
       end
 
       documents do
-        build_list(:document, 1, :liste_aidants)
+        build_list(:document, 1)
       end
 
       additional_content do

@@ -22,6 +22,12 @@ FactoryBot.define do
       end
 
       type { "Document::ListeAidants" }
+
+      attachable { build(:enrollment, :aidants_connect) }
+
+      transient do
+        file_extension { "xls" }
+      end
     end
 
     trait :expression_besoin_specifique do

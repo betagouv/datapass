@@ -58,6 +58,22 @@ RSpec.describe Document, type: :model do
     end
   end
 
+  describe "attachment spreadsheets validation for aidants_connect" do
+    subject { build(:document, :liste_aidants, file_extension: file_extension) }
+
+    context "with a xls" do
+      let(:file_extension) { "xls" }
+
+      it { is_expected.to be_valid }
+    end
+
+    context "with a pdf" do
+      let(:file_extension) { "pdf" }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
   describe "can not upload file for geo shape" do
     subject { build(:document, :geo_shape, file_extension: file_extension) }
 
