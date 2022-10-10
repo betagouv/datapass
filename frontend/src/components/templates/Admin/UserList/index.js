@@ -4,7 +4,6 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
 import RoleCheckboxCell from './RoleCheckboxCell';
-import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
@@ -19,23 +18,15 @@ const UserList = () => {
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [skipReset, setSkipReset] = React.useState(false);
 
-  const filterTypes = React.useMemo(
-    () => ({
-      text: textFilter,
-    }),
-    []
-  );
-
   const columnHelper = createColumnHelper();
 
   const columns = useMemo(
     () => [
       columnHelper.accessor('email', {
         header: 'Email',
-        accessor: 'email',
+        accessorKey: 'email',
         id: 'email',
-        Filter: TextFilter,
-        filter: 'text',
+        filterFn: 'includesString',
       }),
       ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
         columnHelper.group({
@@ -45,10 +36,12 @@ const UserList = () => {
             </span>
           ),
           id: targetApi,
+          enableColumnFilter: false,
           columns: ['reporter', 'instructor', 'subscriber'].map((roleType) =>
             columnHelper.accessor(`${targetApi}:${roleType}`, {
               header: `${roleType[0]}`,
               id: `${targetApi}:${roleType}`,
+              enableColumnFilter: false,
               cell: (cellProps) => (
                 <RoleCheckboxCell updateData={updateRole} {...cellProps} />
               ),
@@ -56,7 +49,12 @@ const UserList = () => {
           ),
         })
       ),
-      columnHelper.accessor('id', { header: 'Id', accessor: 'id', id: 'id' }),
+      columnHelper.accessor('id', {
+        header: 'Id',
+        accessorKey: 'id',
+        id: 'id',
+        enableColumnFilter: false,
+      }),
     ],
     []
   );
@@ -132,7 +130,6 @@ const UserList = () => {
               columns={columns}
               data={users}
               updateData={updateRole}
-              filterFns={filterTypes}
               autoResetAll={!skipReset}
             />
           </div>
