@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM ruby:2.7.6
-WORKDIR /myapp
+WORKDIR /opt/apps/datapass-backend/current
 COPY ./Gemfile Gemfile
 COPY ./Gemfile.lock Gemfile.lock
 RUN bundle install
