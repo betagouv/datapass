@@ -25,7 +25,7 @@ import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import Badge from '../atoms/hyperTexts/Badge';
-import EnrollmentTable from '../molecules/EnrollmentTable';
+// import EnrollmentTable from '../molecules/EnrollmentTable';
 
 const getInboxes = (user) => ({
   primary: {

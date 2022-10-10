@@ -27,6 +27,7 @@ const UserList = () => {
         accessorKey: 'email',
         id: 'email',
         filterFn: 'includesString',
+        placeholder: 'Filtrer par email',
       }),
       ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
         columnHelper.group({
