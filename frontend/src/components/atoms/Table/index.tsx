@@ -2,8 +2,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import * as React from 'react';
-
 import {
   flexRender,
   getCoreRowModel,
@@ -11,7 +9,7 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import './Table.css';
+import './style.css';
 
 export default function Table({ columns, data, autoResetAll, updateData }) {
   const table = useReactTable({

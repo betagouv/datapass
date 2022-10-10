@@ -10,7 +10,7 @@ import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Link from '../../../atoms/hyperTexts/Link';
 import Tag from '../../../atoms/hyperTexts/Tag';
-import Table from './Table';
+import Table from '../../../atoms/Table';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
