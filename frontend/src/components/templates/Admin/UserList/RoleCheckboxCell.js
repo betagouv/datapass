@@ -1,31 +1,49 @@
-import React, { useEffect, useState } from 'react';
 import { updateUser } from '../../../../services/users';
+import { EditIcon, EyeIcon, MailIcon } from '../../../atoms/icons/fr-fi-icons';
 
 const RoleCheckboxCell = (props) => {
   const { row, column, updateData } = props;
-  const initialValue = row.original.roles.includes(column.id);
-  const [value, setValue] = useState(initialValue);
-  const onChange = async (e) => {
-    const newValue = e.target.checked;
-    const newRoles = newValue
-      ? [...row?.original.roles, column?.id]
-      : row?.original.roles.filter((e) => e !== column?.id);
+
+  const onChange = async ({ isChecked, role }) => {
+    const newRoles = isChecked
+      ? [...row?.original.roles, role]
+      : row?.original.roles.filter((e) => e !== role);
 
     try {
       await updateUser({ id: row?.original.id, roles: newRoles });
-      setValue(newValue);
-      updateData(row?.index, column?.id, newValue);
+      updateData(row?.index, role, isChecked);
     } catch (e) {
-      setValue(!newValue);
-      updateData(row?.index, column?.id, !newValue);
+      updateData(row?.index, role, !isChecked);
     }
   };
 
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  return <input type="checkbox" checked={value} onChange={onChange} />;
+  return (
+    <div className="role-checkbox-cell">
+      {[
+        { roleId: 'instructor', label: 'Instructeur', Icon: EditIcon },
+        { roleId: 'reporter', label: 'Rapporteur', Icon: EyeIcon },
+        { roleId: 'subscriber', label: 'Abonné', Icon: MailIcon },
+      ].map(({ roleId, label, Icon }) => {
+        const role = `${column.id}:${roleId}`;
+        const isChecked = row.original.roles.includes(role);
+        return (
+          <button
+            tooltip={label}
+            key={roleId}
+            onClick={() => onChange({ isChecked: !isChecked, role })}
+          >
+            <Icon
+              color={
+                isChecked
+                  ? 'var(--text-action-high-blue-france)'
+                  : 'var(--datapass-light-grey)'
+              }
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
 };
 
 export default RoleCheckboxCell;

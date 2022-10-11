@@ -26,7 +26,7 @@ export default function Table({ columns, data, autoResetAll, updateData }) {
 
   return (
     <>
-      <table>
+      <table className="datapass-table">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>

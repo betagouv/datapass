@@ -8,9 +8,10 @@ import Loader from '../../../atoms/Loader';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
-import Link from '../../../atoms/hyperTexts/Link';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../atoms/Table';
+
+import './RoleCheckboxCell.css';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,22 +32,11 @@ const UserList = () => {
       }),
       ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
         columnHelper.group({
-          header: () => (
-            <span style={{ writingMode: 'vertical-rl' }}>
-              {`${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
-            </span>
-          ),
+          header: DATA_PROVIDER_PARAMETERS[targetApi]?.label,
           id: targetApi,
           enableColumnFilter: false,
-          columns: ['reporter', 'instructor', 'subscriber'].map((roleType) =>
-            columnHelper.accessor(`${targetApi}:${roleType}`, {
-              header: `${roleType[0]}`,
-              id: `${targetApi}:${roleType}`,
-              enableColumnFilter: false,
-              cell: (cellProps) => (
-                <RoleCheckboxCell updateData={updateRole} {...cellProps} />
-              ),
-            })
+          cell: (cellProps) => (
+            <RoleCheckboxCell updateData={updateRole} {...cellProps} />
           ),
         })
       ),
@@ -100,7 +90,7 @@ const UserList = () => {
   };
 
   return (
-    <div className="table-container admin-table-container">
+    <>
       <ListHeader title="Liste des utilisateurs">
         <TagContainer>
           <Tag
@@ -125,30 +115,14 @@ const UserList = () => {
           <Loader />
         </div>
       ) : (
-        <>
-          <Table
-            columns={columns}
-            data={users}
-            updateData={updateRole}
-            autoResetAll={!skipReset}
-          />
-          <div>
-            Légende :
-            <ul>
-              <li>r (reporter) : rapporteur</li>
-              <li>i (instructor) : instructeur</li>
-              <li>s (subscriber) : abonné</li>
-            </ul>
-            <Link
-              inline
-              href="https://github.com/betagouv/datapass#les-roles-dans-datapass"
-            >
-              Plus d’info
-            </Link>
-          </div>
-        </>
+        <Table
+          columns={columns}
+          data={users}
+          updateData={updateRole}
+          autoResetAll={!skipReset}
+        />
       )}
-    </div>
+    </>
   );
 };
 
