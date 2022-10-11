@@ -28,7 +28,9 @@ const UserList = () => {
         accessorKey: 'email',
         id: 'email',
         filterFn: 'includesString',
-        placeholder: 'Filtrer par email',
+        meta: {
+          placeholder: 'Filtrer par email',
+        },
       }),
       ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
         columnHelper.group({
@@ -116,10 +118,12 @@ const UserList = () => {
         </div>
       ) : (
         <Table
-          columns={columns}
-          data={users}
-          updateData={updateRole}
-          autoResetAll={!skipReset}
+          firstColumnFixed
+          tableOptions={{
+            columns: columns,
+            data: users,
+            autoResetAll: !skipReset,
+          }}
         />
       )}
     </>

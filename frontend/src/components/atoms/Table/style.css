@@ -1,9 +1,28 @@
+.datapass-table-wrapper {
+  overflow: scroll;
+}
+
 .datapass-table {
   border-collapse: collapse; 
 }
 
 .datapass-table th,td {
   padding: 15px;
+}
+
+.datapass-table.firstColumnFixed th:first-of-type,
+.datapass-table.firstColumnFixed td:first-of-type {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.datapass-table.firstColumnFixed th:first-of-type{
+  background-color: #ECECFE;
+}
+
+.datapass-table.firstColumnFixed td:first-of-type{
+  background-color: white;
 }
 
 .datapass-table input {

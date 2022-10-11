@@ -1,81 +1,98 @@
-// 👇️ ts-nocheck ignores all ts errors in the file
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
+  Column,
+  TableOptions,
+  RowData,
 } from '@tanstack/react-table';
 import Input from '../inputs/Input';
 import TablePagination from '../TablePagination';
 import './style.css';
 
-export default function Table({ columns, data, autoResetAll, updateData }) {
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    placeholder: string;
+  }
+}
+
+export default function Table({
+  tableOptions,
+  firstColumnFixed = false,
+}: {
+  tableOptions: TableOptions<RowData>;
+  firstColumnFixed?: boolean;
+}) {
   const table = useReactTable({
-    data,
-    columns,
-    autoResetAll,
-    onStateChange: updateData,
+    ...tableOptions,
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getCoreRowModel: getCoreRowModel(),
   });
 
+  let tableClassName = 'datapass-table';
+
+  if (firstColumnFixed) {
+    tableClassName += ' firstColumnFixed';
+  }
+
   return (
     <>
-      <table className="datapass-table">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} colSpan={header.colSpan}>
-                  {header.isPlaceholder ? null : (
-                    <div>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {header.column.getCanFilter() ? (
-                        <div>
-                          <TextFilterInput column={header.column} />
-                        </div>
-                      ) : null}
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="datapass-table-wrapper page-container">
+        <table className={tableClassName}>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} colSpan={header.colSpan}>
+                    {header.isPlaceholder ? null : (
+                      <div>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {header.column.getCanFilter() ? (
+                          <div>
+                            <TextFilterInput column={header.column} />
+                          </div>
+                        ) : null}
+                      </div>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <TablePagination table={table} />
     </>
   );
 }
 
-function TextFilterInput({ column }) {
-  const columnFilterValue = column.getFilterValue();
+function TextFilterInput({ column }: { column: Column<any, any> }) {
+  const columnFilterValue: any = column.getFilterValue();
+
   return (
     <Input
       type="text"
       value={columnFilterValue}
-      onChange={(e) => column.setFilterValue(e.target.value)}
-      placeholder={column.columnDef.placeholder}
+      onChange={(e: any) => column.setFilterValue(e.target.value)}
+      placeholder={column.columnDef.meta?.placeholder}
     />
   );
 }

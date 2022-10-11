@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
 
 export const Input = ({
   type = 'text',
-  label,
-  helper,
-  meta,
-  name,
+  label = '',
+  helper = '',
+  meta = '',
+  name = '',
   placeholder = '',
-  value = null,
-  disabled,
+  value = '',
+  disabled = false,
   onChange,
-  ariaLabel,
-  required,
+  ariaLabel = '',
+  required = false,
   ...rest
 }) => {
   // id will be set once when the component initially renders, but never again

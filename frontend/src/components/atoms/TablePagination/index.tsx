@@ -1,14 +1,11 @@
-// 👇️ ts-nocheck ignores all ts errors in the file
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import Button from '../hyperTexts/Button';
 import NumberInput from '../inputs/NumberInput';
 import './style.css';
+import { Table } from '@tanstack/react-table';
 
-export default function TablePagination({ table }) {
+export default function TablePagination({ table }: { table: Table<any> }) {
   return (
-    <div className="table-pagination-container">
+    <div className="table-pagination-container page-container">
       <Button
         large
         secondary
@@ -22,7 +19,7 @@ export default function TablePagination({ table }) {
         <NumberInput
           type="number"
           value={table.getState().pagination.pageIndex + 1}
-          onChange={(e) => {
+          onChange={(e: any) => {
             const page = e.target.value ? Number(e.target.value) - 1 : 0;
             table.setPageIndex(page);
           }}

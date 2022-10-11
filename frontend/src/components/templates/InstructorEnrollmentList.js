@@ -25,7 +25,6 @@ import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import Badge from '../atoms/hyperTexts/Badge';
-// import EnrollmentTable from '../molecules/EnrollmentTable';
 
 const getInboxes = (user) => ({
   primary: {
@@ -448,12 +447,6 @@ class InstructorEnrollmentList extends React.Component {
           </Button>
         </ListHeader>
         <div className="table-container">
-          {/* <EnrollmentTable
-            columns={this.getColumnConfiguration()}
-            data={enrollments}
-            autoResetAll={false}
-            updateData={() => null}
-          /> */}
           <ReactTable
             manual
             data={enrollments}
