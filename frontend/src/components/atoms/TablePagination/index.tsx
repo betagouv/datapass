@@ -11,6 +11,7 @@ export default function TablePagination({ table }) {
     <div className="table-pagination-container">
       <Button
         large
+        secondary
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
@@ -29,6 +30,7 @@ export default function TablePagination({ table }) {
         <div>sur {table.getPageCount()}</div>
       </div>
       <Button
+        secondary
         large
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}

@@ -25,7 +25,7 @@ export default function Table({ columns, data, autoResetAll, updateData }) {
   });
 
   return (
-    <div>
+    <>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -64,7 +64,7 @@ export default function Table({ columns, data, autoResetAll, updateData }) {
       </table>
 
       <TablePagination table={table} />
-    </div>
+    </>
   );
 }
 

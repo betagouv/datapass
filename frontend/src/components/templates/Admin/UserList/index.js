@@ -126,14 +126,12 @@ const UserList = () => {
         </div>
       ) : (
         <>
-          <div className="admin-table">
-            <Table
-              columns={columns}
-              data={users}
-              updateData={updateRole}
-              autoResetAll={!skipReset}
-            />
-          </div>
+          <Table
+            columns={columns}
+            data={users}
+            updateData={updateRole}
+            autoResetAll={!skipReset}
+          />
           <div>
             Légende :
             <ul>
