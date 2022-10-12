@@ -3,10 +3,11 @@
 }
 
 .datapass-table {
-  border-collapse: collapse; 
+  border-collapse: collapse;
 }
 
-.datapass-table th,td {
+.datapass-table th,
+td {
   padding: 15px;
 }
 
@@ -17,24 +18,24 @@
   z-index: 1;
 }
 
-.datapass-table.firstColumnFixed th:first-of-type{
-  background-color: #ECECFE;
+.datapass-table.firstColumnFixed th:first-of-type {
+  background-color: #ececfe;
 }
 
-.datapass-table.firstColumnFixed td:first-of-type{
+.datapass-table.firstColumnFixed td:first-of-type {
   background-color: white;
 }
 
 .datapass-table input {
- background-color: white;
+  background-color: white;
 }
 
 .datapass-table thead {
   padding: 10px 0;
-  background-color: #ECECFE;
+  background-color: #ececfe;
 }
 
 .datapass-table tbody tr {
   height: 77px;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
 }

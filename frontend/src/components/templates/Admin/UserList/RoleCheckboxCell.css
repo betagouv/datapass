@@ -1,15 +1,15 @@
 .role-checkbox-cell {
-    display: flex;
-    gap: 5px;
-    transition: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  gap: 5px;
+  transition: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .role-checkbox-cell button {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
