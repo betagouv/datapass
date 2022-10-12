@@ -19,13 +19,13 @@ declare module '@tanstack/table-core' {
   }
 }
 
-export default function Table({
+const Table = ({
   tableOptions,
   firstColumnFixed = false,
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
-}) {
+}) => {
   const table = useReactTable({
     ...tableOptions,
     getFilteredRowModel: getFilteredRowModel(),
@@ -83,9 +83,9 @@ export default function Table({
       <TablePagination table={table} />
     </>
   );
-}
+};
 
-function TextFilterInput({ column }: { column: Column<any, any> }) {
+const TextFilterInput = ({ column }: { column: Column<any, any> }) => {
   const columnFilterValue: any = column.getFilterValue();
 
   return (
@@ -96,4 +96,6 @@ function TextFilterInput({ column }: { column: Column<any, any> }) {
       placeholder={column.columnDef.meta?.placeholder}
     />
   );
-}
+};
+
+export default Table;

@@ -3,7 +3,7 @@ import NumberInput from '../inputs/NumberInput';
 import './style.css';
 import { Table } from '@tanstack/react-table';
 
-export default function TablePagination({ table }: { table: Table<any> }) {
+const TablePagination = ({ table }: { table: Table<any> }) => {
   return (
     <div className="table-pagination-container page-container">
       <Button
@@ -36,4 +36,6 @@ export default function TablePagination({ table }: { table: Table<any> }) {
       </Button>
     </div>
   );
-}
+};
+
+export default TablePagination;
