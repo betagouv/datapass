@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useListItemNavigation = () => {
@@ -7,7 +7,7 @@ export const useListItemNavigation = () => {
   const navigate = useNavigate();
 
   const goToItem = useCallback(
-    (target_api: string, id: number, clickEvent?: any) => {
+    (target_api: string, id: number, clickEvent?: React.MouseEvent) => {
       const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
 
       if (clickEvent?.ctrlKey || clickEvent?.metaKey) {

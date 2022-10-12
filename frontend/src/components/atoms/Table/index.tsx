@@ -86,13 +86,16 @@ const Table = ({
 };
 
 const TextFilterInput = ({ column }: { column: Column<any, any> }) => {
-  const columnFilterValue: any = column.getFilterValue();
+  const columnFilterValue = column.getFilterValue();
 
   return (
     <Input
       type="text"
-      value={columnFilterValue}
-      onChange={(e: any) => column.setFilterValue(e.target.value)}
+      value={(columnFilterValue ?? '') as string}
+      onChange={(e: React.SyntheticEvent) => {
+        const target = e.target as HTMLInputElement;
+        column.setFilterValue(target.value);
+      }}
       placeholder={column.columnDef.meta?.placeholder}
     />
   );

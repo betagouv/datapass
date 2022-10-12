@@ -11,8 +11,6 @@ import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../atoms/Table';
 
-import './RoleCheckboxCell.css';
-
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);

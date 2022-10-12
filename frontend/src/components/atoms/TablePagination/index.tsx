@@ -19,8 +19,9 @@ const TablePagination = ({ table }: { table: Table<any> }) => {
         <NumberInput
           type="number"
           value={table.getState().pagination.pageIndex + 1}
-          onChange={(e: any) => {
-            const page = e.target.value ? Number(e.target.value) - 1 : 0;
+          onChange={(e: React.SyntheticEvent) => {
+            const target = e.target as HTMLInputElement;
+            const page = target.value ? Number(target.value) - 1 : 0;
             table.setPageIndex(page);
           }}
         />

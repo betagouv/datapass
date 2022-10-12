@@ -1,5 +1,6 @@
 import { updateUser } from '../../../../services/users';
 import { EditIcon, EyeIcon, MailIcon } from '../../../atoms/icons/fr-fi-icons';
+import './RoleCheckboxCell.css';
 
 const RoleCheckboxCell = (props) => {
   const { row, column, updateData } = props;
