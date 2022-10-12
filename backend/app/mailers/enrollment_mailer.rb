@@ -52,6 +52,7 @@ class EnrollmentMailer < ActionMailer::Base
   end
 
   def notify_instructors_submitted_changes_requested
+    @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
     @demandeur_email = @enrollment.demandeurs.pluck(:email).first
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
