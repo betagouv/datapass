@@ -85,6 +85,10 @@ class Enrollment < ActiveRecord::Base
       end
     end
 
+    before_transition from: :draft, to: :submitted do |enrollment|
+      enrollment.notify_subscribers_for_new_submitted_enrollment
+    end
+
     before_transition from: :changes_requested, to: :submitted do |enrollment|
       enrollment.notify_subscribers_for_submitted_enrollment_after_request_changes
     end
@@ -308,8 +312,18 @@ class Enrollment < ActiveRecord::Base
     ).notification_email_unknown_software.deliver_later
   end
 
+  def notify_subscribers_for_new_submitted_enrollment
+    EnrollmentMailer.with(
+      to: subscribers.pluck(:email),
+      target_api: target_api,
+      enrollment_id: id,
+      demandeur_email: demandeurs.pluck(:email).first
+    ).notify_instructors_submitted_enrollment.deliver_later
+  end
+
   def notify_subscribers_for_submitted_enrollment_after_request_changes
     EnrollmentMailer.with(
+      to: subscribers.pluck(:email),
       target_api: target_api,
       enrollment_id: id,
       demandeur_email: demandeurs.pluck(:email).first

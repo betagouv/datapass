@@ -51,6 +51,21 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def notify_instructors_submitted_enrollment
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @demandeur_email = @enrollment.demandeurs.pluck(:email).first
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @enrollment.subscribers.pluck(:email),
+      from: "notifications@api.gouv.fr",
+      subject: "Nouvelle demande d’habilitation sur DataPass",
+      template_path: "enrollment_mailer/instructor",
+      template_name: "notify_submitted"
+    )
+  end
+
   def notify_instructors_submitted_changes_requested
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
@@ -61,7 +76,7 @@ class EnrollmentMailer < ActionMailer::Base
       to: @enrollment.subscribers.pluck(:email),
       from: "notifications@api.gouv.fr",
       subject: "Vous avez un retour sur votre demande de changement",
-      template_path: "enrollment_mailer",
+      template_path: "enrollment_mailer/instructor",
       template_name: "notify_submitted"
     )
   end
