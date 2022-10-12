@@ -143,20 +143,19 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           ActiveJob::Base.queue_adapter = :test
         end
 
-        it "sends last email to target api subscribers to notify a new submitted enrollment from user" do
+        it " sends first email to target api subscribers to notify a new submitted enrollment from user" do
           make_request
 
-          enrollment_user_email = ActionMailer::Base.deliveries.last
+          enrollment_user_email = ActionMailer::Base.deliveries.first
           expect(enrollment_user_email).to be_present
 
           expect(enrollment_user_email.to).to eq(enrollment.subscribers.pluck(:email))
           expect(enrollment_user_email.body.encoded).to include(enrollment.demandeurs.first.email)
         end
 
-        it "sends first email to enrollment's user" do
+        it "sends email to enrollment's user" do
           make_request
-
-          enrollment_user_email = ActionMailer::Base.deliveries.first
+          enrollment_user_email = ActionMailer::Base.deliveries.last
           expect(enrollment_user_email).to be_present
 
           expect(enrollment_user_email.to).to eq([enrollment.demandeurs.first.email])

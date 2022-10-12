@@ -30,7 +30,6 @@ RSpec.describe "Providers config", type: :acceptance do
         "request_changes",
         "refuse",
         "revoke",
-        "notify_submitted",
         "create",
         "notify"
       )

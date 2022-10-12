@@ -154,7 +154,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     let(:template) { "notify_submitted" }
 
     let(:notify_submitted_sample) do
-      File.open(Rails.root.join("app/views/enrollment_mailer/notify_submitted.text.erb")) { |f| f.readline }.chomp
+      File.open(Rails.root.join("app/views/enrollment_mailer/instructor/notify_submitted.text.erb")) { |f| f.readline }.chomp
     end
 
     it "renders valid headers" do
