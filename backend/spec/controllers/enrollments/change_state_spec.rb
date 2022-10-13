@@ -155,11 +155,72 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
         it "sends email to enrollment's user" do
           make_request
+
           enrollment_user_email = ActionMailer::Base.deliveries.last
           expect(enrollment_user_email).to be_present
 
           expect(enrollment_user_email.to).to eq([enrollment.demandeurs.first.email])
           expect(enrollment_user_email.body.encoded).to include(submit_email_sample)
+        end
+      end
+
+      describe "email sends to instructor when enrollment is submitted" do
+        include ActiveJob::TestHelper
+
+        let!(:franceconnect_subscribers) do
+          create_list(:user, 2, roles: ["franceconnect:subscriber"])
+        end
+
+        let(:event) { :submit }
+
+        before do
+          login(user)
+        end
+
+        after do
+          clear_enqueued_jobs
+          clear_performed_jobs
+        end
+
+        context "when enrollment is submit for the first time" do
+          describe "non-regression test" do
+            it "enqueues an EnrollmentMailer#notification_email_unknown_software which does not raise an error" do
+              Sidekiq::Testing.inline!
+
+              expect {
+                perform_enqueued_jobs do
+                  make_request
+                end
+              }.not_to raise_error
+
+              Sidekiq::Testing.fake!
+            end
+          end
+
+          it "sends email to target_api subscribers" do
+            make_request
+
+            enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+            notif_new_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "notify_instructors_submitted_enrollment" }
+
+            expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
+            expect(notif_new_submitted_enrollment).to be_truthy
+          end
+        end
+
+        context "when enrollment is submit after changes_requested" do
+          let(:enrollment_status) { "changes_requested" }
+          let(:event) { :submit }
+
+          it "sends email to instructors when enrollment pass from request_changes to submit" do
+            make_request
+
+            enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+            notif_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "notify_instructors_submitted_changes_requested" }
+
+            expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
+            expect(notif_submitted_enrollment).to be_truthy
+          end
         end
       end
 

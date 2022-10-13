@@ -314,7 +314,6 @@ class Enrollment < ActiveRecord::Base
 
   def notify_subscribers_for_new_submitted_enrollment
     EnrollmentMailer.with(
-      to: subscribers.pluck(:email),
       target_api: target_api,
       enrollment_id: id,
       demandeur_email: demandeurs.pluck(:email).first
@@ -323,7 +322,6 @@ class Enrollment < ActiveRecord::Base
 
   def notify_subscribers_for_submitted_enrollment_after_request_changes
     EnrollmentMailer.with(
-      to: subscribers.pluck(:email),
       target_api: target_api,
       enrollment_id: id,
       demandeur_email: demandeurs.pluck(:email).first
