@@ -41,7 +41,7 @@ export const Form = ({
   const [hasNotFoundError, setHasNotFoundError] = useState(false);
   const navigate = useNavigate();
   const { goBackToList } = useListItemNavigation();
-  const refAlert = useRef(null);
+  const alertRef = useRef(null);
 
   const sectionLabels = useMemo(() => {
     return React.Children.map(
@@ -138,11 +138,10 @@ export const Form = ({
   );
 
   useEffect(() => {
-    console.log(refAlert);
     if (!isEmpty(successMessages) || !isEmpty(errorMessages)) {
-      refAlert.current.scrollIntoView({ behavior: 'smooth' });
+      alertRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [successMessages, errorMessages, refAlert]);
+  }, [successMessages, errorMessages, alertRef]);
 
   if (hasNotFoundError) {
     return <NotFound />;
@@ -181,7 +180,7 @@ export const Form = ({
         </OpenMessagePromptContextProvider>
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
-          <div ref={refAlert}>
+          <div ref={alertRef}>
             {successMessages.map((successMessage) => (
               <Alert type="success" key={successMessage}>
                 <Linkify message={successMessage} />
