@@ -17,10 +17,12 @@ export const Label: FunctionComponent<Props> = ({
   meta,
 }) => (
   <label className="fr-label" htmlFor={id}>
-    {label}
-    {required ? ' *' : ''}
-    {helper && <Helper title={helper} />}
-    {meta && <span className="fr-hint-text"> {meta}</span>}
+    <span>
+      {label}
+      {required ? ' *' : ''}
+      {helper && <Helper title={helper} />}
+      {meta && <span className="fr-hint-text"> {meta}</span>}
+    </span>
   </label>
 );
 
