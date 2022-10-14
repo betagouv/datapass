@@ -74,3 +74,11 @@ export const RefreshIcon: React.FC<Props> = ({ color, large }) => (
 export const ScheduleIcon: React.FC<Props> = ({ color, large }) => (
   <FrFiIcon type="time-line" color={color} large={large} />
 );
+
+export const EyeIcon: React.FC<Props> = ({ color, large }) => (
+  <FrFiIcon type="eye-line" color={color} large={large} />
+);
+
+export const EditIcon: React.FC<Props> = ({ color, large }) => (
+  <FrFiIcon type="edit-line" color={color} large={large} />
+);

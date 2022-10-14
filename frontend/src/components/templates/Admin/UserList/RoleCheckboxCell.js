@@ -1,35 +1,50 @@
-import React, { useEffect, useState } from 'react';
 import { updateUser } from '../../../../services/users';
+import { EditIcon, EyeIcon, MailIcon } from '../../../atoms/icons/fr-fi-icons';
+import './RoleCheckboxCell.css';
 
-const RoleCheckboxCell = ({
-  value: initialValue,
-  row: { index, original },
-  column: { id },
-  updateData,
-}) => {
-  const [value, setValue] = useState(initialValue);
+const RoleCheckboxCell = (props) => {
+  const { row, column, updateData } = props;
 
-  const onChange = async (e) => {
-    const newValue = e.target.checked;
-    const newRoles = newValue
-      ? [...original.roles, id]
-      : original.roles.filter((e) => e !== id);
+  const onChange = async ({ isChecked, role }) => {
+    const newRoles = isChecked
+      ? [...row?.original.roles, role]
+      : row?.original.roles.filter((e) => e !== role);
 
     try {
-      await updateUser({ id: original.id, roles: newRoles });
-      setValue(newValue);
-      updateData(index, id, newValue);
+      await updateUser({ id: row?.original.id, roles: newRoles });
+      updateData(row?.index, role, isChecked);
     } catch (e) {
-      setValue(!newValue);
-      updateData(index, id, !newValue);
+      updateData(row?.index, role, !isChecked);
     }
   };
 
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  return <input type="checkbox" checked={value} onChange={onChange} />;
+  return (
+    <div className="role-checkbox-cell">
+      {[
+        { roleId: 'instructor', label: 'Instructeur', Icon: EditIcon },
+        { roleId: 'reporter', label: 'Rapporteur', Icon: EyeIcon },
+        { roleId: 'subscriber', label: 'Abonné', Icon: MailIcon },
+      ].map(({ roleId, label, Icon }) => {
+        const role = `${column.id}:${roleId}`;
+        const isChecked = row.original.roles.includes(role);
+        return (
+          <button
+            tooltip={label}
+            key={roleId}
+            onClick={() => onChange({ isChecked: !isChecked, role })}
+          >
+            <Icon
+              color={
+                isChecked
+                  ? 'var(--text-action-high-blue-france)'
+                  : 'var(--datapass-light-grey)'
+              }
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
 };
 
 export default RoleCheckboxCell;

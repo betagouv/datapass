@@ -1,0 +1,31 @@
+.table-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-pagination-container button {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-pagination-container .table-pagination {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.table-pagination .fr-input-group {
+  margin-bottom: 0;
+}
+
+.table-pagination .fr-input {
+  margin-top: 0;
+  box-shadow: none;
+  width: 70px;
+  border-radius: 0.25rem;
+}
