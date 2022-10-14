@@ -201,7 +201,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
             make_request
 
             enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
-            notif_new_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "notify_instructors_submitted_enrollment" }
+            notif_new_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "new_enrollment_submission_notification_email" }
 
             expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
             expect(notif_new_submitted_enrollment).to be_truthy
@@ -216,7 +216,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
             make_request
 
             enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
-            notif_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "notify_instructors_submitted_changes_requested" }
+            notif_submitted_enrollment = enqueued_jobs.find { |job| job["arguments"][1] == "submission_after_changes_requested_notification_email" }
 
             expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
             expect(notif_submitted_enrollment).to be_truthy

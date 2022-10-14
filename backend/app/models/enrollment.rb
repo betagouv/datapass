@@ -86,11 +86,11 @@ class Enrollment < ActiveRecord::Base
     end
 
     before_transition from: :draft, to: :submitted do |enrollment|
-      enrollment.notify_subscribers_for_new_submitted_enrollment
+      enrollment.notify_subscribers_for_new_enrollment_submission
     end
 
     before_transition from: :changes_requested, to: :submitted do |enrollment|
-      enrollment.notify_subscribers_for_submitted_enrollment_after_request_changes
+      enrollment.notify_subscribers_for_enrollment_submission_after_changes_requested
     end
 
     before_transition from: :submitted, to: :validated do |enrollment|
@@ -312,20 +312,20 @@ class Enrollment < ActiveRecord::Base
     ).notification_email_unknown_software.deliver_later
   end
 
-  def notify_subscribers_for_new_submitted_enrollment
+  def notify_subscribers_for_new_enrollment_submission
     EnrollmentMailer.with(
       target_api: target_api,
       enrollment_id: id,
       demandeur_email: demandeurs.pluck(:email).first
-    ).notify_instructors_submitted_enrollment.deliver_later
+    ).new_enrollment_submission_notification_email.deliver_later
   end
 
-  def notify_subscribers_for_submitted_enrollment_after_request_changes
+  def notify_subscribers_for_enrollment_submission_after_changes_requested
     EnrollmentMailer.with(
       target_api: target_api,
       enrollment_id: id,
       demandeur_email: demandeurs.pluck(:email).first
-    ).notify_instructors_submitted_changes_requested.deliver_later
+    ).submission_after_changes_requested_notification_email.deliver_later
   end
 
   private

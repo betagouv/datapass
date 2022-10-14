@@ -131,7 +131,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     end
   end
 
-  describe "#notify_instructors_submitted_changes_requested" do
+  describe "#submission_after_changes_requested_notification_email" do
     let(:target_api) { "api_particulier" }
     let(:enrollment) { create(:enrollment, :api_particulier, user: user) }
     let(:user) { create(:user, :with_all_infos) }
@@ -148,7 +148,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
         target_api: target_api,
         enrollment_id: enrollment.id,
         template: template
-      ).notify_instructors_submitted_changes_requested
+      ).submission_after_changes_requested_notification_email
     end
 
     let(:template) { "notify_submitted" }
@@ -158,7 +158,7 @@ RSpec.describe EnrollmentMailer, type: :mailer do
     end
 
     it "renders valid headers" do
-      expect(mail.subject).to eq("Vous avez un retour sur votre demande de changement")
+      expect(mail.subject).to eq("Retour sur votre demande de modification")
       expect(mail.to).to eq([instructor.email])
       expect(mail.from).to eq(["notifications@api.gouv.fr"])
     end

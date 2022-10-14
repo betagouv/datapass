@@ -51,7 +51,7 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
-  def notify_instructors_submitted_enrollment
+  def new_enrollment_submission_notification_email
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
     @demandeur_email = @enrollment.demandeurs.pluck(:email).first
@@ -66,7 +66,7 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
-  def notify_instructors_submitted_changes_requested
+  def submission_after_changes_requested_notification_email
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
     @demandeur_email = @enrollment.demandeurs.pluck(:email).first
@@ -75,7 +75,7 @@ class EnrollmentMailer < ActionMailer::Base
     mail(
       to: @enrollment.subscribers.pluck(:email),
       from: "notifications@api.gouv.fr",
-      subject: "Vous avez un retour sur votre demande de changement",
+      subject: "Retour sur votre demande de modification",
       template_path: "enrollment_mailer/instructor",
       template_name: "notify_submitted"
     )
