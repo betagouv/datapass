@@ -26,7 +26,7 @@
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "@gouvfr/dsfr": "1.7.2",
     "@justfixnyc/react-aria-modal": "^5.1.4-alpha.0",
-    "@sentry/react": "^6.19.2",
+    "@sentry/react": "^7.15.0",
     "@tanstack/react-table": "^8.5.15",
     "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.180",
