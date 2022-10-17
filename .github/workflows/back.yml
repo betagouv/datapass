@@ -63,7 +63,7 @@ jobs:
       #     sudo cp policy.xml /etc/ImageMagick-6/policy.xml
 
       - name: Cache Gems
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -93,7 +93,7 @@ jobs:
           bundle exec brakeman
 
       - name: Run tests & publish coverage
-        uses: paambaati/codeclimate-action@v2.7.5
+        uses: paambaati/codeclimate-action@v3.1.0
         env:
           CC_TEST_REPORTER_ID: c520d0a599739b0fb177eb2ecfeaa72792c262af475dfa0a7bcea092fdcd3301
         with:
