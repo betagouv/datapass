@@ -46,6 +46,8 @@ import ApiR2PProduction from '../pages/DgfipPages/ApiR2PProduction';
 import ApiR2PSandbox from '../pages/DgfipPages/ApiR2PSandbox';
 import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
 import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
+import ApiSatelitProduction from '../pages/DgfipPages/ApiSatelitProduction';
+import ApiSatelitSandbox from '../pages/DgfipPages/ApiSatelitSandbox';
 import FranceConnect from '../pages/FranceConnect';
 import HubeePortail from '../pages/HubeePortail';
 import HubeePortailDila from '../pages/HubeePortailDila';
@@ -446,6 +448,20 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       email: 'support.partenaires@agentconnect.gouv.fr',
       type: DataProviderType.api,
       component: AgentConnectFs,
+    },
+    api_satelit_sandbox: {
+      label: 'API Satelit - bac à sable',
+      icon: 'logo-dgfip-with-label.png',
+      email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+      type: DataProviderType.api,
+      component: ApiSatelitSandbox,
+    },
+    api_satelit_production: {
+      label: 'API Satelit - production',
+      icon: 'logo-dgfip-with-label.png',
+      email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+      type: DataProviderType.api,
+      component: ApiSatelitProduction,
     },
   };
 
