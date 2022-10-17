@@ -35,16 +35,6 @@ module EmailNotifierMethods
     ).rgpd_contact_email.deliver_later
   end
 
-  def notify_subscribers_by_email_for_submitted_enrollment
-    EnrollmentMailer.with(
-      to: enrollment.subscribers.pluck(:email),
-      target_api: enrollment.target_api,
-      enrollment_id: enrollment.id,
-      template: "notify_submitted",
-      demandeur_email: enrollment.demandeurs.pluck(:email).first
-    ).notification_email.deliver_later
-  end
-
   def deliver_message_to_enrollment_instructor(comment)
     EnrollmentMailer.with(
       target_api: enrollment.target_api,

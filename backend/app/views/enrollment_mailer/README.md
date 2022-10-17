@@ -64,7 +64,6 @@ api_entreprise:
     request_changes: *shared_request_changes_mailer
     refuse:
       subject: "Votre habilitation pour API Entreprise a été refusée"
-    notify_submitted: *shared_notify_submitted_mailer
     create: *shared_create_mailer
     notify: *shared_notify_mailer
     revoke: *shared_notify_mailer

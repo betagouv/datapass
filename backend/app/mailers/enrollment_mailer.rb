@@ -51,6 +51,36 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def new_enrollment_submission_notification_email
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @demandeur_email = @enrollment.demandeurs.pluck(:email).first
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @enrollment.subscribers.pluck(:email),
+      from: "notifications@api.gouv.fr",
+      subject: "Nouvelle demande d’habilitation sur DataPass",
+      template_path: "enrollment_mailer/instructor",
+      template_name: "notify_submitted"
+    )
+  end
+
+  def submission_after_changes_requested_notification_email
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @demandeur_email = @enrollment.demandeurs.pluck(:email).first
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @enrollment.subscribers.pluck(:email),
+      from: "notifications@api.gouv.fr",
+      subject: "Retour sur votre demande de modification",
+      template_path: "enrollment_mailer/instructor",
+      template_name: "notify_submitted"
+    )
+  end
+
   def notify_support_franceconnect
     @target_api_label = data_provider_config["label"]
     @nom_raison_sociale = params[:nom_raison_sociale]

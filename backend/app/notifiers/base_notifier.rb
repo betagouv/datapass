@@ -18,8 +18,6 @@ class BaseNotifier < AbstractNotifier
 
   def submit(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
-
-    notify_subscribers_by_email_for_submitted_enrollment
   end
 
   def notify(comment:, current_user:)
