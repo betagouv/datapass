@@ -207,7 +207,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def team_members_json
-    team_members.to_json(methods: :type)
+    team_members.order(id: :asc).to_json(methods: :type)
   end
 
   def link
