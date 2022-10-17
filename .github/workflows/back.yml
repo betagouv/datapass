@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -106,7 +106,7 @@ jobs:
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  #       uses: actions/checkout@v3
 
   #     - name: Run Standardrb linter
   #       uses: amoeba/standardrb-action@master
@@ -120,7 +120,7 @@ jobs:
   #   runs-on: ubuntu-20.04
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  #       uses: actions/checkout@v3
 
   #     - name: Run Brakeman linter action
   #       uses: devmasx/brakeman-linter-action@master
