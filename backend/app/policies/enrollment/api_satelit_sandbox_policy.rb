@@ -1,2 +1,2 @@
-class Enrollment::ApiSatelitSandbox < Enrollment::SandboxPolicy
+class Enrollment::ApiSatelitSandboxPolicy < Enrollment::SandboxPolicy
 end
