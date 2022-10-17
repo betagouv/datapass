@@ -18,8 +18,6 @@ class ApiEntrepriseNotifier < AbstractNotifier
 
   def submit(comment:, current_user:)
     deliver_event_webhook(__method__)
-
-    notify_subscribers_by_email_for_submitted_enrollment
   end
 
   def notify(comment:, current_user:)
