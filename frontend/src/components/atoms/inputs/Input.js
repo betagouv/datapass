@@ -62,7 +62,7 @@ export const Input = ({
         required={required}
         {...rest}
       />
-      {icon.length && <div className="input-icon">{getIcon()}</div>}
+      {!!icon.length && <div className="input-icon">{getIcon()}</div>}
     </div>
   );
 };

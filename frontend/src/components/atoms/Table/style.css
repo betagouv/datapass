@@ -4,6 +4,7 @@
 
 .datapass-table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .datapass-table th,
