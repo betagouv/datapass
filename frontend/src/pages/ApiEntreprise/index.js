@@ -30,7 +30,7 @@ const DonneesDescription = () => (
       </li>
       <li>
         des{' '}
-        <Link inline newTab href="https://entreprise.api.gouv.fr/cas_usage/">
+        <Link inline newTab href="https://entreprise.api.gouv.fr/cas_usages">
           cas d’usage
         </Link>{' '}
         proposés par API Entreprise. Nous y décrivons les données utiles par
