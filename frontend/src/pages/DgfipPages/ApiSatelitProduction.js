@@ -24,7 +24,7 @@ const ApiSatelitProduction = () => (
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[500]} />
-    <CguSection cguLink="https://github.com/dgfip-da/cgu-api-satelit-production" />
+    <CguSection cguLink="https://github.com/dgfip-da/CGU/blob/main/cgu_api_satelit_production.pdf" />
   </Form>
 );
 

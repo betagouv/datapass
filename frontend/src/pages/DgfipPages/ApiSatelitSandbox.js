@@ -28,7 +28,7 @@ const ApiSatelitSandbox = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="https://github.com/dgfip-da/cgu-api-satelit-sandbox.pdf"
+      cguLink="https://github.com/dgfip-da/CGU/blob/main/cgu_api_satelit_sandbox.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>
