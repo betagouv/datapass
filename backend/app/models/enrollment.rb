@@ -210,6 +210,10 @@ class Enrollment < ActiveRecord::Base
     team_members.order(id: :asc).to_json(methods: :type)
   end
 
+  def demandeur_email
+    team_members.where(type: "demandeur").pluck(:email).first
+  end
+
   def link
     "#{ENV.fetch("FRONT_HOST")}/#{target_api.tr("_", "-")}/#{id}"
   end
@@ -237,6 +241,7 @@ class Enrollment < ActiveRecord::Base
       data_retention_comment
       fondement_juridique_title
       fondement_juridique_url
+      demandeur_email
       team_members_json
       cgu_approved
       dpo_is_informed
