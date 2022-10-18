@@ -207,7 +207,7 @@
       }
     }
   },
-  "default": {
+  "editeur": {
     "label": "Demande spécifiques aux éditeurs de logiciels",
     "about": "https://entreprise.api.gouv.fr/use_cases/editeur/",
     "state": {
