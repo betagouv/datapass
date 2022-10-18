@@ -1,0 +1,13 @@
+Bonjour,
+
+Votre habilitation <%= @target_api_label %> pour le FS <%= @nom_raison_sociale %> (identifiant DataPass de l’habilitation FranceConnect associée : <%= @previous_enrollment_id %>) vient d’être validée.
+
+Les scopes suivant ont été validés:
+
+<% @scopes.each do |scope| %>
+  - <%= scope %>
+<% end %>
+
+Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+
+L’équipe <%= @target_api_label %>
