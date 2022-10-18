@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
+import { FilterIcon } from '../icons/fr-fi-icons';
+
+import './Input.css';
 
 export const Input = ({
   type = 'text',
@@ -13,12 +16,29 @@ export const Input = ({
   disabled = false,
   onChange,
   ariaLabel = '',
+  icon = '',
   required = false,
   ...rest
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
+
+  const getIcon = () => {
+    switch (icon) {
+      case 'filter':
+        return <FilterIcon small color="var(--datapass-dark-grey)" />;
+
+      default:
+        return null;
+    }
+  };
+
+  let className = 'fr-input';
+
+  if (icon) {
+    className += ' padding-right';
+  }
 
   return (
     <div className="fr-input-group">
@@ -30,7 +50,7 @@ export const Input = ({
         meta={meta}
       />
       <input
-        className="fr-input"
+        className={className}
         type={type}
         onChange={onChange}
         name={name}
@@ -42,6 +62,7 @@ export const Input = ({
         required={required}
         {...rest}
       />
+      {icon.length && <div className="input-icon">{getIcon()}</div>}
     </div>
   );
 };

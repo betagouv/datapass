@@ -1,0 +1,14 @@
+.padding-right {
+  padding-right: 3rem;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
+}
+
+.fr-input-group {
+  position: relative;
+}

@@ -1,15 +1,16 @@
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 import React from 'react';
-import ReactTable from 'react-table-6';
-import 'react-table-6/react-table.css';
-
+import { createColumnHelper } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
 import { getStateFromUrlParams, setUrlParamsFromState } from '../../lib';
-import { getEnrollments } from '../../services/enrollments';
+import {
+  // getEnrollments,
+  enrollmentsMock,
+} from '../../services/enrollments';
 import enrollmentListStyle from './enrollmentListStyle';
 
 import { useMatomo } from '@datapunt/matomo-tracker-react';
@@ -25,6 +26,8 @@ import { AuthContext } from '../organisms/AuthContext';
 import useFileDownloader from './hooks/use-file-downloader';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import Badge from '../atoms/hyperTexts/Badge';
+import Table from '../atoms/Table';
+import { StatusBadge } from '../molecules/StatusBadge';
 
 const getInboxes = (user) => ({
   primary: {
@@ -61,6 +64,8 @@ const getInboxes = (user) => ({
   },
 });
 
+const columnHelper = createColumnHelper();
+
 class InstructorEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
@@ -79,6 +84,7 @@ class InstructorEnrollmentList extends React.Component {
 
   async componentDidMount() {
     try {
+      this.onFetchData();
       const newState = getStateFromUrlParams(
         pick(this.state, [
           'inbox',
@@ -122,6 +128,110 @@ class InstructorEnrollmentList extends React.Component {
     !isEmpty(
       pickBy(acl, (value, key) => value && this.availableAction.has(key))
     );
+
+  getNewColumnConfiguration = () => [
+    columnHelper.accessor('updated_at', {
+      header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
+      accessorKey: 'updated_at',
+      enableColumnFilter: false,
+      id: 'updated_at',
+      cell: ({ getValue }) => {
+        const updatedAt = getValue();
+
+        if (this.state.inbox !== 'primary') {
+          return <small>{moment(updatedAt).format('D/M')}</small>;
+        }
+
+        const daysFromToday = moment().diff(updatedAt, 'days');
+        const color =
+          daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
+        return <span style={{ color }}>{daysFromToday}j</span>;
+      },
+    }),
+    columnHelper.accessor('notify_events_from_demandeurs_count', {
+      header: <MailIcon color={'var(--datapass-dark-grey)'} />,
+      accessorKey: 'notify_events_from_demandeurs_count',
+      enableColumnFilter: false,
+      id: 'notify_events_from_demandeurs_count',
+      cell: ({ getValue }) => {
+        const notify_events_from_demandeurs_count = getValue();
+        return (
+          <Badge
+            className="fr-py-1v"
+            type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
+          >
+            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
+              {notify_events_from_demandeurs_count}
+            </span>
+          </Badge>
+        );
+      },
+    }),
+    columnHelper.accessor('id', {
+      header: 'N°',
+      accessorKey: 'id',
+      id: 'id',
+      meta: {
+        placeholder: '000',
+      },
+      filterFn: 'weakEquals',
+      cell: ({ getValue }) => {
+        const notify_events_from_demandeurs_count = getValue();
+        return (
+          <Badge
+            className="fr-py-1v"
+            type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
+          >
+            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
+              {notify_events_from_demandeurs_count}
+            </span>
+          </Badge>
+        );
+      },
+    }),
+    columnHelper.accessor('nom_raison_sociale', {
+      header: 'Raison sociale',
+      accessorKey: 'nom_raison_sociale',
+      id: 'nom_raison_sociale',
+      filterFn: 'includesString',
+      meta: {
+        placeholder: 'Filtrer par raison sociale',
+      },
+    }),
+    columnHelper.accessor(
+      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
+      {
+        header: 'Email du demandeur',
+        accessorKey: 'team_members.email',
+        id: 'team_members.email',
+        filterFn: 'includesString',
+        meta: {
+          placeholder: 'Filtrer parmi tous les emails de contact',
+        },
+      }
+    ),
+    columnHelper.accessor(
+      ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
+      {
+        header: 'Fournisseur',
+        accessorKey: 'target_api',
+        id: 'target_api',
+        meta: { filterType: 'select' },
+        filterFn: 'arrIncludesSome',
+      }
+    ),
+    columnHelper.accessor('status', {
+      header: 'Statut',
+      accessorKey: 'status',
+      id: 'status',
+      filterFn: 'arrIncludesSome',
+      meta: { filterType: 'select' },
+      cell: ({ getValue }) => {
+        const status = getValue();
+        return <StatusBadge userType="instructor" status={status} />;
+      },
+    }),
+  ];
 
   getColumnConfiguration = () => [
     {
@@ -384,16 +494,12 @@ class InstructorEnrollmentList extends React.Component {
     // Read the state from this.state and not from internally computed react table state
     // (passed as param of this function) as react table will reset page count to zero
     // on filter update. This breaks page selection on page load.
-    const { page, sorted, filtered } = this.state;
+    // const { page, sorted, filtered } = this.state;
 
     const {
       enrollments,
       meta: { total_pages: totalPages },
-    } = await getEnrollments({
-      page,
-      sortBy: sorted,
-      filter: filtered,
-    });
+    } = enrollmentsMock;
 
     this.setState({
       enrollments,
@@ -414,14 +520,15 @@ class InstructorEnrollmentList extends React.Component {
     const { goToItem } = this.props;
     const {
       enrollments,
-      loading,
-      page,
-      sorted,
-      filtered,
+      // loading,
+      // page,
+      // sorted,
+      // filtered,
       inbox,
-      previouslySelectedEnrollmentId,
-      totalPages,
+      // previouslySelectedEnrollmentId,
+      // totalPages,
     } = this.state;
+
     return (
       <main>
         <ListHeader title="Liste des habilitations">
@@ -447,7 +554,23 @@ class InstructorEnrollmentList extends React.Component {
           </Button>
         </ListHeader>
         <div className="table-container">
-          <ReactTable
+          <Table
+            tableOptions={{
+              data: enrollments,
+              columns: this.getNewColumnConfiguration(),
+            }}
+            onRowClick={({ row, e }) => {
+              if (row) {
+                const {
+                  original: { id, target_api },
+                } = row;
+                this.savePreviouslySelectedEnrollmentId(id);
+
+                goToItem(target_api, id, e);
+              }
+            }}
+          />
+          {/* <ReactTable
             manual
             data={enrollments}
             pages={totalPages}
@@ -509,7 +632,7 @@ class InstructorEnrollmentList extends React.Component {
             pageText="Page"
             ofText="sur"
             rowsText="lignes"
-          />
+          /> */}
         </div>
       </main>
     );

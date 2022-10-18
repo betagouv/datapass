@@ -7,7 +7,10 @@ import {
   Column,
   TableOptions,
   RowData,
+  getFacetedUniqueValues,
 } from '@tanstack/react-table';
+import MultiSelect from '../../molecules/MultiSelect';
+import { FilterIcon } from '../icons/fr-fi-icons';
 import Input from '../inputs/Input';
 import TablePagination from '../TablePagination';
 import './style.css';
@@ -15,21 +18,30 @@ import './style.css';
 declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
-    placeholder: string;
+    placeholder?: string;
+    filterType?: 'text' | 'select';
   }
+}
+
+interface onRowClickProps {
+  event: React.MouseEvent<HTMLElement>;
+  row: RowData;
 }
 
 const Table = ({
   tableOptions,
   firstColumnFixed = false,
+  onRowClick,
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
+  onRowClick?: (onRowClickProps: onRowClickProps) => void;
 }) => {
   const table = useReactTable({
     ...tableOptions,
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -56,7 +68,7 @@ const Table = ({
                         )}
                         {header.column.getCanFilter() ? (
                           <div>
-                            <TextFilterInput column={header.column} />
+                            <FilterComponent column={header.column} />
                           </div>
                         ) : null}
                       </div>
@@ -68,7 +80,13 @@ const Table = ({
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+              <tr
+                key={row.id}
+                onClick={
+                  onRowClick ? (e) => onRowClick({ event: e, row }) : () => null
+                }
+                className={onRowClick ? 'clickable-row' : ''}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -85,20 +103,36 @@ const Table = ({
   );
 };
 
-const TextFilterInput = ({ column }: { column: Column<any, any> }) => {
+const FilterComponent = ({ column }: { column: Column<any, any> }) => {
   const columnFilterValue = column.getFilterValue();
-
-  return (
-    <Input
-      type="text"
-      value={(columnFilterValue ?? '') as string}
-      onChange={(e: React.SyntheticEvent) => {
-        const target = e.target as HTMLInputElement;
-        column.setFilterValue(target.value);
-      }}
-      placeholder={column.columnDef.meta?.placeholder}
-    />
+  const { meta } = column.columnDef;
+  const options = Array.from(column.getFacetedUniqueValues().keys()).map(
+    (value, i) => ({ key: value, label: value })
   );
+  switch (meta?.filterType) {
+    case 'select':
+      return (
+        <MultiSelect
+          options={options}
+          values={(columnFilterValue ?? []) as Array<any>}
+          onChange={column.setFilterValue}
+        />
+      );
+
+    default:
+      return (
+        <Input
+          type="text"
+          value={(columnFilterValue ?? '') as string}
+          onChange={(e: React.SyntheticEvent) => {
+            const target = e.target as HTMLInputElement;
+            column.setFilterValue(target.value);
+          }}
+          icon="filter"
+          placeholder={meta?.placeholder}
+        />
+      );
+  }
 };
 
 export default Table;

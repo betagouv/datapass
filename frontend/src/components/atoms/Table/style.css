@@ -39,3 +39,8 @@ td {
   height: 77px;
   border-bottom: 1px solid #e5e5e5;
 }
+
+.datapass-table .clickable-row:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.08);
+}

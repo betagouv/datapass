@@ -1,3 +1,5 @@
+import { BadgeType } from '../components/atoms/hyperTexts/Badge';
+
 export enum EnrollmentStatus {
   draft = 'draft',
   submitted = 'submitted',
@@ -30,12 +32,12 @@ export const USER_STATUS_LABELS: {
 };
 
 export const STATUS_TO_BADGE_TYPE: {
-  [key in EnrollmentStatus]: string;
+  [key in EnrollmentStatus]: BadgeType;
 } = {
-  draft: '',
-  submitted: 'info',
-  validated: 'success',
-  changes_requested: 'warning',
-  refused: 'error',
-  revoked: 'error',
+  draft: BadgeType.base,
+  submitted: BadgeType.info,
+  validated: BadgeType.success,
+  changes_requested: BadgeType.warning,
+  refused: BadgeType.error,
+  revoked: BadgeType.error,
 };
