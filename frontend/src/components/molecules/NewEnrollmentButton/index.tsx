@@ -18,7 +18,7 @@ export const NewEnrollmentButton: FunctionComponent = () => {
         <Dropdown onOutsideClick={() => setShowDataProviderList(false)}>
           <div className="new-enrollment-button-container">
             <div className="new-enrollment-button-item">
-              <Link inline href="/data-providers">
+              <Link inline href="/data-providers/hubee">
                 <img src="/images/logo-hubee-small.png" alt="Logo HubEE" />
               </Link>
             </div>

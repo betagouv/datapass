@@ -42,7 +42,7 @@ export const Routes = () => {
 
       <Route path="faq" element={<FAQ />} />
 
-      <Route path="data-providers" element={<DataProviderList />} />
+      <Route path="data-providers/hubee" element={<DataProviderList />} />
 
       <Route path="admin" element={<AuthRequired children={<Admin />} />} />
 
