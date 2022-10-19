@@ -18,14 +18,23 @@ const columnHelper = createColumnHelper();
 
 const PublicEnrollmentList = ({ params }) => {
   const [enrollments, setEnrollments] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [{ pageIndex, pageSize }, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   useEffect(() => {
     getPublicValidatedEnrollments({
       targetApi: params.targetApi,
-    }).then(({ enrollments }) => {
+      page: pageIndex,
+      size: pageSize,
+    }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
       setEnrollments(enrollments);
+      setTotalPages(totalPages);
     });
-  }, [params]);
+  }, [params, pageIndex, pageSize]);
 
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
@@ -101,6 +110,15 @@ const PublicEnrollmentList = ({ params }) => {
           tableOptions={{
             data: enrollments,
             columns: getColumnConfiguration(),
+            manualPagination: true,
+            pageCount: totalPages,
+            state: {
+              pagination: {
+                pageIndex,
+                pageSize,
+              },
+            },
+            onPaginationChange: setPagination,
           }}
         />
       </div>

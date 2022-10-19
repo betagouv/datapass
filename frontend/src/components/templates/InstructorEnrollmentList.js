@@ -26,12 +26,22 @@ const InstructorEnrollmentList = ({
   downloadExport,
 }) => {
   const [enrollments, setEnrollments] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [{ pageIndex, pageSize }, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   useEffect(() => {
-    getEnrollments({ page: 0 }).then(({ enrollments }) => {
+    getEnrollments({
+      page: pageIndex,
+      size: pageSize,
+    }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
       setEnrollments(enrollments);
+      setTotalPages(totalPages);
     });
-  }, []);
+  }, [pageIndex, pageSize]);
 
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
@@ -150,6 +160,13 @@ const InstructorEnrollmentList = ({
           tableOptions={{
             data: enrollments,
             columns: getColumnConfiguration(),
+            manualPagination: true,
+            pageCount: totalPages,
+            state: {
+              pageIndex,
+              pageSize,
+            },
+            onPaginationChange: setPagination,
           }}
           onRowClick={({ row, e }) => {
             if (row) {

@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  createColumnHelper,
+  getPaginationRowModel,
+} from '@tanstack/react-table';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
 import RoleCheckboxCell from './RoleCheckboxCell';
@@ -121,6 +124,7 @@ const UserList = () => {
             columns: columns,
             data: users,
             autoResetAll: !skipReset,
+            getPaginationRowModel: getPaginationRowModel(),
           }}
         />
       )}

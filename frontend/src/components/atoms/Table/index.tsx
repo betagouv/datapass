@@ -2,7 +2,6 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   useReactTable,
   Column,
   TableOptions,
@@ -10,7 +9,6 @@ import {
   getFacetedUniqueValues,
 } from '@tanstack/react-table';
 import MultiSelect from '../../molecules/MultiSelect';
-import { FilterIcon } from '../icons/fr-fi-icons';
 import Input from '../inputs/Input';
 import TablePagination from '../TablePagination';
 import './style.css';
@@ -40,7 +38,6 @@ const Table = ({
   const table = useReactTable({
     ...tableOptions,
     getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getCoreRowModel: getCoreRowModel(),
   });
