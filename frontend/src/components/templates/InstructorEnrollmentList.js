@@ -6,17 +6,19 @@ import './InstructorEnrollmentList.css';
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getEnrollments } from '../../services/enrollments';
 
-import { useMatomo } from '@datapunt/matomo-tracker-react';
 import Button from '../atoms/hyperTexts/Button';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
-import { AuthContext } from '../organisms/AuthContext';
-import useFileDownloader from './hooks/use-file-downloader';
-import useListItemNavigation from './hooks/use-list-item-navigation';
 import Badge from '../atoms/hyperTexts/Badge';
 import Table from '../atoms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
+import {
+  withAuth,
+  withFileDownloader,
+  withListItemNavigation,
+  withMatomoTrackEvent,
+} from '../../hoc';
 
 const columnHelper = createColumnHelper();
 
@@ -179,43 +181,6 @@ const InstructorEnrollmentList = ({
         />
       </div>
     </main>
-  );
-};
-
-const withMatomoTrackEvent = (Component) => {
-  return (props) => {
-    const { trackEvent } = useMatomo();
-    return <Component {...props} matomoTrackEvent={trackEvent} />;
-  };
-};
-
-const withFileDownloader = (Component) => {
-  return (props) => {
-    const { isDownloading, download } = useFileDownloader();
-    const downloadExport = () =>
-      download('/api/enrollments/export', 'text/csv');
-    return (
-      <Component
-        {...props}
-        isExportDownloading={isDownloading}
-        downloadExport={downloadExport}
-      />
-    );
-  };
-};
-
-const withListItemNavigation = (Component) => {
-  return (props) => {
-    const { goToItem } = useListItemNavigation();
-    return <Component {...props} goToItem={goToItem} />;
-  };
-};
-
-const withAuth = (Component) => {
-  return (props) => (
-    <AuthContext.Consumer>
-      {(userProps) => <Component {...props} {...userProps} />}
-    </AuthContext.Consumer>
   );
 };
 
