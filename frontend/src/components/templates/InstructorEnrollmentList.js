@@ -1,6 +1,9 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  createColumnHelper,
+  getPaginationRowModel,
+} from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
@@ -19,6 +22,7 @@ import {
   withListItemNavigation,
   withMatomoTrackEvent,
 } from '../../hoc';
+import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
 
 const columnHelper = createColumnHelper();
 
@@ -28,22 +32,12 @@ const InstructorEnrollmentList = ({
   downloadExport,
 }) => {
   const [enrollments, setEnrollments] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const [{ pageIndex, pageSize }, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
 
   useEffect(() => {
-    getEnrollments({
-      page: pageIndex,
-      size: pageSize,
-    }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
+    getEnrollments({ page: 0, size: 100 }).then(({ enrollments }) => {
       setEnrollments(enrollments);
-      setTotalPages(totalPages);
     });
-  }, [pageIndex, pageSize]);
+  }, []);
 
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
@@ -51,6 +45,7 @@ const InstructorEnrollmentList = ({
       accessorKey: 'updated_at',
       enableColumnFilter: false,
       id: 'updated_at',
+      size: 50,
       cell: ({ getValue }) => {
         const updatedAt = getValue();
         const daysFromToday = moment().diff(updatedAt, 'days');
@@ -63,6 +58,8 @@ const InstructorEnrollmentList = ({
       header: <MailIcon color={'var(--datapass-dark-grey)'} />,
       accessorKey: 'notify_events_from_demandeurs_count',
       enableColumnFilter: false,
+      enableSorting: false,
+      size: 50,
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue();
@@ -82,6 +79,8 @@ const InstructorEnrollmentList = ({
       header: 'N°',
       accessorKey: 'id',
       id: 'id',
+      enableSorting: false,
+      size: 70,
       meta: {
         placeholder: '000',
       },
@@ -104,6 +103,7 @@ const InstructorEnrollmentList = ({
       header: 'Raison sociale',
       accessorKey: 'nom_raison_sociale',
       id: 'nom_raison_sociale',
+      enableSorting: false,
       filterFn: 'includesString',
       meta: {
         placeholder: 'Filtrer par raison sociale',
@@ -115,6 +115,7 @@ const InstructorEnrollmentList = ({
         header: 'Email du demandeur',
         accessorKey: 'team_members.email',
         id: 'team_members.email',
+        enableSorting: false,
         filterFn: 'includesString',
         meta: {
           placeholder: 'Filtrer parmi tous les emails de contact',
@@ -127,6 +128,7 @@ const InstructorEnrollmentList = ({
         header: 'Fournisseur',
         accessorKey: 'target_api',
         id: 'target_api',
+        enableSorting: false,
         meta: { filterType: 'select' },
         filterFn: 'arrIncludesSome',
       }
@@ -135,8 +137,14 @@ const InstructorEnrollmentList = ({
       header: 'Statut',
       accessorKey: 'status',
       id: 'status',
+      enableSorting: false,
       filterFn: 'arrIncludesSome',
-      meta: { filterType: 'select' },
+      meta: {
+        filterType: 'select',
+        selectOptions: Object.entries(INSTRUCTOR_STATUS_LABELS).map(
+          ([key, label]) => ({ key, label })
+        ),
+      },
       cell: ({ getValue }) => {
         const status = getValue();
         return <StatusBadge userType="instructor" status={status} />;
@@ -162,20 +170,14 @@ const InstructorEnrollmentList = ({
           tableOptions={{
             data: enrollments,
             columns: getColumnConfiguration(),
-            manualPagination: true,
-            pageCount: totalPages,
-            state: {
-              pageIndex,
-              pageSize,
-            },
-            onPaginationChange: setPagination,
+            getPaginationRowModel: getPaginationRowModel(),
           }}
-          onRowClick={({ row, e }) => {
+          onRowClick={({ row, event }) => {
             if (row) {
               const {
                 original: { id, target_api },
               } = row;
-              goToItem(target_api, id, e);
+              goToItem(target_api, id, event);
             }
           }}
         />

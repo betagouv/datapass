@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.sorting-header {
+  cursor: pointer;
+}
+
 .datapass-table th,
 td {
   padding: 15px;

@@ -40,6 +40,7 @@ const PublicEnrollmentList = ({ params }) => {
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
       enableColumnFilter: false,
+      size: 50,
       header: () => <ScheduleIcon title="date de dernière mise à jour" />,
       cell: ({ getValue }) => <small>{moment(getValue()).format('D/M')}</small>,
     }),

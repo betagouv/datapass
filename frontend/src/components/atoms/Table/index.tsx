@@ -1,12 +1,13 @@
 import {
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   useReactTable,
   Column,
   TableOptions,
   RowData,
   getFacetedUniqueValues,
+  getSortedRowModel,
+  getFilteredRowModel,
 } from '@tanstack/react-table';
 import MultiSelect from '../../molecules/MultiSelect';
 import Input from '../inputs/Input';
@@ -18,6 +19,7 @@ declare module '@tanstack/table-core' {
   interface ColumnMeta<TData extends RowData, TValue> {
     placeholder?: string;
     filterType?: 'text' | 'select';
+    selectOptions?: any[];
   }
 }
 
@@ -37,9 +39,10 @@ const Table = ({
 }) => {
   const table = useReactTable({
     ...tableOptions,
-    getFilteredRowModel: getFilteredRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   let tableClassName = 'datapass-table';
@@ -47,6 +50,17 @@ const Table = ({
   if (firstColumnFixed) {
     tableClassName += ' firstColumnFixed';
   }
+
+  const getSortingHeaderProps = (column: Column<any, any>) => {
+    if (column.getCanSort()) {
+      return {
+        className: 'sorting-header',
+        onClick: column.getToggleSortingHandler(),
+      };
+    }
+
+    return {};
+  };
 
   return (
     <>
@@ -56,9 +70,13 @@ const Table = ({
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    style={{ width: header.getSize() }}
+                  >
                     {header.isPlaceholder ? null : (
-                      <div>
+                      <div {...getSortingHeaderProps(header.column)}>
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
@@ -103,14 +121,14 @@ const Table = ({
 const FilterComponent = ({ column }: { column: Column<any, any> }) => {
   const columnFilterValue = column.getFilterValue();
   const { meta } = column.columnDef;
-  const options = Array.from(column.getFacetedUniqueValues().keys()).map(
+  const defaultOptions = Array.from(column.getFacetedUniqueValues().keys()).map(
     (value, i) => ({ key: value, label: value })
   );
   switch (meta?.filterType) {
     case 'select':
       return (
         <MultiSelect
-          options={options}
+          options={meta.selectOptions ? meta.selectOptions : defaultOptions}
           values={(columnFilterValue ?? []) as Array<any>}
           onChange={column.setFilterValue}
         />
