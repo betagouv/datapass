@@ -36,7 +36,7 @@ export const DataProviderList = () => {
               iconPath={`/images/logo-hubee-small.png`}
               passPath={`/${target_api}`}
               description={description}
-              aboutLink="https://hubee.numerique.gouv.fr/datapass/"
+              aboutLink="https://hubee.numerique.gouv.fr"
             />
           ))}
       </div>
