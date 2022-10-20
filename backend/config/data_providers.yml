@@ -249,10 +249,10 @@ agent_connect_fs:
   label: AgentConnect - fournisseur de service
   mailer: *shared_mailer
 
-  api_satelit_sandbox:
-    label: API Satelit (Bac à sable)
-    mailer: *shared_mailer
+api_satelit_sandbox:
+  label: API Satelit (Bac à sable)
+  mailer: *shared_mailer
 
-  api_satelit_production:
-    label: API Satelit (Production)
-    mailer: *shared_mailer
+api_satelit_production:
+  label: API Satelit (Production)
+  mailer: *shared_mailer
