@@ -450,14 +450,14 @@ export const DATA_PROVIDER_PARAMETERS: { [k: string]: DataProviderParameter } =
       component: AgentConnectFs,
     },
     api_satelit_sandbox: {
-      label: 'API Satelit - bac à sable',
+      label: 'API Satelit (Bac à sable)',
       icon: 'logo-dgfip-with-label.png',
       email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
       type: DataProviderType.api,
       component: ApiSatelitSandbox,
     },
     api_satelit_production: {
-      label: 'API Satelit - production',
+      label: 'API Satelit (Production)',
       icon: 'logo-dgfip-with-label.png',
       email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
       type: DataProviderType.api,
