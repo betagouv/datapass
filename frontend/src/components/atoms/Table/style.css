@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.selected {
+  background: rgba(0, 0, 0, 0.08);
+}
+
 .datapass-table th,
 td {
   padding: 15px;

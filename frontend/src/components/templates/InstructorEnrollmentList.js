@@ -1,9 +1,6 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import {
-  createColumnHelper,
-  getPaginationRowModel,
-} from '@tanstack/react-table';
+import { createColumnHelper } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
@@ -23,6 +20,7 @@ import {
   withMatomoTrackEvent,
 } from '../../hoc';
 import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
+import useQueryString from '../../hooks/useQueryString';
 
 const columnHelper = createColumnHelper();
 
@@ -30,14 +28,34 @@ const InstructorEnrollmentList = ({
   goToItem,
   isExportDownloading,
   downloadExport,
+  user,
 }) => {
   const [enrollments, setEnrollments] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [filtered, setFiltered] = useQueryString('filtered', [], true);
+  const [sorted, setSorted] = useQueryString('sorted', [], true);
+  const [pagination, setPagination] = useQueryString(
+    'pagination',
+    {
+      pageIndex: 0,
+      pageSize: 10,
+    },
+    true
+  );
+  const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
+    useQueryString('previouslySelectedEnrollmentId', 0, true);
 
   useEffect(() => {
-    getEnrollments({ page: 0, size: 100 }).then(({ enrollments }) => {
+    getEnrollments({
+      page: pagination.pageIndex,
+      size: pagination.pageSize,
+      sortBy: sorted,
+      filter: filtered,
+    }).then(({ enrollments, meta: { total_pages } }) => {
       setEnrollments(enrollments);
+      setTotalPages(total_pages);
     });
-  }, []);
+  }, [pagination, sorted, filtered]);
 
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
@@ -152,6 +170,26 @@ const InstructorEnrollmentList = ({
     }),
   ];
 
+  const updateFilters = ([newFilter]) => {
+    const filterExists = filtered.some(
+      (oldFilter) => oldFilter?.id === newFilter?.id
+    );
+    if (filterExists) {
+      return filtered.map(({ id, value }) => {
+        if (id === newFilter.id) {
+          return {
+            id,
+            value: newFilter.value,
+          };
+        }
+
+        return { id, value };
+      });
+    }
+
+    return [...filtered, newFilter];
+  };
+
   return (
     <main>
       <ListHeader title="Liste des habilitations">
@@ -169,14 +207,27 @@ const InstructorEnrollmentList = ({
         <Table
           tableOptions={{
             data: enrollments,
+            manualPagination: true,
+            manualFiltering: true,
+            manualSorting: true,
+            pageCount: totalPages,
+            state: {
+              columnFilters: filtered,
+              sorting: sorted,
+              pagination,
+            },
+            onPaginationChange: (e) => console.log(e()),
+            onColumnFiltersChange: (getNewFilter) =>
+              setFiltered(updateFilters(getNewFilter())),
+            onSortingChange: (e) => console.log(e()),
             columns: getColumnConfiguration(),
-            getPaginationRowModel: getPaginationRowModel(),
           }}
           onRowClick={({ row, event }) => {
             if (row) {
               const {
                 original: { id, target_api },
               } = row;
+              setPreviouslySelectedEnrollmentId(id);
               goToItem(target_api, id, event);
             }
           }}
