@@ -48,7 +48,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Tierce Déclaration Cesu',
-    target_api: 'api-declaration-cesu',
+    target_api: 'api_declaration_cesu',
     tagline:
       'Connectez-vous directement à l’Urssaf pour accéder aux services du Cesu pour le compte d’un particulier employeur en tant que tiers-déclarant',
     path: 'les-api/api-declaration-cesus',
@@ -56,7 +56,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Entreprise',
-    target_api: 'api-entreprise',
+    target_api: 'api_entreprise',
     tagline:
       'Entités administratives, simplifiez les démarches des entreprises et des associations en récupérant pour elles leurs informations administratives.',
     path: 'les-api/api-entreprise',
@@ -64,14 +64,14 @@ const DataProvidersApis = [
   },
   {
     title: 'API Indemnisation Pôle emploi',
-    target_api: 'api-indemnisation-pole-emploi',
+    target_api: 'api_indemnisation_pole_emploi',
     tagline: 'Connaitre la situation d’indemnisation d’un demandeur d’emploi',
     path: 'les-api/api-indemnisation-pole-emploi',
     logo: 'images/api-logo/logo_pole_emploi.jpg',
   },
   {
     title: 'API Indemnités Journalières de la CNAM',
-    target_api: 'api-indemnites-journalieres-cnam',
+    target_api: 'api_indemnites_journalieres_cnam',
     tagline:
       "Accédez au montant des indemnités journalières de l'Assurance Maladie payé à un assuré sur une période.",
     path: 'les-api/api-indemnites-journalieres-cnam',
@@ -79,7 +79,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Particulier',
-    target_api: 'api-particulier',
+    target_api: 'api_particulier',
     tagline:
       'Entités administratives, simplifiez les démarches des particuliers en récupérant pour eux leurs informations administratives (quotient familial CAF, composition familiale, statut demandeur d’emploi, étudiant et étudiant boursier)',
     path: 'les-api/api-particulier',
@@ -87,7 +87,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Pro Santé Connect',
-    target_api: 'api-pro-sante-connect',
+    target_api: 'api_pro_sante_connect',
     tagline:
       'Authentifier les professionnels de la santé à partir du Répertoire Partagé des Professionnels de Santé (RPPS)',
     path: 'les-api/api-pro-sante-connect',
@@ -95,7 +95,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Service National',
-    target_api: 'api-service-national',
+    target_api: 'api_service_national',
     tagline:
       'Vérifiez si un candidat est en règle vis-à-vis de ses obligations de Service National et peut s’inscrire au concours ou à l’examen dont vous êtes en charge.',
     path: 'les-api/api-service-national',
@@ -103,7 +103,7 @@ const DataProvidersApis = [
   },
   {
     title: "API statut demandeur d'emploi",
-    target_api: 'api-statut-demandeur-emploi',
+    target_api: 'api_statut_demandeur_emploi',
     tagline:
       'Vérifier si une personne a le statut de demandeur d’emploi sans lui demander de justificatif',
     path: 'les-api/api-statut-demandeur-emploi',
@@ -111,7 +111,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Statut étudiant boursier',
-    target_api: 'api-statut-etudiant-boursier',
+    target_api: 'api_statut_etudiant_boursier',
     tagline:
       'Vérifiez si un individu identifié avec FranceConnect est un étudiant boursier',
     path: 'les-api/api-statut-etudiant-boursier',
@@ -119,7 +119,7 @@ const DataProvidersApis = [
   },
   {
     title: 'API Statut Etudiant',
-    target_api: 'api-statut-etudiant',
+    target_api: 'api_statut_etudiant',
     tagline:
       'Vérifiez si une personne est inscrite dans un établissement de l’enseignement supérieur',
     path: 'les-api/api-statut-etudiant',

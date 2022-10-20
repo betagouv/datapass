@@ -10,7 +10,7 @@ import FormRouter from './components/organisms/FormRouter';
 import Accessibilite from './components/templates/Accessibilite';
 import Admin from './components/templates/Admin';
 import CopyEnrollment from './components/templates/CopyEnrollment';
-import DataProviderList from './components/templates/DataProviderList';
+import DataProviderListHubee from './components/templates/DataProviderList/DataProviderListHubee';
 import DataProviderListApi from './components/templates/DataProviderList/DataProviderListApi';
 import RedirectToTheRightDataProviderForm from './components/templates/RedirectToTheRightDataProviderForm';
 import FAQ from './components/templates/Faq';
@@ -43,7 +43,7 @@ export const Routes = () => {
 
       <Route path="faq" element={<FAQ />} />
 
-      <Route path="data-providers/hubee" element={<DataProviderList />} />
+      <Route path="data-providers/hubee" element={<DataProviderListHubee />} />
       <Route path="data-providers/api" element={<DataProviderListApi />} />
 
       <Route path="admin" element={<AuthRequired children={<Admin />} />} />
