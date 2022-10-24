@@ -35,11 +35,11 @@ api_impot_particulier_production:
   mailer: *shared_mailer
 
 api_impot_particulier_fc_sandbox:
-  label: API Impôt particulier (Bac à sable)
+  label: API Impôt particulier (FC) (Bac à sable)
   mailer: *shared_mailer
 
 api_impot_particulier_fc_production:
-  label: API Impôt particulier (Production)
+  label: API Impôt particulier (FC) (Production)
   mailer: *shared_mailer
 
 api_r2p_sandbox:
@@ -80,11 +80,11 @@ api_entreprise:
       subject: "🚫 Votre habilitation à l’API Entreprise a été refusée"
 
 le_taxi:
-  label: le.Taxi
+  label: API le.Taxi
   mailer: *shared_mailer
 
 cartobio:
-  label: CartoBio
+  label: CartoBio - Territoires
   mailer: *shared_mailer
 
 aidants_connect:
@@ -104,12 +104,12 @@ api_hermes_production:
   mailer: *shared_mailer
 
 hubee_portail:
-  label: Portail HubEE
+  label: Portail HubEE - Démarche CertDC
   mailer: *shared_mailer
   reply_to: dgs-certdc@sante.gouv.fr
 
 hubee_portail_dila:
-  label: Portail HubEE
+  label: Portail HubEE - Démarches DILA
   mailer: *shared_mailer
   reply_to: support.partenaires@service-public.fr
 
