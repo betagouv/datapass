@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
@@ -63,7 +63,7 @@ jobs:
       #     sudo cp policy.xml /etc/ImageMagick-6/policy.xml
 
       - name: Cache Gems
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -93,7 +93,7 @@ jobs:
           bundle exec brakeman
 
       - name: Run tests & publish coverage
-        uses: paambaati/codeclimate-action@v2.7.5
+        uses: paambaati/codeclimate-action@v3.1.0
         env:
           CC_TEST_REPORTER_ID: c520d0a599739b0fb177eb2ecfeaa72792c262af475dfa0a7bcea092fdcd3301
         with:
@@ -106,7 +106,7 @@ jobs:
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  #       uses: actions/checkout@v3
 
   #     - name: Run Standardrb linter
   #       uses: amoeba/standardrb-action@master
@@ -120,7 +120,7 @@ jobs:
   #   runs-on: ubuntu-20.04
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  #       uses: actions/checkout@v3
 
   #     - name: Run Brakeman linter action
   #       uses: devmasx/brakeman-linter-action@master
