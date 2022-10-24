@@ -121,6 +121,7 @@ const UserList = () => {
       ) : (
         <Table
           firstColumnFixed
+          wrapperClassName="datapass-table-overflow"
           tableOptions={{
             columns: columns,
             data: users,

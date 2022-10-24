@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import qs from 'query-string';
 import { isEmpty, isObject } from 'lodash';
 
@@ -46,15 +46,12 @@ const useQueryString = (
   }
 
   const [value, setValue] = useState(queryStringValue || initialValue);
-  const onSetValue = useCallback(
-    (newValue) => {
-      setValue(newValue);
-      setQueryStringValue(key, newValue);
-    },
-    [key]
-  );
 
-  return [value, onSetValue];
+  useEffect(() => {
+    setQueryStringValue(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
 };
 
 export default useQueryString;

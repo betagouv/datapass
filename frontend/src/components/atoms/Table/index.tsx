@@ -8,6 +8,7 @@ import {
   getFacetedUniqueValues,
   getSortedRowModel,
   getFilteredRowModel,
+  Row,
 } from '@tanstack/react-table';
 import MultiSelect from '../../molecules/MultiSelect';
 import Input from '../inputs/Input';
@@ -32,10 +33,14 @@ const Table = ({
   tableOptions,
   firstColumnFixed = false,
   onRowClick,
+  getRowClassName,
+  wrapperClassName = '',
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
   onRowClick?: (onRowClickProps: onRowClickProps) => void;
+  getRowClassName?: (row: Row<RowData>) => string;
+  wrapperClassName?: string;
 }) => {
   const table = useReactTable({
     ...tableOptions,
@@ -62,9 +67,23 @@ const Table = ({
     return {};
   };
 
+  const rowClassName = (row: Row<RowData>) => {
+    let className = '';
+
+    if (onRowClick) {
+      className += 'clickable-row';
+    }
+
+    if (getRowClassName) {
+      className += ' ' + getRowClassName(row);
+    }
+
+    return className;
+  };
+
   return (
     <>
-      <div className="datapass-table-wrapper page-container">
+      <div className={`page-container ${wrapperClassName}`}>
         <table className={tableClassName}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -100,7 +119,7 @@ const Table = ({
                 onClick={
                   onRowClick ? (e) => onRowClick({ event: e, row }) : () => null
                 }
-                className={onRowClick ? 'clickable-row' : ''}
+                className={rowClassName(row)}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id}>

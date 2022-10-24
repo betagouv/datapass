@@ -32,8 +32,6 @@ const InstructorEnrollmentList = ({
 }) => {
   const [enrollments, setEnrollments] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [filtered, setFiltered] = useQueryString('filtered', [], true);
-  const [sorted, setSorted] = useQueryString('sorted', [], true);
   const [pagination, setPagination] = useQueryString(
     'pagination',
     {
@@ -42,6 +40,8 @@ const InstructorEnrollmentList = ({
     },
     true
   );
+  const [filtered, setFiltered] = useQueryString('filtered', [], true);
+  const [sorted, setSorted] = useQueryString('sorted', [], true);
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
     useQueryString('previouslySelectedEnrollmentId', 0, true);
 
@@ -60,7 +60,6 @@ const InstructorEnrollmentList = ({
   const getColumnConfiguration = () => [
     columnHelper.accessor('updated_at', {
       header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
-      accessorKey: 'updated_at',
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
@@ -74,7 +73,6 @@ const InstructorEnrollmentList = ({
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
       header: <MailIcon color={'var(--datapass-dark-grey)'} />,
-      accessorKey: 'notify_events_from_demandeurs_count',
       enableColumnFilter: false,
       enableSorting: false,
       size: 50,
@@ -95,7 +93,6 @@ const InstructorEnrollmentList = ({
     }),
     columnHelper.accessor('id', {
       header: 'N°',
-      accessorKey: 'id',
       id: 'id',
       enableSorting: false,
       size: 70,
@@ -119,7 +116,6 @@ const InstructorEnrollmentList = ({
     }),
     columnHelper.accessor('nom_raison_sociale', {
       header: 'Raison sociale',
-      accessorKey: 'nom_raison_sociale',
       id: 'nom_raison_sociale',
       enableSorting: false,
       filterFn: 'includesString',
@@ -131,7 +127,6 @@ const InstructorEnrollmentList = ({
       ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
       {
         header: 'Email du demandeur',
-        accessorKey: 'team_members.email',
         id: 'team_members.email',
         enableSorting: false,
         filterFn: 'includesString',
@@ -144,16 +139,19 @@ const InstructorEnrollmentList = ({
       ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
       {
         header: 'Fournisseur',
-        accessorKey: 'target_api',
         id: 'target_api',
         enableSorting: false,
-        meta: { filterType: 'select' },
+        meta: {
+          filterType: 'select',
+          selectOptions: Object.entries(DATA_PROVIDER_PARAMETERS).map(
+            ([key, { label }]) => ({ key, label })
+          ),
+        },
         filterFn: 'arrIncludesSome',
       }
     ),
     columnHelper.accessor('status', {
       header: 'Statut',
-      accessorKey: 'status',
       id: 'status',
       enableSorting: false,
       filterFn: 'arrIncludesSome',
@@ -169,26 +167,6 @@ const InstructorEnrollmentList = ({
       },
     }),
   ];
-
-  const updateFilters = ([newFilter]) => {
-    const filterExists = filtered.some(
-      (oldFilter) => oldFilter?.id === newFilter?.id
-    );
-    if (filterExists) {
-      return filtered.map(({ id, value }) => {
-        if (id === newFilter.id) {
-          return {
-            id,
-            value: newFilter.value,
-          };
-        }
-
-        return { id, value };
-      });
-    }
-
-    return [...filtered, newFilter];
-  };
 
   return (
     <main>
@@ -207,20 +185,19 @@ const InstructorEnrollmentList = ({
         <Table
           tableOptions={{
             data: enrollments,
-            manualPagination: true,
-            manualFiltering: true,
-            manualSorting: true,
+            columns: getColumnConfiguration(),
             pageCount: totalPages,
             state: {
               columnFilters: filtered,
               sorting: sorted,
               pagination,
             },
-            onPaginationChange: (e) => console.log(e()),
-            onColumnFiltersChange: (getNewFilter) =>
-              setFiltered(updateFilters(getNewFilter())),
-            onSortingChange: (e) => console.log(e()),
-            columns: getColumnConfiguration(),
+            onPaginationChange: setPagination,
+            onSortingChange: setSorted,
+            onColumnFiltersChange: setFiltered,
+            manualPagination: true,
+            manualFiltering: true,
+            manualSorting: true,
           }}
           onRowClick={({ row, event }) => {
             if (row) {
@@ -231,6 +208,11 @@ const InstructorEnrollmentList = ({
               goToItem(target_api, id, event);
             }
           }}
+          getRowClassName={(row) =>
+            row && row.original.id === previouslySelectedEnrollmentId
+              ? 'selected'
+              : ''
+          }
         />
       </div>
     </main>

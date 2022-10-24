@@ -1,5 +1,5 @@
-.datapass-table-wrapper {
-  overflow-x: scroll;
+.datapass-table-overflow {
+  overflow: scroll;
 }
 
 .datapass-table {
