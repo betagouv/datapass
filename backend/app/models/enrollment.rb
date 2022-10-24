@@ -218,6 +218,12 @@ class Enrollment < ActiveRecord::Base
     team_members.to_json(methods: :type)
   end
 
+  def franceconnect_plus
+    if target_api === "franceconnect" && additional_content.fetch("eidas_level", "") === "2"
+      true
+    end
+  end
+
   def link
     "#{ENV.fetch("FRONT_HOST")}/#{target_api.tr("_", "-")}/#{id}"
   end
@@ -249,6 +255,7 @@ class Enrollment < ActiveRecord::Base
       cgu_approved
       dpo_is_informed
       additional_content
+      franceconnect_plus
       linked_token_manager_id
       previous_enrollment_id
       copied_from_enrollment_id
