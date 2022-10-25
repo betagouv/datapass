@@ -5,23 +5,25 @@ import { Login } from '../templates/Login';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
+export type User = {
+  id: number;
+  email: string;
+  given_name: string;
+  family_name: string;
+  phone_number: string;
+  job: string;
+  roles: string[];
+  organizations: [
+    {
+      id: number;
+      siret: string;
+      is_external: boolean;
+    }
+  ];
+};
+
 type AuthContextType = {
-  user: {
-    id: number;
-    email: string;
-    given_name: string;
-    family_name: string;
-    phone_number: string;
-    job: string;
-    roles: string[];
-    organizations: [
-      {
-        id: number;
-        siret: string;
-        is_external: boolean;
-      }
-    ];
-  } | null;
+  user: User | null;
   isLoading: boolean;
   connectionError: string | null;
   login: () => void;

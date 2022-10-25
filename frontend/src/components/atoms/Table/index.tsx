@@ -10,6 +10,7 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
+import { SyntheticEvent } from 'react';
 import MultiSelect from '../../molecules/MultiSelect';
 import Input from '../inputs/Input';
 import TablePagination from '../TablePagination';
@@ -24,10 +25,10 @@ declare module '@tanstack/table-core' {
   }
 }
 
-interface onRowClickProps {
-  event: React.MouseEvent<HTMLElement>;
-  row: RowData;
-}
+type onRowClickProps = {
+  event: SyntheticEvent;
+  row: Row<RowData>;
+};
 
 const Table = ({
   tableOptions,

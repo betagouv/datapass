@@ -1,6 +1,11 @@
 import moment from 'moment';
-import { useEffect, useState } from 'react';
-import { createColumnHelper } from '@tanstack/react-table';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import {
+  createColumnHelper,
+  getCoreRowModel,
+  Row,
+  RowData,
+} from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
 import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
@@ -10,7 +15,7 @@ import Button from '../atoms/hyperTexts/Button';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
-import Badge from '../atoms/hyperTexts/Badge';
+import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
 import Table from '../atoms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
@@ -19,19 +24,46 @@ import {
   withListItemNavigation,
   withMatomoTrackEvent,
 } from '../../hoc';
-import { INSTRUCTOR_STATUS_LABELS } from '../../config/status-parameters';
+import {
+  EnrollmentStatus,
+  INSTRUCTOR_STATUS_LABELS,
+} from '../../config/status-parameters';
 import useQueryString from '../../hooks/useQueryString';
+import { User } from '../organisms/AuthContext';
 
-const columnHelper = createColumnHelper();
+type Demandeur = {
+  id: number;
+  type: string;
+  email: string;
+};
 
-const InstructorEnrollmentList = ({
+export type Enrollment = {
+  updated_at: Date;
+  notify_events_from_demandeurs_count: number;
+  id: number;
+  nom_raison_sociale: string;
+  demandeurs: Demandeur[];
+  target_api: string;
+  status: EnrollmentStatus;
+} & RowData;
+
+const columnHelper = createColumnHelper<Enrollment>();
+
+type Props = {
+  goToItem: (target_api: string, id: number, event: SyntheticEvent) => void;
+  isExportDownloading: boolean;
+  downloadExport: () => void;
+  user: User;
+};
+
+const InstructorEnrollmentList: React.FC<Props> = ({
   goToItem,
   isExportDownloading,
   downloadExport,
   user,
 }) => {
   const [enrollments, setEnrollments] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
   const [pagination, setPagination] = useQueryString(
     'pagination',
     {
@@ -57,14 +89,14 @@ const InstructorEnrollmentList = ({
     });
   }, [pagination, sorted, filtered]);
 
-  const getColumnConfiguration = () => [
+  const columns = [
     columnHelper.accessor('updated_at', {
       header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
       cell: ({ getValue }) => {
-        const updatedAt = getValue();
+        const updatedAt = getValue() as Date;
         const daysFromToday = moment().diff(updatedAt, 'days');
         const color =
           daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
@@ -72,17 +104,21 @@ const InstructorEnrollmentList = ({
       },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
-      header: <MailIcon color={'var(--datapass-dark-grey)'} />,
+      header: () => <MailIcon color={'var(--datapass-dark-grey)'} />,
       enableColumnFilter: false,
       enableSorting: false,
       size: 50,
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
-        const notify_events_from_demandeurs_count = getValue();
+        const notify_events_from_demandeurs_count = getValue() as number;
         return (
           <Badge
             className="fr-py-1v"
-            type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
+            type={
+              notify_events_from_demandeurs_count > 0
+                ? BadgeType.warning
+                : BadgeType.base
+            }
           >
             <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
               {notify_events_from_demandeurs_count}
@@ -101,14 +137,12 @@ const InstructorEnrollmentList = ({
       },
       filterFn: 'weakEquals',
       cell: ({ getValue }) => {
-        const notify_events_from_demandeurs_count = getValue();
+        const id = getValue() as number;
+
         return (
-          <Badge
-            className="fr-py-1v"
-            type={notify_events_from_demandeurs_count > 0 ? 'warning' : ''}
-          >
+          <Badge className="fr-py-1v" type={BadgeType.base}>
             <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
-              {notify_events_from_demandeurs_count}
+              {id}
             </span>
           </Badge>
         );
@@ -162,7 +196,7 @@ const InstructorEnrollmentList = ({
         ),
       },
       cell: ({ getValue }) => {
-        const status = getValue();
+        const status = getValue() as EnrollmentStatus;
         return <StatusBadge userType="instructor" status={status} />;
       },
     }),
@@ -185,7 +219,7 @@ const InstructorEnrollmentList = ({
         <Table
           tableOptions={{
             data: enrollments,
-            columns: getColumnConfiguration(),
+            columns: columns as Row<Enrollment>[],
             pageCount: totalPages,
             state: {
               columnFilters: filtered,
@@ -198,21 +232,23 @@ const InstructorEnrollmentList = ({
             manualPagination: true,
             manualFiltering: true,
             manualSorting: true,
+            getCoreRowModel: getCoreRowModel(),
           }}
           onRowClick={({ row, event }) => {
             if (row) {
               const {
                 original: { id, target_api },
-              } = row;
+              } = row as Row<Enrollment>;
               setPreviouslySelectedEnrollmentId(id);
               goToItem(target_api, id, event);
             }
           }}
-          getRowClassName={(row) =>
-            row && row.original.id === previouslySelectedEnrollmentId
+          getRowClassName={(row) => {
+            const { original } = row as Row<Enrollment>;
+            return original.id === previouslySelectedEnrollmentId
               ? 'selected'
-              : ''
-          }
+              : '';
+          }}
         />
       </div>
     </main>
