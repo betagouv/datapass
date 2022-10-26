@@ -6,38 +6,23 @@ RSpec.describe ApiGouv, type: :service do
   end
 
   context "for success call to api.gouv.fr" do
-    it "returns a list with datapassLink information" do
-      expect(subject).to eq(
-        [
-          {"title" => "API Ingres - Nomenclatures",
-           "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Information des Ressources Humaines de la Fonction Publique d'Etat",
-           "path" => "/les-api/API_Ingres_Nomenclatures",
-           "slug" => "API_Ingres_Nomenclatures",
-           "openness" => "closed",
-           "owner" => "Centre Interministériel des Systèmes d'Information relatifs aux Ressources Humaines",
-           "owner_acronym" => "CISIRH",
-           "logo" => "/images/api-logo/logo-cisirh.png",
-           "datapass_link" => "https://datapass.api.gouv.fr/api_ingres"},
-          {"title" => "API Ingres Noyau",
-           "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Informations des Ressources Humaines de la Fonction Publique d'Etat",
-           "path" => "/les-api/API_Ingres_Noyau",
-           "slug" => "API_Ingres_Noyau",
-           "openness" => "closed",
-           "owner" => "Centre Interministériel des Systèmes d'Information relatifs aux Ressources Humaines",
-           "owner_acronym" => "CISIRH",
-           "logo" => "/images/api-logo/logo-cisirh.png",
-           "datapass_link" => "https://datapass.api.gouv.fr/api_ingres"},
-          {"title" => "API CaptchEtat",
-           "tagline" => "Générer un CAPTCHA pour sécuriser un service en ligne",
-           "path" => "/les-api/api-captchetat",
-           "slug" => "api-captchetat",
-           "openness" => "closed",
-           "owner" => "Agence pour l'informatique financière de l'État",
-           "owner_acronym" => "AIFE",
-           "logo" => "/images/api-logo/ChorusPro.jpg",
-           "datapass_link" => "https://datapass.api.gouv.fr/api-captchetat"}
-        ]
-      )
+    it "returns 2 apis lists with datapassLink information" do
+      expect(subject.size).to eq(2)
+    end
+
+    it "return the collection with info that concerns datapass only" do
+      expect(subject[1]).to match([{
+        "title" => "API CaptchEtat",
+        "tagline" => "Générer un CAPTCHA pour sécuriser un service en ligne",
+        "path" => "/les-api/api-captchetat",
+        "slug" => "api-captchetat",
+        "logo" => "/images/api-logo/ChorusPro.jpg",
+        "datapass_link" => "https://datapass.api.gouv.fr/api-captchetat"
+      }])
+    end
+
+    it "should not include list without datapass_link information" do
+      expect(subject).not_to include("title" => "API Camino")
     end
   end
 

@@ -20,7 +20,7 @@ module ApiGouvPayloadHelpers
     [
       {
         "title" => "API Ingres - Nomenclatures",
-        "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Information des Ressources Humaines de la Fonction Publique d'Etat",
+        "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Information des Ressources Humaines",
         "path" => "/les-api/API_Ingres_Nomenclatures",
         "slug" => "API_Ingres_Nomenclatures",
         "openness" => "closed",
