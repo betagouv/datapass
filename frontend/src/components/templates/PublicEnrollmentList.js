@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import {
   DATA_PROVIDER_PARAMETERS,
   HIDDEN_DATA_PROVIDER_KEYS,
@@ -13,11 +13,11 @@ import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
 import { createColumnHelper } from '@tanstack/react-table';
-import { withParams } from '../../hoc';
 
 const columnHelper = createColumnHelper();
 
-const PublicEnrollmentList = ({ params }) => {
+const PublicEnrollmentList = () => {
+  const params = useParams();
   const [enrollments, setEnrollments] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
 
@@ -128,4 +128,4 @@ const PublicEnrollmentList = ({ params }) => {
   );
 };
 
-export default withParams(PublicEnrollmentList);
+export default PublicEnrollmentList;

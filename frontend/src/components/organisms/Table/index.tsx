@@ -10,7 +10,7 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
-import { CSSProperties, SyntheticEvent } from 'react';
+import { CSSProperties, MouseEvent } from 'react';
 import TablePagination from '../../molecules/TablePagination';
 import './style.css';
 import FilterComponent from '../../molecules/FilterComponent';
@@ -25,7 +25,7 @@ declare module '@tanstack/table-core' {
 }
 
 type onRowClickProps = {
-  event: SyntheticEvent;
+  event: MouseEvent;
   row: any;
 };
 

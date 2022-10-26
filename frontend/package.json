@@ -22,8 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "@craco/craco": "^6.4.3",
-    "@datapunt/matomo-tracker-js": "^0.5.1",
-    "@datapunt/matomo-tracker-react": "^0.5.1",
     "@gouvfr/dsfr": "1.7.2",
     "@justfixnyc/react-aria-modal": "^5.1.4-alpha.0",
     "@sentry/react": "^6.19.2",

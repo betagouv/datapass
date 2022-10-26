@@ -1,9 +1,4 @@
 import { BrowserRouter } from 'react-router-dom';
-import {
-  createInstance,
-  MatomoProvider,
-  useMatomo,
-} from '@datapunt/matomo-tracker-react';
 import './App.css';
 import Footer from './components/organisms/Footer';
 import Header from './components/organisms/Header';
@@ -11,20 +6,12 @@ import { AuthStore, useAuth } from './components/organisms/AuthContext';
 import Loader from './components/atoms/Loader';
 import Routes from './Routes';
 import Alert, { AlertType } from './components/atoms/Alert';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ErrorBoundary } from '@sentry/react';
 import ErrorBoundaryFallback from './components/organisms/ErrorBoundaryFallback';
-import matomoConfiguration from './config/matomo-configuration';
-
-const instance = createInstance(matomoConfiguration);
 
 const Page: React.FC = () => {
   const { isLoading, connectionError } = useAuth();
-  const { trackPageView, enableLinkTracking } = useMatomo();
-
-  enableLinkTracking();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => trackPageView({}), []);
 
   return (
     <div className="page">
@@ -49,13 +36,11 @@ const Page: React.FC = () => {
 
 const App = () => (
   <ErrorBoundary fallback={ErrorBoundaryFallback}>
-    <MatomoProvider value={instance}>
-      <BrowserRouter>
-        <AuthStore>
-          <Page />
-        </AuthStore>
-      </BrowserRouter>
-    </MatomoProvider>
+    <BrowserRouter>
+      <AuthStore>
+        <Page />
+      </AuthStore>
+    </BrowserRouter>
   </ErrorBoundary>
 );
 

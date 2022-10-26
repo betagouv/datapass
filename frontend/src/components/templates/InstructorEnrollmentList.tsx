@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -18,18 +18,14 @@ import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
-  withAuth,
-  withFileDownloader,
-  withListItemNavigation,
-  withMatomoTrackEvent,
-} from '../../hoc';
-import {
   EnrollmentStatus,
   INSTRUCTOR_STATUS_LABELS,
 } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
-import { User } from '../organisms/AuthContext';
+import { useAuth } from '../organisms/AuthContext';
 import { isEmpty } from 'lodash';
+import useListItemNavigation from './hooks/use-list-item-navigation';
+import useFileDownloader from './hooks/use-file-downloader';
 
 type Demandeur = {
   id: number;
@@ -49,19 +45,11 @@ export type Enrollment = {
 
 const columnHelper = createColumnHelper<Enrollment>();
 
-type Props = {
-  goToItem: (target_api: string, id: number, event: SyntheticEvent) => void;
-  isExportDownloading: boolean;
-  downloadExport: () => void;
-  user: User;
-};
-
-const InstructorEnrollmentList: React.FC<Props> = ({
-  goToItem,
-  isExportDownloading,
-  downloadExport,
-  user,
-}) => {
+const InstructorEnrollmentList: React.FC = () => {
+  const { isDownloading, download } = useFileDownloader();
+  const { user } = useAuth();
+  const downloadExport = () => download('/api/enrollments/export', 'text/csv');
+  const { goToItem } = useListItemNavigation();
   const [enrollments, setEnrollments] = useState([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [pagination, setPagination] = useQueryString('pagination', {
@@ -71,7 +59,7 @@ const InstructorEnrollmentList: React.FC<Props> = ({
   const [filtered, setFiltered] = useQueryString('filtered', [
     {
       id: 'status',
-      value: isEmpty(user.roles)
+      value: isEmpty(user?.roles)
         ? ['submitted', 'changes_requested', 'draft']
         : ['submitted', 'changes_requested'],
     },
@@ -237,7 +225,7 @@ const InstructorEnrollmentList: React.FC<Props> = ({
       <ListHeader title="Liste des habilitations">
         <Button
           onClick={() => downloadExport()}
-          disabled={isExportDownloading}
+          disabled={isDownloading}
           secondary
           icon="file-download"
           iconRight
@@ -282,6 +270,4 @@ const InstructorEnrollmentList: React.FC<Props> = ({
   );
 };
 
-export default withMatomoTrackEvent(
-  withFileDownloader(withListItemNavigation(withAuth(InstructorEnrollmentList)))
-);
+export default InstructorEnrollmentList;
