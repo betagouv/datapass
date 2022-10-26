@@ -10,24 +10,14 @@ class ApiGouv < ApplicationService
   end
 
   def api_gouv_apis
-    begin
-      response = Http.instance.get({
-        url: "#{api_gouv_host}/api/v1/apis",
-        tag: "Api Gouv",
-        timeout: 60
-      })
-    rescue ApplicationController::BadGateway => e
-      if e.http_code == 404
-        return nil
-      elsif e.http_code == 403
-        return nil
-      else
-        raise
-      end
-    end
+    response = Http.instance.get({
+      url: "#{api_gouv_host}/api/v1/apis",
+      tag: "Api Gouv",
+      timeout: 60
+    })
 
     apis_list = response.parse
-    apis_list.select { |list| list["openness"] == "closed" && list.include?("datapass_link") }
+    apis_list.select { |list| list.include?("datapass_link") }
   end
 
   private

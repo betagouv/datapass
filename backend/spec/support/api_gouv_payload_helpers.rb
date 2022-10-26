@@ -30,17 +30,6 @@ module ApiGouvPayloadHelpers
         "datapass_link" => "https://datapass.api.gouv.fr/api_ingres"
       },
       {
-        "title" => "API Ingres Noyau",
-        "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Informations des Ressources Humaines de la Fonction Publique d'Etat",
-        "path" => "/les-api/API_Ingres_Noyau",
-        "slug" => "API_Ingres_Noyau",
-        "openness" => "closed",
-        "owner" => "Centre Interministériel des Systèmes d'Information relatifs aux Ressources Humaines",
-        "owner_acronym" => "CISIRH",
-        "logo" => "/images/api-logo/logo-cisirh.png",
-        "datapass_link" => "https://datapass.api.gouv.fr/api_ingres"
-      },
-      {
         "title" => "Légifrance Bêta",
         "tagline" => "Réutilisation des données juridiques disponibles sur le site Légifrance",
         "path" => "/les-api/DILA_api_Legifrance",
