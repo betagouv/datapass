@@ -4,7 +4,7 @@ class ApiGouv < ApplicationService
   end
 
   def cached_list
-    Rails.cache.fetch("apis_list", expires_in: 7.days) do
+    Rails.cache.fetch("apis_list", expires_in: 2.days) do
       api_gouv_apis
     end
   end
