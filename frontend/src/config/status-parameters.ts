@@ -32,9 +32,9 @@ export const USER_STATUS_LABELS: {
 };
 
 export const STATUS_TO_BADGE_TYPE: {
-  [key in EnrollmentStatus]: BadgeType;
+  [key in EnrollmentStatus]: BadgeType | '';
 } = {
-  draft: BadgeType.base,
+  draft: '',
   submitted: BadgeType.info,
   validated: BadgeType.success,
   changes_requested: BadgeType.warning,

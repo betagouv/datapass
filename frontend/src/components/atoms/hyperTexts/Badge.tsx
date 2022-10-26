@@ -1,6 +1,5 @@
 export enum BadgeType {
   info = 'info',
-  base = 'base',
   success = 'success',
   warning = 'warning',
   error = 'error',
@@ -8,21 +7,21 @@ export enum BadgeType {
 }
 
 type Props = {
-  type?: BadgeType;
+  type?: BadgeType | '';
   icon?: boolean;
   small?: boolean;
   className?: string;
 };
 
 export const Badge: React.FC<Props> = ({
-  type = BadgeType.info,
+  type = '',
   small = false,
   icon = false,
   className = '',
   children,
 }) => {
   className += ' fr-badge';
-  if (type && type !== 'base') {
+  if (type) {
     className += ` fr-badge--${type}`;
   }
   if (small) {

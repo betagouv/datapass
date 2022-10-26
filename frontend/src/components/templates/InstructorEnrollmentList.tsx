@@ -23,7 +23,7 @@ import {
 } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { useAuth } from '../organisms/AuthContext';
-import { isEmpty } from 'lodash';
+import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import useFileDownloader from './hooks/use-file-downloader';
 
@@ -74,14 +74,21 @@ const InstructorEnrollmentList: React.FC = () => {
     useQueryString('previouslySelectedEnrollmentId', 0);
 
   useEffect(() => {
-    getEnrollments({
-      page: pagination.pageIndex,
-      sortBy: sorted,
-      filter: filtered,
-    }).then(({ enrollments, meta: { total_pages } }) => {
-      setEnrollments(enrollments);
-      setTotalPages(total_pages);
-    });
+    const debouncedFetchData = debounce(() => {
+      getEnrollments({
+        page: pagination.pageIndex,
+        sortBy: sorted,
+        filter: filtered,
+      }).then(({ enrollments, meta: { total_pages } }) => {
+        setEnrollments(enrollments);
+        setTotalPages(total_pages);
+      });
+    }, 100);
+
+    debouncedFetchData();
+    return () => {
+      debouncedFetchData.cancel();
+    };
   }, [pagination, sorted, filtered]);
 
   const columns = [
@@ -129,9 +136,7 @@ const InstructorEnrollmentList: React.FC = () => {
           <Badge
             className="fr-py-1v"
             type={
-              notify_events_from_demandeurs_count > 0
-                ? BadgeType.warning
-                : BadgeType.base
+              notify_events_from_demandeurs_count > 0 ? BadgeType.warning : ''
             }
           >
             <span
@@ -158,7 +163,7 @@ const InstructorEnrollmentList: React.FC = () => {
         const id = getValue() as number;
 
         return (
-          <Badge className="fr-py-1v" type={BadgeType.base}>
+          <Badge className="fr-py-1v">
             <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
               {id}
             </span>
