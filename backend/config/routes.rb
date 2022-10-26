@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     get "/insee/etablissements/ping", to: "insee#ping"
     get "/insee/codes_naf/:id", to: "insee#codes_naf", id: /\d{2}\.\d{2}[A-Z]/
     get "/insee/categories_juridiques/:id", to: "insee#categories_juridiques", id: /[0-9]{1,4}/
+
+    get "/api_gouv/apis_list", to: "api_gouv#apis_list"
   end
 
   devise_scope :api do
