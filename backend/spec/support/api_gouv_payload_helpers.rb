@@ -20,12 +20,9 @@ module ApiGouvPayloadHelpers
     [
       {
         "title" => "API Ingres - Nomenclatures",
-        "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Information des Ressources Humaines",
+        "tagline" => "Récupérez l'ensemble des référentiels utilisés par les Systèmes d'Information des Ressources Humaines de la Fonction Publique d'Etat",
         "path" => "/les-api/API_Ingres_Nomenclatures",
         "slug" => "API_Ingres_Nomenclatures",
-        "openness" => "closed",
-        "owner" => "Centre Interministériel des Systèmes d'Information relatifs aux Ressources Humaines",
-        "owner_acronym" => "CISIRH",
         "logo" => "/images/api-logo/logo-cisirh.png",
         "datapass_link" => "https://datapass.api.gouv.fr/api_ingres"
       },
@@ -34,9 +31,6 @@ module ApiGouvPayloadHelpers
         "tagline" => "Réutilisation des données juridiques disponibles sur le site Légifrance",
         "path" => "/les-api/DILA_api_Legifrance",
         "slug" => "DILA_api_Legifrance",
-        "openness" => "semi_open",
-        "owner" => "Direction de l'information légale et administrative",
-        "owner_acronym" => "DILA",
         "logo" => "/images/api-logo/dila.png",
         "datagouv_uuid" => ["53ae8af9a3a729709f56d50c"]
       },
@@ -45,22 +39,16 @@ module ApiGouvPayloadHelpers
         "tagline" => "Ouvrir le cadastre minier pour mieux gérer les projets",
         "path" => "/les-api/api-camino",
         "slug" => "api-camino",
-        "openness" => "open",
-        "owner" => "Ministère de la Transition écologique et solidaire",
-        "owner_acronym" => "MTES",
         "logo" => "/images/api-logo/mtes.png",
         "datagouv_uuid" => ["5dceb39c634f416d5593c858"]
       },
       {
-        "title" => "API CaptchEtat",
-        "tagline" => "Générer un CAPTCHA pour sécuriser un service en ligne",
-        "path" => "/les-api/api-captchetat",
-        "slug" => "api-captchetat",
-        "openness" => "closed",
-        "owner" => "Agence pour l'informatique financière de l'État",
-        "owner_acronym" => "AIFE",
-        "logo" => "/images/api-logo/ChorusPro.jpg",
-        "datapass_link" => "https://datapass.api.gouv.fr/api-captchetat"
+        "title" => "le.taxi",
+        "tagline" => "Un clic, un taxi",
+        "path" => "/les-api/le-taxi",
+        "slug" => "le-taxi",
+        "logo" => "/images/api-logo/dinum.png",
+        "datapass_link" => "https://datapass.api.gouv.fr/le-taxi-clients"
       }
     ]
   end

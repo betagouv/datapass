@@ -3,8 +3,7 @@ class ApiGouvController < ApplicationController
   def apis_list
     apis_list = ApiGouv.call
 
-    render status: :ok, json: {
-      apis_list: apis_list
-    }
+    render status: :ok, json:
+      apis_list
   end
 end

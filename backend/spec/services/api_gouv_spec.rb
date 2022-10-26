@@ -11,14 +11,14 @@ RSpec.describe ApiGouv, type: :service do
     end
 
     it "return the collection with info that concerns datapass only" do
-      expect(subject[1]).to match([{
-        "title" => "API CaptchEtat",
-        "tagline" => "Générer un CAPTCHA pour sécuriser un service en ligne",
-        "path" => "/les-api/api-captchetat",
-        "slug" => "api-captchetat",
-        "logo" => "/images/api-logo/ChorusPro.jpg",
-        "datapass_link" => "https://datapass.api.gouv.fr/api-captchetat"
-      }])
+      expect(subject[1]).to eq(
+        {"title" => "le.taxi",
+         "tagline" => "Un clic, un taxi",
+         "path" => "/les-api/le-taxi",
+         "slug" => "le-taxi",
+         "logo" => "/images/api-logo/dinum.png",
+         "datapass_link" => "https://datapass.api.gouv.fr/le-taxi-clients"}
+      )
     end
 
     it "should not include list without datapass_link information" do

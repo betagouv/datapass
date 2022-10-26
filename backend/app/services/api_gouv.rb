@@ -16,8 +16,19 @@ class ApiGouv < ApplicationService
       timeout: 60
     })
 
+    return_keys = ["title", "tagline", "path", "slug", "logo", "datapass_link"]
+    key_index = return_keys.collect { |key| [key, true] }.to_h
+
     apis_list = response.parse
-    apis_list.select { |list| list.include?("datapass_link") }
+    results = apis_list.select { |list| list.include?("datapass_link") }
+    # result.map do |hash|
+    #   {title: hash["title"], tagline: hash["tagline"], path: hash["path"], slug: hash["slug"], logo: hash["logo"], datapass_link: hash["datapass_link"]}
+    # end
+    results.collect do |list|
+      list.select do |key, value|
+        key_index[key]
+      end
+    end
   end
 
   private
