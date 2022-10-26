@@ -25,13 +25,10 @@ export const Input = ({
   const [id] = useState(uniqueId(name));
 
   const getIcon = () => {
-    switch (icon) {
-      case 'filter':
-        return <FilterIcon small color="var(--datapass-dark-grey)" />;
-
-      default:
-        return null;
+    if (icon === 'filter') {
+      return <FilterIcon small color="var(--datapass-dark-grey)" />;
     }
+    return null;
   };
 
   let className = 'fr-input';

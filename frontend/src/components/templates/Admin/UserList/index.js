@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import {
   createColumnHelper,
-  getFilteredRowModel,
   getPaginationRowModel,
 } from '@tanstack/react-table';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
@@ -13,7 +12,7 @@ import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
-import Table from '../../../atoms/Table';
+import Table from '../../../organisms/Table';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -121,7 +120,7 @@ const UserList = () => {
       ) : (
         <Table
           firstColumnFixed
-          wrapperClassName="datapass-table-overflow"
+          wrapperStyle={{ overflowX: 'scroll' }}
           tableOptions={{
             columns: columns,
             data: users,

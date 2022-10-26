@@ -1,5 +1,5 @@
-import Button from '../hyperTexts/Button';
-import NumberInput from '../inputs/NumberInput';
+import Button from '../../atoms/hyperTexts/Button';
+import NumberInput from '../../atoms/inputs/NumberInput';
 import './style.css';
 import { Table } from '@tanstack/react-table';
 

@@ -4,7 +4,6 @@ import {
   createColumnHelper,
   getCoreRowModel,
   Row,
-  RowData,
 } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
@@ -16,7 +15,7 @@ import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
-import Table from '../atoms/Table';
+import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
   withAuth,
@@ -28,8 +27,9 @@ import {
   EnrollmentStatus,
   INSTRUCTOR_STATUS_LABELS,
 } from '../../config/status-parameters';
-import useQueryString from '../../hooks/useQueryString';
+import useQueryString from './hooks/use-query-string';
 import { User } from '../organisms/AuthContext';
+import { isEmpty } from 'lodash';
 
 type Demandeur = {
   id: number;
@@ -45,7 +45,7 @@ export type Enrollment = {
   demandeurs: Demandeur[];
   target_api: string;
   status: EnrollmentStatus;
-} & RowData;
+};
 
 const columnHelper = createColumnHelper<Enrollment>();
 
@@ -64,23 +64,30 @@ const InstructorEnrollmentList: React.FC<Props> = ({
 }) => {
   const [enrollments, setEnrollments] = useState([]);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [pagination, setPagination] = useQueryString(
-    'pagination',
+  const [pagination, setPagination] = useQueryString('pagination', {
+    pageIndex: 0,
+  });
+
+  const [filtered, setFiltered] = useQueryString('filtered', [
     {
-      pageIndex: 0,
-      pageSize: 10,
+      id: 'status',
+      value: isEmpty(user.roles)
+        ? ['submitted', 'changes_requested', 'draft']
+        : ['submitted', 'changes_requested'],
     },
-    true
-  );
-  const [filtered, setFiltered] = useQueryString('filtered', [], true);
-  const [sorted, setSorted] = useQueryString('sorted', [], true);
+  ]);
+  const [sorted, setSorted] = useQueryString('sorted', [
+    {
+      id: 'updated_at',
+      desc: false,
+    },
+  ]);
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
-    useQueryString('previouslySelectedEnrollmentId', 0, true);
+    useQueryString('previouslySelectedEnrollmentId', 0);
 
   useEffect(() => {
     getEnrollments({
       page: pagination.pageIndex,
-      size: pagination.pageSize,
       sortBy: sorted,
       filter: filtered,
     }).then(({ enrollments, meta: { total_pages } }) => {
@@ -91,26 +98,45 @@ const InstructorEnrollmentList: React.FC<Props> = ({
 
   const columns = [
     columnHelper.accessor('updated_at', {
-      header: () => <ScheduleIcon color={'var(--datapass-dark-grey)'} />,
+      header: () => (
+        <span title="Date de dernière mise à jour">
+          <ScheduleIcon color={'var(--datapass-dark-grey)'} />
+        </span>
+      ),
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
       cell: ({ getValue }) => {
         const updatedAt = getValue() as Date;
         const daysFromToday = moment().diff(updatedAt, 'days');
-        const color =
-          daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
-        return <span style={{ color }}>{daysFromToday}j</span>;
+        return (
+          <span
+            title={moment(daysFromToday).format('llll')}
+          >{`${daysFromToday}j`}</span>
+        );
       },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
-      header: () => <MailIcon color={'var(--datapass-dark-grey)'} />,
+      header: () => (
+        <span title="Nombre de nouveaux messages">
+          <MailIcon color={'var(--datapass-dark-grey)'} />
+        </span>
+      ),
       enableColumnFilter: false,
       enableSorting: false,
       size: 50,
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
+        const messagesTitle =
+          notify_events_from_demandeurs_count === 0
+            ? 'Pas de nouveau message'
+            : notify_events_from_demandeurs_count === 1
+            ? `${notify_events_from_demandeurs_count} nouveau message`
+            : notify_events_from_demandeurs_count > 1
+            ? `${notify_events_from_demandeurs_count} nouveaux messages`
+            : '';
+
         return (
           <Badge
             className="fr-py-1v"
@@ -120,7 +146,11 @@ const InstructorEnrollmentList: React.FC<Props> = ({
                 : BadgeType.base
             }
           >
-            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
+            <span
+              title={messagesTitle}
+              className="fr-m-auto"
+              style={{ textOverflow: 'unset' }}
+            >
               {notify_events_from_demandeurs_count}
             </span>
           </Badge>
@@ -228,26 +258,23 @@ const InstructorEnrollmentList: React.FC<Props> = ({
             },
             onPaginationChange: setPagination,
             onSortingChange: setSorted,
-            onColumnFiltersChange: setFiltered,
+            onColumnFiltersChange: (updateFn) => {
+              setPagination({ pageIndex: 0 });
+              setFiltered(updateFn);
+            },
             manualPagination: true,
             manualFiltering: true,
             manualSorting: true,
             getCoreRowModel: getCoreRowModel(),
           }}
-          onRowClick={({ row, event }) => {
-            if (row) {
-              const {
-                original: { id, target_api },
-              } = row as Row<Enrollment>;
-              setPreviouslySelectedEnrollmentId(id);
-              goToItem(target_api, id, event);
-            }
+          onRowClick={async ({ row, event }) => {
+            const { id, target_api } = row as Enrollment;
+            await setPreviouslySelectedEnrollmentId(id);
+            goToItem(target_api, id, event);
           }}
           getRowClassName={(row) => {
-            const { original } = row as Row<Enrollment>;
-            return original.id === previouslySelectedEnrollmentId
-              ? 'selected'
-              : '';
+            const { id } = row as Enrollment;
+            return id === previouslySelectedEnrollmentId ? 'selected' : '';
           }}
         />
       </div>

@@ -10,13 +10,13 @@ const updateURL = (qsValue: string) => {
     window.location.pathname +
     qsValue;
 
-  window.history.pushState({ path: newurl }, '', newurl);
+  window.history.replaceState({ path: newurl }, '', newurl);
 };
 
 const getQueryStringValue = (key: string) => {
   const values: any = qs.parse(window.location.search);
 
-  // Check if its an object first
+  // Check if it's an object first
   try {
     return JSON.parse(values[key]);
   } catch (error) {
@@ -38,7 +38,7 @@ const setQueryStringValue = (key: string, value: any) => {
 const useQueryString = (
   key: string,
   initialValue: any,
-  forceInitialization: boolean = false
+  forceInitialization: boolean = true
 ) => {
   const queryStringValue = getQueryStringValue(key);
   if (!queryStringValue && forceInitialization && !isEmpty(initialValue)) {

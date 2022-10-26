@@ -11,7 +11,7 @@ import Tag from '../atoms/hyperTexts/Tag';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
-import Table from '../atoms/Table';
+import Table from '../organisms/Table';
 import { createColumnHelper } from '@tanstack/react-table';
 import { withParams } from '../../hoc';
 

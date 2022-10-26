@@ -1,7 +1,3 @@
-.datapass-table-overflow {
-  overflow: scroll;
-}
-
 .datapass-table {
   border-collapse: collapse;
   width: 100%;

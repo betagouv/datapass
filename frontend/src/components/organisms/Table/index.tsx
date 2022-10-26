@@ -10,11 +10,10 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
-import { SyntheticEvent } from 'react';
-import MultiSelect from '../../molecules/MultiSelect';
-import Input from '../inputs/Input';
-import TablePagination from '../TablePagination';
+import { CSSProperties, SyntheticEvent } from 'react';
+import TablePagination from '../../molecules/TablePagination';
 import './style.css';
+import FilterComponent from '../../molecules/FilterComponent';
 
 declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,7 +26,7 @@ declare module '@tanstack/table-core' {
 
 type onRowClickProps = {
   event: SyntheticEvent;
-  row: Row<RowData>;
+  row: any;
 };
 
 const Table = ({
@@ -35,13 +34,13 @@ const Table = ({
   firstColumnFixed = false,
   onRowClick,
   getRowClassName,
-  wrapperClassName = '',
+  wrapperStyle,
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
   onRowClick?: (onRowClickProps: onRowClickProps) => void;
-  getRowClassName?: (row: Row<RowData>) => string;
-  wrapperClassName?: string;
+  getRowClassName?: (row: any) => string;
+  wrapperStyle?: CSSProperties;
 }) => {
   const table = useReactTable({
     ...tableOptions,
@@ -76,7 +75,7 @@ const Table = ({
     }
 
     if (getRowClassName) {
-      className += ' ' + getRowClassName(row);
+      className += ' ' + getRowClassName(row.original);
     }
 
     return className;
@@ -84,32 +83,51 @@ const Table = ({
 
   return (
     <>
-      <div className={`page-container ${wrapperClassName}`}>
+      <div className="page-container" style={wrapperStyle}>
         <table className={tableClassName}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    style={{ width: header.getSize() }}
-                  >
-                    {header.isPlaceholder ? null : (
-                      <div {...getSortingHeaderProps(header.column)}>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {header.column.getCanFilter() ? (
-                          <div>
-                            <FilterComponent column={header.column} />
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                  </th>
-                ))}
+                {headerGroup.headers.map((header) => {
+                  const defaultOptions = Array.from(
+                    header.column.getFacetedUniqueValues().keys()
+                  ).map((value, i) => ({ key: value, label: value }));
+
+                  return (
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      style={{ width: header.getSize() }}
+                    >
+                      {header.isPlaceholder ? null : (
+                        <div {...getSortingHeaderProps(header.column)}>
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                          {header.column.getCanFilter() ? (
+                            <div>
+                              <FilterComponent
+                                onChange={header.column.setFilterValue}
+                                value={header.column.getFilterValue()}
+                                placeholder={
+                                  header.column.columnDef.meta?.placeholder
+                                }
+                                type={header.column.columnDef.meta?.filterType}
+                                options={
+                                  header.column.columnDef.meta?.selectOptions
+                                    ? header.column.columnDef.meta
+                                        ?.selectOptions
+                                    : defaultOptions
+                                }
+                              />
+                            </div>
+                          ) : null}
+                        </div>
+                      )}
+                    </th>
+                  );
+                })}
               </tr>
             ))}
           </thead>
@@ -118,7 +136,9 @@ const Table = ({
               <tr
                 key={row.id}
                 onClick={
-                  onRowClick ? (e) => onRowClick({ event: e, row }) : () => null
+                  onRowClick
+                    ? (e) => onRowClick({ event: e, row: row.original })
+                    : () => null
                 }
                 className={rowClassName(row)}
               >
@@ -136,38 +156,6 @@ const Table = ({
       <TablePagination table={table} />
     </>
   );
-};
-
-const FilterComponent = ({ column }: { column: Column<any, any> }) => {
-  const columnFilterValue = column.getFilterValue();
-  const { meta } = column.columnDef;
-  const defaultOptions = Array.from(column.getFacetedUniqueValues().keys()).map(
-    (value, i) => ({ key: value, label: value })
-  );
-  switch (meta?.filterType) {
-    case 'select':
-      return (
-        <MultiSelect
-          options={meta.selectOptions ? meta.selectOptions : defaultOptions}
-          values={(columnFilterValue ?? []) as Array<any>}
-          onChange={column.setFilterValue}
-        />
-      );
-
-    default:
-      return (
-        <Input
-          type="text"
-          value={(columnFilterValue ?? '') as string}
-          onChange={(e: React.SyntheticEvent) => {
-            const target = e.target as HTMLInputElement;
-            column.setFilterValue(target.value);
-          }}
-          icon="filter"
-          placeholder={meta?.placeholder}
-        />
-      );
-  }
 };
 
 export default Table;
