@@ -105,6 +105,10 @@ const Table = ({
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                          {{
+                            asc: '↑',
+                            desc: '↓',
+                          }[header.column.getIsSorted() as string] ?? null}
                           {header.column.getCanFilter() ? (
                             <div>
                               <FilterComponent
