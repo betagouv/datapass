@@ -1,6 +1,8 @@
 .datapass-table {
   border-collapse: collapse;
   width: 100%;
+  color: var(--text-default-grey);
+  background-color: white;
 }
 
 .sorting-header {

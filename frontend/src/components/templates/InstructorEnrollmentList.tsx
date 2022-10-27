@@ -1,9 +1,9 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import {
+  Column,
   createColumnHelper,
   getCoreRowModel,
-  Row,
 } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
@@ -242,7 +242,7 @@ const InstructorEnrollmentList: React.FC = () => {
         <Table
           tableOptions={{
             data: enrollments,
-            columns: columns as Row<Enrollment>[],
+            columns: columns as Column<Enrollment>[],
             pageCount: totalPages,
             state: {
               columnFilters: filtered,
