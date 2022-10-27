@@ -12,12 +12,12 @@ RSpec.describe ApiGouv, type: :service do
 
     it "return the collection with info that concerns datapass only" do
       expect(subject[1]).to eq(
-        {"title" => "le.taxi",
-         "tagline" => "Un clic, un taxi",
-         "path" => "/les-api/le-taxi",
-         "slug" => "le-taxi",
-         "logo" => "/images/api-logo/dinum.png",
-         "datapass_link" => "https://datapass.api.gouv.fr/le-taxi-clients"}
+        {title: "le.taxi",
+         tagline: "Un clic, un taxi",
+         path: "/les-api/le-taxi",
+         slug: "le-taxi",
+         logo: "/images/api-logo/dinum.png",
+         datapass_link: "https://datapass.api.gouv.fr/le-taxi-clients"}
       )
     end
 
