@@ -25,6 +25,104 @@ api_particulier:
   label: API Particulier
   mailer: *shared_mailer
   reply_to: contact@particulier.api.gouv.fr
+  scopes:
+    - value: cnaf_quotient_familial
+      label: Quotient familial
+    - value: cnaf_allocataires
+      label: Allocataires
+    - value: cnaf_enfants
+      label: Enfants
+    - value: cnaf_adresse
+      label: Adresse
+    - value: pole_emploi_identite
+      label: Identité
+    - value: pole_emploi_contact
+      label: Données de contact
+    - value: pole_emploi_adresse
+      label: Adresse
+    - value: pole_emploi_inscription
+      label: Inscription
+      helper: Données concernant l’inscription de la personne à Pôle Emploi
+    - value: mesri_identifiant
+      label: INE
+      helper: Identifiant National de l’étudiant
+    - value: mesri_identite
+      label: Identité
+      helper: Nom, prénom, date de naissance
+    - value: mesri_inscription_autre
+      label: Inscriptions en formation continue
+      helper: >-
+        Permet d’interroger les données des étudiants en formation continue. Données
+        : date de début, de fin d’inscription, et code COG de la commune du lieu
+        d’étude.
+    - value: mesri_inscription_etudiant
+      label: Inscriptions en formation initiale
+      helper: >-
+        Permet d’interroger les données des étudiants en formation initiale. Données
+        : dates de début, fin d’inscription et code COG de la commune du lieu
+        d’étude.
+    - value: mesri_admission
+      label: Admissions
+      helper: Limite la recherche aux seuls étudiants admis (non-inscrits).
+    - value: mesri_etablissements
+      label: Établissements
+      helper: Le ou les établissements (nom et indentifiant - UAI).
+    - value: cnous_statut_boursier
+      label: Statut étudiant boursier
+      helper: Indique si l‘étudiant est boursier au moment de l‘interrogation (Booléen)
+    - value: cnous_echelon_bourse
+      label: Echelon de la bourse
+      helper: échelon de 0bis à 8
+    - value: cnous_email
+      label: Email
+    - value: cnous_periode_versement
+      label: Période de versement
+      helper: >-
+        Date de début de rentrée scolaire/universitaire et durée de versement de la
+        bourse
+    - value: cnous_statut_bourse
+      label: Statut définitif de la bourse
+      helper: O si définitif, >=1 si provisoire (conditionnel)
+    - value: cnous_ville_etudes
+      label: Ville d‘étude et établissement
+      helper: Libellé de la ville d‘études et de l‘établissement
+    - value: cnous_identite
+      label: Identité
+      helper: Nom, prénom, date de naissance, lieu de naissance, genre
+  groups:
+    cnaf:
+      title: CNAF
+      scopes:
+        - cnaf_quotient_familial
+        - cnaf_allocataires
+        - cnaf_enfants
+        - cnaf_adresse
+    pole_emploi:
+      title: Pôle Emploi
+      scopes:
+        - pole_emploi_identite
+        - pole_emploi_contact
+        - pole_emploi_adresse
+        - pole_emploi_inscription
+    mesri:
+      title: Statut étudiant
+      scopes:
+        - mesri_identifiant
+        - mesri_identite
+        - mesri_inscription_etudiant
+        - mesri_inscription_autre
+        - mesri_admission
+        - mesri_etablissements
+    cnous:
+      title: Statut étudiant boursier
+      scopes:
+        - cnous_statut_boursier
+        - cnous_echelon_bourse
+        - cnous_email
+        - cnous_periode_versement
+        - cnous_statut_bourse
+        - cnous_ville_etudes
+        - cnous_identite
 
 api_impot_particulier_sandbox:
   label: API Impôt particulier (Bac à sable)

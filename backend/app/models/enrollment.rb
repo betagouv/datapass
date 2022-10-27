@@ -141,15 +141,32 @@ class Enrollment < ActiveRecord::Base
     Kernel.const_get("Enrollment::#{target_api.classify}Policy")
   end
 
+  def configuration
+    @configuration ||= DataProvidersConfiguration.instance.config_for(target_api)
+  end
+
+  def groups
+    if configuration["groups"].blank?
+      return []
+    end
+
+    scopes_array = scopes.reject { |k, v| !v }.keys
+    configuration["groups"].reject { |k, v| (scopes_array & v["scopes"]).empty? }.keys
+  end
+
   def subscribers
     unless DataProvidersConfiguration.instance.exists?(target_api)
       raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: API cible invalide."
     end
 
-    # Pure string conditions in a where query is dangerous!
+    # Pure string conditions in a where query are dangerous!
     # see https://guides.rubyonrails.org/active_record_querying.html#pure-string-conditions
-    # As long as the injected parameters is verified against a whitelist, we consider this safe.
-    User.where("'#{target_api}:subscriber' = ANY(roles)")
+    # As long as the injected parameters are verified against a whitelist, we consider this safe.
+    psql_groups_array = groups
+      .map { |group| "\"#{target_api}:#{group}:subscriber\"" }
+      .push("\"#{target_api}:subscriber\"")
+      .join(",")
+    User.where("'{#{psql_groups_array}}' && roles")
   end
 
   def demandeurs
