@@ -10,7 +10,7 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
-import { CSSProperties, MouseEvent } from 'react';
+import { CSSProperties, MouseEvent, SyntheticEvent } from 'react';
 import TablePagination from '../../molecules/TablePagination';
 import './style.css';
 import FilterComponent from '../../molecules/FilterComponent';
@@ -36,6 +36,7 @@ const Table = ({
   getRowClassName,
   wrapperStyle,
   noDataPlaceholder = 'Aucune donnée',
+  loading = false,
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
@@ -43,6 +44,7 @@ const Table = ({
   getRowClassName?: (row: any) => string;
   wrapperStyle?: CSSProperties;
   noDataPlaceholder?: string;
+  loading?: boolean;
 }) => {
   const table = useReactTable({
     ...tableOptions,
@@ -62,12 +64,27 @@ const Table = ({
     if (column.getCanSort()) {
       return {
         className: 'sorting-header',
-        onClick: column.getToggleSortingHandler(),
+        onClick: getOnSortingChange(
+          column.getToggleSortingHandler() as (event: SyntheticEvent) => void
+        ),
       };
     }
 
     return {};
   };
+
+  const getOnSortingChange =
+    (toggleSortingHandler: (event: SyntheticEvent) => void) =>
+    (event: SyntheticEvent) => {
+      toggleSortingHandler(event);
+      table.setPageIndex(0);
+    };
+
+  const getOnFilterChange =
+    (setFilterValue: (updater: any) => void) => (updater: any) => {
+      setFilterValue(updater);
+      table.setPageIndex(0);
+    };
 
   const rowClassName = (row: Row<RowData>) => {
     let className = '';
@@ -83,26 +100,29 @@ const Table = ({
     return className;
   };
 
-  const getNoDataState = () => {
+  const getNoDataRows = () => {
     const generatedArray = Array.from(Array(2).keys());
 
-    return (
-      <>
-        <div className="datapass-table-placeholder">{noDataPlaceholder}</div>
-        {generatedArray.map((i) => (
-          <tr key={i}>
-            {table.getAllColumns().map((column) => (
-              <td key={column.columnDef.id}></td>
-            ))}
-          </tr>
+    return generatedArray.map((i) => (
+      <tr key={i}>
+        {table.getAllColumns().map((column) => (
+          <td key={column.columnDef.id}></td>
         ))}
-      </>
-    );
+      </tr>
+    ));
   };
 
   return (
     <>
-      <div className="page-container" style={wrapperStyle}>
+      <div
+        className="page-container datapass-table-wrapper"
+        style={wrapperStyle}
+      >
+        {loading && <div className="datapass-table-loader">Chargement...</div>}
+        {!table.getRowModel().rows.length && (
+          <div className="datapass-table-placeholder">{noDataPlaceholder}</div>
+        )}
+
         <table className={tableClassName}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -131,7 +151,9 @@ const Table = ({
                           {header.column.getCanFilter() ? (
                             <div>
                               <FilterComponent
-                                onChange={header.column.setFilterValue}
+                                onChange={getOnFilterChange(
+                                  header.column.setFilterValue
+                                )}
                                 value={header.column.getFilterValue()}
                                 placeholder={
                                   header.column.columnDef.meta?.placeholder
@@ -176,7 +198,7 @@ const Table = ({
                     ))}
                   </tr>
                 ))
-              : getNoDataState()}
+              : getNoDataRows()}
           </tbody>
         </table>
       </div>

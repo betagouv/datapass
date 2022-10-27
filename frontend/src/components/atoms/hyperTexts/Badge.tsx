@@ -7,7 +7,7 @@ export enum BadgeType {
 }
 
 type Props = {
-  type?: BadgeType | '';
+  type?: BadgeType | null;
   icon?: boolean;
   small?: boolean;
   className?: string;

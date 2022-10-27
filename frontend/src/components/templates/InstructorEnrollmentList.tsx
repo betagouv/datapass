@@ -51,6 +51,7 @@ const InstructorEnrollmentList: React.FC = () => {
   const downloadExport = () => download('/api/enrollments/export', 'text/csv');
   const { goToItem } = useListItemNavigation();
   const [enrollments, setEnrollments] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [pagination, setPagination] = useQueryString('pagination', {
     pageIndex: 0,
@@ -75,11 +76,13 @@ const InstructorEnrollmentList: React.FC = () => {
 
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
+      setLoading(true);
       getEnrollments({
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
       }).then(({ enrollments, meta: { total_pages } }) => {
+        setLoading(false);
         setEnrollments(enrollments);
         setTotalPages(total_pages);
       });
@@ -103,11 +106,10 @@ const InstructorEnrollmentList: React.FC = () => {
       size: 50,
       cell: ({ getValue }) => {
         const updatedAt = getValue() as Date;
-        const daysFromToday = moment().diff(updatedAt, 'days');
         return (
-          <span
-            title={moment(daysFromToday).format('llll')}
-          >{`${daysFromToday}j`}</span>
+          <span title={moment(updatedAt).format('llll')}>
+            {moment(updatedAt).format('DD/MM/YYYY')}
+          </span>
         );
       },
     }),
@@ -136,7 +138,7 @@ const InstructorEnrollmentList: React.FC = () => {
           <Badge
             className="fr-py-1v"
             type={
-              notify_events_from_demandeurs_count > 0 ? BadgeType.warning : ''
+              notify_events_from_demandeurs_count > 0 ? BadgeType.warning : null
             }
           >
             <span
@@ -251,15 +253,13 @@ const InstructorEnrollmentList: React.FC = () => {
             },
             onPaginationChange: setPagination,
             onSortingChange: setSorted,
-            onColumnFiltersChange: (updateFn) => {
-              setPagination({ pageIndex: 0 });
-              setFiltered(updateFn);
-            },
+            onColumnFiltersChange: setFiltered,
             manualPagination: true,
             manualFiltering: true,
             manualSorting: true,
             getCoreRowModel: getCoreRowModel(),
           }}
+          loading={loading}
           noDataPlaceholder="Toutes les demandes d'habilitation ont été traitées"
           onRowClick={async ({ row, event }) => {
             const { id, target_api } = row as Enrollment;

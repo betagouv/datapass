@@ -21,6 +21,22 @@ export const Input = ({
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
+  const getInput = () => (
+    <input
+      className="fr-input"
+      type={type}
+      onChange={onChange}
+      name={name}
+      placeholder={placeholder}
+      id={id}
+      readOnly={disabled}
+      value={value}
+      aria-label={ariaLabel}
+      required={required}
+      {...rest}
+    />
+  );
+
   return (
     <div className="fr-input-group">
       <Label
@@ -30,21 +46,11 @@ export const Input = ({
         helper={helper}
         meta={meta}
       />
-      <div className={icon ? `fr-input-wrap fr-fi-${icon}-line` : ''}>
-        <input
-          className="fr-input"
-          type={type}
-          onChange={onChange}
-          name={name}
-          placeholder={placeholder}
-          id={id}
-          readOnly={disabled}
-          value={value}
-          aria-label={ariaLabel}
-          required={required}
-          {...rest}
-        />
-      </div>
+      {icon ? (
+        <div className={`fr-input-wrap fr-fi-${icon}-line`}>{getInput()}</div>
+      ) : (
+        getInput()
+      )}
     </div>
   );
 };
