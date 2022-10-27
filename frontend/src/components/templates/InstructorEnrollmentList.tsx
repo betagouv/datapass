@@ -260,6 +260,7 @@ const InstructorEnrollmentList: React.FC = () => {
             manualSorting: true,
             getCoreRowModel: getCoreRowModel(),
           }}
+          noDataPlaceholder="Toutes les demandes d'habilitation ont été traitées"
           onRowClick={async ({ row, event }) => {
             const { id, target_api } = row as Enrollment;
             await setPreviouslySelectedEnrollmentId(id);

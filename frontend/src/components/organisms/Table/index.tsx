@@ -35,12 +35,14 @@ const Table = ({
   onRowClick,
   getRowClassName,
   wrapperStyle,
+  noDataPlaceholder = 'Aucune donnée',
 }: {
   tableOptions: TableOptions<RowData>;
   firstColumnFixed?: boolean;
   onRowClick?: (onRowClickProps: onRowClickProps) => void;
   getRowClassName?: (row: any) => string;
   wrapperStyle?: CSSProperties;
+  noDataPlaceholder?: string;
 }) => {
   const table = useReactTable({
     ...tableOptions,
@@ -79,6 +81,23 @@ const Table = ({
     }
 
     return className;
+  };
+
+  const getNoDataState = () => {
+    const generatedArray = Array.from(Array(2).keys());
+
+    return (
+      <>
+        <div className="datapass-table-placeholder">{noDataPlaceholder}</div>
+        {generatedArray.map((i) => (
+          <tr key={i}>
+            {table.getAllColumns().map((column) => (
+              <td key={column.columnDef.id}></td>
+            ))}
+          </tr>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -136,23 +155,28 @@ const Table = ({
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                onClick={
-                  onRowClick
-                    ? (e) => onRowClick({ event: e, row: row.original })
-                    : () => null
-                }
-                className={rowClassName(row)}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {table.getRowModel().rows.length
+              ? table.getRowModel().rows.map((row) => (
+                  <tr
+                    key={row.id}
+                    onClick={
+                      onRowClick
+                        ? (e) => onRowClick({ event: e, row: row.original })
+                        : () => null
+                    }
+                    className={rowClassName(row)}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : getNoDataState()}
           </tbody>
         </table>
       </div>
