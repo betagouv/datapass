@@ -19,20 +19,12 @@ module ApiGouvPayloadHelpers
   def api_gouv_lists_payload
     [
       {
-        title: "API Ingres - Nomenclatures",
-        tagline: "Récupérez l'ensemble des référentiels",
-        path: "/les-api/API_Ingres_Nomenclatures",
-        slug: "API_Ingres_Nomenclatures",
-        logo: "/images/api-logo/logo-cisirh.png",
-        datapass_link: "https://datapass.api.gouv.fr/api_ingres"
-      },
-      {
-        title: "Légifrance Bêta",
-        tagline: "Réutilisation des données juridiques disponibles sur le site Légifrance",
-        path: "/les-api/DILA_api_Legifrance",
-        slug: "DILA_api_Legifrance",
-        logo: "/images/api-logo/dila.png",
-        datagouv_uuid: ["53ae8af9a3a729709f56d50c"]
+        title: "API Impôt particulier",
+        tagline: "Raccordez-vous directement à la DGFiP",
+        path: "/les-api/impot-particulier",
+        slug: "impot-particulier",
+        logo: "/images/api-logo/logo-dgfip.jpg",
+        datapass_link: "https://datapass.api.gouv.fr/api-impot-particulier-sandbox"
       },
       {
         title: "API Camino",
