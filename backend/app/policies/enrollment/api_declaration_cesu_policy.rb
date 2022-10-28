@@ -1,4 +1,8 @@
 class Enrollment::ApiDeclarationCesuPolicy < EnrollmentPolicy
+  def notify?
+    false
+  end
+
   def permitted_attributes
     res = super
 
