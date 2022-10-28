@@ -22,15 +22,13 @@ module ApiGouvPayloadHelpers
         title: "API Impôt particulier",
         tagline: "Raccordez-vous directement à la DGFiP",
         path: "/les-api/impot-particulier",
-        slug: "impot-particulier",
         logo: "/images/api-logo/logo-dgfip.jpg",
-        datapass_link: "https://datapass.api.gouv.fr/api-impot-particulier-sandbox"
+        datapass_link: "api-impot-particulier-sandbox"
       },
       {
         title: "API Camino",
         tagline: "Ouvrir le cadastre minier pour mieux gérer les projets",
         path: "/les-api/api-camino",
-        slug: "api-camino",
         logo: "/images/api-logo/mtes.png",
         datagouv_uuid: ["5dceb39c634f416d5593c858"]
       },
@@ -38,9 +36,8 @@ module ApiGouvPayloadHelpers
         title: "le.taxi",
         tagline: "Un clic, un taxi",
         path: "/les-api/le-taxi",
-        slug: "le-taxi",
         logo: "/images/api-logo/dinum.png",
-        datapass_link: "https://datapass.api.gouv.fr/le-taxi-clients"
+        datapass_link: "le-taxi-clients"
       }
     ]
   end

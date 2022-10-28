@@ -15,9 +15,8 @@ RSpec.describe ApiGouv, type: :service do
         {title: "le.taxi",
          tagline: "Un clic, un taxi",
          path: "/les-api/le-taxi",
-         slug: "le-taxi",
          logo: "/images/api-logo/dinum.png",
-         datapass_link: "https://datapass.api.gouv.fr/le-taxi-clients"}
+         datapass_link: "le-taxi-clients"}
       )
     end
 
@@ -30,9 +29,8 @@ RSpec.describe ApiGouv, type: :service do
         {title: "API Impôt particulier via FranceConnect",
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
-         slug: "impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
-         datapass_link: "https://datapass.api.gouv.fr/api-impot-particulier-fc-sandbox"}
+         datapass_link: "api-impot-particulier-fc-sandbox"}
       )
     end
   end

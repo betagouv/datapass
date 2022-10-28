@@ -12,9 +12,9 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 type ListApi = {
   title: string;
   tagline: string;
-  slug: string;
   path: string;
   logo: string;
+  datapass_link: string;
 };
 
 type GetListsResponse = {
@@ -56,12 +56,12 @@ export const DataProviderListApi = () => {
             retour
           </Button>
         </div>
-        {result.map(({ title, slug, tagline, path, logo }) => (
+        {result.map(({ title, tagline, path, logo, datapass_link }) => (
           <DataProviderCard
-            key={slug}
+            key={datapass_link}
             label={title ?? ''}
             iconPath={`${API_GOUV_HOST}/${logo}`}
-            passPath={`${BACK_HOST}/${slug}`}
+            passPath={`${BACK_HOST}/${datapass_link}`}
             description={tagline}
             aboutLink={`${API_GOUV_HOST}/${path}`}
           />
