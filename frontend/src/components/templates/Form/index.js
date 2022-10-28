@@ -8,7 +8,6 @@ import React, {
   useRef,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import { getStateFromUrlParams } from '../../../lib';
 import { getUserEnrollment } from '../../../services/enrollments';
 import Alert from '../../atoms/Alert';
@@ -18,6 +17,8 @@ import HeadSection from '../../organisms/form-sections/HeadSection';
 import StepperSection from '../../organisms/form-sections/StepperSection';
 import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
+import { useDataProviderConfigurations } from '../hooks/use-data-provider-configurations';
+import { useDataProvider } from '../hooks/use-data-provider';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
@@ -66,6 +67,8 @@ export const Form = ({
     additional_content: {},
   });
 
+  const { label } = useDataProvider(target_api);
+
   useEffect(() => {
     async function fetchUserEnrollment() {
       try {
@@ -103,18 +106,14 @@ export const Form = ({
   }, [enrollmentId, goBackToList]);
 
   useEffect(() => {
-    const targetApiLabel = `${DATA_PROVIDER_PARAMETERS[target_api]?.label}`;
-
-    if (targetApiLabel) {
-      document.title = targetApiLabel;
+    if (label) {
+      document.title = label;
     }
 
     if (enrollment.id) {
-      document.title = `${enrollment.id} - ${
-        enrollment.intitule || targetApiLabel
-      }`;
+      document.title = `${enrollment.id} - ${enrollment.intitule || label}`;
     }
-  }, [enrollment.id, enrollment.intitule, target_api]);
+  }, [enrollment.id, enrollment.intitule, label]);
 
   useEffect(() => {
     if (enrollment.id && !window.location.pathname.includes(enrollment.id)) {

@@ -11,7 +11,7 @@ import Accessibilite from './components/templates/Accessibilite';
 import Admin from './components/templates/Admin';
 import CopyEnrollment from './components/templates/CopyEnrollment';
 import DataProviderList from './components/templates/DataProviderList';
-import Enrollment from './components/templates/Enrollment';
+import RedirectToTheRightDataProviderForm from './components/templates/RedirectToTheRightDataProviderForm';
 import FAQ from './components/templates/Faq';
 import AdminEnrollmentList from './components/templates/InstructorEnrollmentList';
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
@@ -53,7 +53,9 @@ export const Routes = () => {
 
       <Route
         path="authorization-request/:enrollmentId"
-        element={<AuthRequired children={<Enrollment />} />}
+        element={
+          <AuthRequired children={<RedirectToTheRightDataProviderForm />} />
+        }
       />
 
       <Route

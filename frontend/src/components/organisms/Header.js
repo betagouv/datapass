@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { useDataProvider } from '../templates/hooks/use-data-provider';
+import { useDataProviderConfigurations } from '../templates/hooks/use-data-provider-configurations';
 import { useAuth } from './AuthContext';
 import { loginUrl } from '../templates/Login';
 import Link from '../atoms/hyperTexts/Link';
@@ -13,19 +14,23 @@ const Header = () => {
   const [targetApi, setTargetApi] = useState();
   let location = useLocation();
   const { user, logout } = useAuth();
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
+  const { label, icon } = useDataProvider(targetApi);
 
   useEffect(() => {
-    const targetApiInUrl = Object.keys(DATA_PROVIDER_PARAMETERS).find(
-      (target_api) => {
-        return window.location.pathname
-          .replace(/-/g, '_')
-          .startsWith(`/${target_api}`);
-      }
-    );
+    if (dataProviderConfigurations) {
+      const targetApiInUrl = Object.keys(dataProviderConfigurations).find(
+        (target_api) => {
+          return window.location.pathname
+            .replace(/-/g, '_')
+            .startsWith(`/${target_api}`);
+        }
+      );
 
-    setTargetApi(targetApiInUrl);
-    setDisplayContactLink(!targetApiInUrl);
-  }, [location]);
+      setTargetApi(targetApiInUrl);
+      setDisplayContactLink(!targetApiInUrl);
+    }
+  }, [dataProviderConfigurations, location]);
 
   return (
     <header role="banner" className="fr-header">
@@ -41,17 +46,17 @@ const Header = () => {
                     Française
                   </p>
                 </div>
-                {targetApi && !!DATA_PROVIDER_PARAMETERS[targetApi]?.icon && (
+                {icon && (
                   <div className="fr-header__operator">
                     <img
-                      src={`/images/${DATA_PROVIDER_PARAMETERS[targetApi]?.icon}`}
+                      src={`/images/${icon}`}
                       className="fr-responsive-img"
                       style={{
                         maxHeight: '67px',
                         width: 'auto',
                         maxWidth: '6em',
                       }}
-                      alt={`Logo ${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
+                      alt={`Logo ${label}`}
                     />
                   </div>
                 )}

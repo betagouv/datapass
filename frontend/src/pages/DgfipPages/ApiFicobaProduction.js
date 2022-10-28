@@ -6,7 +6,7 @@ import RecetteFonctionnelleSection from '../../components/organisms/form-section
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_ficoba_production';
@@ -15,7 +15,7 @@ const steps = ['api_ficoba_sandbox', target_api];
 const ApiFicobaProduction = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <ÉquipeInitializerSection />

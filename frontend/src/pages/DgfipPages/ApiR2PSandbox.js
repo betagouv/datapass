@@ -8,7 +8,7 @@ import DemarcheSection from '../../components/organisms/form-sections/DemarcheSe
 import { additionalTermsOfUse, DonneesDescription } from './common';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const demarches = {
@@ -96,7 +96,7 @@ const ApiR2PSandbox = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <PreviousEnrollmentSection steps={steps} />

@@ -1,9 +1,9 @@
 import React from 'react';
 import ListHeader from '../../molecules/ListHeader';
 import { DataProviderCard } from './DataProviderCard';
-import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import Button from '../../atoms/hyperTexts/Button';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
+import { useDataProviderConfigurations } from '../hooks/use-data-provider-configurations';
 
 const DataProviders = [
   { target_api: 'hubee_portail', description: 'Certificats de Décès' },
@@ -16,6 +16,7 @@ const DataProviders = [
 
 export const DataProviderList = () => {
   const { goBackToList } = useListItemNavigation();
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   return (
     <main className="list-page">
@@ -27,16 +28,17 @@ export const DataProviderList = () => {
             retour
           </Button>
         </div>
-        {DataProviders.map(({ target_api, description }) => (
-          <DataProviderCard
-            key={target_api}
-            label={DATA_PROVIDER_PARAMETERS[target_api]?.label}
-            iconPath={`/images/logo-hubee-small.png`}
-            passPath={`/${target_api}`}
-            description={description}
-            aboutLink="https://hubee.numerique.gouv.fr/datapass/"
-          />
-        ))}
+        {dataProviderConfigurations &&
+          DataProviders.map(({ target_api, description }) => (
+            <DataProviderCard
+              key={target_api}
+              label={dataProviderConfigurations?.[target_api].label}
+              iconPath={`/images/logo-hubee-small.png`}
+              passPath={`/${target_api}`}
+              description={description}
+              aboutLink="https://hubee.numerique.gouv.fr/datapass/"
+            />
+          ))}
       </div>
     </main>
   );

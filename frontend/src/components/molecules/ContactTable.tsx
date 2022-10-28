@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
-import { dataProviderParametersToContactInfo } from '../../lib';
+import { dataProviderConfigurationsToContactInfo } from '../../lib';
 import Link from '../atoms/hyperTexts/Link';
 import Table from '../organisms/Table';
 import {
@@ -9,16 +8,19 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
 } from '@tanstack/react-table';
+import { useDataProviderConfigurations } from '../templates/hooks/use-data-provider-configurations';
 
-type dataProviderInfoType = {
+type contactInfoType = {
   label: string;
   email: string;
 };
-const columnHelper = createColumnHelper<dataProviderInfoType>();
+const columnHelper = createColumnHelper<contactInfoType>();
 
 const ContactsTable: FunctionComponent = () => {
-  const dataProviderInfo: dataProviderInfoType[] =
-    dataProviderParametersToContactInfo(DATA_PROVIDER_PARAMETERS);
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
+
+  const contactInfo: contactInfoType[] =
+    dataProviderConfigurationsToContactInfo(dataProviderConfigurations);
 
   const getColumnConfiguration = () => [
     columnHelper.accessor('label', {
@@ -43,8 +45,8 @@ const ContactsTable: FunctionComponent = () => {
   return (
     <Table
       tableOptions={{
-        data: dataProviderInfo,
-        columns: getColumnConfiguration() as Column<dataProviderInfoType>[],
+        data: contactInfo,
+        columns: getColumnConfiguration() as Column<contactInfoType>[],
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
       }}

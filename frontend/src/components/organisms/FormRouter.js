@@ -1,24 +1,43 @@
+import { isEmpty } from 'lodash';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import Loader from '../atoms/Loader';
+import Enrollment from '../templates/Enrollment';
 import { AuthRequired } from './AuthContext';
+import { useFullDataProvider } from '../templates/hooks/use-full-data-provider';
 import NotFound from './NotFound';
 
 const FormRouter = () => {
   const { targetApi } = useParams();
 
-  const TargetApiComponent =
-    DATA_PROVIDER_PARAMETERS[targetApi.replace(/-/g, '_')]?.component;
+  const { Component, configuration, notFound } = useFullDataProvider({
+    targetApi: targetApi.replace(/-/g, '_'),
+  });
 
-  if (!TargetApiComponent) {
+  if (notFound) {
     return <NotFound />;
   }
 
-  return (
-    <AuthRequired>
-      <TargetApiComponent />
-    </AuthRequired>
-  );
+  if (Component) {
+    return (
+      <AuthRequired>
+        <Component />
+      </AuthRequired>
+    );
+  }
+
+  if (!isEmpty(configuration)) {
+    return (
+      <AuthRequired>
+        <Enrollment
+          target_api={targetApi.replace(/-/g, '_')}
+          configuration={configuration}
+        />
+      </AuthRequired>
+    );
+  }
+
+  return <Loader />;
 };
 
 export default FormRouter;

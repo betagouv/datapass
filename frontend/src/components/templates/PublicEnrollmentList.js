@@ -1,10 +1,7 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import {
-  DATA_PROVIDER_PARAMETERS,
-  HIDDEN_DATA_PROVIDER_KEYS,
-} from '../../config/data-provider-parameters';
+import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
 
 import Tag from '../atoms/hyperTexts/Tag';
@@ -13,6 +10,7 @@ import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
 import { createColumnHelper } from '@tanstack/react-table';
+import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 
 const columnHelper = createColumnHelper();
 
@@ -25,6 +23,8 @@ const PublicEnrollmentList = () => {
     pageIndex: 0,
     pageSize: 10,
   });
+
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   useEffect(() => {
     getPublicValidatedEnrollments({
@@ -76,7 +76,7 @@ const PublicEnrollmentList = () => {
       }
     ),
     columnHelper.accessor(
-      ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
+      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
       {
         enableColumnFilter: false,
         header: 'Fournisseur',
@@ -94,15 +94,13 @@ const PublicEnrollmentList = () => {
               <Tag isActive={!!isActive}>Toutes les habilitations</Tag>
             )}
           </NavLink>
-          {Object.keys(DATA_PROVIDER_PARAMETERS)
-            .filter((apiLabel) => !HIDDEN_DATA_PROVIDER_KEYS.includes(apiLabel))
-            .map((targetApi) => (
+          {Object.entries(dataProviderConfigurations || {})
+            .filter(
+              ([targetApi]) => !HIDDEN_DATA_PROVIDER_KEYS.includes(targetApi)
+            )
+            .map(([targetApi, { label }]) => (
               <NavLink key={targetApi} end to={`/public/${targetApi}`}>
-                {({ isActive }) => (
-                  <Tag isActive={!!isActive}>
-                    {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
-                  </Tag>
-                )}
+                {({ isActive }) => <Tag isActive={!!isActive}>{label}</Tag>}
               </NavLink>
             ))}
         </TagContainer>

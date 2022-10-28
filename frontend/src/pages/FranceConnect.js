@@ -7,7 +7,7 @@ import FranceConnectPlusSection from '../components/organisms/form-sections/Fran
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import Link from '../components/atoms/hyperTexts/Link';
 
 const DonneesDescription = () => (
@@ -141,7 +141,7 @@ const target_api = 'franceconnect';
 const FranceConnect = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <OrganisationSection />

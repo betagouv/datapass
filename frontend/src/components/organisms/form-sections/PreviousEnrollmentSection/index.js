@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
+import { useDataProvider } from '../../../templates/hooks/use-data-provider';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../../templates/Form';
 import { getUserValidatedEnrollments } from '../../../../services/enrollments';
@@ -33,7 +33,10 @@ const PreviousEnrollmentSection = ({ steps }) => {
     useState(false);
   const [validatedEnrollmentsError, setValidatedEnrollmentsError] =
     useState(false);
-  const [previousTargetApi, setPreviousTargetApi] = useState(null);
+  const [previousTargetApi, setPreviousTargetApi] = useState();
+
+  const { label: targetApiLabel } = useDataProvider(target_api);
+  const { label: previousTargetApiLabel } = useDataProvider(previousTargetApi);
 
   useEffect(() => {
     setPreviousTargetApi(
@@ -75,13 +78,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>
-        Habilitation{' '}
-        {previousTargetApi
-          ? DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label
-          : ''}{' '}
-        associée
-      </h2>
+      <h2>Habilitation {previousTargetApiLabel} associée</h2>
       {!disabled && !isUserEnrollmentLoading && (
         <>
           <p>
@@ -106,10 +103,9 @@ const PreviousEnrollmentSection = ({ steps }) => {
         validatedEnrollments.length === 0 && (
           <Alert type="warning">
             <p>
-              Pour demander l’accès à{' '}
-              <b>{DATA_PROVIDER_PARAMETERS[target_api]?.label}</b>, vous devez
-              avoir préalablement obtenu une habilitation à{' '}
-              <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>.
+              Pour demander l’accès à <b>{targetApiLabel}</b>, vous devez avoir
+              préalablement obtenu une habilitation à{' '}
+              <b>{previousTargetApiLabel}</b>.
             </p>
             <p>
               Veuillez{' '}
@@ -119,8 +115,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
                   state: { fromFranceConnectedAPI: target_api },
                 }}
               >
-                demander votre habilitation à{' '}
-                <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
+                demander votre habilitation à <b>{previousTargetApiLabel}</b>
               </ReactRouterLink>{' '}
               avant de continuer cette demande d’habilitation.
             </p>
@@ -141,10 +136,9 @@ const PreviousEnrollmentSection = ({ steps }) => {
             <ExpandableQuote title="Pourquoi associer une habilitation FranceConnect ?">
               <>
                 <p>
-                  Lorsque cette demande d’habilitation à{' '}
-                  {DATA_PROVIDER_PARAMETERS[target_api]?.label} sera validée
-                  vous disposerez des périmètres de données supplémentaires
-                  demandés.
+                  Lorsque cette demande d’habilitation à {targetApiLabel} sera
+                  validée vous disposerez des périmètres de données
+                  supplémentaires demandés.
                 </p>
                 <p>Ils apparaitront à l’utilisateur lors de sa connexion.</p>
               </>
@@ -156,11 +150,11 @@ const PreviousEnrollmentSection = ({ steps }) => {
               <>
                 <h4>
                   Association à votre habilitation{' '}
-                  <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
+                  <b>{previousTargetApiLabel}</b>
                 </h4>
                 <p>
                   Chargement de vos habilitations{' '}
-                  <b>{DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}</b>
+                  <b>{previousTargetApiLabel}</b>
                   ...
                 </p>
               </>
@@ -168,7 +162,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
           {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
             <Alert title="Erreur" type="error">
               Erreur inconnue lors de la récupération de vos habilitations{' '}
-              {DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}.
+              {previousTargetApiLabel}.
             </Alert>
           )}
           {!disabled &&
@@ -178,10 +172,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
                 <SelectInput
                   label={
                     <>
-                      Nom de l’habilitation{' '}
-                      <b>
-                        {DATA_PROVIDER_PARAMETERS[previousTargetApi]?.label}
-                      </b>{' '}
+                      Nom de l’habilitation <b>{previousTargetApiLabel}</b>{' '}
                       {previousTargetApi === 'franceconnect' ? (
                         <>à associer</>
                       ) : (

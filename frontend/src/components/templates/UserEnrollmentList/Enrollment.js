@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { chain } from 'lodash';
 import './Enrollment.css';
+import { useDataProvider } from '../hooks/use-data-provider';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
-import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import { StatusBadge } from '../../molecules/StatusBadge';
 
 const Enrollment = ({
@@ -17,6 +17,8 @@ const Enrollment = ({
   status,
   onSelect,
 }) => {
+  const { label, icon } = useDataProvider(target_api);
+
   const handleClick = useCallback(
     (e) => {
       onSelect(target_api, id, e);
@@ -36,13 +38,10 @@ const Enrollment = ({
     <div className="enrollment">
       <div className="enrollment-header">
         <div className="fs">
-          {DATA_PROVIDER_PARAMETERS[target_api]?.label}{' '}
-          {DATA_PROVIDER_PARAMETERS[target_api]?.icon && (
+          {label}{' '}
+          {icon && (
             <div>
-              <img
-                src={`/images/${DATA_PROVIDER_PARAMETERS[target_api]?.icon}`}
-                alt={`logo ${DATA_PROVIDER_PARAMETERS[target_api]?.label}`}
-              />
+              <img src={`/images/${icon}`} alt={`logo ${label}`} />
             </div>
           )}
         </div>

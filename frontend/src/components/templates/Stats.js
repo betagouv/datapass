@@ -17,10 +17,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import {
-  DATA_PROVIDER_PARAMETERS,
-  HIDDEN_DATA_PROVIDER_KEYS,
-} from '../../config/data-provider-parameters';
+import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
 import {
   EnrollmentStatus,
   USER_STATUS_LABELS,
@@ -35,6 +32,7 @@ import TagContainer from '../atoms/TagContainer';
 import { Card, CardContainer } from '../molecules/Card';
 import ListHeader from '../molecules/ListHeader';
 import './Stats.css';
+import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -74,15 +72,17 @@ const USER_STATUS_COLORS = {
 export const Stats = () => {
   const [stats, setStats] = useState(null);
   const { targetApi } = useParams();
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
-  const dataProviderKeyList = useMemo(
-    () =>
-      Object.keys(DATA_PROVIDER_PARAMETERS).filter(
-        (dataProviderKey) =>
-          !HIDDEN_DATA_PROVIDER_KEYS.includes(dataProviderKey)
-      ),
-    []
-  );
+  const dataProviderKeyList = useMemo(() => {
+    if (!dataProviderConfigurations) {
+      return [];
+    }
+
+    return Object.keys(dataProviderConfigurations).filter(
+      (dataProviderKey) => !HIDDEN_DATA_PROVIDER_KEYS.includes(dataProviderKey)
+    );
+  }, [dataProviderConfigurations]);
 
   async function getTargetAPIList(targetApi) {
     let targetApiList;
@@ -90,14 +90,14 @@ export const Stats = () => {
     switch (targetApi) {
       case 'allApi':
         const ApiTargetConfiguration = pickBy(
-          DATA_PROVIDER_PARAMETERS,
+          dataProviderConfigurations,
           (dataProviderConfig) => dataProviderConfig.type === 'api'
         );
         targetApiList = Object.keys(ApiTargetConfiguration);
         break;
       case 'allServices':
         const serviceTargetConfiguration = pickBy(
-          DATA_PROVIDER_PARAMETERS,
+          dataProviderConfigurations,
           (dataProviderConfig) => dataProviderConfig.type === 'service'
         );
         targetApiList = Object.keys(serviceTargetConfiguration);
@@ -157,7 +157,7 @@ export const Stats = () => {
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
               {({ isActive }) => (
                 <Tag isActive={!!isActive}>
-                  {DATA_PROVIDER_PARAMETERS[targetApi]?.label}
+                  {dataProviderConfigurations?.[targetApi].label}
                 </Tag>
               )}
             </NavLink>
@@ -306,7 +306,7 @@ export const Stats = () => {
                       value,
                       name === 'others'
                         ? 'Autres'
-                        : DATA_PROVIDER_PARAMETERS[name]?.label,
+                        : dataProviderConfigurations?.[name].label,
                       props,
                     ]}
                   />
@@ -317,7 +317,7 @@ export const Stats = () => {
                     formatter={(value) =>
                       (value === 'others'
                         ? 'Autres'
-                        : DATA_PROVIDER_PARAMETERS[value]?.label
+                        : dataProviderConfigurations?.[value].label
                       ).substring(0, 32)
                     }
                   />

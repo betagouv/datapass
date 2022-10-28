@@ -1,7 +1,7 @@
 import React from 'react';
-import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
 import { hashToQueryParams } from '../../../lib';
 import Button from '../../atoms/hyperTexts/Button';
+import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import './style.css';
@@ -94,18 +94,19 @@ export const Login = () => {
     '_'
   );
 
+  const { label, icon } = useDataProvider(targetApi);
+
   const isOnNewEnrollmentPage =
-    !!DATA_PROVIDER_PARAMETERS[targetApi]?.label &&
-    !window.location.pathname.split('/')[2];
+    !!label && !window.location.pathname.split('/')[2];
 
   return (
     <section className="full-page">
       <div className="container">
         <div className="panel" style={{ textAlign: 'center' }}>
-          {DATA_PROVIDER_PARAMETERS[targetApi]?.icon && (
+          {icon && (
             <img
-              src={`/images/${DATA_PROVIDER_PARAMETERS[targetApi]?.icon}`}
-              alt={`Logo ${DATA_PROVIDER_PARAMETERS[targetApi]?.label}`}
+              src={`/images/${icon}`}
+              alt={`Logo ${label}`}
               height="90"
               className="fr-m-3w"
             />

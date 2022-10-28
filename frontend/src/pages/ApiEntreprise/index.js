@@ -11,7 +11,7 @@ import ÉquipeSection, {
   getDefaultDelegueProtectionDonneesDescription,
   getDefaultResponsableTraitementDescription,
 } from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
 import Link from '../../components/atoms/hyperTexts/Link';
 
@@ -322,7 +322,7 @@ const ApiEntreprise = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://entreprise.api.gouv.fr/"
   >
     <OrganisationSection editorList={editorList} />
