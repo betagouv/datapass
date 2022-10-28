@@ -117,7 +117,7 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments
   def create
     target_api = params.fetch(:enrollment, {})["target_api"]
-    unless DataProvidersConfiguration.instance.exists?(target_api)
+    unless DataProviderConfigurations.instance.exists?(target_api)
       raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: fournisseur de données inconnu. Aucun changement n’a été sauvegardé."
     end
     enrollment_class = "Enrollment::#{target_api.underscore.classify}".constantize

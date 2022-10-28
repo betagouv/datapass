@@ -160,6 +160,6 @@ class EnrollmentMailer < ActionMailer::Base
   end
 
   def data_provider_config
-    @data_provider_config ||= DataProvidersConfiguration.instance.config_for(params[:target_api])
+    @data_provider_config ||= DataProviderConfigurations.instance.config_for(params[:target_api])
   end
 end

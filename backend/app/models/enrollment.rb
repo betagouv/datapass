@@ -142,7 +142,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def configuration
-    @configuration ||= DataProvidersConfiguration.instance.config_for(target_api)
+    @configuration ||= DataProviderConfigurations.instance.config_for(target_api)
   end
 
   def groups
@@ -155,7 +155,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def subscribers
-    unless DataProvidersConfiguration.instance.exists?(target_api)
+    unless DataProviderConfigurations.instance.exists?(target_api)
       raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: API cible invalide."
     end
 

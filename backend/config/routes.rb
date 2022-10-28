@@ -21,6 +21,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get "/data_provider_configurations", to: "data_provider_configurations#index"
+    get "/data_provider_configurations/:target_api", to: "data_provider_configurations#show"
+
     get "/users/me", to: "users#me"
     get "/users/join_organization", to: "users#join_organization"
     get "/users/personal_information", to: "users#personal_information"

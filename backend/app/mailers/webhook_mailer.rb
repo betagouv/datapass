@@ -29,6 +29,6 @@ class WebhookMailer < ActionMailer::Base
   end
 
   def target_api_data
-    DataProvidersConfiguration.instance.config_for(params[:target_api])
+    DataProviderConfigurations.instance.config_for(params[:target_api])
   end
 end

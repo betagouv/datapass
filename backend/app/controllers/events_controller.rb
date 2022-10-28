@@ -10,7 +10,7 @@ class EventsController < ApplicationController
         message: ["event not permitted"]
       }
     end
-    unless DataProvidersConfiguration.instance.exists?(target_api)
+    unless DataProviderConfigurations.instance.exists?(target_api)
       return render status: :bad_request, json: {
         message: ["target_api not permitted"]
       }
