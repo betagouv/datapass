@@ -108,4 +108,75 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
       expect(enrollments_payload.map { |enrollment_payload| enrollment_payload["id"] }).to eq([demandeur_notify_event_enrollment.id])
     end
   end
+
+  describe "policy" do
+    subject(:enrollments_payload) do
+      get :index, params: {}
+
+      JSON.parse(response.body)["enrollments"]
+    end
+
+    subject do
+      get :index
+    end
+
+    before do
+      login(user)
+    end
+
+    let!(:enrollment) { create(:enrollment, :api_particulier) }
+
+    context "with a user with no roles" do
+      let(:user) { create(:user, roles: []) }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(0)
+      end
+    end
+
+    context "with an instructor of another api" do
+      let(:user) { create(:user, roles: ["api_entreprise:reporter"]) }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(0)
+      end
+    end
+
+    context "with an instructor of this api" do
+      let(:user) { create(:user, roles: ["api_particulier:reporter"]) }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(1)
+      end
+    end
+
+    context "with an instructor within a concerned group" do
+      let(:user) { create(:user, roles: ["api_particulier:cnaf:reporter"]) }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(1)
+      end
+    end
+
+    context "with an instructor within a non-concerned group" do
+      let(:user) { create(:user, roles: ["api_particulier:pole_emploi:reporter"]) }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(0)
+      end
+    end
+
+    context "with an instructor within non-concerned and concerned groups" do
+      let(:user) {
+        create(:user, roles: [
+          "api_particulier:cnaf:reporter",
+          "api_particulier:pole_emploi:reporter"
+        ])
+      }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(1)
+      end
+    end
+  end
 end
