@@ -130,15 +130,17 @@ RSpec.describe Enrollment, type: :model do
       before do
         enrollment.update!(
           scopes: {
-            dgfip_annee_revenus: true,
-            dgfip_montant_impot: true
+            cnaf_quotient_familial: true,
+            cnaf_allocataires: true,
+            cnaf_enfants: false,
+            cnaf_adresse: false
           }
         )
       end
 
       it "returns a nested diff for object" do
         expect(subject["scopes"]).to eq({
-          "dgfip_montant_impot" => [false, true]
+          "cnaf_allocataires" => [false, true]
         })
       end
     end
@@ -148,8 +150,10 @@ RSpec.describe Enrollment, type: :model do
         enrollment.update!(
           cgu_approved: true,
           scopes: {
-            dgfip_annee_revenus: true,
-            dgfip_montant_impot: false,
+            cnaf_quotient_familial: true,
+            cnaf_allocataires: false,
+            cnaf_enfants: false,
+            cnaf_adresse: false,
             dgfip_nombre_parts: false
           }
         )
@@ -304,6 +308,45 @@ RSpec.describe Enrollment, type: :model do
           JSON.parse(subject)
         }.not_to raise_error
       end
+    end
+  end
+
+  describe "groups" do
+    subject { enrollment.groups }
+
+    let(:user) { create(:user) }
+    let(:enrollment) { create(:enrollment, :franceconnect, :draft) }
+
+    context "with no groups configured" do
+      it "returns an empty array" do
+        expect(subject).to eq([])
+      end
+    end
+  end
+
+  describe "subscribers" do
+    subject { enrollment.subscribers }
+
+    let(:enrollment) { create(:enrollment, :franceconnect, :draft) }
+
+    it "does not return subscribers from other API" do
+      create(:user, roles: ["fake_target_api"])
+      create(:user, roles: ["api_particulier:subscriber"])
+      create(:user, roles: ["api_particulier:cnaf:subscriber"])
+
+      expect(subject.any?).to be_falsey
+    end
+
+    it "does not return subscribers from other API" do
+      create(:user, roles: ["franceconnect:subscriber"])
+
+      expect(subject.to_a.length).to eq(1)
+    end
+
+    it "does not return subscribers from unknown group" do
+      create(:user, roles: ["franceconnect:unknown_group:subscriber"])
+
+      expect(subject.any?).to be_falsey
     end
   end
 end

@@ -204,8 +204,10 @@ FactoryBot.define do
 
       scopes do
         {
-          dgfip_annee_revenus: true,
-          dgfip_montant_impot: false
+          cnaf_quotient_familial: true,
+          cnaf_allocataires: false,
+          cnaf_enfants: false,
+          cnaf_adresse: false
         }
       end
 

@@ -7,7 +7,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 105,
+      "line": 106,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.exec_query(\"      SELECT target_api AS name, COUNT(target_api)\\n      FROM enrollments\\n      WHERE #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")}\\n      GROUP BY target_api\\n      ORDER BY COUNT(target_api) desc;\\n\")",
       "render_path": null,
@@ -18,6 +18,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -38,6 +41,32 @@
       },
       "user_input": "Document.find(params[:id])",
       "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "46ce81ed94535390cefbe7f0b99bc585d4549b4a0cda76d6e8723e174cc22e2a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/enrollment.rb",
+      "line": 171,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "User.where(\"'{#{groups.map do\n \"\\\"#{target_api}:#{group}:subscriber\\\"\"\n end.push(\"\\\"#{target_api}:subscriber\\\"\").join(\",\")}}' && roles\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Enrollment",
+        "method": "subscribers"
+      },
+      "user_input": "groups.map do\n \"\\\"#{target_api}:#{group}:subscriber\\\"\"\n end.push(\"\\\"#{target_api}:subscriber\\\"\").join(\",\")",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -58,6 +87,9 @@
       },
       "user_input": "params.fetch(:enrollment, {})[\"target_api\"].underscore.classify",
       "confidence": "High",
+      "cwe_id": [
+        470
+      ],
       "note": ""
     },
     {
@@ -67,7 +99,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 46,
+      "line": 47,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.execute(\"      SELECT COUNT(*) FROM enrollments WHERE status = 'validated' AND #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")};\\n\")",
       "render_path": null,
@@ -78,6 +110,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": "prevent the case in code"
     },
     {
@@ -87,7 +122,7 @@
       "check_name": "Send",
       "message": "User controlled method execution",
       "file": "app/controllers/enrollments_controller.rb",
-      "line": 184,
+      "line": 188,
       "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
       "code": "authorize(Enrollment.find(params[:id]), \"#{params[:event]}?\".to_sym).send(\"#{params[:event]}_status\".to_sym, :user_id => current_user.id, :comment => params[:comment])",
       "render_path": null,
@@ -98,6 +133,9 @@
       },
       "user_input": "params[:event]",
       "confidence": "High",
+      "cwe_id": [
+        77
+      ],
       "note": ""
     },
     {
@@ -107,7 +145,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 70,
+      "line": 71,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.execute(\"      SELECT round((COUNT(go_back_count)*100)::numeric/NULLIF(COUNT(*), 0), 0) as go_back_ratio\\n      FROM (\\n        SELECT\\n          enrollments.id, NULLIF(COUNT(enrollments.id) - 1, 0) as go_back_count\\n        FROM enrollments\\n          LEFT JOIN\\n          events ON events.enrollment_id = enrollments.id\\n          AND events.name IN ('create', 'request_changes')\\n        WHERE enrollments.status IN ('validated', 'refused')\\n        AND #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")}\\n        AND enrollments.updated_at > CURRENT_DATE - INTERVAL '6 months'\\n        GROUP BY enrollments.id\\n      ) e;\\n\")",
       "render_path": null,
@@ -118,6 +156,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -127,7 +168,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/mailers/webhook_mailer.rb",
-      "line": 22,
+      "line": 24,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "User.where(\"'#{params[:target_api]}:instructor' = ANY(roles)\")",
       "render_path": null,
@@ -138,6 +179,9 @@
       },
       "user_input": "params[:target_api]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -158,26 +202,9 @@
       },
       "user_input": "filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\")",
       "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "aac97180b952af4721ad5375d2e637a78a4140ac35b1ff82c228d1853570c5c1",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/enrollment.rb",
-      "line": 118,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "User.where(\"'#{target_api}:subscriber' = ANY(roles)\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Enrollment",
-        "method": "subscribers"
-      },
-      "user_input": "target_api",
-      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -187,7 +214,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 92,
+      "line": 93,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.exec_query(\"      SELECT\\n        date_trunc('month', created_at) AS month,\\n        COUNT(*) filter (where status = 'draft') as draft,\\n        COUNT(*) filter (where status = 'changes_requested') as changes_requested,\\n        COUNT(*) filter (where status = 'submitted') as submitted,\\n        COUNT(*) filter (where status = 'validated') as validated,\\n        COUNT(*) filter (where status = 'refused') as refused,\\n        COUNT(*) filter (where status = 'revoked') as revoked,\\n        COUNT(*) as total\\n      FROM enrollments\\n      WHERE #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")}\\n      GROUP BY month\\n      ORDER BY month;\\n\")",
       "render_path": null,
@@ -198,6 +225,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -207,7 +237,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 37,
+      "line": 38,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.execute(\"      SELECT COUNT(*) FROM enrollments WHERE #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")};\\n\")",
       "render_path": null,
@@ -218,6 +248,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": "prevent in backend code"
     },
     {
@@ -227,7 +260,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/controllers/stats_controller.rb",
-      "line": 117,
+      "line": 118,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.exec_query(\"      SELECT status AS name, count(status)\\n      FROM enrollments\\n      WHERE #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")}\\n      GROUP BY status;\\n\")",
       "render_path": null,
@@ -238,6 +271,9 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     },
     {
@@ -258,9 +294,12 @@
       },
       "user_input": "filter_by_target_api_criteria",
       "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
       "note": ""
     }
   ],
-  "updated": "2022-06-16 17:13:44 +0200",
-  "brakeman_version": "5.2.3"
+  "updated": "2022-10-27 09:57:52 +0000",
+  "brakeman_version": "5.3.1"
 }
