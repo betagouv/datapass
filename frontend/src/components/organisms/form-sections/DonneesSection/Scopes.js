@@ -1,44 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ScopeWarningModalConfiguration from '../../../../config/scope-warning-modal-configuration';
 import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 import Link from '../../../atoms/hyperTexts/Link';
 import Helper from '../../../atoms/Helper';
-
-const ModalContent = {
-  rgpd: {
-    title: 'Vous souhaitez ajouter des données',
-    body: (
-      <>
-        <p>
-          Afin de respecter le principe <b>RGPD</b> de minimisation de la
-          circulation des données personnelles, nous effectuons un contrôle de
-          cohérence entre les données demandées et l’usage décrit.
-        </p>
-        <p>
-          <b>
-            Une demande d’habilitation non conforme fera l’objet d’un retour
-            pour rectification, et donc d’un délai supplémentaire.
-          </b>
-        </p>
-      </>
-    ),
-  },
-  fc_incomplete: {
-    title: 'Cette donnée n’est pas vérifiée',
-    body: 'Elle ne sera transmise que si elle est disponible chez le fournisseur d’identité.',
-  },
-  apientreprise_sensitive: {
-    title: 'Avez-vous vraiment besoin de cette donnée ?',
-    body:
-      "Cette donnée est particulièrement sensible, elle n'est pas autorisée dans le cadre des " +
-      '"marchés publics" et "pré-remplissage". Elle peut être autorisée pour certaines ' +
-      '"aides et subventions publiques". ' +
-      "Pour que votre demande d'accès à cette donnée aboutisse, vous devez justifier dans ce formulaire " +
-      "d'un cadre légal adéquat et d'un contexte d'usage attestant de l'utilité de cette donnée pour votre service.",
-  },
-};
 
 const Scopes = ({
   title,
@@ -136,9 +103,9 @@ const Scopes = ({
           handleCancel={() => setWarningModalScope(null)}
           handleConfirm={handleWarningModalClose}
           confirmLabel="Ajouter ces données"
-          title={ModalContent[warningType].title}
+          title={ScopeWarningModalConfiguration[warningType].title}
         >
-          <p>{ModalContent[warningType].body} </p>
+          <p>{ScopeWarningModalConfiguration[warningType].body} </p>
         </ConfirmationModal>
       )}
     </>
