@@ -48,8 +48,7 @@ RSpec.describe EnrollmentsEmailTemplatesController, type: :controller do
                 "user_email" => enrollment_email_template.user_email,
                 "subject" => enrollment_email_template.subject,
                 "responsable_metier_email" => enrollment_email_template.responsable_metier_email,
-                "plain_text_content" => enrollment_email_template.plain_text_content,
-                "scopes" => enrollment_email_template.scopes
+                "plain_text_content" => enrollment_email_template.plain_text_content
               }
             end
           }
