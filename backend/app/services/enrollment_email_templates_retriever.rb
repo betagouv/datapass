@@ -21,8 +21,7 @@ class EnrollmentEmailTemplatesRetriever
       sender_email: "contact@api.gouv.fr",
       subject: target_api_data["mailer"][email_kind]["subject"],
       user_email: enrollment.demandeurs.pluck(:email).first,
-      plain_text_content: render_template(email_kind),
-      scopes: scopes
+      plain_text_content: render_template(email_kind)
     )
   end
 
@@ -64,8 +63,7 @@ class EnrollmentEmailTemplatesRetriever
       user: user,
       enrollment: enrollment,
       instructor: instructor,
-      responsable_metier_email: responsable_metier_email,
-      scopes: scopes
+      responsable_metier_email: responsable_metier_email
     }
   end
 
@@ -95,9 +93,5 @@ class EnrollmentEmailTemplatesRetriever
 
   def target_api_data
     DataProvidersConfiguration.instance.config_for(enrollment.target_api)
-  end
-
-  def scopes
-    enrollment[:scopes].reject { |k, v| !v }.keys
   end
 end

@@ -10,7 +10,6 @@ class EnrollmentMailer < ActionMailer::Base
     @target_api_label = data_provider_config["label"]
     @message = params[:message]
     @demandeur_email = params[:demandeur_email]
-    @scopes = params[:scopes]
 
     if !params[:responsable_metier_email].nil?
       @responsable_metier_email = params[:responsable_metier_email]
