@@ -71,8 +71,22 @@ export const Routes = () => {
         }
       />
 
-      <Route path=":targetApi" element={<FormRouter />}>
-        <Route path=":enrollmentId" element={<FormRouter />} />
+      <Route
+        path=":targetApi"
+        element={
+          <AuthRequired>
+            <FormRouter />
+          </AuthRequired>
+        }
+      >
+        <Route
+          path=":enrollmentId"
+          element={
+            <AuthRequired>
+              <FormRouter />
+            </AuthRequired>
+          }
+        />
       </Route>
     </ReactRouterRoutes>
   );

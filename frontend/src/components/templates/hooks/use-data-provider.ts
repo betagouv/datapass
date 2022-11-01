@@ -17,7 +17,7 @@ export const useDataProvider = (targetApi?: string) => {
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   useEffect(() => {
-    if (dataProviderConfigurations && targetApi) {
+    if (targetApi && dataProviderConfigurations?.[targetApi]) {
       setDataProviderConfiguration(dataProviderConfigurations[targetApi]);
     }
   }, [dataProviderConfigurations, targetApi]);
