@@ -63,6 +63,9 @@ const Scopes = ({
   };
 
   let titleToDisplay = title;
+
+  // Adding helpers on group title is an exception made for DGFiP form.
+  // This option must not be generalised. It should be removed ASAP.
   if (title === 'Années sur lesquelles porte votre demande') {
     titleToDisplay = (
       <>

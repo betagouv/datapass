@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { chain, difference, groupBy, isEmpty, zipObject } from 'lodash';
+import { chain, difference, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../../templates/Form';
@@ -18,6 +18,7 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 const DonneesSection = ({
   DonneesDescription,
   availableScopes = [],
+  groups,
   AvailableScopesDescription,
   accessModes,
   enableFileSubmissionForScopeSelection = false,
@@ -52,11 +53,6 @@ const DonneesSection = ({
       });
     }
   });
-
-  const groupTitleScopesGroup = groupBy(
-    availableScopes,
-    (e) => e.groupTitle || 'default'
-  );
 
   // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
   const scopesAsArray = chain(scopes)
@@ -102,16 +98,31 @@ const DonneesSection = ({
       {!isEmpty(availableScopes) && (
         <>
           <h3>À quelles données souhaitez-vous avoir accès ?</h3>
-          {Object.keys(groupTitleScopesGroup).map((group) => (
+          {!isEmpty(groups) ? (
+            Object.entries(groups).map(
+              ([key, { label, scopes: scopesInGroup }]) => {
+                return (
+                  <Scopes
+                    key={key}
+                    title={label}
+                    scopes={scopesInGroup.map((scopeValue) =>
+                      availableScopes.find(({ value }) => value === scopeValue)
+                    )}
+                    selectedScopes={scopes}
+                    disabledApplication={disabled}
+                    handleChange={onChange}
+                  />
+                );
+              }
+            )
+          ) : (
             <Scopes
-              key={group}
-              title={group === 'default' ? null : group}
-              scopes={groupTitleScopesGroup[group]}
+              scopes={availableScopes}
               selectedScopes={scopes}
               disabledApplication={disabled}
               handleChange={onChange}
             />
-          ))}
+          )}
           {!isEmpty(outdatedScopes) && (
             <Scopes
               title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"

@@ -10,6 +10,7 @@ import { additionalTermsOfUse } from './common';
 import {
   demarches,
   availableScopes,
+  groups,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
@@ -63,6 +64,7 @@ const ApiImpotParticulierFcSandbox = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       availableScopes={availableScopes}
+      groups={groups}
       enableFileSubmissionForScopeSelection={true}
     />
     <CadreJuridiqueSection

@@ -39,6 +39,7 @@ const Enrollment: FunctionComponent<Props> = ({
   configuration: {
     email,
     scopes,
+    groups,
     editeurs,
     demarches,
     cguLink,
@@ -78,6 +79,7 @@ const Enrollment: FunctionComponent<Props> = ({
       {/* @ts-ignore */}
       <DonneesSection
         availableScopes={scopes}
+        groups={groups}
         DonneesDescription={DonneesDescription}
       />
       {/* @ts-ignore */}

@@ -83,58 +83,71 @@ export const availableScopes = [
   {
     value: 'family_name',
     label: 'Nom de naissance',
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'given_name',
     label: 'Prénoms',
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthdate',
     label: 'Date de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthplace',
     label: 'Ville de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthcountry',
     label: 'Pays de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'gender',
     label: 'Sexe',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'preferred_username',
     label: 'Nom d’usage',
     triggerWarning: true,
     warningType: 'fc_incomplete',
-    groupTitle: 'Autres données :',
   },
   {
     value: 'email',
     label: 'Adresse électronique',
     triggerWarning: true,
-    groupTitle: 'Autres données :',
   },
   {
     value: 'openid',
     label: 'Identifiant technique',
     required: true,
     helper: '"sub" de l\'utilisateur au format OpenIDConnect',
-    groupTitle: 'Donnée technique :',
   },
 ];
+
+const groups = {
+  identite_pivot: {
+    label: 'Identité pivot :',
+    scopes: [
+      'family_name',
+      'given_name',
+      'birthdate',
+      'birthplace',
+      'birthcountry',
+      'gender',
+    ],
+  },
+  autres_donnees: {
+    label: 'Autres données :',
+    scopes: ['preferred_username', 'email'],
+  },
+  donnee_technique: {
+    label: 'Donnée technique :',
+    scopes: ['openid'],
+  },
+};
 
 const target_api = 'franceconnect';
 
@@ -148,6 +161,7 @@ const FranceConnect = () => (
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
+      groups={groups}
       DonneesDescription={DonneesDescription}
     />
     <FranceConnectPlusSection />

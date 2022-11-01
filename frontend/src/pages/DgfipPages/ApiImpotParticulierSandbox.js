@@ -10,13 +10,14 @@ import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import {
   availableScopes as fcAvailableScopes,
-  demarches as fcAvailableDemarches,
+  groups as fcGroups,
+  demarches as fcDemarches,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import { additionalTermsOfUse } from './common';
 
 const demarches = {
-  ...JSON.parse(JSON.stringify(fcAvailableDemarches)),
+  ...JSON.parse(JSON.stringify(fcDemarches)),
   eligibilite_lep: {
     label: 'Vérification de l’éligibilité au Livret d’épargne populaire (LEP)',
     state: {
@@ -38,10 +39,17 @@ const availableScopes = [
   {
     value: 'dgfip_IndLep',
     label: 'Indicateur d’éligibilité au LEP',
-    groupTitle:
-      'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
   },
 ];
+
+const groups = {
+  ...JSON.parse(JSON.stringify(fcGroups)),
+  eligibilite_lep: {
+    label:
+      'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
+    scopes: ['dgfip_IndLep'],
+  },
+};
 
 const accessModes = [
   {
@@ -100,6 +108,7 @@ const ApiImpotParticulierSandbox = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       availableScopes={availableScopes}
+      groups={groups}
       accessModes={accessModes}
       enableFileSubmissionForScopeSelection={true}
     />
