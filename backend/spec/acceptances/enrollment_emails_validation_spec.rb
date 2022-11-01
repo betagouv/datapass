@@ -3,7 +3,7 @@ RSpec.describe "Enrollments emails validation", type: :acceptance do
 
   describe "for each target api" do
     it "does have valid templates for review, refuse, notify and validate" do
-      DataProviderConfigurations.instance.send(:config_backend).each do |target_api, _|
+      DataProviderConfigurations.instance.send(:config).each do |target_api, _|
         next if target_api == "shared"
 
         expect {

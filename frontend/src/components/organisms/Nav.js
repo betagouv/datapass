@@ -35,7 +35,7 @@ const Nav = ({
             label
           )}`
         : `mailto:${contactEmail}?subject=Contact%20via%20datapass.api.gouv.fr`,
-    [contactEmail, target_api]
+    [contactEmail, label]
   );
 
   return (

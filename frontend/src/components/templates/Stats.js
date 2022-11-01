@@ -1,7 +1,7 @@
 import { pickBy } from 'lodash';
 import moment from 'moment';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import {
   Bar,
@@ -84,32 +84,35 @@ export const Stats = () => {
     );
   }, [dataProviderConfigurations]);
 
-  async function getTargetAPIList(targetApi) {
-    let targetApiList;
+  const getTargetAPIList = useCallback(
+    async function (targetApi) {
+      let targetApiList;
 
-    switch (targetApi) {
-      case 'allApi':
-        const ApiTargetConfiguration = pickBy(
-          dataProviderConfigurations,
-          (dataProviderConfig) => dataProviderConfig.type === 'api'
-        );
-        targetApiList = Object.keys(ApiTargetConfiguration);
-        break;
-      case 'allServices':
-        const serviceTargetConfiguration = pickBy(
-          dataProviderConfigurations,
-          (dataProviderConfig) => dataProviderConfig.type === 'service'
-        );
-        targetApiList = Object.keys(serviceTargetConfiguration);
-        break;
-      case undefined:
-        targetApiList = [];
-        break;
-      default:
-        targetApiList = [targetApi];
-    }
-    return getAPIStats(targetApiList);
-  }
+      switch (targetApi) {
+        case 'allApi':
+          const ApiTargetConfiguration = pickBy(
+            dataProviderConfigurations,
+            (dataProviderConfig) => dataProviderConfig.type === 'api'
+          );
+          targetApiList = Object.keys(ApiTargetConfiguration);
+          break;
+        case 'allServices':
+          const serviceTargetConfiguration = pickBy(
+            dataProviderConfigurations,
+            (dataProviderConfig) => dataProviderConfig.type === 'service'
+          );
+          targetApiList = Object.keys(serviceTargetConfiguration);
+          break;
+        case undefined:
+          targetApiList = [];
+          break;
+        default:
+          targetApiList = [targetApi];
+      }
+      return getAPIStats(targetApiList);
+    },
+    [dataProviderConfigurations]
+  );
 
   useEffect(() => {
     async function fetchStats() {
@@ -126,7 +129,7 @@ export const Stats = () => {
     }
 
     fetchStats();
-  }, [targetApi, dataProviderKeyList]);
+  }, [targetApi, dataProviderKeyList, getTargetAPIList]);
 
   if (!stats) {
     return (

@@ -17,7 +17,6 @@ import HeadSection from '../../organisms/form-sections/HeadSection';
 import StepperSection from '../../organisms/form-sections/StepperSection';
 import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
-import { useDataProviderConfigurations } from '../hooks/use-data-provider-configurations';
 import { useDataProvider } from '../hooks/use-data-provider';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { enrollmentReducerFactory } from './enrollmentReducer';
