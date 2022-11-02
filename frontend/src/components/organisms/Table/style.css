@@ -7,6 +7,7 @@
 
 .datapass-table-wrapper {
   position: relative;
+  overflow: hidden;
 }
 
 .datapass-table-loader {
@@ -81,11 +82,56 @@ td {
 .datapass-table thead {
   padding: 10px 0;
   background-color: #ececfe;
+  position: relative;
+}
+
+.datapass-table thead:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background-color: #ececfe;
+  position: absolute;
+}
+
+.datapass-table thead:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  background-color: #ececfe;
+  position: absolute;
 }
 
 .datapass-table tbody tr {
   height: 77px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.datapass-table tbody tr td {
+  position: relative;
+}
+
+.datapass-table tbody tr td:first-of-type:before {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+  position: absolute;
+  bottom: -1px;
+  left: -100%;
+}
+
+.datapass-table tbody tr td:last-of-type:after {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+  position: absolute;
+  bottom: -1px;
+  left: 100%;
 }
 
 .datapass-table .clickable-row:hover {
