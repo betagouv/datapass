@@ -9,9 +9,14 @@ import Badge from '../../atoms/hyperTexts/Badge';
 type Props = {
   status: EnrollmentStatus;
   userType: 'user' | 'instructor';
+  icon?: boolean;
 };
 
-export const StatusBadge: React.FC<Props> = ({ status, userType = 'user' }) => {
+export const StatusBadge: React.FC<Props> = ({
+  status,
+  userType = 'user',
+  icon = false,
+}) => {
   const getStatusLabelsEnum = () => {
     switch (userType) {
       case 'user':
@@ -28,7 +33,7 @@ export const StatusBadge: React.FC<Props> = ({ status, userType = 'user' }) => {
   const STATUS_LABEL_ENUM = getStatusLabelsEnum();
 
   return (
-    <Badge type={STATUS_TO_BADGE_TYPE[status]}>
+    <Badge icon={icon} type={STATUS_TO_BADGE_TYPE[status]}>
       {STATUS_LABEL_ENUM[status]}
     </Badge>
   );

@@ -222,7 +222,7 @@ const InstructorEnrollmentList: React.FC = () => {
       },
       cell: ({ getValue }) => {
         const status = getValue() as EnrollmentStatus;
-        return <StatusBadge userType="instructor" status={status} />;
+        return <StatusBadge icon userType="instructor" status={status} />;
       },
     }),
   ];
