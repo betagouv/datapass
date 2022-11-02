@@ -21,6 +21,7 @@ declare module '@tanstack/table-core' {
     placeholder?: string;
     filterType?: 'text' | 'select';
     selectOptions?: any[];
+    columnTitle?: string;
   }
 }
 
@@ -136,35 +137,45 @@ const Table = ({
                       colSpan={header.colSpan}
                       style={{ width: header.getSize() }}
                     >
+                      {!!header.column.columnDef.meta?.columnTitle && (
+                        <div className="datapass-table-column-title">
+                          {header.column.columnDef.meta?.columnTitle}
+                        </div>
+                      )}
                       {header.isPlaceholder ? null : (
                         <div {...getSortingHeaderProps(header.column)}>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                          {{
-                            asc: '↑',
-                            desc: '↓',
-                          }[header.column.getIsSorted() as string] ?? null}
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <FilterComponent
-                                onChange={getOnFilterChange(
-                                  header.column.setFilterValue
-                                )}
-                                value={header.column.getFilterValue()}
-                                placeholder={
-                                  header.column.columnDef.meta?.placeholder
-                                }
-                                type={header.column.columnDef.meta?.filterType}
-                                options={
-                                  header.column.columnDef.meta?.selectOptions
-                                    ? header.column.columnDef.meta
-                                        ?.selectOptions
-                                    : defaultOptions
-                                }
-                              />
+                          <div className="datapass-table-column-header">
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                          </div>
+                          {header.column.getIsSorted() ? (
+                            <div className="datapass-table-sorting-arrow">
+                              {
+                                {
+                                  asc: '↑',
+                                  desc: '↓',
+                                }[header.column.getIsSorted() as string]
+                              }
                             </div>
+                          ) : null}
+                          {header.column.getCanFilter() ? (
+                            <FilterComponent
+                              onChange={getOnFilterChange(
+                                header.column.setFilterValue
+                              )}
+                              value={header.column.getFilterValue()}
+                              placeholder={
+                                header.column.columnDef.meta?.placeholder
+                              }
+                              type={header.column.columnDef.meta?.filterType}
+                              options={
+                                header.column.columnDef.meta?.selectOptions
+                                  ? header.column.columnDef.meta?.selectOptions
+                                  : defaultOptions
+                              }
+                            />
                           ) : null}
                         </div>
                       )}

@@ -11,7 +11,6 @@ import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
 import { MailIcon } from '../atoms/icons/fr-fi-icons';
-import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
@@ -98,11 +97,7 @@ const InstructorEnrollmentList: React.FC = () => {
 
   const columns = [
     columnHelper.accessor('updated_at', {
-      header: () => (
-        <span title="Date de dernière mise à jour">
-          <ScheduleIcon color={'var(--datapass-dark-grey)'} />
-        </span>
-      ),
+      header: 'Date',
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
@@ -113,6 +108,9 @@ const InstructorEnrollmentList: React.FC = () => {
             {moment(updatedAt).format('DD/MM/YYYY')}
           </span>
         );
+      },
+      meta: {
+        columnTitle: 'Trier par',
       },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
