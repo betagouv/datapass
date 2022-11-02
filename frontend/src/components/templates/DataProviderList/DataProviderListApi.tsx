@@ -7,10 +7,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const { REACT_APP_FRONT_HOST: FRONT_HOST } = process.env;
 
 type ListApi = {
   title: string;
+  slug: string;
   tagline: string;
   path: string;
   logo: string;
@@ -28,7 +29,7 @@ export const DataProviderListApi = () => {
   async function getApisList() {
     try {
       const response: GetListsResponse = await axios.get(
-        `${BACK_HOST}/api/api_gouv/apis_list`
+        `${FRONT_HOST}/api/api_gouv/apis_list`
       );
       setResult(response.data);
     } catch (error) {
@@ -56,12 +57,12 @@ export const DataProviderListApi = () => {
             retour
           </Button>
         </div>
-        {result.map(({ title, tagline, path, logo, datapass_link }) => (
+        {result.map(({ title, slug, tagline, path, logo, datapass_link }) => (
           <DataProviderCard
-            key={datapass_link}
+            key={slug}
             label={title ?? ''}
             iconPath={`${API_GOUV_HOST}/${logo}`}
-            passPath={`${BACK_HOST}/${datapass_link}`}
+            passPath={`${FRONT_HOST}/${datapass_link}`}
             description={tagline}
             aboutLink={`${API_GOUV_HOST}/${path}`}
           />

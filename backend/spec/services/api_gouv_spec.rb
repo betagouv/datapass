@@ -13,10 +13,11 @@ RSpec.describe ApiGouv, type: :service do
     it "return the collection with info that concerns datapass only" do
       expect(subject[1]).to eq(
         {title: "le.taxi",
+         slug: "le-taxi",
          tagline: "Un clic, un taxi",
          path: "/les-api/le-taxi",
          logo: "/images/api-logo/dinum.png",
-         datapass_link: "le-taxi-clients"}
+         datapass_link: "/le-taxi-clients"}
       )
     end
 
@@ -27,10 +28,11 @@ RSpec.describe ApiGouv, type: :service do
     it "should add api-impot-particulier-fc-sandbox information" do
       expect(subject.last).to eq(
         {title: "API Impôt particulier via FranceConnect",
+         slug: "impot-particulier",
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
-         datapass_link: "api-impot-particulier-fc-sandbox"}
+         datapass_link: "/api-impot-particulier-fc-sandbox"}
       )
     end
   end

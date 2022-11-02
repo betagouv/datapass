@@ -1,3 +1,5 @@
+require "uri"
+
 class ApiGouv < ApplicationService
   def call
     cached_list
@@ -24,11 +26,11 @@ class ApiGouv < ApplicationService
     results = apis_list
       .select { |list| list.include?("datapass_link") }
       .map do |hash|
-      {title: hash["title"], tagline: hash["tagline"], path: hash["path"], logo: hash["logo"], datapass_link: hash["datapass_link"].delete_prefix("https://datapass.api.gouv.fr/")}
+      {title: hash["title"], slug: hash["slug"], tagline: hash["tagline"], path: hash["path"], logo: hash["logo"], datapass_link: URI(hash["datapass_link"]).path}
     end
 
     # Add Impot particulier fc hash in apis_list as it is not generate in the api.gouv.fr/api/v1/apis list.
-    impot_part_fc = results.find { |api| api[:title] === "API Impôt particulier" }
+    impot_part_fc = results.find { |api| api[:slug] === "impot-particulier" }
       .merge(impot_particulier_fc)
 
     results << impot_part_fc
@@ -43,7 +45,7 @@ class ApiGouv < ApplicationService
   def impot_particulier_fc
     {
       title: "API Impôt particulier via FranceConnect",
-      datapass_link: "api-impot-particulier-fc-sandbox"
+      datapass_link: "/api-impot-particulier-fc-sandbox"
     }
   end
 end
