@@ -49,7 +49,7 @@ RSpec.describe EnrollmentsEmailTemplatesController, type: :controller do
                 "subject" => enrollment_email_template.subject,
                 "responsable_metier_email" => enrollment_email_template.responsable_metier_email,
                 "plain_text_content" => enrollment_email_template.plain_text_content,
-                "nom_raison_social" => enrollment_email_template.nom_raison_sociale,
+                "nom_raison_sociale" => enrollment_email_template.nom_raison_sociale,
                 "previous_enrollment_id" => enrollment_email_template.previous_enrollment_id,
                 "scopes" => enrollment_email_template.scopes
               }
