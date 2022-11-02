@@ -1,9 +1,9 @@
 class ApiGouvController < ApplicationController
-  # GET /api_gouv/apis_list
-  def apis_list
-    apis_list = ApiGouv.call
+  # GET /api_gouv/apis
+  def apis
+    apis = ApiGouv.call
 
     render status: :ok, json:
-      apis_list
+      apis
   end
 end

@@ -38,7 +38,7 @@ RSpec.describe ApiGouv, type: :service do
   end
 
   describe "cache management" do
-    let(:apis_list) { "apis_list" }
+    let(:apis) { "apis" }
     let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store, expires_in: 2.days) }
     let(:cache) { Rails.cache }
 
@@ -53,24 +53,24 @@ RSpec.describe ApiGouv, type: :service do
     end
 
     context "when service is called once" do
-      it "stores apis_list in the cache" do
+      it "stores apis in the cache" do
         subject
-        expect(cache.exist?("apis_list")).to be(true)
+        expect(cache.exist?("apis")).to be(true)
       end
 
-      it "stores apis_list in the cache for 2 days" do
+      it "stores apis in the cache for 2 days" do
         subject
 
         Timecop.travel(Time.now + 30.minutes) do
-          expect(cache.exist?("apis_list")).to be(true)
+          expect(cache.exist?("apis")).to be(true)
         end
 
         Timecop.travel(Time.now + (1.days + 22.hours + 58.minutes)) do
-          expect(cache.exist?("apis_list")).to be(true)
+          expect(cache.exist?("apis")).to be(true)
         end
 
         Timecop.travel(Time.now + (2.days + 1.minutes)) do
-          expect(cache.exist?("apis_list")).to be(false)
+          expect(cache.exist?("apis")).to be(false)
         end
       end
     end

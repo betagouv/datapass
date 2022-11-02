@@ -29,7 +29,7 @@ export const DataProviderListApi = () => {
   async function getApisList() {
     try {
       const response: GetListsResponse = await axios.get(
-        `${FRONT_HOST}/api/api_gouv/apis_list`
+        `${FRONT_HOST}/api/api_gouv/apis`
       );
       setResult(response.data);
     } catch (error) {

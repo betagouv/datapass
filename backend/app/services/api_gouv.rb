@@ -6,7 +6,7 @@ class ApiGouv < ApplicationService
   end
 
   def cached_list
-    Rails.cache.fetch("apis_list", expires_in: 2.days) do
+    Rails.cache.fetch("apis", expires_in: 2.days) do
       api_gouv_apis
     end
   end
@@ -19,11 +19,11 @@ class ApiGouv < ApplicationService
     })
 
     response.parse
-    apis_list = response.parse
+    apis = response.parse
 
     # Filter apis list and select information only regarding Datapass.
     # remove Datapass_link prefix to keep only "target_api" to redirect to correct address of Api form
-    results = apis_list
+    results = apis
       .select { |list| list.include?("datapass_link") }
       .map do |hash|
       {title: hash["title"], slug: hash["slug"], tagline: hash["tagline"], path: hash["path"], logo: hash["logo"], datapass_link: URI(hash["datapass_link"]).path}
