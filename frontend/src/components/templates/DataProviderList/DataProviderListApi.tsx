@@ -61,10 +61,10 @@ export const DataProviderListApi = () => {
           <DataProviderCard
             key={slug}
             label={title ?? ''}
-            iconPath={`${API_GOUV_HOST}/${logo}`}
-            passPath={`${FRONT_HOST}/${datapass_link}`}
+            iconPath={`${API_GOUV_HOST}${logo}`}
+            passPath={`${FRONT_HOST}${datapass_link}`}
             description={tagline}
-            aboutLink={`${API_GOUV_HOST}/${path}`}
+            aboutLink={`${API_GOUV_HOST}${path}`}
           />
         ))}
       </div>
