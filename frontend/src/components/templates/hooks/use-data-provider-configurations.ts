@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { DataProviderConfiguration } from '../../../config/data-provider-configurations';
+import {
+  DATA_PROVIDER_CONFIGURATIONS,
+  DataProviderConfiguration,
+} from '../../../config/data-provider-configurations';
 import { getCachedDataProviderConfigurations } from '../../../services/data-provider-configurations';
 
 export const useDataProviderConfigurations = () => {
@@ -10,7 +13,13 @@ export const useDataProviderConfigurations = () => {
   useEffect(() => {
     async function fetchDataProviderConfigurations() {
       try {
-        const config = await getCachedDataProviderConfigurations();
+        const localConfig = DATA_PROVIDER_CONFIGURATIONS;
+        const remoteConfig = await getCachedDataProviderConfigurations();
+
+        const config = {
+          ...localConfig,
+          ...remoteConfig,
+        };
         setConfigurations(config);
       } catch (e) {
         setConfigurations(null);

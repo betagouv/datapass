@@ -16,18 +16,12 @@ export const getCachedDataProviderConfiguration = memoize(
   getDataProviderConfiguration
 );
 
-async function getDataProviderConfigurations() {
-  const localConfig = DATA_PROVIDER_CONFIGURATIONS;
-  const remoteConfig = await httpClient
+function getDataProviderConfigurations() {
+  return httpClient
     .get(`${BACK_HOST}/api/data_provider_configurations`, {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data: { configurations } }) => configurations);
-
-  return {
-    ...localConfig,
-    ...remoteConfig,
-  };
 }
 
 export const getCachedDataProviderConfigurations = memoize(
