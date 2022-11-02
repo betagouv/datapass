@@ -12,23 +12,6 @@ import { FullDataProviderConfiguration } from '../../config/data-provider-config
 import { Remark } from 'react-remark';
 import Link from '../atoms/hyperTexts/Link';
 
-export enum WarningType {
-  rgpd = 'rgpd',
-  fc_incomplete = 'fc_incomplete',
-  apientreprise_sensitive = 'apientreprise_sensitive',
-}
-
-export type Scopes = {
-  value: string;
-  label: string;
-  groupTitle?: string;
-  helper?: string;
-  required?: boolean;
-  triggerWarning?: boolean;
-  warningType?: WarningType;
-  link?: string;
-};
-
 type Props = {
   target_api: string;
   configuration: FullDataProviderConfiguration;

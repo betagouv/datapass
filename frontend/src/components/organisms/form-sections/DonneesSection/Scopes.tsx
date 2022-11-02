@@ -1,24 +1,54 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import ScopeWarningModalConfiguration from '../../../../config/scope-warning-modal-configuration';
+import React, {
+  ChangeEventHandler,
+  FunctionComponent,
+  ReactNode,
+  useState,
+} from 'react';
+import ScopeWarningModalConfiguration, {
+  ScopeWarningModalType,
+} from '../../../../config/scope-warning-modal-configuration';
 import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 import Link from '../../../atoms/hyperTexts/Link';
 import Helper from '../../../atoms/Helper';
 
-const Scopes = ({
+export type Scope = {
+  value: string;
+  label: string;
+  groupTitle?: string;
+  helper?: string;
+  required?: boolean;
+  triggerWarning?: boolean;
+  warningType?: ScopeWarningModalType;
+  link?: string;
+};
+
+type Props = {
+  title: string;
+  scopes: Scope[];
+  selectedScopes: { [k: string]: boolean };
+  disabled: boolean;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+};
+
+export const Scopes: FunctionComponent<Props> = ({
   title,
   scopes,
   selectedScopes,
-  disabledApplication,
+  disabled,
   handleChange,
 }) => {
-  const [warningModalScope, setWarningModalScope] = useState(null);
-  const [warningType, setWarningType] = useState('rgpd');
+  const [warningModalScope, setWarningModalScope] = useState<string | null>(
+    null
+  );
+  const [warningType, setWarningType] = useState<ScopeWarningModalType | null>(
+    ScopeWarningModalType.rgpd
+  );
 
   const handleWarningModalClose = () => {
     handleChange({
+      // @ts-ignore
       target: {
         type: 'checkbox',
         checked: true,
@@ -26,10 +56,10 @@ const Scopes = ({
       },
     });
     setWarningModalScope(null);
-    setWarningType('rgpd');
+    setWarningType(ScopeWarningModalType.rgpd);
   };
 
-  let titleToDisplay = title;
+  let titleToDisplay: ReactNode = title;
 
   // Adding helpers on group title is an exception made for DGFiP form.
   // This option must not be generalised. It should be removed ASAP.
@@ -64,13 +94,14 @@ const Scopes = ({
               onChange={
                 triggerWarning && !selectedScopes[value]
                   ? () => {
-                      setWarningType(warningType || 'rgpd');
+                      setWarningType(warningType || ScopeWarningModalType.rgpd);
                       setWarningModalScope(value);
                     }
                   : handleChange
               }
               name={`scopes.${value}`}
-              disabled={disabledApplication || required}
+              disabled={disabled || required}
+              // @ts-ignore
               value={selectedScopes[value]}
               aria-label={`Périmètre de données « ${label} »`}
               label={
@@ -98,7 +129,7 @@ const Scopes = ({
           )
         )}
       </FieldsetWrapper>
-      {warningModalScope && (
+      {warningModalScope && warningType && (
         <ConfirmationModal
           handleCancel={() => setWarningModalScope(null)}
           handleConfirm={handleWarningModalClose}
@@ -110,21 +141,6 @@ const Scopes = ({
       )}
     </>
   );
-};
-
-Scopes.defaultProps = {
-  disabledApplication: false,
-  title: null,
-  useCategoryStyle: true,
-};
-
-Scopes.propTypes = {
-  title: PropTypes.string,
-  scopes: PropTypes.array.isRequired,
-  selectedScopes: PropTypes.object.isRequired,
-  disabledApplication: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired,
-  useCategoryStyle: PropTypes.bool,
 };
 
 export default Scopes;

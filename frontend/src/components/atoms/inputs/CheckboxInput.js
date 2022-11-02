@@ -5,7 +5,7 @@ import Label from './Label';
 export const CheckboxInput = ({
   label,
   helper,
-  meta,
+  meta = null,
   name,
   value = null,
   disabled,

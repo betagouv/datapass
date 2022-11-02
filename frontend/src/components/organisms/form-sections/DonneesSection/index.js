@@ -109,7 +109,7 @@ const DonneesSection = ({
                       availableScopes.find(({ value }) => value === scopeValue)
                     )}
                     selectedScopes={scopes}
-                    disabledApplication={disabled}
+                    disabled={disabled}
                     handleChange={onChange}
                   />
                 );
@@ -119,7 +119,7 @@ const DonneesSection = ({
             <Scopes
               scopes={availableScopes}
               selectedScopes={scopes}
-              disabledApplication={disabled}
+              disabled={disabled}
               handleChange={onChange}
             />
           )}
@@ -131,7 +131,7 @@ const DonneesSection = ({
                 outdatedScopes,
                 Array(outdatedScopes.length).fill(true)
               )}
-              disabledApplication={disabled}
+              disabled={disabled}
               handleChange={onChange}
             />
           )}

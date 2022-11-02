@@ -1,5 +1,4 @@
 import React from 'react';
-import { Scopes } from '../components/templates/Enrollment';
 import AgentConnectFi from '../pages/AgentConnectFi';
 import AgentConnectFs from '../pages/AgentConnectFs';
 import AidantsConnect from '../pages/AidantsConnect';
@@ -55,13 +54,14 @@ import LeTaxi from '../pages/LeTaxi';
 import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
 import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
+import { Scope } from '../components/organisms/form-sections/DonneesSection/Scopes';
 
 export type FullDataProviderConfiguration = {
   label: string;
   icon: string | null;
   email: string | null;
   type: DataProviderType;
-  scopes: Scopes[];
+  scopes: Scope[];
   groups: {
     [k: string]: {
       label: string;
