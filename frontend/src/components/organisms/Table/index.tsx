@@ -48,6 +48,7 @@ const Table = ({
 }) => {
   const table = useReactTable({
     ...tableOptions,
+    enableSortingRemoval: false,
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

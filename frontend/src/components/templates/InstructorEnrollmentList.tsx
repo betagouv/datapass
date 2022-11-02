@@ -240,38 +240,36 @@ const InstructorEnrollmentList: React.FC = () => {
           Exporter les données
         </Button>
       </ListHeader>
-      <div className="table-container">
-        <Table
-          tableOptions={{
-            data: enrollments,
-            columns: columns as Column<Enrollment>[],
-            pageCount: totalPages,
-            state: {
-              columnFilters: filtered,
-              sorting: sorted,
-              pagination,
-            },
-            onPaginationChange: setPagination,
-            onSortingChange: setSorted,
-            onColumnFiltersChange: setFiltered,
-            manualPagination: true,
-            manualFiltering: true,
-            manualSorting: true,
-            getCoreRowModel: getCoreRowModel(),
-          }}
-          loading={loading}
-          noDataPlaceholder="Toutes les demandes d'habilitation ont été traitées"
-          onRowClick={async ({ row, event }) => {
-            const { id, target_api } = row as Enrollment;
-            await setPreviouslySelectedEnrollmentId(id);
-            goToItem(target_api, id, event);
-          }}
-          getRowClassName={(row) => {
-            const { id } = row as Enrollment;
-            return id === previouslySelectedEnrollmentId ? 'selected' : '';
-          }}
-        />
-      </div>
+      <Table
+        tableOptions={{
+          data: enrollments,
+          columns: columns as Column<Enrollment>[],
+          pageCount: totalPages,
+          state: {
+            columnFilters: filtered,
+            sorting: sorted,
+            pagination,
+          },
+          onPaginationChange: setPagination,
+          onSortingChange: setSorted,
+          onColumnFiltersChange: setFiltered,
+          manualPagination: true,
+          manualFiltering: true,
+          manualSorting: true,
+          getCoreRowModel: getCoreRowModel(),
+        }}
+        loading={loading}
+        noDataPlaceholder="Toutes les demandes d'habilitation ont été traitées"
+        onRowClick={async ({ row, event }) => {
+          const { id, target_api } = row as Enrollment;
+          await setPreviouslySelectedEnrollmentId(id);
+          goToItem(target_api, id, event);
+        }}
+        getRowClassName={(row) => {
+          const { id } = row as Enrollment;
+          return id === previouslySelectedEnrollmentId ? 'selected' : '';
+        }}
+      />
     </main>
   );
 };
