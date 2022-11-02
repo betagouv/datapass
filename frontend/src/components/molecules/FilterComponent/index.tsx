@@ -23,14 +23,17 @@ const FilterComponent = ({
       />
     );
   } else {
+    const inputOnChange: React.ChangeEventHandler<HTMLInputElement> = (
+      event
+    ) => {
+      onChange(event.target.value);
+    };
+
     return (
       <Input
         type="text"
         value={(value ?? '') as string}
-        onChange={(e: React.SyntheticEvent) => {
-          const target = e.target as HTMLInputElement;
-          onChange(target.value);
-        }}
+        onChange={inputOnChange}
         icon="filter"
         placeholder={placeholder}
       />
