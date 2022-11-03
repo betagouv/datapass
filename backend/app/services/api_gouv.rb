@@ -18,22 +18,28 @@ class ApiGouv < ApplicationService
       timeout: 60
     })
 
-    response.parse
     apis = response.parse
 
     # Filter apis list and select information only regarding Datapass.
     # remove Datapass_link prefix to keep only "target_api" to redirect to correct address of Api form
-    results = apis
-      .select { |list| list.include?("datapass_link") }
-      .map do |hash|
-      {title: hash["title"], slug: hash["slug"], tagline: hash["tagline"], path: hash["path"], logo: hash["logo"], datapass_link: URI(hash["datapass_link"]).path}
+    filtered_apis = apis
+      .select { |api| api.include?("datapass_link") }
+      .map do |api|
+      {
+        title: api["title"],
+        slug: api["slug"],
+        tagline: api["tagline"],
+        path: api["path"],
+        logo: api["logo"],
+        pass_path: URI(api["datapass_link"]).path
+      }
     end
 
     # Add Impot particulier fc hash in apis_list as it is not generate in the api.gouv.fr/api/v1/apis list.
-    impot_part_fc = results.find { |api| api[:slug] === "impot-particulier" }
+    impot_part_fc = filtered_apis.find { |api| api[:slug] === "impot-particulier" }
       .merge(impot_particulier_fc)
 
-    results << impot_part_fc
+    filtered_apis << impot_part_fc
   end
 
   private
@@ -45,7 +51,7 @@ class ApiGouv < ApplicationService
   def impot_particulier_fc
     {
       title: "API Impôt particulier via FranceConnect",
-      datapass_link: "/api-impot-particulier-fc-sandbox"
+      pass_path: "/api-impot-particulier-fc-sandbox"
     }
   end
 end

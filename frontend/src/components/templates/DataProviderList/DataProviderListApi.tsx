@@ -15,7 +15,7 @@ type ListApi = {
   tagline: string;
   path: string;
   logo: string;
-  datapass_link: string;
+  pass_path: string;
 };
 
 type GetListsResponse = {
@@ -57,12 +57,12 @@ export const DataProviderListApi = () => {
             retour
           </Button>
         </div>
-        {result.map(({ title, slug, tagline, path, logo, datapass_link }) => (
+        {result.map(({ title, slug, tagline, path, logo, pass_path }) => (
           <DataProviderCard
             key={slug}
             label={title ?? ''}
             iconPath={`${API_GOUV_HOST}${logo}`}
-            passPath={`${FRONT_HOST}${datapass_link}`}
+            passPath={`${FRONT_HOST}${pass_path}`}
             description={tagline}
             aboutLink={`${API_GOUV_HOST}${path}`}
           />
