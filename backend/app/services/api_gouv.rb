@@ -1,5 +1,3 @@
-require "uri"
-
 class ApiGouv < ApplicationService
   def call
     cached_list
@@ -31,7 +29,7 @@ class ApiGouv < ApplicationService
         tagline: api["tagline"],
         path: api["path"],
         logo: api["logo"],
-        pass_path: URI(api["datapass_link"]).path
+        pass_path: api["datapass_link"]
       }
     end
 

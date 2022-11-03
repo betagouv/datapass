@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
-const { REACT_APP_FRONT_HOST: FRONT_HOST } = process.env;
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 type ListApi = {
   title: string;
@@ -29,7 +29,7 @@ export const DataProviderListApi = () => {
   async function getApisList() {
     try {
       const response: GetListsResponse = await axios.get(
-        `${FRONT_HOST}/api/api_gouv/apis`
+        `${BACK_HOST}/api/api_gouv/apis`
       );
       setResult(response.data);
     } catch (error) {
@@ -60,7 +60,7 @@ export const DataProviderListApi = () => {
             key={slug}
             label={title ?? ''}
             iconPath={`${API_GOUV_HOST}${logo}`}
-            passPath={`${FRONT_HOST}${pass_path}`}
+            passPath={`${pass_path}`}
             description={tagline}
             aboutLink={`${API_GOUV_HOST}${path}`}
           />
