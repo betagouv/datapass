@@ -24,6 +24,8 @@ class ApplicationController < ActionController::API
     end
   end
 
+  before_action :set_paper_trail_whodunnit
+
   include Pundit::Authorization
 
   rescue_from Unauthorized do |_|

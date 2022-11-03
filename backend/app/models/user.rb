@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:api_gouv]
+  has_paper_trail only: [:roles]
 
   validates :email,
     uniqueness: true,
