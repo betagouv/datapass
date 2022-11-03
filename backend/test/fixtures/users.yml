@@ -63,8 +63,4 @@ administrator:
 <% 1.upto(50) do |i| %>
 user_test_<%= i %>:
   email: "user_test_<%= i %>@yopmail.com"
-  roles:
-    - api_entreprise:instructor
-    - api_entreprise:reporter
-    - api_entreprise:subscriber
 <% end %>

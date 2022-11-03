@@ -6,11 +6,7 @@ import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
-import {
-  STATUS_TO_BADGE_TYPE,
-  USER_STATUS_LABELS,
-} from '../../../config/status-parameters';
-import Badge from '../../atoms/hyperTexts/Badge';
+import { StatusBadge } from '../../molecules/StatusBadge';
 
 const Enrollment = ({
   id,
@@ -50,9 +46,7 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <Badge type={STATUS_TO_BADGE_TYPE[status]}>
-          {USER_STATUS_LABELS[status]}
-        </Badge>
+        <StatusBadge status={status} />
       </div>
 
       <div className="enrollment-body">

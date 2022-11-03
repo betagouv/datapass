@@ -1,0 +1,140 @@
+.datapass-table {
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--text-default-grey);
+  background-color: white;
+}
+
+.datapass-table-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.datapass-table-loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 100;
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.datapass-table tbody {
+  position: relative;
+}
+
+.datapass-table-placeholder {
+  position: absolute;
+  top: 70%;
+  text-align: center;
+  left: 50%;
+  padding: 10px 20px;
+  color: var(--text-mention-grey);
+  background-color: white;
+  transform: translate(-50%, -50%);
+}
+
+.sorting-header {
+  cursor: pointer;
+}
+
+.selected {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.datapass-table th,
+td {
+  padding: 15px;
+}
+
+.datapass-table.firstColumnFixed th:first-of-type,
+.datapass-table.firstColumnFixed td:first-of-type {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.datapass-table.firstColumnFixed th:first-of-type {
+  background-color: #ececfe;
+}
+
+.datapass-table.firstColumnFixed td:first-of-type {
+  background-color: white;
+}
+
+.datapass-table input {
+  background-color: white;
+}
+
+.datapass-table thead {
+  padding: 10px 0;
+  background-color: #ececfe;
+  position: relative;
+}
+
+.datapass-table thead:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background-color: #ececfe;
+  position: absolute;
+}
+
+.datapass-table thead:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 100%;
+  background-color: #ececfe;
+  position: absolute;
+}
+
+.datapass-table tbody tr {
+  height: 77px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.datapass-table tbody tr td {
+  position: relative;
+}
+
+.datapass-table tbody tr td:first-of-type:before {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+  position: absolute;
+  bottom: -1px;
+  left: -100%;
+}
+
+.datapass-table tbody tr td:last-of-type:after {
+  content: '';
+  height: 1px;
+  width: 100%;
+  background-color: #e5e5e5;
+  position: absolute;
+  bottom: -1px;
+  left: 100%;
+}
+
+.datapass-table .clickable-row:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.08);
+}

@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  createColumnHelper,
+  getPaginationRowModel,
+} from '@tanstack/react-table';
 import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
 import RoleCheckboxCell from './RoleCheckboxCell';
@@ -9,7 +12,7 @@ import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
-import Table from '../../../atoms/Table';
+import Table from '../../../organisms/Table';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -117,10 +120,12 @@ const UserList = () => {
       ) : (
         <Table
           firstColumnFixed
+          wrapperStyle={{ overflowX: 'scroll' }}
           tableOptions={{
             columns: columns,
             data: users,
             autoResetAll: !skipReset,
+            getPaginationRowModel: getPaginationRowModel(),
           }}
         />
       )}

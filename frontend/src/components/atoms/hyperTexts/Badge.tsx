@@ -7,14 +7,14 @@ export enum BadgeType {
 }
 
 type Props = {
-  type?: BadgeType;
+  type?: BadgeType | null;
   icon?: boolean;
   small?: boolean;
   className?: string;
 };
 
 export const Badge: React.FC<Props> = ({
-  type = BadgeType.info,
+  type = '',
   small = false,
   icon = false,
   className = '',

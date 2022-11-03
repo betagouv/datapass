@@ -13,12 +13,29 @@ export const Input = ({
   disabled = false,
   onChange,
   ariaLabel = '',
+  icon = '',
   required = false,
   ...rest
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
+
+  const getInput = () => (
+    <input
+      className="fr-input"
+      type={type}
+      onChange={onChange}
+      name={name}
+      placeholder={placeholder}
+      id={id}
+      readOnly={disabled}
+      value={value}
+      aria-label={ariaLabel}
+      required={required}
+      {...rest}
+    />
+  );
 
   return (
     <div className="fr-input-group">
@@ -29,19 +46,11 @@ export const Input = ({
         helper={helper}
         meta={meta}
       />
-      <input
-        className="fr-input"
-        type={type}
-        onChange={onChange}
-        name={name}
-        placeholder={placeholder}
-        id={id}
-        readOnly={disabled}
-        value={value}
-        aria-label={ariaLabel}
-        required={required}
-        {...rest}
-      />
+      {icon ? (
+        <div className={`fr-input-wrap fr-fi-${icon}-line`}>{getInput()}</div>
+      ) : (
+        getInput()
+      )}
     </div>
   );
 };
