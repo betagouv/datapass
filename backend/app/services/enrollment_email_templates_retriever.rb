@@ -66,9 +66,9 @@ class EnrollmentEmailTemplatesRetriever
       user: user,
       enrollment: enrollment,
       instructor: instructor,
-      responsable_metier_email: responsable_metier_email,
-      nom_raison_sociale: nom_raison_sociale,
-      previous_enrollment_id: previous_enrollment_id,
+      responsable_metier_email: enrollment.responsable_metier_email,
+      nom_raison_sociale: enrollment.nom_raison_sociale,
+      previous_enrollment_id: enrollment.previous_enrollment_id,
       scopes: scopes
     }
   end
@@ -89,24 +89,12 @@ class EnrollmentEmailTemplatesRetriever
     @user ||= enrollment.demandeurs.first
   end
 
-  def responsable_metier_email
-    enrollment.responsable_metier_email
-  end
-
   def email_kinds
     Event::EVENTS_WITH_COMMENT_AS_EMAIL_BODY
   end
 
   def target_api_data
     DataProvidersConfiguration.instance.config_for(enrollment.target_api)
-  end
-
-  def nom_raison_sociale
-    enrollment.nom_raison_sociale
-  end
-
-  def previous_enrollment_id
-    enrollment.previous_enrollment_id
   end
 
   def scopes
