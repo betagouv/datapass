@@ -22,8 +22,6 @@ class EnrollmentEmailTemplatesRetriever
       subject: target_api_data["mailer"][email_kind]["subject"],
       user_email: enrollment.demandeurs.pluck(:email).first,
       plain_text_content: render_template(email_kind),
-      nom_raison_sociale: enrollment.nom_raison_sociale,
-      previous_enrollment_id: enrollment.previous_enrollment_id,
       scopes: scopes
     )
   end
@@ -67,8 +65,6 @@ class EnrollmentEmailTemplatesRetriever
       enrollment: enrollment,
       instructor: instructor,
       responsable_metier_email: enrollment.responsable_metier_email,
-      nom_raison_sociale: enrollment.nom_raison_sociale,
-      previous_enrollment_id: enrollment.previous_enrollment_id,
       scopes: scopes
     }
   end
