@@ -94,7 +94,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "versioning option User roles" do
-    subject( :user) { create(:user, :with_personal_information)}
+    subject(:user) { create(:user, :with_personal_information) }
 
     context "when enable", versioning: false do
       it "does not enable versionning" do
@@ -103,7 +103,6 @@ RSpec.describe User, type: :model do
     end
 
     context "when PaperTrail enabled", versioning: true do
-
       it "versions user and create event" do
         u = user.versions.last
 
@@ -130,12 +129,15 @@ RSpec.describe User, type: :model do
       it "tracks who made the change" do
         admin = create(:user, :with_all_infos)
         admin_id = admin.id
+        other_user = create(:user, :with_all_infos)
+
         PaperTrail.request.whodunnit = admin_id
         user.update!(roles: ["aidants_connect:reporter"])
         user.update!(roles: ["aidants_connect:instructor"])
 
         result = user.versions.last
-        expect(result.whodunnit).to (eq(admin.id.to_s))
+        expect(result.whodunnit).to(eq(admin.id.to_s))
+        expect(result.whodunnit).not_to(eq(other_user.id.to_s))
         expect(user.versions.count).to eq(3)
       end
     end
