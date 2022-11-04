@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   useState,
 } from 'react';
-import ScopeWarningModalConfiguration, {
+import ScopeWarningModalConfigurations, {
   ScopeWarningModalType,
 } from '../../../../config/scope-warning-modal-configuration';
 import ConfirmationModal from '../../ConfirmationModal';
@@ -134,9 +134,9 @@ export const Scopes: FunctionComponent<Props> = ({
           handleCancel={() => setWarningModalScope(null)}
           handleConfirm={handleWarningModalClose}
           confirmLabel="Ajouter ces données"
-          title={ScopeWarningModalConfiguration[warningType].title}
+          title={ScopeWarningModalConfigurations[warningType].title}
         >
-          <p>{ScopeWarningModalConfiguration[warningType].body} </p>
+          <p>{ScopeWarningModalConfigurations[warningType].body} </p>
         </ConfirmationModal>
       )}
     </>

@@ -11,7 +11,7 @@ export type ScopeWarningModalConfiguration = {
   body: string | ReactNode;
 };
 
-export const ScopeWarningModalConfiguration: {
+export const ScopeWarningModalConfigurations: {
   [key in ScopeWarningModalType]: ScopeWarningModalConfiguration;
 } = {
   rgpd: {
@@ -47,4 +47,4 @@ export const ScopeWarningModalConfiguration: {
   },
 };
 
-export default ScopeWarningModalConfiguration;
+export default ScopeWarningModalConfigurations;

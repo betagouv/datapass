@@ -53,7 +53,7 @@ const UserList = () => {
         enableColumnFilter: false,
       }),
     ],
-    [columnHelper]
+    [columnHelper, dataProviderConfigurations]
   );
 
   const updateRole = (rowIndex, columnId, value) => {

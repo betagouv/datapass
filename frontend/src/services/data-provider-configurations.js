@@ -1,4 +1,3 @@
-import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import httpClient from '../lib/http-client';
 import { memoize } from 'lodash';
 
