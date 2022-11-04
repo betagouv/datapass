@@ -22,7 +22,7 @@ type GetListsResponse = {
   data: ListApi[];
 };
 
-export const DataProviderListApi = () => {
+export const ApiDataProviderList = () => {
   const { goBackToList } = useListItemNavigation();
   const [result, setResult] = useState<ListApi[]>([]);
 
@@ -70,4 +70,4 @@ export const DataProviderListApi = () => {
   );
 };
 
-export default DataProviderListApi;
+export default ApiDataProviderList;

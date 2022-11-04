@@ -5,7 +5,7 @@ import Button from '../../atoms/hyperTexts/Button';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from '../hooks/use-data-provider-configurations';
 
-const DataProvidersHubee = [
+const HubeeDataProviders = [
   { target_api: 'hubee_portail', description: 'Certificats de Décès' },
   {
     target_api: 'hubee_portail_dila',
@@ -14,7 +14,7 @@ const DataProvidersHubee = [
   },
 ];
 
-export const DataProviderListHubee = () => {
+export const HubeeDataProviderList = () => {
   const { goBackToList } = useListItemNavigation();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
@@ -29,7 +29,7 @@ export const DataProviderListHubee = () => {
           </Button>
         </div>
         {dataProviderConfigurations &&
-          DataProvidersHubee.map(({ target_api, description }) => (
+          HubeeDataProviders.map(({ target_api, description }) => (
             <DataProviderCard
               key={target_api}
               label={dataProviderConfigurations?.[target_api].label}
@@ -44,4 +44,4 @@ export const DataProviderListHubee = () => {
   );
 };
 
-export default DataProviderListHubee;
+export default HubeeDataProviderList;
