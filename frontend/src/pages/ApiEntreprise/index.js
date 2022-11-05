@@ -233,8 +233,8 @@ const CadreJuridiqueDescription = () => (
       transmettre le décret ou l’arrêté justifiant votre demande.
     </p>
     <p>
-      La loi Lemaire (pour une république numérique) du 7 octobre 2016 suffit si
-      vous demandez des données publiques ; c‘est à dire les données n‘ayant pas
+      La loi Lemaire pour une République numérique du 7 octobre 2016 suffit si
+      vous demandez des données publiques ; c‘est-à-dire les données n‘ayant pas
       de 🔐 devant leur nom.
     </p>
     <p>
