@@ -202,9 +202,16 @@ const InstructorEnrollmentList: React.FC = () => {
         enableSorting: false,
         meta: {
           filterType: 'select',
-          selectOptions: Object.entries(DATA_PROVIDER_PARAMETERS).map(
-            ([key, { label }]) => ({ key, label })
-          ),
+          selectOptions: user?.roles
+            .filter((role) => role.endsWith(':reporter'))
+            .map((role) => {
+              const targetApiKey = role.split(':')[0];
+
+              return {
+                key: targetApiKey,
+                label: DATA_PROVIDER_PARAMETERS[targetApiKey]?.label,
+              };
+            }),
         },
         filterFn: 'arrIncludesSome',
       }
