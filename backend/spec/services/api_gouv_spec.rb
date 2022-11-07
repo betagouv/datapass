@@ -17,11 +17,11 @@ RSpec.describe ApiGouv, type: :service do
          tagline: "Un clic, un taxi",
          path: "/les-api/le-taxi",
          logo: "/images/api-logo/dinum.png",
-         datapass_link: "/le-taxi-clients"}
+         pass_path: "https://datapass.api.gouv.fr/le-taxi-clients"}
       )
     end
 
-    it "should not include list without datapass_link information" do
+    it "should not include list without pass_path information" do
       expect(subject).not_to include("title" => "API Camino")
     end
 
@@ -32,7 +32,7 @@ RSpec.describe ApiGouv, type: :service do
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
-         datapass_link: "/api-impot-particulier-fc-sandbox"}
+         pass_path: "https://datapass.api.gouv.fr/api-impot-particulier-fc-sandbox"}
       )
     end
   end
