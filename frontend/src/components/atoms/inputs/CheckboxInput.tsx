@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  FunctionComponent,
+  ReactNode,
+  useState,
+} from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
 
-export const CheckboxInput = ({
+type Props = {
+  label: string | ReactNode;
+  helper?: string;
+  meta?: string;
+  name?: string;
+  placeholder?: string;
+  value?: boolean;
+  disabled?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  ariaLabel?: string;
+  required?: boolean;
+};
+
+export const CheckboxInput: FunctionComponent<Props> = ({
   label,
   helper,
-  meta = null,
+  meta,
   name,
-  value = null,
+  value = false,
   disabled,
   onChange,
   required,
@@ -21,7 +39,7 @@ export const CheckboxInput = ({
     <div className="fr-checkbox-group">
       <input
         onChange={onChange}
-        disabled={disabled ? 'disabled' : false}
+        disabled={disabled}
         checked={value}
         type="checkbox"
         name={name}

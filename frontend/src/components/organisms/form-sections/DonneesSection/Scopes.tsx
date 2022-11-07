@@ -101,7 +101,6 @@ export const Scopes: FunctionComponent<Props> = ({
               }
               name={`scopes.${value}`}
               disabled={disabled || required}
-              // @ts-ignore
               value={selectedScopes[value]}
               aria-label={`Périmètre de données « ${label} »`}
               label={

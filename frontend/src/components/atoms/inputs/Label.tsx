@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import Helper from '../Helper';
 
 type Props = {
   id: string;
-  label: string;
+  label: string | ReactNode;
   required?: boolean;
   helper?: string;
   meta?: string;
