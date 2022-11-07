@@ -10,10 +10,10 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
-import { CSSProperties, MouseEvent, SyntheticEvent } from 'react';
+import { CSSProperties, MouseEvent, ReactElement, SyntheticEvent } from 'react';
 import TablePagination from '../../molecules/TablePagination';
 import './style.css';
-import FilterComponent from '../../molecules/FilterComponent';
+import DefaultFilterComponent from '../../molecules/FilterComponent';
 
 declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,6 +22,13 @@ declare module '@tanstack/table-core' {
     filterType?: 'text' | 'select';
     selectOptions?: any[];
     columnTitle?: string;
+    getFilterComponent?: ({
+      value,
+      onChange,
+    }: {
+      value: any;
+      onChange: (updater: any) => void;
+    }) => ReactElement;
   }
 }
 
@@ -131,6 +138,35 @@ const Table = ({
                     header.column.getFacetedUniqueValues().keys()
                   ).map((value, i) => ({ key: value, label: value }));
 
+                  const getFilter = () => {
+                    if (header.column.columnDef.meta?.getFilterComponent) {
+                      return header.column.columnDef.meta?.getFilterComponent({
+                        value: header.column.getFilterValue(),
+                        onChange: getOnFilterChange(
+                          header.column.setFilterValue
+                        ),
+                      });
+                    } else {
+                      return (
+                        <DefaultFilterComponent
+                          onChange={getOnFilterChange(
+                            header.column.setFilterValue
+                          )}
+                          value={header.column.getFilterValue()}
+                          placeholder={
+                            header.column.columnDef.meta?.placeholder
+                          }
+                          type={header.column.columnDef.meta?.filterType}
+                          options={
+                            header.column.columnDef.meta?.selectOptions
+                              ? header.column.columnDef.meta?.selectOptions
+                              : defaultOptions
+                          }
+                        />
+                      );
+                    }
+                  };
+
                   return (
                     <th
                       key={header.id}
@@ -160,23 +196,7 @@ const Table = ({
                               }
                             </div>
                           ) : null}
-                          {header.column.getCanFilter() ? (
-                            <FilterComponent
-                              onChange={getOnFilterChange(
-                                header.column.setFilterValue
-                              )}
-                              value={header.column.getFilterValue()}
-                              placeholder={
-                                header.column.columnDef.meta?.placeholder
-                              }
-                              type={header.column.columnDef.meta?.filterType}
-                              options={
-                                header.column.columnDef.meta?.selectOptions
-                                  ? header.column.columnDef.meta?.selectOptions
-                                  : defaultOptions
-                              }
-                            />
-                          ) : null}
+                          {header.column.getCanFilter() ? getFilter() : null}
                         </div>
                       )}
                     </th>

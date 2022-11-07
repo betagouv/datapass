@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   Column,
   createColumnHelper,
+  FilterFn,
   getCoreRowModel,
 } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
@@ -10,7 +11,6 @@ import './InstructorEnrollmentList.css';
 import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
-import { MailIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
@@ -25,6 +25,13 @@ import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import useFileDownloader from './hooks/use-file-downloader';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
+import CheckboxInput from '../atoms/inputs/CheckboxInput';
+
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    unreadMessagesFilter?: FilterFn<unknown>;
+  }
+}
 
 type Demandeur = {
   id: number;
@@ -114,14 +121,21 @@ const InstructorEnrollmentList: React.FC = () => {
       },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
-      header: () => (
-        <span title="Nombre de nouveaux messages">
-          <MailIcon color={'var(--datapass-dark-grey)'} />
-        </span>
-      ),
-      enableColumnFilter: false,
+      header: 'Messages',
       enableSorting: false,
       size: 50,
+      meta: {
+        columnTitle: 'Filtrer par',
+        getFilterComponent: ({ value, onChange }) => (
+          <CheckboxInput
+            label="non lu"
+            onChange={(e) => onChange(!e.target.value)}
+            name="filterComponent.checkBox"
+            value={value}
+          />
+        ),
+      },
+      filterFn: 'unreadMessagesFilter',
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
@@ -241,6 +255,13 @@ const InstructorEnrollmentList: React.FC = () => {
       <Table
         tableOptions={{
           data: enrollments,
+          filterFns: {
+            unreadMessagesFilter: (row, columnId, filterValue) => {
+              // return the filtered row
+              console.log(row, columnId, filterValue);
+              return filterValue;
+            },
+          },
           columns: columns as Column<Enrollment>[],
           pageCount: totalPages,
           state: {
