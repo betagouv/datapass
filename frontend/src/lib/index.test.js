@@ -1,6 +1,6 @@
 import {
   collectionWithKeyToObject,
-  dataProviderParametersToContactInfo,
+  dataProviderConfigurationsToContactInfo,
   findModifiedFields,
   findModifiedScopes,
   flattenDiffTransformerV2Factory,
@@ -905,7 +905,7 @@ describe('utils', () => {
         { label: 'API 2', email: 'contact@api2.fr' },
       ];
 
-      const result = dataProviderParametersToContactInfo(parameters);
+      const result = dataProviderConfigurationsToContactInfo(parameters);
 
       expect(result).toStrictEqual(expected);
     });
@@ -932,7 +932,7 @@ describe('utils', () => {
         { label: 'API 1, API 2, API 3, API 4, etc.', email: 'contact@api1.fr' },
       ];
 
-      const result = dataProviderParametersToContactInfo(parameters);
+      const result = dataProviderConfigurationsToContactInfo(parameters);
 
       expect(result).toStrictEqual(expected);
     });

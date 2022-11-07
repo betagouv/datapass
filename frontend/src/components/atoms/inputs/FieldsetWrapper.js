@@ -3,7 +3,7 @@ import './FieldsetWrapper.css';
 
 export const FieldsetWrapper = ({
   title,
-  required,
+  required = false,
   grid = false,
   inline = false,
   small = false,

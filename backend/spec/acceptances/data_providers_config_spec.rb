@@ -39,4 +39,22 @@ RSpec.describe "Providers config", type: :acceptance do
       end
     end
   end
+
+  it "scopes affectation to groups should be a bijection" do
+    # ie. all scopes in groups has only one corresponding scope in scopes
+    YAML.load_file(config_file).each do |provider, config|
+      next if provider == "shared"
+
+      if config["scopes"]
+        scopes_defined_in_scopes = config["scopes"].map { |s| s["value"] }
+        expect(scopes_defined_in_scopes.uniq!).to be_nil
+
+        if config["groups"]
+          scopes_used_in_groups = config["groups"].values.map { |g| g["scopes"] }.flatten
+          expect(scopes_used_in_groups.uniq!).to be_nil
+          expect(scopes_used_in_groups - scopes_defined_in_scopes).to be_empty
+        end
+      end
+    end
+  end
 end

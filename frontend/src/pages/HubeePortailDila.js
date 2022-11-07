@@ -4,7 +4,7 @@ import OrganisationSection from '../components/organisms/form-sections/Organisat
 import DemarcheEnLigneSection from '../components/organisms/form-sections/hubee-sections/DemarcheEnLigneSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import IntituleInitializerSection from '../components/organisms/form-sections/hubee-sections/IntituleInitializerSection';
 
 const initialContacts = {
@@ -114,7 +114,7 @@ const target_api = 'hubee_portail_dila';
 const HubeePortailDila = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://www.numerique.gouv.fr/dinum/"
   >
     <OrganisationSection />

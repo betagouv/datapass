@@ -5,7 +5,7 @@ import Loader from '../atoms/Loader';
 import Alert from '../atoms/Alert';
 import NotFound from '../organisms/NotFound';
 
-const Enrollment = () => {
+const RedirectToTheRightDataProviderForm = () => {
   const { enrollmentId } = useParams();
   const [fetchEnrollmentError, setFetchEnrollmentError] = useState(false);
   const [fetchEnrollmentNotFound, setFetchEnrollmentNotFound] = useState(false);
@@ -65,4 +65,4 @@ const Enrollment = () => {
   );
 };
 
-export default Enrollment;
+export default RedirectToTheRightDataProviderForm;

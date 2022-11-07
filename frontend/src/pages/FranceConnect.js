@@ -7,7 +7,7 @@ import FranceConnectPlusSection from '../components/organisms/form-sections/Fran
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import Link from '../components/atoms/hyperTexts/Link';
 
 const DonneesDescription = () => (
@@ -83,71 +83,85 @@ export const availableScopes = [
   {
     value: 'family_name',
     label: 'Nom de naissance',
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'given_name',
     label: 'Prénoms',
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthdate',
     label: 'Date de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthplace',
     label: 'Ville de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'birthcountry',
     label: 'Pays de naissance',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'gender',
     label: 'Sexe',
     triggerWarning: true,
-    groupTitle: 'Identité pivot :',
   },
   {
     value: 'preferred_username',
     label: 'Nom d’usage',
     triggerWarning: true,
     warningType: 'fc_incomplete',
-    groupTitle: 'Autres données :',
   },
   {
     value: 'email',
     label: 'Adresse électronique',
     triggerWarning: true,
-    groupTitle: 'Autres données :',
   },
   {
     value: 'openid',
     label: 'Identifiant technique',
     required: true,
     helper: '"sub" de l\'utilisateur au format OpenIDConnect',
-    groupTitle: 'Donnée technique :',
   },
 ];
+
+const groups = {
+  identite_pivot: {
+    label: 'Identité pivot :',
+    scopes: [
+      'family_name',
+      'given_name',
+      'birthdate',
+      'birthplace',
+      'birthcountry',
+      'gender',
+    ],
+  },
+  autres_donnees: {
+    label: 'Autres données :',
+    scopes: ['preferred_username', 'email'],
+  },
+  donnee_technique: {
+    label: 'Donnée technique :',
+    scopes: ['openid'],
+  },
+};
 
 const target_api = 'franceconnect';
 
 const FranceConnect = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
+      groups={groups}
       DonneesDescription={DonneesDescription}
     />
     <FranceConnectPlusSection />

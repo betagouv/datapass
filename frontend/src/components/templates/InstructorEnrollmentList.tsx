@@ -7,7 +7,6 @@ import {
 } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
 
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
@@ -26,6 +25,7 @@ import { useAuth } from '../organisms/AuthContext';
 import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import useFileDownloader from './hooks/use-file-downloader';
+import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 
 type Demandeur = {
   id: number;
@@ -73,6 +73,8 @@ const InstructorEnrollmentList: React.FC = () => {
   ]);
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
     useQueryString('previouslySelectedEnrollmentId', 0);
+
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
@@ -195,7 +197,7 @@ const InstructorEnrollmentList: React.FC = () => {
       }
     ),
     columnHelper.accessor(
-      ({ target_api }) => DATA_PROVIDER_PARAMETERS[target_api]?.label,
+      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
       {
         header: 'Fournisseur',
         id: 'target_api',
@@ -209,7 +211,7 @@ const InstructorEnrollmentList: React.FC = () => {
 
               return {
                 key: targetApiKey,
-                label: DATA_PROVIDER_PARAMETERS[targetApiKey]?.label,
+                label: dataProviderConfigurations?.[targetApiKey].label,
               };
             }),
         },

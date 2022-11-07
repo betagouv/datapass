@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
-import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getNextEnrollments } from '../../../../services/enrollments';
 import { Linkify } from '../../../molecules/Linkify';
 import Alert from '../../../atoms/Alert';
 import IndexPointingRightEmoji from '../../../atoms/icons/IndexPointingRightEmoji';
-
-const formatNextEnrollment = (enrollment) =>
-  `${
-    DATA_PROVIDER_PARAMETERS[enrollment.target_api]?.label ||
-    enrollment.target_api
-  } : #${enrollment.id}`;
+import { useDataProviderConfigurations } from '../../../templates/hooks/use-data-provider-configurations';
 
 const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
   const [nextEnrollments, setNextEnrollments] = useState(false);
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   useEffect(() => {
     async function fetchNextEnrollments() {
@@ -26,6 +21,12 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
 
     fetchNextEnrollments();
   }, [enrollmentId]);
+
+  const formatNextEnrollment = (enrollment) =>
+    `${
+      dataProviderConfigurations?.[enrollment.target_api].label ||
+      enrollment.target_api
+    } : #${enrollment.id}`;
 
   if (isEmpty(nextEnrollments)) {
     return null;

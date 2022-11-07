@@ -7,7 +7,7 @@ import DonneesSection from '../components/organisms/form-sections/DonneesSection
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import Form from '../components/templates/Form';
-import { DATA_PROVIDER_PARAMETERS } from '../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 
 export const availableScopes = [
   {
@@ -69,7 +69,7 @@ const target_api = 'agent_connect_fi';
 const AgentConnectFi = () => (
   <Form
     target_api={target_api}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/api-agent-connect"
   >
     <OrganisationSection />

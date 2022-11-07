@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { DATA_PROVIDER_PARAMETERS } from '../../../config/data-provider-parameters';
+import { useDataProviderConfigurations } from '../../templates/hooks/use-data-provider-configurations';
 
 const Stepper = ({
   steps,
@@ -8,6 +8,8 @@ const Stepper = ({
   previousStepNotCompleted = false,
 }) => {
   const currentStepIndex = steps.findIndex((e) => e === currentStep);
+
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   const getStepCssClass = (index) => {
     if (!currentStep) {
@@ -35,7 +37,7 @@ const Stepper = ({
     <ul className="steps-form">
       {steps.map((e, i) => (
         <li key={e} className={getStepCssClass(i)}>
-          <div>{DATA_PROVIDER_PARAMETERS[e]?.label}</div>
+          <div>{dataProviderConfigurations?.[e].label}</div>
         </li>
       ))}
       <li className="check-mark">

@@ -166,234 +166,272 @@ export const availableScopes = [
   {
     value: 'dgfip_annee_n_moins_1',
     label: 'Dernière année de revenu',
-    groupTitle: 'Années sur lesquelles porte votre demande',
   },
   {
     value: 'dgfip_annee_n_moins_2',
     label: 'Avant-dernière année de revenu',
-    groupTitle: 'Années sur lesquelles porte votre demande',
   },
   {
     value: 'dgfip_annee_n_moins_3',
     label: 'Avant-avant-dernière année de revenu',
-    groupTitle: 'Années sur lesquelles porte votre demande',
   },
   {
     value: 'dgfip_annee_n_moins_2_si_indispo_n_moins_1',
     label:
       'Avant-dernière année de revenu, si la dernière année de revenu est indisponible',
-    groupTitle: 'Années sur lesquelles porte votre demande',
     helper:
       'En cochant cette case, vous optez pour récupérer les informations de l’avant-dernière année, lorsque celles de la dernière année ne sont pas disponibles.\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_nmUsaDec1',
     label: 'Nom',
-    groupTitle: 'État civil - déclarant 1',
   },
   {
     value: 'dgfip_nmNaiDec1',
     label: 'Nom de naissance',
-    groupTitle: 'État civil - déclarant 1',
   },
   {
     value: 'dgfip_prnmDec1',
     label: 'Prénom(s)',
-    groupTitle: 'État civil - déclarant 1',
   },
   {
     value: 'dgfip_dateNaisDec1',
     label: 'Date de naissance',
-    groupTitle: 'État civil - déclarant 1',
   },
   {
     value: 'dgfip_nmUsaDec2',
     label: 'Nom',
-    groupTitle: 'État civil - déclarant 2',
   },
   {
     value: 'dgfip_nmNaiDec2',
     label: 'Nom de naissance',
-    groupTitle: 'État civil - déclarant 2',
   },
   {
     value: 'dgfip_prnmDec2',
     label: 'Prénom(s)',
-    groupTitle: 'État civil - déclarant 2',
   },
   {
     value: 'dgfip_dateNaisDec2',
     label: 'Date de naissance',
-    groupTitle: 'État civil - déclarant 2',
   },
   {
     value: 'dgfip_aft',
     label: 'Adresse déclarée au 1er Janvier',
-    groupTitle: 'Adresse',
   },
   {
     value: 'dgfip_locaux_th_ident',
     label: 'Données du local - identifiant du logement',
-    groupTitle: 'Adresse',
   },
   {
     value: 'dgfip_locaux_th_Nat',
     label: 'Données du local - nature (maison, appartement, etc.)',
-    groupTitle: 'Adresse',
   },
   {
     value: 'dgfip_locaux_th_Tax',
     label:
       'Données du local - régime de taxation (résidence principale uniquement)',
-    groupTitle: 'Adresse',
   },
   {
     value: 'dgfip_locaux_th_Aff',
     label: 'Données du local - affectation (« H » pour habitation)',
-    groupTitle: 'Adresse',
   },
   {
     value: 'dgfip_sitfam',
     label: 'Situation de famille (marié, pacsé, célibataire, veuf divorcé)',
-    groupTitle: 'Situation du foyer fiscal',
   },
   {
     value: 'dgfip_nbpart',
     label: 'Nombre de parts',
-    groupTitle: 'Situation du foyer fiscal',
   },
   {
     value: 'dgfip_pac_nbPac',
     label: 'Nombre de personnes à charge',
-    groupTitle: 'Situation du foyer fiscal',
   },
   {
     value: 'dgfip_pac',
     label: 'Détail des personnes à charge et rattachées',
-    groupTitle: 'Situation du foyer fiscal',
   },
   {
     value: 'dgfip_pariso',
     label: 'Parent isolé (case T)',
-    groupTitle: 'Situation du foyer fiscal',
   },
   {
     value: 'dgfip_annee_df_au_3112_si_deces_ctb_mp',
     label:
       "Données fiscales au 31/12 en cas de décès d'un contribuable marié ou pacsé",
-    groupTitle: 'Situation du foyer fiscal',
     helper:
       'En cochant cette case, vous optez pour récupérer les données fiscales de la période après décès d’un contribuable marié ou pacsé (à défaut aucune donnée fiscale n’est transmise).\n\nCette option n’est pas possible si vous souhaitez des données fournies uniquement par la ressource facture /avis IR.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_rfr',
     label: 'Revenu fiscal de référence',
-    groupTitle: 'Agrégats fiscaux',
   },
   {
     value: 'dgfip_mntRevbareme',
     label: 'Montant de l’impôt sur les revenus soumis au barème (ligne 14)',
-    groupTitle: 'Agrégats fiscaux',
     helper:
       'Cette donnée n’intègre pas la taxation des revenus au taux effectif ou au taux proportionnel. Une expression de besoin spécifique est à réaliser si, après échanges avec DGFiP, ces types de taxation sont nécessaires.\n\nPour plus de précisions, consulter la documentation présente dans la rubrique « Comment choisir les données ? »',
   },
   {
     value: 'dgfip_inddeficit',
     label: 'Indicateur de l’existence d’un déficit',
-    groupTitle: 'Agrégats fiscaux',
   },
   {
     value: 'dgfip_indiIFI',
     label: 'Indicateur ISF/IFI',
-    groupTitle: 'Agrégats fiscaux',
   },
   {
     value: 'dgfip_RevDecl_Cat1_Tspr',
     label: 'Catégorie 1 - Salaires, pensions, rentes',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevDecl_Cat1_RentOn',
     label: 'Catégorie 1 - Rentes viagères à titre onéreux',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevDecl_Cat2_Rcm',
     label: 'Catégorie 2 - Revenus de capitaux mobiliers',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevDecl_Cat3_PMV',
     label: 'Catégorie 3 - Plus ou moins values',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevDecl_Cat4_Ref',
     label: 'Catégorie 4 - Revenus fonciers',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevDecl_Cat5_NonSal',
     label: 'Catégorie 5 - Revenus des professions non salariées',
-    groupTitle:
-      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat1_Tspr',
     label: 'Catégorie 1 - Salaires, pensions, rentes',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat1_RentOn',
     label: 'Catégorie 1 - Rentes viagères à titre onéreux',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat2_Rcm',
     label: 'Catégorie 2 - Revenus de capitaux mobiliers',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat3_PMV',
     label: 'Catégorie 3 - Plus ou moins values',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat4_Ref',
     label: 'Catégorie 4 - Revenus fonciers',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_RevNets_Cat5_NonSal',
     label: 'Catégorie 5 - Revenus des professions non salariées',
-    groupTitle:
-      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
   },
   {
     value: 'dgfip_PaDeduc_EnfMaj',
     label:
       'Pensions alimentaires déductibles - Pension alimentaire versées à enfant majeur',
-    groupTitle: 'Charges déductibles',
   },
   {
     value: 'dgfip_PaDeduc_Autres',
     label:
       'Pensions alimentaires déductibles - Autres pensions alimentaires versées (enfants mineurs, ascendants, ...)',
-    groupTitle: 'Charges déductibles',
   },
   {
     value: 'dgfip_EpargRetrDeduc',
     label: 'Versement épargne retraite',
-    groupTitle: 'Charges déductibles',
   },
 ];
+
+export const groups = {
+  annees: {
+    label: 'Années sur lesquelles porte votre demande',
+    scopes: [
+      'dgfip_annee_n_moins_1',
+      'dgfip_annee_n_moins_2',
+      'dgfip_annee_n_moins_3',
+      'dgfip_annee_n_moins_2_si_indispo_n_moins_1',
+    ],
+  },
+  etat_civil_declarant_1: {
+    label: 'État civil - déclarant 1',
+    scopes: [
+      'dgfip_nmUsaDec1',
+      'dgfip_nmNaiDec1',
+      'dgfip_prnmDec1',
+      'dgfip_dateNaisDec1',
+    ],
+  },
+  etat_civil_declarant_2: {
+    label: 'État civil - déclarant 2',
+    scopes: [
+      'dgfip_nmUsaDec2',
+      'dgfip_nmNaiDec2',
+      'dgfip_prnmDec2',
+      'dgfip_dateNaisDec2',
+    ],
+  },
+  adresse: {
+    label: 'Adresse',
+    scopes: [
+      'dgfip_aft',
+      'dgfip_locaux_th_ident',
+      'dgfip_locaux_th_Nat',
+      'dgfip_locaux_th_Tax',
+      'dgfip_locaux_th_Aff',
+    ],
+  },
+  situation_du_foyer_fiscal: {
+    label: 'Situation du foyer fiscal',
+    scopes: [
+      'dgfip_sitfam',
+      'dgfip_nbpart',
+      'dgfip_pac_nbPac',
+      'dgfip_pac',
+      'dgfip_pariso',
+      'dgfip_annee_df_au_3112_si_deces_ctb_mp',
+    ],
+  },
+  agregats_fiscaux: {
+    label: 'Agrégats fiscaux',
+    scopes: [
+      'dgfip_rfr',
+      'dgfip_mntRevbareme',
+      'dgfip_inddeficit',
+      'dgfip_indiIFI',
+    ],
+  },
+  revenus_categoriels_revenus_declares: {
+    label:
+      'Revenus catégoriels - revenus déclarés (avant application des abattements, etc...)',
+    scopes: [
+      'dgfip_RevDecl_Cat1_Tspr',
+      'dgfip_RevDecl_Cat1_RentOn',
+      'dgfip_RevDecl_Cat2_Rcm',
+      'dgfip_RevDecl_Cat3_PMV',
+      'dgfip_RevDecl_Cat4_Ref',
+      'dgfip_RevDecl_Cat5_NonSal',
+    ],
+  },
+  revenus_categoriels_revenus_nets: {
+    label:
+      'Revenus catégoriels - revenus nets (après application des abattements, etc...)',
+    scopes: [
+      'dgfip_RevNets_Cat1_Tspr',
+      'dgfip_RevNets_Cat1_RentOn',
+      'dgfip_RevNets_Cat2_Rcm',
+      'dgfip_RevNets_Cat3_PMV',
+      'dgfip_RevNets_Cat4_Ref',
+      'dgfip_RevNets_Cat5_NonSal',
+    ],
+  },
+  charges_deductibles: {
+    label: 'Charges déductibles',
+    scopes: [
+      'dgfip_PaDeduc_EnfMaj',
+      'dgfip_PaDeduc_Autres',
+      'dgfip_EpargRetrDeduc',
+    ],
+  },
+};

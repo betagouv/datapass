@@ -21,11 +21,10 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     if (
-      error.response &&
-      error.response.status === 401 &&
+      error.response?.status === 401 &&
       new URL(error.config.url).origin === BACK_HOST
     ) {
-      // This is bad. Find out why in this function doc !
+      // This is bad. Find out why in this function doc!
       resetAuthContext();
     }
 

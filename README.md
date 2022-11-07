@@ -32,7 +32,7 @@ Pour ajouter un formulaire voici la liste des fichiers à modifier :
 
 1. dans le frontend
    1. description de l’organisation du formulaire (création de [frontend/src/pages/NameOfApi.js](/frontend/src/pages/FranceConnect.js))
-   2. label, icône, email de contact ([frontend/src/config/data-provider-parameters.tsx](/frontend/src/config/data-provider-parameters.tsx))
+   2. label, icône, email de contact ([frontend/src/config/data-provider-parameters.tsx](/frontend/src/config/data-provider-configurations.tsx))
    3. [optionnel] codes organisation (codes NAF) valides pour votre service ([frontend/src/lib](frontend/src/lib/index.js#L57-L60))
    4. [optionnel] une page de présentation hors connection
    5. [optionnel] une liste de démarches pré-remplies

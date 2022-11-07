@@ -11,7 +11,7 @@ import ÉquipeSection, {
   getDefaultDelegueProtectionDonneesDescription,
   getDefaultResponsableTraitementDescription,
 } from '../../components/organisms/form-sections/ÉquipeSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
 import Link from '../../components/atoms/hyperTexts/Link';
 
@@ -48,80 +48,67 @@ const availableScopes = [
     value: 'entreprises',
     label:
       'Données des unités légales du répertoire Sirene et de leurs sièges sociaux & mandataires sociaux - Insee & Infogreffe ',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue?Endpoint[query]=insee%20unite%20legale',
   },
   {
     value: 'etablissements',
     label: 'Données et adresse des établissements du répertoire Sirene - Insee',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue?Endpoint[query]=insee etablissement',
   },
   {
     value: 'extraits_rcs',
     label: 'Extrait RCS - Infogreffe',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/infogreffe/rcs/extrait',
   },
   {
     value: 'associations',
     label: 'Données du RNA d’une association - Ministère de l’Intérieur',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/rna',
   },
   {
     value: 'documents_association',
     label: 'Divers documents d’une association - Ministère de l’Intérieur',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/documents_associations',
   },
   {
     value: 'actes_inpi',
     label: 'Actes - Inpi',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/inpi/actes',
   },
   {
     value: 'conventions_collectives',
     label:
       'Conventions collectives - Fabrique numérique des Ministères Sociaux',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/fabrique_numerique_ministeres_sociaux/conventions_collectives',
   },
   {
     value: 'entreprises_artisanales',
     label: 'Données du RNM d’une entreprise artisanale  - CMA France',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/cma_france/rnm',
   },
   {
     value: 'effectifs_acoss',
     label: '🔐 Effectif d’une entreprise - Urssaf',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/urssaf/effectifs',
   },
   {
     value: 'eori_douanes',
     label: 'Immatriculation EORI - Douanes',
-    groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/douanes/immatriculation_eori',
   },
   {
     value: 'exercices',
     label: '🔐 Chiffre d’affaires - DGFIP',
-    groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/chiffres_affaires',
   },
   {
     value: 'bilans_inpi',
     label: 'Comptes annuels du RNCS - Inpi',
-    groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/inpi/comptes_annuels_rncs',
   },
   {
     value: 'bilans_entreprise_bdf',
     label: '🔐 3 derniers bilans annuels - Banque de France',
-    groupTitle: 'Informations financières :',
     triggerWarning: true,
     warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/banque_de_france/bilans',
@@ -129,7 +116,6 @@ const availableScopes = [
   {
     value: 'liasse_fiscale',
     label: '🔐 Liasses fiscales - DGFIP',
-    groupTitle: 'Informations financières :',
     triggerWarning: true,
     warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/liasses_fiscales',
@@ -137,71 +123,111 @@ const availableScopes = [
   {
     value: 'attestations_fiscales',
     label: '🔐 Attestation fiscale - DGFIP',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/attestations_fiscales',
   },
   {
     value: 'attestations_sociales',
     label: '🔐 Attestation de vigilance - Urssaf',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/urssaf/attestation_vigilance',
   },
   {
     value: 'msa_cotisations',
     label: '🔐 Conformité cotisations de sécurité sociale agricole - MSA',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/msa/conformites_cotisations',
   },
   {
     value: 'probtp',
     label: '🔐 Conformité des cotisations retraites - ProBTP',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/probtp/conformites_cotisations_retraite',
   },
   {
     value: 'fntp_carte_pro',
     label: 'Carte professionnelle travaux publics - FNTP',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/fntp/carte_professionnelle_travaux_public',
   },
   {
     value: 'certificat_cnetp',
     label:
       '🔐 Attestation de cotisations congés payés & chômage-intempéries - CNETP',
-    groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/cnetp/attestations_cotisations_conges_payes_chomage_intemperies',
   },
   {
     value: 'certificat_agence_bio',
     label: 'Certification en BIO - Agence BIO',
-    groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/agence_bio/certifications_bio',
   },
   {
     value: 'certificat_rge_ademe',
     label: 'Certification RGE - ADEME',
-    groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/ademe/certifications_rge',
   },
   {
     value: 'qualibat',
     label: 'Certification Qualibat - Qualibat',
-    groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/qualibat/certifications_batiment',
   },
   {
     value: 'certificat_opqibi',
     label: 'Certification de qualification d’ingénierie - OPQIBI',
-    groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/opqibi/qualifications_ingenierie',
   },
   {
     value: 'extrait_court_inpi',
     label: 'Brevets, modèles et marques déposés - INPI',
-    groupTitle: 'Propriété intellectuelle :',
     link: 'https://entreprise.api.gouv.fr/catalogue?Endpoint[query]=inpi%20depo',
   },
 ];
+
+const groups = {
+  informations_generales: {
+    label: 'Informations générales :',
+    scopes: [
+      'entreprises',
+      'etablissements',
+      'extraits_rcs',
+      'associations',
+      'documents_association',
+      'actes_inpi',
+      'conventions_collectives',
+      'entreprises_artisanales',
+      'effectifs_acoss',
+      'eori_douanes',
+    ],
+  },
+  informations_financieres: {
+    label: 'Informations financières :',
+    scopes: [
+      'exercices',
+      'bilans_inpi',
+      'bilans_entreprise_bdf',
+      'liasse_fiscale',
+    ],
+  },
+  attestations_sociales_et_fiscales: {
+    label: 'Attestations sociales et fiscales :',
+    scopes: [
+      'attestations_fiscales',
+      'attestations_sociales',
+      'msa_cotisations',
+      'probtp',
+      'fntp_carte_pro',
+      'certificat_cnetp',
+    ],
+  },
+  certifications_professionnelles: {
+    label: 'Certifications professionnelles :',
+    scopes: [
+      'certificat_agence_bio',
+      'certificat_rge_ademe',
+      'qualibat',
+      'certificat_opqibi',
+    ],
+  },
+  propriete_intellectuelle: {
+    label: 'Propriété intellectuelle :',
+    scopes: ['extrait_court_inpi'],
+  },
+};
 
 const editorList = [
   { name: 'Achatpublic.com', siret: '44785462100045' },
@@ -322,7 +348,7 @@ const ApiEntreprise = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://entreprise.api.gouv.fr/"
   >
     <OrganisationSection editorList={editorList} />
@@ -330,6 +356,7 @@ const ApiEntreprise = () => (
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
+      groups={groups}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

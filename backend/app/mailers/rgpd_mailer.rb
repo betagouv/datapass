@@ -44,6 +44,6 @@ class RgpdMailer < ActionMailer::Base
   private
 
   def data_providers_config
-    DataProvidersConfiguration.instance
+    DataProviderConfigurations.instance
   end
 end

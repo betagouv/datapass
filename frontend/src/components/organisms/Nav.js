@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
+import { useDataProvider } from '../templates/hooks/use-data-provider';
 import { ScrollableLink } from './Scrollable';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
 import Button from '../atoms/hyperTexts/Button';
 import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
 import Link from '../atoms/hyperTexts/Link';
@@ -17,6 +17,7 @@ const Nav = ({
   documentationUrl,
 }) => {
   const { goBackToList } = useListItemNavigation();
+  const { label } = useDataProvider(target_api);
 
   const navElements = useMemo(
     () =>
@@ -31,10 +32,10 @@ const Nav = ({
     () =>
       !contactEmail || contactEmail === DEFAULT_CONTACT_EMAIL
         ? `mailto:${DEFAULT_CONTACT_EMAIL}?subject=Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-            DATA_PROVIDER_PARAMETERS[target_api]?.label
+            label
           )}`
         : `mailto:${contactEmail}?subject=Contact%20via%20datapass.api.gouv.fr`,
-    [contactEmail, target_api]
+    [contactEmail, label]
   );
 
   return (

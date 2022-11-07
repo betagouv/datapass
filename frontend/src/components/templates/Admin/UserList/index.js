@@ -4,8 +4,8 @@ import {
   createColumnHelper,
   getPaginationRowModel,
 } from '@tanstack/react-table';
-import { DATA_PROVIDER_PARAMETERS } from '../../../../config/data-provider-parameters';
 import { getUsers } from '../../../../services/users';
+import { useDataProviderConfigurations } from '../../hooks/use-data-provider-configurations';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import Loader from '../../../atoms/Loader';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
@@ -22,6 +22,8 @@ const UserList = () => {
 
   const columnHelper = createColumnHelper();
 
+  const { dataProviderConfigurations } = useDataProviderConfigurations();
+
   const columns = useMemo(
     () => [
       columnHelper.accessor('email', {
@@ -33,15 +35,16 @@ const UserList = () => {
           placeholder: 'Filtrer par email',
         },
       }),
-      ...Object.keys(DATA_PROVIDER_PARAMETERS).map((targetApi) =>
-        columnHelper.group({
-          header: DATA_PROVIDER_PARAMETERS[targetApi]?.label,
-          id: targetApi,
-          enableColumnFilter: false,
-          cell: (cellProps) => (
-            <RoleCheckboxCell updateData={updateRole} {...cellProps} />
-          ),
-        })
+      ...Object.entries(dataProviderConfigurations || {}).map(
+        ([targetApi, { label }]) =>
+          columnHelper.group({
+            header: label,
+            id: targetApi,
+            enableColumnFilter: false,
+            cell: (cellProps) => (
+              <RoleCheckboxCell updateData={updateRole} {...cellProps} />
+            ),
+          })
       ),
       columnHelper.accessor('id', {
         header: 'Id',
@@ -50,7 +53,7 @@ const UserList = () => {
         enableColumnFilter: false,
       }),
     ],
-    [columnHelper]
+    [columnHelper, dataProviderConfigurations]
   );
 
   const updateRole = (rowIndex, columnId, value) => {

@@ -15,7 +15,7 @@ class StatsController < ApplicationController
         target_api_list = JSON.parse(params[:target_api_list])
         raise_error_if_not_an_array(target_api_list)
         has_only_existing_target_api = target_api_list.all? do |target_api|
-          DataProvidersConfiguration.instance.exists?(target_api)
+          DataProviderConfigurations.instance.exists?(target_api)
         end
 
         unless has_only_existing_target_api

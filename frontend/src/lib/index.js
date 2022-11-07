@@ -488,7 +488,7 @@ export const stackLowUseAndUnpublishedApi = (
   return filteredEnrollmentByTargetApi;
 };
 
-export const dataProviderParametersToContactInfo = (parameters) =>
+export const dataProviderConfigurationsToContactInfo = (parameters) =>
   chain(parameters)
     .map(({ label, ...rest }) =>
       label.endsWith(' (Bac à sable)')

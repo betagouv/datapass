@@ -52,9 +52,9 @@ const Index: FunctionComponent<Props> = ({
     );
   }, [uploadedDocuments, documentType, documentsToUpload]);
 
-  const onFileChange = ({
+  const onFileChange: ChangeEventHandler<HTMLInputElement> = ({
     target: { files, name },
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  }) => {
     const updatedDocumentsToUpload = documentsToUpload.filter(
       ({ type }) => type !== documentType
     );

@@ -10,10 +10,11 @@ import { additionalTermsOfUse } from './common';
 import {
   demarches,
   availableScopes,
+  groups,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import { DATA_PROVIDER_PARAMETERS } from '../../config/data-provider-parameters';
+import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 export const CadreJuridiqueDescription = () => (
@@ -53,7 +54,7 @@ const ApiImpotParticulierFcSandbox = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
-    contactEmail={DATA_PROVIDER_PARAMETERS[target_api]?.email}
+    contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <PreviousEnrollmentSection steps={steps} />
@@ -63,6 +64,7 @@ const ApiImpotParticulierFcSandbox = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       availableScopes={availableScopes}
+      groups={groups}
       enableFileSubmissionForScopeSelection={true}
     />
     <CadreJuridiqueSection

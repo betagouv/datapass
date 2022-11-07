@@ -1,57 +1,54 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  ChangeEventHandler,
+  FunctionComponent,
+  ReactNode,
+  useState,
+} from 'react';
+import ScopeWarningModalConfigurations, {
+  ScopeWarningModalType,
+} from '../../../../config/scope-warning-modal-configuration';
 import ConfirmationModal from '../../ConfirmationModal';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 import Link from '../../../atoms/hyperTexts/Link';
 import Helper from '../../../atoms/Helper';
 
-const ModalContent = {
-  rgpd: {
-    title: 'Vous souhaitez ajouter des données',
-    body: (
-      <>
-        <p>
-          Afin de respecter le principe <b>RGPD</b> de minimisation de la
-          circulation des données personnelles, nous effectuons un contrôle de
-          cohérence entre les données demandées et l’usage décrit.
-        </p>
-        <p>
-          <b>
-            Une demande d’habilitation non conforme fera l’objet d’un retour
-            pour rectification, et donc d’un délai supplémentaire.
-          </b>
-        </p>
-      </>
-    ),
-  },
-  fc_incomplete: {
-    title: 'Cette donnée n’est pas vérifiée',
-    body: 'Elle ne sera transmise que si elle est disponible chez le fournisseur d’identité.',
-  },
-  apientreprise_sensitive: {
-    title: 'Avez-vous vraiment besoin de cette donnée ?',
-    body:
-      "Cette donnée est particulièrement sensible, elle n'est pas autorisée dans le cadre des " +
-      '"marchés publics" et "pré-remplissage". Elle peut être autorisée pour certaines ' +
-      '"aides et subventions publiques". ' +
-      "Pour que votre demande d'accès à cette donnée aboutisse, vous devez justifier dans ce formulaire " +
-      "d'un cadre légal adéquat et d'un contexte d'usage attestant de l'utilité de cette donnée pour votre service.",
-  },
+export type Scope = {
+  value: string;
+  label: string;
+  groupTitle?: string;
+  helper?: string;
+  required?: boolean;
+  triggerWarning?: boolean;
+  warningType?: ScopeWarningModalType;
+  link?: string;
 };
 
-const Scopes = ({
+type Props = {
+  title: string;
+  scopes: Scope[];
+  selectedScopes: { [k: string]: boolean };
+  disabled: boolean;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+};
+
+export const Scopes: FunctionComponent<Props> = ({
   title,
   scopes,
   selectedScopes,
-  disabledApplication,
+  disabled,
   handleChange,
 }) => {
-  const [warningModalScope, setWarningModalScope] = useState(null);
-  const [warningType, setWarningType] = useState('rgpd');
+  const [warningModalScope, setWarningModalScope] = useState<string | null>(
+    null
+  );
+  const [warningType, setWarningType] = useState<ScopeWarningModalType | null>(
+    ScopeWarningModalType.rgpd
+  );
 
   const handleWarningModalClose = () => {
     handleChange({
+      // @ts-ignore
       target: {
         type: 'checkbox',
         checked: true,
@@ -59,10 +56,13 @@ const Scopes = ({
       },
     });
     setWarningModalScope(null);
-    setWarningType('rgpd');
+    setWarningType(ScopeWarningModalType.rgpd);
   };
 
-  let titleToDisplay = title;
+  let titleToDisplay: ReactNode = title;
+
+  // Adding helpers on group title is an exception made for DGFiP form.
+  // This option must not be generalised. It should be removed ASAP.
   if (title === 'Années sur lesquelles porte votre demande') {
     titleToDisplay = (
       <>
@@ -94,13 +94,13 @@ const Scopes = ({
               onChange={
                 triggerWarning && !selectedScopes[value]
                   ? () => {
-                      setWarningType(warningType || 'rgpd');
+                      setWarningType(warningType || ScopeWarningModalType.rgpd);
                       setWarningModalScope(value);
                     }
                   : handleChange
               }
               name={`scopes.${value}`}
-              disabled={disabledApplication || required}
+              disabled={disabled || required}
               value={selectedScopes[value]}
               aria-label={`Périmètre de données « ${label} »`}
               label={
@@ -128,33 +128,18 @@ const Scopes = ({
           )
         )}
       </FieldsetWrapper>
-      {warningModalScope && (
+      {warningModalScope && warningType && (
         <ConfirmationModal
           handleCancel={() => setWarningModalScope(null)}
           handleConfirm={handleWarningModalClose}
           confirmLabel="Ajouter ces données"
-          title={ModalContent[warningType].title}
+          title={ScopeWarningModalConfigurations[warningType].title}
         >
-          <p>{ModalContent[warningType].body} </p>
+          <p>{ScopeWarningModalConfigurations[warningType].body} </p>
         </ConfirmationModal>
       )}
     </>
   );
-};
-
-Scopes.defaultProps = {
-  disabledApplication: false,
-  title: null,
-  useCategoryStyle: true,
-};
-
-Scopes.propTypes = {
-  title: PropTypes.string,
-  scopes: PropTypes.array.isRequired,
-  selectedScopes: PropTypes.object.isRequired,
-  disabledApplication: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired,
-  useCategoryStyle: PropTypes.bool,
 };
 
 export default Scopes;
