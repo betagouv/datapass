@@ -11,7 +11,7 @@ type ListApi = {
   pass_path: string;
 };
 
-export function getApisLists(): Promise<ListApi[]> {
+export function getApisList(): Promise<ListApi[]> {
   return httpClient
     .get(`${BACK_HOST}/api/api_gouv/apis`, {
       headers: {

@@ -28,7 +28,7 @@ RSpec.describe ApiGouv, type: :service do
     it "should add api-impot-particulier-fc-sandbox information" do
       expect(subject.last).to eq(
         {title: "API Impôt particulier via FranceConnect",
-         slug: "impot-particulier",
+         slug: "impot-particulier-fc",
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",

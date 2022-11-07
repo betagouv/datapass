@@ -49,6 +49,7 @@ class ApiGouv < ApplicationService
   def impot_particulier_fc
     {
       title: "API Impôt particulier via FranceConnect",
+      slug: "impot-particulier-fc",
       pass_path: "https://datapass.api.gouv.fr/api-impot-particulier-fc-sandbox"
     }
   end

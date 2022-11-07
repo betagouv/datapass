@@ -4,7 +4,7 @@ import { DataProviderCard } from './DataProviderCard';
 import Button from '../../atoms/hyperTexts/Button';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { useState, useEffect } from 'react';
-import { getApisLists } from '../../../services/api-gouv';
+import { getApisList } from '../../../services/api-gouv';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -22,7 +22,7 @@ export const ApiDataProviderList = () => {
   const [result, setResult] = useState<ListApi[]>([]);
 
   useEffect(() => {
-    getApisLists().then((data) => setResult(data));
+    getApisList().then((data) => setResult(data));
   }, []);
 
   return (
