@@ -7,10 +7,11 @@ import { useFullDataProvider } from '../templates/hooks/use-full-data-provider';
 import NotFound from './NotFound';
 
 const FormRouter = () => {
-  const { targetApi } = useParams();
+  const { targetApi: targetApiFromUrl } = useParams();
+  const targetApi = targetApiFromUrl.replace(/-/g, '_');
 
   const { Component, configuration, notFound } = useFullDataProvider({
-    targetApi: targetApi.replace(/-/g, '_'),
+    targetApi: targetApi,
   });
 
   if (notFound) {
@@ -22,12 +23,7 @@ const FormRouter = () => {
   }
 
   if (!isEmpty(configuration)) {
-    return (
-      <Enrollment
-        target_api={targetApi.replace(/-/g, '_')}
-        configuration={configuration}
-      />
-    );
+    return <Enrollment target_api={targetApi} configuration={configuration} />;
   }
 
   return <Loader />;
