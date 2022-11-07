@@ -38,12 +38,12 @@ export const CheckboxInput: FunctionComponent<Props> = ({
   return (
     <div className="fr-checkbox-group">
       <input
+        id={id}
         onChange={onChange}
         disabled={disabled}
         checked={value}
         type="checkbox"
         name={name}
-        id={id}
         required={required}
         {...rest}
       />
