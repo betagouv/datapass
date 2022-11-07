@@ -4,10 +4,9 @@ import { DataProviderCard } from './DataProviderCard';
 import Button from '../../atoms/hyperTexts/Button';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getApisLists } from '../../../services/api-gouv';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 type ListApi = {
   title: string;
@@ -18,31 +17,12 @@ type ListApi = {
   pass_path: string;
 };
 
-type GetListsResponse = {
-  data: ListApi[];
-};
-
 export const ApiDataProviderList = () => {
   const { goBackToList } = useListItemNavigation();
   const [result, setResult] = useState<ListApi[]>([]);
 
-  async function getApisList() {
-    try {
-      const response: GetListsResponse = await axios.get(
-        `${BACK_HOST}/api/api_gouv/apis`
-      );
-      setResult(response.data);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return error.message;
-      } else {
-        return 'An unexpected error occurred';
-      }
-    }
-  }
-
   useEffect(() => {
-    getApisList();
+    getApisLists().then((data) => setResult(data));
   }, []);
 
   return (
