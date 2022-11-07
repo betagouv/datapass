@@ -32,7 +32,7 @@ export const CheckboxInput: FunctionComponent<Props> = ({
   ...rest
 }) => {
   // id will be set once when the component initially renders, but never again
-  // we generate an unique id prefixed by the field name
+  // we generate a unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
   return (
