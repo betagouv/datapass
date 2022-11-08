@@ -4,8 +4,6 @@ import Dropdown from '../Dropdown';
 import Link from '../../atoms/hyperTexts/Link';
 import './style.css';
 
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
-
 export const NewEnrollmentButton: FunctionComponent = () => {
   const [showDataProviderList, setShowDataProviderList] = useState(false);
 
@@ -18,12 +16,12 @@ export const NewEnrollmentButton: FunctionComponent = () => {
         <Dropdown onOutsideClick={() => setShowDataProviderList(false)}>
           <div className="new-enrollment-button-container">
             <div className="new-enrollment-button-item">
-              <Link inline href="/data-providers">
+              <Link inline href="/data-providers/hubee">
                 <img src="/images/logo-hubee-small.png" alt="Logo HubEE" />
               </Link>
             </div>
             <div className="new-enrollment-button-item">
-              <Link inline href={`${API_GOUV_HOST}/datapass/api`}>
+              <Link inline href="/data-providers/api">
                 <img src="/images/new-api-pass.png" alt="Logo AidantsConnect" />
               </Link>
             </div>
