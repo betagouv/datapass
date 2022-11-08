@@ -27,12 +27,6 @@ import useFileDownloader from './hooks/use-file-downloader';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import CheckboxInput from '../atoms/inputs/CheckboxInput';
 
-declare module '@tanstack/table-core' {
-  interface FilterFns {
-    unreadMessagesFilter?: FilterFn<unknown>;
-  }
-}
-
 type Demandeur = {
   id: number;
   type: string;
@@ -62,6 +56,10 @@ const InstructorEnrollmentList: React.FC = () => {
   const [pagination, setPagination] = useQueryString('pagination', {
     pageIndex: 0,
   });
+  const [onlyUnreadMessages, setOnlyUnreadMessages] = useQueryString(
+    'onlyUnreadMessages',
+    false
+  );
 
   const [filtered, setFiltered] = useQueryString('filtered', [
     {
@@ -89,6 +87,7 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
+        onlyUnreadMessages,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -100,7 +99,7 @@ const InstructorEnrollmentList: React.FC = () => {
     return () => {
       debouncedFetchData.cancel();
     };
-  }, [pagination, sorted, filtered]);
+  }, [pagination, sorted, filtered, onlyUnreadMessages]);
 
   const columns = [
     columnHelper.accessor('updated_at', {
@@ -126,16 +125,15 @@ const InstructorEnrollmentList: React.FC = () => {
       size: 50,
       meta: {
         columnTitle: 'Filtrer par',
-        getFilterComponent: ({ value, onChange }) => (
+        getFilterComponent: () => (
           <CheckboxInput
             label="non lu"
-            onChange={(e) => onChange(!e.target.value)}
+            onChange={() => setOnlyUnreadMessages((prev: boolean) => !prev)}
             name="filterComponent.checkBox"
-            value={value}
+            value={onlyUnreadMessages}
           />
         ),
       },
-      filterFn: 'unreadMessagesFilter',
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
@@ -255,13 +253,6 @@ const InstructorEnrollmentList: React.FC = () => {
       <Table
         tableOptions={{
           data: enrollments,
-          filterFns: {
-            unreadMessagesFilter: (row, columnId, filterValue) => {
-              // return the filtered row
-              console.log(row, columnId, filterValue);
-              return filterValue;
-            },
-          },
           columns: columns as Column<Enrollment>[],
           pageCount: totalPages,
           state: {
