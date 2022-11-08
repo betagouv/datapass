@@ -103,19 +103,15 @@ RSpec.describe User, type: :model do
     end
 
     context "when PaperTrail enabled", versioning: true do
-      it "versions user and create event" do
-        u = user.versions.last
-
-        expect(user.versions.count).to eq(1)
-        expect(u.event).to eq("create")
+      it "versions user and do not track create event" do
+        expect(user.versions.count).to eq(0)
       end
 
       it "does not record update event when changing family_name" do
         user.update family_name: "hello"
         user.save
 
-        expect(user.versions.last.changeset).to eq({})
-        expect(user.versions.count).to eq(1)
+        expect(user.versions.count).to eq(0)
       end
 
       it "does record event when it's changing roles" do
@@ -123,7 +119,7 @@ RSpec.describe User, type: :model do
         result = user.versions.last.changeset
 
         expect(result["roles"]).to eq([[], ["aidants_connect:reporter"]])
-        expect(user.versions.count).to eq(2)
+        expect(user.versions.count).to eq(1)
       end
 
       it "tracks who made the change" do
@@ -138,7 +134,7 @@ RSpec.describe User, type: :model do
         result = user.versions.last
         expect(result.whodunnit).to(eq(admin.id.to_s))
         expect(result.whodunnit).not_to(eq(other_user.id.to_s))
-        expect(user.versions.count).to eq(3)
+        expect(user.versions.count).to eq(2)
       end
     end
   end
