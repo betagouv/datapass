@@ -76,6 +76,9 @@ module DataPass
     config.middleware.insert_before Rack::Head, ValidateRequestParams
 
     config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
+
+    # use for paper_trail gem to fix current error: "Tried to load unspecified class: ActiveSupport::TimeWithZone"
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
   end
 end
 

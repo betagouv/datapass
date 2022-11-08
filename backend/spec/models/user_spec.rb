@@ -92,4 +92,50 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "versioning option User roles" do
+    subject(:user) { create(:user, :with_personal_information) }
+
+    context "when enable", versioning: false do
+      it "does not enable versionning" do
+        expect(user.versions.count).to eq(0)
+      end
+    end
+
+    context "when PaperTrail enabled", versioning: true do
+      it "versions user and do not track create event" do
+        expect(user.versions.count).to eq(0)
+      end
+
+      it "does not record update event when changing family_name" do
+        user.update family_name: "hello"
+        user.save
+
+        expect(user.versions.count).to eq(0)
+      end
+
+      it "does record event when it's changing roles" do
+        user.update!(roles: ["aidants_connect:reporter"])
+        result = user.versions.last.changeset
+
+        expect(result["roles"]).to eq([[], ["aidants_connect:reporter"]])
+        expect(user.versions.count).to eq(1)
+      end
+
+      it "tracks who made the change" do
+        admin = create(:user, :with_all_infos)
+        admin_id = admin.id
+        other_user = create(:user, :with_all_infos)
+
+        PaperTrail.request.whodunnit = admin_id
+        user.update!(roles: ["aidants_connect:reporter"])
+        user.update!(roles: ["aidants_connect:instructor"])
+
+        result = user.versions.last
+        expect(result.whodunnit).to(eq(admin.id.to_s))
+        expect(result.whodunnit).not_to(eq(other_user.id.to_s))
+        expect(user.versions.count).to eq(2)
+      end
+    end
+  end
 end

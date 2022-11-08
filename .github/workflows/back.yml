@@ -28,7 +28,7 @@ jobs:
         working-directory: ./backend
     services:
       postgres:
-        image: postgres:12.11
+        image: postgres:12.12
         env:
           POSTGRES_USER: datapass
           POSTGRES_PASSWORD: datapass

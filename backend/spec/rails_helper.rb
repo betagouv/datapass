@@ -9,6 +9,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "sidekiq/testing"
 require "spec_helper"
+require "paper_trail/frameworks/rspec"
 
 if Rails::VERSION::MAJOR >= 7
   require "rspec/rails/version"
