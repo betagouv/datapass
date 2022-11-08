@@ -33,7 +33,7 @@ class ApiGouv < ApplicationService
       }
     end
 
-    # Add Impot particulier fc hash in apis list as it is not generate in the api.gouv.fr/api/v1/
+    # Add Impot particulier fc hash in api list as it is not generated in the api.gouv.fr/api/v1/ endpoint
     impot_part_fc = filtered_apis.find { |api| api[:slug] === "impot-particulier" }
       .merge(impot_particulier_fc)
 
