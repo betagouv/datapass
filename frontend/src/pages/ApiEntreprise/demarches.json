@@ -113,12 +113,13 @@
       }
     }
   },
-  "preremplissage": {
-    "label": "Pré-remplissage d’un formulaire",
-    "about": "https://entreprise.api.gouv.fr/use_cases/preremplissage/",
+  "portail_gru": {
+    "label": "Portail GRU - Préremplissage",
+    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru/",
     "state": {
-      "description": "Merci d’indiquer si le formulaire ou l’interface qui utilisera le pré-remplissage API Entreprise est :\r\n- en accès libre,\r\n- ou après authentification préalable, c’est-à-dire uniquement accessible à l’utilisateur concerné ou l’agent habilité à voir ces données.\r\n\r\nLes données protégées ne peuvent pas être exposées sur un formulaire librement accessible. Si le formulaire est en accès libre, seules les données ouvertes peuvent être utilisées pour le pré-remplissage. L’ensemble de ces éléments est synthétisé sur https://entreprise.api.gouv.fr/use_cases/preremplissage/",
-      "fondement_juridique_title": "Article Premier de la Loi n° 2016-1321 du 7 octobre 2016 pour une République numérique",
+      "intitule": "Préremplissage du portail de gestion relation usager ",
+      "description": "Cette demande d’habilitation spécifique au cas d’usage \"Portail GRU - Préremplissage\" vous donne uniquement accès aux données ouvertes de l’API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides/subventions publiques et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d’habilitation supplémentaire pour ce cas d’usage.",
+      "fondement_juridique_title": "Article Premier de la LOI n° 2016-1321 du 7 octobre 2016 pour une République numérique",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000033202746/",
       "scopes": {
         "entreprises": false,
@@ -149,25 +150,25 @@
       }
     }
   },
-  "portail_gru": {
-    "label": "Portail GRU - gestion relation usager",
-    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru/",
+  "portail_gru_instruction": {
+    "label": "Portail GRU - Instruction des démarches",
+    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru_instruction/",
     "state": {
-      "intitule": "Portail de gestion relation usager/citoyen",
-      "description": "Cette demande d’habilitation spécifique au cas d’usage \"Portail gestion relation usager\" vous donne uniquement accès aux données ouvertes de l’API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides/subventions publiques et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d’habilitation supplémentaire pour ce cas d’usage.",
+      "intitule": "Instruction des démarches du portail de gestion relation usager",
+      "description": "Cette demande d’habilitation spécifique au cas d’usage \"Portail GRU - Instruction des démarches\" . Si votre portail propose d’autres services, tels que la délivrance d’aides/subventions publiques et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d’habilitation supplémentaire pour ce cas d’usage.",
       "fondement_juridique_title": "Article Premier de la LOI n° 2016-1321 du 7 octobre 2016 pour une République numérique",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000033202746/",
       "scopes": {
-        "entreprises": false,
+        "entreprises": true,
         "etablissements": true,
         "extraits_rcs": true,
         "associations": true,
         "documents_association": true,
         "actes_inpi": true,
-        "conventions_collectives": true,
+        "conventions_collectives": false,
         "entreprises_artisanales": true,
         "effectifs_acoss": false,
-        "eori_douanes": true,
+        "eori_douanes": false,
         "exercices": false,
         "bilans_inpi": false,
         "bilans_entreprise_bdf": false,
@@ -176,13 +177,13 @@
         "attestations_sociales": false,
         "msa_cotisations": false,
         "probtp": false,
-        "fntp_carte_pro": true,
+        "fntp_carte_pro": false,
         "certificat_cnetp": false,
-        "certificat_agence_bio": true,
-        "certificat_rge_ademe": true,
-        "qualibat": true,
-        "certificat_opqibi": true,
-        "extrait_court_inpi": true
+        "certificat_agence_bio": false,
+        "certificat_rge_ademe": false,
+        "qualibat": false,
+        "certificat_opqibi": false,
+        "extrait_court_inpi": false
       }
     }
   },
