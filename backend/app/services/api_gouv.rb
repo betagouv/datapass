@@ -29,8 +29,7 @@ class ApiGouv < ApplicationService
         tagline: api["tagline"],
         path: api["path"],
         logo: api["logo"],
-        pass_path: api["datapass_link"]
-          .sub("https://datapass.api.gouv.fr", "")
+        pass_path: URI(api["datapass_link"]).path
       }
     end
 
