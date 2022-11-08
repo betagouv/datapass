@@ -16,7 +16,7 @@ jobs:
         include:
           - env: staging
             back_host: https://back.datapass-staging.api.gouv.fr
-            api_gouv_host: https://www-staging.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
           - env: production
