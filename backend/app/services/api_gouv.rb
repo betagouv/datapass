@@ -30,6 +30,7 @@ class ApiGouv < ApplicationService
         path: api["path"],
         logo: api["logo"],
         pass_path: api["datapass_link"]
+          .sub("https://datapass.api.gouv.fr", "")
       }
     end
 
@@ -50,7 +51,7 @@ class ApiGouv < ApplicationService
     {
       title: "API Impôt particulier via FranceConnect",
       slug: "impot-particulier-fc",
-      pass_path: "https://datapass.api.gouv.fr/api-impot-particulier-fc-sandbox"
+      pass_path: "/api-impot-particulier-fc-sandbox"
     }
   end
 end

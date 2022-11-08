@@ -17,7 +17,7 @@ RSpec.describe ApiGouv, type: :service do
          tagline: "Un clic, un taxi",
          path: "/les-api/le-taxi",
          logo: "/images/api-logo/dinum.png",
-         pass_path: "https://datapass.api.gouv.fr/le-taxi-clients"}
+         pass_path: "/le-taxi-clients"}
       )
     end
 
@@ -32,7 +32,7 @@ RSpec.describe ApiGouv, type: :service do
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
-         pass_path: "https://datapass.api.gouv.fr/api-impot-particulier-fc-sandbox"}
+         pass_path: "/api-impot-particulier-fc-sandbox"}
       )
     end
   end
