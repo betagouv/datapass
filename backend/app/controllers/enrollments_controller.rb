@@ -16,6 +16,7 @@ class EnrollmentsController < ApplicationController
       @enrollments = @enrollments.joins(:events).where({ events: {
         name: "notify",
         processed_at: nil,
+        is_notified_from_demandeur: true
       }})
     end
 
