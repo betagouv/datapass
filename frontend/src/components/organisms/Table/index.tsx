@@ -114,8 +114,8 @@ const Table = ({
   };
 
   return (
-    <div className="datapass-table-wrapper">
-      <div className="page-container" style={wrapperStyle}>
+    <>
+      <div className="datapass-table-wrapper" style={wrapperStyle}>
         {loading && <div className="datapass-table-loader">Chargement...</div>}
         {!table.getRowModel().rows.length && (
           <div className="datapass-table-placeholder">{noDataPlaceholder}</div>
@@ -200,9 +200,8 @@ const Table = ({
           </tbody>
         </table>
       </div>
-
       <TablePagination table={table} />
-    </div>
+    </>
   );
 };
 
