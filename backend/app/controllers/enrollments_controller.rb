@@ -11,6 +11,14 @@ class EnrollmentsController < ApplicationController
       @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false))
     end
 
+    only_unread_messages = params.fetch(:onlyUnreadMessages, false)
+    if only_unread_messages
+      @enrollments = @enrollments.joins(:events).where({ events: {
+        name: "notify",
+        processed_at: nil,
+      }})
+    end
+
     begin
       sorted_by = JSON.parse(params.fetch(:sortedBy, "[]"))
       sorted_by.each do |sort_item|
