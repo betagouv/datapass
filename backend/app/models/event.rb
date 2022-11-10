@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
 
     def mark_as_notified_from_demandeur
       demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
-      if demandeurs_ids.include?(user.id) && name == 'notify'
+      if demandeurs_ids.include?(user.id) && name == "notify"
         self.is_notified_from_demandeur = true
       end
     end
