@@ -22,9 +22,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new
+    authorize @user
     @user.email = params[:email]
     @user.update(permitted_attributes(@user))
-    authorize @user
     @user.save!
 
     render json: @user, serializer: AdminUserSerializer

@@ -141,6 +141,12 @@ RSpec.describe UsersController, type: :controller do
       let(:user) { create(:user) }
 
       it { is_expected.to have_http_status(:forbidden) }
+
+      it "should not create a new user" do
+        expect {
+          create_user
+        }.not_to change { User.count }
+      end
     end
 
     context "when user is an admin" do
