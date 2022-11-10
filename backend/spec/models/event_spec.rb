@@ -1,5 +1,5 @@
 RSpec.describe Event, type: :model do
-  it "has valid factory" do
+  it 'has valid factory' do
     expect(build(:event)).to be_valid
 
     %i[
@@ -15,7 +15,42 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  describe "#mark_as_processed" do
+  describe '#mark_as_notified_from_demandeur' do
+    let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
+    let(:instructor) { create(:user, roles: ['api_particulier:instructor']) }
+
+    context 'when event notify is created by demandeur' do
+      let(:demandeur_notify) do
+        create(
+          :event,
+          name: :notify,
+          enrollment_id: enrollment.id,
+          user_id: enrollment.demandeurs.first.user_id,
+          comment: 'some comment'
+        )
+      end
+      it 'is expected to have a is_notified_from_demandeur field at true' do
+        expect(demandeur_notify.is_notified_from_demandeur).to be(true)
+      end
+    end
+
+    context 'when event notify is created by instructeur' do
+      let(:instructor_notify) do
+        create(
+          :event,
+          name: :notify,
+          enrollment_id: enrollment.id,
+          user_id: instructor.id,
+          comment: 'some comment'
+        )
+      end
+      it 'is expected to have a is_notified_from_demandeur field at false' do
+        expect(instructor_notify.is_notified_from_demandeur).to be(false)
+      end
+    end
+  end
+
+  describe '#mark_as_processed' do
     let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
     subject do
       create(
@@ -23,18 +58,18 @@ RSpec.describe Event, type: :model do
         name: :notify,
         enrollment_id: enrollment.id,
         user_id: enrollment.demandeurs.first.user_id,
-        comment: "some comment"
+        comment: 'some comment'
       )
     end
 
-    context "when event notify is created" do
-      it "is expected to have a processed_at field at nil" do
+    context 'when event notify is created' do
+      it 'is expected to have a processed_at field at nil' do
         expect(subject.processed_at).to be(nil)
       end
     end
 
-    context "when event notify is #mark_as_processed" do
-      it "is expected to have a processed_at field not nil" do
+    context 'when event notify is #mark_as_processed' do
+      it 'is expected to have a processed_at field not nil' do
         subject.mark_as_processed
 
         expect(subject.processed_at).to_not be(nil)
@@ -42,11 +77,11 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  describe "comment validation" do
+  describe 'comment validation' do
     subject { event }
 
     let(:event) { build(:event, name: name, comment: comment) }
-    describe "events which require comment presence" do
+    describe 'events which require comment presence' do
       %w[
         refuse
         request_changes
@@ -57,13 +92,13 @@ RSpec.describe Event, type: :model do
         context "when name is '#{name}'" do
           let(:name) { name }
 
-          context "when comment is present" do
-            let(:comment) { "I like trains" }
+          context 'when comment is present' do
+            let(:comment) { 'I like trains' }
 
             it { is_expected.to be_valid }
           end
 
-          context "when comment is nil" do
+          context 'when comment is nil' do
             let(:comment) { nil }
 
             it { is_expected.not_to be_valid }
@@ -72,7 +107,7 @@ RSpec.describe Event, type: :model do
       end
     end
 
-    describe "events which do not require comment presence" do
+    describe 'events which do not require comment presence' do
       %w[
         create
         update
@@ -81,13 +116,13 @@ RSpec.describe Event, type: :model do
         context "when name is '#{name}'" do
           let(:name) { name }
 
-          context "when comment is present" do
-            let(:comment) { "I like trains" }
+          context 'when comment is present' do
+            let(:comment) { 'I like trains' }
 
             it { is_expected.to be_valid }
           end
 
-          context "when comment is nil" do
+          context 'when comment is nil' do
             let(:comment) { nil }
 
             it { is_expected.to be_valid }
