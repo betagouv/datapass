@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   validate :validate_comment
   validate :validate_name
 
+  before_create :mark_as_notified_from_demandeur
+
   def mark_as_processed
     update!(processed_at: Time.now)
   end
@@ -28,4 +30,13 @@ class Event < ActiveRecord::Base
       errors.add(:name, :invalid, message: "Une erreur inattendue est survenue: nom d’évènement inconnu")
     end
   end
+
+  private
+
+    def mark_as_notified_from_demandeur
+      demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+      if demandeurs_ids.include?(user.id) && name == 'notify'
+        self.is_notified_from_demandeur = true
+      end
+    end
 end
