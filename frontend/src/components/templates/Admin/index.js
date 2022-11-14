@@ -19,7 +19,7 @@ export const Admin = () => {
       {!displayAdminPage && (
         <div className="full-page">
           <Alert type="error" title="Accès refusé">
-            Vous n'avez pas les droits suffisants pour accéder à cette page.
+            Vous n'êtes pas autorisé à accéder à cette page.
           </Alert>
         </div>
       )}
