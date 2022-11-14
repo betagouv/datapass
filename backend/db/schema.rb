@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_155011) do
     t.string "comment"
     t.jsonb "diff"
     t.datetime "processed_at"
-    t.boolean "is_notified_from_demandeur", default: false
+    t.boolean "is_notify_from_demandeur", default: false
     t.index ["enrollment_id"], name: "index_events_on_enrollment_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["user_id"], name: "index_events_on_user_id"

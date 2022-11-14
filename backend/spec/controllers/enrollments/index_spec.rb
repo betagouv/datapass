@@ -61,11 +61,11 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
     end
   end
 
-  describe "onlyUnreadMessages params test" do
+  describe "only_with_unprocessed_messages params test" do
     subject(:enrollments_payload) do
       get :index, params: {
         target_api: "franceconnect",
-        onlyUnreadMessages: true,
+        only_with_unprocessed_messages: true,
         sortedBy: [].to_json,
         filter: [].to_json
       }
@@ -94,7 +94,7 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
         name: :notify,
         enrollment_id: instructeur_notify_event_enrollment.id,
         user_id: user.id,
-        comment: "Instrutor comment"
+        comment: "Instructor comment"
       )
     end
 
@@ -102,12 +102,9 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
       login(user)
     end
 
-    it "renders only enrollments with unread messages" do
+    it "renders only enrollments with unprocessed messages" do
       expect(enrollments_payload.count).to eq(1)
-
-      expect(enrollments_payload.map { |enrollment_payload| enrollment_payload["id"] }).to eq([
-                                                                                                demandeur_notify_event_enrollment.id
-                                                                                              ])
+      expect(enrollments_payload.map { |enrollment_payload| enrollment_payload["id"] }).to eq([demandeur_notify_event_enrollment.id])
     end
   end
 end

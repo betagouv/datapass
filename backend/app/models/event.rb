@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   validate :validate_comment
   validate :validate_name
 
-  before_create :mark_as_notified_from_demandeur
+  before_create :mark_as_notify_from_demandeur
 
   def mark_as_processed
     update!(processed_at: Time.now)
@@ -33,10 +33,10 @@ class Event < ActiveRecord::Base
 
   private
 
-    def mark_as_notified_from_demandeur
-      demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
-      if demandeurs_ids.include?(user.id) && name == "notify"
-        self.is_notified_from_demandeur = true
-      end
+  def mark_as_notify_from_demandeur
+    demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+    if demandeurs_ids.include?(user.id) && name == "notify"
+      self.is_notify_from_demandeur = true
     end
+  end
 end

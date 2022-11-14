@@ -15,7 +15,7 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  describe "#mark_as_notified_from_demandeur" do
+  describe "#mark_as_notify_from_demandeur" do
     let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
     let(:instructor) { create(:user, roles: ["api_particulier:instructor"]) }
 
@@ -29,8 +29,8 @@ RSpec.describe Event, type: :model do
           comment: "some comment"
         )
       end
-      it "is expected to have a is_notified_from_demandeur field at true" do
-        expect(demandeur_notify.is_notified_from_demandeur).to be(true)
+      it "is expected to have a is_notify_from_demandeur field at true" do
+        expect(demandeur_notify.is_notify_from_demandeur).to be(true)
       end
     end
 
@@ -44,8 +44,8 @@ RSpec.describe Event, type: :model do
           comment: "some comment"
         )
       end
-      it "is expected to have a is_notified_from_demandeur field at false" do
-        expect(instructor_notify.is_notified_from_demandeur).to be(false)
+      it "is expected to have a is_notify_from_demandeur field at false" do
+        expect(instructor_notify.is_notify_from_demandeur).to be(false)
       end
     end
   end

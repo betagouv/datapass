@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import {
   Column,
   createColumnHelper,
-  FilterFn,
   getCoreRowModel,
 } from '@tanstack/react-table';
 import './InstructorEnrollmentList.css';
@@ -56,10 +55,8 @@ const InstructorEnrollmentList: React.FC = () => {
   const [pagination, setPagination] = useQueryString('pagination', {
     pageIndex: 0,
   });
-  const [onlyUnreadMessages, setOnlyUnreadMessages] = useQueryString(
-    'onlyUnreadMessages',
-    false
-  );
+  const [onlyWithUnprocessedMessages, setOnlyWithUnprocessedMessages] =
+    useQueryString('onlyWithUnprocessedMessages', false);
 
   const [filtered, setFiltered] = useQueryString('filtered', [
     {
@@ -87,7 +84,7 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
-        onlyUnreadMessages,
+        onlyWithUnprocessedMessages,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -99,7 +96,7 @@ const InstructorEnrollmentList: React.FC = () => {
     return () => {
       debouncedFetchData.cancel();
     };
-  }, [pagination, sorted, filtered, onlyUnreadMessages]);
+  }, [pagination, sorted, filtered, onlyWithUnprocessedMessages]);
 
   const columns = [
     columnHelper.accessor('updated_at', {
@@ -128,9 +125,11 @@ const InstructorEnrollmentList: React.FC = () => {
         getFilterComponent: () => (
           <CheckboxInput
             label="non lu"
-            onChange={() => setOnlyUnreadMessages((prev: boolean) => !prev)}
+            onChange={() =>
+              setOnlyWithUnprocessedMessages((prev: boolean) => !prev)
+            }
             name="filterComponent.checkBox"
-            value={onlyUnreadMessages}
+            value={onlyWithUnprocessedMessages}
           />
         ),
       },

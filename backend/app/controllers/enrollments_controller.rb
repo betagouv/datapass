@@ -11,12 +11,12 @@ class EnrollmentsController < ApplicationController
       @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false))
     end
 
-    only_unread_messages = params.fetch(:onlyUnreadMessages, false)
-    if only_unread_messages
-      @enrollments = @enrollments.joins(:events).where({ events: {
+    only_with_unprocessed_messages = params.fetch(:only_with_unprocessed_messages, false)
+    if only_with_unprocessed_messages
+      @enrollments = @enrollments.joins(:events).where({events: {
         name: "notify",
         processed_at: nil,
-        is_notified_from_demandeur: true
+        is_notify_from_demandeur: true
       }})
     end
 
