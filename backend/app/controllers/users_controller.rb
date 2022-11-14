@@ -9,14 +9,14 @@ class UsersController < ApplicationController
     end
 
     page = params.fetch(:page, "0")
-        size = params.fetch(:size, "10")
-        size = "100" if size.to_i > 100
-        @users = @users.page(page.to_i + 1).per(size.to_i)
+    size = params.fetch(:size, "10")
+    size = "100" if size.to_i > 100
+    @users = @users.page(page.to_i + 1).per(size.to_i)
 
     render json: @users,
-           each_serializer: AdminUserSerializer,
-           meta: pagination_dict(@users),
-           adapter: :json
+      each_serializer: AdminUserSerializer,
+      meta: pagination_dict(@users),
+      adapter: :json
   end
 
   def update
