@@ -1,9 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import {
-  createColumnHelper,
-  getPaginationRowModel,
-} from '@tanstack/react-table';
+import { createColumnHelper } from '@tanstack/react-table';
 import { getUsers } from '../../../../services/users';
 import { useDataProviderConfigurations } from '../../hooks/use-data-provider-configurations';
 import RoleCheckboxCell from './RoleCheckboxCell';
@@ -13,18 +10,17 @@ import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../organisms/Table';
-import useQueryString from '../../hooks/use-query-string';
 import { debounce } from 'lodash';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
-  const [skipReset, setSkipReset] = React.useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  const [pagination, setPagination] = useQueryString('pagination', {
+  const [pagination, setPagination] = useState({
     pageIndex: 0,
   });
+  const [filtered, setFiltered] = useState([]);
 
   const columnHelper = createColumnHelper();
 
@@ -40,6 +36,7 @@ const UserList = () => {
         meta: {
           placeholder: 'Filtrer par email',
         },
+        enableSorting: false,
       }),
       ...Object.entries(dataProviderConfigurations || {}).map(
         ([targetApi, { label }]) =>
@@ -47,6 +44,7 @@ const UserList = () => {
             header: label,
             id: targetApi,
             enableColumnFilter: false,
+            enableSorting: false,
             cell: (cellProps) => (
               <RoleCheckboxCell updateData={updateRole} {...cellProps} />
             ),
@@ -57,13 +55,13 @@ const UserList = () => {
         accessorKey: 'id',
         id: 'id',
         enableColumnFilter: false,
+        enableSorting: false,
       }),
     ],
     [columnHelper, dataProviderConfigurations]
   );
 
   const updateRole = (rowIndex, columnId, value) => {
-    setSkipReset(true);
     setUsers((old) =>
       old.map((row, index) => {
         if (index === rowIndex) {
@@ -80,44 +78,31 @@ const UserList = () => {
     );
   };
 
-  useEffect(() => {
-    setSkipReset(false);
-  }, [users]);
-
-  useEffect(() => {
-    const onFetchData = async () => {
-      setIsLoading(true);
-      const { users } = await getUsers({ usersWithRolesOnly: !showAllUsers });
-      setUsers(users);
-      setIsLoading(false);
-    };
-    onFetchData();
-  }, [showAllUsers]);
-
-  const handleRefreshData = async () => {
+  const fetchUsers = useCallback(async () => {
     setIsLoading(true);
-    const { users } = await getUsers({ usersWithRolesOnly: !showAllUsers });
-    setUsers(users);
+    const {
+      users,
+      meta: { total_pages },
+    } = await getUsers({
+      usersWithRolesOnly: !showAllUsers,
+      page: pagination.pageIndex,
+      filter: filtered,
+    });
     setIsLoading(false);
-  };
+    setUsers(users);
+    setTotalPages(total_pages);
+  }, [showAllUsers, pagination, filtered]);
 
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
-      setIsLoading(true);
-      getUsers({
-        page: pagination.pageIndex,
-      }).then(({ users, meta: { total_pages } }) => {
-        setIsLoading(false);
-        setUsers(users);
-        setTotalPages(total_pages);
-      });
+      fetchUsers();
     }, 100);
 
     debouncedFetchData();
     return () => {
       debouncedFetchData.cancel();
     };
-  }, [pagination]);
+  }, [fetchUsers]);
 
   return (
     <>
@@ -135,7 +120,7 @@ const UserList = () => {
           >
             Tous les utilisateurs
           </Tag>
-          <Tag onClick={handleRefreshData}>
+          <Tag onClick={fetchUsers}>
             <RefreshIcon color={'var(--text-action-high-blue-france)'} />
           </Tag>
         </TagContainer>
@@ -153,12 +138,13 @@ const UserList = () => {
             data: users,
             pageCount: totalPages,
             state: {
-              columnFilters: pagination,
+              pagination,
+              columnFilters: filtered,
             },
             onPaginationChange: setPagination,
+            onColumnFiltersChange: setFiltered,
             manualPagination: true,
-            autoResetAll: !skipReset,
-            getPaginationRowModel: getPaginationRowModel(),
+            manualFiltering: true,
           }}
         />
       )}
