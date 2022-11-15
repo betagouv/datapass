@@ -268,7 +268,7 @@ const InstructorEnrollmentList: React.FC = () => {
           getCoreRowModel: getCoreRowModel(),
         }}
         loading={loading}
-        noDataPlaceholder="Toutes les demandes d'habilitation ont été traitées"
+        noDataPlaceholder="Aucune habilitation ne correspond aux critères renseignés"
         onRowClick={async ({ row, event }) => {
           const { id, target_api } = row as Enrollment;
           await setPreviouslySelectedEnrollmentId(id);
