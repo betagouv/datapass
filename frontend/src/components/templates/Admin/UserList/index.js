@@ -13,12 +13,18 @@ import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../organisms/Table';
+import useQueryString from '../../hooks/use-query-string';
+import { debounce } from 'lodash';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [skipReset, setSkipReset] = React.useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pagination, setPagination] = useQueryString('pagination', {
+    pageIndex: 0,
+  });
 
   const columnHelper = createColumnHelper();
 
@@ -95,6 +101,24 @@ const UserList = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const debouncedFetchData = debounce(() => {
+      setIsLoading(true);
+      getUsers({
+        page: pagination.pageIndex,
+      }).then(({ users, meta: { total_pages } }) => {
+        setIsLoading(false);
+        setUsers(users);
+        setTotalPages(total_pages);
+      });
+    }, 100);
+
+    debouncedFetchData();
+    return () => {
+      debouncedFetchData.cancel();
+    };
+  }, [pagination]);
+
   return (
     <>
       <ListHeader title="Liste des utilisateurs">
@@ -127,6 +151,12 @@ const UserList = () => {
           tableOptions={{
             columns: columns,
             data: users,
+            pageCount: totalPages,
+            state: {
+              columnFilters: pagination,
+            },
+            onPaginationChange: setPagination,
+            manualPagination: true,
             autoResetAll: !skipReset,
             getPaginationRowModel: getPaginationRowModel(),
           }}
