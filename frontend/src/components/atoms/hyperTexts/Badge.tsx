@@ -1,3 +1,5 @@
+import './Badge.css';
+
 export enum BadgeType {
   info = 'info',
   success = 'success',
@@ -11,12 +13,14 @@ type Props = {
   icon?: boolean;
   small?: boolean;
   className?: string;
+  round?: boolean;
 };
 
 export const Badge: React.FC<Props> = ({
   type = '',
   small = false,
   icon = false,
+  round = false,
   className = '',
   children,
 }) => {
@@ -29,6 +33,10 @@ export const Badge: React.FC<Props> = ({
   }
   if (!icon) {
     className += ` fr-badge--no-icon`;
+  }
+
+  if (round) {
+    className += ` round`;
   }
 
   return <p className={className}>{children}</p>;

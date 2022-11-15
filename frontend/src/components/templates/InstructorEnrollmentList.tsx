@@ -137,17 +137,8 @@ const InstructorEnrollmentList: React.FC = () => {
             : '';
 
         return (
-          <Badge
-            className="fr-py-1v"
-            type={
-              notify_events_from_demandeurs_count > 0 ? BadgeType.warning : null
-            }
-          >
-            <span
-              title={messagesTitle}
-              className="fr-m-auto"
-              style={{ textOverflow: 'unset' }}
-            >
+          <Badge type={BadgeType.info} className="fr-py-1v" round>
+            <span title={messagesTitle}>
               {notify_events_from_demandeurs_count}
             </span>
           </Badge>
