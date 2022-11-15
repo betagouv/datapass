@@ -61,10 +61,10 @@ class EnrollmentsController < ApplicationController
       # silently fail, if the filter is not formatted properly we do not apply it
     end
 
-    page = params.fetch(:page, "0")
-    size = params.fetch(:size, "10")
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    page = params[:page] || 0
+    per_page = params[:per_page] || 10
+    per_page = "100" if per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(per_page.to_i)
 
     serializer = LightEnrollmentSerializer
 

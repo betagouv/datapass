@@ -8,10 +8,10 @@ class UsersController < ApplicationController
       @users = @users.with_at_least_one_role
     end
 
-    page = params.fetch(:page, "0")
-    size = params.fetch(:size, "10")
-    size = "100" if size.to_i > 100
-    @users = @users.page(page.to_i + 1).per(size.to_i)
+    page = params[:page] || 0
+    per_page = params[:per_page] || 10
+    per_page = "100" if per_page.to_i > 100
+    @users = @users.page(page.to_i + 1).per(per_page.to_i)
 
     render json: @users,
       each_serializer: AdminUserSerializer,
