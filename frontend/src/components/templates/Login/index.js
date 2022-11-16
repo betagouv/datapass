@@ -1,6 +1,7 @@
 import React from 'react';
 import { hashToQueryParams } from '../../../lib';
 import Button from '../../atoms/hyperTexts/Button';
+import MonComptePro from '../../atoms/MonComptePro/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
@@ -79,11 +80,9 @@ const LoginButtons = ({ isOnNewEnrollmentPage }) => (
         {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
       </Button>
     </form>
-    <span className="fr-m-2w">ou</span>
+    <span className="fr-m-3w">ou</span>
     <form action={loginUrl} method="post" className="fr-m-0">
-      <Button large submit>
-        {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
-      </Button>
+      <MonComptePro />
     </form>
   </div>
 );
