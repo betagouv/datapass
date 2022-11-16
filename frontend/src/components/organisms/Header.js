@@ -74,7 +74,7 @@ const Header = () => {
               </div>
               <div className="fr-header__service">
                 <Link inline href="/" title="Accueil - api.gouv.fr - DINUM">
-                  <p className="fr-header__service-title">api.gouv.fr</p>
+                  <p className="fr-header__service-title">Datapass</p>
                 </Link>
                 <p className="fr-header__service-tagline">
                   habilitations juridiques
