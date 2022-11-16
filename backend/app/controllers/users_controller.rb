@@ -8,6 +8,22 @@ class UsersController < ApplicationController
       @users = @users.with_at_least_one_role
     end
 
+    if params[:filter].present?
+      begin
+        filter_email = JSON.parse(params[:filter])
+        # filter_email = JSON.parse(params.fetch(:filter, "[]"))
+        filter_email.each do |email|
+          e = email.values.join(" , ")
+          # puts email.values.join(" ,") # => love
+          # if email.include? email.values
+          @users = @users.where("email like ?", "#{e}%")
+          # puts "#{@users} 👻 👻 👻 👻"
+        end
+      rescue JSON::ParserError
+        # silently fail, if the sort is not formatted properly we do not apply it
+      end
+    end
+
     page = params[:page] || 0
     per_page = params[:per_page] || 10
     per_page = "100" if per_page.to_i > 100
@@ -66,4 +82,8 @@ class UsersController < ApplicationController
   def users_with_roles_only?
     params.permit(:users_with_roles_only)[:users_with_roles_only] == "true"
   end
+
+  # def filtered_email?
+  #   params.permit(:filter)[:filter]
+  # end
 end
