@@ -75,12 +75,6 @@ export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
 
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">
-    <form className="fr-m-0" action={loginUrl} method="post">
-      <Button secondary large submit>
-        {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
-      </Button>
-    </form>
-    <span className="fr-m-3w">ou</span>
     <form action={loginUrl} method="post" className="fr-m-0">
       <MonComptePro />
     </form>
