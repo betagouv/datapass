@@ -33,7 +33,7 @@ Object {
 exports[`When submitting the enrollment form with the update event displays an error if update fails 1`] = `
 Object {
   "errorMessages": Array [
-    "Une erreur inconnue est survenue. Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.",
+    "Une erreur inconnue est survenue. Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à datapass@api.gouv.fr.",
   ],
   "redirectToHome": false,
   "successMessages": Array [],

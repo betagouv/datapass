@@ -43,7 +43,7 @@ const Loader = ({
   useEffect(
     () =>
       bePatientEffect(
-        'Le traitement est anormalement long. Vous pouvez signaler ce problème à contact@api.gouv.fr.',
+        'Le traitement est anormalement long. Vous pouvez signaler ce problème à datapass@api.gouv.fr.',
         60
       ),
     [bePatientEffect]

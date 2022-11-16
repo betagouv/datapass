@@ -13,8 +13,8 @@ export const ErrorBoundaryFallback = () => (
         </p>
         <p>
           Si cette erreur persiste, signalez nous cette erreur à l’adresse{' '}
-          <a href="mailto:contact@api.gouv.fr?subject=Erreur%20sur%20datapass.api.gouv.fr">
-            contact@api.gouv.fr
+          <a href="mailto:datapass@api.gouv.fr?subject=Erreur%20sur%20datapass.api.gouv.fr">
+            datapass@api.gouv.fr
           </a>
           .
         </p>

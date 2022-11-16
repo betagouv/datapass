@@ -18,7 +18,7 @@ class EnrollmentEmailTemplatesRetriever
   def build_template(email_kind)
     EnrollmentEmailTemplate.new(
       event: email_kind,
-      sender_email: "contact@api.gouv.fr",
+      sender_email: "datapass@api.gouv.fr",
       subject: target_api_data["mailer"][email_kind]["subject"],
       user_email: enrollment.demandeurs.pluck(:email).first,
       plain_text_content: render_template(email_kind)
