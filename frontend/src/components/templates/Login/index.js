@@ -1,4 +1,5 @@
 import React from 'react';
+import Alert from '../../atoms/Alert';
 import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
@@ -92,6 +93,15 @@ export const Login = () => {
             targetApi={targetApi}
             isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           />
+          <div className="new-login-container">
+            <Alert type="info" title="Votre connexion évolue">
+              <p>
+                Votre compte DataPass devient MonComptePro.
+                <br />
+                Votre email et votre mot de passe restent inchangés.
+              </p>
+            </Alert>
+          </div>
           <div className="login-button">
             <MonComptePro />
           </div>

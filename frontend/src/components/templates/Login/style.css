@@ -75,3 +75,20 @@
   padding: 10px;
   margin: 0;
 }
+
+.new-login-container {
+  text-align: left;
+  padding: 0 10rem;
+}
+
+@media all and (max-width: 992px) {
+  .new-login-container {
+    padding: 0 5rem;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .new-login-container {
+    padding: 0;
+  }
+}
