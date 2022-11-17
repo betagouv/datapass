@@ -1,13 +1,11 @@
 import React from 'react';
-import { hashToQueryParams } from '../../../lib';
-import Button from '../../atoms/hyperTexts/Button';
+import Alert from '../../atoms/Alert';
+import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
-
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {
@@ -68,26 +66,6 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   }
 };
 
-export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
-  prompt: 'login',
-})}`;
-
-const LoginButtons = ({ isOnNewEnrollmentPage }) => (
-  <div className="login-buttons">
-    <form className="fr-m-0" action={loginUrl} method="post">
-      <Button secondary large submit>
-        {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
-      </Button>
-    </form>
-    <span className="fr-m-2w">ou</span>
-    <form action={loginUrl} method="post" className="fr-m-0">
-      <Button large submit>
-        {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
-      </Button>
-    </form>
-  </div>
-);
-
 export const Login = () => {
   const targetApi = (window.location.pathname.split('/')[1] || '').replace(
     /-/g,
@@ -115,7 +93,18 @@ export const Login = () => {
             targetApi={targetApi}
             isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           />
-          <LoginButtons isOnNewEnrollmentPage={isOnNewEnrollmentPage} />
+          <div className="new-login-container">
+            <Alert type="info" title="Votre connexion évolue">
+              <p>
+                Votre compte DataPass devient MonComptePro.
+                <br />
+                Votre email et votre mot de passe restent inchangés.
+              </p>
+            </Alert>
+          </div>
+          <div className="login-button">
+            <MonComptePro />
+          </div>
         </div>
       </div>
     </section>

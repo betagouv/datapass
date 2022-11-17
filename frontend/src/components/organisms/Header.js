@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDataProvider } from '../templates/hooks/use-data-provider';
 import { useDataProviderConfigurations } from '../templates/hooks/use-data-provider-configurations';
 import { useAuth } from './AuthContext';
-import { loginUrl } from '../templates/Login';
+import { loginUrl } from '../atoms/MonComptePro';
 import Link from '../atoms/hyperTexts/Link';
 import Button from '../atoms/hyperTexts/Button';
 
