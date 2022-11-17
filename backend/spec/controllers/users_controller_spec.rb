@@ -54,6 +54,7 @@ RSpec.describe UsersController, type: :controller do
 
         let!(:first_user_with_role) { create(:user, email: "a#{generate(:email)}", roles: ["whatever"]) }
         let!(:second_user_without_role) { create(:user, email: "b#{generate(:email)}", roles: []) }
+
         it "renders all users ordered by email" do
           expect(users_index_payload.count).to eq(3)
 
@@ -73,6 +74,60 @@ RSpec.describe UsersController, type: :controller do
             expect(users_index_payload.map { |user_payload| user_payload["id"] }).to eq([
               first_user_with_role.id,
               user.id
+            ])
+          end
+        end
+      end
+
+      describe "filter email" do
+        subject(:users_index_payload) do
+          get :index, params: {
+            users_with_roles_only: users_with_roles_only,
+            filter: [{
+              "users" => searched_user_email_filter
+            }].to_json
+          }
+
+          JSON.parse(response.body)["users"]
+        end
+
+        let!(:searched_user_email_filter) { searched_user_email.first(6) }
+        let!(:first_user_with_role) { create(:user, email: "a#{generate(:email)}", roles: ["whatever"]) }
+        let!(:second_user_without_role) { create(:user, email: "b#{generate(:email)}", roles: []) }
+        let!(:third_user_without_role) { create(:user, email: "c#{generate(:email)}", roles: []) }
+        let!(:other_user_with_role) { create(:user, email: "c#{generate(:email)}", roles: ["whatever"]) }
+
+        context "when admin user filter email with an unknow email" do
+          let(:users_with_roles_only) { false }
+          let(:searched_user_email) { "unknown@yopmail.com" }
+
+          it "renders no user" do
+            expect(users_index_payload.count).to eq(0)
+          end
+        end
+
+        context "when filter email by roles" do
+          let(:users_with_roles_only) { true }
+          let(:searched_user_email) { "cu" }
+
+          it "renders users with 'cu' in email and with roles only" do
+            expect(users_index_payload.count).to eq(1)
+
+            expect(users_index_payload.map { |user_payload| user_payload["id"] }).to eq([
+              other_user_with_role.id
+            ])
+          end
+        end
+
+        context "when admin user filter email with letters include in email's user" do
+          let(:users_with_roles_only) { false }
+          let(:searched_user_email) { "cu" }
+
+          it "renders users with 'cu' includes in their emails" do
+            expect(users_index_payload.count).to eq(2)
+            expect(users_index_payload.map { |user_payload| user_payload["id"] }).to eq([
+              third_user_without_role.id,
+              other_user_with_role.id
             ])
           end
         end
