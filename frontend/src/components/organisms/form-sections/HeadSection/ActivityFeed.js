@@ -69,7 +69,7 @@ const eventToDisplayableContent = {
 export const EventItem = ({
   comment,
   name,
-  updated_at,
+  created_at,
   processed_at,
   email,
   family_name,
@@ -122,10 +122,10 @@ export const EventItem = ({
             )}
           </div>
           <div
-            title={moment(updated_at).format('LLLL')}
+            title={moment(created_at).format('LLLL')}
             className="fr-hint-text"
           >
-            {moment(updated_at).calendar()}
+            {moment(created_at).calendar()}
           </div>
         </div>
         {comment && (
@@ -148,7 +148,7 @@ export const EventItem = ({
 EventItem.propTypes = {
   comment: PropTypes.string,
   name: PropTypes.string.isRequired,
-  updated_at: PropTypes.string.isRequired,
+  created_at: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   family_name: PropTypes.string.isRequired,
   given_name: PropTypes.string.isRequired,
@@ -168,7 +168,7 @@ const ActivityFeed = ({ events }) => {
   } = useContext(FormContext) || { enrollment: {} };
 
   let eventsToDisplay = chain(events)
-    .sortBy('updated_at')
+    .sortBy('created_at')
     .reject(
       ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
     )
@@ -202,7 +202,7 @@ const ActivityFeed = ({ events }) => {
           id,
           comment,
           name,
-          updated_at,
+          created_at,
           processed_at,
           user: { email, given_name, family_name },
           diff,
@@ -211,7 +211,7 @@ const ActivityFeed = ({ events }) => {
             key={id}
             comment={comment}
             name={name}
-            updated_at={updated_at}
+            created_at={created_at}
             processed_at={processed_at}
             email={email}
             family_name={family_name}
