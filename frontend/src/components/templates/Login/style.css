@@ -1,14 +1,8 @@
-.panel > .login-buttons {
+.panel > .login-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem auto;
-}
-
-@media (max-width: 576px) {
-  .panel > .login-buttons {
-    flex-direction: column;
-  }
+  margin: 1.5rem auto;
 }
 
 .next-steps,

@@ -1,14 +1,10 @@
 import React from 'react';
-import { hashToQueryParams } from '../../../lib';
-import Button from '../../atoms/hyperTexts/Button';
 import MonComptePro from '../../atoms/MonComptePro/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
-
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {
@@ -69,18 +65,6 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   }
 };
 
-export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
-  prompt: 'login',
-})}`;
-
-const LoginButtons = ({ isOnNewEnrollmentPage }) => (
-  <div className="login-buttons">
-    <form action={loginUrl} method="post" className="fr-m-0">
-      <MonComptePro />
-    </form>
-  </div>
-);
-
 export const Login = () => {
   const targetApi = (window.location.pathname.split('/')[1] || '').replace(
     /-/g,
@@ -108,7 +92,9 @@ export const Login = () => {
             targetApi={targetApi}
             isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           />
-          <LoginButtons isOnNewEnrollmentPage={isOnNewEnrollmentPage} />
+          <div className="login-button">
+            <MonComptePro isOnNewEnrollmentPage={isOnNewEnrollmentPage} />
+          </div>
         </div>
       </div>
     </section>
