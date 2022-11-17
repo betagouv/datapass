@@ -1,5 +1,5 @@
 import React from 'react';
-import MonComptePro from '../../atoms/MonComptePro/MonComptePro';
+import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
@@ -93,7 +93,7 @@ export const Login = () => {
             isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           />
           <div className="login-button">
-            <MonComptePro isOnNewEnrollmentPage={isOnNewEnrollmentPage} />
+            <MonComptePro />
           </div>
         </div>
       </div>
