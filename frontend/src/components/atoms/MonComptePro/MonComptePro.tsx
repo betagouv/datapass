@@ -1,5 +1,6 @@
 import React from 'react';
 import { hashToQueryParams } from '../../../lib';
+import './style.css';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
