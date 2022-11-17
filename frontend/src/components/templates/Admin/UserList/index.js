@@ -96,7 +96,7 @@ const UserList = () => {
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
       fetchUsers();
-    }, 100);
+    }, 1500);
 
     debouncedFetchData();
     return () => {
