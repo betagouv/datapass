@@ -11,13 +11,13 @@ class UsersController < ApplicationController
     if params[:filter].present?
       begin
         filter_email = JSON.parse(params[:filter])
-        # filter_email = JSON.parse(params.fetch(:filter, "[]"))
         filter_email.each do |email|
-          e = email.values.join(" , ")
-          # puts email.values.join(" ,") # => love
-          # if email.include? email.values
-          @users = @users.where("email like ?", "#{e}%")
-          # puts "#{@users} 👻 👻 👻 👻"
+          filter_value = email.values.join(" , ")
+          sanitized_filter_value = Regexp.escape(filter_value)
+          san_fil_val_without_accent = ActiveSupport::Inflector.transliterate(sanitized_filter_value, " ")
+          next if san_fil_val_without_accent == ""
+
+          @users = @users.where("email like ?", "#{san_fil_val_without_accent}%")
         end
       rescue JSON::ParserError
         # silently fail, if the sort is not formatted properly we do not apply it
