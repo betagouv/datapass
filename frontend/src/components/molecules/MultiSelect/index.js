@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { union, xor } from 'lodash';
 import './style.css';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
@@ -12,6 +12,7 @@ export const MultiSelect = ({
   onChange,
 }) => {
   const [isContentOpen, setIsContentOpen] = useState(false);
+  const buttonRef = useRef(null);
 
   const handleButtonClick = () => {
     setIsContentOpen(!isContentOpen);
@@ -20,6 +21,26 @@ export const MultiSelect = ({
   const handleOutsideClick = () => {
     setIsContentOpen(false);
   };
+
+  const escFunction = useCallback(
+    (event) => {
+      if (event.key === 'Escape') {
+        if (isContentOpen) {
+          buttonRef.current.focus();
+        }
+        handleOutsideClick();
+      }
+    },
+    [isContentOpen]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   const handleChange = (event) => {
     const {
@@ -40,14 +61,21 @@ export const MultiSelect = ({
 
   return (
     <div>
-      <div className="multiselect-dropdown-button" onClick={handleButtonClick}>
+      <button
+        ref={buttonRef}
+        type="button"
+        className="multiselect-dropdown-button"
+        onClick={handleButtonClick}
+        aria-haspopup="listbox"
+        aria-expanded={isContentOpen}
+      >
         {overviewLabel}
-      </div>
+      </button>
       {isContentOpen && (
         <Dropdown onOutsideClick={handleOutsideClick}>
           <FieldsetWrapper small>
             {options.map(({ key, label }) => (
-              <div key={key}>
+              <div key={key} role="option" aria-selected={values.includes(key)}>
                 <CheckboxInput
                   name={key}
                   label={label}
