@@ -38,11 +38,7 @@ const questions = [
         <p>
           A noter : Vous ne pouvez pas modifier l’adresse mail associée au
           compte. Si vous souhaitez utiliser une autre adresse mail, merci de{' '}
-          <Link
-            newTab
-            inline
-            href="https://auth.api.gouv.fr/users/sign-up"
-          >
+          <Link newTab inline href="https://auth.api.gouv.fr/users/sign-up">
             créer un nouveau compte
           </Link>
           .
