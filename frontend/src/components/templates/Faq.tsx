@@ -41,7 +41,7 @@ const questions = [
           <Link
             newTab
             inline
-            href="https://auth-staging.api.gouv.fr/users/sign-up"
+            href="https://auth.api.gouv.fr/users/sign-up"
           >
             créer un nouveau compte
           </Link>
