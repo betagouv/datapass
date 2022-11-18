@@ -349,7 +349,7 @@ export const findModifiedScopes = (
 };
 
 /*
- * duplicated from : api-auth/src/services/security.js
+ * duplicated from : moncomptepro/src/services/security.js
  */
 export const isEmailValid = (email) => {
   if (!isString(email) || isEmpty(email)) {

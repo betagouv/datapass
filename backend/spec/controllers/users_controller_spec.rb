@@ -180,7 +180,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "without a user" do
-      it { is_expected.to have_http_status(:unauthorized) }
+      it { is_expected.to have_http_status(:redirect) }
     end
 
     context "with a user" do
@@ -212,7 +212,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "without a user" do
-      it { is_expected.to have_http_status(:unauthorized) }
+      it { is_expected.to have_http_status(:redirect) }
     end
 
     context "with a user" do

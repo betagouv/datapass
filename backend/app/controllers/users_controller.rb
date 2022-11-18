@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %w[join_organization personal_information]
 
   def index
     @users = policy_scope(User).order(:email)
@@ -39,14 +39,14 @@ class UsersController < ApplicationController
 
   # GET /users/join_organization
   def join_organization
-    # we clear DataPass session here to trigger organization sync with api-auth
+    # we clear DataPass session here to trigger organization sync with moncomptepro
     clear_user_session!
     redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/join-organization", allow_other_host: true
   end
 
   # GET /users/personal_information
   def personal_information
-    # we clear DataPass session here to trigger organization sync with api-auth
+    # we clear DataPass session here to trigger organization sync with moncomptepro
     clear_user_session!
     redirect_to "#{ENV.fetch("OAUTH_HOST")}/users/personal-information", allow_other_host: true
   end

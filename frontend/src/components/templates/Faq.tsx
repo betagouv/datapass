@@ -3,6 +3,8 @@ import ContactsTable from '../molecules/ContactTable';
 import Link from '../atoms/hyperTexts/Link';
 import ExpandableQuote from '../molecules/ExpandableQuote';
 
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+
 const questions = [
   {
     anchor: 'probleme-habilitation',
@@ -26,11 +28,7 @@ const questions = [
           Si vous souhaitez modifier les coordonnées de votre compte (par
           exemple si cela vous a été demandé dans le cadre d’une demande
           d’habilitation),{' '}
-          <Link
-            newTab
-            inline
-            href="https://auth.api.gouv.fr/users/personal-information"
-          >
+          <Link inline href={`${BACK_HOST}/api/users/personal_information`}>
             rendez-vous ici
           </Link>
           .
@@ -38,7 +36,7 @@ const questions = [
         <p>
           A noter : Vous ne pouvez pas modifier l’adresse mail associée au
           compte. Si vous souhaitez utiliser une autre adresse mail, merci de{' '}
-          <Link newTab inline href="https://auth.api.gouv.fr/users/sign-up">
+          <Link inline href={`${BACK_HOST}/api/users/sign_out`}>
             créer un nouveau compte
           </Link>
           .
@@ -54,11 +52,7 @@ const questions = [
       <>
         <p>
           Tout à fait, vous pouvez{' '}
-          <Link
-            newTab
-            inline
-            href="https://auth.api.gouv.fr/users/join-organization"
-          >
+          <Link inline href={`${BACK_HOST}/api/users/join_organization`}>
             le faire ici
           </Link>
           .

@@ -1,4 +1,4 @@
-# keep these email addresses synchronised with the corresponding addresses in api-auth/scripts/fixtures.sql
+# keep these email addresses synchronised with the corresponding addresses in moncomptepro/scripts/fixtures.sql
 user:
   email: user@yopmail.com
 

@@ -71,7 +71,7 @@ disponibles aux demandeurs.
 
 Pour devenir instructeur, rapporteur ou abonné pour un type d’habilitation il faut :
 
-1. se créer un compte sur https://auth.api.gouv.fr/users/sign-up
+1. se créer un compte sur https://app.moncomptepro.beta.gouv.fr/users/sign-up
 2. rejoindre l’organisation que l’on représente en renseignant son numéro SIRET
 3. envoyer une demande écrite à datapass@api.gouv.fr
 
@@ -172,7 +172,7 @@ npm run dev
 Go to http://localhost:3000/. Sign in as `user@yopmail.com` with the
 password `user@yopmail.com`. Then, you should see the enrollment list. Note that
 test instructor emails can be
-found [here](https://github.com/betagouv/api-auth/blob/master/scripts/fixtures.sql)
+found [here](https://github.com/betagouv/moncomptepro/blob/master/scripts/fixtures.sql)
 .
 
 #### Front end linter
@@ -186,7 +186,7 @@ This installation method use a backend launched locally within a Vagrant virtual
 machine. This method is much longer and more complex than the previous ones, but
 it provides a development environment very close to the production environment
 allowing you to both work on provisioning and applications. It is configured to
-run with a local installation of api-auth in a Vagrant virtual machine.
+run with a local installation of moncomptepro in a Vagrant virtual machine.
 
 For details on this installation follow instructions here: https://gitlab.com/etalab/api.gouv.fr/datapass-infrastructure/-/blob/master/README.md
 Ask a colleague to give you access to the Gitlab Infratrusture repository.
