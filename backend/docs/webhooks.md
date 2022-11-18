@@ -172,7 +172,7 @@ Un exemple de payload pour `pass_data`:
       "user": {
         // ID technique interne
         "id": 34987,
-        // ID interne issue de l'OAuth api-auth (autorité de connexion sur DataPass)
+        // ID interne issue de MonComptePro (fournisseur d’identité sur DataPass)
         "uid": 23347,
         // Email de la personne
         "email": "technique@cambrai.fr",

@@ -12,7 +12,7 @@ jobs:
     env:
       BACK_HOST: http://localhost:3001
       FRONT_HOST: http://localhost:3000
-      OAUTH_HOST: https://auth-test.api.gouv.fr
+      OAUTH_HOST: https://app-test.moncomptepro.beta.gouv.fr
       ALLOWED_ORIGINS: http://localhost:3000
       PG_USER: back
       PG_PASSWORD: back

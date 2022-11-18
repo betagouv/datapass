@@ -691,7 +691,7 @@ describe('utils', () => {
   });
 
   /*
-   * duplicated from : api-auth/test/security.test.js
+   * duplicated from : moncomptepro/test/security.test.js
    */
   describe('isEmailValid', () => {
     it('should return false for undefined value', () => {
