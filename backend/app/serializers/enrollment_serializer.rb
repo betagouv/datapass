@@ -12,6 +12,10 @@ class EnrollmentSerializer < ActiveModel::Serializer
   has_many :documents
   has_many :events
 
+  attribute :scopes do
+    object.scopes.map { |scope| [scope.to_sym, true] }.to_h
+  end
+
   attribute :acl do
     object.policy.acl_methods.map { |method|
       [method.to_s.delete("?"), object.policy.new(current_user, object).send(method)]

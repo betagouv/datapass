@@ -11,4 +11,8 @@ class WebhookEnrollmentSerializer < ActiveModel::Serializer
 
   has_many :team_members, serializer: TeamMemberWithProfileSerializer
   has_many :events, serializer: WebhookEventSerializer
+
+  attribute :scopes do
+    object.scopes.map { |scope| [scope.to_sym, true] }.to_h
+  end
 end
