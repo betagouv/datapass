@@ -5,17 +5,5 @@
 
 .datapass-text-input-suggestion:hover,
 .datapass-text-input-active-suggestion {
-  /* inspired from DSFR */
-  --a: 0.5;
-  --hsla: hsla(var(--blend), var(--a));
-  --blend-size: var(--blend-full-size);
-  --blend-position: 50%;
-  background-repeat: no-repeat;
-  background-size: var(--blend-size);
-  background-position: var(--blend-position);
-  background-image: radial-gradient(
-    circle at center,
-    var(--hsla),
-    var(--hsla) 3%
-  );
+  background-color: var(--artwork-background-grey);
 }

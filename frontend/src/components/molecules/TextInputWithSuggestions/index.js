@@ -53,7 +53,6 @@ export const TextInputWithSuggestions = ({
 
   const onKeyDown = (e) => {
     if (e.key === 'Tab' && isDropDownOpen) {
-      e.preventDefault();
       closeDropDown();
     }
 
