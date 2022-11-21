@@ -4,7 +4,7 @@ class HubeePortailBridge < ApplicationBridge
     siret = @enrollment[:siret]
     updated_at = @enrollment[:updated_at]
     validated_at = @enrollment.validated_at
-    scopes = @enrollment[:scopes].reject { |k, v| !v }.keys
+    scopes = @enrollment.scopes
     linked_token_manager_id = create_enrollment_in_token_manager(
       @enrollment.id,
       responsable_metier,

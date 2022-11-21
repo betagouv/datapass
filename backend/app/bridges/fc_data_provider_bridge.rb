@@ -7,7 +7,7 @@ class FcDataProviderBridge < ApplicationBridge
       nom_raison_sociale: @enrollment.nom_raison_sociale,
       enrollment_id: @enrollment.id,
       previous_enrollment_id: @enrollment.previous_enrollment_id,
-      scopes: @enrollment[:scopes].reject { |k, v| !v }.keys
+      scopes: @enrollment.scopes
     ).notify_support_franceconnect.deliver_later
   end
 end

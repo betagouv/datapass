@@ -186,9 +186,9 @@ FactoryBot.define do
       end
 
       scopes do
-        {
-          exercices: true
-        }
+        [
+          "exercices"
+        ]
       end
     end
 
@@ -203,12 +203,9 @@ FactoryBot.define do
       fondement_juridique_url { "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460" }
 
       scopes do
-        {
-          cnaf_quotient_familial: true,
-          cnaf_allocataires: false,
-          cnaf_enfants: false,
-          cnaf_adresse: false
-        }
+        [
+          "cnaf_quotient_familial"
+        ]
       end
 
       team_members do
@@ -234,15 +231,15 @@ FactoryBot.define do
       fondement_juridique_url { "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460" }
 
       scopes do
-        {
-          email: true,
-          gender: true,
-          openid: true,
-          birthdate: true,
-          given_name: true,
-          family_name: true,
-          birthcountry: true
-        }
+        [
+          "email",
+          "gender",
+          "openid",
+          "birthdate",
+          "given_name",
+          "family_name",
+          "birthcountry"
+        ]
       end
 
       team_members do
@@ -274,9 +271,9 @@ FactoryBot.define do
       end
 
       scopes do
-        {
-          cnam_caisse: true
-        }
+        [
+          "cnam_caisse"
+        ]
       end
     end
 
@@ -300,9 +297,9 @@ FactoryBot.define do
       end
 
       scopes do
-        {
-          dgfip_annee_n_moins_1: true
-        }
+        [
+          "dgfip_annee_n_moins_1"
+        ]
       end
 
       additional_content do
@@ -357,9 +354,9 @@ FactoryBot.define do
       end
 
       scopes do
-        {
-          CERTDC: true
-        }
+        [
+          "CERTDC"
+        ]
       end
 
       team_members do

@@ -14,7 +14,7 @@ RSpec.describe Debounce, type: :service do
     end
   end
 
-  context "for an government email" do
+  context "for a government email" do
     let(:email) { "monemail@gouv.fr" }
 
     it "is safe to send" do

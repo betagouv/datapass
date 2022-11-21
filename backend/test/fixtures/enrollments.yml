@@ -29,28 +29,7 @@ enrollment_draft_<%= i %>:
   target_api: "api_particulier"
   intitule: "Brouillon API Particulier <%= i %>"
   description: "Demande d'habiliation pour API Particulier, en cours d'écriture."
-  scopes: {
-    cnous_email: false,
-    cnaf_adresse: false,
-    cnaf_enfants: false,
-    cnous_identite: false,
-    mesri_identite: false,
-    mesri_admission: false,
-    cnaf_allocataires: false,
-    mesri_identifiant: false,
-    cnous_ville_etudes: false,
-    cnous_statut_bourse: false,
-    pole_emploi_adresse: false,
-    pole_emploi_contact: false,
-    cnous_echelon_bourse: false,
-    mesri_etablissements: false,
-    pole_emploi_identite: false,
-    cnous_statut_boursier: false,
-    cnaf_quotient_familial: true,
-    cnous_periode_versement: false,
-    mesri_inscription_autre: false,
-    pole_emploi_inscription: false,
-    mesri_inscription_etudiant: false
+  scopes: ["cnaf_quotient_familial"]
   }
 <% end %>
 
@@ -60,19 +39,7 @@ enrollment_validated:
   target_api: "franceconnect"
   intitule: "Demande d'habilitation FranceConnect"
   description: "Demande d'habiliation pour FranceConnect, validée."
-  scopes: {
-    email: false,
-    phone: false,
-    gender: false,
-    openid: true,
-    address: false,
-    birthdate: true,
-    birthplace: false,
-    given_name: false,
-    family_name: false,
-    birthcountry: false,
-    preferred_username: false
-  }
+  scopes: ["openid", "email", "birthdate"]
 
 enrollment_refused:
   <<: *DEFAULTS
@@ -80,19 +47,7 @@ enrollment_refused:
   target_api: "franceconnect"
   intitule: "Demande d'habilitation FranceConnect"
   description: "Demande d'habiliation pour FranceConnect, refusée."
-  scopes: {
-    email: true,
-    phone: false,
-    gender: false,
-    openid: false,
-    address: false,
-    birthdate: false,
-    birthplace: false,
-    given_name: false,
-    family_name: false,
-    birthcountry: true,
-    preferred_username: false
-  }
+  scopes: ["openid", "email", "birthdate"]
 
 enrollment_changes_requested:
   <<: *DEFAULTS
@@ -100,16 +55,4 @@ enrollment_changes_requested:
   target_api: "franceconnect"
   intitule: "Demande d'habilitation FranceConnect"
   description: "Demande d'habiliation pour FranceConnect, demande de changement."
-  scopes: {
-    email: false,
-    phone: false,
-    gender: true,
-    openid: false,
-    address: false,
-    birthdate: false,
-    birthplace: false,
-    given_name: true,
-    family_name: false,
-    birthcountry: false,
-    preferred_username: false
-  }
+  scopes: ["openid", "email", "birthdate"]

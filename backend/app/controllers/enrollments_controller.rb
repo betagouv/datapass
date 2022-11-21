@@ -268,7 +268,7 @@ class EnrollmentsController < ApplicationController
       enrollment_param["scopes"].to_h.select { |k, v| v == "true" }.keys
     # in a similar way, format additional boolean content
     enrollment_param["additional_content"] =
-      enrollment_param["additional_content"].transform_values do |value|
+      (enrollment_param["additional_content"] || {}).transform_values do |value|
         case value.to_s
         when "true"
           true

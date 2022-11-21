@@ -3,7 +3,7 @@ class FranceconnectBridge < ApplicationBridge
     nom_raison_sociale = @enrollment.nom_raison_sociale
     intitule = @enrollment.intitule
     email = @enrollment.team_members.where(type: "responsable_technique").pluck(:email).first
-    scopes = @enrollment[:scopes].reject { |k, v| !v }.keys
+    scopes = @enrollment.scopes
     eidas_level = @enrollment.additional_content&.fetch("eidas_level", "")
     copied_from_enrollment_id = @enrollment.copied_from_enrollment_id
     create_enrollment_in_token_manager(@enrollment.id, intitule, nom_raison_sociale, email, scopes, eidas_level, copied_from_enrollment_id)
