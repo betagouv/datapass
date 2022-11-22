@@ -11,15 +11,6 @@ class EnrollmentsController < ApplicationController
       @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false))
     end
 
-    only_with_unprocessed_messages = params.fetch(:only_with_unprocessed_messages, false)
-    if only_with_unprocessed_messages
-      @enrollments = @enrollments.joins(:events).where({events: {
-        name: "notify",
-        processed_at: nil,
-        is_notify_from_demandeur: true
-      }})
-    end
-
     begin
       sorted_by = JSON.parse(params.fetch(:sortedBy, "[]"))
       sorted_by.each do |sort_item|
@@ -38,7 +29,15 @@ class EnrollmentsController < ApplicationController
       filter = JSON.parse(params.fetch(:filter, "[]"))
       filter.each do |filter_item|
         filter_item.each do |filter_key, filter_value|
-          next unless %w[id siret nom_raison_sociale target_api status team_members.email].include? filter_key
+          next unless %w[id siret nom_raison_sociale target_api status team_members.email only_with_unprocessed_messages].include? filter_key
+          if filter_key == "only_with_unprocessed_messages"
+            @enrollments = @enrollments.joins(:events).where({events: {
+              name: "notify",
+              processed_at: nil,
+              is_notify_from_demandeur: true
+            }})
+            next
+          end 
           is_fuzzy = %w[id siret nom_raison_sociale team_members.email].include? filter_key
           filter_value = [filter_value] unless filter_value.is_a?(Array)
           sanitized_filter_value = filter_value.map { |f| Regexp.escape(f) }

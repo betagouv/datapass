@@ -65,9 +65,10 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
     subject(:enrollments_payload) do
       get :index, params: {
         target_api: "franceconnect",
-        only_with_unprocessed_messages: true,
         sortedBy: [].to_json,
-        filter: [].to_json
+        filter: [{
+          "only_with_unprocessed_messages" => true
+        }].to_json
       }
 
       JSON.parse(response.body)["enrollments"]

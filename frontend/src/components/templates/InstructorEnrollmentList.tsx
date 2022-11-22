@@ -55,8 +55,6 @@ const InstructorEnrollmentList: React.FC = () => {
   const [pagination, setPagination] = useQueryString('pagination', {
     pageIndex: 0,
   });
-  const [onlyWithUnprocessedMessages, setOnlyWithUnprocessedMessages] =
-    useQueryString('onlyWithUnprocessedMessages', false);
 
   const [filtered, setFiltered] = useQueryString('filtered', [
     {
@@ -84,7 +82,6 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
-        onlyWithUnprocessedMessages,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -96,7 +93,7 @@ const InstructorEnrollmentList: React.FC = () => {
     return () => {
       debouncedFetchData.cancel();
     };
-  }, [pagination, sorted, filtered, onlyWithUnprocessedMessages]);
+  }, [pagination, sorted, filtered]);
 
   const columns = [
     columnHelper.accessor('updated_at', {
@@ -125,11 +122,34 @@ const InstructorEnrollmentList: React.FC = () => {
         getFilterComponent: () => (
           <CheckboxInput
             label="non lu"
-            onChange={() =>
-              setOnlyWithUnprocessedMessages((prev: boolean) => !prev)
-            }
+            onChange={() => {
+              setFiltered((prevFilters: { id: string; value: any }[]) => {
+                const messagesFilter = prevFilters.find(
+                  ({ id }) => id === 'only_with_unprocessed_messages'
+                );
+                if (messagesFilter) {
+                  return prevFilters.map((filter) =>
+                    filter.id === 'only_with_unprocessed_messages'
+                      ? !messagesFilter.value
+                      : filter
+                  );
+                }
+                return [
+                  ...prevFilters,
+                  {
+                    id: 'only_with_unprocessed_messages',
+                    value: true,
+                  },
+                ];
+              });
+            }}
             name="filterComponent.checkBox"
-            value={onlyWithUnprocessedMessages}
+            value={
+              filtered.find(
+                ({ id }: { id: string }) =>
+                  id === 'only_with_unprocessed_messages'
+              )?.value
+            }
           />
         ),
       },

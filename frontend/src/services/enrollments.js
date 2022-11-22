@@ -110,7 +110,6 @@ export function getEnrollments({
   sortBy = [],
   filter = [],
   detailed = null,
-  onlyWithUnprocessedMessages = false,
   size = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({
@@ -125,7 +124,6 @@ export function getEnrollments({
     size,
     sortedBy: formatedSortBy,
     filter: formatedFilter,
-    only_with_unprocessed_messages: onlyWithUnprocessedMessages,
   });
 
   return httpClient
