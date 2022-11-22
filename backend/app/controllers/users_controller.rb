@@ -4,13 +4,18 @@ class UsersController < ApplicationController
   def index
     @users = policy_scope(User).order(:email)
 
-    if users_with_roles_only?
+    users_with_roles_only = params.fetch(:users_with_roles_only, nil)
+
+    if users_with_roles_only == "true"
       @users = @users.with_at_least_one_role
     end
 
-    if params[:filter].present?
+    filter = params.fetch(:filter, nil)
+    puts filter.inspect
+
+    if filter.present?
       begin
-        filter_email = JSON.parse(params[:filter])
+        filter_email = JSON.parse(filter)
         filter_email.each do |email|
           filter_value = email.values.join(" , ")
           sanitized_filter_value = Regexp.escape(filter_value)
@@ -78,12 +83,4 @@ class UsersController < ApplicationController
   def pundit_params_for(_record)
     params.fetch(:user, {})
   end
-
-  def users_with_roles_only?
-    params.permit(:users_with_roles_only)[:users_with_roles_only] == "true"
-  end
-
-  # def filtered_email?
-  #   params.permit(:filter)[:filter]
-  # end
 end
