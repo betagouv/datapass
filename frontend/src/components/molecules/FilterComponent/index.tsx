@@ -35,7 +35,6 @@ const FilterComponent = ({
         type="text"
         value={(value ?? '') as string}
         onChange={inputOnChange}
-        icon="filter"
         placeholder={placeholder}
       />
     );
