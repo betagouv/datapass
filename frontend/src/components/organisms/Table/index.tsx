@@ -13,22 +13,26 @@ import {
 import { CSSProperties, MouseEvent, ReactElement, SyntheticEvent } from 'react';
 import TablePagination from '../../molecules/TablePagination';
 import './style.css';
-import DefaultFilterComponent from '../../molecules/FilterComponent';
+import FilterComponent from '../../molecules/FilterComponent';
+
+type DefaultFilterType = 'text' | 'select';
+type FilterCustom = ({
+  value,
+  onChange,
+}: {
+  value: any;
+  onChange: (updater: any) => void;
+}) => ReactElement;
+
+export type FilterMeta = DefaultFilterType | FilterCustom;
 
 declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
     placeholder?: string;
-    filterType?: 'text' | 'select';
     selectOptions?: any[];
     columnTitle?: string;
-    getFilterComponent?: ({
-      value,
-      onChange,
-    }: {
-      value: any;
-      onChange: (updater: any) => void;
-    }) => ReactElement;
+    filter?: FilterMeta;
   }
 }
 
@@ -138,35 +142,6 @@ const Table = ({
                     header.column.getFacetedUniqueValues().keys()
                   ).map((value, i) => ({ key: value, label: value }));
 
-                  const getFilter = () => {
-                    if (header.column.columnDef.meta?.getFilterComponent) {
-                      return header.column.columnDef.meta?.getFilterComponent({
-                        value: header.column.getFilterValue(),
-                        onChange: getOnFilterChange(
-                          header.column.setFilterValue
-                        ),
-                      });
-                    } else {
-                      return (
-                        <DefaultFilterComponent
-                          onChange={getOnFilterChange(
-                            header.column.setFilterValue
-                          )}
-                          value={header.column.getFilterValue()}
-                          placeholder={
-                            header.column.columnDef.meta?.placeholder
-                          }
-                          type={header.column.columnDef.meta?.filterType}
-                          options={
-                            header.column.columnDef.meta?.selectOptions
-                              ? header.column.columnDef.meta?.selectOptions
-                              : defaultOptions
-                          }
-                        />
-                      );
-                    }
-                  };
-
                   return (
                     <th
                       key={header.id}
@@ -196,7 +171,26 @@ const Table = ({
                               }
                             </div>
                           ) : null}
-                          {header.column.getCanFilter() ? getFilter() : null}
+                          {header.column.getCanFilter() && (
+                            <FilterComponent
+                              onChange={getOnFilterChange(
+                                header.column.setFilterValue
+                              )}
+                              filter={
+                                header.column.columnDef.meta
+                                  ?.filter as FilterMeta
+                              }
+                              value={header.column.getFilterValue()}
+                              placeholder={
+                                header.column.columnDef.meta?.placeholder
+                              }
+                              options={
+                                header.column.columnDef.meta?.selectOptions
+                                  ? header.column.columnDef.meta?.selectOptions
+                                  : defaultOptions
+                              }
+                            />
+                          )}
                         </div>
                       )}
                     </th>

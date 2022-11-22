@@ -37,7 +37,7 @@ class EnrollmentsController < ApplicationController
               is_notify_from_demandeur: true
             }})
             next
-          end 
+          end
           is_fuzzy = %w[id siret nom_raison_sociale team_members.email].include? filter_key
           filter_value = [filter_value] unless filter_value.is_a?(Array)
           sanitized_filter_value = filter_value.map { |f| Regexp.escape(f) }

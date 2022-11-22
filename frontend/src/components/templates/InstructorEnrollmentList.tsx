@@ -119,7 +119,7 @@ const InstructorEnrollmentList: React.FC = () => {
       size: 50,
       meta: {
         columnTitle: 'Filtrer par',
-        getFilterComponent: () => (
+        filter: () => (
           <CheckboxInput
             label="non lu"
             onChange={() => {
@@ -223,7 +223,7 @@ const InstructorEnrollmentList: React.FC = () => {
         id: 'target_api',
         enableSorting: false,
         meta: {
-          filterType: 'select',
+          filter: 'select',
           selectOptions: user?.roles
             .filter((role) => role.endsWith(':reporter'))
             .map((role) => {
@@ -244,7 +244,7 @@ const InstructorEnrollmentList: React.FC = () => {
       enableSorting: false,
       filterFn: 'arrIncludesSome',
       meta: {
-        filterType: 'select',
+        filter: 'select',
         selectOptions: Object.entries(INSTRUCTOR_STATUS_LABELS).map(
           ([key, label]) => ({ key, label })
         ),
