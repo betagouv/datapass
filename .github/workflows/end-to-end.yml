@@ -90,7 +90,7 @@ jobs:
         run: bin/rails db:seed
         working-directory: backend
       - name: Install Cypress
-        run: npm install cypress@8
+        run: npm install cypress@11
         working-directory: .
       - name: Run backend application
         run: bundle exec puma -C ./config/puma.rb &
