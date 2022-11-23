@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
 import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import FileInput from '../../molecules/FileInput';
 import Input from '../../atoms/inputs/Input';
+
+import DateInput from '../../atoms/inputs/DateInput';
 
 const SECTION_LABEL = 'Le projet';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -53,7 +55,7 @@ const DescriptionSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
-      <Input
+      <DateInput
         label="Date de mise en production prévue"
         name="date_mise_en_production"
         value={date_mise_en_production}
