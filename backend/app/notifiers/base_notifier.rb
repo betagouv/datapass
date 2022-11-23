@@ -54,4 +54,10 @@ class BaseNotifier < AbstractNotifier
   def revoke(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
   end
+
+  def delete
+    unless enrollment.status == "draft"
+      deliver_delete_notify_to_enrollment_instructor
+    end
+  end
 end

@@ -43,4 +43,8 @@ class ApiEntrepriseNotifier < AbstractNotifier
       deliver_rgpd_email_for("delegue_protection_donnees")
     end
   end
+
+  def delete
+    deliver_event_webhook(__method__)
+  end
 end
