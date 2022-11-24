@@ -10,17 +10,29 @@ import {
   getFilteredRowModel,
   Row,
 } from '@tanstack/react-table';
-import { CSSProperties, MouseEvent, SyntheticEvent } from 'react';
+import { CSSProperties, MouseEvent, ReactElement, SyntheticEvent } from 'react';
 import TablePagination from '../../molecules/TablePagination';
 import './style.css';
 import FilterComponent from '../../molecules/FilterComponent';
+
+type DefaultFilterType = 'text' | 'select';
+type FilterCustom = ({
+  value,
+  onChange,
+}: {
+  value: any;
+  onChange: (updater: any) => void;
+}) => ReactElement;
+
+export type FilterMeta = DefaultFilterType | FilterCustom;
 
 declare module '@tanstack/table-core' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
     placeholder?: string;
-    filterType?: 'text' | 'select';
     selectOptions?: any[];
+    columnTitle?: string;
+    filter?: FilterMeta;
   }
 }
 
@@ -136,36 +148,49 @@ const Table = ({
                       colSpan={header.colSpan}
                       style={{ width: header.getSize() }}
                     >
+                      {!!header.column.columnDef.meta?.columnTitle && (
+                        <div className="datapass-table-column-title">
+                          {header.column.columnDef.meta?.columnTitle}
+                        </div>
+                      )}
                       {header.isPlaceholder ? null : (
                         <div {...getSortingHeaderProps(header.column)}>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                          {{
-                            asc: '↑',
-                            desc: '↓',
-                          }[header.column.getIsSorted() as string] ?? null}
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <FilterComponent
-                                onChange={getOnFilterChange(
-                                  header.column.setFilterValue
-                                )}
-                                value={header.column.getFilterValue()}
-                                placeholder={
-                                  header.column.columnDef.meta?.placeholder
-                                }
-                                type={header.column.columnDef.meta?.filterType}
-                                options={
-                                  header.column.columnDef.meta?.selectOptions
-                                    ? header.column.columnDef.meta
-                                        ?.selectOptions
-                                    : defaultOptions
-                                }
-                              />
+                          <div className="datapass-table-column-header">
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                          </div>
+                          {header.column.getIsSorted() ? (
+                            <div className="datapass-table-sorting-arrow">
+                              {
+                                {
+                                  asc: '↑',
+                                  desc: '↓',
+                                }[header.column.getIsSorted() as string]
+                              }
                             </div>
                           ) : null}
+                          {header.column.getCanFilter() && (
+                            <FilterComponent
+                              onChange={getOnFilterChange(
+                                header.column.setFilterValue
+                              )}
+                              filter={
+                                header.column.columnDef.meta
+                                  ?.filter as FilterMeta
+                              }
+                              value={header.column.getFilterValue()}
+                              placeholder={
+                                header.column.columnDef.meta?.placeholder
+                              }
+                              options={
+                                header.column.columnDef.meta?.selectOptions
+                                  ? header.column.columnDef.meta?.selectOptions
+                                  : defaultOptions
+                              }
+                            />
+                          )}
                         </div>
                       )}
                     </th>

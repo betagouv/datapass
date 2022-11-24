@@ -60,4 +60,52 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
       ])
     end
   end
+
+  describe "only_with_unprocessed_messages params test" do
+    subject(:enrollments_payload) do
+      get :index, params: {
+        target_api: "franceconnect",
+        sortedBy: [].to_json,
+        filter: [{
+          "only_with_unprocessed_messages" => true
+        }].to_json
+      }
+
+      JSON.parse(response.body)["enrollments"]
+    end
+
+    let!(:user) { create(:user, roles: ["franceconnect:reporter", "franceconnect:instructor"]) }
+
+    let!(:no_notify_event_enrollment) { create(:enrollment, :franceconnect, :draft) }
+    let!(:demandeur_notify_event_enrollment) { create(:enrollment, :franceconnect, :draft) }
+    let!(:demandeur_notify) do
+      create(
+        :event,
+        name: :notify,
+        enrollment_id: demandeur_notify_event_enrollment.id,
+        user_id: demandeur_notify_event_enrollment.demandeurs.first.user_id,
+        comment: "Demandeur comment"
+      )
+    end
+
+    let!(:instructeur_notify_event_enrollment) { create(:enrollment, :franceconnect, :draft) }
+    let!(:instructeur_notify) do
+      create(
+        :event,
+        name: :notify,
+        enrollment_id: instructeur_notify_event_enrollment.id,
+        user_id: user.id,
+        comment: "Instructor comment"
+      )
+    end
+
+    before do
+      login(user)
+    end
+
+    it "renders only enrollments with unprocessed messages" do
+      expect(enrollments_payload.count).to eq(1)
+      expect(enrollments_payload.map { |enrollment_payload| enrollment_payload["id"] }).to eq([demandeur_notify_event_enrollment.id])
+    end
+  end
 end

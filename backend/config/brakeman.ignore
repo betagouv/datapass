@@ -53,7 +53,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/enrollment.rb",
-      "line": 171,
+      "line": 169,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "User.where(\"'{#{groups.map do\n \"\\\"#{target_api}:#{group}:subscriber\\\"\"\n end.push(\"\\\"#{target_api}:subscriber\\\"\").join(\",\")}}' && roles\")",
       "render_path": null,
@@ -76,7 +76,7 @@
       "check_name": "UnsafeReflection",
       "message": "Unsafe reflection method `constantize` called on parameter value",
       "file": "app/controllers/enrollments_controller.rb",
-      "line": 123,
+      "line": 131,
       "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
       "code": "\"Enrollment::#{params.fetch(:enrollment, {})[\"target_api\"].underscore.classify}\".constantize",
       "render_path": null,
@@ -122,7 +122,7 @@
       "check_name": "Send",
       "message": "User controlled method execution",
       "file": "app/controllers/enrollments_controller.rb",
-      "line": 188,
+      "line": 196,
       "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
       "code": "authorize(Enrollment.find(params[:id]), \"#{params[:event]}?\".to_sym).send(\"#{params[:event]}_status\".to_sym, :user_id => current_user.id, :comment => params[:comment])",
       "render_path": null,
@@ -164,6 +164,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "78e2ca821f4b0038b09697aea82a86e629f0c9a696ba329b28616923c5d2efbc",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/enrollments_controller.rb",
+      "line": 55,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "policy_scope(Enrollment).where(:target_api => params.fetch(:target_api, false)).order(\"\\\"enrollments\\\".\\\"#{sort_key}\\\" #{sort_direction.upcase}\").joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true })).includes(:team_members).where(\"#{(filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\") or \"\\\"enrollments\\\".\\\"#{filter_key}\\\"\")}::varchar(255) ~* ?\", (if [\"id\", \"siret\", \"nom_raison_sociale\", \"team_members.email\"].include?(filter_key) then\n  \".*(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")}).*\"\nelse\n  \"^(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EnrollmentsController",
+        "method": "index"
+      },
+      "user_input": "filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\")",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "8592b6a3a71a436db6b921a352a9f0faad7e4e498a2fd81a5944211c6ae2338a",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -179,29 +202,6 @@
       },
       "user_input": "params[:target_api]",
       "confidence": "High",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "8f8306c06d853d0eaae6dc447c658e6ace5dffcc904797c41fb9d7611e30f55b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/controllers/enrollments_controller.rb",
-      "line": 47,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "policy_scope(Enrollment).where(:target_api => params.fetch(:target_api, false)).order(\"\\\"enrollments\\\".\\\"#{sort_key}\\\" #{sort_direction.upcase}\").includes(:team_members).where(\"#{(filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\") or \"\\\"enrollments\\\".\\\"#{filter_key}\\\"\")}::varchar(255) ~* ?\", (if [\"id\", \"siret\", \"nom_raison_sociale\", \"team_members.email\"].include?(filter_key) then\n  \".*(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")}).*\"\nelse\n  \"^(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")})$\"\nend))",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "EnrollmentsController",
-        "method": "index"
-      },
-      "user_input": "filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\")",
-      "confidence": "Weak",
       "cwe_id": [
         89
       ],
@@ -279,6 +279,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "f5128ed1de23735769df33e0105e92197631295d7127802238ace2c1e7ac1195",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/enrollments_controller.rb",
+      "line": 56,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "policy_scope(Enrollment).where(:target_api => params.fetch(:target_api, false)).joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notified_from_demandeur => true })).order(\"\\\"enrollments\\\".\\\"#{sort_key}\\\" #{sort_direction.upcase}\").includes(:team_members).where(\"#{(filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\") or \"\\\"enrollments\\\".\\\"#{filter_key}\\\"\")}::varchar(255) ~* ?\", (if [\"id\", \"siret\", \"nom_raison_sociale\", \"team_members.email\"].include?(filter_key) then\n  \".*(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")}).*\"\nelse\n  \"^(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EnrollmentsController",
+        "method": "index"
+      },
+      "user_input": "filter_key.split(\".\").map do\n \"\\\"#{e}\\\"\"\n end.join(\".\")",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "fa4b28061be9ea590495e27e56090a86e29b25338e2d74b67afac833569469e1",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -300,6 +323,6 @@
       "note": ""
     }
   ],
-  "updated": "2022-10-27 09:57:52 +0000",
+  "updated": "2022-11-22 14:20:53 +0100",
   "brakeman_version": "5.3.1"
 }

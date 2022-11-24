@@ -1,20 +1,21 @@
 import MultiSelect from '../../molecules/MultiSelect';
 import Input from '../../atoms/inputs/Input';
+import { FilterMeta } from '../../organisms/Table';
 
 const FilterComponent = ({
   value,
   onChange,
-  type,
+  filter = 'text',
   options = [],
   placeholder = '',
 }: {
   value: any;
   onChange: (any: any) => void;
-  type: 'text' | 'select' | undefined;
+  filter: FilterMeta;
   options?: any[];
   placeholder: string | undefined;
 }) => {
-  if (type === 'select') {
+  if (filter === 'select') {
     return (
       <MultiSelect
         options={options}
@@ -22,7 +23,7 @@ const FilterComponent = ({
         onChange={onChange}
       />
     );
-  } else {
+  } else if (filter === 'text') {
     const inputOnChange: React.ChangeEventHandler<HTMLInputElement> = (
       event
     ) => {
@@ -38,6 +39,8 @@ const FilterComponent = ({
         placeholder={placeholder}
       />
     );
+  } else {
+    return filter({ value, onChange });
   }
 };
 

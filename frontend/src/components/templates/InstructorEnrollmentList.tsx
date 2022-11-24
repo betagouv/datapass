@@ -10,8 +10,6 @@ import './InstructorEnrollmentList.css';
 import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
-import { MailIcon } from '../atoms/icons/fr-fi-icons';
-import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
@@ -26,6 +24,7 @@ import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import useFileDownloader from './hooks/use-file-downloader';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
+import CheckboxInput from '../atoms/inputs/CheckboxInput';
 
 type Demandeur = {
   id: number;
@@ -98,11 +97,7 @@ const InstructorEnrollmentList: React.FC = () => {
 
   const columns = [
     columnHelper.accessor('updated_at', {
-      header: () => (
-        <span title="Date de dernière mise à jour">
-          <ScheduleIcon color={'var(--datapass-dark-grey)'} />
-        </span>
-      ),
+      header: 'Date',
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
@@ -114,16 +109,51 @@ const InstructorEnrollmentList: React.FC = () => {
           </span>
         );
       },
+      meta: {
+        columnTitle: 'Trier par',
+      },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
-      header: () => (
-        <span title="Nombre de nouveaux messages">
-          <MailIcon color={'var(--datapass-dark-grey)'} />
-        </span>
-      ),
-      enableColumnFilter: false,
+      header: 'Messages',
       enableSorting: false,
       size: 50,
+      meta: {
+        columnTitle: 'Filtrer par',
+        filter: () => (
+          <CheckboxInput
+            label="non lu"
+            onChange={() => {
+              setFiltered((prevFilters: { id: string; value: any }[]) => {
+                const messagesFilter = prevFilters.find(
+                  ({ id }) => id === 'only_with_unprocessed_messages'
+                );
+                if (messagesFilter) {
+                  return prevFilters.map((filter) =>
+                    filter.id === 'only_with_unprocessed_messages'
+                      ? !messagesFilter.value
+                      : filter
+                  );
+                }
+                return [
+                  ...prevFilters,
+                  {
+                    id: 'only_with_unprocessed_messages',
+                    value: true,
+                  },
+                ];
+              });
+              setPagination({ pageIndex: 0 });
+            }}
+            name="filterComponent.checkBox"
+            value={
+              filtered.find(
+                ({ id }: { id: string }) =>
+                  id === 'only_with_unprocessed_messages'
+              )?.value
+            }
+          />
+        ),
+      },
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
@@ -194,7 +224,7 @@ const InstructorEnrollmentList: React.FC = () => {
         id: 'target_api',
         enableSorting: false,
         meta: {
-          filterType: 'select',
+          filter: 'select',
           selectOptions: user?.roles
             .filter((role) => role.endsWith(':reporter'))
             .map((role) => {
@@ -215,7 +245,7 @@ const InstructorEnrollmentList: React.FC = () => {
       enableSorting: false,
       filterFn: 'arrIncludesSome',
       meta: {
-        filterType: 'select',
+        filter: 'select',
         selectOptions: Object.entries(INSTRUCTOR_STATUS_LABELS).map(
           ([key, label]) => ({ key, label })
         ),
