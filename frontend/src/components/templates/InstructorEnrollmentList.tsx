@@ -142,6 +142,7 @@ const InstructorEnrollmentList: React.FC = () => {
                   },
                 ];
               });
+              setPagination({ pageIndex: 0 });
             }}
             name="filterComponent.checkBox"
             value={
