@@ -27,7 +27,9 @@ export const FieldsetWrapper = ({
             {required && ' *'}
           </legend>
         )}
-        <div className="fr-fieldset__content">{children}</div>
+        <div className="fr-fieldset__content" role="listbox">
+          {children}
+        </div>
       </fieldset>
     </div>
   );
