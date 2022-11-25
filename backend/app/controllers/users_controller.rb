@@ -21,9 +21,13 @@ class UsersController < ApplicationController
           san_fil_val_without_accent = ActiveSupport::Inflector.transliterate(sanitized_filter_value, " ")
           next if san_fil_val_without_accent == ""
 
+<<<<<<< HEAD
           if filter_item.keys == ["email"]
             @users = @users.where("email like ?", "%#{san_fil_val_without_accent}%")
           end
+=======
+          @users = @users.where("email like ?", "%#{san_fil_val_without_accent}%")
+>>>>>>> 7c7d906e (back to previous version as add a check if filter_key is  email is messing up with the filter on emails)
         end
       rescue JSON::ParserError
         # silently fail, if the sort is not formatted properly we do not apply it
