@@ -26,7 +26,7 @@ class StatsController < ApplicationController
       end
     end
 
-    filter_by_target_api_criteria = target_api_list.count > 0 ?
+    filter_by_target_api_criteria = (target_api_list.count > 0) ?
       "target_api = any('{#{target_api_list.join(", ")}}')" : "1 = 1" # equivalent to no filter
 
     # Habilitations déposées
