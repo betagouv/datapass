@@ -160,11 +160,10 @@ class Enrollment < ActiveRecord::Base
     # Pure string conditions in a where query are dangerous!
     # see https://guides.rubyonrails.org/active_record_querying.html#pure-string-conditions
     # As long as the injected parameters are verified against a whitelist, we consider this safe.
-    psql_groups_array = groups
-      .map { |group| "\"#{target_api}:#{group}:subscriber\"" }
-      .push("\"#{target_api}:subscriber\"")
-      .join(",")
-    User.where("'{#{psql_groups_array}}' && roles")
+    roles = groups
+      .map { |group| "#{target_api}:#{group}:subscriber" }
+      .push("#{target_api}:subscriber")
+    User.where("roles && ARRAY[?]::varchar[]", roles)
   end
 
   def demandeurs
