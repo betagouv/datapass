@@ -37,16 +37,30 @@ RSpec.describe EnrollmentsController, "#show", type: :controller do
         it { is_expected.to have_http_status(:ok) }
       end
 
-      context "when user is a reporter for the enrollment's target api" do
-        let(:user) { create(:user, roles: ["franceconnect:reporter"]) }
-        let(:enrollment) { create(:enrollment, :franceconnect) }
+      context "when user is a reporter for the enrollment target api" do
+        let(:user) { create(:user, roles: ["api_particulier:reporter"]) }
+        let(:enrollment) { create(:enrollment, :api_particulier) }
 
         it { is_expected.to have_http_status(:ok) }
       end
 
+      context "when user is a reporter for the enrollment group" do
+        let(:user) { create(:user, roles: ["api_particulier:cnaf:reporter"]) }
+        let(:enrollment) { create(:enrollment, :api_particulier) }
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      context "when user is a only reporter for another group" do
+        let(:user) { create(:user, roles: ["api_entreprise:pole_emploi:reporter"]) }
+        let(:enrollment) { create(:enrollment, :api_particulier) }
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+
       context "when user is a only reporter for another target api" do
         let(:user) { create(:user, roles: ["api_entreprise:reporter"]) }
-        let(:enrollment) { create(:enrollment, :franceconnect) }
+        let(:enrollment) { create(:enrollment, :api_particulier) }
 
         it { is_expected.to have_http_status(:forbidden) }
       end
