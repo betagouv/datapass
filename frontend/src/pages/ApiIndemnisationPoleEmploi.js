@@ -70,7 +70,7 @@ export const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'api_fc-liste-paiementsv1',
     label: 'Indemnités de Pôle emploi',
@@ -92,7 +92,7 @@ const ApiIndemnisationPoleEmploi = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

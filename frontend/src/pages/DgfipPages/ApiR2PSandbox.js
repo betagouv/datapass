@@ -105,7 +105,7 @@ const ApiR2PSandbox = () => (
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}
-      AvailableScopesDescription={DataAreInAccessModes}
+      ScopesDescription={DataAreInAccessModes}
       accessModes={accessModes}
     />
     <CadreJuridiqueSection />

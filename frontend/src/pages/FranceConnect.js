@@ -79,7 +79,7 @@ const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'family_name',
     label: 'Nom de naissance',
@@ -160,7 +160,7 @@ const FranceConnect = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       groups={groups}
       DonneesDescription={DonneesDescription}
     />

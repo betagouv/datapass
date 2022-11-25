@@ -7,8 +7,8 @@ import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 
-const valueToLabel = (key, availableScopes) => {
-  const scope = find(availableScopes, { value: key });
+const valueToLabel = (key, scopesConfiguration) => {
+  const scope = find(scopesConfiguration, { value: key });
   if (scope) {
     return scope.label;
   } else {
@@ -16,7 +16,10 @@ const valueToLabel = (key, availableScopes) => {
   }
 };
 
-export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
+export const DemarcheSectionReadOnly = ({
+  scrollableId,
+  scopesConfiguration,
+}) => {
   const { enrollment, demarches } = useContext(FormContext);
 
   const { demarche: selectedDemarcheId } = enrollment;
@@ -75,7 +78,9 @@ export const DemarcheSectionReadOnly = ({ scrollableId, availableScopes }) => {
                   <ul>
                     {Object.entries(modifiedScopes).map(([key, value]) => (
                       <li key={key}>
-                        <strong>{valueToLabel(key, availableScopes)} :</strong>
+                        <strong>
+                          {valueToLabel(key, scopesConfiguration)} :
+                        </strong>
                         {value ? (
                           <span className="text--red">
                             {' '}

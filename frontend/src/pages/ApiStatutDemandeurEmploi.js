@@ -68,7 +68,7 @@ export const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'api_fc-statutaugmentev1',
     label: 'Statut demandeur d’emploi',
@@ -90,7 +90,7 @@ const ApiStatutDemandeurEmploi = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

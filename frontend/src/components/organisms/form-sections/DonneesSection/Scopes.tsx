@@ -13,7 +13,7 @@ import FieldsetWrapper from '../../../atoms/inputs/FieldsetWrapper';
 import Link from '../../../atoms/hyperTexts/Link';
 import Helper from '../../../atoms/Helper';
 
-export type Scope = {
+export type ScopeConfiguration = {
   value: string;
   label: string;
   groupTitle?: string;
@@ -26,16 +26,16 @@ export type Scope = {
 
 type Props = {
   title: string;
-  scopes: Scope[];
-  selectedScopes: { [k: string]: boolean };
+  scopesConfiguration: ScopeConfiguration[];
+  scopes: { [k: string]: boolean };
   disabled: boolean;
   handleChange: ChangeEventHandler<HTMLInputElement>;
 };
 
 export const Scopes: FunctionComponent<Props> = ({
   title,
+  scopesConfiguration,
   scopes,
-  selectedScopes,
   disabled,
   handleChange,
 }) => {
@@ -79,7 +79,7 @@ export const Scopes: FunctionComponent<Props> = ({
   return (
     <>
       <FieldsetWrapper title={titleToDisplay} grid>
-        {scopes.map(
+        {scopesConfiguration.map(
           ({
             value,
             label,
@@ -92,7 +92,7 @@ export const Scopes: FunctionComponent<Props> = ({
             <CheckboxInput
               key={value}
               onChange={
-                triggerWarning && !selectedScopes[value]
+                triggerWarning && !scopes[value]
                   ? () => {
                       setWarningType(warningType || ScopeWarningModalType.rgpd);
                       setWarningModalScope(value);
@@ -101,7 +101,7 @@ export const Scopes: FunctionComponent<Props> = ({
               }
               name={`scopes.${value}`}
               disabled={disabled || required}
-              value={selectedScopes[value]}
+              value={scopes[value]}
               aria-label={`Périmètre de données « ${label} »`}
               label={
                 <>

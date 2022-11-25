@@ -40,7 +40,7 @@ class DataProviderConfigurationsController < ApplicationController
         "cguLink",
         "donneesDescription",
         "cadreJuridiqueDescription",
-        "scopes",
+        "scopesConfiguration",
         "groups",
         "editeurs",
         "demarches"

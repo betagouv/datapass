@@ -9,7 +9,7 @@ import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection
 import Form from '../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'usual_name',
     label: 'Nom de l’agent',
@@ -74,7 +74,7 @@ const AgentConnectFi = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <AgentConnectNetworkSection />
     <CadreJuridiqueSection
       defaultFondementJuridiqueTitle="la décision du 18 juin 2021"

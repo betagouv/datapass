@@ -12,7 +12,7 @@ import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_tiers_de_prestation';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'id_client',
     label: 'Identifiant du client du tiers de prestation',
@@ -79,7 +79,7 @@ const ApiTiersDePrestation = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
       defaultFondementJuridiqueTitle="Contrat de licence"

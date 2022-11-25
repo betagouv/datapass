@@ -11,7 +11,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'en_regle',
     label: 'État de régularité vis-à-vis des obligations de Service National',
@@ -29,9 +29,9 @@ const ApiServiceNational = () => (
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection cguLink="https://presaje.sga.defense.gouv.fr/cgu-dln1f" />

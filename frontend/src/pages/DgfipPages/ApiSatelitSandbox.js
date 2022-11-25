@@ -22,9 +22,7 @@ const ApiSatelitSandbox = () => (
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection
-      AvailableScopesDescription={DataAreInTermsOfUseDescription}
-    />
+    <DonneesSection ScopesDescription={DataAreInTermsOfUseDescription} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection

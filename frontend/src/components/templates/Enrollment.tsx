@@ -21,7 +21,7 @@ const Enrollment: FunctionComponent<Props> = ({
   target_api,
   configuration: {
     email,
-    scopes,
+    scopesConfiguration,
     groups,
     editeurs,
     demarches,
@@ -57,11 +57,11 @@ const Enrollment: FunctionComponent<Props> = ({
       {/* @ts-ignore */}
       <OrganisationSection editorList={editeurs} />
       {/* @ts-ignore */}
-      <DemarcheSection availableScopes={scopes} />
+      <DemarcheSection scopesConfiguration={scopesConfiguration} />
       <DescriptionSection />
       {/* @ts-ignore */}
       <DonneesSection
-        availableScopes={scopes}
+        scopesConfiguration={scopesConfiguration}
         groups={groups}
         DonneesDescription={DonneesDescription}
       />

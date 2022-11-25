@@ -48,7 +48,7 @@ const CadreJuridiqueDescription = () => (
   </>
 );
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'donnees_ingres_nomenclatures',
     label: 'Ensemble des données INGRES Nomenclatures',
@@ -72,7 +72,7 @@ const ApiIngres = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

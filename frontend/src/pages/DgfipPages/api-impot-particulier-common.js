@@ -162,7 +162,7 @@ export const demarches = {
   },
 };
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'dgfip_annee_n_moins_1',
     label: 'Dernière année de revenu',

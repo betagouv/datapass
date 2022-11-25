@@ -28,7 +28,7 @@ const CadreJuridiqueDescription = () => (
   </>
 );
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'ensemble_donnees_captchetat',
     label: 'Ensemble des données CaptchEtat',
@@ -47,7 +47,7 @@ const ApiCaptchetat = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

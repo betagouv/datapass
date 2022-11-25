@@ -10,7 +10,7 @@ import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'cnam_beneficiaires',
     label: 'Liste des ayant-droits',
@@ -89,9 +89,9 @@ const ApiDroitsCnam = () => (
   >
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
