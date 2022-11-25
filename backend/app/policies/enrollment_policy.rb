@@ -121,8 +121,46 @@ class EnrollmentPolicy < ApplicationPolicy
         .select { |r| r.end_with?(":reporter") }
         .map { |r| r.split(":").first }
         .uniq
-      scope.includes(:team_members).where(target_api: target_apis)
-        .or(scope.includes(:team_members).where(team_members: {user: user}))
+
+      scope_with_team_members = scope.includes(:team_members)
+
+      # team_members can see enrollments linked to them
+      scope = scope_with_team_members.where(team_members: {user: user})
+
+      # instructor can see enrollments according to their rights
+      target_apis.each do |target_api|
+        sub_scope = scope_with_team_members.where(target_api: target_api)
+
+        # instructor can have a reporter role with access to all groups
+        # ex: roles: ["api_particulier:reporter"]
+        has_all_groups_role = user.roles.any? { |r| r == "#{target_api}:reporter" }
+        unless has_all_groups_role
+          # instructor can only have access to only groups for this target_api
+          # ex: roles: ["api_particulier:cnaf:reporter", "api_particulier:pole_emploi:reporter"]
+
+          # get the groups
+          # ex: ["cnaf", "pole_emploi"]
+          groups = user.roles
+            .select { |r| r.match(/^#{target_api}:.+:reporter$/) }
+            .map { |r| r.split(":").second }
+            .uniq
+          configuration = DataProviderConfigurations.instance.config_for(target_api)
+
+          # get the corresponding scopes
+          # ex: ["cnaf_quotient_familial", "cnaf_allocataires", ...]
+          scopes = configuration["groups"]
+            .collect { |k, v| groups.include?(k) ? v["scopes"] : [] }
+            .flatten
+
+          # we use the postgres "array overlap" operator so the request keep being fast
+          # (this operator is available in the postgres "intarray" module)
+          sub_scope = sub_scope.where("scopes && ARRAY[?]::text[]", scopes)
+        end
+
+        scope = scope.or(sub_scope)
+      end
+
+      scope
     end
   end
 

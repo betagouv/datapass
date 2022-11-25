@@ -178,5 +178,18 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
         expect(enrollments_payload.count).to eq(1)
       end
     end
+
+    context "with an instructor within non-concerned group and all groups" do
+      let(:user) {
+        create(:user, roles: [
+          "api_particulier:reporter",
+          "api_particulier:pole_emploi:reporter"
+        ])
+      }
+
+      it "renders filtered and ordered enrollments" do
+        expect(enrollments_payload.count).to eq(1)
+      end
+    end
   end
 end
