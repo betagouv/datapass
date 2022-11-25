@@ -7,12 +7,13 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments
   def index
     @enrollments = policy_scope(Enrollment)
-    if params.fetch(:target_api, false)
-      @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false))
+
+    if params[:target_api].present?
+      @enrollments = @enrollments.where(target_api: params[:target_api])
     end
 
     begin
-      sorted_by = JSON.parse(params.fetch(:sortedBy, "[]"))
+      sorted_by = JSON.parse(params[:sortedBy] || "[]")
       sorted_by.each do |sort_item|
         sort_item.each do |sort_key, sort_direction|
           next unless ["updated_at"].include? sort_key
@@ -26,7 +27,7 @@ class EnrollmentsController < ApplicationController
     end
 
     begin
-      filter = JSON.parse(params.fetch(:filter, "[]"))
+      filter = JSON.parse(params[:filter] || "[]")
       filter.each do |filter_item|
         filter_item.each do |filter_key, filter_value|
           next unless %w[id siret nom_raison_sociale target_api status team_members.email only_with_unprocessed_messages].include? filter_key
@@ -68,7 +69,7 @@ class EnrollmentsController < ApplicationController
 
     serializer = LightEnrollmentSerializer
 
-    if params.fetch(:detailed, false)
+    if params[:detailed].present?
       serializer = EnrollmentSerializer
     end
 
@@ -108,12 +109,12 @@ class EnrollmentsController < ApplicationController
       .where(status: "validated")
       .order(updated_at: :desc)
 
-    @enrollments = @enrollments.where(target_api: params.fetch(:target_api, false)) if params.fetch(:target_api, false)
+    @enrollments = @enrollments.where(target_api: params[:target_api]) if params[:target_api].present?
 
-    page = params.fetch(:page, "0")
-    size = params.fetch(:size, "10")
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    page = params[:page] || 0
+    per_page = params[:per_page] || 10
+    per_page = "100" if per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(per_page.to_i)
 
     render json: @enrollments,
       each_serializer: PublicEnrollmentListSerializer,
