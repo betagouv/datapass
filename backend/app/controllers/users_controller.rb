@@ -4,25 +4,26 @@ class UsersController < ApplicationController
   def index
     @users = policy_scope(User).order(:email)
 
-    users_with_roles_only = params.fetch(:users_with_roles_only, nil)
+    users_with_roles_only = params[:users_with_roles_only]
 
     if users_with_roles_only == "true"
       @users = @users.with_at_least_one_role
     end
 
-    filter = params.fetch(:filter, nil)
-    puts filter.inspect
+    filter = params[:filter]
 
     if filter.present?
       begin
-        filter_email = JSON.parse(filter)
-        filter_email.each do |email|
-          filter_value = email.values.join(" , ")
+        parsed_filter = JSON.parse(filter)
+        parsed_filter.each do |filter_item|
+          filter_value = filter_item.values.join("")
           sanitized_filter_value = Regexp.escape(filter_value)
           san_fil_val_without_accent = ActiveSupport::Inflector.transliterate(sanitized_filter_value, " ")
           next if san_fil_val_without_accent == ""
 
-          @users = @users.where("email like ?", "#{san_fil_val_without_accent}%")
+          if filter_item.keys == ["email"]
+            @users = @users.where("email like ?", "%#{san_fil_val_without_accent}%")
+          end
         end
       rescue JSON::ParserError
         # silently fail, if the sort is not formatted properly we do not apply it
