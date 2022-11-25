@@ -10,7 +10,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'dgfip_ficoba_etat_civil_denomination',
     label: 'État civil ou dénomination',
@@ -142,7 +142,7 @@ const ApiFicobaSandbox = () => (
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       accessModes={accessModes}
     />
     <CadreJuridiqueSection

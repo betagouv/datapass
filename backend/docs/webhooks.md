@@ -123,7 +123,7 @@ Un exemple de payload pour `pass_data`:
   // Liste des données associé au service. Cette liste est dynamique en fonction du service cible.
   "scopes": {
     "entreprises": true,
-    "exercices": false
+    "exercices": true
   },
   // Liste des personnes associées à cette habilitation.
   // Cette liste contient systématiquement le demandeur (type 'demandeur')

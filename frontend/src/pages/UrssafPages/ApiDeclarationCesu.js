@@ -13,7 +13,7 @@ import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_declaration_cesu';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'api_cesu050',
     label: 'Télédéclaration du salaire',
@@ -59,7 +59,7 @@ const ApiDeclarationCesu = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
       defaultFondementJuridiqueTitle="articles L.133-11, R133-43 et R133-44 du Code de Sécurité sociale"

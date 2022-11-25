@@ -8,7 +8,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import {
-  availableScopes,
+  scopesConfiguration,
   CadreJuridiqueDescription,
   DonneesDescription,
 } from './ApiPrestationsSociales';
@@ -27,7 +27,7 @@ const ApiPrestationsSociales = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

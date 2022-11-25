@@ -3,7 +3,7 @@ class Enrollment::ApiParticulierPolicy < EnrollmentPolicy
     res = super
 
     res.concat([
-      scopes: record.configuration["scopes"].map { |scope| scope["value"].to_sym }
+      scopes: record.configuration["scopesConfiguration"].map { |scope| scope["value"].to_sym }
     ])
 
     res

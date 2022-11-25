@@ -69,7 +69,7 @@ export const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'mesri_identifiant',
     label: 'INE',
@@ -113,7 +113,7 @@ const ApiStatutEtudiant = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

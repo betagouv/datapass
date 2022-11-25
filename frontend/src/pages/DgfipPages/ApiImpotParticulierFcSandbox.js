@@ -9,7 +9,7 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import { additionalTermsOfUse } from './common';
 import {
   demarches,
-  availableScopes,
+  scopesConfiguration,
   groups,
   DonneesDescription,
 } from './api-impot-particulier-common';
@@ -59,11 +59,11 @@ const ApiImpotParticulierFcSandbox = () => (
   >
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       groups={groups}
       enableFileSubmissionForScopeSelection={true}
     />

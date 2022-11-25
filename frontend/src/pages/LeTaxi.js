@@ -36,7 +36,7 @@ const demarches = {
   },
 };
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'taxis_management',
     label: 'API gestion des taxis',
@@ -65,9 +65,9 @@ const LeTaxi = () => (
     documentationUrl={getDefaultDocumentationUrl(target_api)}
   >
     <OrganisationSection editorList={editorList} />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection cguLink="https://le.taxi/assets/documents/CGU.pdf" />

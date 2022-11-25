@@ -58,7 +58,7 @@ const CadreJuridiqueDescription = () => (
   </>
 );
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'informations_titulaires',
     label: 'Informations relatives aux titulaires des véhicules',
@@ -81,7 +81,7 @@ const ApiSystemeImmatriculationVehicules = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

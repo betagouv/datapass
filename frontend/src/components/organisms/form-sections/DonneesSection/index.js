@@ -17,9 +17,9 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const DonneesSection = ({
   DonneesDescription,
-  availableScopes = [],
+  scopesConfiguration = [],
   groups,
-  AvailableScopesDescription,
+  ScopesDescription,
   accessModes,
   enableFileSubmissionForScopeSelection = false,
 }) => {
@@ -38,13 +38,13 @@ const DonneesSection = ({
   } = useContext(FormContext);
 
   useEffect(() => {
-    if (!isEmpty(availableScopes) && isEmpty(scopes)) {
+    if (!isEmpty(scopesConfiguration) && isEmpty(scopes)) {
       onChange({
         target: {
           name: 'scopes',
           value: zipObject(
-            availableScopes.map(({ value }) => value),
-            availableScopes.map(
+            scopesConfiguration.map(({ value }) => value),
+            scopesConfiguration.map(
               ({ required, checkedByDefault }) =>
                 !!required || !!checkedByDefault
             )
@@ -59,8 +59,10 @@ const DonneesSection = ({
     .omitBy((e) => !e)
     .keys()
     .value();
-  const availableScopesAsArray = availableScopes.map(({ value }) => value);
-  const outdatedScopes = difference(scopesAsArray, availableScopesAsArray);
+  const scopesConfigurationAsArray = scopesConfiguration.map(
+    ({ value }) => value
+  );
+  const outdatedScopes = difference(scopesAsArray, scopesConfigurationAsArray);
 
   const [isFileInputExpanded, setFileInputExpanded] = useState(
     enableFileSubmissionForScopeSelection &&
@@ -94,8 +96,8 @@ const DonneesSection = ({
           <DonneesDescription />
         </ExpandableQuote>
       )}
-      {AvailableScopesDescription && <AvailableScopesDescription />}
-      {!isEmpty(availableScopes) && (
+      {ScopesDescription && <ScopesDescription />}
+      {!isEmpty(scopesConfiguration) && (
         <>
           <h3>À quelles données souhaitez-vous avoir accès ?</h3>
           {!isEmpty(groups) ? (
@@ -105,10 +107,12 @@ const DonneesSection = ({
                   <Scopes
                     key={key}
                     title={label}
-                    scopes={scopesInGroup.map((scopeValue) =>
-                      availableScopes.find(({ value }) => value === scopeValue)
+                    scopesConfiguration={scopesInGroup.map((scopeValue) =>
+                      scopesConfiguration.find(
+                        ({ value }) => value === scopeValue
+                      )
                     )}
-                    selectedScopes={scopes}
+                    scopes={scopes}
                     disabled={disabled}
                     handleChange={onChange}
                   />
@@ -117,8 +121,8 @@ const DonneesSection = ({
             )
           ) : (
             <Scopes
-              scopes={availableScopes}
-              selectedScopes={scopes}
+              scopesConfiguration={scopesConfiguration}
+              scopes={scopes}
               disabled={disabled}
               handleChange={onChange}
             />
@@ -256,7 +260,7 @@ DonneesSection.sectionLabel = SECTION_LABEL;
 
 DonneesSection.propTypes = {
   DonneesDescription: PropTypes.func,
-  availableScopes: PropTypes.array,
+  scopesConfiguration: PropTypes.array,
 };
 
 export default DonneesSection;

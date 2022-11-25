@@ -1,6 +1,8 @@
 import {
   chain,
+  difference,
   forOwn,
+  intersection,
   isArray,
   isBoolean,
   isEmpty,
@@ -206,7 +208,7 @@ const getChangelogV1 = (diff) =>
     .transform(flattenDiffTransformer, {})
     // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
     .transform(changelogFormatTransformer, [])
-    // ['changement d’intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
+    // ['changement d’intitulé de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
     .value();
 
 export const flattenDiffTransformerV2Factory =
@@ -232,16 +234,49 @@ export const flattenDiffTransformerV2Factory =
 
 const getChangelogV2 = (diff) =>
   chain(diff)
-    // { intitule: ['a', 'b'], team_members: { "_t": "a", "0": { 'name': ['c','e'], email: ['d'] } } }
+    // { intitule: ['a', 'b'], team_members: { _t: 'a', '0': { name: ['c','e'], email: ['d'] } } }
     .transform(flattenDiffTransformerV2Factory(), {})
     // { intitule: ['a', 'b'], team_members.0.name: ['c', 'e'] , team_members.0.email: ['d'] }
     .transform(changelogFormatTransformer, [])
     // ['changement d’intitule de "a" en "b"', ...]
     .value();
 
+const turnV3ToV2Scopes = (accumulatorObject, objectValue, objectKey) => {
+  if (objectKey === 'scopes') {
+    const [previousScopes, newScopes] = objectValue;
+    const commonScopes = intersection(previousScopes, newScopes);
+    const removedScopes = difference(previousScopes, commonScopes);
+    const addedScopes = difference(newScopes, commonScopes);
+    const scopes = {};
+    removedScopes.forEach(
+      (removedScope) => (scopes[removedScope] = [true, false])
+    );
+    addedScopes.forEach((addedScope) => (scopes[addedScope] = [false, true]));
+    accumulatorObject['scopes'] = scopes;
+  } else {
+    accumulatorObject[objectKey] = objectValue;
+  }
+  return accumulatorObject;
+};
+
+const getChangelogV3 = (diff) =>
+  chain(diff)
+    // { team_members: { _t: 'a', '0': { 'name': ['c','e'] } }, scopes: [['a', 'b'], ['b', 'c']] }
+    .transform(turnV3ToV2Scopes, {})
+    // { team_members: { _t: 'a', '0': { 'name': ['c','e'] } }, scopes: { a: [true, false], c: [false, true] } }
+    .transform(flattenDiffTransformerV2Factory(), {})
+    // { team_members.0.name: ['c', 'e'], scopes.a: [true, false], scopes.c: [false, true] }
+    .transform(changelogFormatTransformer, [])
+    // ['changement d’intitule de "a" en "b"', ...]
+    .value();
+
 export function getChangelog(diff) {
   try {
-    return diff?.['_v'] === '2' ? getChangelogV2(diff) : getChangelogV1(diff);
+    return diff?.['_v'] === '3'
+      ? getChangelogV3(diff)
+      : diff?.['_v'] === '2'
+      ? getChangelogV2(diff)
+      : getChangelogV1(diff);
   } catch (e) {
     // There is a lot of operation involved in this function.
     // We rather fail silently than causing the entire page not to render.

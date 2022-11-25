@@ -10,7 +10,7 @@ import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurat
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 import PreviousEnrollmentSection from '../components/organisms/form-sections/PreviousEnrollmentSection';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'cnam_PaiementIndemnitesJournalieres',
     label: 'Période indemnisée et montants journaliers',
@@ -31,7 +31,7 @@ const ApiIndemnitesJournalieresCnam = () => (
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />

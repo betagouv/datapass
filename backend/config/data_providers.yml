@@ -81,7 +81,7 @@ api_particulier:
 
     Pour en savoir plus, consultez [notre guide sur ce qu’est une bonne
     délibération](https://api.gouv.fr/guides/deliberation-api-part).
-  scopes:
+  scopesConfiguration:
     - value: cnaf_quotient_familial
       label: Quotient familial
     - value: cnaf_allocataires

@@ -111,7 +111,7 @@ RSpec.describe Enrollment, type: :model do
       end
 
       it "returns a version" do
-        expect(subject["_v"]).to eq("2")
+        expect(subject["_v"]).to eq("3")
       end
 
       it "returns a diff for modified field" do
@@ -129,46 +129,18 @@ RSpec.describe Enrollment, type: :model do
     context "with changes on scopes" do
       before do
         enrollment.update!(
-          scopes: {
-            cnaf_quotient_familial: true,
-            cnaf_allocataires: true,
-            cnaf_enfants: false,
-            cnaf_adresse: false
-          }
+          scopes: [
+            "cnaf_quotient_familial",
+            "cnaf_allocataires"
+          ]
         )
       end
 
       it "returns a nested diff for object" do
-        expect(subject["scopes"]).to eq({
-          "cnaf_allocataires" => [false, true]
-        })
-      end
-    end
-
-    context "with added fields" do
-      before do
-        enrollment.update!(
-          cgu_approved: true,
-          scopes: {
-            cnaf_quotient_familial: true,
-            cnaf_allocataires: false,
-            cnaf_enfants: false,
-            cnaf_adresse: false,
-            dgfip_nombre_parts: false
-          }
-        )
-      end
-
-      it "returns a diff for added field" do
-        expect(subject["cgu_approved"]).to eq([
-          true
+        expect(subject["scopes"]).to eq([
+          ["cnaf_quotient_familial"],
+          ["cnaf_quotient_familial", "cnaf_allocataires"]
         ])
-      end
-
-      it "returns a diff for nested added field" do
-        expect(subject["scopes"]).to eq({
-          "dgfip_nombre_parts" => [false]
-        })
       end
     end
 

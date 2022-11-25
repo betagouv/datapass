@@ -131,7 +131,9 @@ class EnrollmentsController < ApplicationController
     enrollment_class = "Enrollment::#{target_api.underscore.classify}".constantize
     @enrollment = enrollment_class.new
 
-    @enrollment.assign_attributes(permitted_attributes(@enrollment))
+    @enrollment.assign_attributes(
+      format_enrollment_param(permitted_attributes(@enrollment))
+    )
     authorize @enrollment
 
     @enrollment.save!
@@ -144,7 +146,9 @@ class EnrollmentsController < ApplicationController
   # PATCH/PUT /enrollments/1
   def update
     @enrollment = authorize Enrollment.find(params[:id])
-    @enrollment.update!(permitted_attributes(@enrollment))
+    @enrollment.update!(
+      format_enrollment_param(permitted_attributes(@enrollment))
+    )
     @enrollment.events.create(name: "update", user_id: current_user.id, diff: @enrollment.diff_with_associations)
     @enrollment.notify_event("update", user_id: current_user.id, diff: @enrollment.diff_with_associations)
 
@@ -255,5 +259,26 @@ class EnrollmentsController < ApplicationController
 
   def pundit_params_for(_record)
     params.fetch(:enrollment, {})
+  end
+
+  def format_enrollment_param(enrollment_param)
+    # we need to convert boolean values as it is send as string because of the
+    # data-form serialisation then we convert scopes to array
+    enrollment_param["scopes"] =
+      enrollment_param["scopes"].to_h.select { |k, v| v == "true" }.keys
+    # in a similar way, format additional boolean content
+    enrollment_param["additional_content"] =
+      (enrollment_param["additional_content"] || {}).transform_values do |value|
+        case value.to_s
+        when "true"
+          true
+        when "false"
+          false
+        else
+          value
+        end
+      end
+
+    enrollment_param
   end
 end

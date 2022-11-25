@@ -43,7 +43,7 @@ const DonneesDescription = () => (
 
 // NB: this list was manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
 // Then edited by API Entreprise UX team
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'entreprises',
     label:
@@ -357,10 +357,10 @@ const ApiEntreprise = () => (
     documentationUrl="https://entreprise.api.gouv.fr/"
   >
     <OrganisationSection editorList={editorList} />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       groups={groups}
       DonneesDescription={DonneesDescription}
     />

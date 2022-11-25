@@ -21,7 +21,6 @@ class Enrollment < ActiveRecord::Base
   validate :update_validation
   validate :submit_validation, on: :submit
 
-  before_save :clean_and_format_scopes
   before_save :set_company_info, if: :will_save_change_to_organization_id?
 
   has_many :documents, as: :attachable
@@ -150,8 +149,7 @@ class Enrollment < ActiveRecord::Base
       return []
     end
 
-    scopes_array = scopes.reject { |k, v| !v }.keys
-    configuration["groups"].reject { |k, v| (scopes_array & v["scopes"]).empty? }.keys
+    configuration["groups"].reject { |k, v| (scopes & v["scopes"]).empty? }.keys
   end
 
   def subscribers
@@ -281,11 +279,7 @@ class Enrollment < ActiveRecord::Base
 
       all.each do |enrollment|
         csv << attributes.map do |attr|
-          if attr == "scopes"
-            enrollment.scopes.to_json
-          else
-            enrollment.send(attr)
-          end
+          enrollment.send(attr)
         end
       end
     end
@@ -310,7 +304,7 @@ class Enrollment < ActiveRecord::Base
       end
     end
 
-    res["_v"] = "2"
+    res["_v"] = "3"
     res
   end
 
@@ -383,23 +377,6 @@ class Enrollment < ActiveRecord::Base
   end
 
   protected
-
-  def clean_and_format_scopes
-    # we need to convert boolean values as it is send as string because of the data-form serialisation
-    self.scopes = scopes.transform_values { |value| value.to_s == "true" }
-
-    # in a similar way, format additional boolean content
-    self.additional_content = additional_content.transform_values do |value|
-      case value.to_s
-      when "true"
-        true
-      when "false"
-        false
-      else
-        value
-      end
-    end
-  end
 
   def set_company_info
     # We need to get the siret from organization_id.
@@ -504,9 +481,7 @@ class Enrollment < ActiveRecord::Base
   end
 
   def scopes_validation
-    unless scopes.any? do |_, v|
-             v
-           end
+    if scopes.empty?
       errors.add(:scopes, :invalid,
         message: "Vous devez cocher au moins un périmètre de données avant de continuer")
     end

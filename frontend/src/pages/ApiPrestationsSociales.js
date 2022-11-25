@@ -67,7 +67,7 @@ export const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'beneficiaire_rsa',
     label: 'Bénéficiaire du RSA',
@@ -89,7 +89,7 @@ const ApiPrestationsSociales = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

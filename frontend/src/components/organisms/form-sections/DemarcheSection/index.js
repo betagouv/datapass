@@ -6,14 +6,14 @@ import { FormContext } from '../../../templates/Form';
 const SECTION_LABEL = 'Les modèles pré-remplis';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const DemarcheSection = ({ body, availableScopes }) => {
+export const DemarcheSection = ({ body, scopesConfiguration }) => {
   const { disabled } = useContext(FormContext);
 
   return (
     <>
       {disabled ? (
         <DemarcheSectionReadOnly
-          availableScopes={availableScopes}
+          scopesConfiguration={scopesConfiguration}
           scrollableId={SECTION_ID}
         />
       ) : (

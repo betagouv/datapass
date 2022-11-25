@@ -3,22 +3,11 @@ RSpec.describe Enrollment::ApiParticulier, type: :model do
   let(:enrollment) { create(:enrollment, :api_particulier, :draft, scopes: scopes) }
 
   let(:scopes) {
-    {
-      cnaf_quotient_familial: true,
-      cnaf_allocataires: false,
-      cnaf_enfants: false,
-      cnaf_adresse: false,
-      pole_emploi_identite: true,
-      pole_emploi_contact: true,
-      pole_emploi_adresse: false,
-      pole_emploi_inscription: false,
-      mesri_identifiant: false,
-      mesri_identite: false,
-      mesri_inscription_etudiant: false,
-      mesri_inscription_autre: false,
-      mesri_admission: false,
-      mesri_etablissements: false
-    }
+    [
+      "cnaf_quotient_familial",
+      "pole_emploi_identite",
+      "pole_emploi_contact"
+    ]
   }
 
   describe "groups" do

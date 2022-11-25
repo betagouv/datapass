@@ -54,14 +54,14 @@ import LeTaxi from '../pages/LeTaxi';
 import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
 import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
-import { Scope } from '../components/organisms/form-sections/DonneesSection/Scopes';
+import { ScopeConfiguration } from '../components/organisms/form-sections/DonneesSection/Scopes';
 
 export type FullDataProviderConfiguration = {
   label: string;
   icon: string | null;
   email: string | null;
   type: DataProviderType;
-  scopes: Scope[];
+  scopesConfiguration: ScopeConfiguration[];
   groups: {
     [k: string]: {
       label: string;

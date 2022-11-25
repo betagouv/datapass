@@ -69,7 +69,7 @@ export const CadreJuridiqueDescription = () => (
   </>
 );
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'cnous_statut_boursier',
     label: 'Statut étudiant boursier',
@@ -117,7 +117,7 @@ const ApiStatutEtudiantBoursier = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection

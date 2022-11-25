@@ -11,7 +11,7 @@ import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurat
 
 const target_api = 'agent_connect_fs';
 
-export const availableScopes = [
+export const scopesConfiguration = [
   {
     value: 'openid',
     label: 'OpenID',
@@ -79,7 +79,7 @@ const AgentConnectFs = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <AgentConnectNetworkSection />
     <CadreJuridiqueSection
       defaultFondementJuridiqueTitle="La décision du 18 juin 2021"

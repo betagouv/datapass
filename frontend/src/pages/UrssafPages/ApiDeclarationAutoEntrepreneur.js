@@ -13,7 +13,7 @@ import { getDefaultDocumentationUrl } from '../../components/organisms/Nav';
 
 const target_api = 'api_declaration_auto_entrepreneur';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'api040',
     label: 'Estimation des cotisations sociales',
@@ -67,7 +67,7 @@ const ApiDeclarationAutoEntrepreneur = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
       defaultFondementJuridiqueTitle="articles L.133-11, R133-43 et R133-44 du Code de Sécurité sociale"

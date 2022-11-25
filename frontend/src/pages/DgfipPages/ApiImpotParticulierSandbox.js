@@ -9,7 +9,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import {
-  availableScopes as fcAvailableScopes,
+  scopesConfiguration as fcScopesConfiguration,
   groups as fcGroups,
   demarches as fcDemarches,
   DonneesDescription,
@@ -34,8 +34,8 @@ const demarches = {
 
 demarches.default.state.scopes['dgfip_IndLep'] = false;
 
-const availableScopes = [
-  ...fcAvailableScopes,
+const scopesConfiguration = [
+  ...fcScopesConfiguration,
   {
     value: 'dgfip_IndLep',
     label: 'Indicateur d’éligibilité au LEP',
@@ -103,11 +103,11 @@ const ApiImpotParticulierSandbox = () => (
   >
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
-    <DemarcheSection availableScopes={availableScopes} />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}
-      availableScopes={availableScopes}
+      scopesConfiguration={scopesConfiguration}
       groups={groups}
       accessModes={accessModes}
       enableFileSubmissionForScopeSelection={true}

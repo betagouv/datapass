@@ -9,7 +9,7 @@ import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import { getDefaultDocumentationUrl } from '../components/organisms/Nav';
 
-const availableScopes = [
+const scopesConfiguration = [
   {
     value: 'idnat',
     label: 'Identifiant national',
@@ -32,7 +32,7 @@ const ApiProSanteConnect = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection availableScopes={availableScopes} />
+    <DonneesSection scopesConfiguration={scopesConfiguration} />
     <CadreJuridiqueSection
       defaultFondementJuridiqueTitle="Arrêté du 24 mars 2021"
       defaultFondementJuridiqueUrl="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043290292"
