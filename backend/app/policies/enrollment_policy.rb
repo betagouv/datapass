@@ -1,6 +1,6 @@
 class EnrollmentPolicy < ApplicationPolicy
   def show?
-    user.is_member?(record) || user.is_reporter?(record.target_api)
+    user.is_member?(record) || user.is_reporter?(record)
   end
 
   def create?

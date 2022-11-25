@@ -62,8 +62,9 @@ class User < ActiveRecord::Base
     roles.include? "#{target_api}:instructor"
   end
 
-  def is_reporter?(target_api)
-    roles.include?("#{target_api}:reporter")
+  def is_reporter?(enrollment)
+    concerned_roles = enrollment.concerned_roles("reporter")
+    (concerned_roles & roles).any?
   end
 
   def is_administrator?

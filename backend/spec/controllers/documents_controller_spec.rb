@@ -11,7 +11,7 @@ RSpec.describe DocumentsController, type: :controller do
     end
 
     let(:document) { create(:document, attachable: enrollment) }
-    let(:enrollment) { create(:enrollment, :franceconnect, user: enrollment_creator) }
+    let(:enrollment) { create(:enrollment, :api_particulier, user: enrollment_creator) }
     let(:enrollment_creator) { create(:user) }
 
     context "without user" do
@@ -38,11 +38,23 @@ RSpec.describe DocumentsController, type: :controller do
         end
       end
 
-      context "when user is not the enrollment's creator" do
+      context "when user is not the enrollment creator" do
         context "when user is a reporter for the enrollment target api" do
-          let(:roles) { ["franceconnect:reporter"] }
+          let(:roles) { ["api_particulier:reporter"] }
 
           it { is_expected.to have_http_status(:ok) }
+        end
+
+        context "when user is a reporter for the enrollment group" do
+          let(:roles) { ["api_particulier:cnaf:reporter"] }
+
+          it { is_expected.to have_http_status(:ok) }
+        end
+
+        context "when user is a reporter for another group" do
+          let(:roles) { ["api_entreprise:pole_emploi:reporter"] }
+
+          it { is_expected.to have_http_status(:forbidden) }
         end
 
         context "when user is a reporter for another target api" do

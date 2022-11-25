@@ -152,17 +152,14 @@ class Enrollment < ActiveRecord::Base
     configuration["groups"].reject { |k, v| (scopes & v["scopes"]).empty? }.keys
   end
 
-  def subscribers
-    unless DataProviderConfigurations.instance.exists?(target_api)
-      raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: API cible invalide."
-    end
+  def concerned_roles(role_type)
+    groups
+      .map { |group| "#{target_api}:#{group}:#{role_type}" }
+      .push("#{target_api}:#{role_type}")
+  end
 
-    # Pure string conditions in a where query are dangerous!
-    # see https://guides.rubyonrails.org/active_record_querying.html#pure-string-conditions
-    # As long as the injected parameters are verified against a whitelist, we consider this safe.
-    roles = groups
-      .map { |group| "#{target_api}:#{group}:subscriber" }
-      .push("#{target_api}:subscriber")
+  def subscribers
+    roles = concerned_roles("subscriber")
     User.where("roles && ARRAY[?]::varchar[]", roles)
   end
 
