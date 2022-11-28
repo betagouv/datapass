@@ -8,7 +8,7 @@ import { uniqueId } from 'lodash';
 import Label from './Label';
 
 type Props = {
-  label: string | ReactNode;
+  label: ReactNode;
   helper?: string;
   meta?: string;
   name?: string;

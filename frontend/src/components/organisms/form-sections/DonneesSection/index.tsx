@@ -1,21 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  ComponentType,
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { chain, difference, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
-import Scopes from './Scopes';
+import Scopes, { ScopeConfiguration } from './Scopes';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
-import FileInput from '../../../molecules/FileInput';
+import FileInput, { DocumentToUpload } from '../../../molecules/FileInput';
 import Link from '../../../atoms/hyperTexts/Link';
-import Alert from '../../../atoms/Alert';
+import Alert, { AlertType } from '../../../atoms/Alert';
+import { FunctionSectionComponent } from '../../../../types/fonction-section-component';
 
 const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const DonneesSection = ({
+type Props = {
+  DonneesDescription?: ComponentType;
+  scopesConfiguration?: ScopeConfiguration[];
+  groups?: { [k: string]: { label: string; scopes: string[] } };
+  ScopesDescription?: ComponentType;
+  accessModes?: { id: string; label: string }[];
+  enableFileSubmissionForScopeSelection?: boolean;
+};
+
+const DonneesSection: FunctionSectionComponent<Props> = ({
   DonneesDescription,
   scopesConfiguration = [],
   groups,
@@ -67,7 +82,7 @@ const DonneesSection = ({
   const [isFileInputExpanded, setFileInputExpanded] = useState(
     enableFileSubmissionForScopeSelection &&
       !isEmpty(
-        documents.filter(
+        (documents as DocumentToUpload[]).filter(
           ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
         )
       )
@@ -75,7 +90,7 @@ const DonneesSection = ({
 
   useEffect(() => {
     const hasDocument = !isEmpty(
-      documents.filter(
+      (documents as DocumentToUpload[]).filter(
         ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
       )
     );
@@ -101,16 +116,17 @@ const DonneesSection = ({
         <>
           <h3>À quelles données souhaitez-vous avoir accès ?</h3>
           {!isEmpty(groups) ? (
-            Object.entries(groups).map(
+            Object.entries(groups!).map(
               ([key, { label, scopes: scopesInGroup }]) => {
                 return (
                   <Scopes
                     key={key}
                     title={label}
-                    scopesConfiguration={scopesInGroup.map((scopeValue) =>
-                      scopesConfiguration.find(
-                        ({ value }) => value === scopeValue
-                      )
+                    scopesConfiguration={scopesInGroup.map(
+                      (scopeValue) =>
+                        scopesConfiguration.find(
+                          ({ value }) => value === scopeValue
+                        )!
                     )}
                     scopes={scopes}
                     disabled={disabled}
@@ -188,7 +204,7 @@ const DonneesSection = ({
       {!isEmpty(accessModes) && (
         <>
           <h3>Comment souhaitez-vous y accéder ?</h3>
-          {accessModes.map(({ id, label }) => (
+          {accessModes!.map(({ id, label }) => (
             <CheckboxInput
               key={id}
               label={label}
@@ -243,7 +259,7 @@ const DonneesSection = ({
       />
       {data_retention_period > 36 && (
         <>
-          <Alert type="warning" title="Attention">
+          <Alert type={AlertType.warning} title="Attention">
             Cette durée excède la durée communément constatée (36 mois).
           </Alert>
           <TextInput
@@ -260,10 +276,5 @@ const DonneesSection = ({
 };
 
 DonneesSection.sectionLabel = SECTION_LABEL;
-
-DonneesSection.propTypes = {
-  DonneesDescription: PropTypes.func,
-  scopesConfiguration: PropTypes.array,
-};
 
 export default DonneesSection;

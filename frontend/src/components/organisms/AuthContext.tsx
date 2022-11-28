@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
 import { Login } from '../templates/Login';
@@ -147,16 +147,12 @@ export class AuthStore extends React.Component {
   }
 }
 
-export const AuthRequired = ({
-  children,
-}: {
-  children: React.ReactNode | null;
-}) => {
+export const AuthRequired: FunctionComponent = ({ children }) => {
   const { user } = useAuth();
 
   if (!user) {
     return <Login />;
   }
 
-  return children;
+  return <>{children}</>;
 };

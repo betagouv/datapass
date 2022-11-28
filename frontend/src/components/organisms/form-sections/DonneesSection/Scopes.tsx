@@ -18,6 +18,7 @@ export type ScopeConfiguration = {
   label: string;
   groupTitle?: string;
   helper?: string;
+  checkedByDefault?: boolean;
   required?: boolean;
   triggerWarning?: boolean;
   warningType?: ScopeWarningModalType;
@@ -25,7 +26,7 @@ export type ScopeConfiguration = {
 };
 
 type Props = {
-  title: string;
+  title?: string;
   scopesConfiguration: ScopeConfiguration[];
   scopes: { [k: string]: boolean };
   disabled: boolean;
