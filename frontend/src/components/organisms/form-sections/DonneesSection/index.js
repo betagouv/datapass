@@ -130,8 +130,11 @@ const DonneesSection = ({
           {!isEmpty(outdatedScopes) && (
             <Scopes
               title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
-              scopes={outdatedScopes.map((value) => ({ value, label: value }))}
-              selectedScopes={zipObject(
+              scopesConfiguration={outdatedScopes.map((value) => ({
+                value,
+                label: value,
+              }))}
+              scopes={zipObject(
                 outdatedScopes,
                 Array(outdatedScopes.length).fill(true)
               )}
