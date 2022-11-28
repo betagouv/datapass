@@ -1,10 +1,4 @@
-import React, {
-  ComponentType,
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ComponentType, useContext, useEffect, useState } from 'react';
 import { chain, difference, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes, { ScopeConfiguration } from './Scopes';
