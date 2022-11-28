@@ -153,7 +153,6 @@ class EnrollmentPolicy < ApplicationPolicy
             .flatten
 
           # we use the postgres "array overlap" operator so the request keep being fast
-          # (this operator is available in the postgres "intarray" module)
           sub_scope = sub_scope.where("scopes && ARRAY[?]::text[]", scopes)
         end
 
