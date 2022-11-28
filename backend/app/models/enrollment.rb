@@ -226,11 +226,15 @@ class Enrollment < ActiveRecord::Base
   end
 
   def team_members_json
-    team_members.order(id: :asc).to_json(methods: :type)
+    team_members
+      .to_a.sort_by { |tm| tm.id }
+      .to_json(methods: :type)
   end
 
   def demandeur_email
-    team_members.where(type: "demandeur").pluck(:email).first
+    team_members
+      .to_a.select { |tm| tm.type == "demandeur" }
+      .pluck(:email).first
   end
 
   def link
