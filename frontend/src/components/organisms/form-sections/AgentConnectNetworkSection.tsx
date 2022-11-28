@@ -1,13 +1,14 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { useContext } from 'react';
 import { FormContext } from '../../templates/Form';
 import { ScrollablePanel } from '../Scrollable';
 import ExpandableQuote from '../../molecules/ExpandableQuote';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
+import { FunctionSectionComponent } from '../../../types/fonction-section-component';
 
 const SECTION_LABEL = 'Le mode d’accès';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const AgentConnectNetworkSection: FunctionComponent = () => {
+export const AgentConnectNetworkSection: FunctionSectionComponent = () => {
   const {
     disabled,
     onChange,
@@ -46,7 +47,6 @@ export const AgentConnectNetworkSection: FunctionComponent = () => {
   );
 };
 
-// @ts-ignore
 AgentConnectNetworkSection.sectionLabel = SECTION_LABEL;
 
 export default AgentConnectNetworkSection;

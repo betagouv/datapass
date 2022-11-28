@@ -3,7 +3,7 @@ import Helper from '../Helper';
 
 type Props = {
   id: string;
-  label: string | ReactNode;
+  label: ReactNode;
   required?: boolean;
   helper?: string;
   meta?: string;

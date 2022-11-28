@@ -8,7 +8,7 @@ export enum ScopeWarningModalType {
 
 export type ScopeWarningModalConfiguration = {
   title: string;
-  body: string | ReactNode;
+  body: ReactNode;
 };
 
 export const ScopeWarningModalConfigurations: {
