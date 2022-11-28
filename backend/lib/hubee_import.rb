@@ -30,7 +30,7 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
 
   existing_enrollments = Enrollment
     .where(siret: siret)
-    .where(target_api: scope == "CERTDC" ? "hubee_portail" : "hubee_portail_dila")
+    .where(target_api: (scope == "CERTDC") ? "hubee_portail" : "hubee_portail_dila")
     .where(status: "validated")
 
   rejection_reason = nil
@@ -96,7 +96,7 @@ CSV.foreach(INPUT_FILE, headers: true, liberal_parsing: true) do |row|
   )
 
   enrollment.save(validate: false)
-  enrollment.events.create!(name: "import", user: User.find_by_email(scope == "CERTDC" ? "dgs-certdc@sante.gouv.fr" : "support-demarches-sp@dila.gouv.fr"))
+  enrollment.events.create!(name: "import", user: User.find_by_email((scope == "CERTDC") ? "dgs-certdc@sante.gouv.fr" : "support-demarches-sp@dila.gouv.fr"))
   enrollment.team_members.create!(type: "demandeur", email: demandeur_email)
   enrollment.team_members.create!(type: "responsable_metier", email: responsable_metier_email)
 end
