@@ -46,4 +46,21 @@ RSpec.describe EnrollmentsController, "#export", type: :controller do
       expect(first_entry["target_api"]).to eq("franceconnect")
     end
   end
+
+  describe "payload" do
+    subject do
+      get :export
+    end
+
+    let(:user) { create(:instructor, target_api: "franceconnect") }
+    let!(:foreign_enrollment) { create_list(:enrollment, 10, :franceconnect) }
+
+    before do
+      login(user)
+    end
+
+    it "does not make database queries" do
+      expect { subject }.to make_database_queries(count: 2)
+    end
+  end
 end

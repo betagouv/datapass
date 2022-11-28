@@ -28,6 +28,7 @@ gem "sidekiq", "~> 6.5"
 gem "state_machines-activerecord"
 
 group :test do
+  gem "db-query-matchers"
   gem "timecop"
 end
 

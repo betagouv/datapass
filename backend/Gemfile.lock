@@ -95,6 +95,9 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    db-query-matchers (0.11.0)
+      activesupport (>= 4.0, < 7.1)
+      rspec (>= 3.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -410,6 +413,7 @@ DEPENDENCIES
   byebug
   carrierwave
   carrierwave-i18n
+  db-query-matchers
   devise
   dotenv-rails
   factory_bot_rails
