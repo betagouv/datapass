@@ -52,21 +52,6 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
-  def notification_delete_event_to_instructors
-    @enrollment = Enrollment.find(params[:enrollment_id])
-    @enrollment_id = @enrollment.id
-    @event_delete = @enrollment.events.last
-    @instructor_email = User.find_by(id: @event_delete.user_id).email
-
-    mail(
-      to: @enrollment.subscribers.pluck(:email),
-      from: "notifications@api.gouv.fr",
-      subject: "Une habilitation a été supprimé",
-      template_path: "enrollment_mailer/admin",
-      template_name: "notification_delete_event_to_instructors"
-    )
-  end
-
   def new_enrollment_submission_notification_email
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])

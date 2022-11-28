@@ -42,11 +42,4 @@ module EmailNotifierMethods
       message: comment
     ).notification_email_to_instructors.deliver_later
   end
-
-  def deliver_delete_notify_to_enrollment_instructor
-    EnrollmentMailer.with(
-      target_api: enrollment.target_api,
-      enrollment_id: enrollment.id
-    ).notification_delete_event_to_instructors.deliver_later
-  end
 end

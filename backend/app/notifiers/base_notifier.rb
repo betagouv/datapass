@@ -56,8 +56,5 @@ class BaseNotifier < AbstractNotifier
   end
 
   def delete
-    unless enrollment.status == "draft"
-      deliver_delete_notify_to_enrollment_instructor
-    end
   end
 end

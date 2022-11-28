@@ -44,6 +44,10 @@ class ApiEntrepriseNotifier < AbstractNotifier
     end
   end
 
+  def revoke(comment:, current_user:)
+    deliver_event_webhook(__method__)
+  end
+
   def delete
     deliver_event_webhook(__method__)
   end
