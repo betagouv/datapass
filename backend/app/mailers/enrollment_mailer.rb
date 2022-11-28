@@ -56,7 +56,7 @@ class EnrollmentMailer < ActionMailer::Base
     @enrollment = Enrollment.find(params[:enrollment_id])
     @enrollment_id = @enrollment.id
     @event_delete = @enrollment.events.last
-    @instructor_email = User.find_by(@event_delete.user_id).email
+    @instructor_email = User.find_by(id: @event_delete.user_id).email
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
