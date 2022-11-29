@@ -24,15 +24,6 @@ class UsersController < ApplicationController
             san_fil_val_without_accent = sanitized_filter_value.map { |f| ActiveSupport::Inflector.transliterate(f, " ") }.join("|")
             next if san_fil_val_without_accent == ""
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-          if filter_item.keys == ["email"]
-            @users = @users.where("email like ?", "%#{san_fil_val_without_accent}%")
-          end
-=======
-          @users = @users.where("email like ?", "%#{san_fil_val_without_accent}%")
->>>>>>> 7c7d906e (back to previous version as add a check if filter_key is  email is messing up with the filter on emails)
-=======
             sanitized_filter_key = "\"users\".\"#{filter_key}\""
 
             @users = @users.where(
@@ -40,7 +31,6 @@ class UsersController < ApplicationController
               is_fuzzy ? ".*(#{san_fil_val_without_accent}).*" : "^(#{san_fil_val_without_accent})$"
             )
           end
->>>>>>> 3cbf2f62 (users controllers filter params match to enrollments controller)
         end
       rescue JSON::ParserError
         # silently fail, if the sort is not formatted properly we do not apply it
