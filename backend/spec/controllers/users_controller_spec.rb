@@ -84,14 +84,14 @@ RSpec.describe UsersController, type: :controller do
           get :index, params: {
             users_with_roles_only: users_with_roles_only,
             filter: [{
-              "users" => searched_user_email_filter
+              "email" => searched_user_email_filter
             }].to_json
           }
 
           JSON.parse(response.body)["users"]
         end
 
-        let!(:searched_user_email_filter) { searched_user_email.first(6) }
+        let!(:searched_user_email_filter) { searched_user_email.first(5) }
         let!(:first_user_with_role) { create(:user, email: "a#{generate(:email)}", roles: ["whatever"]) }
         let!(:second_user_without_role) { create(:user, email: "b#{generate(:email)}", roles: []) }
         let!(:third_user_without_role) { create(:user, email: "c#{generate(:email)}", roles: []) }
@@ -99,7 +99,7 @@ RSpec.describe UsersController, type: :controller do
 
         context "when admin user filter email with an unknow email" do
           let(:users_with_roles_only) { false }
-          let(:searched_user_email) { "unknown@yopmail.com" }
+          let(:searched_user_email) { "unknown" }
 
           it "renders no user" do
             expect(users_index_payload.count).to eq(0)
@@ -119,7 +119,7 @@ RSpec.describe UsersController, type: :controller do
           end
         end
 
-        context "when admin user filter email with letters include in email's user" do
+        context "when filter email when email's user start with filter search" do
           let(:users_with_roles_only) { false }
           let(:searched_user_email) { "cu" }
 
@@ -128,6 +128,20 @@ RSpec.describe UsersController, type: :controller do
             expect(users_index_payload.map { |user_payload| user_payload["id"] }).to eq([
               third_user_without_role.id,
               other_user_with_role.id
+            ])
+          end
+        end
+
+        context "when email's user with role only include filter search at the end of emails" do
+          let(:users_with_roles_only) { true }
+          let(:searched_user_email) { "ser" }
+
+          it "renders users with 'cu' includes in their emails" do
+            expect(users_index_payload.count).to eq(3)
+            expect(users_index_payload.map { |user_payload| user_payload["id"] }).to eq([
+              first_user_with_role.id,
+              other_user_with_role.id,
+              user.id
             ])
           end
         end

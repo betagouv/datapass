@@ -49,6 +49,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "2e308a2984ddf4e53a009d8f8ecf3b50322b79cbe79fc3b37e9aefa86082a9c0",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/users_controller.rb",
+      "line": 30,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "policy_scope(User).order(:email).with_at_least_one_role.where(\"#{\"\\\"users\\\".\\\"#{filter_key}\\\"\"}::varchar(255) ~* ?\", (if [\"email\"].include?(filter_key) then\n  \".*(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")}).*\"\nelse\n  \"^(#{(filter_value or [filter_value]).map do\n   Regexp.escape(f)\n   end.map do\n   ActiveSupport::Inflector.transliterate(f, \" \")\n   end.join(\"|\")})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersController",
+        "method": "index"
+      },
+      "user_input": "filter_key",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": "prevent in backend code"
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "46ce81ed94535390cefbe7f0b99bc585d4549b4a0cda76d6e8723e174cc22e2a",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -323,6 +346,10 @@
       "note": ""
     }
   ],
+<<<<<<< HEAD
   "updated": "2022-11-22 14:20:53 +0100",
+=======
+  "updated": "2022-11-29 10:36:25 +0100",
+>>>>>>> 3cbf2f62 (users controllers filter params match to enrollments controller)
   "brakeman_version": "5.3.1"
 }
