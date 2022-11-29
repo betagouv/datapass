@@ -181,7 +181,7 @@ const InstructorEnrollmentList: React.FC = () => {
       enableSorting: false,
       size: 70,
       meta: {
-        placeholder: '000',
+        placeholder: 'ex : 17878',
       },
       filterFn: 'weakEquals',
       cell: ({ getValue }) => {
@@ -202,7 +202,7 @@ const InstructorEnrollmentList: React.FC = () => {
       enableSorting: false,
       filterFn: 'includesString',
       meta: {
-        placeholder: 'Filtrer par raison sociale',
+        placeholder: 'ex : Commune de Pessac',
       },
     }),
     columnHelper.accessor(
@@ -213,7 +213,7 @@ const InstructorEnrollmentList: React.FC = () => {
         enableSorting: false,
         filterFn: 'includesString',
         meta: {
-          placeholder: 'Filtrer parmi tous les emails de contact',
+          placeholder: 'ex : mairie@paris.fr',
         },
       }
     ),

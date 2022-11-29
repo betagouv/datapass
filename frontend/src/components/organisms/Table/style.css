@@ -67,19 +67,20 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
-.datapass-table td {
+.datapass-table th,
+td {
   padding: 15px;
 }
 
 .datapass-table th {
   padding: 35px 15px 15px 15px;
   position: relative;
+  font-weight: 500;
 }
 
 .datapass-table-column-title {
   position: absolute;
   top: 10px;
-  font-weight: 400;
   text-transform: uppercase;
   font-size: small;
 }
@@ -107,11 +108,6 @@
   padding: 10px 0;
   background-color: #ececfe;
   position: relative;
-  font-weight: 100;
-}
-
-.datapass-table thead th {
-  font-weight: 500;
 }
 
 .datapass-table tbody tr {
