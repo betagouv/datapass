@@ -60,7 +60,7 @@ RSpec.describe EnrollmentsController, "#export", type: :controller do
     end
 
     it "does not make database queries" do
-      expect { subject }.to make_database_queries(count: 2)
+      expect { subject }.to make_database_queries(count: 3)
     end
   end
 end

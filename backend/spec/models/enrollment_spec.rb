@@ -235,8 +235,12 @@ RSpec.describe Enrollment, type: :model do
     end
   end
 
-  describe ".to_csv" do
-    subject { enrollments.to_csv }
+  describe ".csv_collection" do
+    subject do
+      csv_file = CSV.generate_line(enrollments.csv_attributes)
+      csv_file << CSV.generate_line(enrollments.csv_collection.first)
+      csv_file
+    end
 
     let!(:enrollments_model) { create_list(:enrollment, 1, :api_entreprise) }
     let(:enrollments) { Enrollment.all }
@@ -254,7 +258,9 @@ RSpec.describe Enrollment, type: :model do
 
     describe "team_members_json entry" do
       subject do
-        CSV.parse(enrollments.to_csv, headers: true).first["team_members_json"]
+        csv_file = CSV.generate_line(enrollments.csv_attributes)
+        csv_file << CSV.generate_line(enrollments.csv_collection.first)
+        CSV.parse(csv_file, headers: true).first["team_members_json"]
       end
 
       it "is a valid json" do
@@ -272,7 +278,9 @@ RSpec.describe Enrollment, type: :model do
 
     describe "scopes entry" do
       subject do
-        CSV.parse(enrollments.to_csv, headers: true).first["scopes"]
+        csv_file = CSV.generate_line(enrollments.csv_attributes)
+        csv_file << CSV.generate_line(enrollments.csv_collection.first)
+        CSV.parse(csv_file, headers: true).first["scopes"]
       end
 
       it "is a valid json" do

@@ -241,8 +241,9 @@ class Enrollment < ActiveRecord::Base
     "#{ENV.fetch("FRONT_HOST")}/#{target_api.tr("_", "-")}/#{id}"
   end
 
-  def self.to_csv
-    attributes = %w[id
+  def self.csv_attributes
+    %w[
+      id
       target_api
       created_at
       updated_at
@@ -272,15 +273,14 @@ class Enrollment < ActiveRecord::Base
       linked_token_manager_id
       previous_enrollment_id
       copied_from_enrollment_id
-      link]
+      link
+    ]
+  end
 
-    CSV.generate do |csv|
-      csv << attributes
-
-      all.each do |enrollment|
-        csv << attributes.map do |attr|
-          enrollment.send(attr)
-        end
+  def self.csv_collection
+    Enrollment.find_each.lazy.map do |enrollment|
+      csv_attributes.map do |attr|
+        enrollment.send(attr)
       end
     end
   end
