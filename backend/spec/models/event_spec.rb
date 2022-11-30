@@ -17,7 +17,7 @@ RSpec.describe Event, type: :model do
 
   describe "#mark_as_notify_from_demandeur" do
     let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
-    let(:instructor) { create(:user, roles: ["api_particulier:instructor"]) }
+    let(:instructor) { create(:user, roles: ["api_particulier:instructor", "api_particulier:reporter"]) }
 
     context "when event notify is created by demandeur" do
       let(:demandeur_notify) do
@@ -29,12 +29,13 @@ RSpec.describe Event, type: :model do
           comment: "some comment"
         )
       end
+
       it "is expected to have a is_notify_from_demandeur field at true" do
         expect(demandeur_notify.is_notify_from_demandeur).to be(true)
       end
     end
 
-    context "when event notify is created by instructeur" do
+    context "when event notify is created by instructor" do
       let(:instructor_notify) do
         create(
           :event,
@@ -44,6 +45,7 @@ RSpec.describe Event, type: :model do
           comment: "some other comment"
         )
       end
+
       it "is expected to have a is_notify_from_demandeur field at false" do
         expect(instructor_notify.is_notify_from_demandeur).to be(false)
       end
@@ -52,6 +54,7 @@ RSpec.describe Event, type: :model do
 
   describe "#mark_as_processed" do
     let(:enrollment) { create(:enrollment, :api_particulier, :draft) }
+
     subject do
       create(
         :event,
