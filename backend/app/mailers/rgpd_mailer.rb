@@ -14,11 +14,11 @@ class RgpdMailer < ActionMailer::Base
       subject: "Vous avez été désigné #{params[:rgpd_role]} pour la démarche « #{params[:intitule]} »",
       sender: {
         name: "L’équipe d’api.gouv.fr",
-        email: "contact@api.gouv.fr"
+        email: "datapass@api.gouv.fr"
       },
       replyTo: {
         name: "L’équipe d’api.gouv.fr",
-        email: "contact@api.gouv.fr"
+        email: "datapass@api.gouv.fr"
       },
       templateId: 8,
       params: {

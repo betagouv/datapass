@@ -125,7 +125,7 @@ const questions = [
         <Link
           newTab
           inline
-          href="mailto:contact@api.gouv.fr?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr"
+          href="mailto:datapass@api.gouv.fr?subject=Contact%20via%20la%20FAQ%20datapass.api.gouv.fr"
         >
           nous poser votre question directement.
         </Link>

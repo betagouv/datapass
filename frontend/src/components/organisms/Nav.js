@@ -8,7 +8,7 @@ import Link from '../atoms/hyperTexts/Link';
 export const getDefaultDocumentationUrl = (target_api) =>
   `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
 
-export const DEFAULT_CONTACT_EMAIL = 'contact@api.gouv.fr';
+export const DEFAULT_CONTACT_EMAIL = 'datapass@api.gouv.fr';
 
 const Nav = ({
   target_api,

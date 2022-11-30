@@ -27,7 +27,7 @@ export function getErrorMessages(error) {
 
   const errorMessageEnd =
     'Merci de réessayer ultérieurement. ' +
-    'Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.';
+    'Vous pouvez également nous signaler cette erreur par mail à datapass@api.gouv.fr.';
 
   if (!isEmpty(error.response) && error.message !== 'Network Error') {
     return [
@@ -42,7 +42,7 @@ export function getErrorMessages(error) {
         'Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à ' +
         'l’administrateur de votre réseau informatique. ' +
         'Si le problème persiste, vous pouvez nous contacter par mail à ' +
-        'contact@api.gouv.fr.',
+        'datapass@api.gouv.fr.',
     ];
   }
 
