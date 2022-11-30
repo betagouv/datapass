@@ -12,8 +12,8 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
     let!(:enrollment) do
       create(
         :enrollment,
-        :franceconnect,
-        :draft
+        enrollment_status,
+        :franceconnect
       )
     end
 
@@ -39,7 +39,9 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
       login(instructor)
     end
 
-    context "when demandeur create notify events" do
+    context "when demandeur create notify events with draft enrollment" do
+      let(:enrollment_status) { :draft }
+
       describe "demandeur's events notify are not marked as processed" do
         it "is expected to have 2 events" do
           expect(enrollment.events.count).to eq(2)
@@ -52,6 +54,8 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
     end
 
     context "when instructor mark demandeur's event as processed" do
+      let(:enrollment_status) { :draft }
+
       it { is_expected.to have_http_status(:ok) }
 
       before do
@@ -71,6 +75,98 @@ RSpec.describe EnrollmentsController, "#mark_demandeur_notify_events_as_processe
       it "is expected to not change instructor's event processed_at field" do
         subject
         expect(event_request_changes.processed_at).to be(nil)
+      end
+    end
+
+    context "when enrollment status is submitted" do
+      let(:enrollment_status) { :submitted }
+
+      before do
+        Timecop.freeze
+      end
+
+      after do
+        Timecop.return
+      end
+
+      it "expects to have a demadeur notify event processed_at to be nil before changes requested" do
+        expect(event_notify.reload.processed_at).to eq(nil)
+      end
+
+      describe "from submitted to change_requested" do
+        let(:enrollment_status) { "changes_requested" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
+      end
+
+      describe "from submitted to revoked" do
+        let(:enrollment_status) { "revoked" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
+      end
+
+      describe "from submitted to refused" do
+        let(:enrollment_status) { "refused" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
+      end
+    end
+
+    context "when enrollment status is changes_requested" do
+      let(:enrollment_status) { :changes_requested }
+
+      before do
+        Timecop.freeze
+      end
+
+      after do
+        Timecop.return
+      end
+
+      it "expects to have a demadeur notify event processed_at to be nil before changes requested" do
+        expect(event_notify.reload.processed_at).to eq(nil)
+      end
+
+      describe "from change_requested to validated" do
+        let(:enrollment_status) { "validated" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
+      end
+
+      describe "from change_requested to refused" do
+        let(:enrollment_status) { "refused" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
+      end
+
+      describe "from change_requested to revoked" do
+        let(:enrollment_status) { "revoked" }
+
+        it "is expected to pass a demandeurs event's processed_at field to mark as read with changes_requested enrollment status" do
+          expect {
+            subject
+          }.to change { event_notify.reload.processed_at.to_i }.to eq(DateTime.now.to_i)
+        end
       end
     end
   end

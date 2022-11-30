@@ -41,7 +41,7 @@ RSpec.describe Event, type: :model do
           name: :notify,
           enrollment_id: enrollment.id,
           user_id: instructor.id,
-          comment: "some comment"
+          comment: "some other comment"
         )
       end
       it "is expected to have a is_notify_from_demandeur field at false" do

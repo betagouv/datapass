@@ -48,7 +48,7 @@ FactoryBot.define do
       end
     end
 
-    factory :instructor do
+    trait :instructor do
       transient do
         target_api { "franceconnect" }
       end
