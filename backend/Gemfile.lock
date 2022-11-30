@@ -95,6 +95,10 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    csb (0.6.0)
+      csv
+      rails (>= 6.0.5)
+    csv (3.2.5)
     db-query-matchers (0.11.0)
       activesupport (>= 4.0, < 7.1)
       rspec (>= 3.0)
@@ -413,6 +417,7 @@ DEPENDENCIES
   byebug
   carrierwave
   carrierwave-i18n
+  csb
   db-query-matchers
   devise
   dotenv-rails

@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::API
+# TODO do not use base controller everywhere
+class ApplicationController < ActionController::Base
   class Unauthorized < StandardError
   end
 

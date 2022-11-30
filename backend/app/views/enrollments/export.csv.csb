@@ -1,0 +1,3 @@
+csv.items = @enrollments.find_each(batch_size: 40).lazy
+csv.cols = Enrollment.csb_cols
+csv.filename = "export-datapass-#{Date.today}.csv"
