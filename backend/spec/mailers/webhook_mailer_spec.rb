@@ -27,11 +27,11 @@ RSpec.describe WebhookMailer, type: :mailer do
     let!(:api_entreprise_instructors) { create_list(:user, 2, roles: ["api_entreprise:instructor", "api_entreprise:reporter"]) }
     let!(:foreign_instructor) { create(:user, roles: ["franceconnect:instructor"]) }
 
-    it "sends email to target api instructors, with datapass@api.gouv.fr in cc and from" do
+    it "sends email to target api instructors, with equipe-datapass@api.gouv.fr in cc and from" do
       expect(mail.to).to contain_exactly(*api_entreprise_instructors.pluck(:email))
 
-      expect(mail.from).to eq(["datapass@api.gouv.fr"])
-      expect(mail.cc).to eq(["datapass@api.gouv.fr"])
+      expect(mail.from).to eq(["equipe-datapass@api.gouv.fr"])
+      expect(mail.cc).to eq(["equipe-datapass@api.gouv.fr"])
     end
 
     it "renders relevant information in body and subject" do
