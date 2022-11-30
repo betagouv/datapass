@@ -93,7 +93,7 @@ class EnrollmentMailer < ActionMailer::Base
       to: "support.partenaires@franceconnect.gouv.fr",
       subject: params[:subject],
       from: "datapass@api.gouv.fr",
-      cc: "datapass@api.gouv.fr",
+      cc: "equipe-datapass@api.gouv.fr",
       template_path: "enrollment_mailer/admin",
       template_name: params[:template_name]
     )
@@ -105,7 +105,7 @@ class EnrollmentMailer < ActionMailer::Base
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
 
     mail(
-      to: "datapass@api.gouv.fr",
+      to: "equipe-datapass@api.gouv.fr",
       from: "datapass@api.gouv.fr",
       subject: "Editeur avec un Siret inconnu",
       template_path: "enrollment_mailer/admin",
