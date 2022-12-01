@@ -30,6 +30,7 @@ const UserList = () => {
       header: 'Email',
       accessorKey: 'email',
       id: 'email',
+      minSize: 150,
       filterFn: 'includesString',
       meta: {
         placeholder: 'Filtrer par email',

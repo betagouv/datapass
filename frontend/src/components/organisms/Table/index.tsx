@@ -146,7 +146,10 @@ const Table = ({
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      style={{ width: header.getSize() }}
+                      style={{
+                        width: header.getSize(),
+                        minWidth: header.column.columnDef.minSize,
+                      }}
                     >
                       {!!header.column.columnDef.meta?.columnTitle && (
                         <div className="datapass-table-column-title">
