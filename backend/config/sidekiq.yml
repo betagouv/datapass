@@ -6,3 +6,8 @@
   - 'webhooks'
 :production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %>
+
+:schedule:
+  reminder_email_worker:
+    every: 1 hours  # Runs once every hour
+    class: ReminderEmailWorker
