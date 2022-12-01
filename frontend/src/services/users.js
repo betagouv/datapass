@@ -21,7 +21,11 @@ export function getUsers({
   });
 
   return httpClient
-    .get(`${BACK_HOST}/api/users${queryParam}`)
+    .get(`${BACK_HOST}/api/users${queryParam}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     .then(({ data }) => data);
 }
 

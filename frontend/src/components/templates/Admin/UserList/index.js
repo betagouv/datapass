@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { createColumnHelper } from '@tanstack/react-table';
 import { getUsers } from '../../../../services/users';
 import { useDataProviderConfigurations } from '../../hooks/use-data-provider-configurations';
 import RoleCheckboxCell from './RoleCheckboxCell';
-import Loader from '../../../atoms/Loader';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import ListHeader from '../../../molecules/ListHeader';
 import TagContainer from '../../../atoms/TagContainer';
@@ -13,7 +12,7 @@ import Table from '../../../organisms/Table';
 import { debounce } from 'lodash';
 
 const UserList = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
@@ -26,40 +25,37 @@ const UserList = () => {
 
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
-  const columns = useMemo(
-    () => [
-      columnHelper.accessor('email', {
-        header: 'Email',
-        accessorKey: 'email',
-        id: 'email',
-        filterFn: 'includesString',
-        meta: {
-          placeholder: 'Filtrer par email',
-        },
-        enableSorting: false,
-      }),
-      ...Object.entries(dataProviderConfigurations || {}).map(
-        ([targetApi, { label }]) =>
-          columnHelper.group({
-            header: label,
-            id: targetApi,
-            enableColumnFilter: false,
-            enableSorting: false,
-            cell: (cellProps) => (
-              <RoleCheckboxCell updateData={updateRole} {...cellProps} />
-            ),
-          })
-      ),
-      columnHelper.accessor('id', {
-        header: 'Id',
-        accessorKey: 'id',
-        id: 'id',
-        enableColumnFilter: false,
-        enableSorting: false,
-      }),
-    ],
-    [columnHelper, dataProviderConfigurations]
-  );
+  const columns = [
+    columnHelper.accessor('email', {
+      header: 'Email',
+      accessorKey: 'email',
+      id: 'email',
+      filterFn: 'includesString',
+      meta: {
+        placeholder: 'Filtrer par email',
+      },
+      enableSorting: false,
+    }),
+    ...Object.entries(dataProviderConfigurations || {}).map(
+      ([targetApi, { label }]) =>
+        columnHelper.group({
+          header: label,
+          id: targetApi,
+          enableColumnFilter: false,
+          enableSorting: false,
+          cell: (cellProps) => (
+            <RoleCheckboxCell updateData={updateRole} {...cellProps} />
+          ),
+        })
+    ),
+    columnHelper.accessor('id', {
+      header: 'Id',
+      accessorKey: 'id',
+      id: 'id',
+      enableColumnFilter: false,
+      enableSorting: false,
+    }),
+  ];
 
   const updateRole = (rowIndex, columnId, value) => {
     setUsers((old) =>
@@ -125,29 +121,25 @@ const UserList = () => {
           </Tag>
         </TagContainer>
       </ListHeader>
-      {isLoading ? (
-        <div className="full-page" style={{ minHeight: '800px' }}>
-          <Loader />
-        </div>
-      ) : (
-        <Table
-          firstColumnFixed
-          wrapperStyle={{ overflowX: 'scroll' }}
-          tableOptions={{
-            columns: columns,
-            data: users,
-            pageCount: totalPages,
-            state: {
-              pagination,
-              columnFilters: filtered,
-            },
-            onPaginationChange: setPagination,
-            onColumnFiltersChange: setFiltered,
-            manualPagination: true,
-            manualFiltering: true,
-          }}
-        />
-      )}
+      <Table
+        firstColumnFixed
+        wrapperStyle={{ overflowX: 'scroll' }}
+        loading={isLoading}
+        noDataPlaceholder="Aucun utilisateur"
+        tableOptions={{
+          columns: columns,
+          data: users,
+          pageCount: totalPages,
+          state: {
+            pagination,
+            columnFilters: filtered,
+          },
+          onPaginationChange: setPagination,
+          onColumnFiltersChange: setFiltered,
+          manualPagination: true,
+          manualFiltering: true,
+        }}
+      />
     </>
   );
 };

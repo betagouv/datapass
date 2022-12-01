@@ -89,7 +89,6 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  min-width: 150px;
 }
 
 .datapass-table.firstColumnFixed th:first-of-type {
