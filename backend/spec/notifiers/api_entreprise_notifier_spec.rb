@@ -75,6 +75,22 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
         let(:event) { "validate" }
       end
     end
+
+    describe "#revoke" do
+      subject { instance.revoke(comment: "comment", current_user: user) }
+
+      include_examples "notifier webhook delivery" do
+        let(:event) { "revoke" }
+      end
+    end
+
+    describe "#delete" do
+      subject { instance.delete }
+
+      include_examples "notifier webhook delivery" do
+        let(:event) { "delete" }
+      end
+    end
   end
 
   describe "emails events" do

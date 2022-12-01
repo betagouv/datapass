@@ -49,5 +49,9 @@ FactoryBot.define do
 
       with_comment
     end
+
+    trait :delete do
+      name { "delete" }
+    end
   end
 end

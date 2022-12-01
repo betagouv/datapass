@@ -10,6 +10,7 @@ RSpec.describe Event, type: :model do
       refuse
       revoke
       request_changes
+      delete
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -115,6 +116,7 @@ RSpec.describe Event, type: :model do
         create
         update
         submit
+        delete
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }

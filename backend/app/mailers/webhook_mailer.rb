@@ -11,7 +11,7 @@ class WebhookMailer < ActionMailer::Base
     @api_manager_label = api_manager_label
 
     mail(
-      subject: "[Datapass] Erreur de communication avec votre #{api_manager_label}",
+      subject: "[DataPass] Erreur de communication avec votre #{api_manager_label}",
       to: target_api_instructor_emails,
       from: "datapass@api.gouv.fr",
       cc: "equipe-datapass@api.gouv.fr"

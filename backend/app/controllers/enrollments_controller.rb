@@ -250,6 +250,8 @@ class EnrollmentsController < ApplicationController
 
   def destroy
     @enrollment = authorize Enrollment.find(params[:id])
+    @enrollment.events.create(name: "delete", user_id: current_user.id)
+    @enrollment.notify_event("delete")
     @enrollment.destroy
 
     render status: :ok

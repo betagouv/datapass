@@ -54,4 +54,7 @@ class BaseNotifier < AbstractNotifier
   def revoke(comment:, current_user:)
     deliver_event_mailer(__method__, comment)
   end
+
+  def delete
+  end
 end

@@ -80,8 +80,9 @@ Avec:
   - `request_changes`: la demande d’habilitation a été instruite par un instructeur et
     demande des modifications de la part du demandeur ;
   - `validate`: l’habilitation a été validée par un instructeur ;
-  - `notify`: un instructeur a relancé la demande d’habilitation en cours d’édition par le
+  - `notify`: un message à été envoyé pour l’habilitation en cours d’édition par le
     demandeur ;
+  - `delete`: l'habilitation a été supprimée soit par un utilisateur (si la demande étant en draft ou en changes_requested), soit par un administrateur ;
 - `fired_at`, `timestamp`: timestamp correspondant au moment où le webhook a été
   déclenché ;
 - `model_type`, `string`: correspond au modèle de donnée. Pour le moment il n'y
@@ -115,6 +116,7 @@ Un exemple de payload pour `pass_data`:
   // * validated : habilitation validée
   // * refused : habilitation refusée
   // * revoked : habilitation révoquée
+  // * deleted : habilitation suprimée
   "status": "draft",
   // ID de la habilitation qui a été copiée (peut être vide si il s'agit d'une nouvelle habilitation)
   "copied_from_enrollment_id": 5432,

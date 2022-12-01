@@ -6,6 +6,8 @@ RSpec.describe WebhookEnrollmentSerializer, type: :serializer do
   let!(:created_event) { create(:event, :create, enrollment: enrollment, created_at: 3.hours.ago) }
   let!(:refused_event) { create(:event, :refuse, enrollment: enrollment, created_at: 2.hours.ago) }
   let!(:validated_event) { create(:event, :validate, enrollment: enrollment, created_at: 1.hours.ago) }
+  let!(:deleted_event) { create(:event, :delete, enrollment: enrollment, created_at: 30.minutes.ago) }
+  let!(:revoked_event) { create(:event, :revoke, enrollment: enrollment, created_at: 15.minutes.ago) }
 
   before do
     enrollment.demandeurs.first.user.update!(
@@ -42,6 +44,7 @@ RSpec.describe WebhookEnrollmentSerializer, type: :serializer do
     end
 
     expect(payload).to have_key(:events)
+    expect(payload[:events].count).to eq(5)
 
     expect(payload[:events][0]).to be_present
     expect(payload[:events][0]).not_to have_key(:diff)
@@ -50,6 +53,8 @@ RSpec.describe WebhookEnrollmentSerializer, type: :serializer do
     expect(payload[:events][0][:user]).to have_key(:email)
     expect(payload[:events][0][:user]).to have_key(:family_name)
 
-    expect(payload[:events][-1][:name]).to eq("validate")
+    expect(payload[:events][-3][:name]).to eq("validate")
+    expect(payload[:events][-2][:name]).to eq("delete")
+    expect(payload[:events][-1][:name]).to eq("revoke")
   end
 end

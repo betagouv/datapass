@@ -41,5 +41,9 @@ class AbstractNotifier
   def revoke(comment:, current_user:)
     fail NotImplementedError
   end
+
+  def delete
+    fail NotImplementedError
+  end
   # :nocov:
 end
