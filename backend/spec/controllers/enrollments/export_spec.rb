@@ -1,6 +1,6 @@
 require "csv"
 
-RSpec.describe EnrollmentsController, "#export", type: :controller do
+RSpec.describe EnrollmentsExportController, "#export", type: :controller do
   describe "authorization" do
     subject do
       get :export
