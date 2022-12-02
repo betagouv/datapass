@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       collection do
         get :public
         get :user
-        get :export, to: "enrollments_export#export"
+        get :export, to: "enrollments_live#export"
 
         get :hubee_validated, to: "enrollments_hubee_validated#index"
       end
