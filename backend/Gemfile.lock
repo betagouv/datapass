@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/MSP-Greg/puma.git
+  revision: ace4b93b1418986a70224f0da196329b7e9f6f71
+  branch: 00-size-to-first-byte-ws
+  specs:
+    puma (6.0.1.dev)
+      nio4r (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -248,8 +256,6 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.0)
-    puma (6.0.0)
-      nio4r (~> 2.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.6.0)
@@ -426,7 +432,7 @@ DEPENDENCIES
   omniauth-oauth2
   paper_trail
   pg
-  puma (~> 6.0)
+  puma!
   pundit
   rack-cors
   rails (~> 7.0)
