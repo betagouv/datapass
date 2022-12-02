@@ -68,7 +68,7 @@ module DataPass
       config.action_mailer.delivery_method = :test
     end
 
-    if ENV.fetch("NO_COOKIES_SAME_SITE_PROTECTION", "False") != "True" &&
+    if ENV.fetch("FORCE_COOKIES_SAME_SITE_PROTECTION", "False") != "True" &&
         ENV.fetch("ALLOWED_ORIGINS", "").include?("localhost")
       Rails.application.config.action_dispatch.cookies_same_site_protection = :none
     end
@@ -77,7 +77,7 @@ module DataPass
 
     config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
 
-    # use for paper_trail gem to fix current error: "Tried to load unspecified class: ActiveSupport::TimeWithZone"
+    # fix paper_trail error: "Tried to load unspecified class: ActiveSupport::TimeWithZone"
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
   end
 end
