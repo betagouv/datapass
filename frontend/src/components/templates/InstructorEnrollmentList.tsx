@@ -22,9 +22,10 @@ import useQueryString from './hooks/use-query-string';
 import { useAuth } from '../organisms/AuthContext';
 import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
-import useFileDownloader from './hooks/use-file-downloader';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import CheckboxInput from '../atoms/inputs/CheckboxInput';
+
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 type Demandeur = {
   id: number;
@@ -45,9 +46,7 @@ export type Enrollment = {
 const columnHelper = createColumnHelper<Enrollment>();
 
 const InstructorEnrollmentList: React.FC = () => {
-  const { isDownloading, download } = useFileDownloader();
   const { user } = useAuth();
-  const downloadExport = () => download('/api/enrollments/export', 'text/csv');
   const { goToItem } = useListItemNavigation();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -261,8 +260,8 @@ const InstructorEnrollmentList: React.FC = () => {
     <main>
       <ListHeader title="Liste des habilitations">
         <Button
-          onClick={() => downloadExport()}
-          disabled={isDownloading}
+          href={`${BACK_HOST}/api/enrollments/export`}
+          download
           secondary
           icon="file-download"
           iconRight
