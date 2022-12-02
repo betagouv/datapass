@@ -8,26 +8,26 @@ class ReminderEmailFinder
   end
 
   def call(enrollments)
-    draft_enrollments
+    draft_enrollments(enrollments)
   end
 
-  def draft_enrollments
-    # Select all draft enrollment between 15 days to 1 month to now.
-    Enrollment.where(status: "validate")
-      .where({updated_at: (Time.now.midnight - 2.months)..Time.now.midnight - 15.days})
+  def draft_enrollments(enrollments)
+    Enrollment.where(status: "draft")
+      .where({updated_at: (Time.now.midnight - 1.months)..Time.now.midnight - 15.days})
   end
   #       .where("enrollments.updated_at > ?", (Time.now.midnight - 15.days) && (Time.now.midnight - 3.months))
   # Enrollment.where(status: "draft").where({ updated_at: (Time.now.midnight - 3.months)..Time.now.midnight - 15.days})
 
-  def draft_enrollments_update_events_without_diff
-    draft_enrollments.joins(:events)
+  def draft_enrollments_update_events_without_diff(enrollments)
+    enrollments = draft_enrollments(enrollments)
+    enrollments.joins(:events)
       .where({events: {name: "update", diff: nil}})
   end
 
-  def draf_enrollments_update_events_with_diff
-    draft_enrollments.joins(:events)
+  def draft_enrollments_update_events_with_diff(enrollments)
+    enrollments = draft_enrollments(enrollments)
+    enrollments.joins(:events)
       .where({events: {name: "update"}}.select { |e| e.diff.present? })
-    # .select { |e| e.diff.present? }
 
     # draft_enrollments_with_diff.each do |enrollment|
     #   enrollment.events.select { |e| e.name == "update" && e.diff.present? }
