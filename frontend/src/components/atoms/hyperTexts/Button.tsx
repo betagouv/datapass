@@ -12,6 +12,7 @@ type Props = {
   iconRight?: boolean;
   className?: string;
   disabled?: boolean;
+  download?: boolean;
 };
 
 const Button: React.FC<Props> = ({
