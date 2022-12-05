@@ -388,7 +388,7 @@ GEM
       state_machines-activemodel (>= 0.8.0)
     strscan (3.0.4)
     thor (1.2.1)
-    timecop (0.9.5)
+    timecop (0.9.6)
     timeout (0.3.0)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
