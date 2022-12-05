@@ -43,6 +43,11 @@ class EnrollmentPolicy < ApplicationPolicy
       return false
     end
 
+    if record.already_been_copied?
+      @error_message_key = :copy_enrollment_has_already_been_copied
+      return false
+    end
+
     unless user.belongs_to_organization?(record)
       @error_message_key = :copy_user_do_not_belong_to_organization
       return false

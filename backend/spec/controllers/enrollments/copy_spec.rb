@@ -47,6 +47,14 @@ RSpec.describe EnrollmentsController, "#copy", type: :controller do
             let(:user) { create(:user, organization_kind: :clamart) }
 
             it { is_expected.to have_http_status(:ok) }
+
+            context "when enrollment has already been copied" do
+              before do
+                enrollment.copy user
+              end
+
+              it { is_expected.to have_http_status(:forbidden) }
+            end
           end
         end
       end
