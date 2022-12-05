@@ -46,12 +46,35 @@
   transform: translate(-50%, -50%);
 }
 
+.datapass-table .header-container {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.datapass-checkbox-filter.fr-checkbox-group input[type=checkbox]+label {
+  padding: 0.4rem 0;
+}
+
+.datapass-checkbox-filter.fr-checkbox-group input[type=checkbox]+label:before {
+  margin: 0.4rem 0;
+}
+
+.fr-label + .fr-input, .fr-label + .fr-input-wrap, .fr-label + .fr-select {
+  margin-top: 0;
+}
+
+.datapass-table .fr-checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
 .datapass-table-sorting-arrow {
-  height: 45px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: x-large;
+  margin-top: 0.4rem;
   color: var(--text-action-high-blue-france);
 }
 

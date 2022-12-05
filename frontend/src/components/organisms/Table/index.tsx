@@ -76,14 +76,16 @@ const Table = ({
   const getSortingHeaderProps = (column: Column<any, any>) => {
     if (column.getCanSort()) {
       return {
-        className: 'sorting-header',
+        className: 'header-container sorting-header',
         onClick: getOnSortingChange(
           column.getToggleSortingHandler() as (event: SyntheticEvent) => void
         ),
       };
     }
 
-    return {};
+    return {
+      className: 'header-container',
+    };
   };
 
   const getOnSortingChange =

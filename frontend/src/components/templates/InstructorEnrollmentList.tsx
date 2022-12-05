@@ -121,6 +121,7 @@ const InstructorEnrollmentList: React.FC = () => {
         columnTitle: 'Filtrer par',
         filter: () => (
           <CheckboxInput
+            className="datapass-checkbox-filter"
             label="non lu"
             onChange={() => {
               setFiltered((prevFilters: { id: string; value: any }[]) => {
