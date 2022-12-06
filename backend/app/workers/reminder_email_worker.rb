@@ -6,8 +6,12 @@ class ReminderEmailWorker
   include Sidekiq::Worker
 
   def perform(user_id)
+    ReminderEmailFinder.call
+    # For Each enrollments
+    # Get user_id d'enrollment  / user_id = enrollment.demandeurs.first
     # @enrollment_list = draft_enrollments
   end
+
   # Only send an email to demandeurs if enrollment are in draft for more than 15 days without changes.
   def send?(enrollment)
   end

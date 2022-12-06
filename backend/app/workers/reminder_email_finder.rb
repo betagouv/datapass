@@ -1,43 +1,57 @@
 # frozen_string_literal: true
 
 class ReminderEmailFinder
-  attr_reader :enrollment
+  # include EnrollmentReminderMailer
+
+  attr_reader :enrollment, :user
 
   def initialize(enrollments)
-    @enrollments = enrollments
+    @enrollments = Enrollment.all
+    @user = user
   end
 
   def call(enrollments)
-    draft_enrollments(enrollments)
+    algo
+  end
+
+  def algo
+    if created_at_updated_at_last_events?
+      created_at_updated_at_last_events_ids = draft_enrollment_last_events_updated_at_or_created_at(@enrollments).pluck(:enrollment_id).flatten
+      enrollments = Enrollment.find(created_at_updated_at_last_events_ids)
+
+      enrollments.each do |enrollment|
+        # send_reminder_email(enrollment)
+        create_reminder_event(enrollment)
+      end
+    end
   end
 
   def draft_enrollments(enrollments)
     Enrollment.where(status: "draft")
-      .where({updated_at: (Time.now.midnight - 1.months)..Time.now.midnight - 15.days})
+      .where({updated_at: (Time.now.beginning_of_day - 1.months)..Time.now.end_of_day - 15.days})
+      .includes(:events)
+      .where.not({events: {name: %w[notify]}})
+      .order(:id, "events.created_at")
   end
-  #       .where("enrollments.updated_at > ?", (Time.now.midnight - 15.days) && (Time.now.midnight - 3.months))
-  # Enrollment.where(status: "draft").where({ updated_at: (Time.now.midnight - 3.months)..Time.now.midnight - 15.days})
 
-  def draft_enrollments_update_events_without_diff(enrollments)
+  def draft_enrollment_last_events_updated_at_or_created_at(enrollments)
     enrollments = draft_enrollments(enrollments)
-    enrollments.joins(:events)
-      .where({events: {name: "update", diff: nil}})
+    events = enrollments.map { |enrollment| enrollment.events.last }.to_a
+    events.reject { |event| event.name == "reminder" }
   end
 
-  def draft_enrollments_update_events_with_diff(enrollments)
-    enrollments = draft_enrollments(enrollments)
-    enrollments.joins(:events)
-      .where({events: {name: "update"}}.select { |e| e.diff.present? })
-
-    # draft_enrollments_with_diff.each do |enrollment|
-    #   enrollment.events.select { |e| e.name == "update" && e.diff.present? }
-    # end
+  def send_reminder_email(enrollment)
+    EnrollmentReminderMailer.with(
+      target_api: enrollment.target_api,
+      enrollment_id: enrollment.id
+    ).reminder_draft_enrollment_email.deliver_later
   end
 
-  # Check that enrollment has an event "update" and a reminder event
-  # If not send email
-  # if Event update has a diff and not event "reminder"
-  # send email
-  # if event update has a diff < 3 and event "reminder"
-  # send email
+  def create_reminder_event(enrollment)
+    enrollment.events.create!(name: "reminder")
+  end
+
+  def created_at_updated_at_last_events?
+    draft_enrollment_last_events_updated_at_or_created_at(@enrollments).any?
+  end
 end

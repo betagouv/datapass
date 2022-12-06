@@ -43,10 +43,10 @@ module EmailNotifierMethods
     ).notification_email_to_instructors.deliver_later
   end
 
-  def deliver_reminder_email_to_demandeur
-    EnrollmentReminderMailer.with(
-      target_api: enrollment.target_api,
-      enrollment_id: enrollment.id
-    ).reminder_draft_enrollment_email.deliver_later
-  end
+  # def deliver_reminder_email_to_demandeur
+  #   EnrollmentReminderMailer.with(
+  #     target_api: enrollment.target_api,
+  #     enrollment_id: enrollment.id
+  #   ).reminder_draft_enrollment_email.deliver_later
+  # end
 end

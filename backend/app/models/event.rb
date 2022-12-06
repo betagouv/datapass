@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validate :validate_comment
   validate :validate_name
