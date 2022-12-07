@@ -11,7 +11,8 @@ class DataProviderConfigurationsController < ApplicationController
         "label",
         "icon",
         "email",
-        "type"
+        "type",
+        "url"
       )
     end
 
@@ -37,6 +38,7 @@ class DataProviderConfigurationsController < ApplicationController
         "icon",
         "email",
         "type",
+        "url",
         "cguLink",
         "donneesDescription",
         "cadreJuridiqueDescription",
