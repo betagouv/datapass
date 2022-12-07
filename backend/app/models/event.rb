@@ -31,6 +31,12 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def validate_user
+    unless name == "reminder"
+      errors.add(:user_id, :invalid, message: "Vous devez renseigner un utilisateur")
+    end
+  end
+
   private
 
   def mark_as_notify_from_demandeur

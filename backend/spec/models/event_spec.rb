@@ -138,4 +138,62 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+
+  describe "user validation" do
+    subject { event }
+
+    let(:event) { build(:event, name: name, user_id: user_id, comment: comment) }
+    describe "events which require user presence" do
+      %w[
+        create
+        update
+        notify
+        validate
+        refuse
+        revoke
+        request_changes
+        delete
+      ].each do |name|
+        context "when name '#{name}'" do
+          let(:name) { name }
+          let(:comment) { "I like trains" }
+
+          context "when user is present" do
+            let(:user_id) { 23 }
+
+            it { is_expected.to be_valid }
+          end
+
+          context "when user is nil" do
+            let(:user_id) { nil }
+
+            it { is_expected.to be_valid }
+          end
+        end
+      end
+    end
+
+    describe "events which not require user presence" do
+      %w[
+        reminder
+      ].each do |name|
+        context "when name '#{name}'" do
+          let(:name) { name }
+          let(:comment) { nil }
+
+          context "when user_id is present" do
+            let(:user_id) { 23 }
+
+            it { is_expected.to be_valid }
+          end
+
+          context "when user_id is nil" do
+            let(:user_id) { nil }
+
+            it { is_expected.to be_valid }
+          end
+        end
+      end
+    end
+  end
 end
