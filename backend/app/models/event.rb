@@ -3,11 +3,12 @@ class Event < ActiveRecord::Base
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
+
   belongs_to :user, optional: true
+  validates :user, presence: true, if: Proc.new { |event| event.name != 'reminder' }
 
   validate :validate_comment
   validate :validate_name
-  validate :validate_user
 
   before_create :mark_as_notify_from_demandeur
 
@@ -29,12 +30,6 @@ class Event < ActiveRecord::Base
   def validate_name
     unless name.in?(EVENT_NAMES)
       errors.add(:name, :invalid, message: "Une erreur inattendue est survenue: nom d’évènement inconnu")
-    end
-  end
-
-  def validate_user
-    unless name == "reminder"
-      errors.add(:user_id, :invalid, message: "Vous devez renseigner un utilisateur")
     end
   end
 

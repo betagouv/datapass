@@ -142,7 +142,8 @@ RSpec.describe Event, type: :model do
   describe "user validation" do
     subject { event }
 
-    let(:event) { build(:event, name: name, user_id: user_id, comment: comment) }
+    let(:event) { build(:event, name: name, user: user, comment: comment) }
+
     describe "events which require user presence" do
       %w[
         create
@@ -159,15 +160,15 @@ RSpec.describe Event, type: :model do
           let(:comment) { "I like trains" }
 
           context "when user is present" do
-            let(:user_id) { 23 }
+            let(:user) { create(:user) }
 
             it { is_expected.to be_valid }
           end
 
           context "when user is nil" do
-            let(:user_id) { nil }
+            let(:user) { nil }
 
-            it { is_expected.to be_valid }
+            it { is_expected.not_to be_valid }
           end
         end
       end
@@ -181,14 +182,14 @@ RSpec.describe Event, type: :model do
           let(:name) { name }
           let(:comment) { nil }
 
-          context "when user_id is present" do
-            let(:user_id) { 23 }
+          context "when user is present" do
+            let(:user) { create(:user) }
 
             it { is_expected.to be_valid }
           end
 
-          context "when user_id is nil" do
-            let(:user_id) { nil }
+          context "when user is nil" do
+            let(:user) { nil }
 
             it { is_expected.to be_valid }
           end
