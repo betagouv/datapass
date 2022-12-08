@@ -1,4 +1,3 @@
-import React from 'react';
 import ListHeader from '../../molecules/ListHeader';
 import { DataProviderCard } from './DataProviderCard';
 import Button from '../../atoms/hyperTexts/Button';
@@ -11,6 +10,10 @@ const HubeeDataProviders = [
     target_api: 'hubee_portail_dila',
     description:
       "Acte d’État Civil, Démarche en ligne de préparation à la conclusion d’un Pacs, Recensement Citoyen Obligatoire, Déclaration d'hébergement touristique, Déclaration de Changement de Coordonnées",
+  },
+  {
+    target_api: 'hubee_portail_cnaf',
+    description: 'Contrôle des allocations scolaires',
   },
 ];
 

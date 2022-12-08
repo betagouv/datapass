@@ -52,6 +52,7 @@ import ApiSfipSandbox from '../pages/DgfipPages/ApiSfipSandbox';
 import FranceConnect from '../pages/FranceConnect';
 import HubeePortail from '../pages/HubeePortail';
 import HubeePortailDila from '../pages/HubeePortailDila';
+import HubeePortailCnaf from '../pages/HubeePortailCnaf';
 import LeTaxi from '../pages/LeTaxi';
 import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
@@ -123,6 +124,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     type: DataProviderType.service,
     component: HubeePortailDila,
     url: 'https://portail.hubee.numerique.gouv.fr/',
+  },
+  hubee_portail_cnaf: {
+    label: 'Portail HubEE - Démarches CNAF',
+    icon: 'logo-hubee.png',
+    email: '',
+    type: DataProviderType.service,
+    component: HubeePortailCnaf,
   },
   franceconnect: {
     label: 'FranceConnect',

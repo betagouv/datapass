@@ -5,7 +5,7 @@ class EnrollmentsHubeeValidatedController < ApplicationController
     # note that this controller use a custom policy scope based on the siret
     @enrollments = EnrollmentPolicy::OrganizationScope.new(current_user, Enrollment).resolve
     @enrollments = @enrollments
-      .where(target_api: %w[hubee_portail hubee_portail_dila])
+      .where(target_api: %w[hubee_portail hubee_portail_dila hubee_portail_cnaf])
       .where(status: "validated")
 
     render json: @enrollments,

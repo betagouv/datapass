@@ -43,6 +43,7 @@ export type Enrollment = {
   demandeurs: Demandeur[];
   target_api: string;
   status: EnrollmentStatus;
+  zip_code: string;
 };
 
 const columnHelper = createColumnHelper<Enrollment>();
@@ -95,6 +96,45 @@ const InstructorEnrollmentList: React.FC = () => {
       debouncedFetchData.cancel();
     };
   }, [pagination, sorted, filtered]);
+
+  const targetApiColumn = columnHelper.accessor(
+    ({ target_api }: { target_api: string }) =>
+      dataProviderConfigurations?.[target_api].label,
+    {
+      header: 'Fournisseur',
+      id: 'target_api',
+      enableSorting: false,
+      meta: {
+        filter: 'select',
+        selectOptions: user?.roles
+          .filter((role) => role.endsWith(':reporter'))
+          .map((role) => {
+            const targetApiKey = role.split(':')[0];
+
+            return {
+              key: targetApiKey,
+              label: dataProviderConfigurations?.[targetApiKey].label,
+            };
+          }),
+      },
+      filterFn: 'arrIncludesSome',
+    }
+  );
+
+  const zipCodeColumn = columnHelper.accessor('zip_code', {
+    header: 'Code postal',
+    enableSorting: false,
+    filterFn: 'includesString',
+    meta: {
+      placeholder: 'ex : 75009',
+    },
+  });
+
+  const changingColumn = user?.roles.some((role) =>
+    role.endsWith('hubee_portail_cnaf:reporter')
+  )
+    ? zipCodeColumn
+    : targetApiColumn;
 
   const columns = [
     columnHelper.accessor('updated_at', {
@@ -225,28 +265,7 @@ const InstructorEnrollmentList: React.FC = () => {
         },
       }
     ),
-    columnHelper.accessor(
-      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
-      {
-        header: 'Fournisseur',
-        id: 'target_api',
-        enableSorting: false,
-        meta: {
-          filter: 'select',
-          selectOptions: user?.roles
-            .filter((role) => role.endsWith(':reporter'))
-            .map((role) => {
-              const targetApiKey = role.split(':')[0];
-
-              return {
-                key: targetApiKey,
-                label: dataProviderConfigurations?.[targetApiKey].label,
-              };
-            }),
-        },
-        filterFn: 'arrIncludesSome',
-      }
-    ),
+    changingColumn,
     columnHelper.accessor('status', {
       header: 'Statut',
       id: 'status',

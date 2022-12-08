@@ -59,6 +59,11 @@ administrator:
     - api_entreprise:reporter
     - franceconnect:reporter
     - api_particulier:reporter
+    - hubee_portail_cnaf:reporter
+    - api_entreprise:instructor
+    - franceconnect:instructor
+    - api_particulier:instructor
+    - hubee_portail_cnaf:instructor
 
 <% 1.upto(50) do |i| %>
 user_test_<%= i %>:

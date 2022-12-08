@@ -92,7 +92,15 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
           }
         />
       );
-
+    case 'hubee_portail_cnaf':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+          isService
+          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+        />
+      );
     default:
       return (
         <WelcomeMessage

@@ -260,6 +260,7 @@ class Enrollment < ActiveRecord::Base
       organization_id
       siret
       nom_raison_sociale
+      zip_code
       technical_team_type
       technical_team_value
       demarche
@@ -403,6 +404,7 @@ class Enrollment < ActiveRecord::Base
       throw :abort
     else
       self.siret = siret
+      self.zip_code = response[:code_postal]
       self.nom_raison_sociale = response[:nom_raison_sociale]
     end
   end

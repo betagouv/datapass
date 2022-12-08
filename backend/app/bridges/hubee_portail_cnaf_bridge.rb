@@ -1,0 +1,2 @@
+class HubeePortailCnafBridge < HubeePortailBridge
+end
