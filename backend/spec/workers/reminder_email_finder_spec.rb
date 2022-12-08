@@ -97,49 +97,49 @@ RSpec.describe ReminderEmailFinder, type: :worker do
     end
   end
 
-  # describe "email sends to demandeurs when enrollment is in draft for more than 15 days" do
-  #   include ActiveJob::TestHelper
-  #
-  #   after do
-  #     clear_enqueued_jobs
-  #     clear_performed_jobs
-  #   end
-  #
-  #   context "when enrollment is in draft for 15 days" do
-  #     describe "non-regression test" do
-  #       it "enqueues an EmailNotifierMethods#deliver_reminder_email_to_demandeur which does not raise an error" do
-  #         Sidekiq::Testing.inline!
-  #
-  #         expect {
-  #           perform_enqueued_jobs do
-  #             subject.algo
-  #           end
-  #         }.not_to raise_error
-  #
-  #         Sidekiq::Testing.fake!
-  #       end
-  #     end
-  #
-  #     it "sends email to target_api subscribers" do
-  #       subject.algo
-  #
-  #       enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
-  #       reminder_email = enqueued_jobs.find { |job| job["arguments"][1] == "reminder_draft_enrollment_email" }
-  #
-  #       expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
-  #       expect(reminder_email).to be_truthy
-  #     end
-  #   end
-  # end
-
   describe "#create_reminder_event" do
     it "create an event reminder if email is sent to demandeur" do
-      event_reminder = subject.algo
+      event_reminder = subject.call
       enrollment = event_reminder.first
       last_enrollment_event = enrollment.events.last
 
       expect(last_enrollment_event.name).to eq("reminder")
-      # expect(last_enrollment_event.created_at).to be(Time.now)
+      expect(last_enrollment_event.created_at).to eq(Time.now)
+    end
+  end
+
+  describe "email sends to demandeurs when enrollment is in draft for more than 15 days" do
+    include ActiveJob::TestHelper
+
+    after do
+      clear_enqueued_jobs
+      clear_performed_jobs
+    end
+
+    context "when enrollment is in draft for 15 days" do
+      # describe "non-regression test" do
+      #   it "enqueues an EmailNotifierMethods#reminder_draft_enrollment_email which does not raise an error" do
+      #     Sidekiq::Testing.inline!
+      #
+      #     expect {
+      #       perform_enqueued_jobs do
+      #         subject.call
+      #       end
+      #     }.not_to raise_error
+      #
+      #     Sidekiq::Testing.fake!
+      #   end
+      # end
+
+      it "sends email to demandeurs" do
+        subject.call
+
+        enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+        reminder_email = enqueued_jobs.find { |job| job["arguments"][1] == "reminder_draft_enrollment_email" }
+
+        expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 4
+        expect(reminder_email).to be_truthy
+      end
     end
   end
 end

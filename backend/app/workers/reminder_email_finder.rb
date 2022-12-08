@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ReminderEmailFinder
-  # include EnrollmentReminderMailer
-
   attr_reader :enrollment, :user
 
   def initialize(enrollments)
@@ -10,17 +8,13 @@ class ReminderEmailFinder
     @user = user
   end
 
-  def call(enrollments)
-    algo
-  end
-
-  def algo
+  def call
     if created_at_updated_at_last_events?
       created_at_updated_at_last_events_ids = draft_enrollment_last_events_updated_at_or_created_at(@enrollments).pluck(:enrollment_id).flatten
       enrollments = Enrollment.find(created_at_updated_at_last_events_ids)
 
       enrollments.each do |enrollment|
-        # send_reminder_email(enrollment)
+        send_reminder_email(enrollment)
         create_reminder_event(enrollment)
       end
     end
