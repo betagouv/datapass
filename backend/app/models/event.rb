@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :enrollment
 
   belongs_to :user, optional: true
-  validates :user, presence: true, if: Proc.new { |event| event.name != 'reminder' }
+  validates :user, presence: true, if: proc { |event| event.name != "reminder" }
 
   validate :validate_comment
   validate :validate_name
