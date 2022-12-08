@@ -4,10 +4,12 @@
   - 'default'
   - 'mailers'
   - 'webhooks'
+  - 'reminders'
 :production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %>
 
 :schedule:
-  reminder_email_worker:
-    every: 1 hours  # Runs once every hour
-    class: ReminderEmailWorker
+  schedule_reminder_email_for_draft_enrollments_worker:
+    cron: '0 8 * * *'  # Runs every day at 08:00 am
+    class: ScheduleReminderEmailForDraftEnrollmentsWorker
+    queue: reminders
