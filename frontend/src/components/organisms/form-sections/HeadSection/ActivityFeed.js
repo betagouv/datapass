@@ -6,7 +6,10 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
-import { CheckCircleIcon } from '../../../atoms/icons/fr-fi-icons';
+import {
+  CheckCircleIcon,
+  NotificationIcon,
+} from '../../../atoms/icons/fr-fi-icons';
 import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
@@ -37,6 +40,10 @@ const eventToDisplayableContent = {
   validate: {
     icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
     label: 'a validé l’habilitation',
+  },
+  reminder: {
+    icon: <NotificationIcon color={'var(--text-default-info)'} />,
+    label: 'a écrit',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
@@ -71,6 +78,7 @@ export const EventItem = ({
   name,
   created_at,
   processed_at,
+  user_id,
   email,
   family_name,
   given_name,
@@ -91,10 +99,12 @@ export const EventItem = ({
   }
 
   const userLabel = useMemo(() => {
-    return given_name && family_name
+    return user_id === null
+      ? `DataPass`
+      : given_name && family_name
       ? `${given_name} ${family_name}`
       : given_name || family_name || email;
-  }, [given_name, family_name, email]);
+  }, [given_name, family_name, email, user_id]);
 
   const isUserAnInstructor = getIsUserAnInstructor(target_api);
 
