@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
 
   validate :validate_comment
   validate :validate_name
+  validate :validate_user
 
   before_create :mark_as_notify_from_demandeur
 
