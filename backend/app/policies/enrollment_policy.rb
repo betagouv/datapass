@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EnrollmentPolicy < ApplicationPolicy
   def show?
     user.is_member?(record) || user.is_reporter?(record)

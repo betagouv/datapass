@@ -678,26 +678,103 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     let(:event) { "revoke" }
     let(:comment) { "comment" }
 
-    context "with user being an instructor" do
-      let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
-      let(:enrollment_status) { :validated }
+    describe "with user being an instructor" do
+      context "api franceconnect" do
+        let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
+        let(:enrollment_status) { :validated }
 
-      before do
-        login(user)
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
       end
 
-      it { is_expected.to have_http_status(:forbidden) }
+      context "api_entreprise" do
+        let(:enrollment_api_target) { :api_entreprise }
+        let(:user) { create(:user, roles: ["api_entreprise:instructor"]) }
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      context "api_particulier" do
+        let(:enrollment_api_target) { :api_particulier }
+        let(:user) { create(:user, roles: ["api_particulier:instructor"]) }
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      context "for all other apis" do
+        let(:enrollment_api_target) { :api_droits_cnam }
+        let(:comment) { nil }
+        let(:user) { create(:user, roles: ["api_droits_cnam:instructor"]) }
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
     end
 
-    context "with enrollment not being validated yet" do
-      let(:user) { create(:user, roles: ["administrator"]) }
-      let(:enrollment_status) { :submitted }
+    describe "with enrollment not being validated yet" do
+      context "franceconnect" do
+        let(:user) { create(:user, roles: ["administrator"]) }
+        let(:enrollment_status) { :submitted }
 
-      before do
-        login(user)
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
       end
 
-      it { is_expected.to have_http_status(:forbidden) }
+      context "api_entreprise" do
+        let(:enrollment_api_target) { :api_entreprise }
+        let(:user) { create(:user, roles: ["administrator"]) }
+        let(:enrollment_status) { :submitted }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+
+      context "api_particulier" do
+        let(:enrollment_api_target) { :api_particulier }
+        let(:user) { create(:user, roles: ["administrator"]) }
+        let(:enrollment_status) { :submitted }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+
+      context "other apis" do
+        let(:enrollment_api_target) { :api_droits_cnam }
+        let(:user) { create(:user, roles: ["administrator"]) }
+        let(:enrollment_status) { :submitted }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
     end
 
     context "with valid user and enrollment" do
