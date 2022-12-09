@@ -31,12 +31,16 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     comment = '',
     name: lastEventName = '',
     updated_at = '',
-    user: { email = '', given_name, family_name } = {},
+    user,
     diff,
   } = useMemo(
     () => chain(events).sortBy('updated_at').last().value() || {},
     [events]
   );
+
+  const email = user?.email;
+  const given_name = user?.given_name;
+  const family_name = user?.family_name;
 
   if (
     ['draft', 'changes_requested'].includes(status) &&

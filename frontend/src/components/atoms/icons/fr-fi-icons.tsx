@@ -46,7 +46,7 @@ export const MailOpenIcon: React.FC<Props> = ({ color, large, small }) => (
 // Icons - Media
 export const NotificationIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon
-    type="fr-icon-notification-3-line"
+    type="notification-3-line"
     color={color}
     large={large}
     small={small}
