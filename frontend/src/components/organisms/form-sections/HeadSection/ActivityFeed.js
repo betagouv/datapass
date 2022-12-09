@@ -43,7 +43,7 @@ const eventToDisplayableContent = {
   },
   reminder: {
     icon: <NotificationIcon color={'var(--text-default-info)'} />,
-    label: 'vous a envoyé un email de relance',
+    label: 'a envoyé un email de relance',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
