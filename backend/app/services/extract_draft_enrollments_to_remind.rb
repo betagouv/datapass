@@ -13,7 +13,7 @@ class ExtractDraftEnrollmentsToRemind
 
   def draft_enrollments
     Enrollment.where(status: "draft")
-      .where({updated_at: (Time.now.beginning_of_day - 1.months)..Time.now.end_of_day - 15.days})
+      .where({updated_at: (Time.new(2022, 11, 1).beginning_of_day)..Time.now.end_of_day - 15.days})
       .includes(:events)
       .where.not({events: {name: %w[notify]}})
       .order(:id, "events.created_at")
