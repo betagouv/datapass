@@ -4,12 +4,7 @@ class Enrollment::ApiDroitsCnamPolicy < EnrollmentPolicy
 
     res.concat([
       scopes: [
-        :cnam_beneficiaires,
-        :cnam_contrats,
-        :cnam_caisse,
-        :cnam_exonerations,
-        :cnam_medecin_traitant,
-        :cnam_presence_medecin_traitant
+        :droits_assurance_maladie
       ]
     ])
 
