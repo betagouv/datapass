@@ -933,6 +933,8 @@ api_entreprise:
       subject: "✅ Votre habilitation à l'API Entreprise a été validée"
     refuse:
       subject: "🚫 Votre habilitation à l’API Entreprise a été refusée"
+    revoke:
+      subject: "🚫 Votre habilitation à l’API Entreprise a été révoquée"
 
 le_taxi:
   label: API le.Taxi
