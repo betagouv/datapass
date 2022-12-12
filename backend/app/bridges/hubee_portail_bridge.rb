@@ -41,7 +41,7 @@ class HubeePortailBridge < ApplicationBridge
 
     # 1. get token
     token_response = Http.instance.post({
-      url: "#{hubee_auth_url}/token",
+      url: hubee_auth_url,
       body: {grant_type: "client_credentials", scope: "ADMIN"},
       api_key: Base64.strict_encode64("#{client_id}:#{client_secret}"),
       use_basic_auth_method: true,
