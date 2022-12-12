@@ -12,67 +12,24 @@ import PreviousEnrollmentSection from '../components/organisms/form-sections/Pre
 
 const scopesConfiguration = [
   {
-    value: 'cnam_beneficiaires',
-    label: 'Liste des ayant-droits',
-  },
-  {
-    value: 'cnam_contrats',
-    label: 'Droits de base',
-  },
-  {
-    value: 'cnam_caisse',
-    label: 'Caisse gestionnaire',
-  },
-  {
-    value: 'cnam_exonerations',
-    label: 'Exonérations ou modulations éventuelles',
-  },
-  {
-    value: 'cnam_medecin_traitant',
-    label: 'Médecin traitant',
-  },
-  {
-    value: 'cnam_presence_medecin_traitant',
-    label: 'Présence d’un médecin traitant',
+    value: 'droits_assurance_maladie',
+    label: 'Droits Assurance Maladie',
+    required: true,
   },
 ];
 
 const demarches = {
   default: {
     label: 'Demande Libre',
-    state: {
-      scopes: {
-        cnam_beneficiaires: false,
-        cnam_contrats: false,
-        cnam_caisse: false,
-        cnam_exonerations: false,
-        cnam_medecin_traitant: false,
-        cnam_presence_medecin_traitant: false,
-      },
-    },
+    state: {},
   },
   etablissement_de_soin: {
     label: 'Établissement de soin',
-    state: {
-      scopes: {
-        cnam_beneficiaires: true,
-        cnam_caisse: true,
-        cnam_contrats: true,
-        cnam_exonerations: true,
-        cnam_medecin_traitant: true,
-      },
-    },
+    state: {},
   },
   organisme_complementaire: {
     label: 'Organisme complémentaire',
-    state: {
-      scopes: {
-        cnam_beneficiaires: true,
-        cnam_caisse: true,
-        cnam_contrats: true,
-        cnam_presence_medecin_traitant: true,
-      },
-    },
+    state: {},
   },
 };
 
