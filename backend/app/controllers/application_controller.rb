@@ -82,13 +82,13 @@ class ApplicationController < ActionController::API
 
     error = case error_key
     when :copy_enrollment_is_not_validated_nor_refused
-      build_error(title: "L'habilitation initiale est encore en traitement", message: "L'action que vous essayez de faire ne sera possible que lorsque l'habilitation sera validée ou refusée. Cette habilitation n'a donc pas été copiée.")
+      build_error(title: "L’habilitation initiale est encore en traitement", message: "L’action que vous essayez de faire ne sera possible que lorsque l’habilitation sera validée ou refusée. Cette habilitation n’a donc pas été copiée.")
     when :copy_user_do_not_belong_to_organization
-      build_error(title: "Vous ne faites pas partie de l'organisation de l'habilitation initiale", message: "L'habilitation que vous essayez de copier a été accordée à une organisation dont vous ne faites pas partie. Si l'organisation initiale n'existe plus, la copie de la demande initiale n'est pas possible : merci de soumettre une nouvelle demande.")
+      build_error(title: "Vous ne faites pas partie de l’organisation de l’habilitation initiale", message: "L’habilitation que vous essayez de copier a été accordée à une organisation dont vous ne faites pas partie. Si l’organisation initiale n’existe plus, la copie de la demande initiale n’est pas possible : merci de soumettre une nouvelle demande.")
     when :copy_user_is_not_demandeur
-      build_error(title: "Vous n'êtes pas le demandeur de l'habilitation initiale", message: "Seul le demandeur de l'habilitation peut en réaliser la copie. Si le demandeur original n'est plus disponible, merci de contacter datapass@api.gouv.fr en expliquant votre situation.")
+      build_error(title: "Vous n’êtes pas le demandeur de l’habilitation initiale", message: "Seul le demandeur de l’habilitation peut en réaliser la copie. Si le demandeur original n’est plus disponible, merci de contacter datapass@api.gouv.fr en expliquant votre situation.")
     when :copy_enrollment_has_already_been_copied
-      build_error(title: "Cette demande a déjà été copiée", message: "L'action que vous essayez de faire est impossible, car une copie de l'habilitation existe déjà. Pour continuer, veuillez utiliser cette copie.")
+      build_error(title: "Cette demande a déjà été copiée", message: "L’action que vous essayez de faire est impossible, car une copie de l’habilitation existe déjà. Pour continuer, veuillez utiliser cette copie.")
     else
       build_error(title: "Erreur", message: "Vous n’êtes pas autorisé à modifier cette ressource.")
     end
