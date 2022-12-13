@@ -1,4 +1,21 @@
 fr:
+  enrollment_errors:
+    copy_enrollment_is_not_validated_nor_refused:
+      title: "L’habilitation initiale est encore en traitement"
+      message: "L’action que vous essayez de faire ne sera possible que lorsque l’habilitation sera validée ou refusée."
+    copy_user_do_not_belongs_to_organization:
+      title: "Vous ne faites pas partie de l’organisation de l’habilitation initiale"
+      message: "L’habilitation que vous essayez de copier a été accordée à une organisation dont vous ne faites pas partie. Si l’organisation initiale n’existe plus, la copie de la demande initiale n’est pas possible : merci de soumettre une nouvelle demande."
+    copy_user_is_not_demandeur:
+      title: "Vous n’êtes pas le demandeur de l’habilitation initiale"
+      message: "Seul le demandeur de l’habilitation peut en réaliser la copie. Si le demandeur original n’est plus disponible, merci de contacter datapass@api.gouv.fr en expliquant votre situation."
+    copy_enrollment_has_already_been_copied:
+      title: "Cette demande a déjà été copiée"
+      message: "L’action que vous essayez de faire est impossible, car une copie de l’habilitation existe déjà. Pour continuer, veuillez utiliser cette copie."
+    unknown:
+      title: "Erreur"
+      message: "Vous n’êtes pas autorisé à modifier cette ressource."
+
   errors:
     messages:
       extension_allowlist_error: "Format de fichier invalide. Merci de joindre uniquement des documents au format %{allowed_types}."
