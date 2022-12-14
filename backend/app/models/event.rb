@@ -36,9 +36,9 @@ class Event < ActiveRecord::Base
   private
 
   def mark_as_notify_from_demandeur
-    unless name == "reminder"
+    if name == "notify"
       demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
-      if demandeurs_ids.include?(user.id) && name == "notify"
+      if demandeurs_ids.include?(user.id)
         self.is_notify_from_demandeur = true
       end
     end

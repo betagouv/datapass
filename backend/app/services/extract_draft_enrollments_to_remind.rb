@@ -3,29 +3,28 @@
 class ExtractDraftEnrollmentsToRemind
   attr_reader :enrollment
 
+  REMIND_FROM_DATE = Time.new(2022, 11, 1)
+
   def call
-    if created_at_updated_at_last_events?
-      created_at_updated_at_last_events_ids =
-        draft_enrollments_with_last_update_or_create_events.pluck(:enrollment_id).flatten
-      Enrollment.find(created_at_updated_at_last_events_ids)
+    last_event_is_create_or_update_ids = last_update_or_create_events_for_draft_enrollments
+
+    if last_event_is_create_or_update_ids.any?
+      last_event_is_create_or_update_ids.pluck(:enrollment_id).flatten
+      Enrollment.find(last_event_is_create_or_update_ids)
     end
   end
 
   def draft_enrollments
     Enrollment.where(status: "draft")
-      .where({updated_at: (Time.new(2022, 11, 1).beginning_of_day)..Time.now.end_of_day - 15.days})
+      .where({updated_at: (REMIND_FROM_DATE.beginning_of_day)..Time.now.end_of_day - 15.days})
       .includes(:events)
       .where.not({events: {name: %w[notify]}})
       .order(:id, "events.created_at")
   end
 
-  def draft_enrollments_with_last_update_or_create_events
+  def last_update_or_create_events_for_draft_enrollments
     enrollments = draft_enrollments
     events = enrollments.map { |enrollment| enrollment.events.last }.to_a
     events.reject { |event| event.name == "reminder" }
-  end
-
-  def created_at_updated_at_last_events?
-    draft_enrollments_with_last_update_or_create_events.any?
   end
 end
