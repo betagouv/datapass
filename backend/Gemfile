@@ -29,6 +29,7 @@ gem "sidekiq-scheduler", "~> 4.0", ">= 4.0.3"
 gem "state_machines-activerecord"
 
 group :test do
+  gem "database_cleaner-active_record"
   gem "db-query-matchers"
   gem "timecop"
 end
