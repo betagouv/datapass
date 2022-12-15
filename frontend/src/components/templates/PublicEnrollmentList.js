@@ -1,43 +1,49 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
-import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
 import { getPublicValidatedEnrollments } from '../../services/enrollments';
-
-import Tag from '../atoms/hyperTexts/Tag';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
-import TagContainer from '../atoms/TagContainer';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
 import { createColumnHelper } from '@tanstack/react-table';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
+import useQueryString from './hooks/use-query-string';
+import { debounce } from 'lodash';
+import { useAuth } from '../organisms/AuthContext';
 
 const columnHelper = createColumnHelper();
 
 const PublicEnrollmentList = () => {
-  const params = useParams();
-  const [enrollments, setEnrollments] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-
-  const [{ pageIndex, pageSize }, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
-
+  const { user } = useAuth();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
+  const [enrollments, setEnrollments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pagination, setPagination] = useQueryString('pagination', {
+    pageIndex: 0,
+  });
+  const [filtered, setFiltered] = useQueryString('filtered', []);
 
   useEffect(() => {
-    getPublicValidatedEnrollments({
-      targetApi: params.targetApi,
-      page: pageIndex,
-      size: pageSize,
-    }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
-      setEnrollments(enrollments);
-      setTotalPages(totalPages);
-    });
-  }, [params, pageIndex, pageSize]);
+    const debouncedFetchData = debounce(() => {
+      setLoading(true);
+      getPublicValidatedEnrollments({
+        filter: filtered,
+        page: pagination.pageIndex,
+      }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
+        setLoading(false);
+        setEnrollments(enrollments);
+        setTotalPages(totalPages);
+      });
+    }, 100);
 
-  const getColumnConfiguration = () => [
+    debouncedFetchData();
+
+    return () => {
+      debouncedFetchData.cancel();
+    };
+  }, [pagination, filtered]);
+
+  const columns = [
     columnHelper.accessor('updated_at', {
       enableColumnFilter: false,
       size: 50,
@@ -78,48 +84,46 @@ const PublicEnrollmentList = () => {
     columnHelper.accessor(
       ({ target_api }) => dataProviderConfigurations?.[target_api].label,
       {
-        enableColumnFilter: false,
         header: 'Fournisseur',
         id: 'target_api',
+        enableSorting: false,
+        meta: {
+          filter: 'select',
+          selectOptions: user?.roles
+            .filter((role) => role.endsWith(':reporter'))
+            .map((role) => {
+              const targetApiKey = role.split(':')[0];
+
+              return {
+                key: targetApiKey,
+                label: dataProviderConfigurations?.[targetApiKey].label,
+              };
+            }),
+        },
+        filterFn: 'arrIncludesSome',
       }
     ),
   ];
 
   return (
     <main>
-      <ListHeader title="Liste des habilitations">
-        <TagContainer>
-          <NavLink end to="/public">
-            {({ isActive }) => (
-              <Tag isActive={!!isActive}>Toutes les habilitations</Tag>
-            )}
-          </NavLink>
-          {Object.entries(dataProviderConfigurations || {})
-            .filter(
-              ([targetApi]) => !HIDDEN_DATA_PROVIDER_KEYS.includes(targetApi)
-            )
-            .map(([targetApi, { label }]) => (
-              <NavLink key={targetApi} end to={`/public/${targetApi}`}>
-                {({ isActive }) => <Tag isActive={!!isActive}>{label}</Tag>}
-              </NavLink>
-            ))}
-        </TagContainer>
-      </ListHeader>
+      <ListHeader title="Liste des habilitations" />
       <div className="table-container">
         <Table
           tableOptions={{
             data: enrollments,
-            columns: getColumnConfiguration(),
-            manualPagination: true,
+            columns: columns,
             pageCount: totalPages,
             state: {
-              pagination: {
-                pageIndex,
-                pageSize,
-              },
+              columnFilters: filtered,
+              pagination,
             },
             onPaginationChange: setPagination,
+            onColumnFiltersChange: setFiltered,
+            manualPagination: true,
+            manualFiltering: true,
           }}
+          loading={loading}
         />
       </div>
     </main>

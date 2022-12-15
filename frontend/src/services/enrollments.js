@@ -86,12 +86,15 @@ export function getNextEnrollments(id) {
 }
 
 export function getPublicValidatedEnrollments({
-  targetApi,
+  filter = [],
   page = null,
   size = null,
 }) {
+  const formatedFilter = filter.map(({ id, value }) => ({
+    [id]: value,
+  }));
   const queryParam = hashToQueryParams({
-    target_api: targetApi,
+    filter: formatedFilter,
     page,
     size,
   });

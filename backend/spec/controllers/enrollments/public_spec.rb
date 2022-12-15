@@ -1,7 +1,7 @@
 RSpec.describe EnrollmentsController, "#public", type: :controller do
   subject(:public_enrollments_payload) do
     get :public, params: {
-      target_api: target_api
+      filter: JSON.generate([{"target_api" => [target_api]}])
     }.compact
 
     JSON.parse(response.body)
@@ -14,7 +14,7 @@ RSpec.describe EnrollmentsController, "#public", type: :controller do
   let!(:another_enrollment) { create(:enrollment, :franceconnect) }
 
   context "without target_api" do
-    let(:target_api) { nil }
+    let(:target_api) { "" }
 
     it "renders all validated enrollments" do
       expect(public_enrollments_payload["enrollments"].count).to eq(3)
