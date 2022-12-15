@@ -10,6 +10,6 @@
 
 :schedule:
   schedule_reminder_email_for_draft_enrollments_worker:
-    cron: '0 8 * * *'  # Runs every day at 08:00 am
+    cron: '0 6 * * *'  # Runs every day at 06:00 am / cron: minute hour day(month) month day(week)
     class: ScheduleReminderEmailForDraftEnrollmentsWorker
     queue: reminders
