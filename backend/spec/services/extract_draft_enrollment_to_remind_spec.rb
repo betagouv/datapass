@@ -5,19 +5,17 @@ require "rails_helper"
 RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
   subject { described_class.new }
 
-  before :all do
-    Timecop.freeze
-  end
-
-  after :all do
-    Timecop.return
-  end
-
   context "enrollment not included in #draft_enrollments call" do
-    before do
+    before :each do
+      Timecop.freeze
+
       enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 94.days.ago, updated_at: 50.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 94.days.ago, updated_at: 94.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 50.days.ago, updated_at: 50.days.ago)
+    end
+
+    after :each do
+      Timecop.return
     end
 
     it "do not renders draft enrollment beyond the 1st of november" do
@@ -29,9 +27,15 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
   end
 
   context "enrollment created in the last 14 days" do
-    before do
+    before :each do
+      Timecop.freeze
+
       enrollment = create(:enrollment, :api_entreprise, :draft, created_at: 5.days.ago, updated_at: 5.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 5.days.ago, updated_at: 5.days.ago)
+    end
+
+    after :each do
+      Timecop.return
     end
 
     it "should not be include include in the #draft_enrollment list" do
@@ -44,7 +48,9 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
 
   context "#draft_enrollments" do
     context "when it includes only draft enrollments" do
-      before do
+      before :each do
+        Timecop.freeze
+
         enrollment = create(:enrollment, :api_entreprise, :validated, created_at: 35.days.ago, updated_at: 30.days.ago)
         create(:event, :create, enrollment: enrollment, created_at: 35.days.ago, updated_at: 35.days.ago)
         create(:event, :update, enrollment: enrollment, created_at: 30.days.ago, updated_at: 30.days.ago)
@@ -61,6 +67,10 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
         create(:event, :update, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
       end
 
+      after :each do
+        Timecop.return
+      end
+
       it "renders draft enrollments between 15 days and a month ago" do
         result = subject.draft_enrollments
 
@@ -70,7 +80,9 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
   end
 
   context "checking enrollment's events" do
-    before do
+    before :each do
+      Timecop.freeze
+
       enrollment = create(:enrollment, :franceconnect, :draft, created_at: 60.days.ago, updated_at: 15.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 60.days.ago, updated_at: 60.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 30.days.ago, updated_at: 30.days.ago)
@@ -83,6 +95,10 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
 
       enrollment = create(:enrollment, :franceconnect, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
       create(:event, name: "create", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+    end
+
+    after :each do
+      Timecop.return
     end
 
     it "includes draft enrollment with no notify events" do
@@ -114,7 +130,9 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
   end
 
   context "when #call checks if there is any enrollments" do
-    before do
+    before :each do
+      Timecop.freeze
+
       enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :draft, created_at: 16.days.ago, updated_at: 16.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
       create(:event, :notify, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
@@ -122,6 +140,10 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :worker do
 
       enrollment = create(:enrollment, :franceconnect, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
       create(:event, name: "create", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+    end
+
+    after :each do
+      Timecop.return
     end
 
     it "returns an array with enrollment(s)" do
