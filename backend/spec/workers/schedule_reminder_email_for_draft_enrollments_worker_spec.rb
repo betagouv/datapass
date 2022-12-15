@@ -5,9 +5,11 @@ require "rails_helper"
 RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
   subject { described_class.new }
 
-  before :all do
+  before do
     Timecop.freeze
+  end
 
+  before do
     enrollment = create(:enrollment, :franceconnect, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
     create(:event, name: "create", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
   end
