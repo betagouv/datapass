@@ -16,7 +16,7 @@ import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
   EnrollmentStatus,
-  INSTRUCTOR_STATUS_LABELS,
+  STATUS_LABELS,
 } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { useAuth } from '../organisms/AuthContext';
@@ -246,13 +246,14 @@ const InstructorEnrollmentList: React.FC = () => {
       filterFn: 'arrIncludesSome',
       meta: {
         filter: 'select',
-        selectOptions: Object.entries(INSTRUCTOR_STATUS_LABELS).map(
-          ([key, label]) => ({ key, label })
-        ),
+        selectOptions: Object.entries(STATUS_LABELS).map(([key, label]) => ({
+          key,
+          label,
+        })),
       },
       cell: ({ getValue }) => {
         const status = getValue() as EnrollmentStatus;
-        return <StatusBadge icon userType="instructor" status={status} />;
+        return <StatusBadge icon status={status} />;
       },
     }),
   ];

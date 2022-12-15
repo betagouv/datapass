@@ -20,7 +20,7 @@ import {
 import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
 import {
   EnrollmentStatus,
-  USER_STATUS_LABELS,
+  STATUS_LABELS,
 } from '../../config/status-parameters';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { getAPIStats } from '../../services/stats';
@@ -232,12 +232,12 @@ export const Stats = () => {
                   <Tooltip
                     formatter={(value, name, props) => [
                       value,
-                      USER_STATUS_LABELS[name],
+                      STATUS_LABELS[name],
                       props,
                     ]}
                     labelFormatter={(value) => moment(value).format('MMM YYYY')}
                   />
-                  <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
+                  <Legend formatter={(value) => STATUS_LABELS[value]} />
                   <CartesianGrid vertical={false} />
                   {Object.keys(EnrollmentStatus).map((status, index, array) => (
                     <Bar
@@ -273,12 +273,12 @@ export const Stats = () => {
                     layout={'vertical'}
                     align={'right'}
                     verticalAlign={'middle'}
-                    formatter={(value) => USER_STATUS_LABELS[value]}
+                    formatter={(value) => STATUS_LABELS[value]}
                   />
                   <Tooltip
                     formatter={(value, name, props) => [
                       value,
-                      USER_STATUS_LABELS[name],
+                      STATUS_LABELS[name],
                       props,
                     ]}
                   />

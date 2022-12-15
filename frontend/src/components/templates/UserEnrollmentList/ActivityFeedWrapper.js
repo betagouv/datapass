@@ -1,7 +1,7 @@
 import { chain } from 'lodash';
 import PropTypes from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
-import { USER_STATUS_LABELS } from '../../../config/status-parameters';
+import { STATUS_LABELS } from '../../../config/status-parameters';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert from '../../atoms/Alert';
 import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
@@ -43,7 +43,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     ['request_changes'].includes(lastEventName)
   ) {
     return (
-      <Alert title={USER_STATUS_LABELS[status]} type="warning">
+      <Alert title={STATUS_LABELS[status]} type="warning">
         Votre demande d’habilitation est incomplète et requiert les
         modifications suivantes :
         <div style={{ margin: '1rem 0' }}>
@@ -66,7 +66,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     ['create', 'update'].includes(lastEventName)
   ) {
     return (
-      <Alert title={USER_STATUS_LABELS[status]}>
+      <Alert title={STATUS_LABELS[status]}>
         <p>
           Votre demande d’habilitation est actuellement en cours d’édition.
           Notre service juridique pourra la consulter lorsque vous cliquerez sur
@@ -78,7 +78,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
 
   if (status === 'submitted' && majorityPercentileProcessingTimeInDays > 0) {
     return (
-      <Alert title={USER_STATUS_LABELS[status]}>
+      <Alert title={STATUS_LABELS[status]}>
         La majorité des demandes d’habilitation des 6 derniers mois reçoivent
         une réponse en moins de{' '}
         <b>{majorityPercentileProcessingTimeInDays} jours</b>.

@@ -62,6 +62,6 @@ describe("DataPass", () => {
 
     cy.get("button.fr-icon-checkbox-line").click();
 
-    cy.contains("En cours de validation");
+    cy.contains("En cours");
   });
 });
