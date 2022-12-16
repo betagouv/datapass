@@ -22,6 +22,9 @@ Cypress.Commands.add("checkBox", (checkbox) => {
 Cypress.Commands.add(
   "fillField",
   (fieldName, value, fieldType = "input") => {
-    cy.get(`${fieldType}[name="${fieldName}"]`).clear().type(value);
+    cy.get(`${fieldType}[name="${fieldName}"]`)
+      .clear()
+      .focus()
+      .type(value);
   }
 );
