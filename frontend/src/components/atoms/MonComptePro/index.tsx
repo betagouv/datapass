@@ -1,13 +1,14 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
+import './style.css';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export const loginUrl = `${BACK_HOST}/users/auth/api_gouv`;
 
-const MonComptePro: React.FC = () => (
+const MonComptePro: FunctionComponent = () => (
   <div className="fr-connect-group">
     <form action={loginUrl} method="post" className="fr-m-0">
-      <button className="fr-connect fr-connect">
+      <button className="fr-connect fr-moncomptepro">
         <span className="fr-connect__login">S’identifier avec</span>
         <span className="fr-connect__brand">MonComptePro</span>
       </button>
