@@ -25,6 +25,8 @@ Cypress.Commands.add(
     cy.get(`${fieldType}[name="${fieldName}"]`)
       .clear()
       .focus()
-      .type(value);
+      .should("not.be.disabled")
+      .type(value)
+      .blur();
   }
 );
