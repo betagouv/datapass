@@ -27,7 +27,7 @@ const ApiImpotParticulierProduction = () => (
     />
     <HomologationSecuriteSection />
     <VolumetrieSection />
-    <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_septembre2020_v3.5.pdf" />
+    <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf" />
   </Form>
 );
 
