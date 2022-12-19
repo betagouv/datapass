@@ -90,7 +90,7 @@ const ApiTiersDePrestation = () => (
       responsableTechniqueNeedsMobilePhone={true}
     />
     <PiecesJustificativesSection />
-    <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1.pdf" />
+    <CguSection cguLink="/docs/cgu_api_tiers_de_prestation_v1_3.pdf" />
   </Form>
 );
 
