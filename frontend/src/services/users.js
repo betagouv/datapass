@@ -3,12 +3,29 @@ import httpClient from '../lib/http-client';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export function getUsers({ usersWithRolesOnly = true }) {
+export function getUsers({
+  usersWithRolesOnly = true,
+  filter = [],
+  page = null,
+  size = null,
+}) {
+  const formatedFilter = filter.map(({ id, value }) => ({
+    [id]: value,
+  }));
+
   const queryParam = hashToQueryParams({
     users_with_roles_only: usersWithRolesOnly,
+    page,
+    size,
+    filter: formatedFilter,
   });
+
   return httpClient
-    .get(`${BACK_HOST}/api/users${queryParam}`)
+    .get(`${BACK_HOST}/api/users${queryParam}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     .then(({ data }) => data);
 }
 
