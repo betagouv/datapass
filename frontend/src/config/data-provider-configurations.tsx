@@ -93,6 +93,7 @@ export type DataProviderConfiguration = {
   email: string | null;
   type: DataProviderType;
   component?: React.FC;
+  url?: string;
 };
 
 export const DATA_PROVIDER_CONFIGURATIONS: {
@@ -111,6 +112,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'dgs-certdc@sante.gouv.fr',
     type: DataProviderType.service,
     component: HubeePortail,
+    url: 'https://portail.hubee.numerique.gouv.fr/',
   },
   hubee_portail_dila: {
     label: 'Portail HubEE - Démarches DILA',
@@ -118,6 +120,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'support.partenaires@service-public.fr',
     type: DataProviderType.service,
     component: HubeePortailDila,
+    url: 'https://portail.hubee.numerique.gouv.fr/',
   },
   franceconnect: {
     label: 'FranceConnect',
@@ -132,6 +135,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'support@entreprise.api.gouv.fr',
     type: DataProviderType.api,
     component: ApiEntreprise,
+    url: 'https://entreprise.api.gouv.fr/compte',
   },
   api_impot_particulier_sandbox: {
     label: 'API Impôt particulier (Bac à sable)',

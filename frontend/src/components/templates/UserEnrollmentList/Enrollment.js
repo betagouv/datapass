@@ -7,6 +7,7 @@ import { useDataProvider } from '../hooks/use-data-provider';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { StatusBadge } from '../../molecules/StatusBadge';
+import NextStepButton from '../../molecules/NextStepButton';
 
 const Enrollment = ({
   id,
@@ -72,9 +73,12 @@ const Enrollment = ({
           <div>
             <b>N° {id}</b>
           </div>
-          <Button large onClick={handleClick}>
-            Consulter
-          </Button>
+          <div className="enrollment-actions">
+            <NextStepButton target_api={target_api} status={status} />
+            <Button large onClick={handleClick}>
+              Consulter
+            </Button>
+          </div>
         </div>
       </div>
     </div>
