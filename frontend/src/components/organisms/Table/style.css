@@ -19,10 +19,10 @@
   top: 0%;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 100;
-  animation: fadein 0.3s;
+  animation: datapass-table-fadein 0.3s;
 }
 
-@keyframes fadein {
+@keyframes datapass-table-fadein {
   from {
     opacity: 0;
   }
@@ -46,12 +46,39 @@
   transform: translate(-50%, -50%);
 }
 
+.datapass-table .header-container {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.datapass-checkbox-filter.fr-checkbox-group input[type='checkbox'] + label {
+  padding: 0.4rem 0;
+}
+
+.datapass-checkbox-filter.fr-checkbox-group
+  input[type='checkbox']
+  + label:before {
+  margin: 0.4rem 0;
+}
+
+.datapass-table .fr-label + .fr-input,
+.datapass-table .fr-label + .fr-input-wrap,
+.datapass-table .fr-label + .fr-select {
+  margin-top: 0;
+}
+
+.datapass-table .fr-checkbox-group:last-child {
+  margin-bottom: 0;
+}
+
 .datapass-table-sorting-arrow {
-  height: 45px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: x-large;
+  margin-top: 0.4rem;
   color: var(--text-action-high-blue-france);
 }
 
@@ -59,11 +86,11 @@
   display: flex;
 }
 
-.sorting-header {
+.datapass-table .sorting-header {
   cursor: pointer;
 }
 
-.selected {
+.datapass-table .selected {
   background: rgba(0, 0, 0, 0.08);
 }
 

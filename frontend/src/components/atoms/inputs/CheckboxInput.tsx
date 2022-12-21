@@ -15,6 +15,7 @@ type Props = {
   placeholder?: string;
   value?: boolean;
   disabled?: boolean;
+  className?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   ariaLabel?: string;
   required?: boolean;
@@ -27,6 +28,7 @@ export const CheckboxInput: FunctionComponent<Props> = ({
   name,
   value = false,
   disabled,
+  className = '',
   onChange,
   required,
   ...rest
@@ -36,7 +38,7 @@ export const CheckboxInput: FunctionComponent<Props> = ({
   const [id] = useState(uniqueId(name));
 
   return (
-    <div className="fr-checkbox-group">
+    <div className={`fr-checkbox-group ${className}`}>
       <input
         onChange={onChange}
         disabled={disabled}
