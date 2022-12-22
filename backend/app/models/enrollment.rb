@@ -163,6 +163,10 @@ class Enrollment < ActiveRecord::Base
     User.where("roles && ARRAY[?]::varchar[]", roles)
   end
 
+  def already_been_copied?
+    Enrollment.where(copied_from_enrollment_id: id).any?
+  end
+
   def demandeurs
     team_members.where(type: "demandeur")
   end

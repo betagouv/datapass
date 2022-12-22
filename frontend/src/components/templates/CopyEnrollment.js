@@ -25,12 +25,18 @@ const CopyEnrollment = () => {
       setCopiedEnrollmentId(id);
       setCopiedTargetApi(target_api);
     } catch (e) {
-      if (getErrorMessages(e)[0]) {
-        setCopyErrorMessage(getErrorMessages(e)[0]);
+      if (e.response?.data?.title && e.response?.data?.message) {
+        setCopyErrorMessage(e.response.data);
+      } else if (getErrorMessages(e)[0]) {
+        setCopyErrorMessage({
+          title: 'Erreur',
+          message: getErrorMessages(e)[0],
+        });
       } else {
-        setCopyErrorMessage(
-          'Erreur inconnue lors de la copie de l’habilitation.'
-        );
+        setCopyErrorMessage({
+          title: 'Erreur',
+          message: 'Erreur inconnue lors de la copie de l’habilitation.',
+        });
       }
     }
   };
@@ -59,9 +65,9 @@ const CopyEnrollment = () => {
   if (copyErrorMessage) {
     return (
       <div className="full-page">
-        <Alert title="Erreur" type="error">
+        <Alert title={copyErrorMessage.title} type="warning">
           <Linkify
-            message={`${copyErrorMessage} L’habilitation #${enrollmentId} n’a pas été copiée.`}
+            message={`${copyErrorMessage.message} L’habilitation #${enrollmentId} n’a pas été copiée.`}
           />
         </Alert>
       </div>

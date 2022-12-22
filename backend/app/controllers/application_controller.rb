@@ -71,22 +71,11 @@ class ApplicationController < ActionController::API
 
   rescue_from Pundit::NotAuthorizedError do |exception|
     policy = exception.policy
-    error_key = policy.respond_to?(:error_message_key) ? policy.error_message_key : nil
+    error_key = policy.respond_to?(:error_message_key) ? policy.error_message_key : :unknown
 
-    error_message = case error_key
-    when :copy_enrollment_is_not_validated_nor_refused
-      "Copie impossible, la demande d’habilitation originale n’est ni validée ni refusée."
-    when :copy_user_do_not_belong_to_organization
-      "Copie impossible, l’habilitation originale est déposée au nom d’une organisation à laquelle vous n’appartenez pas."
-    when :copy_user_is_not_demandeur
-      "Copie impossible, vous n’êtes pas le demandeur de l’habilitation originale."
-    else
-      "Vous n’êtes pas autorisé à modifier cette ressource"
-    end
+    error = I18n.t!("enrollment_errors.#{error_key}")
 
-    render status: :forbidden, json: {
-      message: error_message
-    }
+    render status: :forbidden, json: error
   end
 
   rescue_from ActiveRecord::ActiveRecordError do |e|
