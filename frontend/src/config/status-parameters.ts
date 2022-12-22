@@ -9,24 +9,13 @@ export enum EnrollmentStatus {
   revoked = 'revoked',
 }
 
-export const INSTRUCTOR_STATUS_LABELS: {
+export const STATUS_LABELS: {
   [key in EnrollmentStatus]: string;
 } = {
   draft: 'Brouillon',
-  submitted: 'À valider',
+  submitted: 'En cours',
   validated: 'Validée',
-  changes_requested: 'Retour',
-  refused: 'Refusée',
-  revoked: 'Révoquée',
-};
-
-export const USER_STATUS_LABELS: {
-  [key in EnrollmentStatus]: string;
-} = {
-  draft: 'Brouillon',
-  submitted: 'En cours de validation',
-  validated: 'Validée',
-  changes_requested: 'Modifications demandées',
+  changes_requested: 'À changer',
   refused: 'Refusée',
   revoked: 'Révoquée',
 };
