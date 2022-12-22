@@ -7,15 +7,10 @@ export const FieldsetWrapper = ({
   grid = false,
   inline = false,
   small = false,
-  className = '',
   children,
 }) => {
   return (
-    <div
-      className={`fr-form-group${
-        small ? ' fr-checkbox-group--sm' : ''
-      } ${className}`}
-    >
+    <div className={small ? 'fr-checkbox-group--sm' : 'fr-form-group'}>
       <fieldset
         className={`fr-fieldset${grid ? ' datapass_fieldset_grid' : ''}${
           inline ? ' fr-fieldset--inline' : ''

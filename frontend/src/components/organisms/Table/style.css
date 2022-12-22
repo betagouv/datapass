@@ -69,10 +69,6 @@
   margin-top: 0;
 }
 
-.datapass-table .fr-checkbox-group:last-child {
-  margin-bottom: 0;
-}
-
 .datapass-table-sorting-arrow {
   display: flex;
   justify-content: flex-start;

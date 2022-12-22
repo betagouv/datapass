@@ -16,9 +16,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* extra rules to fix conflicts with ReactTable stylesheets */
-.ReactTable .rt-th {
-  overflow: inherit !important;
-  font-weight: normal !important;
-}

@@ -28,3 +28,9 @@
   white-space: nowrap;
   content: '\00a0\00a0\00a0\00a0';
 }
+
+/* fix margin issue with fr-fieldset__content */
+.datapass-dropdown-content .fr-fieldset__content {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
