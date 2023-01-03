@@ -20,4 +20,51 @@ RSpec.describe FilterService, type: :service do
       end
     end
   end
+
+  describe "#sanitize_value" do
+    subject { described_class.new({}).sanitize_value(value) }
+    context "with a value string containing extra characters" do
+      let(:value) { "têam_mémbers" }
+      it { is_expected.to be == "team_members" }
+    end
+  end
+
+  describe "#is_valid_key" do
+    subject { described_class.new({}).is_valid_key(key) }
+    context "with a non-valid key string" do
+      let(:key) { "cgu_approved" }
+      it { is_expected.to be false }
+    end
+
+    context "with a valid key string" do
+      let(:key) { "siret" }
+      it { is_expected.to be true }
+    end
+  end
+
+  describe "#is_fuzzy" do
+    subject { described_class.new({}).is_fuzzy(key) }
+    context "with a non-fuzzy-allowed key string" do
+      let(:key) { "status" }
+      it { is_expected.to be false }
+    end
+
+    context "with a fuzzy-allowed key string" do
+      let(:key) { "nom_raison_sociale" }
+      it { is_expected.to be true }
+    end
+  end
+
+  describe "#sanitize_key" do
+    subject { described_class.new({}).sanitize_key(key) }
+    context "with a key that is not team_members" do
+      let(:key) { "siret" }
+      it { is_expected.to be == "\"enrollments\".\"siret\"" }
+    end
+
+    context "with the team_members key" do
+      let(:key) { "team_members.email" }
+      it { is_expected.to be == "\"team_members\".\"email\"" }
+    end
+  end
 end
