@@ -91,7 +91,8 @@ export function getPublicValidatedEnrollments({
   size = null,
 }) {
   const formatedFilter = filter.map(({ id, value }) => ({
-    [id]: value,
+    key: id,
+    value,
   }));
   const queryParam = hashToQueryParams({
     filter: formatedFilter,
@@ -119,7 +120,8 @@ export function getEnrollments({
     [id]: desc ? 'desc' : 'asc',
   }));
   const formatedFilter = filter.map(({ id, value }) => ({
-    [id]: value,
+    key: id,
+    value,
   }));
   const queryParam = hashToQueryParams({
     page,

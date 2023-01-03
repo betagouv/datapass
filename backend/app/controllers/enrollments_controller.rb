@@ -27,7 +27,7 @@ class EnrollmentsController < ApplicationController
     end
 
     begin
-      @enrollments = FilterService.new(params).call(@enrollments)
+      @enrollments = FilterService.call(params, @enrollments)
     rescue JSON::ParserError
       # silently fail, if the filter is not formatted properly we do not apply it
     end
@@ -73,7 +73,7 @@ class EnrollmentsController < ApplicationController
       .order(updated_at: :desc)
 
     begin
-      @enrollments = FilterService.new(params).call(@enrollments)
+      @enrollments = FilterService.call(params, @enrollments)
     rescue JSON::ParserError
       # silently fail, if the filter is not formatted properly we do not apply it
     end

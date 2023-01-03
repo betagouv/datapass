@@ -8,12 +8,11 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
-import { useAuth } from '../organisms/AuthContext';
+import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
 
 const columnHelper = createColumnHelper();
 
 const PublicEnrollmentList = () => {
-  const { user } = useAuth();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,6 +45,7 @@ const PublicEnrollmentList = () => {
   const columns = [
     columnHelper.accessor('updated_at', {
       enableColumnFilter: false,
+      enableSorting: false,
       size: 50,
       header: () => <ScheduleIcon title="date de dernière mise à jour" />,
       cell: ({ getValue }) => <small>{moment(getValue()).format('D/M')}</small>,
@@ -53,14 +53,17 @@ const PublicEnrollmentList = () => {
     columnHelper.accessor('nom_raison_sociale', {
       enableColumnFilter: false,
       header: 'Organisation',
+      enableSorting: false,
     }),
     columnHelper.accessor('siret', {
       enableColumnFilter: false,
+      enableSorting: false,
       header: 'SIRET',
     }),
     columnHelper.accessor('intitule', {
       enableColumnFilter: false,
       header: 'Intitulé',
+      enableSorting: false,
     }),
     columnHelper.accessor(
       ({
@@ -77,6 +80,7 @@ const PublicEnrollmentList = () => {
       },
       {
         enableColumnFilter: false,
+        enableSorting: false,
         header: 'Responsable traitement',
         id: 'responsable_traitement_name',
       }
@@ -89,16 +93,14 @@ const PublicEnrollmentList = () => {
         enableSorting: false,
         meta: {
           filter: 'select',
-          selectOptions: user?.roles
-            .filter((role) => role.endsWith(':reporter'))
-            .map((role) => {
-              const targetApiKey = role.split(':')[0];
-
-              return {
-                key: targetApiKey,
-                label: dataProviderConfigurations?.[targetApiKey].label,
-              };
-            }),
+          selectOptions: Object.entries(dataProviderConfigurations || {})
+            .filter(
+              ([targetApi]) => !HIDDEN_DATA_PROVIDER_KEYS.includes(targetApi)
+            )
+            .map(([targetApi, { label }]) => ({
+              key: targetApi,
+              label: label,
+            })),
         },
         filterFn: 'arrIncludesSome',
       }

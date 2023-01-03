@@ -118,6 +118,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "3e4fc0ecc4769c552ebf262aadf4f3ba9b5e8ed0155909630e887de5a78ded6b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/services/filter_service.rb",
+      "line": 49,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "(enrollments.includes(:team_members) or enrollments.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).where(\"#{sanitize_key(filter_key)}::varchar(255) ~* ?\", (if is_fuzzy(filter_key) then\n  \".*(#{sanitize_value(filter_value)}).*\"\nelse\n  \"^(#{sanitize_value(filter_value)})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FilterService",
+        "method": "call"
+      },
+      "user_input": "sanitize_key(filter_key)",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "46ce81ed94535390cefbe7f0b99bc585d4549b4a0cda76d6e8723e174cc22e2a",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -233,6 +256,29 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "75b08fd29fda8e4a2d7dd473e54ecdf310a8dddb503aaea4d99140ec28ac5be7",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/services/filter_service.rb",
+      "line": 49,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "(items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).where(\"#{sanitize_key(filter_key, (items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).table_name)}::varchar(255) ~* ?\", (if is_fuzzy(filter_key) then\n  \".*(#{sanitize_value(filter_value)}).*\"\nelse\n  \"^(#{sanitize_value(filter_value)})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FilterService",
+        "method": "call"
+      },
+      "user_input": "sanitize_key(filter_key, (items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).table_name)",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "8592b6a3a71a436db6b921a352a9f0faad7e4e498a2fd81a5944211c6ae2338a",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -248,6 +294,52 @@
       },
       "user_input": "params[:target_api]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "87e23730910e228db19ab6b88ea4c82c7a42da279f45abed7130133969e89eed",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/services/filter_service.rb",
+      "line": 66,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "items.includes(:team_members).joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true })).where(\"#{sanitize_key(filter_item[\"key\"], items.includes(:team_members).joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true })).table_name)}::varchar(255) ~* ?\", (if is_fuzzy(filter_item[\"key\"], items.includes(:team_members).joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true })).table_name) then\n  \".*(#{sanitize_value(filter_item[\"value\"])}).*\"\nelse\n  \"^(#{sanitize_value(filter_item[\"value\"])})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FilterService",
+        "method": "call"
+      },
+      "user_input": "sanitize_key(filter_item[\"key\"], items.includes(:team_members).joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true })).table_name)",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "9519c27c590546d7f71628a3074a23a523dfbcac7e036501ad45d153be37019b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/services/filter_service.rb",
+      "line": 52,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "filter_enrollments(filter_key, enrollments).where(\"#{sanitize_key(filter_key)}::varchar(255) ~* ?\", (if is_fuzzy(filter_key) then\n  \".*(#{sanitize_value(filter_value)}).*\"\nelse\n  \"^(#{sanitize_value(filter_value)})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FilterService",
+        "method": "call"
+      },
+      "user_input": "sanitize_key(filter_key)",
+      "confidence": "Weak",
       "cwe_id": [
         89
       ],
@@ -294,6 +386,29 @@
       },
       "user_input": "params[:target_api_list]",
       "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "c0df3f2da8956a38dd8356ff7085cbb2ff864b620fb75a50e4056885f28c50fe",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/services/filter_service.rb",
+      "line": 62,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "(items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).where(\"#{sanitize_key(filter_item[\"key\"], (items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).table_name)}::varchar(255) ~* ?\", (if is_fuzzy(filter_item[\"key\"], (items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).table_name) then\n  \".*(#{sanitize_value(filter_item[\"value\"])}).*\"\nelse\n  \"^(#{sanitize_value(filter_item[\"value\"])})$\"\nend))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "FilterService",
+        "method": "call"
+      },
+      "user_input": "sanitize_key(filter_item[\"key\"], (items.includes(:team_members) or items.joins(:events).where(:events => ({ :name => \"notify\", :processed_at => nil, :is_notify_from_demandeur => true }))).table_name)",
+      "confidence": "Weak",
       "cwe_id": [
         89
       ],
@@ -369,6 +484,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-01-03 09:32:40 +0100",
+  "updated": "2023-01-24 10:17:20 +0100",
   "brakeman_version": "5.4.0"
 }

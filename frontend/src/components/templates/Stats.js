@@ -1,5 +1,6 @@
 import { pickBy } from 'lodash';
 import moment from 'moment';
+import qs from 'query-string';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
@@ -181,7 +182,18 @@ export const Stats = () => {
               <div className="card__meta">
                 <Link
                   inline
-                  href={`/public${targetApi ? `/${targetApi}` : ''}`}
+                  href={`/public${
+                    targetApi
+                      ? `?${qs.stringify({
+                          filtered: JSON.stringify([
+                            {
+                              id: 'target_api',
+                              value: [targetApi],
+                            },
+                          ]),
+                        })}`
+                      : ''
+                  }`}
                 >
                   voir la liste détaillée
                 </Link>

@@ -84,7 +84,8 @@ RSpec.describe UsersController, type: :controller do
           get :index, params: {
             users_with_roles_only: users_with_roles_only,
             filter: [{
-              "email" => searched_user_email_filter
+              key: "email",
+              value: searched_user_email_filter
             }].to_json
           }
 

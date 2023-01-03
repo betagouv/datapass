@@ -29,7 +29,8 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
           updated_at: :desc
         }].to_json,
         filter: [{
-          "team_members.email" => searched_user_email_filter
+          key: "team_members.email",
+          value: searched_user_email_filter
         }].to_json
       }
 
@@ -67,7 +68,8 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
         target_api: "franceconnect",
         sortedBy: [].to_json,
         filter: [{
-          "only_with_unprocessed_messages" => true
+          key: "only_with_unprocessed_messages",
+          value: true
         }].to_json
       }
 

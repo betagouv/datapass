@@ -9,7 +9,7 @@ RSpec.describe FilterService, type: :service do
     end
 
     context "with a filter set on target_api" do
-      subject { described_class.new({filter: JSON.generate([{"target_api" => ["franceconnect"]}])}).call(Enrollment.all) }
+      subject { described_class.call({filter: JSON.generate([{key: "target_api", value: ["franceconnect"]}])}, Enrollment.all) }
 
       it "returns only the one with the correct target_api" do
         expect(subject.count).to eq(1)
@@ -22,7 +22,7 @@ RSpec.describe FilterService, type: :service do
   end
 
   describe "#sanitize_value" do
-    subject { described_class.new({}).sanitize_value(value) }
+    subject { described_class.new({}, []).sanitize_value(value) }
     context "with a value string containing extra characters" do
       let(:value) { "têam_mémbers" }
       it { is_expected.to be == "team_members" }
@@ -30,7 +30,7 @@ RSpec.describe FilterService, type: :service do
   end
 
   describe "#is_valid_key" do
-    subject { described_class.new({}).is_valid_key(key) }
+    subject { described_class.new({}, []).is_valid_key(key, "enrollments") }
     context "with a non-valid key string" do
       let(:key) { "cgu_approved" }
       it { is_expected.to be false }
@@ -43,7 +43,7 @@ RSpec.describe FilterService, type: :service do
   end
 
   describe "#is_fuzzy" do
-    subject { described_class.new({}).is_fuzzy(key) }
+    subject { described_class.new({}, []).is_fuzzy(key, "enrollments") }
     context "with a non-fuzzy-allowed key string" do
       let(:key) { "status" }
       it { is_expected.to be false }
@@ -56,7 +56,7 @@ RSpec.describe FilterService, type: :service do
   end
 
   describe "#sanitize_key" do
-    subject { described_class.new({}).sanitize_key(key) }
+    subject { described_class.new({}, []).sanitize_key(key, "enrollments") }
     context "with a key that is not team_members" do
       let(:key) { "siret" }
       it { is_expected.to be == "\"enrollments\".\"siret\"" }

@@ -1,7 +1,7 @@
 RSpec.describe EnrollmentsController, "#public", type: :controller do
   subject(:public_enrollments_payload) do
     get :public, params: {
-      filter: JSON.generate([{"target_api" => [target_api]}])
+      filter: JSON.generate([{key: "target_api", value: [target_api]}])
     }.compact
 
     JSON.parse(response.body)

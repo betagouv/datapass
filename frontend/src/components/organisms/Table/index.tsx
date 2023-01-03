@@ -92,13 +92,13 @@ const Table = ({
     (toggleSortingHandler: (event: SyntheticEvent) => void) =>
     (event: SyntheticEvent) => {
       toggleSortingHandler(event);
-      table.setPageIndex(0);
+      table.resetPagination();
     };
 
   const getOnFilterChange =
     (setFilterValue: (updater: any) => void) => (updater: any) => {
       setFilterValue(updater);
-      table.setPageIndex(0);
+      table.resetPagination();
     };
 
   const rowClassName = (row: Row<RowData>) => {
@@ -120,8 +120,8 @@ const Table = ({
 
     return generatedArray.map((i) => (
       <tr key={i}>
-        {table.getAllColumns().map((column) => (
-          <td key={column.columnDef.id}></td>
+        {table.getAllColumns().map((column, columnI) => (
+          <td key={`${i}-${column.columnDef.id}-${columnI}`}></td>
         ))}
       </tr>
     ));
