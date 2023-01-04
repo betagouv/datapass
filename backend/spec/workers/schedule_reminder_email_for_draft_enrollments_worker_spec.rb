@@ -5,20 +5,20 @@ require "rails_helper"
 RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
   subject { described_class.new }
 
-  before do
-    Timecop.freeze(Time.now.change(year: 2022, month: 12))
-  end
-
-  before do
-    enrollment = create(:enrollment, :franceconnect, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
-    create(:event, name: "create", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
-  end
-
-  after do
-    Timecop.return
-  end
-
   describe "#perform" do
+    before do
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
+    end
+
+    before do
+      enrollment = create(:enrollment, :franceconnect, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
+      create(:event, name: "create", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+    end
+
+    after do
+      Timecop.return
+    end
+
     describe "email sends to demandeurs when enrollment is in draft for more than 15 days" do
       include ActiveJob::TestHelper
 
@@ -49,6 +49,26 @@ RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
         expect(enrollment.events.count).to eq(2)
         expect(last_enrollment_event.name).to eq("reminder")
       end
+    end
+  end
+
+  describe "#perform when no draft enrollments" do
+    before do
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
+    end
+
+    before do
+      enrollment = create(:enrollment, :franceconnect, :draft, created_at: 30.days.ago, updated_at: 15.days.ago)
+      create(:event, name: "create", enrollment: enrollment, created_at: 30.days.ago, updated_at: 30.days.ago)
+      create(:event, name: "reminder", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "raises" do
+      expect { subject.perform }.to raise_error(NoMethodError)
     end
   end
 end

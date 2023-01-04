@@ -179,4 +179,31 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
       expect(results.count).to eq(2)
     end
   end
+
+  describe "when there is no draft enrollments to send reminder email to" do
+    before do
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
+    end
+
+    before do
+      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :draft, created_at: 15.days.ago, updated_at: 16.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
+      create(:event, :notify, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
+      create(:event, :update, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
+      create(:event, :reminder, enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+
+      enrollment = create(:enrollment, :franceconnect, :draft, created_at: 14.days.ago, updated_at: 14.days.ago)
+      create(:event, name: "create", enrollment: enrollment, created_at: 14.days.ago, updated_at: 14.days.ago)
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it "returns an empty array with no enrollment(s)" do
+      result = subject.last_update_or_create_events_for_draft_enrollments
+
+      expect(result).to eq([])
+    end
+  end
 end
