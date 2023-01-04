@@ -85,6 +85,7 @@ class StatsController < ApplicationController
         COUNT(*) as total
       FROM enrollments
       WHERE #{filter_by_target_api_criteria}
+      AND created_at > '2020-01-01 00:00:00'
       GROUP BY month
       ORDER BY month;
     SQL
