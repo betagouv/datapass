@@ -11,7 +11,7 @@ class EnrollmentReminderMailer < ActionMailer::Base
     @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
 
     mail(
-      to: enrollment.demandeurs.pluck(:email),
+      to: @enrollment.demandeurs.pluck(:email),
       from: "notifications@api.gouv.fr",
       subject: "<%= given_name %>, votre demande d'habilitation à <%= target_api_label %> vous attend.",
       template_path: "enrollment_mailer/demandeur",

@@ -6,7 +6,7 @@ RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
   subject { described_class.new }
 
   before do
-    Timecop.freeze
+    Timecop.freeze(Time.now.change(year: 2022, month: 12))
   end
 
   before do

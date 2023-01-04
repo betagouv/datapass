@@ -5,7 +5,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
 
   describe "enrollment not included in #draft_enrollments call" do
     before do
-      Timecop.freeze
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
     end
 
     before do
@@ -28,7 +28,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
 
   describe "enrollment created in the last 14 days" do
     before do
-      Timecop.freeze
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
     end
 
     before do
@@ -54,7 +54,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
   describe "#draft_enrollments" do
     context "when it includes only draft enrollments" do
       before do
-        Timecop.freeze
+        Timecop.freeze(Time.now.change(year: 2022, month: 12))
       end
 
       before do
@@ -86,7 +86,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
 
     context "checking enrollment's events" do
       before do
-        Timecop.freeze
+        Timecop.freeze(Time.now.change(year: 2022, month: 12))
       end
 
       before do
@@ -139,7 +139,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
 
   describe "when #call checks if there is any enrollments" do
     before do
-      Timecop.freeze
+      Timecop.freeze(Time.now.change(year: 2022, month: 12))
     end
 
     before do
