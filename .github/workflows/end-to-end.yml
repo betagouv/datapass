@@ -107,6 +107,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
+          browser: chrome
           install: false
           working-directory: .
       - uses: actions/upload-artifact@v3
