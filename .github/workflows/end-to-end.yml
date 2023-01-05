@@ -26,6 +26,8 @@ jobs:
       INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
       INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
       DO_NOT_VALIDATE_MAIL: "True"
+      FORCE_COOKIES_SAME_SITE_PROTECTION: "True"
+
     services:
       redis:
         image: redis
