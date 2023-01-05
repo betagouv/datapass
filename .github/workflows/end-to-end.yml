@@ -108,6 +108,8 @@ jobs:
         run: npx wait-on tcp:3000 -t 30000
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        env:
+          DEBUG: '@cypress/github-action'
         with:
           browser: chrome
           install: false
