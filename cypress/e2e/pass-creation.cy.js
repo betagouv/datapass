@@ -1,3 +1,4 @@
+// By default, Cypress will clear the current session data before each test when testIsolation is enabled
 describe("DataPass", () => {
   beforeEach(() => {
     cy.login("user@yopmail.com", "user@yopmail.com");

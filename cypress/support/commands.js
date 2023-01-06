@@ -5,7 +5,7 @@ Cypress.Commands.add("login", (email, password) => {
       {
         method: "POST",
       }
-    ); // Directly visit the backend login page to avoid CORS issues with the cookies "Same-site: lax" policy
+    );
 
     cy.get('input[name="login"]').type(email);
     cy.get("form").submit();

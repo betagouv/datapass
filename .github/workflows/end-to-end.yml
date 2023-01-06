@@ -64,7 +64,6 @@ jobs:
         with:
           path: backend/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          # Cache not found for input keys: Linux-gems-1249f66ba3e6508ebd38170d96559bbd65919b464e8f37bc4ebc5adb9590e0b8, Linux-gems-
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Install backend vendors
