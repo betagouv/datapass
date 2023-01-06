@@ -7,12 +7,11 @@ module ApiGouvPayloadHelpers
         headers: {
           "Accept" => "application/json",
           "Connection" => "close",
-          "Host" => "staging.api.gouv.fr",
-          "User-Agent" => "http.rb/5.1.0"
+          "Host" => "staging.api.gouv.fr"
         }
       )
       .to_return(status: 200, body: api_gouv_lists_payload.to_json, headers: {
-        "statut" => 200,
+        "status" => 200,
         "Content-Type" => "application/json"
       })
   end
