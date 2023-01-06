@@ -6,9 +6,11 @@ describe("DataPass", () => {
 
   // Cypress removes Cypress.Cookies.preserveOnce("_session_id") since version 10 and no solutions are proposed
   // to stay logged in and run several 'it block' without being logged out.
-
+  // Make Cypress visit the login domain, so that the "before" hook is run on a test that visit the same single domain
   it("lets the user visit the backend domain", () => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(
+      "https://app-test.moncomptepro.beta.gouv.fr/users/sign-in"
+    );
   });
 
   // When visiting "http://localhost:3000/franceconnect", as cypress clear the current session
