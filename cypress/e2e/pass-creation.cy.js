@@ -1,16 +1,18 @@
 // By default, Cypress will clear the current session data before each test when testIsolation is enabled
 describe("DataPass", () => {
-  beforeEach(() => {
+  before(() => {
     cy.login("user@yopmail.com", "user@yopmail.com");
   });
 
-  // Make Cypress visit the login domain, so that the "before" hook is run on a test that visit the same single domain
+  // Cypress removes Cypress.Cookies.preserveOnce("_session_id") since version 10 and no solutions are proposed
+  // to stay logged in and run several 'it block' without being logged out.
+
   it("lets the user visit the backend domain", () => {
-    cy.visit(
-      "https://app-test.moncomptepro.beta.gouv.fr/users/sign-in"
-    );
+    cy.visit("http://localhost:3000/");
   });
 
+  // When visiting "http://localhost:3000/franceconnect", as cypress clear the current session
+  // We have to log in again therefore we need to click on the form "monComptePro" Button to log in and then fill the enrollment.
   it("lets the user fill a FranceConnect form", () => {
     cy.visit("http://localhost:3000/franceconnect");
     cy.get("form").submit();

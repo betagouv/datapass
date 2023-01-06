@@ -6,12 +6,10 @@ Cypress.Commands.add("login", (email, password) => {
         method: "POST",
       }
     );
-
     cy.get('input[name="login"]').type(email);
     cy.get("form").submit();
     cy.get('input[name="password"]').type(password);
     cy.get('[action="/users/sign-in"]').submit();
-    cy.setCookie("_session_id", "123key");
   });
 });
 
