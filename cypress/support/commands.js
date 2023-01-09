@@ -1,11 +1,7 @@
 Cypress.Commands.add("login", (email, password) => {
   cy.session([email, password], () => {
-    cy.visit(
-      "http://localhost:3001/users/auth/api_gouv?prompt=login",
-      {
-        method: "POST",
-      }
-    );
+    cy.visit("http://localhost:3000/");
+    cy.get("form").submit();
     cy.get('input[name="login"]').type(email);
     cy.get("form").submit();
     cy.get('input[name="password"]').type(password);
