@@ -11,6 +11,7 @@ RSpec.describe Event, type: :model do
       revoke
       request_changes
       reminder
+      archive
       delete
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
@@ -118,6 +119,7 @@ RSpec.describe Event, type: :model do
         update
         submit
         reminder
+        archive
         delete
       ].each do |name|
         context "when name is '#{name}'" do

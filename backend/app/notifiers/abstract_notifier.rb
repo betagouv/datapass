@@ -30,6 +30,10 @@ class AbstractNotifier
     fail NotImplementedError
   end
 
+  def archive
+    fail NotImplementedError
+  end
+
   def refuse(comment:, current_user:)
     fail NotImplementedError
   end

@@ -152,6 +152,15 @@ RSpec.describe EnrollmentsController, "#index", type: :controller do
       end
     end
 
+    context "with an instructor of this api but an archived enrollments" do
+      let(:user) { create(:user, roles: ["api_particulier:reporter"]) }
+      let!(:archived_enrollment) { create(:enrollment, :api_particulier, :archived) }
+
+      it "renders only unarchived enrollments" do
+        expect(enrollments_payload.count).to eq(1)
+      end
+    end
+
     context "with an instructor within a concerned group" do
       let(:user) { create(:user, roles: ["api_particulier:cnaf:reporter"]) }
 

@@ -7,15 +7,16 @@ import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
 import {
+  ArchiveIcon,
   CheckCircleIcon,
   NotificationIcon,
+  ErrorIcon,
+  MailIcon,
+  MailOpenIcon,
+  InfoIcon,
+  WarningIcon,
 } from '../../../atoms/icons/fr-fi-icons';
-import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
-import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
-import { MailOpenIcon } from '../../../atoms/icons/fr-fi-icons';
-import { InfoIcon } from '../../../atoms/icons/fr-fi-icons';
-import { WarningIcon } from '../../../atoms/icons/fr-fi-icons';
 import { Linkify } from '../../../molecules/Linkify';
 import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
@@ -62,6 +63,10 @@ const eventToDisplayableContent = {
   revoke: {
     icon: <ErrorIcon color={'var(--text-default-error)'} />,
     label: 'a révoqué l’habilitation',
+  },
+  archive: {
+    icon: <ArchiveIcon color={'var(--text-default-info)'} />,
+    label: 'a archivé l’habilitation',
   },
   copy: {
     icon: <FileCopyIcon color={'var(--text-default-info)'} />,

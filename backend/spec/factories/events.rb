@@ -55,6 +55,10 @@ FactoryBot.define do
       user { nil }
     end
 
+    trait :archive do
+      name { "archive" }
+    end
+
     trait :delete do
       name { "delete" }
     end

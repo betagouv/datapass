@@ -22,7 +22,7 @@ RSpec.describe Enrollment, type: :model do
   end
 
   describe "state_machine" do
-    let(:states) { [:draft, :submitted, :changes_requested, :validated, :refused, :revoked] }
+    let(:states) { [:draft, :submitted, :changes_requested, :validated, :refused, :revoked, :archived] }
 
     it "has valid states in state_machine" do
       expect(Enrollment.state_machine.states.map(&:name)).to eq(states)

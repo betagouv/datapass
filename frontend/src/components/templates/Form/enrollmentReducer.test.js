@@ -111,6 +111,7 @@ describe('enrollmentReducerFactory', () => {
           get_email_templates: true,
           copy: false,
           validate: false,
+          archive: false,
           request_changes: false,
           refuse: false,
           index: false,

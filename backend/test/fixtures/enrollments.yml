@@ -55,3 +55,11 @@ enrollment_changes_requested:
   intitule: "Demande d'habilitation FranceConnect"
   description: "Demande d'habiliation pour FranceConnect, demande de changement."
   scopes: ["openid", "email", "birthdate"]
+
+enrollment_archived:
+  <<: *DEFAULTS
+  status: "archived"
+  target_api: "franceconnect"
+  intitule: "Demande d'habilitation FranceConnect"
+  description: "Demande d'habiliation pour FranceConnect, archivée."
+  scopes: ["openid", "email", "birthdate"]

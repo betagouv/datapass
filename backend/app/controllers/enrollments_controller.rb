@@ -169,12 +169,13 @@ class EnrollmentsController < ApplicationController
       user_id: current_user.id,
       comment: params[:comment]
     )
-      @enrollment.notify_event(
-        event,
-        comment: params[:comment],
-        current_user: current_user
-      )
-
+      if event != "archive"
+        @enrollment.notify_event(
+          event,
+          comment: params[:comment],
+          current_user: current_user
+        )
+      end
       render json: @enrollment
     else
       render status: :unprocessable_entity, json: @enrollment.errors

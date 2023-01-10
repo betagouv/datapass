@@ -34,6 +34,8 @@ class Enrollment < ActiveRecord::Base
   accepts_nested_attributes_for :team_members
   has_many :users, through: :team_members
 
+  default_scope -> { where.not(status: "archived") }
+
   state_machine :status, initial: :draft, namespace: "status" do
     state :draft
     state :submitted
@@ -41,6 +43,7 @@ class Enrollment < ActiveRecord::Base
     state :validated
     state :refused
     state :revoked
+    state :archived
 
     event :notify do
       transition from: %i[draft changes_requested submitted], to: same
@@ -60,6 +63,10 @@ class Enrollment < ActiveRecord::Base
 
     event :request_changes do
       transition from: :submitted, to: :changes_requested
+    end
+
+    event :archive do
+      transition from: %i[draft changes_requested submitted refused revoked validated], to: :archived
     end
 
     event :validate do
