@@ -50,7 +50,7 @@ const scopesConfiguration = [
 ];
 
 const editorList = [
-  { name: 'Axygest', siret: '33244373800056' },
+  { name: 'Axygest', siret: '33244373800064' },
   { name: 'Tessa', siret: '48767850000017' },
   { name: 'Appsolu', siret: '75213617600019' },
 ];
