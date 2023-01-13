@@ -87,8 +87,8 @@ class ProductionBridge < ApplicationBridge
       api_key: access_token,
       use_basic_auth_method: true,
       body: {
-        identifiantSandBox: identifiantSandbox,
-        identifiantProductionOld: id,
+        identifiantSandBox: identifiantSandbox.to_s,
+        identifiantProductionOld: id.to_s,
         demande: {
           demandeur: {
             mail: demandeur[:email],

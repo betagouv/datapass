@@ -108,7 +108,7 @@ class SandboxBridge < ApplicationBridge
       api_key: access_token,
       use_basic_auth_method: true,
       body: {
-        identifiantSandBoxOld: id,
+        identifiantSandBoxOld: id.to_s,
         organisation: {
           siren: siren,
           libelle: libelle,
