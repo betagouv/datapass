@@ -9,12 +9,13 @@ class SandboxBridge < ApplicationBridge
     siret = @enrollment[:siret]
     created_at = @enrollment[:created_at]
     submit_event = @enrollment.events.find { |event| event["name"] == "submit" }
+    validate_event = @enrollment.events.find { |event| event["name"] == "validate" }
     validated_at = @enrollment.validated_at
     cas_usage_libelle = @enrollment[:intitule]
     cas_usage_detail = @enrollment[:description]
     cadre_juridique_title = @enrollment[:fondement_juridique_title]
     fondement_juridique_url = @enrollment[:fondement_juridique_url]
-    url_document_juridique = @enrollment.documents.find { |doc| doc["type"] == "Document::LegalBasis" }
+    document_juridique = @enrollment.documents.find { |doc| doc["type"] == "Document::LegalBasis" }
     rgpd_destinataires = @enrollment[:data_recipients]
     duree_conservation_donnee_valeur = @enrollment[:data_retention_period]
     justificatif = @enrollment[:data_retention_comment]
@@ -28,12 +29,13 @@ class SandboxBridge < ApplicationBridge
       siret,
       created_at,
       submit_event,
+      validate_event,
       validated_at,
       cas_usage_libelle,
       cas_usage_detail,
       cadre_juridique_title,
       fondement_juridique_url,
-      url_document_juridique,
+      document_juridique,
       rgpd_destinataires,
       duree_conservation_donnee_valeur,
       justificatif
@@ -52,35 +54,34 @@ class SandboxBridge < ApplicationBridge
     siret,
     created_at,
     submit_event,
+    validate_event,
     validated_at,
     cas_usage_libelle,
     cas_usage_detail,
     cadre_juridique_title,
     fondement_juridique_url,
-    url_document_juridique,
+    document_juridique,
     rgpd_destinataires,
     duree_conservation_donnee_valeur,
     justificatif
   )
 
-    # 1 call ApiSiren
+    # 1 call ApiSirene
     response = ApiSirene.call(siret)
 
     siren = siret.first(9)
     libelle = response[:nom_raison_sociale]
     adresse = response[:adresse]
-    adresse_2 = nil
-    adresse_3 = nil
     code_postal = response[:code_postal]
     ville = response[:libelle_commune]
 
     # 1.1 Get Validateur Person Siren and Info
-    validateur_id = submit_event[:user_id]
+    validateur_id = validate_event[:user_id]
     validateur = User.find_by(id: validateur_id)
 
-    # 1.2 Trasnform document in URl
-    document = "#{ENV["BACK_HOST"]} + #{url_document_juridique.attachment.url}"
-    cadre_juridique_url = fondement_juridique_url.exist? ? fondement_juridique_url : document
+    # 1.2 Transform document in URl
+    document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
+    cadre_juridique_url = fondement_juridique_url.exist? ? fondement_juridique_url : document_url
 
     # 2 get token
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
@@ -99,8 +100,9 @@ class SandboxBridge < ApplicationBridge
     token = token_response.parse
     access_token = token["access_token"]
 
-    # 3 Send Info to DGFIP
-    Http.instance.post({url: "#{api_dgfip_host}/contractualisation/v1/sandbox/#{identifiant}",
+    # 3 Post Info to DGFIP
+    Http.instance.post({
+      url: "#{api_dgfip_host}/contractualisation/v1/sandbox/#{identifiant}",
       api_key: access_token,
       use_basic_auth_method: true,
       body: {
@@ -110,8 +112,8 @@ class SandboxBridge < ApplicationBridge
           libelle: libelle,
           adresse: {
             ligne1: adresse,
-            ligne2: adresse_2,
-            ligne3: adresse_3,
+            ligne2: nil,
+            ligne3: nil,
             codePostal: code_postal,
             ville: ville,
             pays: "France"
@@ -219,6 +221,7 @@ class SandboxBridge < ApplicationBridge
             code: "Nom de L'API"
           }
         ]
-      }})
+      }
+    })
   end
 end
