@@ -14,7 +14,6 @@ class ProductionBridge < ApplicationBridge
     document_juridique = @enrollment.documents.find { |doc| doc["type"] == "Document::LegalBasis" }
     homologation = @enrollment[:additional_content]
     document_homologation = @enrollment.documents.find { |doc| doc["type"] == "Document::DecisionHomologation" }
-    quota = @enrollment[:volumetrie_approximative]
 
     linked_token_manager_id = create_enrollment_in_token_manager(
       @enrollment.id,
@@ -29,8 +28,7 @@ class ProductionBridge < ApplicationBridge
       fondement_juridique_url,
       document_juridique,
       homologation,
-      document_homologation,
-      quota
+      document_homologation
     )
     @enrollment.update({linked_token_manager_id: linked_token_manager_id})
   end
@@ -50,26 +48,21 @@ class ProductionBridge < ApplicationBridge
     fondement_juridique_url,
     document_juridique,
     homologation,
-    document_homologation,
-    quota
+    document_homologation
   )
     # 1.1 Get Validateur Person Siren and Info
     siren = siret.first(9)
     validateur_id = validate_event[:user_id]
     validateur = User.find_by(id: validateur_id)
 
-    # 1.2 Transform document in URl
-    document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
-    cadre_juridique_url = fondement_juridique_url.exist? ? fondement_juridique_url : document_url
+    # 1.2 Cadre Juridique document URl
+    unless document_juridique.nil?
+      document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
+    end
+    cadre_juridique_url = fondement_juridique_url.present? ? fondement_juridique_url : document_url
 
-    # 1.3 Fill all Homologation info
-    nom_autorite = homologation["autorite_homologation_nom"]
-    fonction_autorite = homologation["autorite_homologation_fonction"]
-    date_debut = homologation["date_homologation"]
-    date_fin = homologation["date_fin_homologation"]
+    # 1.3 Homologation document url
     homologation_document_url = "#{ENV["BACK_HOST"]} + #{document_homologation.attachment.url}"
-
-    # Comment recupérer les données volumetrie approximative généré en front (nbr appels minutes)
 
     # 2 get token
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
@@ -133,14 +126,14 @@ class ProductionBridge < ApplicationBridge
           texteUrl: nil
         },
         homologation: {
-          nomAutorite: nom_autorite,
-          fonctionAutorite: fonction_autorite,
-          dateDebut: date_debut,
-          dateFin: date_fin,
+          nomAutorite: homologation["autorite_homologation_nom"],
+          fonctionAutorite: homologation["autorite_homologation_fonction"],
+          dateDebut: homologation["date_homologation"],
+          dateFin: homologation["date_fin_homologation"],
           documentUrl: homologation_document_url,
           texteUrl: nil
         },
-        quota: 0,
+        quota: homologation["volumetrie_appels_par_minute"],
         attestationRecette: true,
         attestationRGPD: true,
         cgu: {

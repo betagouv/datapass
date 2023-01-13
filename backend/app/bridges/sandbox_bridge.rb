@@ -80,8 +80,10 @@ class SandboxBridge < ApplicationBridge
     validateur = User.find_by(id: validateur_id)
 
     # 1.2 Transform document in URl
-    document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
-    cadre_juridique_url = fondement_juridique_url.exist? ? fondement_juridique_url : document_url
+    unless document_juridique.nil?
+      document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
+    end
+    cadre_juridique_url = fondement_juridique_url.present? ? fondement_juridique_url : document_url
 
     # 2 get token
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
