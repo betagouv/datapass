@@ -125,5 +125,12 @@ class HubeePortailBridge < ApplicationBridge
     end
 
     subscription_ids.join(",")
+
+    EnrollmentMailer.with(
+      to: responsable_metier[:email],
+      target_api: enrollment[:target_api],
+      enrollment_id: enrollment.id,
+      template: validate.to_s
+    ).notification_email.deliver_later
   end
 end
