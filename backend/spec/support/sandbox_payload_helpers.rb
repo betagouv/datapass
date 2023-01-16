@@ -81,11 +81,7 @@ module SandboxPayloadHelpers
       },
       cadreJuridique: {
         nature: "- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016...",
-        texteDocument: {
-          fichier: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039362321/2019-11-10",
-          extension: nil,
-          nom: nil
-        },
+        documentUrl: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039362321/2019-11-10",
         texteUrl: nil
       },
       attestationRGPD: true,

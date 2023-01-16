@@ -165,11 +165,7 @@ class SandboxBridge < ApplicationBridge
         },
         cadreJuridique: {
           nature: cadre_juridique_title,
-          texteDocument: {
-            fichier: cadre_juridique_url,
-            extension: nil,
-            nom: nil
-          },
+          documentUrl: cadre_juridique_url,
           texteUrl: nil
         },
         attestationRGPD: true,
