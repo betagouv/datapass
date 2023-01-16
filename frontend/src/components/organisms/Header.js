@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDataProvider } from '../templates/hooks/use-data-provider';
 import { useDataProviderConfigurations } from '../templates/hooks/use-data-provider-configurations';
@@ -6,6 +6,9 @@ import { useAuth } from './AuthContext';
 import { loginUrl } from '../atoms/MonComptePro';
 import Link from '../atoms/hyperTexts/Link';
 import Button from '../atoms/hyperTexts/Button';
+
+import './Header.css';
+import { isEmpty } from 'lodash';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -32,6 +35,12 @@ const Header = () => {
     }
   }, [dataProviderConfigurations, location]);
 
+  let logoClassNames = 'fr-logo';
+
+  if (user) {
+    logoClassNames += ' minimized';
+  }
+
   return (
     <header role="banner" className="fr-header">
       <div className="fr-header__body">
@@ -40,13 +49,17 @@ const Header = () => {
             <div className="fr-header__brand fr-enlarge-link">
               <div className="fr-header__brand-top">
                 <div className="fr-header__logo">
-                  <p className="fr-logo">
-                    République
-                    <br />
-                    Française
+                  <p className={logoClassNames}>
+                    {!user && (
+                      <>
+                        République
+                        <br />
+                        Française
+                      </>
+                    )}
                   </p>
                 </div>
-                {icon && (
+                {icon && !user && (
                   <div className="fr-header__operator">
                     <img
                       src={`/images/${icon}`}
@@ -73,17 +86,26 @@ const Header = () => {
                 </div>
               </div>
               <div className="fr-header__service">
-                <Link inline href="/" title="Accueil - api.gouv.fr - DINUM">
+                <Link inline href="/" title="Accueil - DataPass">
                   <p className="fr-header__service-title">DataPass</p>
                 </Link>
-                <p className="fr-header__service-tagline">
-                  habilitations juridiques
-                </p>
+                {!user && (
+                  <p className="fr-header__service-tagline">
+                    habilitations juridiques
+                  </p>
+                )}
               </div>
             </div>
             <div className="fr-header__tools">
               <div className="fr-header__tools-links">
                 <ul className="fr-btns-group">
+                  {user && isEmpty(user.roles) && (
+                    <li>
+                      <Button icon="home-4" tertiaryNoOutline href="/">
+                        Toutes mes habilitations
+                      </Button>
+                    </li>
+                  )}
                   {displayContactLink && (
                     <li>
                       <Button icon="question" tertiaryNoOutline href="/faq">
@@ -92,18 +114,18 @@ const Header = () => {
                     </li>
                   )}
                   {user && user.roles.includes('administrator') && (
-                    <li>
-                      <Button icon="calendar" href="/admin">
-                        Administration
-                      </Button>
-                    </li>
-                  )}
-                  {user && user.roles.includes('administrator') && (
-                    <li>
-                      <Button icon="eye" href={`${BACK_HOST}/sidekiq/`}>
-                        Monitoring
-                      </Button>
-                    </li>
+                    <>
+                      <li>
+                        <Button icon="calendar" href="/admin">
+                          Administration
+                        </Button>
+                      </li>
+                      <li>
+                        <Button icon="eye" href={`${BACK_HOST}/sidekiq/`}>
+                          Monitoring
+                        </Button>
+                      </li>
+                    </>
                   )}
                   {user ? (
                     <li>
