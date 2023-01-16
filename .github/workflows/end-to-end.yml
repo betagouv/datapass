@@ -26,6 +26,8 @@ jobs:
       INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
       INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
       DO_NOT_VALIDATE_MAIL: "True"
+      FORCE_COOKIES_SAME_SITE_PROTECTION: "True"
+
     services:
       redis:
         image: redis
@@ -51,8 +53,8 @@ jobs:
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
           ruby-version: 2.7.6
+          bundler-cache: true
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
       - name: Link libffi7 to libffi6 since the version 6 is not available anymore in Ubuntu 20.04
@@ -90,7 +92,7 @@ jobs:
         run: bin/rails db:seed
         working-directory: backend
       - name: Install Cypress
-        run: npm install cypress@8
+        run: npm install cypress@12
         working-directory: .
       - name: Run backend application
         run: bundle exec puma -C ./config/puma.rb &
@@ -104,8 +106,9 @@ jobs:
       - name: Wait for frontend application to run
         run: npx wait-on tcp:3000 -t 30000
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v5
         with:
+          browser: chrome
           install: false
           working-directory: .
       - uses: actions/upload-artifact@v3
