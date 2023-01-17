@@ -15,7 +15,7 @@ export const STATUS_LABELS: {
   draft: 'Brouillon',
   submitted: 'En cours',
   validated: 'Validée',
-  changes_requested: 'À changer',
+  changes_requested: 'À modifier',
   refused: 'Refusée',
   revoked: 'Révoquée',
 };
