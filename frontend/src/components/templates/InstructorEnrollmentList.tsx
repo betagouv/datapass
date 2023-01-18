@@ -159,23 +159,27 @@ const InstructorEnrollmentList: React.FC = () => {
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
-        const iconEmailToDisplay =
-          notify_events_from_demandeurs_count === 0 ? (
-            <MailOpenIconFill color={'var(--text-default-info)'} />
-          ) : (
-            <MailIconFill color={'var(--text-default-info)'} />
-          );
+        const noUnreadMessage = notify_events_from_demandeurs_count === 0;
 
-        const messagesTitle =
-          notify_events_from_demandeurs_count === 0
-            ? 'Pas de nouveau message'
-            : notify_events_from_demandeurs_count === 1
-            ? `${notify_events_from_demandeurs_count} nouveau message`
-            : notify_events_from_demandeurs_count > 1
-            ? `${notify_events_from_demandeurs_count} nouveaux messages`
-            : '';
+        const iconEmailToDisplay = noUnreadMessage ? (
+          <MailOpenIconFill color={'var(--border-active-blue-france)'} />
+        ) : (
+          <MailIconFill color={'var(--border-active-blue-france)'} />
+        );
+        const messagesTitle = noUnreadMessage
+          ? 'Pas de nouveau message'
+          : notify_events_from_demandeurs_count === 1
+          ? `${notify_events_from_demandeurs_count} nouveau message`
+          : notify_events_from_demandeurs_count > 1
+          ? `${notify_events_from_demandeurs_count} nouveaux messages`
+          : '';
 
-        return <span title={messagesTitle}>{iconEmailToDisplay}</span>;
+        return (
+          <div title={messagesTitle} className="datapass-message-icon">
+            {!noUnreadMessage && <span className="red-dot"></span>}
+            {iconEmailToDisplay}
+          </div>
+        );
       },
     }),
     columnHelper.accessor('id', {
