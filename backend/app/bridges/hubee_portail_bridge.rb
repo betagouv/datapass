@@ -126,10 +126,11 @@ class HubeePortailBridge < ApplicationBridge
 
     subscription_ids.join(",")
 
+    # 4. Send Validation email to the admin metier
     EnrollmentMailer.with(
-      to: responsable_metier[:email],
-      target_api: enrollment[:target_api],
-      enrollment_id: enrollment.id,
+      to: responsable_metier["email"],
+      target_api: @enrollment[:target_api],
+      enrollment_id: id,
       template: validate.to_s
     ).notification_email.deliver_later
   end
