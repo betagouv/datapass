@@ -138,7 +138,7 @@ const Header = () => {
                   ) : (
                     <li>
                       <form action={loginUrl} method="post">
-                        <Button icon="lock" tertiaryNoOutline submit>
+                        <Button iconFill icon="account-circle" tertiary submit>
                           Se connecter
                         </Button>
                       </form>

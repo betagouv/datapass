@@ -5,11 +5,13 @@ type Props = {
   href?: string;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   secondary?: boolean;
+  tertiary?: boolean;
   tertiaryNoOutline?: boolean;
   large?: boolean;
   xLarge?: boolean;
   icon?: string;
   iconRight?: boolean;
+  iconFill?: boolean;
   className?: string;
   disabled?: boolean;
   download?: boolean;
@@ -19,11 +21,13 @@ const Button: React.FC<Props> = ({
   href,
   onClick,
   secondary = false,
+  tertiary = false,
   tertiaryNoOutline = false,
   large = false,
   xLarge = false,
   icon,
   iconRight = false,
+  iconFill = false,
   children,
   className = '',
   ...props
@@ -42,6 +46,10 @@ const Button: React.FC<Props> = ({
     className += ' fr-btn--secondary';
   }
 
+  if (tertiary) {
+    className += ' fr-btn--tertiary';
+  }
+
   if (tertiaryNoOutline) {
     className += ' fr-btn--tertiary-no-outline';
   }
@@ -50,6 +58,7 @@ const Button: React.FC<Props> = ({
     <HyperText
       icon={icon}
       iconRight={iconRight}
+      iconFill={iconFill}
       onClick={onClick}
       href={href}
       children={children}

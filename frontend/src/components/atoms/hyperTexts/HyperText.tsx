@@ -9,6 +9,7 @@ type Props = {
   href?: string;
   className?: string;
   submit?: boolean;
+  iconFill?: boolean;
 };
 
 const HyperText: React.FC<Props> = ({
@@ -19,11 +20,11 @@ const HyperText: React.FC<Props> = ({
   className = '',
   children,
   submit = false,
-
+  iconFill = false,
   ...props
 }) => {
   if (icon) {
-    className += ` fr-icon-${icon}-line`;
+    className += iconFill ? ` fr-icon-${icon}-fill` : ` fr-icon-${icon}-line`;
   }
 
   if (icon && children) {
