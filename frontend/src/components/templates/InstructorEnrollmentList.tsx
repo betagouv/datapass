@@ -162,7 +162,7 @@ const InstructorEnrollmentList: React.FC = () => {
         const noUnreadMessage = notify_events_from_demandeurs_count === 0;
 
         const iconEmailToDisplay = noUnreadMessage ? (
-          <MailOpenIconFill color={'var(--border-active-blue-france)'} />
+          <MailOpenIconFill color={'var(--grey-625-425)'} />
         ) : (
           <MailIconFill color={'var(--border-active-blue-france)'} />
         );
