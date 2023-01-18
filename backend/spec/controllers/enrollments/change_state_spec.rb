@@ -443,6 +443,51 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     end
   end
 
+  describe "validate event for hubee bridge" do
+    include ActiveJob::TestHelper
+
+    let(:enrollment_api_target) { :hubee_portail }
+    let(:enrollment_status) { :submitted }
+    let!(:hubee_portail_subscriber) { create(:user, roles: ["hubee_portail:subscriber"]) }
+
+    let(:event) { "validate" }
+    let(:comment) { "I like trains" }
+
+    before do
+      login(hubee_portail_subscriber)
+    end
+
+    before do
+      allow(HubeePortailBridge).to receive(:call)
+    end
+
+    after do
+      clear_enqueued_jobs
+      clear_performed_jobs
+    end
+
+    context "when instructeur validate enrollment" do
+      let(:enrollment_status) { :validated }
+
+      it "calls HubeePortailBridge.call" do
+        make_request
+
+        expect(HubeePortailBridge).to have_received(:call)
+      end
+    end
+
+    it "sends an email to the hubee_portail responsable metier" do
+      make_request
+
+      enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+      notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }
+
+      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
+      expect(notification_email[:args]).to include("notification_email")
+      expect(notification_email).to be_truthy
+    end
+  end
+
   describe "refuse_validation event" do
     let(:event) { "refuse" }
     let(:comment) { "comment" }

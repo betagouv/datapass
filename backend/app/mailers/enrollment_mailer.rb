@@ -99,6 +99,21 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def notify_validate_hubee_admin_metier
+    @target_api_label = data_provider_config["label"]
+    @responsable_metier_email = params[:responsable_metier_email]
+    @message = params[:message]
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @responsable_metier_email,
+      subject: params[:subject],
+      from: "notifications@api.gouv.fr",
+      template_path: "enrollment_mailer/#{params[:target_api]}",
+      template_name: params[:template_name]
+    )
+  end
+
   def notification_email_unknown_software
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
