@@ -28,7 +28,7 @@
     "@justfixnyc/react-aria-modal": "^5.1.4-alpha.0",
     "@sentry/react": "^7.17.4",
     "@tanstack/react-table": "^8.5.15",
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^29.2.5",
     "@types/lodash": "^4.14.180",
     "@types/node": "^18.0.1",
     "@types/react": "^17.0.43",
