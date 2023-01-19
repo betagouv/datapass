@@ -166,6 +166,7 @@ const InstructorEnrollmentList: React.FC = () => {
         ) : (
           <MailIconFill color={'var(--border-active-blue-france)'} />
         );
+
         const messagesTitle = noUnreadMessage
           ? 'Pas de nouveau message'
           : notify_events_from_demandeurs_count === 1
