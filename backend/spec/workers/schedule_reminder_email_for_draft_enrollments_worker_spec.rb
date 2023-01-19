@@ -67,8 +67,8 @@ RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
       Timecop.return
     end
 
-    it "raises" do
-      expect { subject.perform }.to raise_error(NoMethodError)
+    it "does not raise" do
+      expect { subject.perform }.to_not raise_error
     end
   end
 end

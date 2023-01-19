@@ -6,11 +6,9 @@ class ExtractDraftEnrollmentsToRemind
   REMIND_FROM_DATE = Time.new(2022, 11, 1)
 
   def call
-    last_event_is_create_or_update_ids = last_update_or_create_events_for_draft_enrollments
-    if last_event_is_create_or_update_ids.any?
-      enrollment_ids = last_event_is_create_or_update_ids.pluck(:enrollment_id).flatten
-      Enrollment.find(enrollment_ids)
-    end
+    last_update_or_create_events = last_update_or_create_events_for_draft_enrollments
+    enrollment_ids = last_update_or_create_events.pluck(:enrollment_id)
+    Enrollment.find(enrollment_ids)
   end
 
   def draft_enrollments
