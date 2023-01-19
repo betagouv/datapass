@@ -29,15 +29,13 @@ const CallToProcessedMessageNotification = ({
   }, [getIsUserAnInstructor, target_api]);
 
   const isThereAnyNotifyEventFromDemandeur = useMemo(() => {
-    const filteredEvents = events.filter(
-      ({ name, processed_at, user: { email } }) => {
-        return (
-          name === 'notify' &&
-          processed_at === null &&
-          isUserADemandeur({ team_members, user_email: email })
-        );
-      }
-    );
+    const filteredEvents = events.filter(({ name, processed_at, user }) => {
+      return (
+        name === 'notify' &&
+        processed_at === null &&
+        isUserADemandeur({ team_members, user_email: user.email })
+      );
+    });
 
     if (isEmpty(filteredEvents)) {
       return false;

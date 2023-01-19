@@ -5,6 +5,7 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-design/icons-design.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css';
 
 const FrFiIcon: React.FC<{
@@ -40,6 +41,16 @@ export const MailIcon: React.FC<Props> = ({ color, large, small }) => (
 
 export const MailOpenIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="mail-open-line" color={color} large={large} small={small} />
+);
+
+// Icons - Media
+export const NotificationIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon
+    type="notification-3-line"
+    color={color}
+    large={large}
+    small={small}
+  />
 );
 
 // Icons - System DSFR

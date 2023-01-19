@@ -6,7 +6,10 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
 import Button from '../../../atoms/hyperTexts/Button';
-import { CheckCircleIcon } from '../../../atoms/icons/fr-fi-icons';
+import {
+  CheckCircleIcon,
+  NotificationIcon,
+} from '../../../atoms/icons/fr-fi-icons';
 import { ErrorIcon } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { MailIcon } from '../../../atoms/icons/fr-fi-icons';
@@ -37,6 +40,10 @@ const eventToDisplayableContent = {
   validate: {
     icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
     label: 'a validé l’habilitation',
+  },
+  reminder: {
+    icon: <NotificationIcon color={'var(--text-default-info)'} />,
+    label: 'a envoyé un email de relance',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
@@ -93,7 +100,7 @@ export const EventItem = ({
   const userLabel = useMemo(() => {
     return given_name && family_name
       ? `${given_name} ${family_name}`
-      : given_name || family_name || email;
+      : given_name || family_name || email || 'DataPass';
   }, [given_name, family_name, email]);
 
   const isUserAnInstructor = getIsUserAnInstructor(target_api);
@@ -149,9 +156,9 @@ EventItem.propTypes = {
   comment: PropTypes.string,
   name: PropTypes.string.isRequired,
   created_at: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  family_name: PropTypes.string.isRequired,
-  given_name: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  family_name: PropTypes.string,
+  given_name: PropTypes.string,
   diff: PropTypes.object,
 };
 
@@ -176,9 +183,9 @@ const ActivityFeed = ({ events }) => {
 
   if (!showDetails && events.length > 0) {
     const showFromIndex = eventsToDisplay.findIndex(
-      ({ name, user: { email }, processed_at }) =>
+      ({ name, user, processed_at }) =>
         name === 'notify' &&
-        isUserADemandeur({ team_members, user_email: email }) &&
+        isUserADemandeur({ team_members, user_email: user.email }) &&
         processed_at === null
     );
     // if there is no message from the demandeur then showFromIndex === -1
@@ -198,24 +205,16 @@ const ActivityFeed = ({ events }) => {
         </Button>
       </div>
       {eventsToDisplay.map(
-        ({
-          id,
-          comment,
-          name,
-          created_at,
-          processed_at,
-          user: { email, given_name, family_name },
-          diff,
-        }) => (
+        ({ id, comment, name, created_at, processed_at, user, diff }) => (
           <EventItem
             key={id}
             comment={comment}
             name={name}
             created_at={created_at}
             processed_at={processed_at}
-            email={email}
-            family_name={family_name}
-            given_name={given_name}
+            email={user?.email}
+            family_name={user?.family_name}
+            given_name={user?.given_name}
             diff={diff}
           />
         )

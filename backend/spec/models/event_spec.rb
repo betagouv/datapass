@@ -10,6 +10,7 @@ RSpec.describe Event, type: :model do
       refuse
       revoke
       request_changes
+      reminder
       delete
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
@@ -116,6 +117,7 @@ RSpec.describe Event, type: :model do
         create
         update
         submit
+        reminder
         delete
       ].each do |name|
         context "when name is '#{name}'" do
@@ -129,6 +131,65 @@ RSpec.describe Event, type: :model do
 
           context "when comment is nil" do
             let(:comment) { nil }
+
+            it { is_expected.to be_valid }
+          end
+        end
+      end
+    end
+  end
+
+  describe "user validation" do
+    subject { event }
+
+    let(:event) { build(:event, name: name, user: user, comment: comment) }
+
+    describe "events which require user presence" do
+      %w[
+        create
+        update
+        notify
+        validate
+        refuse
+        revoke
+        request_changes
+        delete
+      ].each do |name|
+        context "when name '#{name}'" do
+          let(:name) { name }
+          let(:comment) { "I like trains" }
+
+          context "when user is present" do
+            let(:user) { create(:user) }
+
+            it { is_expected.to be_valid }
+          end
+
+          context "when user is nil" do
+            let(:user) { nil }
+
+            it { is_expected.not_to be_valid }
+          end
+        end
+      end
+    end
+
+    describe "events which not require user presence" do
+      %w[
+        reminder
+      ].each do |name|
+        context "when name '#{name}'" do
+          let(:name) { name }
+          let(:comment) { nil }
+
+          context "when user is present" do
+            let(:user) { create(:user) }
+
+            it { is_expected.to be_valid }
+          end
+
+          context "when user is nil" do
+            let(:user) { nil }
 
             it { is_expected.to be_valid }
           end
