@@ -11,7 +11,7 @@ import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
 import ListHeader from '../molecules/ListHeader';
-import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
+import Badge from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
@@ -24,6 +24,8 @@ import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import CheckboxInput from '../atoms/inputs/CheckboxInput';
+import { MailIconFill } from '../atoms/icons/fr-fi-icons';
+import { MailOpenIconFill } from '../atoms/icons/fr-fi-icons';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -157,6 +159,13 @@ const InstructorEnrollmentList: React.FC = () => {
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
+        const iconEmailToDisplay =
+          notify_events_from_demandeurs_count === 0 ? (
+            <MailOpenIconFill color={'var(--text-default-info)'} />
+          ) : (
+            <MailIconFill color={'var(--text-default-info)'} />
+          );
+
         const messagesTitle =
           notify_events_from_demandeurs_count === 0
             ? 'Pas de nouveau message'
@@ -166,13 +175,7 @@ const InstructorEnrollmentList: React.FC = () => {
             ? `${notify_events_from_demandeurs_count} nouveaux messages`
             : '';
 
-        return (
-          <Badge type={BadgeType.info} className="fr-py-1v" round>
-            <span title={messagesTitle}>
-              {notify_events_from_demandeurs_count}
-            </span>
-          </Badge>
-        );
+        return <span title={messagesTitle}>{iconEmailToDisplay}</span>;
       },
     }),
     columnHelper.accessor('id', {
