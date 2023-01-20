@@ -99,6 +99,15 @@ export const demarches = {
         email: false,
       },
     },
+    team_members: {
+      responsable_technique: {
+        given_name: '',
+        family_name: '',
+        email: '',
+        phone_number: '',
+        job: '',
+      },
+    },
   },
   e_permis: {
     label: 'e-permis - Dématérialisation ADS',
