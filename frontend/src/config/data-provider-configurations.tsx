@@ -47,6 +47,8 @@ import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
 import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
 import ApiSatelitProduction from '../pages/DgfipPages/ApiSatelitProduction';
 import ApiSatelitSandbox from '../pages/DgfipPages/ApiSatelitSandbox';
+import ApiSfipProduction from '../pages/DgfipPages/ApiSfipProduction';
+import ApiSfipSandbox from '../pages/DgfipPages/ApiSfipSandbox';
 import FranceConnect from '../pages/FranceConnect';
 import HubeePortail from '../pages/HubeePortail';
 import HubeePortailDila from '../pages/HubeePortailDila';
@@ -486,6 +488,20 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiSatelitProduction,
+  },
+  api_sfip_sandbox: {
+    label: 'API Courtier fonctionnel SFiP (Bac à sable)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiSfipSandbox,
+  },
+  api_sfip_production: {
+    label: 'API Courtier fonctionnel SFiP (Production)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiSfipProduction,
   },
 };
 
