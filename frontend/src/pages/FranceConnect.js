@@ -115,6 +115,15 @@ export const demarches = {
       fondement_juridique_url:
         'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479',
     },
+    team_members: {
+      responsable_technique: {
+        given_name: 'Bastien',
+        family_name: 'Deblais',
+        job: 'CP',
+        email: 'bdeblais@clicmap.fr',
+        phone_number: '0619163194',
+      },
+    },
   },
 };
 
