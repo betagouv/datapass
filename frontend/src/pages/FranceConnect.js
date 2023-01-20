@@ -8,6 +8,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
+import DemarcheSection from '../components/organisms/form-sections/DemarcheSection';
 import Link from '../components/atoms/hyperTexts/Link';
 
 const DonneesDescription = () => (
@@ -78,6 +79,45 @@ const CadreJuridiqueDescription = () => (
     </p>
   </>
 );
+
+export const demarches = {
+  default: {
+    label: 'Demande libre',
+    state: {
+      intitule: '',
+      description: '',
+      data_recipients: '',
+      fondement_juridique_title: '',
+      scopes: {
+        family_name: false,
+        given_name: false,
+        birthdate: false,
+        birthplace: false,
+        birthcountry: false,
+        gender: false,
+        preferred_username: false,
+        email: false,
+      },
+    },
+  },
+  e_permis: {
+    label: 'e-permis - Dématérialisation ADS',
+    state: {
+      intitule: 'Identification sur la plateforme e-permis',
+      description:
+        'e-permis est une plateforme de suivie par voie électronique destinée aux pétitionnaires dans le cadre du projet de dématérialisation des demandes d’autorisation d’urbanisme (Démat ADS).\r\nLes utilisateurs de la plateforme e-permis utiliseront donc FranceConnect pour s’identifier sur e-permis.',
+      scopes: {
+        family_name: true,
+        given_name: true,
+        email: true,
+      },
+      fondement_juridique_title:
+        'A préciser',
+      responsable_technique.family_name:
+      'Test',
+    },
+  },
+};
 
 export const scopesConfiguration = [
   {
@@ -154,10 +194,12 @@ const target_api = 'franceconnect';
 const FranceConnect = () => (
   <Form
     target_api={target_api}
+    demarches={demarches}
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <OrganisationSection />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
     <DonneesSection
       scopesConfiguration={scopesConfiguration}
