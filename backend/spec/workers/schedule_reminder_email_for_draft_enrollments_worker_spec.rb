@@ -40,6 +40,31 @@ RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
       end
     end
 
+    describe "email sent" do
+      let(:reminder_email_sample) do
+        File.open(Rails.root.join("app/views/enrollment_mailer/demandeur/reminder_draft_enrollment.text.erb")) { |f| f.readline }.chomp
+      end
+
+      before do
+        ActiveJob::Base.queue_adapter = :inline
+      end
+
+      after do
+        ActiveJob::Base.queue_adapter = :test
+      end
+
+      it "delivers a return receipt email to current user" do
+        expect {
+          subject.perform
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+
+        last_email = ActionMailer::Base.deliveries.last
+
+        expect(last_email.body).to include(reminder_email_sample)
+        expect(last_email.subject).to eq("Votre demande d’habilitation à FranceConnect vous attend.")
+      end
+    end
+
     describe "#create_reminder_event" do
       it "create an event reminder if email is sent to demandeur" do
         reminder_enrollments = subject.perform
