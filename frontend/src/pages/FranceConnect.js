@@ -111,10 +111,9 @@ export const demarches = {
         given_name: true,
         email: true,
       },
-      fondement_juridique_title:
-        'A préciser',
-      responsable_technique.family_name:
-      'Test',
+      fondement_juridique_title: 'Arrêté du 8 novembre 2018',
+      fondement_juridique_url:
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479',
     },
   },
 };
