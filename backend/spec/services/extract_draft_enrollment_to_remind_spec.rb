@@ -9,9 +9,9 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
     end
 
     before do
-      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 94.days.ago, updated_at: 50.days.ago)
+      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 94.days.ago, updated_at: 60.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 94.days.ago, updated_at: 94.days.ago)
-      create(:event, :update, enrollment: enrollment, created_at: 50.days.ago, updated_at: 50.days.ago)
+      create(:event, :update, enrollment: enrollment, created_at: 60.days.ago, updated_at: 60.days.ago)
     end
 
     after do
