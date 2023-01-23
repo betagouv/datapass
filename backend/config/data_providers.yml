@@ -654,8 +654,7 @@ api_particulier:
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Demande de certification et de référencement de notre plateforme eTicket
-          https://www.eticket.qiis.fr/
+          eTicket - Portail Famille
         description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n "
         data_recipients: Adresse du foyer
         data_retention_period: 12
