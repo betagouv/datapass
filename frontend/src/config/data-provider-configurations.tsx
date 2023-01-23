@@ -524,4 +524,6 @@ export const HIDDEN_DATA_PROVIDER_KEYS = [
   'api_cpr_pro_production',
   'api_infinoe_sandbox',
   'api_infinoe_production',
+  'api_sfip_sandbox',
+  'api_sfip_production',
 ];
