@@ -655,7 +655,7 @@ api_particulier:
       state:
         intitule: >-
           eTicket - Portail Famille
-        description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n "
+        description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n "
         data_recipients: Adresse du foyer
         data_retention_period: 12
         fondement_juridique_title: >-
