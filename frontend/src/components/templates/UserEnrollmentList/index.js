@@ -8,6 +8,7 @@ import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
+import NoEnrollments from './NoEnrollments';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,11 +54,7 @@ const UserEnrollmentList = () => {
         </div>
       )}
 
-      {!isLoading && isEmpty(enrollmentsByOrganization) && (
-        <div className="full-page">
-          <Alert title="Vous n’avez aucune habilitation" />
-        </div>
-      )}
+      {!isLoading && isEmpty(enrollmentsByOrganization) && <NoEnrollments />}
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
         <div className="page-container list-container">
