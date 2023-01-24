@@ -3,7 +3,7 @@
 }
 
 .datapass-message-icon {
-  position:relative;
+  position: relative;
   display: inline-block;
 }
 
@@ -13,7 +13,7 @@
   background-color: var(--background-action-high-red-marianne);
   border-radius: 50%;
   display: inline-block;
-  position:absolute;
+  position: absolute;
   z-index: 1;
   right: 0;
 }
