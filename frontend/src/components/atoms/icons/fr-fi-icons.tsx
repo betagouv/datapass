@@ -39,8 +39,16 @@ export const MailIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="mail-line" color={color} large={large} small={small} />
 );
 
+export const MailIconFill: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="mail-fill" color={color} large={large} small={small} />
+);
+
 export const MailOpenIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="mail-open-line" color={color} large={large} small={small} />
+);
+
+export const MailOpenIconFill: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="mail-open-fill" color={color} large={large} small={small} />
 );
 
 // Icons - Media
