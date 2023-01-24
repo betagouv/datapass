@@ -109,8 +109,16 @@ export const demarches = {
       },
     },
   },
+  collectivite: {
+    label: 'Demande de collectivité',
+    state: {
+      fondement_juridique_title: 'Arrêté du 8 novembre 2018',
+      fondement_juridique_url:
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479',
+    },
+  },
   e_permis: {
-    label: 'e-permis - Dématérialisation ADS',
+    label: 'Demande de collectivité - e-permis',
     state: {
       intitule: 'Identification sur la plateforme e-permis',
       description:
@@ -132,6 +140,14 @@ export const demarches = {
         email: 'bdeblais@clicmap.fr',
         phone_number: '0619163194',
       },
+    },
+  },
+  sns: {
+    label: 'Demande d’un service numérique en santé',
+    state: {
+      fondement_juridique_title: 'Arrêté du 28 mars 2022',
+      fondement_juridique_url:
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045457991',
     },
   },
 };
