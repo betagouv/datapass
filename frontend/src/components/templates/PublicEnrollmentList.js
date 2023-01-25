@@ -28,10 +28,10 @@ const PublicEnrollmentList = () => {
       getPublicValidatedEnrollments({
         filter: filtered,
         page: pagination.pageIndex,
-      }).then(({ enrollments, meta: { total_pages: totalPages } }) => {
+      }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
-        setTotalPages(totalPages);
+        setTotalPages(total_pages > 0 ? total_pages : 1);
       });
     }, 100);
 
