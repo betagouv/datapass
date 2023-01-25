@@ -30,7 +30,6 @@ enrollment_draft_<%= i %>:
   intitule: "Brouillon API Particulier <%= i %>"
   description: "Demande d'habiliation pour API Particulier, en cours d'écriture."
   scopes: ["cnaf_quotient_familial"]
-  }
 <% end %>
 
 enrollment_validated:

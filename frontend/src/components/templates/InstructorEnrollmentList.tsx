@@ -86,7 +86,7 @@ const InstructorEnrollmentList: React.FC = () => {
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
-        setTotalPages(total_pages);
+        setTotalPages(total_pages > 0 ? total_pages : 1);
       });
     }, 100);
 

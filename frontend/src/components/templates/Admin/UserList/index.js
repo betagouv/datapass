@@ -87,7 +87,7 @@ const UserList = () => {
     });
     setIsLoading(false);
     setUsers(users);
-    setTotalPages(total_pages);
+    setTotalPages(total_pages > 0 ? total_pages : 1);
   }, [showAllUsers, pagination, filtered]);
 
   useEffect(() => {

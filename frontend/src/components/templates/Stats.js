@@ -1,5 +1,6 @@
 import { pickBy } from 'lodash';
 import moment from 'moment';
+import qs from 'query-string';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
@@ -84,32 +85,30 @@ export const Stats = () => {
     );
   }, [dataProviderConfigurations]);
 
+  const getApisList = (targetApi, dataProviderConfigurations) => {
+    const getProvidersKeyByType = (type) =>
+      Object.keys(
+        pickBy(
+          dataProviderConfigurations,
+          (dataProviderConfig) => dataProviderConfig.type === type
+        )
+      ).filter((key) => !HIDDEN_DATA_PROVIDER_KEYS.includes(key));
+
+    switch (targetApi) {
+      case 'allApi':
+        return getProvidersKeyByType('api');
+      case 'allServices':
+        return getProvidersKeyByType('service');
+      case undefined:
+        return [];
+      default:
+        return [targetApi];
+    }
+  };
+
   const getTargetAPIList = useCallback(
     async function (targetApi) {
-      let targetApiList;
-
-      switch (targetApi) {
-        case 'allApi':
-          const ApiTargetConfiguration = pickBy(
-            dataProviderConfigurations,
-            (dataProviderConfig) => dataProviderConfig.type === 'api'
-          );
-          targetApiList = Object.keys(ApiTargetConfiguration);
-          break;
-        case 'allServices':
-          const serviceTargetConfiguration = pickBy(
-            dataProviderConfigurations,
-            (dataProviderConfig) => dataProviderConfig.type === 'service'
-          );
-          targetApiList = Object.keys(serviceTargetConfiguration);
-          break;
-        case undefined:
-          targetApiList = [];
-          break;
-        default:
-          targetApiList = [targetApi];
-      }
-      return getAPIStats(targetApiList);
+      return getAPIStats(getApisList(targetApi, dataProviderConfigurations));
     },
     [dataProviderConfigurations]
   );
@@ -181,7 +180,17 @@ export const Stats = () => {
               <div className="card__meta">
                 <Link
                   inline
-                  href={`/public${targetApi ? `/${targetApi}` : ''}`}
+                  href={`/public${`?${qs.stringify({
+                    filtered: JSON.stringify([
+                      {
+                        id: 'target_api',
+                        value: getApisList(
+                          targetApi,
+                          dataProviderConfigurations
+                        ),
+                      },
+                    ]),
+                  })}`}`}
                 >
                   voir la liste détaillée
                 </Link>
