@@ -17,6 +17,14 @@ class HubeePortailBridge < ApplicationBridge
       target_api
     )
     @enrollment.update({linked_token_manager_id: linked_token_manager_id})
+
+    # 4. Send Validation email to the admin metier
+    EnrollmentMailer.with(
+      to: @enrollment.responsable_metier_email,
+      enrollment_id: @enrollment.id,
+      target_api: @enrollment.target_api,
+      template_name: "validate"
+    ).notification_email.deliver_later
   end
 
   private
@@ -129,13 +137,5 @@ class HubeePortailBridge < ApplicationBridge
     end
 
     subscription_ids.join(",")
-
-    # 4. Send Validation email to the admin metier
-    EnrollmentMailer.with(
-      to: responsable_metier["email"],
-      enrollment_id: id,
-      target_api: target_api,
-      template_name: "validate"
-    ).notify_validate_hubee_admin_metier.deliver_later
   end
 end

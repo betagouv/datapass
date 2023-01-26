@@ -60,6 +60,8 @@ RSpec.configure do |config|
   FactoryBot::SyntaxRunner.send(:include, DebouncePayloadHelpers)
   config.include ApiGouvPayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, ApiGouvPayloadHelpers)
+  config.include HubeePortailBridgePayloadHelpers, type: :bridge
+  FactoryBot::SyntaxRunner.send(:include, HubeePortailBridgePayloadHelpers)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

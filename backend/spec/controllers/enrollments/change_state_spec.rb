@@ -450,15 +450,12 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     let(:enrollment_status) { :submitted }
     let!(:hubee_portail_subscriber) { create(:user, roles: ["hubee_portail:subscriber"]) }
 
-    let(:event) { "validate" }
-    let(:comment) { "I like trains" }
-
     before do
       login(hubee_portail_subscriber)
     end
 
     before do
-      allow(HubeePortailBridge).to receive(:call)
+      allow_any_instance_of(HubeePortailBridge).to receive(:call)
     end
 
     after do
@@ -468,23 +465,31 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
     context "when instructeur validate enrollment" do
       let(:enrollment_status) { :validated }
+      let(:event) { create(:event, name: "validate", enrollment: enrollment, comment: comment, created_at: DateTime.new(2023, 1, 29), updated_at: DateTime.new(2023, 1, 29)) }
+      let(:comment) { "I like trains" }
 
-      it "calls HubeePortailBridge.call" do
-        make_request
-
-        expect(HubeePortailBridge).to have_received(:call)
+      let(:enrollment_mailer) do
+        EnrollmentMailer.with(
+          to: enrollment.responsable_metier_email,
+          enrollment_id: enrollment.id,
+          target_api: enrollment.target_api,
+          template_name: "validate"
+        ).notification_email.deliver_later
       end
-    end
 
-    it "sends an email to the hubee_portail responsable metier" do
-      make_request
+      it "#calls HubeePortailBridge" do
+        make_request
+        expect_any_instance_of(HubeePortailBridge).to receive(:call).and_return("1234567890")
+        expect(HubeePortailBridge.new(enrollment).call).to eq('1234567890')
 
-      enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
-      notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }
+        enrollment_mailer
 
-      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 2
-      expect(notification_email[:args]).to include("notification_email")
-      expect(notification_email).to be_truthy
+        enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+        notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }
+
+        expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
+        expect(notification_email[:args]).to include("notification_email")
+      end
     end
   end
 
