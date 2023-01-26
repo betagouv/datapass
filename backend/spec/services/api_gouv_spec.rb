@@ -7,7 +7,7 @@ RSpec.describe ApiGouv, type: :service do
 
   context "for success call to api.gouv.fr" do
     it "returns 3 apis lists with datapassLink information" do
-      expect(subject.size).to eq(3)
+      expect(subject.size).to eq(4)
     end
 
     it "return the collection with info that concerns datapass only" do
@@ -26,13 +26,24 @@ RSpec.describe ApiGouv, type: :service do
     end
 
     it "should add api-impot-particulier-fc-sandbox information" do
-      expect(subject.last).to eq(
+      expect(subject[2]).to eq(
         {title: "API Impôt particulier via FranceConnect",
          slug: "impot-particulier-fc",
          tagline: "Raccordez-vous directement à la DGFiP",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
          pass_path: "/api-impot-particulier-fc-sandbox"}
+      )
+    end
+
+    it "should add api-sfip-sandbox information" do
+      expect(subject.last).to eq(
+        {title: "API Courtier fonctionnel SFiP",
+         slug: "api_sfip_sandbox",
+         tagline: "Raccordez-vous directement à la DGFiP",
+         path: "/les-api/impot-particulier",
+         logo: "/images/api-logo/logo-dgfip.jpg",
+         pass_path: "/api_sfip_sandbox"}
       )
     end
   end
