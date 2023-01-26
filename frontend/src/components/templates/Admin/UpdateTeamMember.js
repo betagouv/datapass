@@ -56,10 +56,8 @@ export const UpdateTeamMember = () => {
       )}
       {!success && !error && (
         <Alert>
-          Si le membre de l’équipe mis à jour est le demandeur, seul le champ
-          email sera mis à jour. Les autres champs seront ignorés. Ils prendront
-          la valeur renseignée par l’utilisateur si celui ci à déjà un compte,
-          ils resteront vides sinon.
+          Les champs prendront la valeur renseignée par l’utilisateur si
+          celui-ci à déjà un compte, sinon ils resteront vides.
         </Alert>
       )}
       {!success && !error && (

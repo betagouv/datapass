@@ -160,12 +160,12 @@ RSpec.describe Enrollment, type: :model do
             team_members_attributes: [
               {
                 id: tm[0]["id"],
-                type: nil, # magic hack: we add this for the test to pass
+                type: "demandeur",
                 email: tm[0]["email"],
-                phone_number: tm[0]["phone_number"],
-                job: tm[0]["job"],
-                given_name: tm[0]["given_name"],
-                family_name: tm[0]["family_name"]
+                phone_number: "0603821213",
+                job: "Full-Stack Engineer",
+                given_name: "Josè",
+                family_name: "Garcia"
               },
               {
                 id: tm[1]["id"],
@@ -183,7 +183,10 @@ RSpec.describe Enrollment, type: :model do
         it "returns a diff for modified field in associated model" do
           expect(subject["team_members"]).to eq({
             "0" => {
-              "type" => ["demandeur", nil] # magic hack: we add this for the test to pass
+              "given_name" => ["Jean", "Josè"],
+              "family_name" => ["Dupont", "Garcia"],
+              "job" => ["Administrateur", "Full-Stack Engineer"],
+              "phone_number" => ["0636656565", "0603821213"]
             },
             "1" => {
               "phone_number" => ["0636656565", "0136656565"]
