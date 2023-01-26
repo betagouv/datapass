@@ -38,6 +38,12 @@ class ApiGouv < ApplicationService
       .merge(impot_particulier_fc)
 
     filtered_apis << impot_part_fc
+
+    # Add Api Sfip hash in api list as it is not generated in the api.gouv.fr/api/v1/ endpoint
+    api_sfip = filtered_apis.find { |api| api[:slug] === "impot-particulier" }
+      .merge(api_sfip_sandbox)
+
+    filtered_apis << api_sfip
   end
 
   private
@@ -51,6 +57,14 @@ class ApiGouv < ApplicationService
       title: "API Impôt particulier via FranceConnect",
       slug: "impot-particulier-fc",
       pass_path: "/api-impot-particulier-fc-sandbox"
+    }
+  end
+
+  def api_sfip_sandbox
+    {
+      title: "API Courtier fonctionnel SFiP",
+      slug: "api_sfip_sandbox",
+      pass_path: "/api_sfip_sandbox"
     }
   end
 end
