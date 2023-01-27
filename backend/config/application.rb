@@ -24,6 +24,16 @@ module DataPass
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # X-Frame-Options header is handled by nginx
+    config.action_dispatch.default_headers = {
+      # "X-Frame-Options" => "SAMEORIGIN",
+      "X-XSS-Protection" => "0",
+      "X-Content-Type-Options" => "nosniff",
+      "X-Download-Options" => "noopen",
+      "X-Permitted-Cross-Domain-Policies" => "none",
+      "Referrer-Policy" => "strict-origin-when-cross-origin"
+    }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
