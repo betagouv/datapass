@@ -2,7 +2,7 @@
 
 class EnrollmentPolicy < ApplicationPolicy
   def show?
-    user.is_member?(record) || user.is_reporter?(record)
+    !record.status_archived? && (user.is_member?(record) || user.is_reporter?(record))
   end
 
   def create?
@@ -21,11 +21,7 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    (
-      (record.status_draft? || record.status_changes_requested?) &&
-      user.belongs_to_organization?(record) &&
-      user.is_demandeur?(record)
-    ) || user.is_administrator?
+    false
   end
 
   def notify?
@@ -70,6 +66,14 @@ class EnrollmentPolicy < ApplicationPolicy
 
   def request_changes?
     record.can_request_changes_status? && user.is_instructor?(record.target_api)
+  end
+
+  def archive?
+    record.can_archive_status? && (
+      (record.status_draft? || record.status_changes_requested?) &&
+      user.belongs_to_organization?(record) &&
+      user.is_demandeur?(record)
+    ) || (user.is_instructor?(record.target_api) || user.is_administrator?)
   end
 
   def refuse?

@@ -61,3 +61,14 @@ event_enrollment_changes_requested_changes_requested:
   <<: *DEFAULTS
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
   name: "request_changes"
+
+# 🗂 ARCHIVED ENROLLMENT EVENTS
+
+event_enrollment_archived_create:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+
+event_enrollment_archived_submit:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+  name: "submit"

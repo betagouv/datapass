@@ -67,6 +67,7 @@ const USER_STATUS_COLORS = {
   submitted: '#4ECDC4',
   validated: '#FFE66D',
   refused: '#FF6B6B',
+  archived: '#FF9B6B',
   revoked: '#FF4747',
 };
 

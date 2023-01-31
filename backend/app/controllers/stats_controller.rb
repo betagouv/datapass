@@ -82,6 +82,7 @@ class StatsController < ApplicationController
         COUNT(*) filter (where status = 'validated') as validated,
         COUNT(*) filter (where status = 'refused') as refused,
         COUNT(*) filter (where status = 'revoked') as revoked,
+        COUNT(*) filter (where status = 'archived') as archived,
         COUNT(*) as total
       FROM enrollments
       WHERE #{filter_by_target_api_criteria}

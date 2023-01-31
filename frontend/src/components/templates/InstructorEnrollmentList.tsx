@@ -254,10 +254,12 @@ const InstructorEnrollmentList: React.FC = () => {
       filterFn: 'arrIncludesSome',
       meta: {
         filter: 'select',
-        selectOptions: Object.entries(STATUS_LABELS).map(([key, label]) => ({
-          key,
-          label,
-        })),
+        selectOptions: Object.entries(STATUS_LABELS)
+          .filter(([key]) => key !== 'archived')
+          .map(([key, label]) => ({
+            key,
+            label,
+          })),
       },
       cell: ({ getValue }) => {
         const status = getValue() as EnrollmentStatus;
