@@ -2,7 +2,10 @@
 
 class EnrollmentPolicy < ApplicationPolicy
   def show?
-    !record.status_archived? && (user.is_member?(record) || user.is_reporter?(record))
+    member_or_reporter_rights = (user.is_member?(record) || user.is_reporter?(record)) && !record.status_archived?
+    administrator_rights = user.is_administrator?
+
+    member_or_reporter_rights || administrator_rights
   end
 
   def create?
@@ -69,11 +72,15 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def archive?
-    record.can_archive_status? && (
+    demandeur_rights =
       (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
-    ) || (user.is_instructor?(record.target_api) || user.is_administrator?)
+
+    instructor_right = user.is_instructor?(record.target_api)
+    administrator_right = user.is_administrator?
+
+    record.can_archive_status? && (demandeur_rights || instructor_right || administrator_right)
   end
 
   def refuse?
@@ -170,7 +177,7 @@ class EnrollmentPolicy < ApplicationPolicy
         scope = scope.or(sub_scope)
       end
 
-      scope
+      scope.where.not(status: :archived)
     end
   end
 
