@@ -62,8 +62,13 @@ const scopesConfiguration = [
   },
   {
     value: 'associations',
-    label: 'Données du RNA d’une association - Ministère de l’Intérieur',
-    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/rna',
+    label: 'Données association en open data - Ministère de l’Intérieur',
+    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/associations_open_data',
+  },
+  {
+    value: 'associations_donnees_protegees',
+    label: 'Données association - Ministère de l’Intérieur',
+    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/associations',
   },
   {
     value: 'documents_association',
