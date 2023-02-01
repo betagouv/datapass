@@ -64,7 +64,7 @@ class Enrollment < ActiveRecord::Base
     end
 
     event :archive do
-      transition from: %i[draft changes_requested submitted refused revoked validated], to: :archived
+      transition from: all, to: :archived
     end
 
     event :validate do
