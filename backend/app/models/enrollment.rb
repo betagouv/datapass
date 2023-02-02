@@ -64,7 +64,7 @@ class Enrollment < ActiveRecord::Base
     end
 
     event :archive do
-      transition from: all, to: :archived
+      transition from: all - [:archived], to: :archived
     end
 
     event :validate do
