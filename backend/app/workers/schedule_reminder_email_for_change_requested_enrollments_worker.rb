@@ -2,8 +2,8 @@
 
 require "sidekiq-scheduler"
 
-class ScheduleReminderEmailForChangeRequestedEnrollmentsWorker
-  include Sidekiq::Worker
+class ScheduleReminderEmailForChangeRequestedEnrollmentsWorker < ApplicationWorker
+  sidekiq_options queue: "reminders"
 
   def perform
     ExtractChangesRequestedEnrollmentsToArchive.new.call.each do |changes_requested_enrollment|

@@ -2,8 +2,8 @@
 
 require "sidekiq-scheduler"
 
-class ScheduleReminderEmailForDraftEnrollmentsWorker
-  include Sidekiq::Worker
+class ScheduleReminderEmailForDraftEnrollmentsWorker < ApplicationWorker
+  sidekiq_options queue: "reminders"
 
   def perform
     ExtractDraftEnrollmentsToRemind.new.call.each do |draft_enrollment|

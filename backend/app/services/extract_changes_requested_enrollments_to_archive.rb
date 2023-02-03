@@ -3,7 +3,7 @@
 class ExtractChangesRequestedEnrollmentsToArchive
   attr_reader :enrollment
 
-  OLDEST_CHANGES_REQUESTED_ENROLLMENTS = Time.now.beginning_of_day - 9.months
+  OLDEST_CHANGES_REQUESTED_ENROLLMENTS = Time.new(2022, 5, 1)
 
   def call
     last_request_changes_or_update_events = last_request_changes_or_update_events_for_enrollments
