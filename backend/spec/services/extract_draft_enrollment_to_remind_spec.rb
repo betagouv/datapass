@@ -5,20 +5,20 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
 
   describe "enrollment not included in #draft_enrollments call" do
     before do
-      Timecop.freeze(Time.now.change(year: 2022, month: 12))
+      Timecop.freeze(Time.now.change(year: 2022, month: 12, day: 1))
     end
 
     before do
-      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 94.days.ago, updated_at: 61.days.ago)
-      create(:event, :create, enrollment: enrollment, created_at: 94.days.ago, updated_at: 94.days.ago)
-      create(:event, :update, enrollment: enrollment, created_at: 61.days.ago, updated_at: 61.days.ago)
+      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 4.months.ago, updated_at: (3.months.ago - 1.days))
+      create(:event, :create, enrollment: enrollment, created_at: 4.months.ago, updated_at: 4.months.ago)
+      create(:event, :update, enrollment: enrollment, created_at: (3.months.ago - 1.days), updated_at: (3.months.ago - 1.days))
     end
 
     after do
       Timecop.return
     end
 
-    it "do not renders draft enrollment beyond the 1st of november" do
+    it "do not renders draft enrollment beyond the 1st of september 2022" do
       result = subject.draft_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
