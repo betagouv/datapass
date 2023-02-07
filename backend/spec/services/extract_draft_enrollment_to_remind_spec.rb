@@ -186,7 +186,7 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
     end
 
     before do
-      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :draft, created_at: 15.days.ago, updated_at: 16.days.ago)
+      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :draft, created_at: 15.days.ago, updated_at: 15.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
       create(:event, :notify, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 16.days.ago, updated_at: 16.days.ago)
