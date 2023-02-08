@@ -11,6 +11,7 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
     res.concat([
       scopes: [
         :associations,
+        :associations_donnees_protegees,
         :attestations_agefiph,
         :attestations_fiscales,
         :attestations_sociales,

@@ -191,6 +191,7 @@ const groups = {
       'etablissements',
       'extraits_rcs',
       'associations',
+      'associations_donnees_protegees',
       'documents_association',
       'actes_inpi',
       'conventions_collectives',
