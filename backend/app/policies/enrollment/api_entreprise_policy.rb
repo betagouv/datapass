@@ -23,7 +23,6 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
         :probtp,
         :qualibat,
         :certificat_rge_ademe,
-        :documents_association,
         :exercices,
         :extrait_court_inpi,
         :extraits_rcs,

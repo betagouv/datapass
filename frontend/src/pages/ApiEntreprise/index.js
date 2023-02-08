@@ -71,11 +71,6 @@ const scopesConfiguration = [
     link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/associations',
   },
   {
-    value: 'documents_association',
-    label: 'Divers documents d’une association - Ministère de l’Intérieur',
-    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/documents_associations',
-  },
-  {
     value: 'actes_inpi',
     label: 'Actes - Inpi',
     link: 'https://entreprise.api.gouv.fr/catalogue/inpi/actes',
@@ -192,7 +187,6 @@ const groups = {
       'extraits_rcs',
       'associations',
       'associations_donnees_protegees',
-      'documents_association',
       'actes_inpi',
       'conventions_collectives',
       'entreprises_artisanales',
