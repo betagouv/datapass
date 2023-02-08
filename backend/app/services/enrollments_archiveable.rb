@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class ArchiveDraftEnrollments
-  attr_reader :enrollment
-
+class EnrollmentsArchiveable
   REMIND_FROM_DATE = Time.new(2022, 9, 1)
 
   def call
@@ -26,7 +24,3 @@ class ArchiveDraftEnrollments
     Enrollment.find(enrollment_ids)
   end
 end
-
-# archived_enrollments.each do |enrollment|
-#   enrollment.update!(status: "archived")
-#   enrollment.events.create(name: "archive")

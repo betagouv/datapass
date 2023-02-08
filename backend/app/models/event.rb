@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :enrollment
 
   belongs_to :user, optional: true
-  validates :user, presence: true, if: proc { |event| event.name != "reminder" && event.name != "archive" }
+  validates :user, presence: true, if: proc { |event| %w[reminder archive].exclude?(event.name) }
 
   validate :validate_comment
   validate :validate_name
