@@ -150,27 +150,6 @@ FactoryBot.define do
       cgu_approved { true }
     end
 
-    trait :hubee_validated do
-      status { "validated" }
-
-      with_delegue_protection_donnees
-      with_responsable_traitement
-      with_data_retention
-
-      cgu_approved { true }
-
-      after(:build) do |enrollment|
-        enrollment.update!(
-          status: "validated"
-        )
-        event.create!(
-          name: "validate",
-          enrollment: hubee_validated,
-          comment: "I like trains"
-        )
-      end
-    end
-
     trait :refused do
       status { "refused" }
     end

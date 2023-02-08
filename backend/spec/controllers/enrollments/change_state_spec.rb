@@ -479,10 +479,10 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
       it "#calls HubeePortailBridge" do
         make_request
-        expect_any_instance_of(HubeePortailBridge).to receive(:call).and_return("1234567890")
-        expect(HubeePortailBridge.new(enrollment).call).to eq('1234567890')
 
+        expect_any_instance_of(HubeePortailBridge).to receive(:call).and_return("1234567890")
         enrollment_mailer
+        expect(HubeePortailBridge.new(enrollment).call).to eq("1234567890")
 
         enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
         notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }

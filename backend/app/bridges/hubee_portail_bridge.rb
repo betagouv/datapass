@@ -5,7 +5,6 @@ class HubeePortailBridge < ApplicationBridge
     updated_at = @enrollment[:updated_at]
     validated_at = @enrollment.validated_at
     scopes = @enrollment.scopes
-    target_api = @enrollment[:target_api]
 
     linked_token_manager_id = create_enrollment_in_token_manager(
       @enrollment.id,
@@ -13,12 +12,11 @@ class HubeePortailBridge < ApplicationBridge
       siret,
       updated_at,
       validated_at,
-      scopes,
-      target_api
+      scopes
     )
     @enrollment.update({linked_token_manager_id: linked_token_manager_id})
 
-    # 4. Send Validation email to the admin metier
+    # Send Validation email to the admin metier
     EnrollmentMailer.with(
       to: @enrollment.responsable_metier_email,
       enrollment_id: @enrollment.id,
@@ -35,8 +33,7 @@ class HubeePortailBridge < ApplicationBridge
     siret,
     updated_at,
     validated_at,
-    scopes,
-    target_api
+    scopes
   )
     response = ApiSirene.call(siret)
 

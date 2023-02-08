@@ -98,6 +98,7 @@ class EnrollmentMailer < ActionMailer::Base
       template_name: params[:template_name]
     )
   end
+
   def notification_email_unknown_software
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
