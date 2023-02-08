@@ -16,7 +16,7 @@
 	"code": "certificat_cnetp"
 }, {
 	"id": "79916597-e719-400a-a4e4-0160267fde42",
-	"name": "Association",
+	"name": "Association en OpenData",
 	"code": "associations"
 }, {
 	"id": "45c956f1-8ba7-4d30-a0a0-d748c623ab8d",
@@ -24,8 +24,8 @@
 	"code": "certificat_opqibi"
 }, {
 	"id": "ccd4c3bf-6ea5-45a3-9c6b-76314dfd169a",
-	"name": "Document association",
-	"code": "documents_association"
+	"name": "Association",
+	"code": "associations_donnees_protegees"
 }, {
 	"id": "ea918360-055b-4877-ad72-5494fc3478ea",
 	"name": "INSEE Etablissement",
