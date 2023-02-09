@@ -70,8 +70,7 @@ RSpec.describe EnrollmentsArchiveable, type: :service do
 
       it "renders reminder as last events" do
         result = subject.select_enrollments_to_archive
-        events = result.lazy.map { |enrollment| enrollment.events.last }
-          .to_a
+        events = result.lazy.map { |enrollment| enrollment.events.last }.to_a
           .select { |event| event.name == "reminder" }
 
         expect(events.count).to eq(2)

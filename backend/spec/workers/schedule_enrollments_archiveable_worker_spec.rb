@@ -21,18 +21,20 @@ RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
 
     context "When there is enrollments to archive" do
       it "archive enrollments" do
-        enrollment = subject.perform
+        result = subject.perform
+        enrollment = Enrollment.find(result[0].enrollment_id)
 
-        expect(enrollment[0].status).to eq("archived")
+        expect(enrollment.status).to eq("archived")
       end
     end
 
     context "#create_archive_event" do
       it "create an event archive when enrollment change to archived status" do
-        enrollment = subject.perform
+        result = subject.perform
+        expect(result[0].name).to eq("archive")
 
-        expect(enrollment[0].events.count).to eq(2)
-        expect(enrollment[0].events.last.name).to eq("archive")
+        enrollment = Enrollment.find(result[0].enrollment_id)
+        expect(enrollment.events.count).to eq(2)
       end
     end
   end
