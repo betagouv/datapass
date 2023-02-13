@@ -181,58 +181,62 @@ api_particulier:
         - cnous_ville_etudes
         - cnous_identite
   editeurs:
-    - name: Arpège
-      siret: '35142130000036'
     - name: Abelium Collectivités
       siret: '42172024400050'
+    - name: AFI
+      siret: '32275019100031'
     - name: Agora Plus
       siret: '48017088500010'
-    - name: Jdéalise/Cantine de France
-      siret: '89255569900016'
+    - name: Aiga
+      siret: '39825361700045'
+    - name: Amiciel
+      siret: '44884396100021'
+    - name: Arche MC2
+      siret: '38251931200088'
+    - name: Arpège
+      siret: '35142130000036'
     - name: Berger-Levrault
       siret: '75580064600373'
     - name: Ciril GROUP
       siret: '30516304000119'
-    - name: Docaposte FAST
-      siret: '48847870200027'
-    - name: DOCAPOSTE
-      siret: '49337600800030'
-    - name: Odyssée Informatique
-      siret: '38812677300026'
-    - name: Technocarte
-      siret: '38873581300056'
     - name: Communauté CapDémat
       siret: '79529105300010'
+    - name: Cosoluce
+      siret: '44321098400052'
+    - name: DOCAPOSTE
+      siret: '49337600800030'
+    - name: Docaposte FAST
+      siret: '48847870200027'
+    - name: Entrouvert
+      siret: '49108189900032'
+    - name: Jdéalise/Cantine de France
+      siret: '89255569900016'
+    - name: JVS-Mairistem
+      siret: '32855218700069'
+    - name: Kosmos
+      siret: '41922342500044'
+    - name: Mushroom Software
+      siret: '81122842800017'
     - name: Nord France Informatique (NFI)
       siret: '37996323400032'
     - name: NUMESIA
       siret: '81418189700012'
-    - name: Mushroom Software
-      siret: '81122842800017'
-    - name: Amiciel
-      siret: '44884396100021'
+    - name: Odyssée Informatique
+      siret: '38812677300026'
     - name: Qiis
       siret: '52834311400021'
-    - name: Aiga
-      siret: '39825361700045'
-    - name: Teamnet
-      siret: '33922000600078'
-    - name: JVS-Mairistem
-      siret: '32855218700069'
-    - name: 3D Ouest
-      siret: '44973625500018'
-    - name: Entrouvert
-      siret: '49108189900032'
-    - name: Waigeo
-      siret: '80321944300014'
-    - name: AFI
-      siret: '32275019100031'
-    - name: Arche MC2
-      siret: '38251931200088'
-    - name: Kosmos
-      siret: '41922342500044'
     - name: Société d’assistance et gestion du stationnement (SAGS)
       siret: '38933781700065'
+    - name: Sigec
+      siret: '33307306200015'
+    - name: Teamnet
+      siret: '33922000600078'
+    - name: Technocarte
+      siret: '38873581300056'
+    - name: Waigeo
+      siret: '80321944300014'
+    - name: 3D Ouest
+      siret: '44973625500018'
   demarches:
     default:
       label: Demande Libre
@@ -295,7 +299,7 @@ api_particulier:
           d'enfants. Abelium Collectivités accompagne le demandeur lors de la mise
           en place de la demande des informations sur l'application API particulier.
         data_recipients: Agents du service
-        data_retention_period: 60
+        data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
           fixe le cadre général des échanges de données au sein de l'administration.
@@ -346,6 +350,37 @@ api_particulier:
         responsable_technique:
           email: projet@agoraplus.fr
           phone_number: '0184160095'
+    aiga:
+      label: iNoé, Tarification services municipaux / Portail Famille, Données CNAF
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Facturation des familles inscrites aux CLSH, services périscolaires … des
+          collectivités
+        description: >-
+          iNoé permet la facturation des prestations des activités périscolaires,
+          garderies et centres de loisirs des collectivités. La tarification aux
+          familles est dépendante du quotient familial, au plus juste quand récupéré
+          auprès de la CNAF.
+        data_recipients: Adresse du foyer
+        data_retention_period: 12
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement.
+        technical_team_type: software_company
+        technical_team_value: '39825361700045'
+        scopes:
+          cnaf_quotient_familial: true
+      team_members:
+        responsable_technique:
+          given_name: Fabrice
+          family_name: Biollet
+          job: CEO
+          email: fabrice.biollet@free.fr
+          phone_number: '0472532200'
     amiciel-malice:
       label: Malice, Tarification services municipaux / Portail Famille, Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
@@ -358,7 +393,7 @@ api_particulier:
         data_recipients: >-
           Agents instructeurs gérant les inscriptions et les facturations des
           prestations Petite Enfance, Scolaire et Extra-Scolaire
-        data_retention_period: 60
+        data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
           fixe le cadre général des échanges de données au sein de l'administration.
@@ -462,6 +497,115 @@ api_particulier:
         responsable_technique:
           email: contact@jdealise.fr
           phone_number: '0972473612'
+    ccas-ArcheMC2:
+      label: >-
+        Arche MC2, Dématérialisation de l'instruction des dossiers dans un
+        CCAS/CIAS, Données CNAF
+      about: https://api.gouv.fr/guides/ccas
+      state:
+        intitule: Instructions des dossiers d'aides sociales
+        description: >-
+          Les agents sociaux de la collectivité (CCAS/CIAS) instruisent des dossiers
+          de demande d'aides légales et/ou facultatives. Dans ce contexte, ils ont
+          besoin de connaître la composition familiale et la situation financière du
+          foyer du demandeur : état civil (nom prénom date de naissance), structure
+          familiale (nom prénom date de naissance des enfants et parents), adresse
+          du foyer, quotient familial calculé par la CAF. Toutes ces informations
+          leur permettent de vérifier les conditions d'éligibilité aux aides
+          sociales. Ainsi, dans une volonté de simplification de la démarche pour
+          les citoyens et agents, nous souhaitons exploiter les données déjà connues
+          de l'API Particulier. Pour cela, la collectivité utilise la solution
+          Millésime édité par la société Arche MC2.
+        data_recipients: >-
+          agents instructeurs des demandes d'aides, agents instructeurs des demandes
+          d'inscriptions aux services à la personne, ...
+        data_retention_period: 24
+        fondement_juridique_title: >-
+          Article L. 312-1 et Article R123-5 du code de l'action sociale et des
+          familles. Article L114-8 et Article R. 114-9-3 du code des relations entre
+          le public et l'administration.
+        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
+        technical_team_type: software_company
+        technical_team_value: '38251931200088'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+      team_members:
+        responsable_technique:
+          given_name: Pascal
+          family_name: BALIGOUT
+          job: Chef produit
+          email: pascal.baligout@arche‑mc2.fr
+          phone_number: '0352829363'
+    ccas-arpege:
+      label: >-
+        Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS,
+        Données CNAF
+      about: https://api.gouv.fr/guides/ccas
+      state:
+        intitule: >-
+          Récupération du Quotient Familial et des Impôts pour les aides sociales
+          facultatives et les services à la personne du CCAS
+        description: "Le CCAS de notre commune module le montant des aides octroyées aux usagers en difficulté en fonction du QF.\r\nLe prix des services à la personne pour les aînés et personnes en situation de handicap est calculé en fonction de l’impôt sur le revenu.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
+        data_recipients: >-
+          agents instructeurs des demandes d'aides, agents instructeurs des demandes
+          d'inscriptions aux services à la personne, ...
+        data_retention_period: 12
+        fondement_juridique_title: "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\r\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision."
+        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
+        technical_team_type: software_company
+        technical_team_value: '35142130000036'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: false
+          cnaf_enfants: false
+          cnaf_adresse: false
+    ccas-Melissandre-afi:
+      label: >-
+        AFI, Dématérialisation de l'instruction des dossiers dans un CCAS, Données
+        CNAF/MESRI/Pole Emploi/CROUS
+      about: https://api.gouv.fr/guides/ccas
+      state:
+        intitule: Instructions des dossiers d'aides sociales
+        description: >-
+          Les agents du CCAS instruisent des dossiers de demandes d'aides légales et
+          facultatives. Pour définir si un usager est éligible, les agents analysent
+          la situation fiscal et familiale (toutes les ressources perçues, le
+          quotient familial, la composition du ménage, si l'adresse est bien sur la
+          commune, etc.). L'accès à certaines informations, certifiées via l'API
+          Particulier, permet un gain de temps dans le traitement des dossiers par
+          les instructeurs et simplifie les démarches des familles. Logiciel utilisé
+          : Melissande, édité par la Société A.F.I.
+        data_recipients: >-
+          agents instructeurs des demandes d'aides, agents instructeurs des demandes
+          d'inscriptions aux services à la personne, ...
+        data_retention_period: 12
+        fondement_juridique_title: "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\r\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision."
+        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
+        technical_team_type: software_company
+        technical_team_value: '32275019100031'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+          pole_emploi_identite: true
+          pole_emploi_contact: true
+          pole_emploi_adresse: true
+          pole_emploi_inscription: true
+          mesri_identifiant: true
+          mesri_identite: true
+          cnous_statut_bourse: true
+          cnous_identite: true
+      team_members:
+        responsable_technique:
+          given_name: Avelinda
+          family_name: Jess
+          job: Chef produit
+          email: ajess@afi-sa.fr
+          phone_number: '0614677910'
     city-family-mushroom-software-cnaf:
       label: >-
         City Family, Tarification services municipaux / Portail Famille, Données
@@ -497,6 +641,68 @@ api_particulier:
           job: Produit
           email: technique@mushroom-software.com
           phone_number: '0674577622'
+    civil-enfance-ciril-group:
+      label: Civil, Tarification services municipaux / Portail Famille, Données CNAF
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Déclaration et calcul du quotient familial pour la facturation des
+          activités du portail famille
+        description: "Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\r\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]"
+        data_recipients: >-
+          Agents de la collectivité en charge des services enfance, petite enfance
+          et jeunesse de la ville.
+        data_retention_period: 36
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement.
+        technical_team_type: software_company
+        technical_team_value: '30516304000119'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+      team_members:
+        responsable_technique:
+          given_name: Romain
+          family_name: Jalabert
+          job: Chef Produit
+          email: rjalabert@cirilgroup.com
+          phone_number: '0472691680'
+    cosoluce-fluo:
+      label: >-
+        Fluo, Tarification services municipaux / Portail Famille,
+        Données CNAF
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Récupération des données CNAF pour les services municipaux
+        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
+        data_retention_period: 36
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement.
+        technical_team_type: software_company
+        technical_team_value: '44321098400052'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+      team_members:
+        responsable_technique:
+          given_name: Brice
+          family_name: Leblond
+          job: R&D Manager
+          email: b-leblond@cosoluce.fr
+          phone_number: '0632656901'
     docaposte-fast:
       label: Docaposte, Tarification services municipaux / Portail Famille, Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
@@ -568,38 +774,6 @@ api_particulier:
           cnaf_allocataires: true
           cnaf_enfants: true
           cnaf_adresse: true
-    civil-enfance-ciril-group:
-      label: Civil, Tarification services municipaux / Portail Famille, Données CNAF
-      about: https://api.gouv.fr/guides/portail-famille-tarification
-      state:
-        intitule: >-
-          Déclaration et calcul du quotient familial pour la facturation des
-          activités du portail famille
-        description: "Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\r\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]"
-        data_recipients: >-
-          Agents de la collectivité en charge des services enfance, petite enfance
-          et jeunesse de la ville.
-        data_retention_period: 36
-        fondement_juridique_title: >-
-          L'article L114-8 du code des relations entre le public et l'administration
-          fixe le cadre général des échanges de données au sein de l'administration.
-          En tant que collectivité territoriale, la délibération ci-jointe précise
-          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
-          et précise les données nécessaires à son fonctionnement.
-        technical_team_type: software_company
-        technical_team_value: '30516304000119'
-        scopes:
-          cnaf_quotient_familial: true
-          cnaf_allocataires: true
-          cnaf_enfants: true
-          cnaf_adresse: true
-      team_members:
-        responsable_technique:
-          given_name: Romain
-          family_name: Jalabert
-          job: Chef Produit
-          email: rjalabert@cirilgroup.com
-          phone_number: '0472691680'
     nfi-grc:
       label: NFI, Tarification services municipaux / Portail Famille, Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
@@ -627,28 +801,38 @@ api_particulier:
           job: Chef Produit
           email: richard.ghesquiere@nfi.fr
           phone_number: '0632362572'
-    teamnet:
-      label: Axel, Tarification services municipaux / Portail Famille, Données CNAF
+    odyssee-pandore:
+      label: >-
+        Pandore, Tarification services municipaux / Portail Famille,
+        Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Déclaration des revenus et calcul du quotient familial pour actualiser les
-          tarifs appliqués aux différentes prestations facturées
-        description: "Le télé-service de déclaration des revenus est accessible sur le Portail Familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
+          Récupération des données CNAF pour les services municipaux
+        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
         data_recipients: >-
-          Agents instructeurs qui gèrent la facturation des prestations de la Petite
-          Enfance, du Scolaire et de l'extra-scolaire
+          Service facturier de la collectivité
         data_retention_period: 36
         fondement_juridique_title: >-
-          Préciser la référence et le texte et de la délibération au format PDF vous
-          autorisant à traiter les données.
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement.
         technical_team_type: software_company
-        technical_team_value: '33922000600078'
+        technical_team_value: '38812677300026'
         scopes:
           cnaf_quotient_familial: true
-          cnaf_allocataires: false
-          cnaf_enfants: false
-          cnaf_adresse: false
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+      team_members:
+        responsable_technique:
+          given_name: Grégory
+          family_name: Frogé
+          job: Responsable développement
+          email: accueil@odyssee-informatique.fr
+          phone_number: '0555921383'
     qiis:
       label: eTicket, Tarification services municipaux / Portail Famille, Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
@@ -678,20 +862,16 @@ api_particulier:
           job: CEO
           email: eric.veyret@qiis.fr
           phone_number: '0646436364'
-    aiga:
-      label: iNoé, Tarification services municipaux / Portail Famille, Données CNAF
+    sigec-maelis:
+      label: >-
+        Maelis Portail, Tarification services municipaux / Portail Famille,
+        Données CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Facturation des familles inscrites aux CLSH, services périscolaires … des
-          collectivités
-        description: >-
-          iNoé permet la facturation des prestations des activités périscolaires,
-          garderies et centres de loisirs des collectivités. La tarification aux
-          familles est dépendante du quotient familial, au plus juste quand récupéré
-          auprès de la CNAF.
-        data_recipients: Adresse du foyer
-        data_retention_period: 12
+          Récupération des données CNAF pour les services municipaux
+        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
+        data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
           fixe le cadre général des échanges de données au sein de l'administration.
@@ -699,16 +879,40 @@ api_particulier:
           l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
           et précise les données nécessaires à son fonctionnement.
         technical_team_type: software_company
-        technical_team_value: '39825361700045'
+        technical_team_value: '33307306200015'
         scopes:
           cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
       team_members:
         responsable_technique:
-          given_name: Fabrice
-          family_name: Biollet
-          job: CEO
-          email: fabrice.biollet@free.fr
-          phone_number: '0472532200'
+          given_name: Laurent
+          family_name: Dettori
+          job: Responsable technique
+          email: laurent.dettori@sigec.fr
+          phone_number: '0442845580'
+    teamnet:
+      label: Axel, Tarification services municipaux / Portail Famille, Données CNAF
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Déclaration des revenus et calcul du quotient familial pour actualiser les
+          tarifs appliqués aux différentes prestations facturées
+        description: "Le télé-service de déclaration des revenus est accessible sur le Portail Familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
+        data_recipients: >-
+          Agents instructeurs qui gèrent la facturation des prestations de la Petite
+          Enfance, du Scolaire et de l'extra-scolaire
+        data_retention_period: 36
+        fondement_juridique_title: >-
+          Préciser la référence et le texte et de la délibération au format PDF vous
+          autorisant à traiter les données.
+        technical_team_type: software_company
+        technical_team_value: '33922000600078'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: false
+          cnaf_enfants: false
+          cnaf_adresse: false
     waigeo:
       label: >-
         MyPerischool, Tarification services municipaux / Portail Famille, Données
@@ -771,115 +975,6 @@ api_particulier:
           job: Directeur R&D
           email: laurent.delattre@3douest.com
           phone_number: '0256662007'
-    ccas-Melissandre-afi:
-      label: >-
-        AFI, Dématérialisation de l'instruction des dossiers dans un CCAS, Données
-        CNAF/MESRI/Pole Emploi/CROUS
-      about: https://api.gouv.fr/guides/ccas
-      state:
-        intitule: Instructions des dossiers d'aides sociales
-        description: >-
-          Les agents du CCAS instruisent des dossiers de demandes d'aides légales et
-          facultatives. Pour définir si un usager est éligible, les agents analysent
-          la situation fiscal et familiale (toutes les ressources perçues, le
-          quotient familial, la composition du ménage, si l'adresse est bien sur la
-          commune, etc.). L'accès à certaines informations, certifiées via l'API
-          Particulier, permet un gain de temps dans le traitement des dossiers par
-          les instructeurs et simplifie les démarches des familles. Logiciel utilisé
-          : Melissande, édité par la Société A.F.I.
-        data_recipients: >-
-          agents instructeurs des demandes d'aides, agents instructeurs des demandes
-          d'inscriptions aux services à la personne, ...
-        data_retention_period: 12
-        fondement_juridique_title: "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\r\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision."
-        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
-        technical_team_type: software_company
-        technical_team_value: '32275019100031'
-        scopes:
-          cnaf_quotient_familial: true
-          cnaf_allocataires: true
-          cnaf_enfants: true
-          cnaf_adresse: true
-          pole_emploi_identite: true
-          pole_emploi_contact: true
-          pole_emploi_adresse: true
-          pole_emploi_inscription: true
-          mesri_identifiant: true
-          mesri_identite: true
-          cnous_statut_bourse: true
-          cnous_identite: true
-      team_members:
-        responsable_technique:
-          given_name: Avelinda
-          family_name: Jess
-          job: Chef produit
-          email: ajess@afi-sa.fr
-          phone_number: '0614677910'
-    ccas-ArcheMC2:
-      label: >-
-        Arche MC2, Dématérialisation de l'instruction des dossiers dans un
-        CCAS/CIAS, Données CNAF
-      about: https://api.gouv.fr/guides/ccas
-      state:
-        intitule: Instructions des dossiers d'aides sociales
-        description: >-
-          Les agents sociaux de la collectivité (CCAS/CIAS) instruisent des dossiers
-          de demande d'aides légales et/ou facultatives. Dans ce contexte, ils ont
-          besoin de connaître la composition familiale et la situation financière du
-          foyer du demandeur : état civil (nom prénom date de naissance), structure
-          familiale (nom prénom date de naissance des enfants et parents), adresse
-          du foyer, quotient familial calculé par la CAF. Toutes ces informations
-          leur permettent de vérifier les conditions d'éligibilité aux aides
-          sociales. Ainsi, dans une volonté de simplification de la démarche pour
-          les citoyens et agents, nous souhaitons exploiter les données déjà connues
-          de l'API Particulier. Pour cela, la collectivité utilise la solution
-          Millésime édité par la société Arche MC2.
-        data_recipients: >-
-          agents instructeurs des demandes d'aides, agents instructeurs des demandes
-          d'inscriptions aux services à la personne, ...
-        data_retention_period: 24
-        fondement_juridique_title: >-
-          Article L. 312-1 et Article R123-5 du code de l'action sociale et des
-          familles. Article L114-8 et Article R. 114-9-3 du code des relations entre
-          le public et l'administration.
-        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
-        technical_team_type: software_company
-        technical_team_value: '38251931200088'
-        scopes:
-          cnaf_quotient_familial: true
-          cnaf_allocataires: true
-          cnaf_enfants: true
-          cnaf_adresse: true
-      team_members:
-        responsable_technique:
-          given_name: Pascal
-          family_name: BALIGOUT
-          job: Chef produit
-          email: pascal.baligout@arche‑mc2.fr
-          phone_number: '0352829363'
-    ccas-arpege:
-      label: >-
-        Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS,
-        Données CNAF
-      about: https://api.gouv.fr/guides/ccas
-      state:
-        intitule: >-
-          Récupération du Quotient Familial et des Impôts pour les aides sociales
-          facultatives et les services à la personne du CCAS
-        description: "Le CCAS de notre commune module le montant des aides octroyées aux usagers en difficulté en fonction du QF.\r\nLe prix des services à la personne pour les aînés et personnes en situation de handicap est calculé en fonction de l’impôt sur le revenu.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
-        data_recipients: >-
-          agents instructeurs des demandes d'aides, agents instructeurs des demandes
-          d'inscriptions aux services à la personne, ...
-        data_retention_period: 12
-        fondement_juridique_title: "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\r\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision."
-        fondement_juridique_url: Joindre les délibérations ou procédures internes concernées.
-        technical_team_type: software_company
-        technical_team_value: '35142130000036'
-        scopes:
-          cnaf_quotient_familial: true
-          cnaf_allocataires: false
-          cnaf_enfants: false
-          cnaf_adresse: false
 
 api_impot_particulier_sandbox:
   label: API Impôt particulier (Bac à sable)
