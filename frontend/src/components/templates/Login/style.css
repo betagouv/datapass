@@ -5,12 +5,18 @@
   margin: 1.5rem auto;
 }
 
+.next-steps-center {
+  display: flex;
+  align-items: center;
+}
+
 .next-steps,
 .timeline {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin: 30px 0 20px;
+  font-size: 14px;
 }
 
 .timeline {
@@ -48,10 +54,9 @@
 .timeline > div:before,
 .timeline > div:after {
   content: '';
-  height: 3px;
   width: 50%;
   border: 1px dashed #000091;
-  opacity: 0.50;
+  opacity: 0.75;
 }
 
 .timeline > div:first-of-type:before,
@@ -80,10 +85,16 @@
 }
 
 .new-login-container {
-  text-align: left;
-  padding: 0 10rem;
-  display: flex;
+  display: block;
   justify-content: flex-start;
+  width: auto;
+  border: 1px solid var(--datapass-light-grey);
+  padding: 8px 12px;
+  margin-bottom: 1.5rem;
+}
+
+.new-login-container p {
+  font-weight: bold;
 }
 
 @media all and (max-width: 992px) {

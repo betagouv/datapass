@@ -17,10 +17,17 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
     );
   }
   switch (targetApi) {
-    case 'api_impot_particulier_fc_sandbox':
-      return <ApiImpotParticulierFcSandboxWelcomeMessage />;
-    case 'api_impot_particulier_sandbox':
-      return <ApiImpotParticulierSandboxWelcomeMessage />;
+    // case 'api_impot_particulier_fc_sandbox':
+    //   return <ApiImpotParticulierFcSandboxWelcomeMessage />;
+    // case 'api_impot_particulier_sandbox':
+    //   return <ApiImpotParticulierSandboxWelcomeMessage />;
+    case 'api_impot_particulier_sandbox' && 'api_impot_particulier_production':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          target_api={targetApi}
+        />
+      );
     case 'franceconnect':
       return (
         <WelcomeMessage
@@ -56,6 +63,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
           newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
         />
       );
+
     default:
       return (
         <WelcomeMessage
@@ -80,7 +88,7 @@ export const Login = () => {
   return (
     <section className="fr-container--fluid">
       <div className="fr-grid-row fr-grid-row--gutters">
-        <div class="fr-col-6">
+        <div className="fr-col-5">
           <div style={{ backgroundColor: '#F6F6F6', height: '100%' }}>
             <div
               style={{
@@ -90,33 +98,32 @@ export const Login = () => {
               <img
                 src={`/images/logo-welcome-page.svg`}
                 alt={`Logo welcome page`}
-                className="fr-m-3w"
+                className="fr-mt-10w"
               />
             </div>
           </div>
         </div>
-        <div class="fr-col-6">
+        <div class="fr-col-7">
           <div className="fr-m-8w">
             <div className="panel" style={{ textAlign: 'left' }}>
               <h2>Bienvenue sur DataPass !</h2>
-
               <WelcomeMessageRouter
                 targetApi={targetApi}
                 isOnNewEnrollmentPage={isOnNewEnrollmentPage}
               />
-              {/* <div className="login-button">
-                <p>Pour suivre vos demandes d’habilitation</p>
-                <MonComptePro />
-              </div> */}
               <div className="new-login-container">
-                {/* <Alert type="info" title="Votre connexion évolue">
-                  <p>
-                    Votre compte DataPass devient MonComptePro.
-                    <br />
-                    Votre email et votre mot de passe restent inchangés.
-                  </p>
-                </Alert> */}
+                <div className="login-button">
+                  <p>Pour suivre vos demandes d’habilitation</p>
+                  <MonComptePro />
+                </div>
               </div>
+              <Alert type="info" title="Votre connexion évolue">
+                <p>
+                  Votre compte DataPass devient MonComptePro.
+                  <br />
+                  Votre email et votre mot de passe restent inchangés.
+                </p>
+              </Alert>
             </div>
           </div>
         </div>

@@ -140,7 +140,7 @@ export const ArchiveIcon: React.FC<Props> = ({ color, large, small }) => (
 
 export const ExternalLinkIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon
-    type="external-link-fill"
+    type="external-link-line"
     color={color}
     large={large}
     small={small}

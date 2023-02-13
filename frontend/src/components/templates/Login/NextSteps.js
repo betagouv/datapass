@@ -23,7 +23,7 @@ const NextSteps = ({ targetApi, isService = false }) => {
   return (
     <>
       <div className="next-steps">
-        <div className="next-steps-center">
+        <div>
           <div>
             <AuthIcon />
           </div>
@@ -39,13 +39,15 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <HabilitationIcon />
           </div>
-          <div>{isService ? 'Habilitation validée' : 'Être habilité'}</div>
+          <div>Être habilité</div>
         </div>
         <div>
           <div>
             <TokenIcon />
           </div>
-          <div>{isService ? 'Accéder au service' : 'Recevoir son token'}</div>
+          <div>
+            {isService ? 'Accéder au service' : 'Obtenir le token d’accès'}
+          </div>
         </div>
       </div>
       <div className="timeline">
