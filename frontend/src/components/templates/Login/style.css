@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 30px 0 15px;
+  margin: 30px 0 20px;
 }
 
 .timeline {
@@ -25,8 +25,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: var(--text-default-info);
-  font-weight: bold;
 }
 
 .timeline > div {
@@ -44,6 +42,7 @@
   background-color: #fff;
   z-index: 5;
   padding: 0 5px;
+  color: var(--text-action-high-blue-france);
 }
 
 .timeline > div:before,
@@ -51,8 +50,8 @@
   content: '';
   height: 3px;
   width: 50%;
-  background-color: var(--text-default-info);
-  opacity: 0.15;
+  border: 1px dashed #000091;
+  opacity: 0.50;
 }
 
 .timeline > div:first-of-type:before,
@@ -61,19 +60,23 @@
 }
 
 .timeline .step {
-  height: 7px;
-  width: 7px;
+  height: 12px;
+  width: 12px;
   border-radius: 15px;
-  background-color: var(--text-default-info);
+  background-color: var(--text-action-high-blue-france);
 }
 
 .next-steps svg {
-  fill: var(--text-default-info);
+  fill: var(--text-action-high-blue-france);
 }
 
 .next-steps .prepare > ul {
   padding: 10px;
   margin: 0;
+}
+
+.next-steps-center{
+  display: block;
 }
 
 .new-login-container {

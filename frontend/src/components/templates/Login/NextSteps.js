@@ -23,17 +23,17 @@ const NextSteps = ({ targetApi, isService = false }) => {
   return (
     <>
       <div className="next-steps">
-        <div>
+        <div className="next-steps-center">
           <div>
             <AuthIcon />
           </div>
-          <div>S’authentifier</div>
+          <div>S’identifier avec MonComptePro</div>
         </div>
         <div>
           <div>
             <DemandeIcon />
           </div>
-          <div>Remplir sa demande d’habilitation</div>
+          <div>Remplir ma demande</div>
         </div>
         <div>
           <div>
@@ -45,7 +45,7 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <TokenIcon />
           </div>
-          <div>{isService ? 'Accès au service' : 'Recevoir son token'}</div>
+          <div>{isService ? 'Accéder au service' : 'Recevoir son token'}</div>
         </div>
       </div>
       <div className="timeline">

@@ -25,14 +25,13 @@ const WelcomeMessage = ({
                 Vous souhaitez connecter votre service en ligne à <b>{label}</b>
               </>
             )}
-            ,<br /> l’obtention de votre habilitation va se dérouler en 4 étapes
-            :
+            <br /> Votre demande d’habilitation va se dérouler en 4 étapes :
             <NextSteps targetApi={targetApi} isService={isService} />
-            <p>
+            {/* <p>
               Merci de <b>créer un compte</b> pour déposer votre demande
               d’habilitation et suivre son traitement.
               <br /> Si vous possédez déjà un compte, identifiez-vous.
-            </p>
+            </p> */}
           </div>
         </>
       ) : (

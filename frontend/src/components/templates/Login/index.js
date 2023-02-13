@@ -44,7 +44,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
           isService
-          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE."
         />
       );
     case 'hubee_portail_dila':
@@ -72,7 +72,7 @@ export const Login = () => {
     '_'
   );
 
-  const { label, icon } = useDataProvider(targetApi);
+  const { label } = useDataProvider(targetApi);
 
   const isOnNewEnrollmentPage =
     !!label && !window.location.pathname.split('/')[2];
