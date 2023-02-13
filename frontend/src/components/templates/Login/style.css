@@ -1,6 +1,6 @@
 .panel > .login-button {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   margin: 1.5rem auto;
 }
@@ -79,6 +79,8 @@
 .new-login-container {
   text-align: left;
   padding: 0 10rem;
+  display: flex;
+  justify-content: flex-start;
 }
 
 @media all and (max-width: 992px) {

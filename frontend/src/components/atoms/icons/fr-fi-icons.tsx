@@ -137,3 +137,12 @@ export const FilterIcon: React.FC<Props> = ({ color, large, small }) => (
 export const ArchiveIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="archive-line" color={color} large={large} small={small} />
 );
+
+export const ExternalLinkIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon
+    type="external-link-fill"
+    color={color}
+    large={large}
+    small={small}
+  ></FrFiIcon>
+);

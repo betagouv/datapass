@@ -2,6 +2,9 @@ import React from 'react';
 import { useDataProvider } from '../hooks/use-data-provider';
 
 import NextSteps from './NextSteps';
+import './WelcomeMessage.css';
+import MonComptePro from '../../atoms/MonComptePro';
+import { ExternalLinkIcon } from '../../atoms/icons/fr-fi-icons';
 import Link from '../../atoms/hyperTexts/Link';
 
 const WelcomeMessage = ({
@@ -34,17 +37,26 @@ const WelcomeMessage = ({
         </>
       ) : (
         <>
-          <h3>Bienvenue sur DataPass !</h3>
           <p>
-            DataPass délivre des habilitations pour accéder à l’ensemble des
-            données protégées produites par l’État.{' '}
-            <Link inline href="https://beta.gouv.fr/startups/datapass.html">
-              En savoir plus
-            </Link>
+            DataPass, c’est le service qui vous permet de profiter facilement
+            d’habilitations conformers entre administrations et d’accéder à des
+            données et services en accès restreint.
           </p>
-          <div className="fr-mb-3w">
-            Vous souhaitez suivre le traitement d’une habilitation, merci de
-            vous identifier afin que nous puissions configurer vos accès.
+          <div className="apis">
+            <p>Pour suivre vos demandes d’habilitation</p>
+            <MonComptePro />
+          </div>
+          <div className="fr-mb-3w"></div>
+          <div className="apis">
+            <p>Pour découvrir les APis du service public</p>
+            <button
+              icon="ExternalLinkIcon"
+              iconRight
+              class="fr-btn fr-btn--tertiary"
+              href={`https://api.gouv.fr/`}
+            >
+              api.gouv.fr
+            </button>
           </div>
         </>
       )}

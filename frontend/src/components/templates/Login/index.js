@@ -78,32 +78,46 @@ export const Login = () => {
     !!label && !window.location.pathname.split('/')[2];
 
   return (
-    <section className="full-page">
-      <div className="container">
-        <div className="panel" style={{ textAlign: 'center' }}>
-          {icon && (
-            <img
-              src={`/images/${icon}`}
-              alt={`Logo ${label}`}
-              height="90"
-              className="fr-m-3w"
-            />
-          )}
-          <WelcomeMessageRouter
-            targetApi={targetApi}
-            isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-          />
-          <div className="new-login-container">
-            <Alert type="info" title="Votre connexion évolue">
-              <p>
-                Votre compte DataPass devient MonComptePro.
-                <br />
-                Votre email et votre mot de passe restent inchangés.
-              </p>
-            </Alert>
+    <section className="fr-container--fluid">
+      <div className="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-6">
+          <div style={{ backgroundColor: '#F6F6F6', height: '100%' }}>
+            <div
+              style={{
+                textAlign: 'center',
+              }}
+            >
+              <img
+                src={`/images/logo-welcome-page.svg`}
+                alt={`Logo welcome page`}
+                className="fr-m-3w"
+              />
+            </div>
           </div>
-          <div className="login-button">
-            <MonComptePro />
+        </div>
+        <div class="fr-col-6">
+          <div className="fr-m-8w">
+            <div className="panel" style={{ textAlign: 'left' }}>
+              <h2>Bienvenue sur DataPass !</h2>
+
+              <WelcomeMessageRouter
+                targetApi={targetApi}
+                isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+              />
+              {/* <div className="login-button">
+                <p>Pour suivre vos demandes d’habilitation</p>
+                <MonComptePro />
+              </div> */}
+              <div className="new-login-container">
+                {/* <Alert type="info" title="Votre connexion évolue">
+                  <p>
+                    Votre compte DataPass devient MonComptePro.
+                    <br />
+                    Votre email et votre mot de passe restent inchangés.
+                  </p>
+                </Alert> */}
+              </div>
+            </div>
           </div>
         </div>
       </div>
