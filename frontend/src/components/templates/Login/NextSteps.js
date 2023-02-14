@@ -5,6 +5,8 @@ import DemandeIcon from '../../atoms/icons/demande';
 import HabilitationIcon from '../../atoms/icons/habilitation';
 import TokenIcon from '../../atoms/icons/token';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
+import { APISDGFIP } from './index';
+import { APISFRANCECONNECTED } from './index';
 
 const NextSteps = ({ targetApi, isService = false }) => {
   const [stat, setStat] = useState(null);
@@ -33,13 +35,25 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <DemandeIcon />
           </div>
-          <div>Remplir ma demande</div>
+          <div>
+            {APISDGFIP.find((apiLabel) => apiLabel === targetApi)
+              ? 'Être habilité au bac à sable'
+              : APISFRANCECONNECTED.find((apiLabel) => apiLabel === targetApi)
+              ? 'Être habilité à FranceConnect'
+              : 'Remplir ma demande'}
+          </div>
         </div>
         <div>
           <div>
             <HabilitationIcon />
           </div>
-          <div>Être habilité</div>
+          <div>
+            {APISDGFIP.find((apiLabel) => apiLabel === targetApi)
+              ? 'Être habilité à la production'
+              : APISFRANCECONNECTED.find((apiLabel) => apiLabel === targetApi)
+              ? 'Être habilité à `{targetApi}`'
+              : 'Être habilité'}
+          </div>
         </div>
         <div>
           <div>

@@ -2,10 +2,52 @@ import React from 'react';
 import Alert from '../../atoms/Alert';
 import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
-import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
-import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
+
+export const APISDGFIP = [
+  'api_impot_particulier_sandbox',
+  'api_impot_particulier_production',
+  'api_r2p_sandbox',
+  'api_r2p_production',
+  'api_hermes_sandbox',
+  'api_hermes_production',
+  'api_e_contacts_sandbox',
+  'api_e_contacts_production',
+  'api_opale_sandbox',
+  'api_opale_production',
+  'api_mire_sandbox',
+  'api_mire_production',
+  'api_ocfi_sandbox',
+  'api_ocfi_production',
+  'api_e_pro_sandbox',
+  'api_e_pro_production',
+  'api_robf_sandbox',
+  'api_robf_production',
+  'api_cpr_pro_sandbox',
+  'api_cpr_pro_production',
+  'api_infinoe_sandbox',
+  'api_infinoe_production',
+  'api_ficoba_sandbox',
+  'api_ficoba_production',
+  'api_ensu_documents_sandbox',
+  'api_ensu_documents_production',
+  'api_satelit_sandbox',
+  'api_satelit_production',
+  'api_sfip_sandbox',
+  'api_sfip_production',
+];
+
+export const APISFRANCECONNECTED = [
+  'api_impot_particulier_fc_sandbox',
+  'api_impot_particulier_fc_production',
+  'api_droits_cnam',
+  'api_prestations_sociales',
+  'api_statut_etudiant',
+  'api_statut_demandeur_emploi',
+  'api_statut_etudiant_boursier',
+  'api_indemnisation_pole_emploi',
+];
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {
@@ -17,18 +59,16 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
     );
   }
   switch (targetApi) {
-    // case 'api_impot_particulier_fc_sandbox':
-    //   return <ApiImpotParticulierFcSandboxWelcomeMessage />;
-    // case 'api_impot_particulier_sandbox':
-    //   return <ApiImpotParticulierSandboxWelcomeMessage />;
-    case 'api_impot_particulier_sandbox' && 'api_impot_particulier_production':
+    // case APISDGFIP.includes(targetApi):
+    case APISDGFIP.find((apiLabel) => apiLabel === targetApi):
       return (
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           target_api={targetApi}
+          newEnrollmentPageMessage="Cette procédure nécessite 2 demandes d’habilitation distinctes :"
         />
       );
-    case 'franceconnect':
+    case APISFRANCECONNECTED.includes(targetApi):
       return (
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
@@ -103,7 +143,7 @@ export const Login = () => {
             </div>
           </div>
         </div>
-        <div class="fr-col-7">
+        <div className="fr-col-7">
           <div className="fr-m-8w">
             <div className="panel" style={{ textAlign: 'left' }}>
               <h2>Bienvenue sur DataPass !</h2>

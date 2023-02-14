@@ -10,6 +10,7 @@ const WelcomeMessage = ({
   targetApi,
   isService = false,
   newEnrollmentPageMessage,
+  newEnrollmentPageSubTitleMessage,
 }) => {
   const { label } = useDataProvider(targetApi);
 
@@ -23,7 +24,11 @@ const WelcomeMessage = ({
                 Vous souhaitez accéder à l'<b>{label}</b>.
               </>
             )}
-            <br /> Votre demande d’habilitation va se dérouler en 4 étapes.
+            {newEnrollmentPageSubTitleMessage || (
+              <>
+                <br /> Votre demande d’habilitation va se dérouler en 4 étapes.
+              </>
+            )}
             <NextSteps targetApi={targetApi} isService={isService} />
           </div>
         </>
@@ -37,7 +42,10 @@ const WelcomeMessage = ({
           <div className="fr-mb-3w"></div>
           <div className="new-login-container">
             <p>Pour découvrir les APis du service public</p>
-            <Button class="fr-btn fr-btn--tertiary" href="https://api.gouv.fr">
+            <Button
+              className="fr-btn fr-btn--tertiary"
+              href="https://api.gouv.fr"
+            >
               api.gouv.fr
             </Button>
           </div>
