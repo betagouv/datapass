@@ -93,6 +93,25 @@
       "note": "prevent in backend code"
     },
     {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 123,
+      "fingerprint": "425dcb3af9624f11f12d777d6f9fe05995719975a155c30012baa6b9dc3487df",
+      "check_name": "EOLRuby",
+      "message": "Support for Ruby 2.7.6 ends on 2023-03-31",
+      "file": "Gemfile.lock",
+      "line": 270,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        1104
+      ],
+      "note": "Need to update to ruby 3 ASAP !"
+    },
+    {
       "warning_type": "Remote Code Execution",
       "warning_code": 24,
       "fingerprint": "529871f7adad19ff9ef759de82f4a03754f221a3f42c69216d1e1f6429c46241",
@@ -210,29 +229,6 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "ac9de6e6a6366e0319da72ae6a1dca0b07b3036201f1ddfd3e5aaa1d6af6d93a",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/controllers/stats_controller.rb",
-      "line": 93,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "ActiveRecord::Base.connection.exec_query(\"      SELECT\\n        date_trunc('month', created_at) AS month,\\n        COUNT(*) filter (where status = 'draft') as draft,\\n        COUNT(*) filter (where status = 'changes_requested') as changes_requested,\\n        COUNT(*) filter (where status = 'submitted') as submitted,\\n        COUNT(*) filter (where status = 'validated') as validated,\\n        COUNT(*) filter (where status = 'refused') as refused,\\n        COUNT(*) filter (where status = 'revoked') as revoked,\\n        COUNT(*) as total\\n      FROM enrollments\\n      WHERE #{(\"target_api = any('{#{([] or JSON.parse(params[:target_api_list])).join(\", \")}}')\" or \"1 = 1\")}\\n      GROUP BY month\\n      ORDER BY month;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "StatsController",
-        "method": "show"
-      },
-      "user_input": "params[:target_api_list]",
-      "confidence": "High",
-      "cwe_id": [
-        89
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
       "fingerprint": "b23f3cb7a980c69709cba4d845a3c9b18d8adc5723714edb5bb4ccd91d34f296",
       "check_name": "SQL",
       "message": "Possible SQL injection",
@@ -323,6 +319,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-01-04 16:07:37 +0100",
+  "updated": "2023-02-14 14:40:20 +0100",
   "brakeman_version": "5.4.0"
 }
