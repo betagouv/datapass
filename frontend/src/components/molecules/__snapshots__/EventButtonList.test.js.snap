@@ -3,9 +3,9 @@
 exports[`EventButtonList lists button to display from enrollment acl 1`] = `
 Array [
   "notify",
-  "destroy",
   "update",
   "submit",
   "refuse",
+  "archive",
 ]
 `;

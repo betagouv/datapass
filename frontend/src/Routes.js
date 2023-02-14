@@ -31,9 +31,7 @@ export const Routes = () => {
 
   return (
     <ReactRouterRoutes>
-      <Route path="public" element={<PublicEnrollmentList />}>
-        <Route path=":targetApi" element={<PublicEnrollmentList />} />
-      </Route>
+      <Route path="public" element={<PublicEnrollmentList />} />
 
       <Route path="stats" element={<Stats />}>
         <Route path=":targetApi" element={<Stats />} />

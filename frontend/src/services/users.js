@@ -10,7 +10,8 @@ export function getUsers({
   size = null,
 }) {
   const formatedFilter = filter.map(({ id, value }) => ({
-    [id]: value,
+    key: id,
+    value,
   }));
 
   const queryParam = hashToQueryParams({

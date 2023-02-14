@@ -41,6 +41,7 @@ class Enrollment < ActiveRecord::Base
     state :validated
     state :refused
     state :revoked
+    state :archived
 
     event :notify do
       transition from: %i[draft changes_requested submitted], to: same
@@ -60,6 +61,10 @@ class Enrollment < ActiveRecord::Base
 
     event :request_changes do
       transition from: :submitted, to: :changes_requested
+    end
+
+    event :archive do
+      transition from: all - [:archived], to: :archived
     end
 
     event :validate do

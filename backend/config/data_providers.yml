@@ -992,6 +992,14 @@ api_impot_particulier_fc_production:
   label: API Impôt particulier (FC) (Production)
   mailer: *shared_mailer
 
+api_sfip_sandbox:
+  label: API Courtier fonctionnel SFiP (Bac à sable)
+  mailer: *shared_mailer
+
+api_sfip_production:
+  label: API Courtier fonctionnel SFiP (Production)
+  mailer: *shared_mailer
+
 api_r2p_sandbox:
   label: API R2P (Bac à sable)
   mailer: *shared_mailer

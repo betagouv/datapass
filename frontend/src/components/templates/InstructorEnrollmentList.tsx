@@ -11,7 +11,7 @@ import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
 import ListHeader from '../molecules/ListHeader';
-import Badge, { BadgeType } from '../atoms/hyperTexts/Badge';
+import Badge from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import {
@@ -24,6 +24,8 @@ import { debounce, isEmpty } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import CheckboxInput from '../atoms/inputs/CheckboxInput';
+import { MailIconFill } from '../atoms/icons/fr-fi-icons';
+import { MailOpenIconFill } from '../atoms/icons/fr-fi-icons';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -84,7 +86,7 @@ const InstructorEnrollmentList: React.FC = () => {
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
-        setTotalPages(total_pages);
+        setTotalPages(total_pages > 0 ? total_pages : 1);
       });
     }, 100);
 
@@ -157,21 +159,27 @@ const InstructorEnrollmentList: React.FC = () => {
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
-        const messagesTitle =
-          notify_events_from_demandeurs_count === 0
-            ? 'Pas de nouveau message'
-            : notify_events_from_demandeurs_count === 1
-            ? `${notify_events_from_demandeurs_count} nouveau message`
-            : notify_events_from_demandeurs_count > 1
-            ? `${notify_events_from_demandeurs_count} nouveaux messages`
-            : '';
+        const noUnreadMessage = notify_events_from_demandeurs_count === 0;
+
+        const iconEmailToDisplay = noUnreadMessage ? (
+          <MailOpenIconFill color={'var(--grey-625-425)'} />
+        ) : (
+          <MailIconFill color={'var(--border-active-blue-france)'} />
+        );
+
+        const messagesTitle = noUnreadMessage
+          ? 'Pas de nouveau message'
+          : notify_events_from_demandeurs_count === 1
+          ? `${notify_events_from_demandeurs_count} nouveau message`
+          : notify_events_from_demandeurs_count > 1
+          ? `${notify_events_from_demandeurs_count} nouveaux messages`
+          : '';
 
         return (
-          <Badge type={BadgeType.info} className="fr-py-1v" round>
-            <span title={messagesTitle}>
-              {notify_events_from_demandeurs_count}
-            </span>
-          </Badge>
+          <div title={messagesTitle} className="datapass-message-icon">
+            {!noUnreadMessage && <span className="red-dot"></span>}
+            {iconEmailToDisplay}
+          </div>
         );
       },
     }),
@@ -246,10 +254,12 @@ const InstructorEnrollmentList: React.FC = () => {
       filterFn: 'arrIncludesSome',
       meta: {
         filter: 'select',
-        selectOptions: Object.entries(STATUS_LABELS).map(([key, label]) => ({
-          key,
-          label,
-        })),
+        selectOptions: Object.entries(STATUS_LABELS)
+          .filter(([key]) => key !== 'archived')
+          .map(([key, label]) => ({
+            key,
+            label,
+          })),
       },
       cell: ({ getValue }) => {
         const status = getValue() as EnrollmentStatus;

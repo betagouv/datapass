@@ -3,7 +3,7 @@
 class ExtractDraftEnrollmentsToRemind
   attr_reader :enrollment
 
-  REMIND_FROM_DATE = Time.new(2022, 11, 1)
+  REMIND_FROM_DATE = Time.new(2022, 9, 1)
 
   def call
     last_update_or_create_events = last_update_or_create_events_for_draft_enrollments

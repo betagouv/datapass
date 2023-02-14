@@ -6,12 +6,14 @@ export enum EnrollmentEvent {
   refuse = 'refuse',
   revoke = 'revoke',
   request_changes = 'request_changes',
+  archive = 'archive',
   validate = 'validate',
 }
 
 export enum PromptType {
   comment = 'comment',
   confirm_deletion = 'confirm_deletion',
+  confirm_archive = 'confirm_archive',
   submit_instead = 'submit_instead',
 }
 
@@ -98,6 +100,17 @@ export const eventConfigurations: {
     prompt: PromptType.comment,
     request: RequestType.change_state,
     redirectToHome: true,
+  },
+  archive: {
+    displayProps: {
+      label: 'Archiver',
+      icon: 'archive',
+      secondary: true,
+    },
+    prompt: PromptType.confirm_archive,
+    request: RequestType.change_state,
+    redirectToHome: true,
+    successMessage: 'Cette demande d’habilitation a été archivée.',
   },
   request_changes: {
     displayProps: {

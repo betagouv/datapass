@@ -138,3 +138,25 @@ responsable_technique_changes_requested:
 contact_metier_changes_requested:
   <<: *CONTACT_METIER
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_changes_requested) %>
+
+# 🗂 ARCHIVED ENROLLMENT TEAM MEMBERS
+
+demandeur_archived:
+  <<: *DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+
+responsable_traitement_archived:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+  
+delegue_protection_donnees_archived:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+  
+responsable_technique_archived:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>
+  
+contact_metier_archived:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_archived) %>

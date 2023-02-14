@@ -807,4 +807,42 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
       end
     end
   end
+
+  describe "archive" do
+    let(:event) { "archive" }
+
+    describe "with user being an instructor" do
+      let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
+      context "for a validated enrollment" do
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      context "for a draft enrollment" do
+        let(:enrollment_status) { :draft }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+    end
+
+    context "with user not being an instructor" do
+      let(:user) { create(:user, roles: ["user"]) }
+      let(:enrollment_status) { :validated }
+
+      before do
+        login(user)
+      end
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
 end

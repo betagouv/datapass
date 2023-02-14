@@ -11,6 +11,7 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
     res.concat([
       scopes: [
         :associations,
+        :associations_donnees_protegees,
         :attestations_agefiph,
         :attestations_fiscales,
         :attestations_sociales,
@@ -22,7 +23,6 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
         :probtp,
         :qualibat,
         :certificat_rge_ademe,
-        :documents_association,
         :exercices,
         :extrait_court_inpi,
         :extraits_rcs,

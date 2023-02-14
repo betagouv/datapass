@@ -43,6 +43,10 @@ class Enrollment::CartobioPolicy < EnrollmentPolicy
     false
   end
 
+  def archive?
+    false
+  end
+
   def refuse?
     false
   end
