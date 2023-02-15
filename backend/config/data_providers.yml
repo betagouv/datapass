@@ -532,13 +532,6 @@ api_particulier:
           cnaf_allocataires: true
           cnaf_enfants: true
           cnaf_adresse: true
-      team_members:
-        responsable_technique:
-          given_name: Pascal
-          family_name: BALIGOUT
-          job: Chef produit
-          email: pascal.baligout@arche‑mc2.fr
-          phone_number: '0352829363'
     ccas-arpege:
       label: >-
         Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS,
