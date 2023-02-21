@@ -86,9 +86,7 @@
 }
 
 .new-login-container {
-  display: block;
-  justify-content: flex-start;
-  width: auto;
+  flex-direction: column;
   border: 1px solid var(--datapass-light-grey);
   padding: 8px 12px;
   margin-bottom: 1.5rem;

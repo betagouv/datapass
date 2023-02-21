@@ -61,33 +61,40 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
       />
     );
   }
+
+  if (APISDGFIP.includes(targetApi)) {
+    return (
+      <WelcomeMessage
+        isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+        target_api={targetApi}
+        newEnrollmentPageSubTitleMessage={
+          <>
+            <br />
+            Cette procédure nécessite <b>2 demandes</b> d’habilitation
+            distinctes :
+          </>
+        }
+      />
+    );
+  }
+
+  if (APISFRANCECONNECTED.includes(targetApi)) {
+    return (
+      <WelcomeMessage
+        isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+        targetApi={targetApi}
+        newEnrollmentPageSubTitleMessage={
+          <>
+            <br />
+            Cette procédure nécessite <b>2 demandes</b> d’habilitation
+            distinctes :
+          </>
+        }
+      />
+    );
+  }
+
   switch (targetApi) {
-    case APISDGFIP.includes(targetApi):
-      return (
-        <WelcomeMessage
-          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-          target_api={targetApi}
-          newEnrollmentPageMessage={
-            <>
-              Cette procédure nécessite <b>2 demandes</b> d’habilitation
-              distinctes :
-            </>
-          }
-        />
-      );
-    case APISFRANCECONNECTED.includes(targetApi):
-      return (
-        <WelcomeMessage
-          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-          targetApi={targetApi}
-          newEnrollmentPageMessage={
-            <>
-              Cette procédure nécessite <b>2 demandes</b> d’habilitation
-              distinctes :
-            </>
-          }
-        />
-      );
     case 'aidants_connect':
       return (
         <WelcomeMessage
@@ -189,13 +196,16 @@ export const Login = () => {
               </div>
               {!isOnNewEnrollmentPage && (
                 <div className="new-login-container">
-                  <p>Pour découvrir les APis du service public</p>
+                  <p>Pour découvrir les APIs du service public</p>
                   <Button
-                    className="fr-btn fr-btn--tertiary"
+                    className="fr-btn fr-btn--secondary"
                     href="https://api.gouv.fr"
+                    icon="external-link"
+                    iconRight
                   >
                     api.gouv.fr
                   </Button>
+                  <p></p>
                 </div>
               )}
               <Alert type="info" title="Votre connexion évolue">
