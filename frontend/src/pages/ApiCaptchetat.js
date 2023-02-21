@@ -54,7 +54,7 @@ const ApiCaptchetat = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection cguLink="/docs/cgu_api_captchetat_v_1_2.pdf" />
+    <CguSection cguLink="/docs/cgu_api_captchetat.pdf" />
   </Form>
 );
 
