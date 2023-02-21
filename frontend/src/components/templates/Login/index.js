@@ -62,13 +62,17 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
     );
   }
   switch (targetApi) {
-    // case APISDGFIP.includes(targetApi):
-    case APISDGFIP.find((apiLabel) => apiLabel === targetApi):
+    case APISDGFIP.includes(targetApi):
       return (
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           target_api={targetApi}
-          newEnrollmentPageMessage="Cette procédure nécessite 2 demandes d’habilitation distinctes :"
+          newEnrollmentPageMessage={
+            <>
+              Cette procédure nécessite <b>2 demandes</b> d’habilitation
+              distinctes :
+            </>
+          }
         />
       );
     case APISFRANCECONNECTED.includes(targetApi):
@@ -76,7 +80,12 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez intégrer le bouton d’identification FranceConnect à votre service en ligne"
+          newEnrollmentPageMessage={
+            <>
+              Cette procédure nécessite <b>2 demandes</b> d’habilitation
+              distinctes :
+            </>
+          }
         />
       );
     case 'aidants_connect':
@@ -84,7 +93,12 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez habiliter des aidants de votre structure à{' '}
+              <b>Aidants Connect</b>.
+            </>
+          }
         />
       );
     case 'hubee_portail':
@@ -92,7 +106,12 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE."
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez abonner votre structure à une démarche en ligne sur{' '}
+              <b>HubEE</b>.
+            </>
+          }
         />
       );
     case 'hubee_portail_dila':
@@ -100,7 +119,12 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez abonner votre structure à une démarche en ligne sur{' '}
+              <b>HubEE</b>.
+            </>
+          }
         />
       );
 
