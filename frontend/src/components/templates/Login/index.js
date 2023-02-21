@@ -4,6 +4,9 @@ import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
+import NextSteps from './NextSteps';
+import Button from '../../atoms/hyperTexts/Button';
+import { DataProviderType } from '../../../config/data-provider-configurations';
 
 export const APISDGFIP = [
   'api_impot_particulier_sandbox',
@@ -81,7 +84,6 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
           newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
         />
       );
@@ -90,7 +92,6 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
           newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE."
         />
       );
@@ -99,7 +100,6 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
           newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
         />
       );
@@ -124,6 +124,9 @@ export const Login = () => {
 
   const isOnNewEnrollmentPage =
     !!label && !window.location.pathname.split('/')[2];
+
+  const { type } = useDataProvider(targetApi);
+  const isService = type === DataProviderType.service;
 
   return (
     <section className="fr-container--fluid">
@@ -151,12 +154,26 @@ export const Login = () => {
                 targetApi={targetApi}
                 isOnNewEnrollmentPage={isOnNewEnrollmentPage}
               />
+              {isOnNewEnrollmentPage && (
+                <NextSteps targetApi={targetApi} isService={isService} />
+              )}
               <div className="new-login-container">
                 <div className="login-button">
                   <p>Pour suivre vos demandes d’habilitation</p>
                   <MonComptePro />
                 </div>
               </div>
+              {!isOnNewEnrollmentPage && (
+                <div className="new-login-container">
+                  <p>Pour découvrir les APis du service public</p>
+                  <Button
+                    className="fr-btn fr-btn--tertiary"
+                    href="https://api.gouv.fr"
+                  >
+                    api.gouv.fr
+                  </Button>
+                </div>
+              )}
               <Alert type="info" title="Votre connexion évolue">
                 <p>
                   Votre compte DataPass devient MonComptePro.
