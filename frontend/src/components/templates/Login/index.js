@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Alert from '../../atoms/Alert';
 import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
@@ -117,6 +117,8 @@ export const Login = () => {
   const { type } = useDataProvider(targetApi);
   const isService = type === DataProviderType.service;
 
+  const [closing, setClosing] = useState(false);
+
   return (
     <section className="fr-container--fluid">
       <div className="fr-grid-row fr-grid-row--gutters">
@@ -166,13 +168,19 @@ export const Login = () => {
                   <p></p>
                 </div>
               )}
-              <Alert type="info" title="Votre connexion évolue">
-                <p>
-                  Votre compte DataPass devient MonComptePro.
-                  <br />
-                  Votre email et votre mot de passe restent inchangés.
-                </p>
-              </Alert>
+              {!closing && (
+                <Alert
+                  type="info"
+                  title="Votre connexion évolue"
+                  onAlertClose={setClosing}
+                >
+                  <p>
+                    Votre compte DataPass devient MonComptePro.
+                    <br />
+                    Votre email et votre mot de passe restent inchangés.
+                  </p>
+                </Alert>
+              )}
             </div>
           </div>
         </div>
