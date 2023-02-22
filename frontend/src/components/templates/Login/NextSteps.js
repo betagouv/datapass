@@ -5,8 +5,8 @@ import DemandeIcon from '../../atoms/icons/demande';
 import HabilitationIcon from '../../atoms/icons/habilitation';
 import TokenIcon from '../../atoms/icons/token';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
-import { APISDGFIP } from './index';
-import { APISFRANCECONNECTED } from './index';
+import { APISDGFIP } from '../../../config/data-provider-configurations';
+import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
 import { useDataProvider } from '../hooks/use-data-provider';
 
 const NextSteps = ({ targetApi, isService = false }) => {

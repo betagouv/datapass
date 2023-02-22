@@ -7,50 +7,8 @@ import WelcomeMessage from './WelcomeMessage';
 import NextSteps from './NextSteps';
 import Button from '../../atoms/hyperTexts/Button';
 import { DataProviderType } from '../../../config/data-provider-configurations';
-
-export const APISDGFIP = [
-  'api_impot_particulier_sandbox',
-  'api_impot_particulier_production',
-  'api_r2p_sandbox',
-  'api_r2p_production',
-  'api_hermes_sandbox',
-  'api_hermes_production',
-  'api_e_contacts_sandbox',
-  'api_e_contacts_production',
-  'api_opale_sandbox',
-  'api_opale_production',
-  'api_mire_sandbox',
-  'api_mire_production',
-  'api_ocfi_sandbox',
-  'api_ocfi_production',
-  'api_e_pro_sandbox',
-  'api_e_pro_production',
-  'api_robf_sandbox',
-  'api_robf_production',
-  'api_cpr_pro_sandbox',
-  'api_cpr_pro_production',
-  'api_infinoe_sandbox',
-  'api_infinoe_production',
-  'api_ficoba_sandbox',
-  'api_ficoba_production',
-  'api_ensu_documents_sandbox',
-  'api_ensu_documents_production',
-  'api_satelit_sandbox',
-  'api_satelit_production',
-  'api_sfip_sandbox',
-  'api_sfip_production',
-];
-
-export const APISFRANCECONNECTED = [
-  'api_impot_particulier_fc_sandbox',
-  'api_impot_particulier_fc_production',
-  'api_droits_cnam',
-  'api_prestations_sociales',
-  'api_statut_etudiant',
-  'api_statut_demandeur_emploi',
-  'api_statut_etudiant_boursier',
-  'api_indemnisation_pole_emploi',
-];
+import { APISDGFIP } from '../../../config/data-provider-configurations';
+import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {
