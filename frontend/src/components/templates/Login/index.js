@@ -121,7 +121,7 @@ export const Login = () => {
 
   return (
     <section className="fr-container--fluid">
-      <div className="fr-grid-row fr-grid-row--gutters">
+      <div className="fr-grid-row">
         <div className="fr-col-5">
           <div style={{ backgroundColor: '#F6F6F6', height: '100%' }}>
             <div
@@ -148,24 +148,29 @@ export const Login = () => {
               {isOnNewEnrollmentPage && (
                 <NextSteps targetApi={targetApi} isService={isService} />
               )}
-              <div className="new-login-container">
-                <div className="login-button">
-                  <p>Pour suivre vos demandes d’habilitation</p>
-                  <MonComptePro />
+              <div className="fr-mb-3w">
+                <div className="new-login-container">
+                  <div className="login-button">
+                    <p>Pour suivre vos demandes d’habilitation</p>
+                    <MonComptePro />
+                  </div>
                 </div>
               </div>
               {!isOnNewEnrollmentPage && (
-                <div className="new-login-container">
-                  <p>Pour découvrir les APIs du service public</p>
-                  <Button
-                    className="fr-btn fr-btn--secondary"
-                    href="https://api.gouv.fr"
-                    icon="external-link"
-                    iconRight
-                  >
-                    api.gouv.fr
-                  </Button>
-                  <p></p>
+                <div className="fr-mb-3w">
+                  <div className="new-login-container">
+                    <p>Pour découvrir les APIs du service public</p>
+                    <div className="fr-mb-2w">
+                      <Button
+                        className="fr-btn fr-btn--secondary"
+                        href="https://api.gouv.fr"
+                        icon="external-link"
+                        iconRight
+                      >
+                        api.gouv.fr
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               )}
               {!closing && (

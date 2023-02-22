@@ -1,8 +1,6 @@
 import React from 'react';
 import { useDataProvider } from '../hooks/use-data-provider';
 
-import './WelcomeMessage.css';
-
 const WelcomeMessage = ({
   isOnNewEnrollmentPage,
   targetApi,

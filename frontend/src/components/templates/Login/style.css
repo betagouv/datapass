@@ -1,3 +1,7 @@
+.fr-container--fluid {
+  overflow-x: hidden;
+}
+
 .panel > .login-button {
   display: flex;
   align-items: left;
@@ -88,8 +92,7 @@
 .new-login-container {
   flex-direction: column;
   border: 1px solid var(--datapass-light-grey);
-  padding: 8px 12px;
-  margin-bottom: 1.5rem;
+  padding: 16px 24px 8px 24px
 }
 
 .new-login-container p {
