@@ -117,21 +117,17 @@ export const Login = () => {
   const { type } = useDataProvider(targetApi);
   const isService = type === DataProviderType.service;
 
-  const [closing, setClosing] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
   return (
     <section className="fr-container--fluid">
       <div className="fr-grid-row">
         <div className="fr-col-5">
-          <div style={{ backgroundColor: '#F6F6F6', height: '100%' }}>
-            <div
-              style={{
-                textAlign: 'center',
-              }}
-            >
+          <div className="left-panel-background">
+            <div className="left-panel">
               <img
-                src={`/images/logo-welcome-page.svg`}
-                alt={`Logo welcome page`}
+                src="/images/logo-welcome-page.svg"
+                alt="Logo welcome page"
                 className="fr-mt-10w"
               />
             </div>
@@ -139,7 +135,7 @@ export const Login = () => {
         </div>
         <div className="fr-col-7">
           <div className="fr-m-8w">
-            <div className="panel" style={{ textAlign: 'left' }}>
+            <div className="panel">
               <h2>Bienvenue sur DataPass !</h2>
               <WelcomeMessageRouter
                 targetApi={targetApi}
@@ -173,11 +169,11 @@ export const Login = () => {
                   </div>
                 </div>
               )}
-              {!closing && (
+              {!isClosed && (
                 <Alert
                   type="info"
                   title="Votre connexion évolue"
-                  onAlertClose={setClosing}
+                  onAlertClose={setIsClosed}
                 >
                   <p>
                     Votre compte DataPass devient MonComptePro.

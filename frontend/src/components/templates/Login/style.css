@@ -2,6 +2,19 @@
   overflow-x: hidden;
 }
 
+.left-panel-background {
+  background-color: var(--background-alt-grey);
+  height: 100%;
+}
+
+.left-panel {
+  text-align: center;
+}
+
+.panel {
+  text-align: left;
+}
+
 .panel > .login-button {
   display: flex;
   align-items: left;
@@ -50,7 +63,7 @@
   position: absolute;
   width: 90px;
   right: -45px;
-  background-color: #fff;
+  background-color: var(--background-default-grey);
   z-index: 5;
   padding: 0 5px;
   color: var(--text-action-high-blue-france);
@@ -60,7 +73,7 @@
 .timeline > div:after {
   content: '';
   width: 50%;
-  border: 1px dashed #000091;
+  border: 1px dashed var(--text-action-high-blue-france);
   opacity: 0.75;
 }
 
