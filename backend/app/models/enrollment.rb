@@ -539,7 +539,7 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  def hubee_validation
+  def no_hubee_certdc_validation
     if hubee_certdc_status_validated.present?
       errors.add(:siret, :validated,
         message: "Une habilitation HubEE - Démarche CertDC existe déjà au sein de votre organisation")
@@ -547,8 +547,8 @@ class Enrollment < ActiveRecord::Base
   end
 
   def hubee_certdc_status_validated
-    demandeur = demandeurs.first["user_id"]
-    user = User.find(demandeur)
+    demandeur_user_id = demandeurs.first["user_id"]
+    user = User.find(demandeur_user_id)
 
     enrollments = EnrollmentPolicy::OrganizationScope.new(user, Enrollment).resolve
     enrollments
