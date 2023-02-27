@@ -1,4 +1,5 @@
 import React, { MouseEvent } from 'react';
+import Helper from '../Helper';
 import HyperText from './HyperText';
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
   className?: string;
   disabled?: boolean;
   download?: boolean;
+  helper?: string;
 };
 
 const Button: React.FC<Props> = ({
@@ -29,6 +31,7 @@ const Button: React.FC<Props> = ({
   iconRight = false,
   iconFill = false,
   children,
+  helper,
   className = '',
   ...props
 }) => {
@@ -55,16 +58,19 @@ const Button: React.FC<Props> = ({
   }
 
   return (
-    <HyperText
-      icon={icon}
-      iconRight={iconRight}
-      iconFill={iconFill}
-      onClick={onClick}
-      href={href}
-      children={children}
-      className={className}
-      {...props}
-    />
+    <>
+      {helper && <Helper title={helper} />}
+      <HyperText
+        icon={icon}
+        iconRight={iconRight}
+        iconFill={iconFill}
+        onClick={onClick}
+        href={href}
+        children={children}
+        className={className}
+        {...props}
+      />
+    </>
   );
 };
 

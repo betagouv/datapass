@@ -29,16 +29,25 @@ export const HubeeDataProviderList = () => {
           </Button>
         </div>
         {dataProviderConfigurations &&
-          HubeeDataProviders.map(({ target_api, description }) => (
-            <DataProviderCard
-              key={target_api}
-              label={dataProviderConfigurations?.[target_api].label}
-              iconPath={`/images/logo-hubee-small.png`}
-              passPath={`/${target_api}`}
-              description={description}
-              aboutLink="https://hubee.numerique.gouv.fr/"
-            />
-          ))}
+          HubeeDataProviders.map(({ target_api, description }) => {
+            console.log(target_api);
+            return (
+              <DataProviderCard
+                key={target_api}
+                label={dataProviderConfigurations?.[target_api].label}
+                iconPath={`/images/logo-hubee-small.png`}
+                passPath={`/${target_api}`}
+                description={description}
+                disabled={target_api === 'hubee_portail'}
+                helper={
+                  target_api === 'hubee_portail'
+                    ? 'Une habilitation HubEE - Démarche CertDC existe déjà au sein de votre organisation'
+                    : ''
+                }
+                aboutLink="https://hubee.numerique.gouv.fr/"
+              />
+            );
+          })}
       </div>
     </main>
   );
