@@ -44,6 +44,35 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Configuration  for the VCR gem
+  VCR.configure do |c|
+    c.cassette_library_dir = "spec/support/vcr_cassettes"
+    c.hook_into :webmock
+
+    # record the cassettes again easily provide an environment variable to indicate
+    # that the cassette should be recorded again.
+    # https://fabioperrella.github.io/10_tips_to_help_using_the_VCR_gem_in_your_ruby_test_suite.html
+    vcr_mode = (ENV["VCR_MODE"] =~ /rec/i) ? :all : :once
+
+    c.default_cassette_options = {
+      record: vcr_mode,
+      match_requests_on: %i[method uri body]
+    }
+  end
+
+  # To avoid using the block VCR.use_cassette in all scenarios
+  VCR.configure do |c|
+    c.configure_rspec_metadata!
+  end
+
+  # config.around do |example|
+  #   if example.metadata[:vcr]
+  #     example.run
+  #   else
+  #     VCR.turned_off { example.run }
+  #   end
+  # end
+
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be
