@@ -43,10 +43,6 @@ export const demarches = {
         dgfip_prnmDec2: false,
         dgfip_dateNaisDec2: false,
         dgfip_aft: false,
-        dgfip_locaux_th_ident: false,
-        dgfip_locaux_th_Nat: false,
-        dgfip_locaux_th_Tax: false,
-        dgfip_locaux_th_Aff: false,
         dgfip_sitfam: false,
         dgfip_nbpart: false,
         dgfip_pac_nbPac: false,
@@ -219,23 +215,6 @@ export const scopesConfiguration = [
     label: 'Adresse déclarée au 1er Janvier',
   },
   {
-    value: 'dgfip_locaux_th_ident',
-    label: 'Données du local - identifiant du logement',
-  },
-  {
-    value: 'dgfip_locaux_th_Nat',
-    label: 'Données du local - nature (maison, appartement, etc.)',
-  },
-  {
-    value: 'dgfip_locaux_th_Tax',
-    label:
-      'Données du local - régime de taxation (résidence principale uniquement)',
-  },
-  {
-    value: 'dgfip_locaux_th_Aff',
-    label: 'Données du local - affectation (« H » pour habitation)',
-  },
-  {
     value: 'dgfip_sitfam',
     label: 'Situation de famille (marié, pacsé, célibataire, veuf divorcé)',
   },
@@ -376,10 +355,6 @@ export const groups = {
     label: 'Adresse',
     scopes: [
       'dgfip_aft',
-      'dgfip_locaux_th_ident',
-      'dgfip_locaux_th_Nat',
-      'dgfip_locaux_th_Tax',
-      'dgfip_locaux_th_Aff',
     ],
   },
   situation_du_foyer_fiscal: {
