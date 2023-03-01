@@ -9,7 +9,7 @@ on:
 env:
   CI: true
   COVERAGE: true
-  RUBY_VERSION: 2.7.6
+  RUBY_VERSION: 3.2.0
   PG_HOST: localhost
   PG_USER: datapass
   PG_PASSWORD: datapass
@@ -66,7 +66,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-1-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
 
