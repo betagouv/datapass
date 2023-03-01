@@ -125,8 +125,8 @@ class Enrollment < ActiveRecord::Base
     ).count
   end
 
-  def notify_event(event, *args)
-    notifier_class.new(self).public_send(event, *args)
+  def notify_event(event, **args)
+    notifier_class.new(self).public_send(event, **args)
   end
 
   def notifier_class
