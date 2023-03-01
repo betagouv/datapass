@@ -9,6 +9,8 @@ on:
 env:
   CI: true
   COVERAGE: true
+  BACK_HOST: http://localhost:3001
+  ALLOWED_ORIGINS: http://localhost:3000
   RUBY_VERSION: 3.2.0
   PG_HOST: localhost
   PG_USER: datapass
