@@ -5,7 +5,7 @@ RSpec.describe "Providers config", type: :acceptance do
 
   it "is a valid YAML file" do
     expect {
-      YAML.load_file(config_file, aliases: true )
+      YAML.load_file(config_file, aliases: true)
     }.not_to raise_error
   end
 
