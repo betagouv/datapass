@@ -353,9 +353,7 @@ export const groups = {
   },
   adresse: {
     label: 'Adresse',
-    scopes: [
-      'dgfip_aft',
-    ],
+    scopes: ['dgfip_aft'],
   },
   situation_du_foyer_fiscal: {
     label: 'Situation du foyer fiscal',
