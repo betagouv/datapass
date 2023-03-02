@@ -100,7 +100,18 @@ class Enrollment < ActiveRecord::Base
           enrollment
         )
       end
+      if enrollment[:target_api] == "hubee_portail" || enrollment[:target_api] == "hubee_portail_dila"
+        enrollment.send_hubee_validation_email_to_admin_metier
+      end
     end
+  end
+
+  def send_hubee_validation_email_to_admin_metier
+    EnrollmentMailer.with(
+      to: responsable_metier_email,
+      enrollment_id: id,
+      target_api: target_api
+    ).notification_hubee_admin_metier.deliver_later
   end
 
   def mark_demandeur_notify_events_as_processed

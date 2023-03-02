@@ -113,6 +113,21 @@ class EnrollmentMailer < ActionMailer::Base
     )
   end
 
+  def notification_hubee_admin_metier
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @responsable_metier_email = params[:responsable_metier_email]
+    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+
+    mail(
+      to: @responsable_metier_email,
+      from: "notifications@api.gouv.fr",
+      subject: "Votre habilitation a été validée",
+      template_path: "enrollment_mailer/#{params[:target_api]}",
+      template_name: "validate"
+    )
+  end
+
   private
 
   def render_mail(attributes)
