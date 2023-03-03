@@ -17,6 +17,19 @@ class EnrollmentReminderMailer < ActionMailer::Base
     )
   end
 
+  def reminder_changes_requested_enrollment_email
+    @target_api_label = data_provider_config["label"]
+    @enrollment = Enrollment.find(params[:enrollment_id])
+
+    mail(
+      to: @enrollment.demandeurs.pluck(:email),
+      from: "notifications@api.gouv.fr",
+      subject: "Votre demande d’habilitation à #{@target_api_label} vous attend.",
+      template_path: "enrollment_mailer/demandeur",
+      template_name: "reminder_changes_requested_enrollment"
+    )
+  end
+
   private
 
   def data_provider_config
