@@ -538,4 +538,22 @@ class Enrollment < ActiveRecord::Base
         message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer")
     end
   end
+
+  def no_hubee_certdc_validation
+    if hubee_certdc_status_validated.present?
+      errors.add(:siret, :validated,
+        message: "Une habilitation HubEE - Démarche CertDC existe déjà au sein de votre organisation")
+    end
+  end
+
+  def hubee_certdc_status_validated
+    demandeur_user_id = demandeurs.first["user_id"]
+    user = User.find(demandeur_user_id)
+
+    enrollments = EnrollmentPolicy::OrganizationScope.new(user, Enrollment).resolve
+    enrollments
+      .where(target_api: %w[hubee_portail])
+      .where(siret: siret)
+      .where(status: "validated")
+  end
 end
