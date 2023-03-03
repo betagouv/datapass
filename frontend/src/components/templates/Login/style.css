@@ -1,8 +1,30 @@
+.fr-container--fluid {
+  overflow-x: hidden;
+}
+
+.left-panel-background {
+  background-color: var(--background-alt-grey);
+  height: 100%;
+}
+
+.left-panel {
+  text-align: center;
+}
+
+.panel {
+  text-align: left;
+}
+
 .panel > .login-button {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   margin: 1.5rem auto;
+}
+
+.next-steps-center {
+  display: flex;
+  align-items: center;
 }
 
 .next-steps,
@@ -10,7 +32,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 30px 0 15px;
+  margin: 30px 0 20px;
+  font-size: 14px;
 }
 
 .timeline {
@@ -25,8 +48,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: var(--text-default-info);
-  font-weight: bold;
+  text-align: center;
 }
 
 .timeline > div {
@@ -41,18 +63,18 @@
   position: absolute;
   width: 90px;
   right: -45px;
-  background-color: #fff;
+  background-color: var(--background-default-grey);
   z-index: 5;
   padding: 0 5px;
+  color: var(--text-action-high-blue-france);
 }
 
 .timeline > div:before,
 .timeline > div:after {
   content: '';
-  height: 3px;
   width: 50%;
-  background-color: var(--text-default-info);
-  opacity: 0.15;
+  border: 1px dashed var(--text-action-high-blue-france);
+  opacity: 0.75;
 }
 
 .timeline > div:first-of-type:before,
@@ -61,14 +83,14 @@
 }
 
 .timeline .step {
-  height: 7px;
-  width: 7px;
+  height: 12px;
+  width: 12px;
   border-radius: 15px;
-  background-color: var(--text-default-info);
+  background-color: var(--text-action-high-blue-france);
 }
 
 .next-steps svg {
-  fill: var(--text-default-info);
+  fill: var(--text-action-high-blue-france);
 }
 
 .next-steps .prepare > ul {
@@ -76,9 +98,18 @@
   margin: 0;
 }
 
+.next-steps-center{
+  display: block;
+}
+
 .new-login-container {
-  text-align: left;
-  padding: 0 10rem;
+  flex-direction: column;
+  border: 1px solid var(--datapass-light-grey);
+  padding: 16px 24px 8px 24px
+}
+
+.new-login-container p {
+  font-weight: bold;
 }
 
 @media all and (max-width: 992px) {
