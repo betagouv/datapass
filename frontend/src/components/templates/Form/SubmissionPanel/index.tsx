@@ -81,6 +81,17 @@ const SubmissionPanel: FunctionComponent<Props> = ({
             Voulez vous continuer ?
           </ConfirmationModal>
         )}
+      {pendingEvent &&
+        eventConfigurations[pendingEvent].prompt ===
+          PromptType.confirm_archive && (
+          <ConfirmationModal
+            title="Vous n’aurez plus accès à cette habilitation"
+            handleCancel={onPromptCancellation}
+            handleConfirm={onPromptConfirmation}
+          >
+            Voulez vous continuer ?
+          </ConfirmationModal>
+        )}
     </>
   );
 };

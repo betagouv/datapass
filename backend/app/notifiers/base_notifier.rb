@@ -55,6 +55,9 @@ class BaseNotifier < AbstractNotifier
     deliver_event_mailer(__method__, comment)
   end
 
+  def archive
+  end
+
   def delete
   end
 end

@@ -24,18 +24,6 @@ RSpec.describe EnrollmentsController, "#destroy", type: :controller do
       context "when user created this enrollment" do
         let(:enrollment_creator) { user }
 
-        context "when enrollment is draft" do
-          let(:enrollment_status) { :draft }
-
-          it { is_expected.to have_http_status(:ok) }
-        end
-
-        context "when enrollment is changes_requested" do
-          let(:enrollment_status) { :changes_requested }
-
-          it { is_expected.to have_http_status(:ok) }
-        end
-
         context "when enrollment is validated" do
           let(:enrollment_status) { :validated }
 
@@ -52,22 +40,6 @@ RSpec.describe EnrollmentsController, "#destroy", type: :controller do
       context "when user did not create this enrollment" do
         it { is_expected.to have_http_status(:forbidden) }
       end
-    end
-  end
-
-  describe "destroy" do
-    let(:enrollment_status) { :draft }
-    let(:enrollment_creator) { create(:user) }
-    let(:user) { enrollment_creator }
-
-    before do
-      login(user)
-    end
-
-    it "deletes enrollment" do
-      expect {
-        delete_enrollment
-      }.to change { Enrollment.find_by(id: enrollment.id) }.to(nil)
     end
   end
 end

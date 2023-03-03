@@ -41,6 +41,7 @@ class Enrollment < ActiveRecord::Base
     state :validated
     state :refused
     state :revoked
+    state :archived
 
     event :notify do
       transition from: %i[draft changes_requested submitted], to: same
@@ -60,6 +61,10 @@ class Enrollment < ActiveRecord::Base
 
     event :request_changes do
       transition from: :submitted, to: :changes_requested
+    end
+
+    event :archive do
+      transition from: all - [:archived], to: :archived
     end
 
     event :validate do
@@ -543,5 +548,23 @@ class Enrollment < ActiveRecord::Base
       errors.add(:dpo_is_informed, :invalid,
         message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer")
     end
+  end
+
+  def no_hubee_certdc_validation
+    if hubee_certdc_status_validated.present?
+      errors.add(:siret, :validated,
+        message: "Une habilitation HubEE - Démarche CertDC existe déjà au sein de votre organisation")
+    end
+  end
+
+  def hubee_certdc_status_validated
+    demandeur_user_id = demandeurs.first["user_id"]
+    user = User.find(demandeur_user_id)
+
+    enrollments = EnrollmentPolicy::OrganizationScope.new(user, Enrollment).resolve
+    enrollments
+      .where(target_api: %w[hubee_portail])
+      .where(siret: siret)
+      .where(status: "validated")
   end
 end

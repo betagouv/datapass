@@ -50,6 +50,15 @@ FactoryBot.define do
       with_comment
     end
 
+    trait :reminder do
+      name { "reminder" }
+      user { nil }
+    end
+
+    trait :archive do
+      name { "archive" }
+    end
+
     trait :delete do
       name { "delete" }
     end

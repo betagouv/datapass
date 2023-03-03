@@ -14,26 +14,9 @@ class UsersController < ApplicationController
 
     if filter.present?
       begin
-        parsed_filter = JSON.parse(filter)
-        parsed_filter.each do |filter_item|
-          filter_item.each do |filter_key, filter_value|
-            next unless %w[email].include? filter_key
-            is_fuzzy = %w[email].include? filter_key
-            filter_value = [filter_value] unless filter_value.is_a?(Array)
-            sanitized_filter_value = filter_value.map { |f| Regexp.escape(f) }
-            san_fil_val_without_accent = sanitized_filter_value.map { |f| ActiveSupport::Inflector.transliterate(f, " ") }.join("|")
-            next if san_fil_val_without_accent == ""
-
-            sanitized_filter_key = "\"users\".\"#{filter_key}\""
-
-            @users = @users.where(
-              "#{sanitized_filter_key}::varchar(255) ~* ?",
-              is_fuzzy ? ".*(#{san_fil_val_without_accent}).*" : "^(#{san_fil_val_without_accent})$"
-            )
-          end
-        end
+        @users = FilterService.call(params, @users)
       rescue JSON::ParserError
-        # silently fail, if the sort is not formatted properly we do not apply it
+        # silently fail, if the filter is not formatted properly we do not apply it
       end
     end
 

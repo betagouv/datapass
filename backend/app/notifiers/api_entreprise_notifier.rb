@@ -51,4 +51,8 @@ class ApiEntrepriseNotifier < AbstractNotifier
   def delete
     deliver_event_webhook(__method__)
   end
+
+  def archive
+    deliver_event_webhook(__method__)
+  end
 end

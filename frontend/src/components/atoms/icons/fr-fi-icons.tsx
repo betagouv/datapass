@@ -5,6 +5,7 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-design/icons-design.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css';
 
 const FrFiIcon: React.FC<{
@@ -38,8 +39,26 @@ export const MailIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="mail-line" color={color} large={large} small={small} />
 );
 
+export const MailIconFill: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="mail-fill" color={color} large={large} small={small} />
+);
+
 export const MailOpenIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="mail-open-line" color={color} large={large} small={small} />
+);
+
+export const MailOpenIconFill: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="mail-open-fill" color={color} large={large} small={small} />
+);
+
+// Icons - Media
+export const NotificationIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon
+    type="notification-3-line"
+    color={color}
+    large={large}
+    small={small}
+  />
 );
 
 // Icons - System DSFR
@@ -113,4 +132,8 @@ export const EditIcon: React.FC<Props> = ({ color, large, small }) => (
 
 export const FilterIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="filter-line" color={color} large={large} small={small} />
+);
+
+export const ArchiveIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="archive-line" color={color} large={large} small={small} />
 );

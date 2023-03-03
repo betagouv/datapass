@@ -30,7 +30,6 @@ enrollment_draft_<%= i %>:
   intitule: "Brouillon API Particulier <%= i %>"
   description: "Demande d'habiliation pour API Particulier, en cours d'écriture."
   scopes: ["cnaf_quotient_familial"]
-  }
 <% end %>
 
 enrollment_validated:
@@ -55,4 +54,12 @@ enrollment_changes_requested:
   target_api: "franceconnect"
   intitule: "Demande d'habilitation FranceConnect"
   description: "Demande d'habiliation pour FranceConnect, demande de changement."
+  scopes: ["openid", "email", "birthdate"]
+
+enrollment_archived:
+  <<: *DEFAULTS
+  status: "archived"
+  target_api: "franceconnect"
+  intitule: "Demande d'habilitation FranceConnect"
+  description: "Demande d'habiliation pour FranceConnect, archivée."
   scopes: ["openid", "email", "birthdate"]

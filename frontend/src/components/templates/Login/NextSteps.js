@@ -5,9 +5,14 @@ import DemandeIcon from '../../atoms/icons/demande';
 import HabilitationIcon from '../../atoms/icons/habilitation';
 import TokenIcon from '../../atoms/icons/token';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
+import { APISDGFIP } from '../../../config/data-provider-configurations';
+import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
+import { useDataProvider } from '../hooks/use-data-provider';
 
 const NextSteps = ({ targetApi, isService = false }) => {
   const [stat, setStat] = useState(null);
+
+  const { label: targetApiLabel } = useDataProvider(targetApi);
 
   useEffect(() => {
     async function fetchData() {
@@ -27,25 +32,43 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <AuthIcon />
           </div>
-          <div>S’authentifier</div>
+          <div>S’identifier avec MonComptePro</div>
         </div>
         <div>
           <div>
             <DemandeIcon />
           </div>
-          <div>Remplir sa demande d’habilitation</div>
+          <div>
+            {APISDGFIP.find((targetApiID) => targetApiID === targetApi)
+              ? 'Être habilité au bac à sable'
+              : APISFRANCECONNECTED.find(
+                  (targetApiID) => targetApiID === targetApi
+                )
+              ? 'Être habilité à FranceConnect'
+              : 'Remplir ma demande'}
+          </div>
         </div>
         <div>
           <div>
             <HabilitationIcon />
           </div>
-          <div>{isService ? 'Habilitation validée' : 'Être habilité'}</div>
+          <div>
+            {APISDGFIP.find((targetApiID) => targetApiID === targetApi)
+              ? 'Être habilité à la production'
+              : APISFRANCECONNECTED.find(
+                  (targetApiID) => targetApiID === targetApi
+                )
+              ? `Être habilité à ${targetApiLabel}`
+              : 'Être habilité'}
+          </div>
         </div>
         <div>
           <div>
             <TokenIcon />
           </div>
-          <div>{isService ? 'Accès au service' : 'Recevoir son token'}</div>
+          <div>
+            {isService ? 'Accéder au service' : 'Obtenir le token d’accès'}
+          </div>
         </div>
       </div>
       <div className="timeline">

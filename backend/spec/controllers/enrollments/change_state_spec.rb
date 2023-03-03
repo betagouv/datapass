@@ -95,6 +95,19 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
             it { is_expected.to have_http_status(:ok) }
           end
         end
+
+        context "when target_api is hubee_portail and the commune has already a validated enrollment" do
+          context "when user wants to submit another enrollment for the same commune" do
+            let(:enrollment_api_target) { :hubee_portail }
+            let(:enrollment_status) { :draft }
+
+            it "should raise an unprocessable_entity error" do
+              create(:enrollment, :validated, :hubee_portail, user: user)
+
+              expect(make_request.status).to eq(422)
+            end
+          end
+        end
       end
     end
 
@@ -855,6 +868,44 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           expect(enrollment_user_email.to).to eq([enrollment.demandeurs.first.email])
         end
       end
+    end
+  end
+
+  describe "archive" do
+    let(:event) { "archive" }
+
+    describe "with user being an instructor" do
+      let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
+      context "for a validated enrollment" do
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      context "for a draft enrollment" do
+        let(:enrollment_status) { :draft }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
+    end
+
+    context "with user not being an instructor" do
+      let(:user) { create(:user, roles: ["user"]) }
+      let(:enrollment_status) { :validated }
+
+      before do
+        login(user)
+      end
+
+      it { is_expected.to have_http_status(:forbidden) }
     end
   end
 end

@@ -1,9 +1,11 @@
 class Event < ActiveRecord::Base
-  EVENT_NAMES = %w[create update_contacts update request_changes notify submit import validate copy refuse revoke delete].freeze
+  EVENT_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder delete].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
-  belongs_to :user
+
+  belongs_to :user, optional: true
+  validates :user, presence: true, if: proc { |event| event.name != "reminder" }
 
   validate :validate_comment
   validate :validate_name
@@ -34,9 +36,11 @@ class Event < ActiveRecord::Base
   private
 
   def mark_as_notify_from_demandeur
-    demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
-    if demandeurs_ids.include?(user.id) && name == "notify"
-      self.is_notify_from_demandeur = true
+    if name == "notify"
+      demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+      if demandeurs_ids.include?(user.id)
+        self.is_notify_from_demandeur = true
+      end
     end
   end
 end

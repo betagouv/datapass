@@ -25,6 +25,7 @@ gem "sentry-ruby"
 gem "sentry-rails"
 gem "sib-api-v3-sdk"
 gem "sidekiq", "~> 6.5"
+gem "sidekiq-scheduler", "~> 4.0", ">= 4.0.3"
 gem "state_machines-activerecord"
 
 group :test do
