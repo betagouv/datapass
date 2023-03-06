@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Alert from '../../atoms/Alert';
 import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
-import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
-import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
+import NextSteps from './NextSteps';
+import Button from '../../atoms/hyperTexts/Button';
+import { DataProviderType } from '../../../config/data-provider-configurations';
+import { APISDGFIP } from '../../../config/data-provider-configurations';
+import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
 
 const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   if (!isOnNewEnrollmentPage) {
@@ -16,26 +19,51 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
       />
     );
   }
+
+  if (APISDGFIP.includes(targetApi)) {
+    return (
+      <WelcomeMessage
+        isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+        target_api={targetApi}
+        newEnrollmentPageSubTitleMessage={
+          <>
+            <br />
+            Cette procédure nécessite <b>2 demandes</b> d’habilitation
+            distinctes :
+          </>
+        }
+      />
+    );
+  }
+
+  if (APISFRANCECONNECTED.includes(targetApi)) {
+    return (
+      <WelcomeMessage
+        isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+        targetApi={targetApi}
+        newEnrollmentPageSubTitleMessage={
+          <>
+            <br />
+            Cette procédure nécessite <b>2 demandes</b> d’habilitation
+            distinctes :
+          </>
+        }
+      />
+    );
+  }
+
   switch (targetApi) {
-    case 'api_impot_particulier_fc_sandbox':
-      return <ApiImpotParticulierFcSandboxWelcomeMessage />;
-    case 'api_impot_particulier_sandbox':
-      return <ApiImpotParticulierSandboxWelcomeMessage />;
-    case 'franceconnect':
-      return (
-        <WelcomeMessage
-          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-          targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez intégrer le bouton d’identification FranceConnect à votre service en ligne"
-        />
-      );
     case 'aidants_connect':
       return (
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
-          newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez habiliter des aidants de votre structure à{' '}
+              <b>Aidants Connect</b>.
+            </>
+          }
         />
       );
     case 'hubee_portail':
@@ -43,8 +71,12 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
-          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez abonner votre structure à une démarche en ligne sur{' '}
+              <b>HubEE</b>.
+            </>
+          }
         />
       );
     case 'hubee_portail_dila':
@@ -52,10 +84,15 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService
-          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+          newEnrollmentPageMessage={
+            <>
+              Vous souhaitez abonner votre structure à une démarche en ligne sur{' '}
+              <b>HubEE</b>.
+            </>
+          }
         />
       );
+
     default:
       return (
         <WelcomeMessage
@@ -72,38 +109,80 @@ export const Login = () => {
     '_'
   );
 
-  const { label, icon } = useDataProvider(targetApi);
+  const { label } = useDataProvider(targetApi);
 
   const isOnNewEnrollmentPage =
     !!label && !window.location.pathname.split('/')[2];
 
+  const { type } = useDataProvider(targetApi);
+  const isService = type === DataProviderType.service;
+
+  const [isClosed, setIsClosed] = useState(false);
+
   return (
-    <section className="full-page">
-      <div className="container">
-        <div className="panel" style={{ textAlign: 'center' }}>
-          {icon && (
-            <img
-              src={`/images/${icon}`}
-              alt={`Logo ${label}`}
-              height="90"
-              className="fr-m-3w"
-            />
-          )}
-          <WelcomeMessageRouter
-            targetApi={targetApi}
-            isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-          />
-          <div className="new-login-container">
-            <Alert type="info" title="Votre connexion évolue">
-              <p>
-                Votre compte DataPass devient MonComptePro.
-                <br />
-                Votre email et votre mot de passe restent inchangés.
-              </p>
-            </Alert>
+    <section className="fr-container--fluid">
+      <div className="fr-grid-row">
+        <div className="fr-col-5">
+          <div className="left-panel-background">
+            <div className="left-panel">
+              <img
+                src="/images/logo-welcome-page.svg"
+                alt="Logo welcome page"
+                className="fr-mt-10w"
+              />
+            </div>
           </div>
-          <div className="login-button">
-            <MonComptePro />
+        </div>
+        <div className="fr-col-7">
+          <div className="fr-m-8w">
+            <div className="panel">
+              <h2>Bienvenue sur DataPass !</h2>
+              <WelcomeMessageRouter
+                targetApi={targetApi}
+                isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+              />
+              {isOnNewEnrollmentPage && (
+                <NextSteps targetApi={targetApi} isService={isService} />
+              )}
+              <div className="fr-mb-3w">
+                <div className="new-login-container">
+                  <div className="login-button">
+                    <p>Pour suivre vos demandes d’habilitation</p>
+                    <MonComptePro />
+                  </div>
+                </div>
+              </div>
+              {!isOnNewEnrollmentPage && (
+                <div className="fr-mb-3w">
+                  <div className="new-login-container">
+                    <p>Pour découvrir les APIs du service public</p>
+                    <div className="fr-mb-2w">
+                      <Button
+                        className="fr-btn fr-btn--secondary"
+                        href="https://api.gouv.fr"
+                        icon="external-link"
+                        iconRight
+                      >
+                        api.gouv.fr
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {!isClosed && (
+                <Alert
+                  type="info"
+                  title="Votre connexion évolue"
+                  onAlertClose={setIsClosed}
+                >
+                  <p>
+                    Votre compte DataPass devient MonComptePro.
+                    <br />
+                    Votre email et votre mot de passe restent inchangés.
+                  </p>
+                </Alert>
+              )}
+            </div>
           </div>
         </div>
       </div>

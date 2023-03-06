@@ -9,16 +9,16 @@ RSpec.describe ExtractDraftEnrollmentsToRemind, type: :service do
     end
 
     before do
-      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 4.months.ago, updated_at: (3.months.ago - 1.days))
-      create(:event, :create, enrollment: enrollment, created_at: 4.months.ago, updated_at: 4.months.ago)
-      create(:event, :update, enrollment: enrollment, created_at: (3.months.ago - 1.days), updated_at: (3.months.ago - 1.days))
+      enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 7.months.ago, updated_at: (5.months.ago - 1.days))
+      create(:event, :create, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
+      create(:event, :update, enrollment: enrollment, created_at: (5.months.ago - 1.days), updated_at: (5.months.ago - 1.days))
     end
 
     after do
       Timecop.return
     end
 
-    it "do not renders draft enrollment beyond the 1st of september 2022" do
+    it "do not renders draft enrollment beyond the 1st of july 2022" do
       result = subject.draft_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
