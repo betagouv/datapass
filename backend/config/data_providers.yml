@@ -1066,10 +1066,6 @@ hubee_portail_dila:
   mailer: *shared_mailer
   reply_to: support.partenaires@service-public.fr
 
-hubee_portail_cnaf:
-  label: Portail HubEE - Démarches CNAF
-  mailer: *shared_mailer
-
 api_pro_sante_connect:
   label: API Pro Santé Connect
   mailer: *shared_mailer

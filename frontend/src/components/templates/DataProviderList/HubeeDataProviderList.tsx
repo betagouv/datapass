@@ -11,10 +11,6 @@ const HubeeDataProviders = [
     description:
       "Acte d’État Civil, Démarche en ligne de préparation à la conclusion d’un Pacs, Recensement Citoyen Obligatoire, Déclaration d'hébergement touristique, Déclaration de Changement de Coordonnées",
   },
-  {
-    target_api: 'hubee_portail_cnaf',
-    description: 'Contrôle des allocations scolaires',
-  },
 ];
 
 export const HubeeDataProviderList = () => {
