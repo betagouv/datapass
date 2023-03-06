@@ -234,6 +234,11 @@ class Enrollment < ActiveRecord::Base
     copied_enrollment
   end
 
+  def archive!
+    update!(status: "archived")
+    events.create!(name: "archive")
+  end
+
   def team_members_json
     team_members
       .to_a.sort_by { |tm| tm.id }
