@@ -1,8 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-import './HyperText.css';
-
 type Props = {
   icon?: string;
   secondary?: boolean;
@@ -12,7 +10,6 @@ type Props = {
   className?: string;
   submit?: boolean;
   iconFill?: boolean;
-  disabled?: boolean;
 };
 
 const HyperText: React.FC<Props> = ({
@@ -24,7 +21,6 @@ const HyperText: React.FC<Props> = ({
   children,
   submit = false,
   iconFill = false,
-  disabled = false,
   ...props
 }) => {
   if (icon) {
@@ -36,9 +32,6 @@ const HyperText: React.FC<Props> = ({
   }
 
   if (href) {
-    if (disabled) {
-      className += ' disabled-link';
-    }
     const isExternalRefPattern = /^(https?:\/\/|mailto:|\/docs\/|#)/;
     const isExternalRef = isExternalRefPattern.test(href);
 

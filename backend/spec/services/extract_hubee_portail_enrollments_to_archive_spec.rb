@@ -4,13 +4,14 @@ RSpec.describe ExtractHubeePortailEnrollmentsToArchive, type: :service do
   subject { described_class.new }
 
   describe "#duplicated_hubee_portail_enrollments" do
-    let(:enrollment_creator) { create(:user) }
-    let(:enrollment1) { create(:enrollment, :hubee_portail, :validated, user: enrollment_creator) }
-    let(:enrollment2) { create(:enrollment, :hubee_portail, :submitted, user: enrollment_creator) }
-    let(:enrollment3) { create(:enrollment, :hubee_portail, :draft, user: enrollment_creator) }
+    before do
+      @enrollment1 = create(:enrollment, :hubee_portail, :validated, organization_kind: :clamart) 
+      @enrollment2 = create(:enrollment, :hubee_portail, :submitted, organization_kind: :clamart)
+      @enrollment3 = create(:enrollment, :hubee_portail, :draft, organization_kind: :dinum)
+    end
 
-    it "returns hubee_portail enrollments which shared the same demandeur than an other hubee_portail validated enrollment" do
-      expect(subject.duplicated_hubee_portail_enrollments).to match_array([enrollment2, enrollment3])
+    it "returns hubee_portail invalidated enrollments which shared the same organization than an other hubee_portail validated enrollment" do
+      expect(subject.duplicated_hubee_portail_enrollments).to match_array([@enrollment2])
     end
   end
 end

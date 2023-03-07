@@ -9,13 +9,10 @@ class ExtractHubeePortailEnrollmentsToArchive
   end
 
   def duplicated_hubee_portail_enrollments
-    subquery = Enrollment.joins(:team_members)
-      .where(status: "validated", target_api: "hubee_portail", team_members: {type: "demandeur"})
-      .pluck("enrollments.id", "team_members.id")
-
-    Enrollment.joins(:team_members)
-      .where(target_api: "hubee_portail", status: %w[draft changes_requested submitted])
-      .where.not(id: subquery)
-      .distinct
+    validated_hubee_enrollments = Enrollment.where(target_api: "hubee_portail", status: "validated")
+    invalidated_hubee_enrollments = Enrollment.where(target_api: "hubee_portail", status: ["draft", "submitted", "changes_requested"])
+    invalidated_hubee_enrollments.select do |invalidated_enrollment|
+      validated_hubee_enrollments.find { |validated_enrollment| validated_enrollment.organization_id == invalidated_enrollment.organization_id }
+    end
   end
 end

@@ -1,6 +1,0 @@
-.disabled-link {
-    cursor: not-allowed;
-    pointer-events: none;
-    background-color: var(--datapass-background-grey);
-    color: var(--text-mention-grey);
-}
