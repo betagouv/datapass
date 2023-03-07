@@ -446,12 +446,22 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
   describe "validate event for hubee bridge" do
     include ActiveJob::TestHelper
 
-    let(:enrollment_api_target) { :hubee_portail }
+    let(:enrollment) do
+      create(
+        :enrollment,
+        enrollment_status,
+        :hubee_portail,
+        organization_kind: :clamart,
+        user: user
+      )
+    end
+    let(:user) { create(:user, email_verified: true, organization_kind: :clamart) }
+    let(:user_instructor) { create(:user, roles: ["#{user_target_api_instructor}:instructor"]) }
+    let(:user_target_api_instructor) { "hubee_portail" }
     let(:enrollment_status) { :submitted }
-    let!(:hubee_portail_subscriber) { create(:user, roles: ["hubee_portail:subscriber"]) }
 
     before do
-      login(hubee_portail_subscriber)
+      login(user_instructor)
     end
 
     before do
@@ -464,33 +474,48 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     end
 
     context "when instructeur validate enrollment" do
-      let(:enrollment_status) { :validated }
-      let(:event) { create(:event, name: "validate", enrollment: enrollment, comment: comment, created_at: DateTime.new(2023, 1, 29), updated_at: DateTime.new(2023, 1, 29)) }
+      let(:event) { "validate" }
       let(:comment) { "I like trains" }
 
-      let(:enrollment_mailer) do
-        EnrollmentMailer.with(
-          to: enrollment.responsable_metier_email,
-          enrollment_id: enrollment.id,
-          target_api: enrollment.target_api,
-          template_name: "validate"
-        ).notification_email.deliver_later
+      it "sets enrollment status to validated" do
+        expect {
+          make_request
+        }.to change { enrollment.reload.status }.to("validated")
       end
 
       it "#calls HubeePortailBridge" do
         make_request
 
-        expect_any_instance_of(HubeePortailBridge).to receive(:call).and_return("1234567890")
-        enrollment_mailer
-        expect(HubeePortailBridge.new(enrollment).call).to eq("1234567890")
-
         enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+
+        notification_hubee_admin_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_hubee_admin_metier" }
         notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }
 
-        expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
-        expect(notification_email[:args]).to include("notification_email")
+        expect(notification_hubee_admin_email[:args][1]).to include("notification_hubee_admin_metier")
+        expect(notification_email[:args][1]).to include("notification_email")
       end
     end
+
+    # describe "emails send" do
+    #   let(:event) { "validate" }
+    #   let(:comment) { "I like trains" }
+    #
+    #   before do
+    #     ActiveJob::Base.queue_adapter = :inline
+    #   end
+    #
+    #   after do
+    #     ActiveJob::Base.queue_adapter = :test
+    #   end
+    #
+    #   it "sends an email to enrollment's user" do
+    #     hubee_admin_metier_email = ActionMailer::Base.deliveries.first
+    #     expect(hubee_admin_metier_email).to be_present
+    #
+    #     expect(hubee_admin_metier_email.to).to eq([enrollment.responsable_metier_email])
+    #     # expect { perform_enqueued_jobs { make_request } }.to change { ActionMailer::Base.deliveries.size }.by(1)
+    #   end
+    # end
   end
 
   describe "refuse_validation event" do
