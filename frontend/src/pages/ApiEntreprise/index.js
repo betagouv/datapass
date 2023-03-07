@@ -67,7 +67,7 @@ const scopesConfiguration = [
   },
   {
     value: 'associations_donnees_protegees',
-    label: '🔐 Données protégées association - DJEPVA',
+    label: '🔐 Données association protégées - DJEPVA',
     link: 'https://entreprise.api.gouv.fr/catalogue/djepva/associations',
   },
   {
