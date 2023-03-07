@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_25_125653) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_19_095535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_125653) do
     t.boolean "dpo_is_informed"
     t.string "technical_team_type"
     t.string "technical_team_value"
+    t.string "zip_code"
     t.index ["copied_from_enrollment_id"], name: "index_enrollments_on_copied_from_enrollment_id"
   end
 

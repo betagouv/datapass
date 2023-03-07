@@ -105,6 +105,7 @@ class EnrollmentPolicy < ApplicationPolicy
     res.concat([
       :cgu_approved,
       :dpo_is_informed,
+      :zip_code,
       :target_api,
       :previous_enrollment_id,
       :organization_id,

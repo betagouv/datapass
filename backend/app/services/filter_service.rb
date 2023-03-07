@@ -9,7 +9,7 @@ class FilterService < ApplicationService
     when "users"
       %w[email].include? key
     when "enrollments"
-      %w[id siret nom_raison_sociale target_api status team_members.email only_with_unprocessed_messages].include? key
+      %w[id siret nom_raison_sociale target_api status zip_code team_members.email only_with_unprocessed_messages].include? key
     else
       raise "'#{table_name}' is not supported by FilterService"
     end
@@ -20,7 +20,7 @@ class FilterService < ApplicationService
     when "users"
       %w[email].include? key
     when "enrollments"
-      %w[id siret nom_raison_sociale team_members.email].include? key
+      %w[id siret nom_raison_sociale zip_code team_members.email].include? key
     else
       raise "'#{table_name}' is not supported by FilterService"
     end
