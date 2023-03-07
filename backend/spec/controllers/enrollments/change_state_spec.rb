@@ -456,6 +456,56 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     end
   end
 
+  describe "validate event for hubee bridge" do
+    include ActiveJob::TestHelper
+
+    let(:enrollment_api_target) { :hubee_portail }
+    let(:enrollment_status) { :submitted }
+    let!(:hubee_portail_subscriber) { create(:user, roles: ["hubee_portail:subscriber"]) }
+
+    before do
+      login(hubee_portail_subscriber)
+    end
+
+    before do
+      allow_any_instance_of(HubeePortailBridge).to receive(:call)
+    end
+
+    after do
+      clear_enqueued_jobs
+      clear_performed_jobs
+    end
+
+    context "when instructeur validate enrollment" do
+      let(:enrollment_status) { :validated }
+      let(:event) { create(:event, name: "validate", enrollment: enrollment, comment: comment, created_at: DateTime.new(2023, 1, 29), updated_at: DateTime.new(2023, 1, 29)) }
+      let(:comment) { "I like trains" }
+
+      let(:enrollment_mailer) do
+        EnrollmentMailer.with(
+          to: enrollment.responsable_metier_email,
+          enrollment_id: enrollment.id,
+          target_api: enrollment.target_api,
+          template_name: "validate"
+        ).notification_email.deliver_later
+      end
+
+      it "#calls HubeePortailBridge" do
+        make_request
+
+        expect_any_instance_of(HubeePortailBridge).to receive(:call).and_return("1234567890")
+        enrollment_mailer
+        expect(HubeePortailBridge.new(enrollment).call).to eq("1234567890")
+
+        enqueued_jobs = ActiveJob::Base.queue_adapter.enqueued_jobs
+        notification_email = enqueued_jobs.find { |job| job["arguments"][1] == "notification_email" }
+
+        expect(ActiveJob::Base.queue_adapter.enqueued_jobs.size).to eq 1
+        expect(notification_email[:args]).to include("notification_email")
+      end
+    end
+  end
+
   describe "refuse_validation event" do
     let(:event) { "refuse" }
     let(:comment) { "comment" }

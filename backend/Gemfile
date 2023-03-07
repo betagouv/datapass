@@ -44,6 +44,7 @@ group :development, :test do
   gem "guard-rspec", require: false
   gem "guard-standardrb"
   gem "brakeman"
+  gem "vcr", "~> 6.1"
 end
 
 group :development do
