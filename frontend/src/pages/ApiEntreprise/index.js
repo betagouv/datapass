@@ -62,13 +62,13 @@ const scopesConfiguration = [
   },
   {
     value: 'associations',
-    label: 'Données association en open data - Ministère de l’Intérieur',
-    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/associations_open_data',
+    label: 'Données association en open data - DJEPVA',
+    link: 'https://entreprise.api.gouv.fr/catalogue/djepva/associations_open_data',
   },
   {
     value: 'associations_donnees_protegees',
-    label: 'Données association - Ministère de l’Intérieur',
-    link: 'https://entreprise.api.gouv.fr/catalogue/ministere_interieur/associations',
+    label: '🔐 Données association protégées - DJEPVA',
+    link: 'https://entreprise.api.gouv.fr/catalogue/djepva/associations',
   },
   {
     value: 'actes_inpi',
