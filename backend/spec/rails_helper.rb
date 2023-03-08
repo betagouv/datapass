@@ -58,8 +58,6 @@ RSpec.configure do |config|
   FactoryBot::SyntaxRunner.send(:include, ApiInseePayloadHelpers)
   config.include DebouncePayloadHelpers
   FactoryBot::SyntaxRunner.send(:include, DebouncePayloadHelpers)
-  config.include ApiGouvPayloadHelpers
-  FactoryBot::SyntaxRunner.send(:include, ApiGouvPayloadHelpers)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

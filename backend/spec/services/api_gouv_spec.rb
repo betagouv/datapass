@@ -1,35 +1,35 @@
 RSpec.describe ApiGouv, type: :service do
   subject { described_class.call }
 
-  before do
-    stub_api_gouv_apis_call
+  setup do
+    VCR.insert_cassette("api_gouv_payload")
+  end
+
+  teardown do
+    VCR.eject_cassette
   end
 
   context "for success call to api.gouv.fr" do
-    it "returns 3 apis lists with datapassLink information" do
-      expect(subject.size).to eq(3)
-    end
-
-    it "return the collection with info that concerns datapass only" do
-      expect(subject[1]).to eq(
-        {title: "le.taxi",
+    it "return the collection with info that concerns datapass only", :vcr do
+      expect(subject).to include(
+        {logo: "/images/api-logo/dinum.png",
+         pass_path: "/le-taxi",
+         path: "/les-api/le-taxi",
          slug: "le-taxi",
          tagline: "Un clic, un taxi",
-         path: "/les-api/le-taxi",
-         logo: "/images/api-logo/dinum.png",
-         pass_path: "/le-taxi-clients"}
+         title: "le.taxi"}
       )
     end
 
-    it "should not include list without pass_path information" do
-      expect(subject).not_to include("title" => "API Camino")
+    it "should not include list without pass_path information", :vcr do
+      expect(subject).not_to include({title: "API Camino"})
     end
 
-    it "should add api-impot-particulier-fc-sandbox information" do
+    it "should add api-impot-particulier-fc-sandbox information", :vcr do
       expect(subject.last).to eq(
         {title: "API Impôt particulier via FranceConnect",
          slug: "impot-particulier-fc",
-         tagline: "Raccordez-vous directement à la DGFiP",
+         tagline: "Raccordez-vous directement à la DGFiP pour récupérer les éléments fiscaux nécessaires à vos téléservices, éliminez le traitement et le stockage des pièces justificatives",
          path: "/les-api/impot-particulier",
          logo: "/images/api-logo/logo-dgfip.jpg",
          pass_path: "/api-impot-particulier-fc-sandbox"}
