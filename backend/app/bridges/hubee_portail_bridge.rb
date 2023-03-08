@@ -70,7 +70,6 @@ class HubeePortailBridge < ApplicationBridge
             name: denomination,
             code: sigle,
             country: "France",
-            enrollmentId: id,
             postalCode: code_postal,
             territory: libelle_commune,
             email: responsable_metier["email"],
