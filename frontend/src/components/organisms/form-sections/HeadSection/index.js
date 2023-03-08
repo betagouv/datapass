@@ -12,14 +12,7 @@ import NotificationSubSection from './NotificationSubSection';
 
 export const HeadSection = () => {
   const {
-    enrollment: {
-      id,
-      target_api,
-      status,
-      copied_from_enrollment_id,
-      events,
-      zip_code,
-    },
+    enrollment: { id, target_api, status, copied_from_enrollment_id, events },
   } = useContext(FormContext);
 
   const { label } = useDataProvider(target_api);
@@ -32,7 +25,6 @@ export const HeadSection = () => {
         <div className="datapass-badge-group">
           {id && <Badge type="info">Habilitation n°{id}</Badge>}
           <StatusBadge status={status} />
-          {zip_code && <Badge type="warning">{zip_code}</Badge>}
           {copied_from_enrollment_id && (
             <Link href={`/authorization-request/${copied_from_enrollment_id}`}>
               <span>Copie de n°{copied_from_enrollment_id}</span>
