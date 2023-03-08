@@ -19,7 +19,7 @@ jobs:
       PG_HOST: localhost
       PG_DATABASE: datapass
       SECRET_KEY_BASE: croute
-      RAILS_ENV: production
+      RAILS_ENV: test
       DATAPASS_OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
       DATAPASS_OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
       INSEE_HOST: https://api.insee.fr
