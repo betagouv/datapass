@@ -3,12 +3,13 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-design/icons-design.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-others/icons-others.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css';
 
-const FrFiIcon: React.FC<{
+export const FrFiIcon: React.FC<{
   color?: string;
   type: string;
   large?: boolean;
