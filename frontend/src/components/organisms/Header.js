@@ -99,9 +99,19 @@ const Header = () => {
             <div className="fr-header__tools">
               <div className="fr-header__tools-links">
                 <ul className="fr-btns-group">
-                  {user && isEmpty(user.roles) && (
+                  {user && (
                     <li>
-                      <Button icon="home-4" tertiaryNoOutline href="/">
+                      <Button
+                        icon="table"
+                        tertiaryNoOutline
+                        href={
+                          user &&
+                          isEmpty(user.roles) &&
+                          user.organizations.length < 5
+                            ? '/'
+                            : '/enrollments'
+                        }
+                      >
                         Toutes mes habilitations
                       </Button>
                     </li>
