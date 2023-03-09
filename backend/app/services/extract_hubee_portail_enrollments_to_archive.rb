@@ -4,7 +4,7 @@ class ExtractHubeePortailEnrollmentsToArchive
   attr_reader :enrollment
 
   def call
-    enrollment_ids = duplicated_hubee_portail_enrollments.pluck(:enrollment_id)
+    enrollment_ids = duplicated_hubee_portail_enrollments.pluck(:id)
     Enrollment.find(enrollment_ids)
   end
 

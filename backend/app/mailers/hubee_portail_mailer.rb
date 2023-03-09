@@ -7,7 +7,7 @@ class HubeePortailMailer < ActionMailer::Base
     @enrollment = Enrollment.find(params[:enrollment_id])
 
     mail(
-      to: @enrollment.demandeurs.pluck(:email),
+      to: @enrollment.demandeurs.first.email,
       from: "notifications@api.gouv.fr",
       subject: "Votre demande d’habilitation Portail HubEE - Démarche CertDC va être archivée.",
       template_path: "enrollment_mailer/hubee_portail",
