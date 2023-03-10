@@ -1,0 +1,26 @@
+.enrollment-quick-view {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-default-grey);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enrollment-quick-view-informations {
+    display: flex;
+    flex-direction: column;
+}
+
+.enrollment-quick-view-title {
+    font-weight: bold;
+}
+
+.enrollment-quick-view-date {
+    font-size: small;
+}
+
+.enrollment-quick-view-footer {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}

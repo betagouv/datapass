@@ -37,8 +37,10 @@ type Demandeur = {
 
 export type Enrollment = {
   updated_at: Date;
+  created_at: Date;
   notify_events_from_demandeurs_count: number;
   id: number;
+  intitule: string;
   nom_raison_sociale: string;
   demandeurs: Demandeur[];
   target_api: string;

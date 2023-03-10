@@ -93,6 +93,15 @@ export const ArrowDownIcon: React.FC<Props> = ({ color, large, small }) => (
   />
 );
 
+export const ArrowRightIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon
+    type="arrow-right-s-line"
+    color={color}
+    large={large}
+    small={small}
+  />
+);
+
 export const CheckCircleIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon
     type="checkbox-circle-fill"
