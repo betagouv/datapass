@@ -109,7 +109,7 @@ const Header = () => {
                           isEmpty(user.roles) &&
                           user.organizations.length < 5
                             ? '/'
-                            : '/enrollments'
+                            : '/habilitations'
                         }
                       >
                         Toutes mes habilitations

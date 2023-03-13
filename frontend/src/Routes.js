@@ -74,7 +74,7 @@ export const Routes = () => {
       />
 
       <Route
-        path="enrollments"
+        path="habilitations"
         element={
           <AuthRequired>
             {user && isEmpty(user.roles) && user.organizations.length < 5 ? (

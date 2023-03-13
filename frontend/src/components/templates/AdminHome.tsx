@@ -55,12 +55,14 @@ const AdminHome: React.FC = () => {
           </div>
         ) : (
           <TagContainer className="fr-mb-3w">
-            <Tag
-              onClick={() => setTargetApis([])}
-              isActive={targetApis.length === 0}
-            >
-              Toutes les habilitations
-            </Tag>
+            {instructorTargetApis.length > 1 && (
+              <Tag
+                onClick={() => setTargetApis([])}
+                isActive={targetApis.length === 0}
+              >
+                Toutes les habilitations
+              </Tag>
+            )}
             {instructorTargetApis?.map((targetApiKey) => (
               <Tag
                 onClick={() => setTargetApis([targetApiKey])}
