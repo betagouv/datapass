@@ -1,0 +1,42 @@
+.enrollment-quick-view {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-default-grey);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.enrollment-quick-view:hover {
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
+    drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+}
+
+.enrollment-quick-view-informations {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.enrollment-quick-view-title {
+  font-weight: bold;
+}
+
+.enrollment-quick-view-date {
+  font-size: small;
+}
+
+.enrollment-quick-view-footer {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.enrollment-quick-organization {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

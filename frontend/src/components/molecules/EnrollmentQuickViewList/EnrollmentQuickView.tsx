@@ -11,17 +11,22 @@ type Props = {
   enrollment: Enrollment;
 };
 
-export const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
+const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
   const { goToItem } = useListItemNavigation();
 
   return (
-    <div className="enrollment-quick-view">
+    <div
+      onClick={(event) => goToItem(enrollment.target_api, enrollment.id, event)}
+      className="enrollment-quick-view"
+    >
       <div className="enrollment-quick-view-informations">
         <div className="enrollment-quick-view-title">{enrollment.intitule}</div>
         <div className="enrollment-quick-view-date">soumis le 12/02/2020</div>
         <div className="enrollment-quick-view-footer">
           <Badge type={BadgeType.info}>{enrollment.id}</Badge>
-          <div>{enrollment.nom_raison_sociale}</div>
+          <div className="enrollment-quick-organization">
+            {enrollment.nom_raison_sociale}
+          </div>
         </div>
       </div>
       <div className="enrollment-quick-view-actions">

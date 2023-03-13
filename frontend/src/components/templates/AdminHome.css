@@ -1,5 +1,15 @@
 .action-footer {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.enrollment-quick-view-container .enrollment-quick-view:first-of-type {
+  border-top: 1px solid var(--border-default-grey);
+  margin-top: 15px;
+}
+
+.target-apis-selector-container {
+  margin: 25px 0;
+  width: 180px;
 }
