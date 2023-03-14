@@ -1,6 +1,22 @@
+.quick-view-list-empty {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.quick-view-list-empty img {
+  margin-bottom: 15px;
+}
+
+.quick-view-list-container {
+  flex: 1;
+}
+
 .enrollment-quick-view {
   padding: 15px 0;
-  border-bottom: 1px solid var(--border-default-grey);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,11 +24,6 @@
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.enrollment-quick-view:hover {
-  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
-    drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
 }
 
 .enrollment-quick-view-informations {
@@ -23,6 +34,9 @@
 
 .enrollment-quick-view-title {
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .enrollment-quick-view-date {

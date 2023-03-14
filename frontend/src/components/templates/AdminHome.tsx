@@ -7,8 +7,9 @@ import Card, { CardContainer } from '../molecules/Card';
 import IconTitle from '../molecules/IconTitle';
 import { useEffect, useState } from 'react';
 import { getEnrollments } from '../../services/enrollments';
-import EnrollmentQuickViewList from '../molecules/EnrollmentQuickViewList';
+import QuickViewList from '../molecules/QuickViewList';
 import Button from '../atoms/hyperTexts/Button';
+import qs from 'query-string';
 
 import './AdminHome.css';
 import MultiSelect from '../molecules/MultiSelect';
@@ -18,7 +19,8 @@ const AdminHome: React.FC = () => {
   const { dataProviderConfigurations } = useDataProviderConfigurations();
   const [targetApis, setTargetApis] = useQueryString('targetApis', []);
   const [enrollments, setEnrollments] = useState([]);
-
+  const [unprocessedMessages, setUnprocessedMessages] = useState([]);
+  console.log(unprocessedMessages);
   useEffect(() => {
     getEnrollments({
       size: 4,
@@ -29,6 +31,12 @@ const AdminHome: React.FC = () => {
           : [{ id: 'target_api', value: targetApis }],
     }).then(({ enrollments }) => {
       setEnrollments(enrollments);
+    });
+    getEnrollments({
+      size: 4,
+      filter: [{ id: 'only_with_unprocessed_messages', value: true }],
+    }).then(({ enrollments }) => {
+      setUnprocessedMessages(enrollments);
     });
   }, [targetApis]);
 
@@ -65,6 +73,7 @@ const AdminHome: React.FC = () => {
             )}
             {instructorTargetApis?.map((targetApiKey) => (
               <Tag
+                key={targetApiKey}
                 onClick={() => setTargetApis([targetApiKey])}
                 isActive={targetApis[0] === targetApiKey}
               >
@@ -75,16 +84,38 @@ const AdminHome: React.FC = () => {
         )}
         <CardContainer>
           <Card className="flex-two-tier">
-            <IconTitle title="Habilitations à instruire" icon="scales-3-line" />
-            <EnrollmentQuickViewList enrollments={enrollments} />
+            <IconTitle
+              title="Habilitations à instruire"
+              icon={<img src="/images/mail.svg" alt="Boîte mail" />}
+            />
+            <QuickViewList list={enrollments} type="enrollments" />
             <div className="action-footer">
-              <Button href="/enrollments" secondary>
+              <Button href="/habilitations" secondary>
                 Toutes les habilitations à instruire
               </Button>
             </div>
           </Card>
           <Card className="flex-tier">
-            <IconTitle title="Messages non lus" icon="mail-open-line" />
+            <IconTitle
+              title="Messages non lus"
+              icon={<img src="/images/target.svg" alt="Boîte mail" />}
+            />
+            <QuickViewList list={unprocessedMessages} type="messages" />
+            <div className="action-footer">
+              <Button
+                href={`/habilitations${`?${qs.stringify({
+                  filtered: JSON.stringify([
+                    {
+                      id: 'only_with_unprocessed_messages',
+                      value: true,
+                    },
+                  ]),
+                })}`}`}
+                secondary
+              >
+                Tout voir
+              </Button>
+            </div>
           </Card>
         </CardContainer>
       </div>

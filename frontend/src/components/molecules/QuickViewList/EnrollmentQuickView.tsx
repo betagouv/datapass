@@ -3,20 +3,16 @@ import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import Badge from '../StatusBadge';
 import './styles.css';
 import { BadgeType } from '../../atoms/hyperTexts/Badge';
-import Button from '../../atoms/hyperTexts/Button';
-import useListItemNavigation from '../../templates/hooks/use-list-item-navigation';
-import { ArrowRightIcon } from '../../atoms/icons/fr-fi-icons';
+import { Link } from 'react-router-dom';
 
 type Props = {
   enrollment: Enrollment;
 };
 
 const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
-  const { goToItem } = useListItemNavigation();
-
   return (
-    <div
-      onClick={(event) => goToItem(enrollment.target_api, enrollment.id, event)}
+    <Link
+      to={`/${enrollment.target_api.replace(/_/g, '-')}/${enrollment.id}`}
       className="enrollment-quick-view"
     >
       <div className="enrollment-quick-view-informations">
@@ -29,16 +25,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
           </div>
         </div>
       </div>
-      <div className="enrollment-quick-view-actions">
-        <Button
-          onClick={(event) =>
-            goToItem(enrollment.target_api, enrollment.id, event)
-          }
-        >
-          <ArrowRightIcon color="white" small />
-        </Button>
-      </div>
-    </div>
+    </Link>
   );
 };
 
