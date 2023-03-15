@@ -13,14 +13,14 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
   return (
     <Link
       to={`/${enrollment.target_api.replace(/_/g, '-')}/${enrollment.id}`}
-      className="enrollment-quick-view"
+      className="quick-view"
     >
-      <div className="enrollment-quick-view-informations">
-        <div className="enrollment-quick-view-title">{enrollment.intitule}</div>
-        <div className="enrollment-quick-view-date">soumis le 12/02/2020</div>
-        <div className="enrollment-quick-view-footer">
+      <div className="quick-view-informations quick-view-informations--small">
+        <div className="quick-view-title">{enrollment.intitule}</div>
+        <div className="quick-view-date">soumis le 12/02/2020</div>
+        <div className="quick-view-footer">
           <Badge type={BadgeType.info}>{enrollment.id}</Badge>
-          <div className="enrollment-quick-organization">
+          <div className="quick-organization">
             {enrollment.nom_raison_sociale}
           </div>
         </div>

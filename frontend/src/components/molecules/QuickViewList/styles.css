@@ -15,7 +15,7 @@
   flex: 1;
 }
 
-.enrollment-quick-view {
+.quick-view {
   padding: 15px 0;
   display: flex;
   justify-content: space-between;
@@ -26,30 +26,43 @@
   transition-duration: 150ms;
 }
 
-.enrollment-quick-view-informations {
+.quick-view-informations {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.quick-view-informations.quick-view-informations--small {
   width: 70%;
 }
 
-.enrollment-quick-view-title {
+.quick-view-title {
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
 }
 
-.enrollment-quick-view-date {
+.quick-view-icon {
+  margin-right: 10px;
+}
+
+.quick-view-date {
   font-size: small;
 }
 
-.enrollment-quick-view-footer {
+.quick-view-footer {
   margin-top: 10px;
   display: flex;
   gap: 10px;
 }
 
-.enrollment-quick-organization {
+.quick-view-footer.quick-view-footer--span {
+  justify-content: space-between;
+}
+
+.quick-organization {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
