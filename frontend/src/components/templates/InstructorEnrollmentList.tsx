@@ -45,6 +45,7 @@ export type Enrollment = {
   demandeurs: Demandeur[];
   target_api: string;
   status: EnrollmentStatus;
+  events: Array<any>;
 };
 
 const columnHelper = createColumnHelper<Enrollment>();

@@ -1,23 +1,15 @@
-import React from 'react';
-import { FrFiIcon } from '../../atoms/icons/fr-fi-icons';
+import React, { ReactNode } from 'react';
 import './style.css';
 
 type Props = {
   title: string;
-  icon: any;
+  icon: ReactNode;
 };
 
 export const IconTitle: React.FC<Props> = ({ title, icon }) => {
   return (
     <div className="icon-title">
-      {typeof icon === 'string' || icon instanceof String ? (
-        <FrFiIcon
-          type={icon as string}
-          color="var(--text-action-high-blue-france)"
-        />
-      ) : (
-        icon
-      )}
+      {icon}
       <h3>{title}</h3>
     </div>
   );

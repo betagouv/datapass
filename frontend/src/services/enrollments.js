@@ -114,7 +114,7 @@ export function getEnrollments({
   sortBy = [],
   filter = [],
   detailed = false,
-  size = 10,
+  size = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({
     [id]: desc ? 'desc' : 'asc',

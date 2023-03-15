@@ -20,21 +20,28 @@ const AdminHome: React.FC = () => {
   const [targetApis, setTargetApis] = useQueryString('targetApis', []);
   const [enrollments, setEnrollments] = useState([]);
   const [unprocessedMessages, setUnprocessedMessages] = useState([]);
-  console.log(unprocessedMessages);
+
   useEffect(() => {
+    const formattedApiFilter = [{ id: 'target_api', value: targetApis }];
+    const formattedMessagesFilter = [
+      { id: 'only_with_unprocessed_messages', value: true },
+    ];
     getEnrollments({
+      // @ts-ignore
       size: 4,
       detailed: true,
-      filter:
-        targetApis.length === 0
-          ? []
-          : [{ id: 'target_api', value: targetApis }],
+      filter: targetApis.length === 0 ? [] : formattedApiFilter,
     }).then(({ enrollments }) => {
       setEnrollments(enrollments);
     });
     getEnrollments({
-      size: 4,
-      filter: [{ id: 'only_with_unprocessed_messages', value: true }],
+      // @ts-ignore
+      size: 5,
+      detailed: true,
+      filter:
+        targetApis.length === 0
+          ? formattedMessagesFilter
+          : [...formattedMessagesFilter, ...formattedApiFilter],
     }).then(({ enrollments }) => {
       setUnprocessedMessages(enrollments);
     });
