@@ -3,7 +3,7 @@
 class HubeePortailMailer < ActionMailer::Base
   layout false
 
-  def archive_enrollment_email
+  def archive_hubee_portail_enrollment_email
     @enrollment = Enrollment.find(params[:enrollment_id])
 
     mail(

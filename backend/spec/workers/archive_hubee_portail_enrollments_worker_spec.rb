@@ -9,25 +9,30 @@ RSpec.describe ArchiveHubeePortailEnrollmentsWorker, type: :worker do
     context "When there are duplicated hubee_portail enrollments" do
       before do
         create(:enrollment, :hubee_portail, :validated, organization_kind: :clamart)
-        @duplicated_enrollment_1 = create(:enrollment, :hubee_portail, :submitted, organization_kind: :clamart)
-        @duplicated_enrollment_2 = create(:enrollment, :hubee_portail, :draft, organization_kind: :clamart)
-        @email_content = File.open(Rails.root.join("app/views/enrollment_mailer/hubee_portail/archive.text.erb")) { |f| f.readline }.chomp
+        create(:enrollment, :hubee_portail, :submitted, organization_kind: :clamart)
+        create(:enrollment, :hubee_portail, :draft, organization_kind: :clamart)
       end
 
       it "archive enrollments" do
         result = subject.perform
-        expect(result.pluck(:id, :status)).to eq([[@duplicated_enrollment_1.id, "archived"], [@duplicated_enrollment_2.id, "archived"]])
+
+        expect(result[0].status).to eq("archived")
+        expect(result[1].status).to eq("archived")
+      end
+
+      it "creates archive events" do
+        result = subject.perform
+
+        expect(result[0].events.last.name).to eq("archive")
       end
     end
 
-    context "When there are no validated hubee_portail enrollments" do
-      before do
-        @duplicated_enrollment_1 = create(:enrollment, :hubee_portail, :submitted, organization_kind: :clamart)
-        @duplicated_enrollment_2 = create(:enrollment, :hubee_portail, :draft, organization_kind: :clamart)
-      end
-
-      it "leaves enrollments as there are" do
+    context "When there is no hubee_portail enrollments with a 'validate' status" do
+      it "returns an empty array" do
+        create(:enrollment, :hubee_portail, :submitted, organization_kind: :clamart)
+        create(:enrollment, :hubee_portail, :draft, organization_kind: :clamart)
         result = subject.perform
+
         expect(result).to eq([])
       end
     end
