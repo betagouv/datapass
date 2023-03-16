@@ -13,6 +13,7 @@ import qs from 'query-string';
 
 import './AdminHome.css';
 import MultiSelect from '../molecules/MultiSelect';
+import StatCard from '../molecules/StatCard';
 
 const AdminHome: React.FC = () => {
   const { user } = useAuth();
@@ -90,11 +91,8 @@ const AdminHome: React.FC = () => {
           </TagContainer>
         )}
         <CardContainer>
-          <Card className="flex-two-tier">
-            <IconTitle
-              title="Habilitations à instruire"
-              icon={<img src="/images/mail.svg" alt="Boîte mail" />}
-            />
+          <Card>
+            <IconTitle title="Habilitations à instruire" icon="mail" />
             <QuickViewList list={enrollments} type="enrollments" />
             <div className="action-footer">
               <Button href="/habilitations" secondary>
@@ -102,11 +100,8 @@ const AdminHome: React.FC = () => {
               </Button>
             </div>
           </Card>
-          <Card className="flex-tier">
-            <IconTitle
-              title="Messages non lus"
-              icon={<img src="/images/target.svg" alt="Boîte mail" />}
-            />
+          <Card className="message-card">
+            <IconTitle title="Messages non lus" icon="target" />
             <QuickViewList list={unprocessedMessages} type="messages" />
             <div className="action-footer">
               <Button
@@ -124,6 +119,65 @@ const AdminHome: React.FC = () => {
               </Button>
             </div>
           </Card>
+        </CardContainer>
+        <CardContainer>
+          <StatCard
+            title="Activité"
+            icon="activity"
+            stats={{
+              main: {
+                value: 65,
+                label: 'nouvelles demandes',
+              },
+              second: {
+                value: -2,
+                label: 'par rapport au mois précédent',
+              },
+            }}
+          />
+          <StatCard
+            title="Validation"
+            icon="validation"
+            stats={{
+              main: {
+                value: '67%',
+                label: 'taux de demandes validées',
+              },
+              second: {
+                value: -2,
+                label: 'par rapport au mois précédent',
+              },
+            }}
+          />
+          <StatCard
+            title="Modifications"
+            icon="change"
+            stats={{
+              main: {
+                value: '12%',
+                label: 'demandes modifiées',
+              },
+              second: {
+                value: -2,
+                label: 'par rapport au mois précédent',
+              },
+            }}
+          />
+          <StatCard
+            title="Délai"
+            icon="calendar"
+            negative
+            stats={{
+              main: {
+                value: 5,
+                label: 'jours en moyenne',
+              },
+              second: {
+                value: 2,
+                label: 'par rapport au mois précédent',
+              },
+            }}
+          />
         </CardContainer>
       </div>
     </main>
