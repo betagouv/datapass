@@ -20,6 +20,6 @@ class ScheduleReminderEmailForChangeRequestedEnrollmentsWorker < ApplicationWork
   end
 
   def create_reminder_event(enrollment)
-    enrollment.events.create!(name: "reminder")
+    enrollment.events.create!(name: "reminder_before_archive")
   end
 end

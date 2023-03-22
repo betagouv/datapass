@@ -1,11 +1,11 @@
 class Event < ActiveRecord::Base
-  EVENT_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder delete].freeze
+  EVENT_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder reminder_before_archive delete].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
 
   belongs_to :user, optional: true
-  validates :user, presence: true, if: proc { |event| %w[reminder archive].exclude?(event.name) }
+  validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive].exclude?(event.name) }
 
   validate :validate_comment
   validate :validate_name

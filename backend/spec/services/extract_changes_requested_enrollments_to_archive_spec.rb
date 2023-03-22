@@ -47,7 +47,7 @@ RSpec.describe ExtractChangesRequestedEnrollmentsToArchive, type: :service do
         create(:event, :update, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
         create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
         create(:event, :request_changes, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
-        create(:event, :reminder, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
+        create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
 
         enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 10.days))
         create(:event, :create, enrollment: enrollment, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 25.days))
@@ -79,7 +79,7 @@ RSpec.describe ExtractChangesRequestedEnrollmentsToArchive, type: :service do
       create(:event, :create, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
       create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
       create(:event, :request_changes, enrollment: enrollment, created_at: (8.months.ago - 20.days), updated_at: (8.months.ago - 20.days))
-      create(:event, :reminder, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
+      create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
 
       enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: 7.months.ago, updated_at: 7.months.ago)
       create(:event, :create, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
@@ -102,7 +102,7 @@ RSpec.describe ExtractChangesRequestedEnrollmentsToArchive, type: :service do
       result = subject.changes_requested_enrollments
       events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
 
-      expect(events).to include("request_changes", "update", "reminder")
+      expect(events).to include("request_changes", "update", "reminder_before_archive")
       expect(events).not_to include("notify", "create")
     end
 
@@ -111,7 +111,7 @@ RSpec.describe ExtractChangesRequestedEnrollmentsToArchive, type: :service do
       event_names = result.collect { |e| e.events.map(&:name) }
       event_ids = result.collect { |e| e.events.ids }
 
-      expect(event_names[0].last).to eq("reminder")
+      expect(event_names[0].last).to eq("reminder_before_archive")
       expect(event_ids[0].last).to eq(result[0].events.last.id)
     end
 

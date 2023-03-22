@@ -7,17 +7,21 @@ class EnrollmentsArchiveable
     enrollments_to_archive
   end
 
-  def select_enrollments_to_archive
-    Enrollment.where(status: %w[draft changes_requested])
+  def preselect_enrollments_to_archive
+    Enrollment.where(status: "changes_requested")
       .includes(:events)
-      .where({events: {name: %w[reminder update], created_at: REMIND_FROM_DATE.beginning_of_day...16.days.ago.end_of_day}})
+      .where({events: {name: %w[reminder_before_archive update], created_at: REMIND_FROM_DATE.beginning_of_day...Time.now}})
   end
 
   def enrollments_to_archive
-    enrollments = select_enrollments_to_archive
-    enrollment_ids = enrollments.lazy.map { |enrollment| enrollment.events.last }
-      .to_a
-      .select { |event| event.name == "reminder" }
+    preselected_enrollments = preselect_enrollments_to_archive
+    last_enrollments_event = preselected_enrollments.lazy.map do |enrollment|
+      sorted_events = enrollment.events.sort_by(&:created_at)
+      sorted_events.last
+    end
+
+    enrollment_ids = last_enrollments_event.to_a
+      .select { |event| event.name == "reminder_before_archive" && event.created_at.between?(REMIND_FROM_DATE.beginning_of_day, 16.days.ago.end_of_day) }
       .pluck(:enrollment_id)
 
     Enrollment.find(enrollment_ids)
