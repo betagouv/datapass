@@ -42,6 +42,10 @@ const eventToDisplayableContent = {
     icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
     label: 'a validé l’habilitation',
   },
+  reminder_before_archive: {
+    icon: <NotificationIcon color={'var(--text-default-warning)'} />,
+    label: 'a envoyé un email de relance avant archivage',
+  },
   reminder: {
     icon: <NotificationIcon color={'var(--text-default-info)'} />,
     label: 'a envoyé un email de relance',

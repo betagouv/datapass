@@ -15,13 +15,13 @@ class ExtractChangesRequestedEnrollmentsToArchive
     Enrollment.where(status: "changes_requested")
       .where({updated_at: OLDEST_CHANGES_REQUESTED_ENROLLMENTS...Time.now.ago(6.months).beginning_of_day})
       .includes(:events)
-      .where({events: {name: %w[request_changes update reminder]}})
+      .where({events: {name: %w[request_changes update reminder_before_archive]}})
       .order(:id, "events.created_at")
   end
 
   def last_request_changes_or_update_events_for_enrollments
     enrollments = changes_requested_enrollments
     events = enrollments.map { |enrollment| enrollment.events.last }.to_a
-    events.reject { |event| event.name == "reminder" }
+    events.reject { |event| event.name == "reminder_before_archive" }
   end
 end

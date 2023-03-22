@@ -67,7 +67,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
 
   if (
     ['draft', 'changes_requested'].includes(status) &&
-    ['create', 'update', 'reminder'].includes(lastEventName)
+    ['create', 'update', 'reminder', 'reminder_before_archive'].includes(lastEventName)
   ) {
     return (
       <Alert title={STATUS_LABELS[status]}>

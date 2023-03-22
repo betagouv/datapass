@@ -55,6 +55,11 @@ FactoryBot.define do
       user { nil }
     end
 
+    trait :reminder_before_archive do
+      name { "reminder_before_archive" }
+      user { nil }
+    end
+
     trait :archive do
       name { "archive" }
     end
