@@ -2,11 +2,11 @@
 
 require "sidekiq-scheduler"
 
-class ScheduleReminderEmailForDraftEnrollmentsWorker < ApplicationWorker
+class ScheduleReminderEmailWorker < ApplicationWorker
   sidekiq_options queue: "reminders"
 
   def perform
-    ExtractDraftEnrollmentsToRemind.new.call.each do |draft_enrollment|
+    SendReminderEnrollments.new.call.each do |draft_enrollment|
       send_reminder_email(draft_enrollment)
       create_reminder_event(draft_enrollment)
     end

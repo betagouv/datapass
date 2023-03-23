@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ExtractChangesRequestedEnrollmentsToArchive
+class SendReminderBeforeArchiveEnrollments
   attr_reader :enrollment
 
   OLDEST_CHANGES_REQUESTED_ENROLLMENTS = Time.new(2022, 5, 1)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe EnrollmentsArchiveable, type: :service do
+RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
   subject { described_class.new }
 
   describe "enrollment not included in #preselect_enrollments_to_archive" do
