@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ExtractChangesRequestedEnrollmentsToArchive, type: :service do
+RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
   subject { described_class.new }
 
   describe "enrollments not included in #changes_requested_enrollments call" do

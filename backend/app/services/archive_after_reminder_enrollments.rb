@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EnrollmentsArchiveable
+class ArchiveAfterReminderEnrollments
   REMIND_FROM_DATE = Time.new(2022, 9, 1)
 
   def call
