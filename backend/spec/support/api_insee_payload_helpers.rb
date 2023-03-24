@@ -432,7 +432,7 @@ module ApiInseePayloadHelpers
           "siren" => "300024908",
           "nic" => "00026",
           "siret" => "30002490800026",
-          "statutDiffusionEtablissement" => "N",
+          "statutDiffusionEtablissement" => "P",
           "dateCreationEtablissement" => "2018-02-26",
           "trancheEffectifsEtablissement" => nil,
           "anneeEffectifsEtablissement" => nil,
@@ -442,7 +442,7 @@ module ApiInseePayloadHelpers
           "nombrePeriodesEtablissement" => 1,
           "uniteLegale" => {
             "etatAdministratifUniteLegale" => "A",
-            "statutDiffusionUniteLegale" => "N",
+            "statutDiffusionUniteLegale" => "P",
             "dateCreationUniteLegale" => "1980-01-01",
             "categorieJuridiqueUniteLegale" => "1000",
             "denominationUniteLegale" => nil,
