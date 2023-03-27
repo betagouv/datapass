@@ -110,7 +110,7 @@ export const demarches = {
     },
   },
   collectivite: {
-    label: 'Demande de collectivité',
+    label: 'Demande de collectivité / administration',
     state: {
       fondement_juridique_title: 'Arrêté du 8 novembre 2018',
       fondement_juridique_url:
