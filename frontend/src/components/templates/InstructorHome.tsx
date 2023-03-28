@@ -60,7 +60,7 @@ const InstructorHome: React.FC = () => {
       .map((role) => role.split(':')[0]) || [];
 
   return (
-    <main className="dark-background fr-pb-5w">
+    <main className="dark-background fr-pb-5w instructor-home">
       <div className="page-container">
         <h1 className="fr-mt-5w">Accueil</h1>
         {instructorTargetApis?.length > 3 ? (

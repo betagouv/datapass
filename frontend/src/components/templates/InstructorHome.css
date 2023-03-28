@@ -9,7 +9,7 @@
   width: 180px;
 }
 
-.datapass_card {
+.instructor-home .datapass_card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

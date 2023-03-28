@@ -11,8 +11,8 @@ type Props = {
 };
 
 const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
-  const getCreatedDate = () => {
-    const submitEvent = enrollment.events.find(({ name }) => name === 'create');
+  const getSubmitDate = () => {
+    const submitEvent = enrollment.events.find(({ name }) => name === 'submit');
     return submitEvent?.created_at;
   };
 
@@ -24,7 +24,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
       <div className="quick-view-informations quick-view-informations--small">
         <div className="quick-view-title">{enrollment.intitule}</div>
         <div className="quick-view-date">
-          créé le {moment(getCreatedDate()).format('DD/MM/YYYY')}
+          soumis le {moment(getSubmitDate()).format('DD/MM/YYYY')}
         </div>
         <div className="quick-view-footer">
           <Badge type={BadgeType.info}>{enrollment.id}</Badge>
