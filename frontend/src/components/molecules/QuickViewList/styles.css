@@ -13,6 +13,7 @@
 
 .quick-view-list-container {
   flex: 1;
+  min-height: 400px;
 }
 
 .quick-view {
@@ -64,6 +65,7 @@
 
 .quick-organization {
   white-space: nowrap;
+  font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
 }

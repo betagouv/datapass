@@ -29,7 +29,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
         <div className="quick-view-footer">
           <Badge type={BadgeType.info}>{enrollment.id}</Badge>
           <div className="quick-organization">
-            {enrollment.nom_raison_sociale}
+            {enrollment.nom_raison_sociale.toUpperCase()}
           </div>
         </div>
       </div>

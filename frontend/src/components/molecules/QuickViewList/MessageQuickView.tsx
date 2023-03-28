@@ -35,7 +35,7 @@ const MessageQuickView: React.FC<Props> = ({ enrollment }) => {
           {enrollment.nom_raison_sociale.toUpperCase()}
         </div>
         <div className="quick-view-footer quick-view-footer--span">
-          <div className="quick-organization">
+          <div className="quick-view-date">
             reçu le{' '}
             {moment(getLastUnprocessedMessageDate()).format('DD/MM/YYYY')}
           </div>

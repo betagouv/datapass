@@ -23,6 +23,9 @@ const AdminHome: React.FC = () => {
   const [unprocessedMessages, setUnprocessedMessages] = useState([]);
 
   useEffect(() => {
+    const defaultFilter = [
+      { id: 'status', value: ['submitted', 'changes_requested'] },
+    ];
     const formattedApiFilter = [{ id: 'target_api', value: targetApis }];
     const formattedMessagesFilter = [
       { id: 'only_with_unprocessed_messages', value: true },
@@ -31,7 +34,10 @@ const AdminHome: React.FC = () => {
       // @ts-ignore
       size: 4,
       detailed: true,
-      filter: targetApis.length === 0 ? [] : formattedApiFilter,
+      filter:
+        targetApis.length === 0
+          ? defaultFilter
+          : [...defaultFilter, ...formattedApiFilter],
     }).then(({ enrollments }) => {
       setEnrollments(enrollments);
     });
@@ -92,7 +98,7 @@ const AdminHome: React.FC = () => {
         )}
         <CardContainer>
           <Card>
-            <IconTitle title="Habilitations à instruire" icon="mail" />
+            <IconTitle title="Habilitations à instruire" icon="target" />
             <QuickViewList list={enrollments} type="enrollments" />
             <div className="action-footer">
               <Button href="/habilitations" secondary>
@@ -101,7 +107,7 @@ const AdminHome: React.FC = () => {
             </div>
           </Card>
           <Card className="message-card">
-            <IconTitle title="Messages non lus" icon="target" />
+            <IconTitle title="Messages non lus" icon="mail" />
             <QuickViewList list={unprocessedMessages} type="messages" />
             <div className="action-footer">
               <Button
@@ -115,7 +121,7 @@ const AdminHome: React.FC = () => {
                 })}`}`}
                 secondary
               >
-                Tout voir
+                Tous les messages non lus
               </Button>
             </div>
           </Card>

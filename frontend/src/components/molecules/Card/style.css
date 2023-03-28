@@ -1,9 +1,9 @@
 .datapass_card_container {
   display: flex;
+  flex-wrap: wrap;
   gap: 2.5rem;
   justify-content: flex-start;
   align-content: stretch;
-  flex-wrap: wrap;
 }
 
 .datapass_card_container .datapass_card {
