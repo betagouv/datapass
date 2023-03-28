@@ -19,7 +19,7 @@ import AdminEnrollmentList from './components/templates/InstructorEnrollmentList
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
 import Stats from './components/templates/Stats';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
-import AdminHome from './components/templates/AdminHome';
+import InstructorHome from './components/templates/InstructorHome';
 
 export const Routes = () => {
   const { user } = useAuth();
@@ -67,7 +67,7 @@ export const Routes = () => {
             {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
               <UserEnrollmentList />
             ) : (
-              <AdminHome />
+              <InstructorHome />
             )}
           </AuthRequired>
         }

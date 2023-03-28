@@ -11,11 +11,11 @@ import QuickViewList from '../molecules/QuickViewList';
 import Button from '../atoms/hyperTexts/Button';
 import qs from 'query-string';
 
-import './AdminHome.css';
+import './InstructorHome.css';
 import MultiSelect from '../molecules/MultiSelect';
 import StatCard from '../molecules/StatCard';
 
-const AdminHome: React.FC = () => {
+const InstructorHome: React.FC = () => {
   const { user } = useAuth();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
   const [targetApis, setTargetApis] = useQueryString('targetApis', []);
@@ -190,4 +190,4 @@ const AdminHome: React.FC = () => {
   );
 };
 
-export default AdminHome;
+export default InstructorHome;
