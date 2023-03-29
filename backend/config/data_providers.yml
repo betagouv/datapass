@@ -313,13 +313,6 @@ api_particulier:
           cnaf_allocataires: false
           cnaf_enfants: false
           cnaf_adresse: false
-      team_members:
-        responsable_technique:
-          given_name: Marina
-          family_name: MOROZOVA
-          job: Support client
-          email: marina.morozova@abelium.fr
-          phone_number: '0000000000'
     agora-plus:
       label: >-
         Agora Famille Premium, Tarification services municipaux / Portail Famille,
