@@ -178,7 +178,11 @@ class EnrollmentPolicy < ApplicationPolicy
         scope = scope.or(sub_scope)
       end
 
-      scope.where.not(status: :archived)
+      if user.is_administrator?
+        scope
+      else
+        scope.where.not(status: :archived)
+      end
     end
   end
 

@@ -255,7 +255,9 @@ const InstructorEnrollmentList: React.FC = () => {
       meta: {
         filter: 'select',
         selectOptions: Object.entries(STATUS_LABELS)
-          .filter(([key]) => key !== 'archived')
+          .filter(([key]) =>
+            user?.roles.includes('administrator') ? key : key !== 'archived'
+          )
           .map(([key, label]) => ({
             key,
             label,
