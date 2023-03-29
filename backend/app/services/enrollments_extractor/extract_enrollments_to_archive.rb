@@ -1,4 +1,4 @@
-class ArchiveAfterReminderEnrollments < EnrollmentsExtractor
+class ExtractEnrollmentsToArchive < EnrollmentsExtractor
   def initialize
     super(
       Time.new(2022, 9, 1),

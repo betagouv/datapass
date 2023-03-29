@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SendReminderEnrollments < EnrollmentsExtractor
+class ExtractEnrollmentsToRemind < EnrollmentsExtractor
   def initialize
     super(
       Time.new(2022, 7, 1),

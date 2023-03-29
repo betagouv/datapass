@@ -7,10 +7,10 @@ class EnrollmentsExtractor
   end
 
   def call
-    enrollments_to_archive
+    filter_enrollments
   end
 
-  def preselect_enrollments_to_archive
+  def query_enrollments
     Enrollment.where(status: @extract_criteria.statuses)
       .includes(:events)
       .where({
@@ -21,14 +21,14 @@ class EnrollmentsExtractor
        })
   end
 
-  def enrollments_to_archive
-    preselected_enrollments = preselect_enrollments_to_archive
-    last_enrollments_event = preselected_enrollments.lazy.map do |enrollment|
+  def filter_enrollments
+    enrollments = query_enrollments
+    most_recent_event_of_each_enrollment = enrollments.lazy.map do |enrollment|
       sorted_events = enrollment.events.sort_by(&:created_at)
       sorted_events.last
     end
 
-    enrollment_ids = last_enrollments_event
+    enrollment_ids = most_recent_event_of_each_enrollment
         .to_a
         .select do |event|
           event.name.in? @extract_criteria.most_recent_event_names &&
