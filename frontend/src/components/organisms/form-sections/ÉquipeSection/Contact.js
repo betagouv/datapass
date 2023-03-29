@@ -125,14 +125,18 @@ export const Contact = ({
     {displayIndividualEmailLabel &&
       isEmailValid(email) &&
       !isIndividualEmailAddress(email) && (
-        <Alert type="error">Merci d’utiliser un email nominatif.</Alert>
+        <div className="fr-mb-3w">
+          <Alert type="warning">Merci d’utiliser un email nominatif.</Alert>
+        </div>
       )}
     {displayGroupEmailLabel &&
       isEmailValid(email) &&
       isIndividualEmailAddress(email) && (
-        <Alert type="error">
-          Merci d’utiliser une adresse email générique.
-        </Alert>
+        <div className="fr-mb-3w">
+          <Alert type="warning">
+            Merci d’utiliser une adresse email générique.
+          </Alert>
+        </div>
       )}
     {!contactByEmailOnly && (
       <TelInput
