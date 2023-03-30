@@ -128,7 +128,7 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
       context "#filter_enrollments" do
         it "renders update_at or created_at as last events" do
           result = subject.filter_enrollments
-          events = result.map { |event| event.name }.flatten
+          events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
 
           expect(result.count).to eq(2)
           expect(events).to include("create", "update")
