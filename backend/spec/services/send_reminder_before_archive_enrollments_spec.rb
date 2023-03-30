@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
+RSpec.describe ExtractEnrollmentsToRemindBeforeArchive, type: :service do
   subject { described_class.new }
 
-  describe "enrollments not included in #changes_requested_enrollments call" do
+  describe "enrollments not included in #filter_enrollments call" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
     end
@@ -22,7 +22,7 @@ RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
     end
 
     it "does not renders changes_requested enrollments less than 6 months old" do
-      result = subject.changes_requested_enrollments
+      result = subject.filter_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
       expect(enrollment).to eq([])
@@ -62,7 +62,7 @@ RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
       end
 
       it "renders changes_requested enrollments between 9 months and 6 month ago" do
-        result = subject.changes_requested_enrollments
+        result = subject.filter_enrollments
 
         expect(result.count).to eq(2)
       end
@@ -99,7 +99,7 @@ RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
     end
 
     it "includes draft enrollment with no notify events" do
-      result = subject.changes_requested_enrollments
+      result = subject.filter_enrollments
       events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
 
       expect(events).to include("request_changes", "update", "reminder_before_archive")
@@ -107,7 +107,7 @@ RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
     end
 
     it "orders enrollment by id and last events created" do
-      result = subject.changes_requested_enrollments
+      result = subject.filter_enrollments
       event_names = result.collect { |e| e.events.map(&:name) }
       event_ids = result.collect { |e| e.events.ids }
 
@@ -115,9 +115,9 @@ RSpec.describe SendReminderBeforeArchiveEnrollments, type: :service do
       expect(event_ids[0].last).to eq(result[0].events.last.id)
     end
 
-    context "#last_request_changes_or_update_events_for_enrollments" do
+    context "#filter_enrollments" do
       it "renders request_changes or update as last events" do
-        result = subject.last_request_changes_or_update_events_for_enrollments
+        result = subject.filter_enrollments
         events = result.map { |event| event.name }.flatten
 
         expect(result.count).to eq(2)

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
+RSpec.describe ExtractEnrollmentsToArchive, type: :service do
   subject { described_class.new }
 
-  describe "enrollment not included in #preselect_enrollments_to_archive" do
+  describe "enrollment not included in #filter_enrollments" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
     end
@@ -26,14 +26,14 @@ RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
     end
 
     it "excludes enrollments with reminder and update events created in the last 15 days" do
-      result = subject.enrollments_to_archive
+      result = subject.filter_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
       expect(enrollment).to eq([])
     end
   end
 
-  describe "#enrollments_to_archive" do
+  describe "#filter_enrollments" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
     end
@@ -60,16 +60,16 @@ RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
       Timecop.return
     end
 
-    context "#enrollments_to_archive" do
+    context "#filter_enrollments" do
       it "renders an array of enrollments with change_requested status" do
-        result = subject.preselect_enrollments_to_archive
+        result = subject.filter_enrollments
 
         expect(result.to_a).to be_an_instance_of(Array)
         expect(result.count).to eq(2)
       end
 
       it "renders reminder as last events" do
-        result = subject.preselect_enrollments_to_archive
+        result = subject.filter_enrollments
         events = result.lazy.map { |enrollment| enrollment.events.last }.to_a
           .select { |event| event.name == "reminder_before_archive" }
 
@@ -109,7 +109,7 @@ RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
     end
 
     it "returns an empty array with no enrollment(s)" do
-      result = subject.enrollments_to_archive
+      result = subject.filter_enrollments
 
       expect(result).to eq([])
     end
@@ -134,7 +134,7 @@ RSpec.describe ArchiveAfterReminderEnrollments, type: :service do
     end
 
     it "returns an empty array with no enrollment(s)" do
-      result = subject.enrollments_to_archive
+      result = subject.filter_enrollments
 
       expect(result).to eq([])
     end

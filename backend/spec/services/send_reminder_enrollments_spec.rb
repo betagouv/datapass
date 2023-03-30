@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe SendReminderEnrollments, type: :service do
+RSpec.describe ExtractEnrollmentsToRemind, type: :service do
   subject { described_class.new }
 
-  describe "enrollment not included in #preselect_enrollments call" do
+  describe "enrollment not included in #filter_enrollments call" do
     before do
       Timecop.freeze(Time.now.change(year: 2022, month: 12, day: 1))
     end
@@ -19,7 +19,7 @@ RSpec.describe SendReminderEnrollments, type: :service do
     end
 
     it "do not renders draft enrollment beyond the 1st of july 2022" do
-      result = subject.preselect_enrollments
+      result = subject.filter_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
       expect(enrollment).to eq([])
@@ -44,14 +44,14 @@ RSpec.describe SendReminderEnrollments, type: :service do
     end
 
     it "should not be include include in the #draft_enrollment list" do
-      result = subject.preselect_enrollments
+      result = subject.filter_enrollments
       enrollment = result.map { |enrollment| enrollment.target_api }
 
       expect(enrollment).to eq([])
     end
   end
 
-  describe "#preselect_enrollments" do
+  describe "#filter_enrollments" do
     context "when it includes only draft enrollments" do
       before do
         Timecop.freeze(Time.now.change(year: 2022, month: 12))
@@ -78,7 +78,7 @@ RSpec.describe SendReminderEnrollments, type: :service do
         Timecop.return
       end
       it "renders draft enrollments between 15 days and a month ago" do
-        result = subject.preselect_enrollments
+        result = subject.filter_enrollments
 
         expect(result.count).to eq(2)
       end
@@ -109,7 +109,7 @@ RSpec.describe SendReminderEnrollments, type: :service do
       end
 
       it "includes draft enrollment with no notify events" do
-        result = subject.preselect_enrollments
+        result = subject.filter_enrollments
         events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
 
         expect(events).to include("create", "update", "reminder")
@@ -117,7 +117,7 @@ RSpec.describe SendReminderEnrollments, type: :service do
       end
 
       it "orders enrollment by id and last events created" do
-        result = subject.preselect_enrollments
+        result = subject.filter_enrollments
         event_names = result.collect { |e| e.events.map(&:name) }
         event_ids = result.collect { |e| e.events.ids }
 
@@ -125,9 +125,9 @@ RSpec.describe SendReminderEnrollments, type: :service do
         expect(event_ids[0].last).to eq(result[0].events.last.id)
       end
 
-      context "#last_update_or_create_events_enrollments" do
+      context "#filter_enrollments" do
         it "renders update_at or created_at as last events" do
-          result = subject.last_update_or_create_events_enrollments
+          result = subject.filter_enrollments
           events = result.map { |event| event.name }.flatten
 
           expect(result.count).to eq(2)
@@ -157,13 +157,13 @@ RSpec.describe SendReminderEnrollments, type: :service do
     end
 
     it "returns an array with enrollment(s)" do
-      result = subject.last_update_or_create_events_enrollments
+      result = subject.filter_enrollments
 
       expect(result.any?).to be_truthy
     end
 
     it "retuns an array with enrollments" do
-      result = subject.last_update_or_create_events_enrollments
+      result = subject.filter_enrollments
       result_ids = result.pluck(:enrollment_id).flatten
 
       expect(result_ids.count).to eq(2)
@@ -201,7 +201,7 @@ RSpec.describe SendReminderEnrollments, type: :service do
     end
 
     it "returns an empty array with no enrollment(s)" do
-      result = subject.last_update_or_create_events_enrollments
+      result = subject.filter_enrollments
 
       expect(result).to eq([])
     end
