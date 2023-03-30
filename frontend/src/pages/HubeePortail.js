@@ -43,6 +43,7 @@ const demarchesHubee = [
         certificat de décès au moyen de l’application « CertDc ».
       </>
     ),
+    checked: true,
   },
 ];
 
