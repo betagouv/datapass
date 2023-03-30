@@ -33,9 +33,9 @@ class EnrollmentsController < ApplicationController
     end
 
     page = params[:page] || 0
-    size = params[:size] || 10
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    max_per_page = params[:max_per_page] || 10
+    max_per_page = "100" if max_per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(max_per_page.to_i)
 
     serializer = LightEnrollmentSerializer
 
@@ -79,9 +79,9 @@ class EnrollmentsController < ApplicationController
     end
 
     page = params[:page] || 0
-    size = params[:size] || 10
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    max_per_page = params[:max_per_page] || 10
+    max_per_page = "100" if max_per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(max_per_page.to_i)
 
     render json: @enrollments,
       each_serializer: PublicEnrollmentListSerializer,

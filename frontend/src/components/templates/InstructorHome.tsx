@@ -31,7 +31,7 @@ const InstructorHome: React.FC = () => {
     ];
     getEnrollments({
       // @ts-ignore
-      size: 4,
+      max_per_page: 4,
       detailed: true,
       filter:
         targetApis.length === 0
@@ -42,7 +42,7 @@ const InstructorHome: React.FC = () => {
     });
     getEnrollments({
       // @ts-ignore
-      size: 5,
+      max_per_page: 5,
       detailed: true,
       filter:
         targetApis.length === 0

@@ -21,9 +21,9 @@ class UsersController < ApplicationController
     end
 
     page = params[:page] || 0
-    per_page = params[:per_page] || 10
-    per_page = "100" if per_page.to_i > 100
-    @users = @users.page(page.to_i + 1).per(per_page.to_i)
+    max_per_page = params[:max_per_page] || 10
+    max_per_page = "100" if max_per_page.to_i > 100
+    @users = @users.page(page.to_i + 1).per(max_per_page.to_i)
 
     render json: @users,
       each_serializer: AdminUserSerializer,

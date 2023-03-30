@@ -114,7 +114,7 @@ export function getEnrollments({
   sortBy = [],
   filter = [],
   detailed = false,
-  size = null,
+  max_per_page = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({
     [id]: desc ? 'desc' : 'asc',
@@ -126,7 +126,7 @@ export function getEnrollments({
   const queryParam = hashToQueryParams({
     page,
     detailed,
-    size,
+    max_per_page,
     sortedBy: formatedSortBy,
     filter: formatedFilter,
   });
@@ -149,7 +149,7 @@ export function getUserValidatedEnrollments(targetApi) {
       { id: 'target_api', value: targetApi },
     ],
     detailed: true,
-    size: 100,
+    max_per_page: 100,
   }).then(({ enrollments }) => enrollments);
 }
 
