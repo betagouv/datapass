@@ -64,11 +64,11 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
         </>
       </ExpandableQuote>
       {!isEmpty(demarchesHubee) &&
-        demarchesHubee.map(({ id, label }) => (
+        demarchesHubee.map(({ id, label, checked }) => (
           <CheckboxInput
             name={`scopes.${id}`}
             key={id}
-            value={scopes[id]}
+            value={checked || scopes[id]}
             label={`${label}${
               !disabled && subscribedDemarcheEnLigne.includes(id)
                 ? ' (votre commune est déjà abonnée à cette démarche)'
