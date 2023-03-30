@@ -22,6 +22,11 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
       className="quick-view"
     >
       <div className="quick-view-informations quick-view-informations--small">
+        <div className="quick-view-header">
+          <Badge type={BadgeType.new} icon={true} small={true}>
+            Nouveau
+          </Badge>
+        </div>
         <div className="quick-view-title">{enrollment.intitule}</div>
         <div className="quick-view-date">
           soumis le {moment(getSubmitDate()).format('DD/MM/YYYY')}

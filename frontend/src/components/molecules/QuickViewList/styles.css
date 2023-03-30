@@ -39,6 +39,10 @@
   width: 70%;
 }
 
+.quick-view-header {
+  margin-bottom: 10px;
+}
+
 .quick-view-title {
   font-weight: bold;
   display: flex;
