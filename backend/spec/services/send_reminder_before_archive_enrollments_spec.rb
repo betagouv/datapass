@@ -118,7 +118,7 @@ RSpec.describe ExtractEnrollmentsToRemindBeforeArchive, type: :service do
     context "#filter_enrollments" do
       it "renders request_changes or update as last events" do
         result = subject.filter_enrollments
-        events = result.map { |event| event.name }.flatten
+        events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
 
         expect(result.count).to eq(2)
         expect(events).to include("request_changes")
