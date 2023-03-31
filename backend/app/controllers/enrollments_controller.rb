@@ -217,6 +217,14 @@ class EnrollmentsController < ApplicationController
     render json: @enrollment
   end
 
+  # GET enrollment/1/mark_submit_enrollment_as_read
+  def mark_submit_enrollment_as_read
+    @enrollment = authorize Enrollment.find(params[:id])
+
+    @enrollment.mark_submit_enrollment_as_read
+    render json: @enrollment
+  end
+
   def destroy
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.events.create(name: "delete", user_id: current_user.id)

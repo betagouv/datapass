@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get :copies
         get :next_enrollments
         patch :mark_demandeur_notify_events_as_processed
+        patch :mark_submit_enrollment_as_read
 
         get :email_templates, to: "enrollments_email_templates#index"
       end

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { isEmpty } from 'lodash';
 import { useMemo } from 'react';
+import { markNewEnrollmentsAsRead } from '../../../services/enrollments';
 
 type Props = {
   enrollment: Enrollment;
@@ -32,10 +33,16 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     return filteredEvents;
   }, [enrollment.events]);
 
+  const markAsRead = async () => {
+    console.log('hello');
+    await markNewEnrollmentsAsRead({ id: enrollment.id });
+  };
+
   return (
     <Link
       to={`/${enrollment.target_api.replace(/_/g, '-')}/${enrollment.id}`}
       className="quick-view"
+      onClick={markAsRead}
     >
       <div className="quick-view-informations quick-view-informations--small">
         <div className="quick-view-header">

@@ -266,3 +266,14 @@ export function markEventsAsProcessed({ id }) {
     )
     .then(({ data }) => data);
 }
+
+export function markNewEnrollmentsAsRead({ id }) {
+  return httpClient
+    .patch(
+      `${BACK_HOST}/api/enrollments/${id}/mark_submit_enrollment_as_read`,
+      {
+        headers: { 'Content-type': 'application/json' },
+      }
+    )
+    .then(({ data }) => data);
+}

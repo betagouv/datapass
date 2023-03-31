@@ -99,6 +99,10 @@ class EnrollmentPolicy < ApplicationPolicy
     user.is_instructor?(record.target_api)
   end
 
+  def mark_submit_enrollment_as_read?
+    user.is_instructor?(record.target_api)
+  end
+
   def permitted_attributes
     res = []
 
