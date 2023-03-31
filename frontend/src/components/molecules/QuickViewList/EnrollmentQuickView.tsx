@@ -5,6 +5,8 @@ import './styles.css';
 import { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { isEmpty } from 'lodash';
+import { useMemo } from 'react';
 
 type Props = {
   enrollment: Enrollment;
@@ -16,6 +18,20 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     return submitEvent?.created_at;
   };
 
+  const isThereAnyNewSubmitEnrollment = useMemo(() => {
+    const filteredEvents = enrollment.events.filter(
+      ({ name, processed_at }) => {
+        return name === 'submit' && !processed_at;
+      }
+    );
+
+    if (isEmpty(filteredEvents)) {
+      return false;
+    }
+
+    return filteredEvents;
+  }, [enrollment.events]);
+
   return (
     <Link
       to={`/${enrollment.target_api.replace(/_/g, '-')}/${enrollment.id}`}
@@ -23,9 +39,11 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     >
       <div className="quick-view-informations quick-view-informations--small">
         <div className="quick-view-header">
-          <Badge type={BadgeType.new} icon={true} small={true}>
-            Nouveau
-          </Badge>
+          {isThereAnyNewSubmitEnrollment && (
+            <Badge type={BadgeType.new} icon={true} small={true}>
+              Nouveau
+            </Badge>
+          )}
         </div>
         <div className="quick-view-title">{enrollment.intitule}</div>
         <div className="quick-view-date">
