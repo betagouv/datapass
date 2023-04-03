@@ -826,6 +826,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
     describe "with user being an instructor" do
       let(:user) { create(:user, roles: ["franceconnect:instructor"]) }
+
       context "for a validated enrollment" do
         let(:enrollment_status) { :validated }
 
@@ -833,7 +834,17 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
           login(user)
         end
 
-        it { is_expected.to have_http_status(:ok) }
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+
+      context "for an archived enrollment" do
+        let(:enrollment_status) { :archived }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
       end
 
       context "for a draft enrollment" do
@@ -845,17 +856,51 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
         it { is_expected.to have_http_status(:ok) }
       end
+
+      context "for a revoked enrollment" do
+        let(:enrollment_status) { :revoked }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:ok) }
+      end
     end
 
-    context "with user not being an instructor" do
+    describe "with user being not beeing an instructor or admin" do
+      context "for a validated enrollment" do
+        let(:user) { create(:user, roles: ["user"]) }
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+    end
+
+    context "for an enrollment with status draft" do
       let(:user) { create(:user, roles: ["user"]) }
-      let(:enrollment_status) { :validated }
+      let(:enrollment_status) { :draft }
 
       before do
         login(user)
       end
 
-      it { is_expected.to have_http_status(:forbidden) }
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "for an enrollment with change_requested status" do
+      let(:user) { create(:user, roles: ["user"]) }
+      let(:enrollment_status) { :changes_requested }
+
+      before do
+        login(user)
+      end
+
+      it { is_expected.to have_http_status(:ok) }
     end
   end
 end
