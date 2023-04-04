@@ -13,7 +13,6 @@ import qs from 'query-string';
 
 import './InstructorHome.css';
 import MultiSelect from '../molecules/MultiSelect';
-import StatCard from '../molecules/StatCard';
 
 const InstructorHome: React.FC = () => {
   const { user } = useAuth();
@@ -125,65 +124,6 @@ const InstructorHome: React.FC = () => {
               </Button>
             </div>
           </Card>
-        </CardContainer>
-        <CardContainer>
-          <StatCard
-            title="Activité"
-            icon="activity"
-            stats={{
-              main: {
-                value: 65,
-                label: 'nouvelles demandes',
-              },
-              second: {
-                value: -2,
-                label: 'par rapport au mois précédent',
-              },
-            }}
-          />
-          <StatCard
-            title="Validation"
-            icon="validation"
-            stats={{
-              main: {
-                value: '67%',
-                label: 'taux de demandes validées',
-              },
-              second: {
-                value: -2,
-                label: 'par rapport au mois précédent',
-              },
-            }}
-          />
-          <StatCard
-            title="Modifications"
-            icon="change"
-            stats={{
-              main: {
-                value: '12%',
-                label: 'demandes modifiées',
-              },
-              second: {
-                value: -2,
-                label: 'par rapport au mois précédent',
-              },
-            }}
-          />
-          <StatCard
-            title="Délai"
-            icon="calendar"
-            negative
-            stats={{
-              main: {
-                value: 5,
-                label: 'jours en moyenne',
-              },
-              second: {
-                value: 2,
-                label: 'par rapport au mois précédent',
-              },
-            }}
-          />
         </CardContainer>
       </div>
     </main>
