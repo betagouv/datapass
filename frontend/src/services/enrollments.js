@@ -256,21 +256,13 @@ export function getHubeeValidatedEnrollments() {
     .then(({ data: { enrollments } }) => enrollments);
 }
 
-export function markEventsAsProcessed({ id }) {
+export function markEventAsRead({ id, event_name }) {
+  const queryParam = hashToQueryParams({
+    event_name,
+  });
   return httpClient
     .patch(
-      `${BACK_HOST}/api/enrollments/${id}/mark_demandeur_notify_events_as_processed`,
-      {
-        headers: { 'Content-type': 'application/json' },
-      }
-    )
-    .then(({ data }) => data);
-}
-
-export function markNewEnrollmentsAsRead({ id }) {
-  return httpClient
-    .patch(
-      `${BACK_HOST}/api/enrollments/${id}/mark_submit_enrollment_as_read`,
+      `${BACK_HOST}/api/enrollments/${id}/mark_event_as_read/${queryParam}`,
       {
         headers: { 'Content-type': 'application/json' },
       }

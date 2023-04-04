@@ -161,7 +161,7 @@ class EnrollmentsController < ApplicationController
     end
 
     if current_user.is_instructor?(@enrollment.target_api)
-      @enrollment.mark_demandeur_notify_events_as_processed
+      @enrollment.mark_event_as_read("notify")
     end
 
     if @enrollment.send(
@@ -209,19 +209,11 @@ class EnrollmentsController < ApplicationController
       root: "enrollments"
   end
 
-  # GET enrollment/1/mark_demandeur_notify_events_as_processed
-  def mark_demandeur_notify_events_as_processed
+  # GET enrollment/1/mark_event_as_read
+  def mark_event_as_read
     @enrollment = authorize Enrollment.find(params[:id])
+    @enrollment.mark_event_as_read(params[:event_name])
 
-    @enrollment.mark_demandeur_notify_events_as_processed
-    render json: @enrollment
-  end
-
-  # GET enrollment/1/mark_submit_enrollment_as_read
-  def mark_submit_enrollment_as_read
-    @enrollment = authorize Enrollment.find(params[:id])
-
-    @enrollment.mark_submit_enrollment_as_read
     render json: @enrollment
   end
 

@@ -108,22 +108,12 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  def mark_demandeur_notify_events_as_processed
+  def mark_event_as_read(event_name)
     should_be_mark_as_processed = events.where(
-      name: "notify",
+      name: event_name,
       processed_at: nil,
       user_id: demandeurs.pluck(:user_id)
     )
-    should_be_mark_as_processed.each { |event| event.mark_as_processed }
-  end
-
-  def mark_submit_enrollment_as_read
-    should_be_mark_as_processed = events.where(
-      name: "submit",
-      processed_at: nil,
-      user_id: demandeurs.pluck(:user_id)
-    )
-
     should_be_mark_as_processed.each { |event| event.mark_as_processed }
   end
 

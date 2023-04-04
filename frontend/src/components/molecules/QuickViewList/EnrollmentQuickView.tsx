@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { isEmpty } from 'lodash';
 import { useMemo } from 'react';
-import { markNewEnrollmentsAsRead } from '../../../services/enrollments';
+import { markEventAsRead } from '../../../services/enrollments';
 
 type Props = {
   enrollment: Enrollment;
@@ -34,8 +34,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
   }, [enrollment.events]);
 
   const markAsRead = async () => {
-    console.log('hello');
-    await markNewEnrollmentsAsRead({ id: enrollment.id });
+    await markEventAsRead({ id: enrollment.id, event_name: 'submit' });
   };
 
   return (
