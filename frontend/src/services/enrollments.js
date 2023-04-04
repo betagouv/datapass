@@ -88,7 +88,7 @@ export function getNextEnrollments(id) {
 export function getPublicValidatedEnrollments({
   filter = [],
   page = null,
-  size = null,
+  max_per_page = null,
 }) {
   const formatedFilter = filter.map(({ id, value }) => ({
     key: id,
@@ -97,7 +97,7 @@ export function getPublicValidatedEnrollments({
   const queryParam = hashToQueryParams({
     filter: formatedFilter,
     page,
-    size,
+    max_per_page,
   });
 
   return httpClient
