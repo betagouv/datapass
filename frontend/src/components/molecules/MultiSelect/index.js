@@ -10,6 +10,7 @@ export const MultiSelect = ({
   values = [],
   disabled = false,
   onChange,
+  defaultOverviewLabel = 'Tous',
 }) => {
   const [isContentOpen, setIsContentOpen] = useState(false);
   const buttonRef = useRef(null);
@@ -52,7 +53,7 @@ export const MultiSelect = ({
 
   let overviewLabel;
   if (values.length === 0) {
-    overviewLabel = 'Tous';
+    overviewLabel = defaultOverviewLabel;
   } else if (values.length === 1) {
     overviewLabel = options.find(({ key }) => key === values[0])?.label;
   } else {

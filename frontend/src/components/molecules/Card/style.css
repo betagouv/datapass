@@ -1,7 +1,7 @@
 .datapass_card_container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5em;
+  gap: 2.5rem;
   justify-content: flex-start;
   align-content: stretch;
 }
@@ -9,7 +9,16 @@
 .datapass_card_container .datapass_card {
   flex-grow: 1;
   flex-basis: 0;
-  min-width: 20em;
+}
+
+.message-card {
+  max-width: 380px;
+}
+
+@media all and (max-width: 768px) {
+  .message-card {
+    max-width: none;
+  }
 }
 
 .datapass_card_container + .datapass_card_container {
@@ -24,8 +33,9 @@
 }
 
 .datapass_card {
-  border: 1px solid var(--border-default-grey);
-  border-radius: 2px;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
+    drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  border-radius: 5px;
   padding: 1.5em;
   background-color: white;
 }

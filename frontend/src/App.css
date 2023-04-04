@@ -35,6 +35,10 @@ footer {
   padding: 1.5rem 20%;
 }
 
+.dark-background {
+  background-color: var(--background-alt-grey);
+}
+
 @media all and (max-width: 1248px) {
   .full-page {
     padding: 1.5rem 5%;

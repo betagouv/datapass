@@ -1,0 +1,17 @@
+.icon-title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 20px;
+  border-bottom: 0.8px solid var(--text-action-high-blue-france);
+}
+
+.icon-title h3 {
+  margin: 0;
+  color: var(--text-action-high-blue-france);
+}
+
+.icon-title.no-border {
+  border-bottom: 1px solid transparent;
+}

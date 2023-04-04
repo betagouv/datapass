@@ -1,9 +1,10 @@
 import { isEmpty } from 'lodash';
-import React, { useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import {
   Route,
   Routes as ReactRouterRoutes,
   useLocation,
+  Navigate,
 } from 'react-router-dom';
 import { AuthRequired, useAuth } from './components/organisms/AuthContext';
 import FormRouter from './components/organisms/FormRouter';
@@ -18,6 +19,7 @@ import AdminEnrollmentList from './components/templates/InstructorEnrollmentList
 import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
 import Stats from './components/templates/Stats';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
+import InstructorHome from './components/templates/InstructorHome';
 
 export const Routes = () => {
   const { user } = useAuth();
@@ -64,6 +66,19 @@ export const Routes = () => {
           <AuthRequired>
             {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
               <UserEnrollmentList />
+            ) : (
+              <InstructorHome />
+            )}
+          </AuthRequired>
+        }
+      />
+
+      <Route
+        path="habilitations"
+        element={
+          <AuthRequired>
+            {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
+              <Navigate to="/" replace />
             ) : (
               <AdminEnrollmentList />
             )}
