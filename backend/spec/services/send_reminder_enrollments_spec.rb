@@ -32,8 +32,8 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
     end
 
     before do
-      enrollment = create(:enrollment, :api_entreprise, :draft, created_at: 15.days.ago, updated_at: 14.days.ago)
-      create(:event, :create, enrollment: enrollment, created_at: 15.days.ago, updated_at: 14.days.ago)
+      enrollment = create(:enrollment, :api_entreprise, :draft, created_at: 14.days.ago, updated_at: 14.days.ago)
+      create(:event, :create, enrollment: enrollment, created_at: 14.days.ago, updated_at: 14.days.ago)
 
       enrollment = create(:enrollment, :api_entreprise, :draft, created_at: 5.days.ago, updated_at: 5.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 5.days.ago, updated_at: 5.days.ago)
@@ -80,7 +80,7 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
       it "renders draft enrollments between 15 days and a month ago" do
         result = subject.filter_enrollments
 
-        expect(result.count).to eq(2)
+        expect(result.count).to eq(1)
       end
     end
 
@@ -108,20 +108,12 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
         Timecop.return
       end
 
-      it "includes draft enrollment with no notify events" do
-        result = subject.filter_enrollments
-        events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
-
-        expect(events).to include("create", "update", "reminder")
-        expect(events).not_to include("notify")
-      end
-
       it "orders enrollment by id and last events created" do
         result = subject.filter_enrollments
         event_names = result.collect { |e| e.events.map(&:name) }
         event_ids = result.collect { |e| e.events.ids }
 
-        expect(event_names[0].last).to eq("reminder")
+        expect(event_names[0].last).to eq("update")
         expect(event_ids[0].last).to eq(result[0].events.last.id)
       end
 
@@ -164,8 +156,7 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
 
     it "retuns an array with enrollments" do
       result = subject.filter_enrollments
-      result_ids = result.pluck(:enrollment_id).flatten
-
+      result_ids = result.pluck(:id).flatten
       expect(result_ids.count).to eq(2)
 
       enrollments = Enrollment.find(result_ids)

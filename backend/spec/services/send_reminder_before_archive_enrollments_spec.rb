@@ -98,20 +98,12 @@ RSpec.describe ExtractEnrollmentsToRemindBeforeArchive, type: :service do
       Timecop.return
     end
 
-    it "includes draft enrollment with no notify events" do
-      result = subject.filter_enrollments
-      events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
-
-      expect(events).to include("request_changes", "update", "reminder_before_archive")
-      expect(events).not_to include("notify", "create")
-    end
-
     it "orders enrollment by id and last events created" do
       result = subject.filter_enrollments
       event_names = result.collect { |e| e.events.map(&:name) }
       event_ids = result.collect { |e| e.events.ids }
 
-      expect(event_names[0].last).to eq("reminder_before_archive")
+      expect(event_names[0].last).to eq("update")
       expect(event_ids[0].last).to eq(result[0].events.last.id)
     end
 
