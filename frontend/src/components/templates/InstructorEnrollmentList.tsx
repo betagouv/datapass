@@ -41,7 +41,8 @@ export type Enrollment = {
   notify_events_from_demandeurs_count: number;
   id: number;
   intitule: string;
-  nom_raison_sociale: string;
+  siret: string;
+  nom_raison_sociale: string | null;
   demandeurs: Demandeur[];
   target_api: string;
   status: EnrollmentStatus;

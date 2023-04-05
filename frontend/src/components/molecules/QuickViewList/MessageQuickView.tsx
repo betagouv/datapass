@@ -32,7 +32,9 @@ const MessageQuickView: React.FC<Props> = ({ enrollment }) => {
           <div className="quick-view-icon">
             <MailIconFill />
           </div>
-          {enrollment.nom_raison_sociale.toUpperCase()}
+          {enrollment.nom_raison_sociale
+            ? enrollment.nom_raison_sociale.toUpperCase()
+            : enrollment.siret}
         </div>
         <div className="quick-view-footer quick-view-footer--span">
           <div className="quick-view-date">
