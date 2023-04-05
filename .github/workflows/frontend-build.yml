@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - run: npm install
+      - run: npm ci
       - run: npm run build
         env:
           REACT_APP_NODE_ENV: production
