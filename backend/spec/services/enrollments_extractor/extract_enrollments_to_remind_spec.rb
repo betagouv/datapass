@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe ExtractEnrollmentsToRemind, type: :service do
+RSpec.describe EnrollmentsExtractor::ExtractEnrollmentsToRemind, type: :service do
   subject { described_class.new }
 
   describe "enrollment not included in #filter_enrollments call" do
     before do
       Timecop.freeze(Time.now.change(year: 2022, month: 12, day: 1))
-    end
 
-    before do
       enrollment = create(:enrollment, :hubee_portail, :draft, created_at: 7.months.ago, updated_at: (5.months.ago - 1.days))
       create(:event, :create, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
       create(:event, :update, enrollment: enrollment, created_at: (5.months.ago - 1.days), updated_at: (5.months.ago - 1.days))
@@ -29,9 +27,7 @@ RSpec.describe ExtractEnrollmentsToRemind, type: :service do
   describe "enrollment created in the last 14 days" do
     before do
       Timecop.freeze(Time.now.change(year: 2022, month: 12))
-    end
 
-    before do
       enrollment = create(:enrollment, :api_entreprise, :draft, created_at: 14.days.ago, updated_at: 14.days.ago)
       create(:event, :create, enrollment: enrollment, created_at: 14.days.ago, updated_at: 14.days.ago)
 
