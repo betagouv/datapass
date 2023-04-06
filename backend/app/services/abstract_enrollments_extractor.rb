@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class AbstractEnrollmentsExtractor
-  def initialize(extract_from_date, extract_criteria)
-    @extract_from_date = extract_from_date
-    @extract_criteria = extract_criteria
+  def extract_from_date
+    fail NotImplementedError
+  end
+
+  def extract_criteria
+    fail NotImplementedError
   end
 
   def call
@@ -11,12 +14,12 @@ class AbstractEnrollmentsExtractor
   end
 
   def query_enrollments
-    Enrollment.where(status: @extract_criteria[:statuses])
+    Enrollment.where(status: extract_criteria[:statuses])
       .includes(:events)
       .where({
         events: {
-          name: @extract_criteria[:included_event_names],
-          created_at: @extract_from_date.beginning_of_day...Time.now
+          name: extract_criteria[:included_event_names],
+          created_at: extract_from_date.beginning_of_day...Time.now
         }
       })
   end
@@ -31,12 +34,12 @@ class AbstractEnrollmentsExtractor
     enrollment_ids = most_recent_event_of_each_enrollment
       .to_a
       .select do |event|
-      @extract_criteria[:most_recent_event_names].include?(event.name) &&
+      extract_criteria[:most_recent_event_names].include?(event.name) &&
         (
-          !@extract_criteria[:time_since_most_recent_event] ||
+          !extract_criteria[:time_since_most_recent_event] ||
           event.created_at.between?(
-            @extract_from_date.beginning_of_day,
-            @extract_criteria[:time_since_most_recent_event].ago.end_of_day
+            extract_from_date.beginning_of_day,
+            extract_criteria[:time_since_most_recent_event].ago.end_of_day
           )
         )
     end
