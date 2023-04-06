@@ -3,7 +3,7 @@
 RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
   subject { described_class.new }
 
-  describe "enrollments not included in #filter_enrollments call" do
+  describe "enrollments not included in #call with only changes_requested status and request_changes, update or reminder events" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
     end
@@ -22,54 +22,53 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
     end
 
     it "does not renders changes_requested enrollments less than 6 months old" do
-      result = subject.filter_enrollments
+      result = subject.call
       enrollment = result.map { |enrollment| enrollment.target_api }
 
       expect(enrollment).to eq([])
     end
   end
 
-  describe "#changes_requested enrollments" do
-    context "when it includes only enrollment with a changes_requested status and request_changes, update or reminder events" do
-      before do
-        Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
-      end
+  describe "enrollments included in #call with only changes_requested status and request_changes, update or reminder events" do
+    before do
+      Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
+    end
 
-      before do
-        enrollment = create(:enrollment, :api_entreprise, :validated, created_at: (9.months.ago + 5.days), updated_at: (8.months.ago + 28.days))
-        create(:event, :create, enrollment: enrollment, created_at: (9.months.ago + 5.days), updated_at: (9.months.ago + 5.days))
-        create(:event, :update, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
-        create(:event, :submit, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
-        create(:event, :validate, enrollment: enrollment, created_at: (8.months.ago + 28.days), updated_at: (8.months.ago + 28.days))
+    before do
+      enrollment = create(:enrollment, :api_entreprise, :validated, created_at: (9.months.ago + 5.days), updated_at: (8.months.ago + 28.days))
+      create(:event, :create, enrollment: enrollment, created_at: (9.months.ago + 5.days), updated_at: (9.months.ago + 5.days))
+      create(:event, :update, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
+      create(:event, :submit, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
+      create(:event, :validate, enrollment: enrollment, created_at: (8.months.ago + 28.days), updated_at: (8.months.ago + 28.days))
 
-        enrollment = create(:enrollment, :franceconnect, :changes_requested, created_at: (8.months.ago + 15.days), updated_at: 8.months.ago)
-        create(:event, :create, enrollment: enrollment, created_at: (8.months.ago + 15.days), updated_at: (8.months.ago + 15.days))
-        create(:event, :update, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
-        create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
-        create(:event, :request_changes, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
-        create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
+      enrollment = create(:enrollment, :franceconnect, :changes_requested, created_at: (8.months.ago + 15.days), updated_at: 8.months.ago)
+      create(:event, :create, enrollment: enrollment, created_at: (8.months.ago + 15.days), updated_at: (8.months.ago + 15.days))
+      create(:event, :update, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
+      create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
+      create(:event, :request_changes, enrollment: enrollment, created_at: (8.months.ago + 5.days), updated_at: (8.month.ago + 5.days))
+      create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 8.months.ago, updated_at: 8.months.ago)
 
-        enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 10.days))
-        create(:event, :create, enrollment: enrollment, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 25.days))
-        create(:event, :notify, enrollment: enrollment, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 25.days))
-        create(:event, :update, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
-        create(:event, :submit, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
-        create(:event, :request_changes, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
-      end
+      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 10.days))
+      create(:event, :create, enrollment: enrollment, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 25.days))
+      create(:event, :notify, enrollment: enrollment, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 25.days))
+      create(:event, :update, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
+      create(:event, :submit, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
+      create(:event, :request_changes, enrollment: enrollment, created_at: (6.months.ago - 10.days), updated_at: (6.months.ago - 10.days))
+    end
 
-      after do
-        Timecop.return
-      end
+    after do
+      Timecop.return
+    end
 
-      it "renders changes_requested enrollments between 9 months and 6 month ago" do
-        result = subject.filter_enrollments
+    it "it renders 2 enrollments with changes_requested status between 9 months and 6 month ago" do
+      result = subject.call
 
-        expect(result.count).to eq(2)
-      end
+      expect(result.count).to eq(2)
+      expect(result[0].status && result[1].status).to eq("changes_requested")
     end
   end
 
-  context "checking enrollment's events" do
+  context "#filter_enrollments" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
     end
@@ -99,7 +98,8 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
     end
 
     it "orders enrollment by id and last events created" do
-      result = subject.filter_enrollments
+      enrollments = subject.query_enrollments
+      result = subject.filter_enrollments(enrollments)
       event_names = result.collect { |e| e.events.map(&:name) }
       event_ids = result.collect { |e| e.events.ids }
 
@@ -107,14 +107,14 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
       expect(event_ids[0].last).to eq(result[0].events.last.id)
     end
 
-    context "#filter_enrollments" do
-      it "renders request_changes or update as last events" do
-        result = subject.filter_enrollments
-        events = result.map { |enrollment| enrollment.events.map(&:name) }.flatten
+    it "renders request_changes or update as last events" do
+      enrollments = subject.query_enrollments
+      filtered_by_last_events = subject.map_enrollments_to_last_events(enrollments)
+      result = subject.filter_events_by_extract_criteria(filtered_by_last_events)
 
-        expect(result.count).to eq(2)
-        expect(events).to include("request_changes")
-      end
+      expect(result.count).to eq(2)
+      expect(result[0].name).to include("update")
+      expect(result[1].name).to include("request_changes")
     end
   end
 end
