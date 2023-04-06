@@ -1,4 +1,4 @@
-class ExtractEnrollmentsToArchive < EnrollmentsExtractor
+class EnrollmentsExtractor::ToArchive < AbstractEnrollmentsExtractor
   def initialize
     super(
       Time.new(2022, 9, 1),

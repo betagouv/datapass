@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ExtractEnrollmentsToRemindBeforeArchive < EnrollmentsExtractor
+class EnrollmentsExtractor::ToRemindBeforeArchive < AbstractEnrollmentsExtractor
   def initialize
     super(
       Time.new(2022, 5, 1),

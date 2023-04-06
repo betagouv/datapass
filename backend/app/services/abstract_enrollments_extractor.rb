@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EnrollmentsExtractor
+class AbstractEnrollmentsExtractor
   def initialize(extract_from_date, extract_criteria)
     @extract_from_date = extract_from_date
     @extract_criteria = extract_criteria

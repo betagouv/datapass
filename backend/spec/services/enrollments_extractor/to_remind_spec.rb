@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ExtractEnrollmentsToRemind, type: :service do
+RSpec.describe EnrollmentsExtractor::ToRemind, type: :service do
   subject { described_class.new }
 
   describe "enrollment not included in #filter_enrollments call" do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ExtractEnrollmentsToArchive, type: :service do
+RSpec.describe EnrollmentsExtractor::ToArchive, type: :service do
   subject { described_class.new }
 
   describe "enrollment not included in #filter_enrollments" do
