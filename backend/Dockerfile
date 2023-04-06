@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:2.7.6
+FROM ruby:3.2.0
 WORKDIR /opt/apps/datapass-backend/current
 COPY ./Gemfile Gemfile
 COPY ./Gemfile.lock Gemfile.lock

@@ -23,7 +23,7 @@ class DataProviderConfigurations
   private
 
   def config
-    @config ||= YAML.load_file(config_file)
+    @config ||= YAML.load_file(config_file, aliases: true)
   end
 
   def config_file
