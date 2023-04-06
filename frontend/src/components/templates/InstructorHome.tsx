@@ -65,6 +65,7 @@ const InstructorHome: React.FC = () => {
         {instructorTargetApis?.length > 3 ? (
           <div className="target-apis-selector-container">
             <MultiSelect
+              alignOptionsLeft
               defaultOverviewLabel="Toutes les habilitations"
               options={instructorTargetApis.map((targetApiKey) => ({
                 key: targetApiKey,

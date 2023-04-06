@@ -10,6 +10,7 @@ export const MultiSelect = ({
   values = [],
   disabled = false,
   onChange,
+  alignOptionsLeft = false,
   defaultOverviewLabel = 'Tous',
 }) => {
   const [isContentOpen, setIsContentOpen] = useState(false);
@@ -61,7 +62,7 @@ export const MultiSelect = ({
   }
 
   return (
-    <div>
+    <div className={alignOptionsLeft ? 'align-options-left' : ''}>
       <button
         ref={buttonRef}
         type="button"
