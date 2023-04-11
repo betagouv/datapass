@@ -1,0 +1,31 @@
+.stat-card-main-statistic {
+  font-weight: bold;
+  font-size: xx-large;
+  color: var(--text-action-high-blue-france);
+}
+
+.stat-card-main-description {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.stat-card-second {
+  margin-top: 10px;
+}
+
+.stat-card-second-statistic {
+  font-weight: bold;
+  color: var(--text-default-success);
+  line-height: 1;
+}
+
+.stat-card-second-statistic.negative {
+  color: var(--text-default-error);
+}
+
+.stat-card-second-description {
+  font-size: small;
+  font-style: italic;
+  font-weight: lighter;
+}

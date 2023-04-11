@@ -113,7 +113,7 @@ export function getEnrollments({
   page = null,
   sortBy = [],
   filter = [],
-  detailed = null,
+  detailed = false,
   size = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({

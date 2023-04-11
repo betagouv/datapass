@@ -37,12 +37,16 @@ type Demandeur = {
 
 export type Enrollment = {
   updated_at: Date;
+  created_at: Date;
   notify_events_from_demandeurs_count: number;
   id: number;
-  nom_raison_sociale: string;
+  intitule: string;
+  siret: string;
+  nom_raison_sociale: string | null;
   demandeurs: Demandeur[];
   target_api: string;
   status: EnrollmentStatus;
+  events: Array<any>;
 };
 
 const columnHelper = createColumnHelper<Enrollment>();
@@ -271,48 +275,50 @@ const InstructorEnrollmentList: React.FC = () => {
   ];
 
   return (
-    <main>
-      <ListHeader title="Liste des habilitations">
-        <Button
-          href={`${BACK_HOST}/api/enrollments/export`}
-          download
-          secondary
-          icon="file-download"
-          iconRight
-        >
-          Exporter les données
-        </Button>
-      </ListHeader>
-      <Table
-        tableOptions={{
-          data: enrollments,
-          columns: columns as Column<Enrollment>[],
-          pageCount: totalPages,
-          state: {
-            columnFilters: filtered,
-            sorting: sorted,
-            pagination,
-          },
-          onPaginationChange: setPagination,
-          onSortingChange: setSorted,
-          onColumnFiltersChange: setFiltered,
-          manualPagination: true,
-          manualFiltering: true,
-          manualSorting: true,
-          getCoreRowModel: getCoreRowModel(),
-        }}
-        loading={loading}
-        noDataPlaceholder="Aucune habilitation ne correspond aux critères renseignés"
-        onRowClick={async ({ row, event }) => {
-          const { id, target_api } = row as Enrollment;
-          await setPreviouslySelectedEnrollmentId(id);
-          goToItem(target_api, id, event);
-        }}
-        getRowClassName={(row) => {
-          const { id } = row as Enrollment;
-          return id === previouslySelectedEnrollmentId ? 'selected' : '';
-        }}
-      />
+    <main className="dark-background">
+      <div className="page-container">
+        <ListHeader title="Liste des habilitations">
+          <Button
+            href={`${BACK_HOST}/api/enrollments/export`}
+            download
+            secondary
+            icon="file-download"
+            iconRight
+          >
+            Exporter les données
+          </Button>
+        </ListHeader>
+        <Table
+          tableOptions={{
+            data: enrollments,
+            columns: columns as Column<Enrollment>[],
+            pageCount: totalPages,
+            state: {
+              columnFilters: filtered,
+              sorting: sorted,
+              pagination,
+            },
+            onPaginationChange: setPagination,
+            onSortingChange: setSorted,
+            onColumnFiltersChange: setFiltered,
+            manualPagination: true,
+            manualFiltering: true,
+            manualSorting: true,
+            getCoreRowModel: getCoreRowModel(),
+          }}
+          loading={loading}
+          noDataPlaceholder="Aucune habilitation ne correspond aux critères renseignés"
+          onRowClick={async ({ row, event }) => {
+            const { id, target_api } = row as Enrollment;
+            await setPreviouslySelectedEnrollmentId(id);
+            goToItem(target_api, id, event);
+          }}
+          getRowClassName={(row) => {
+            const { id } = row as Enrollment;
+            return id === previouslySelectedEnrollmentId ? 'selected' : '';
+          }}
+        />
+      </div>
     </main>
   );
 };

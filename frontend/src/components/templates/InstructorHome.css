@@ -1,0 +1,20 @@
+.action-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.target-apis-selector-container {
+  margin: 25px 0;
+  width: 180px;
+}
+
+.instructor-home .datapass_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.target-apis-selector-container .datapass-dropdown-content {
+  right: auto;
+}

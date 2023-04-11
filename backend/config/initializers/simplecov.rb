@@ -8,5 +8,4 @@ if ENV["COVERAGE"] && ENV["RAILS_ENV"] == "test"
     add_group "Services", "app/services"
     add_group "Uploaders", "app/services"
   end
-  Rails.application.eager_load!
 end
