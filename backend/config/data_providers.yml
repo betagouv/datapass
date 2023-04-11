@@ -905,7 +905,7 @@ api_particulier:
       state:
         intitule: >-
           Tarification sociale et solidaire des transports
-        description: Dans le cadre de sa mission d’organisation de services de mobilités solidaires, l’Autorité Organisatrice de Mobilité souhaite accéder aux données mises à disposition par les fournisseurs de données pour permettre une vérification rapide (voire automatique) de l’éligibilité des usagers, et ainsi faciliter les démarches des citoyens et des agents lors de la constitution d’un dossier ou du renouvellement d’une demande de tarif solidaire. Les agents accederont aux informations grâce à une interface de consultation dédiées permettant la saisie des données d’entrée.
+        description: Dans le cadre de sa mission d’organisation de services de mobilités solidaires, l’Autorité Organisatrice de Mobilité souhaite accéder aux données mises à disposition par les fournisseurs de données pour permettre une vérification rapide (voire automatique) de l’éligibilité des usagers, et ainsi faciliter les démarches des citoyens et des agents lors de la constitution d’un dossier ou du renouvellement d’une demande de tarif solidaire. Les agents accèderont aux informations grâce à une interface de consultation dédiée permettant la saisie des données d’entrée.
         data_recipients: >-
           Equipe produit Tous à bord et/ou Opérateur
         fondement_juridique_title: >-
