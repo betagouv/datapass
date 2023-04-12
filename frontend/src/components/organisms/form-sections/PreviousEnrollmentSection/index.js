@@ -159,12 +159,14 @@ const PreviousEnrollmentSection = ({ steps }) => {
                 </p>
               </>
             )}
-          {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
-            <Alert title="Erreur" type="error">
-              Erreur inconnue lors de la récupération de vos habilitations{' '}
-              {previousTargetApiLabel}.
-            </Alert>
-          )}
+          {!disabled &&
+            !isUserEnrollmentLoading &&
+            validatedEnrollmentsError && (
+              <Alert title="Erreur" type="error">
+                Erreur inconnue lors de la récupération de vos habilitations{' '}
+                {previousTargetApiLabel}.
+              </Alert>
+            )}
           {!disabled &&
             !isUserEnrollmentLoading &&
             !isValidatedEnrollmentsLoading && (
