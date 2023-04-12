@@ -96,7 +96,7 @@ const InstructorHome: React.FC = () => {
           </TagContainer>
         )}
         <CardContainer>
-          <Card>
+          <Card className="enrollments-card">
             <IconTitle title="Habilitations à instruire" icon="target" />
             <QuickViewList list={enrollments} type="enrollments" />
             <div className="action-footer">
@@ -105,7 +105,7 @@ const InstructorHome: React.FC = () => {
               </Button>
             </div>
           </Card>
-          <Card className="message-card">
+          <Card>
             <IconTitle title="Messages non lus" icon="mail" />
             <QuickViewList list={unprocessedMessages} type="messages" />
             <div className="action-footer">
