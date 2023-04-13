@@ -242,5 +242,34 @@ RSpec.describe EnrollmentsController, "#mark_event_as_read", type: :controller d
         end
       end
     end
+
+    describe "event invalid" do
+      let!(:instructor) { create(:instructor, target_api: "franceconnect") }
+
+      let!(:enrollment) do
+        create(
+          :enrollment,
+          enrollment_status,
+          :franceconnect
+        )
+      end
+
+      let!(:event_create) {
+        create(:event,
+          name: :create,
+          enrollment_id: enrollment.id,
+          user_id: enrollment.demandeurs.first.user.id,
+          processed_at: nil)
+      }
+
+      let!(:enrollment_status) { :draft }
+      let!(:event_name) { "create" }
+
+      context "when invalid event_name is provided" do
+        it "raises an ArgumentError" do
+          expect { subject }.to raise_error(ArgumentError, "Invalid event_name. Must be either 'notify' or 'submit'.")
+        end
+      end
+    end
   end
 end
