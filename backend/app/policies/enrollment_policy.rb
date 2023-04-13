@@ -77,8 +77,8 @@ class EnrollmentPolicy < ApplicationPolicy
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
 
-    instructor_right = !record.status_validated? && user.is_instructor?(record.target_api)
-    administrator_right = !record.status_validated? && user.is_administrator?
+    instructor_right = user.is_instructor?(record.target_api)
+    administrator_right = user.is_administrator?
 
     record.can_archive_status? && (demandeur_rights || instructor_right || administrator_right)
   end
