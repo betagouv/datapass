@@ -1,12 +1,15 @@
 import AriaModal from '@justfixnyc/react-aria-modal';
 import Button from '../../atoms/hyperTexts/Button';
 import ButtonGroup from '../../molecules/ButtonGroup';
-import { useState } from 'react';
+import useLocalStorage from '../../templates/hooks/use-local-storage';
 
 const NewHomeDesignModal = () => {
-  const [closed, setClosed] = useState(false);
+  const [hasSeenNewHomeDesign, setHasSeenNewHomeDesign] = useLocalStorage(
+    'hasSeenNewHomeDesign',
+    false
+  );
 
-  return closed ? null : (
+  return hasSeenNewHomeDesign ? null : (
     <AriaModal
       titleText="Ok"
       focusDialog
@@ -15,7 +18,10 @@ const NewHomeDesignModal = () => {
       scrollDisabled={false}
       alert
     >
-      <div className="datapass_modal_backdrop" onClick={() => setClosed(true)}>
+      <div
+        className="datapass_modal_backdrop"
+        onClick={() => setHasSeenNewHomeDesign(true)}
+      >
         <div
           className="fr-modal__body datapass_modal_body"
           onClick={(e) => e.stopPropagation()}
@@ -42,7 +48,7 @@ const NewHomeDesignModal = () => {
           </div>
           <div className="fr-modal__footer">
             <ButtonGroup alignRight>
-              <Button large onClick={() => setClosed(true)}>
+              <Button large onClick={() => setHasSeenNewHomeDesign(true)}>
                 Ne plus afficher ce message
               </Button>
             </ButtonGroup>
