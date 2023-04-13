@@ -899,6 +899,25 @@ api_particulier:
           cnaf_allocataires: false
           cnaf_enfants: false
           cnaf_adresse: false
+    tous-a-bord:
+      label: Tous à Bord, Tarification sociale et solidaire des transports
+      about: https://beta.gouv.fr/startups/tous.a.bord.html
+      state:
+        intitule: >-
+          Tarification sociale et solidaire des transports
+        description: Dans le cadre de sa mission d’organisation de services de mobilités solidaires, l’Autorité Organisatrice de Mobilité souhaite accéder aux données mises à disposition par les fournisseurs de données pour permettre une vérification rapide (voire automatique) de l’éligibilité des usagers, et ainsi faciliter les démarches des citoyens et des agents lors de la constitution d’un dossier ou du renouvellement d’une demande de tarif solidaire. Les agents accèderont aux informations grâce à une interface de consultation dédiée permettant la saisie des données d’entrée.
+        data_recipients: >-
+          Equipe produit Tous à bord et/ou Opérateur
+        fondement_juridique_title: >-
+          Code des transports, Article L1231-1-1
+        fondement_juridique_url: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039669576'
+      team_members:
+        responsable_technique:
+          given_name: Marie
+          family_name: Jeammet
+          job: Développeuse web pour Tous à Bord
+          email: marie.jeammet@beta.gouv.fr
+          phone_number: '0142758000'
     waigeo:
       label: >-
         MyPerischool, Tarification services municipaux / Portail Famille, Données
