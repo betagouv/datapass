@@ -11,12 +11,10 @@ import { getEnrollments } from '../../services/enrollments';
 
 import Button from '../atoms/hyperTexts/Button';
 import ListHeader from '../molecules/ListHeader';
-import Badge from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
 import { EnrollmentStatus } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
-import { useAuth } from '../organisms/AuthContext';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
@@ -48,7 +46,6 @@ export type Enrollment = {
 const columnHelper = createColumnHelper<Enrollment>();
 
 const InstructorEnrollmentList: React.FC = () => {
-  const { user } = useAuth();
   const { goToItem } = useListItemNavigation();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -105,6 +102,37 @@ const InstructorEnrollmentList: React.FC = () => {
         );
       },
     }),
+    columnHelper.accessor('id', {
+      header: 'N°',
+      id: 'id',
+      enableSorting: false,
+      enableColumnFilter: false,
+      size: 70,
+    }),
+    columnHelper.accessor('nom_raison_sociale', {
+      header: 'Raison sociale',
+      id: 'nom_raison_sociale',
+      enableSorting: false,
+      enableColumnFilter: false,
+    }),
+    columnHelper.accessor(
+      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
+      {
+        header: 'Email du demandeur',
+        id: 'team_members.email',
+        enableSorting: false,
+        enableColumnFilter: false,
+      }
+    ),
+    columnHelper.accessor(
+      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
+      {
+        header: 'Projet',
+        id: 'intitule',
+        enableSorting: false,
+        enableColumnFilter: false,
+      }
+    ),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
       header: 'Messages',
       enableSorting: false,
@@ -137,51 +165,6 @@ const InstructorEnrollmentList: React.FC = () => {
         );
       },
     }),
-    columnHelper.accessor('id', {
-      header: 'N°',
-      id: 'id',
-      enableSorting: false,
-      enableColumnFilter: false,
-      size: 70,
-      meta: {
-        placeholder: 'ex : 17878',
-      },
-      cell: ({ getValue }) => {
-        const id = getValue() as number;
-
-        return (
-          <Badge className="fr-py-1v">
-            <span className="fr-m-auto" style={{ textOverflow: 'unset' }}>
-              {id}
-            </span>
-          </Badge>
-        );
-      },
-    }),
-    columnHelper.accessor('nom_raison_sociale', {
-      header: 'Raison sociale',
-      id: 'nom_raison_sociale',
-      enableSorting: false,
-      enableColumnFilter: false,
-    }),
-    columnHelper.accessor(
-      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
-      {
-        header: 'Email du demandeur',
-        id: 'team_members.email',
-        enableSorting: false,
-        enableColumnFilter: false,
-      }
-    ),
-    columnHelper.accessor(
-      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
-      {
-        header: 'Fournisseur',
-        id: 'target_api',
-        enableSorting: false,
-        enableColumnFilter: false,
-      }
-    ),
     columnHelper.accessor('status', {
       header: 'Statut',
       id: 'status',
