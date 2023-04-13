@@ -1,6 +1,6 @@
 .multiselect-dropdown-button {
   cursor: pointer;
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 0.25rem 0.25rem 0 0;
   padding: 0 7px;
   font-weight: 400;
   height: 2.5rem;
@@ -15,4 +15,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.align-options-left .datapass-dropdown-content {
+  right: auto;
 }
