@@ -19,18 +19,14 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     return submitEvent?.created_at;
   };
 
-  const isThereAnyNewSubmitEnrollment = useMemo(() => {
+  const isUnreadSubmittedEnrollment = useMemo(() => {
     const filteredEvents = enrollment.events.filter(
       ({ name, processed_at }) => {
         return name === 'submit' && !processed_at;
       }
     );
 
-    if (isEmpty(filteredEvents)) {
-      return false;
-    }
-
-    return filteredEvents;
+    return !isEmpty(filteredEvents);
   }, [enrollment.events]);
 
   const markAsRead = async () => {
@@ -45,7 +41,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     >
       <div className="quick-view-informations quick-view-informations--small">
         <div className="quick-view-header">
-          {isThereAnyNewSubmitEnrollment && (
+          {isUnreadSubmittedEnrollment && (
             <Badge type={BadgeType.new} icon={true} small={true}>
               Nouveau
             </Badge>
