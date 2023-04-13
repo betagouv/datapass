@@ -14,16 +14,12 @@ import ListHeader from '../molecules/ListHeader';
 import Badge from '../atoms/hyperTexts/Badge';
 import Table from '../organisms/Table';
 import { StatusBadge } from '../molecules/StatusBadge';
-import {
-  EnrollmentStatus,
-  STATUS_LABELS,
-} from '../../config/status-parameters';
+import { EnrollmentStatus } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { useAuth } from '../organisms/AuthContext';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
-import CheckboxInput from '../atoms/inputs/CheckboxInput';
 import { MailIconFill } from '../atoms/icons/fr-fi-icons';
 import { MailOpenIconFill } from '../atoms/icons/fr-fi-icons';
 
@@ -96,6 +92,7 @@ const InstructorEnrollmentList: React.FC = () => {
   const columns = [
     columnHelper.accessor('updated_at', {
       header: 'Date',
+      enableSorting: false,
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
@@ -107,52 +104,12 @@ const InstructorEnrollmentList: React.FC = () => {
           </span>
         );
       },
-      meta: {
-        columnTitle: 'Trier par',
-      },
     }),
     columnHelper.accessor('notify_events_from_demandeurs_count', {
       header: 'Messages',
       enableSorting: false,
+      enableColumnFilter: false,
       size: 50,
-      meta: {
-        columnTitle: 'Filtrer par',
-        filter: () => (
-          <CheckboxInput
-            className="datapass-checkbox-filter"
-            label="non lu"
-            onChange={() => {
-              setFiltered((prevFilters: { id: string; value: any }[]) => {
-                const messagesFilter = prevFilters.find(
-                  ({ id }) => id === 'only_with_unprocessed_messages'
-                );
-                if (messagesFilter) {
-                  return prevFilters.map((filter) =>
-                    filter.id === 'only_with_unprocessed_messages'
-                      ? !messagesFilter.value
-                      : filter
-                  );
-                }
-                return [
-                  ...prevFilters,
-                  {
-                    id: 'only_with_unprocessed_messages',
-                    value: true,
-                  },
-                ];
-              });
-              setPagination({ pageIndex: 0 });
-            }}
-            name="filterComponent.checkBox"
-            value={
-              filtered.find(
-                ({ id }: { id: string }) =>
-                  id === 'only_with_unprocessed_messages'
-              )?.value
-            }
-          />
-        ),
-      },
       id: 'notify_events_from_demandeurs_count',
       cell: ({ getValue }) => {
         const notify_events_from_demandeurs_count = getValue() as number;
@@ -184,11 +141,11 @@ const InstructorEnrollmentList: React.FC = () => {
       header: 'N°',
       id: 'id',
       enableSorting: false,
+      enableColumnFilter: false,
       size: 70,
       meta: {
         placeholder: 'ex : 17878',
       },
-      filterFn: 'weakEquals',
       cell: ({ getValue }) => {
         const id = getValue() as number;
 
@@ -205,10 +162,7 @@ const InstructorEnrollmentList: React.FC = () => {
       header: 'Raison sociale',
       id: 'nom_raison_sociale',
       enableSorting: false,
-      filterFn: 'includesString',
-      meta: {
-        placeholder: 'ex : Commune de Pessac',
-      },
+      enableColumnFilter: false,
     }),
     columnHelper.accessor(
       ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
@@ -216,10 +170,7 @@ const InstructorEnrollmentList: React.FC = () => {
         header: 'Email du demandeur',
         id: 'team_members.email',
         enableSorting: false,
-        filterFn: 'includesString',
-        meta: {
-          placeholder: 'ex : mairie@paris.fr',
-        },
+        enableColumnFilter: false,
       }
     ),
     columnHelper.accessor(
@@ -228,38 +179,14 @@ const InstructorEnrollmentList: React.FC = () => {
         header: 'Fournisseur',
         id: 'target_api',
         enableSorting: false,
-        meta: {
-          filter: 'select',
-          selectOptions: user?.roles
-            .filter((role) => role.endsWith(':reporter'))
-            .map((role) => {
-              const targetApiKey = role.split(':')[0];
-
-              return {
-                key: targetApiKey,
-                label: dataProviderConfigurations?.[targetApiKey].label,
-              };
-            }),
-        },
-        filterFn: 'arrIncludesSome',
+        enableColumnFilter: false,
       }
     ),
     columnHelper.accessor('status', {
       header: 'Statut',
       id: 'status',
       enableSorting: false,
-      filterFn: 'arrIncludesSome',
-      meta: {
-        filter: 'select',
-        selectOptions: Object.entries(STATUS_LABELS)
-          .filter(([key]) =>
-            user?.roles.includes('administrator') ? key : key !== 'archived'
-          )
-          .map(([key, label]) => ({
-            key,
-            label,
-          })),
-      },
+      enableColumnFilter: false,
       cell: ({ getValue }) => {
         const status = getValue() as EnrollmentStatus;
         return <StatusBadge icon status={status} />;

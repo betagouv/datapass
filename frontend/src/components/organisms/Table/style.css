@@ -47,9 +47,10 @@
 }
 
 .datapass-table .header-container {
-  height: 70px;
+  height: 45px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.3rem;
 }
 
@@ -96,7 +97,7 @@ td {
 }
 
 .datapass-table th {
-  padding: 35px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
   position: relative;
   font-weight: 500;
 }
@@ -116,7 +117,7 @@ td {
 }
 
 .datapass-table.firstColumnFixed th:first-of-type {
-  background-color: #ececfe;
+  background-color: var(--text-action-high-blue-france);
 }
 
 .datapass-table.firstColumnFixed td:first-of-type {
@@ -129,7 +130,8 @@ td {
 
 .datapass-table thead {
   padding: 10px 0;
-  background-color: #ececfe;
+  color: white;
+  background-color: var(--text-action-high-blue-france);
   position: relative;
 }
 
