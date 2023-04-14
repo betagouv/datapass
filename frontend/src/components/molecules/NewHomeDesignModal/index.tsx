@@ -11,7 +11,7 @@ const NewHomeDesignModal = () => {
 
   return hasSeenNewHomeDesign ? null : (
     <AriaModal
-      titleText="Ok"
+      titleText="Découvrez la nouvelle page d’accueil !"
       focusDialog
       // @ts-ignore
       getApplicationNode={() => document.getElementById('root')}
