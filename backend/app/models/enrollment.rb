@@ -108,9 +108,13 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  def mark_demandeur_notify_events_as_processed
+  def mark_event_as_read(event_name)
+    unless ["notify", "submit"].include?(event_name)
+      raise ArgumentError.new("Invalid event_name. Must be either 'notify' or 'submit'.")
+    end
+
     should_be_mark_as_processed = events.where(
-      name: "notify",
+      name: event_name,
       processed_at: nil,
       user_id: demandeurs.pluck(:user_id)
     )

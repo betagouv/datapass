@@ -33,9 +33,9 @@ class EnrollmentsController < ApplicationController
     end
 
     page = params[:page] || 0
-    size = params[:size] || 10
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    max_per_page = params[:max_per_page] || 10
+    max_per_page = "100" if max_per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(max_per_page.to_i)
 
     serializer = LightEnrollmentSerializer
 
@@ -79,9 +79,9 @@ class EnrollmentsController < ApplicationController
     end
 
     page = params[:page] || 0
-    size = params[:size] || 10
-    size = "100" if size.to_i > 100
-    @enrollments = @enrollments.page(page.to_i + 1).per(size.to_i)
+    max_per_page = params[:max_per_page] || 10
+    max_per_page = "100" if max_per_page.to_i > 100
+    @enrollments = @enrollments.page(page.to_i + 1).per(max_per_page.to_i)
 
     render json: @enrollments,
       each_serializer: PublicEnrollmentListSerializer,
@@ -161,7 +161,7 @@ class EnrollmentsController < ApplicationController
     end
 
     if current_user.is_instructor?(@enrollment.target_api)
-      @enrollment.mark_demandeur_notify_events_as_processed
+      @enrollment.mark_event_as_read("notify")
     end
 
     if @enrollment.send(
@@ -209,11 +209,11 @@ class EnrollmentsController < ApplicationController
       root: "enrollments"
   end
 
-  # GET enrollment/1/mark_demandeur_notify_events_as_processed
-  def mark_demandeur_notify_events_as_processed
+  # GET enrollment/1/mark_event_as_read
+  def mark_event_as_read
     @enrollment = authorize Enrollment.find(params[:id])
+    @enrollment.mark_event_as_read(params[:event_name])
 
-    @enrollment.mark_demandeur_notify_events_as_processed
     render json: @enrollment
   end
 

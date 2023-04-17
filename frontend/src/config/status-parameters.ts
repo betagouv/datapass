@@ -25,7 +25,7 @@ export const STATUS_LABELS: {
 export const STATUS_TO_BADGE_TYPE: {
   [key in EnrollmentStatus]: BadgeType | null;
 } = {
-  draft: null,
+  draft: BadgeType.purple,
   submitted: BadgeType.info,
   validated: BadgeType.success,
   changes_requested: BadgeType.warning,

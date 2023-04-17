@@ -88,7 +88,7 @@ export function getNextEnrollments(id) {
 export function getPublicValidatedEnrollments({
   filter = [],
   page = null,
-  size = null,
+  max_per_page = null,
 }) {
   const formatedFilter = filter.map(({ id, value }) => ({
     key: id,
@@ -97,7 +97,7 @@ export function getPublicValidatedEnrollments({
   const queryParam = hashToQueryParams({
     filter: formatedFilter,
     page,
-    size,
+    max_per_page,
   });
 
   return httpClient
@@ -114,7 +114,7 @@ export function getEnrollments({
   sortBy = [],
   filter = [],
   detailed = false,
-  size = null,
+  max_per_page = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({
     [id]: desc ? 'desc' : 'asc',
@@ -126,7 +126,7 @@ export function getEnrollments({
   const queryParam = hashToQueryParams({
     page,
     detailed,
-    size,
+    max_per_page,
     sortedBy: formatedSortBy,
     filter: formatedFilter,
   });
@@ -149,7 +149,7 @@ export function getUserValidatedEnrollments(targetApi) {
       { id: 'target_api', value: targetApi },
     ],
     detailed: true,
-    size: 100,
+    max_per_page: 100,
   }).then(({ enrollments }) => enrollments);
 }
 
@@ -256,10 +256,13 @@ export function getHubeeValidatedEnrollments() {
     .then(({ data: { enrollments } }) => enrollments);
 }
 
-export function markEventsAsProcessed({ id }) {
+export function markEventAsRead({ id, event_name }) {
+  const queryParam = hashToQueryParams({
+    event_name,
+  });
   return httpClient
     .patch(
-      `${BACK_HOST}/api/enrollments/${id}/mark_demandeur_notify_events_as_processed`,
+      `${BACK_HOST}/api/enrollments/${id}/mark_event_as_read/${queryParam}`,
       {
         headers: { 'Content-type': 'application/json' },
       }

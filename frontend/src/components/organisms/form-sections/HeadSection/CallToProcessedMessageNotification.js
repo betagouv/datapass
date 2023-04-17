@@ -1,7 +1,7 @@
 import { isEmpty } from 'lodash';
 import { useContext, useMemo } from 'react';
 import { isUserADemandeur } from '../../../../lib';
-import { markEventsAsProcessed } from '../../../../services/enrollments';
+import { markEventAsRead } from '../../../../services/enrollments';
 import AlertWithTwoButtons from '../../../molecules/notification-with-buttons/AlertWithTwoButtons';
 import { OpenMessagePromptContext } from '../../../templates/Form/OpenMessagePromptContextProvider';
 import useListItemNavigation from '../../../templates/hooks/use-list-item-navigation';
@@ -20,7 +20,7 @@ const CallToProcessedMessageNotification = ({
   const { getIsUserAnInstructor } = useAuth();
 
   const markAsProcessed = async () => {
-    await markEventsAsProcessed({ id: enrollmentId });
+    await markEventAsRead({ id: enrollmentId, event_name: 'notify' });
     goBackToList();
   };
 

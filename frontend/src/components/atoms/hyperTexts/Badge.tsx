@@ -6,6 +6,7 @@ export enum BadgeType {
   warning = 'warning',
   error = 'error',
   new = 'new',
+  purple = 'purple-glycine',
 }
 
 type Props = {
@@ -34,7 +35,6 @@ export const Badge: React.FC<Props> = ({
   if (!icon) {
     className += ` fr-badge--no-icon`;
   }
-
   if (round) {
     className += ` round`;
   }
