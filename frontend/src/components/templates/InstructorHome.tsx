@@ -111,6 +111,10 @@ const InstructorHome: React.FC = () => {
                         id: 'target_api',
                         value: targetApis,
                       },
+                      {
+                        id: 'status',
+                        value: ['submitted'],
+                      },
                     ]),
                   })}`}`}
                   secondary

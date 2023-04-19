@@ -20,7 +20,7 @@ import {
 } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { useAuth } from '../organisms/AuthContext';
-import { debounce, isEmpty } from 'lodash';
+import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import CheckboxInput from '../atoms/inputs/CheckboxInput';
@@ -61,14 +61,7 @@ const InstructorEnrollmentList: React.FC = () => {
     pageIndex: 0,
   });
 
-  const [filtered, setFiltered] = useQueryString('filtered', [
-    {
-      id: 'status',
-      value: isEmpty(user?.roles)
-        ? ['submitted', 'changes_requested', 'draft']
-        : ['submitted', 'changes_requested'],
-    },
-  ]);
+  const [filtered, setFiltered] = useQueryString('filtered', []);
   const [sorted, setSorted] = useQueryString('sorted', [
     {
       id: 'updated_at',
