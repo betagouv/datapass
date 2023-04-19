@@ -13,13 +13,20 @@ import Button from '../atoms/hyperTexts/Button';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
 import Badge, { StatusBadge } from '../molecules/StatusBadge';
-import { EnrollmentStatus } from '../../config/status-parameters';
+import {
+  EnrollmentStatus,
+  STATUS_LABELS,
+} from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import { isUnreadSubmittedEnrollment } from '../../lib';
 import { BadgeType } from '../atoms/hyperTexts/Badge';
+import { useAuth } from '../organisms/AuthContext';
+import MultiSelect from '../molecules/MultiSelect';
+import Label from '../atoms/inputs/Label';
+import Input from '../atoms/inputs/Input';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -46,6 +53,7 @@ export type Enrollment = {
 const columnHelper = createColumnHelper<Enrollment>();
 
 const InstructorEnrollmentList: React.FC = () => {
+  const { user } = useAuth();
   const { goToItem } = useListItemNavigation();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -60,6 +68,21 @@ const InstructorEnrollmentList: React.FC = () => {
     useQueryString('previouslySelectedEnrollmentId', 0);
 
   const { dataProviderConfigurations } = useDataProviderConfigurations();
+
+  const updateFilter = (filterId: string, value: any) =>
+    setFiltered((prevFiltered: any) => {
+      const filterExists = prevFiltered.find(
+        ({ id }: { id: string }) => id === filterId
+      );
+
+      if (filterExists) {
+        return prevFiltered.map((filter: any) =>
+          filter.id === filterId ? { id: filterId, value } : filter
+        );
+      }
+
+      return [...prevFiltered, { id: filterId, value }];
+    });
 
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
@@ -196,6 +219,57 @@ const InstructorEnrollmentList: React.FC = () => {
             Exporter les données
           </Button>
         </ListHeader>
+        <div className="table-filters">
+          <Input
+            label="Rechercher"
+            name="rechercher"
+            placeholder="Rechercher dans toutes les habilitations"
+            value={
+              filtered.find(
+                ({ id }: { id: string }) => id === 'nom_raison_sociale'
+              )?.value
+            }
+            onChange={(event: any) =>
+              updateFilter('nom_raison_sociale', event.target.value)
+            }
+          />
+          <div className="fr-input-group">
+            <Label id="target_api" label="Filtrer par API" />
+            <MultiSelect
+              id="target_api"
+              options={user?.roles
+                .filter((role) => role.endsWith(':reporter'))
+                .map((role) => {
+                  const targetApiKey = role.split(':')[0];
+
+                  return {
+                    key: targetApiKey,
+                    label: dataProviderConfigurations?.[targetApiKey].label,
+                  };
+                })}
+              values={
+                filtered.find(({ id }: { id: string }) => id === 'target_api')
+                  ?.value
+              }
+              onChange={(value: any) => updateFilter('target_api', value)}
+            />
+          </div>
+          <div className="fr-input-group">
+            <Label id="status" label="Filtrer par statut" />
+            <MultiSelect
+              id="status"
+              options={Object.entries(STATUS_LABELS).map(([key, value]) => ({
+                key,
+                label: value,
+              }))}
+              values={
+                filtered.find(({ id }: { id: string }) => id === 'status')
+                  ?.value
+              }
+              onChange={(value: any) => updateFilter('status', value)}
+            />
+          </div>
+        </div>
         <Table
           tableOptions={{
             data: enrollments,
