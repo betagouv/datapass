@@ -44,8 +44,11 @@
 }
 
 .quick-view-title {
-  font-weight: bold;
   display: flex;
+}
+
+.quick-view-title--new {
+  font-weight: bold;
 }
 
 .quick-view-icon {

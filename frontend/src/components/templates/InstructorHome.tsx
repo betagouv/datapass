@@ -104,7 +104,17 @@ const InstructorHome: React.FC = () => {
               <IconTitle title="Habilitations à instruire" icon="target" />
               <QuickViewList list={enrollments} type="enrollments" />
               <div className="action-footer">
-                <Button href="/habilitations" secondary>
+                <Button
+                  href={`/habilitations${`?${qs.stringify({
+                    filtered: JSON.stringify([
+                      {
+                        id: 'target_api',
+                        value: targetApis,
+                      },
+                    ]),
+                  })}`}`}
+                  secondary
+                >
                   Toutes les habilitations à instruire
                 </Button>
               </div>
@@ -116,6 +126,10 @@ const InstructorHome: React.FC = () => {
                 <Button
                   href={`/habilitations${`?${qs.stringify({
                     filtered: JSON.stringify([
+                      {
+                        id: 'target_api',
+                        value: targetApis,
+                      },
                       {
                         id: 'only_with_unprocessed_messages',
                         value: true,
