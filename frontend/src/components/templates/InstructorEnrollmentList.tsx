@@ -12,14 +12,14 @@ import { getEnrollments } from '../../services/enrollments';
 import Button from '../atoms/hyperTexts/Button';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
-import { StatusBadge } from '../molecules/StatusBadge';
+import Badge, { StatusBadge } from '../molecules/StatusBadge';
 import { EnrollmentStatus } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
-import { MailIconFill } from '../atoms/icons/fr-fi-icons';
-import { MailOpenIconFill } from '../atoms/icons/fr-fi-icons';
+import { isUnreadSubmittedEnrollment } from '../../lib';
+import { BadgeType } from '../atoms/hyperTexts/Badge';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -55,12 +55,7 @@ const InstructorEnrollmentList: React.FC = () => {
   });
 
   const [filtered, setFiltered] = useQueryString('filtered', []);
-  const [sorted, setSorted] = useQueryString('sorted', [
-    {
-      id: 'updated_at',
-      desc: false,
-    },
-  ]);
+  const [sorted, setSorted] = useQueryString('sorted', []);
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
     useQueryString('previouslySelectedEnrollmentId', 0);
 
@@ -73,6 +68,7 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
+        detailed: true,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -87,6 +83,21 @@ const InstructorEnrollmentList: React.FC = () => {
   }, [pagination, sorted, filtered]);
 
   const columns = [
+    columnHelper.accessor(({ events }) => isUnreadSubmittedEnrollment(events), {
+      header: 'État',
+      id: 'state',
+      enableSorting: false,
+      enableColumnFilter: false,
+      size: 70,
+      cell: ({ getValue }) => {
+        const isNew = getValue() as boolean;
+        return isNew ? (
+          <Badge type={BadgeType.new} icon={true} small={true}>
+            Nouveau
+          </Badge>
+        ) : null;
+      },
+    }),
     columnHelper.accessor('updated_at', {
       header: 'Date',
       enableSorting: false,
@@ -116,19 +127,19 @@ const InstructorEnrollmentList: React.FC = () => {
       enableColumnFilter: false,
     }),
     columnHelper.accessor(
-      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
+      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
       {
-        header: 'Email du demandeur',
-        id: 'team_members.email',
+        header: 'Projet',
+        id: 'intitule',
         enableSorting: false,
         enableColumnFilter: false,
       }
     ),
     columnHelper.accessor(
-      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
+      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
       {
-        header: 'Projet',
-        id: 'intitule',
+        header: 'Email du demandeur',
+        id: 'team_members.email',
         enableSorting: false,
         enableColumnFilter: false,
       }
@@ -143,12 +154,6 @@ const InstructorEnrollmentList: React.FC = () => {
         const notify_events_from_demandeurs_count = getValue() as number;
         const noUnreadMessage = notify_events_from_demandeurs_count === 0;
 
-        const iconEmailToDisplay = noUnreadMessage ? (
-          <MailOpenIconFill color={'var(--grey-625-425)'} />
-        ) : (
-          <MailIconFill color={'var(--border-active-blue-france)'} />
-        );
-
         const messagesTitle = noUnreadMessage
           ? 'Pas de nouveau message'
           : notify_events_from_demandeurs_count === 1
@@ -160,7 +165,7 @@ const InstructorEnrollmentList: React.FC = () => {
         return (
           <div title={messagesTitle} className="datapass-message-icon">
             {!noUnreadMessage && <span className="red-dot"></span>}
-            {iconEmailToDisplay}
+            <Badge round>{notify_events_from_demandeurs_count}</Badge>
           </div>
         );
       },

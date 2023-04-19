@@ -6,9 +6,9 @@ import { useLocation } from 'react-router-dom';
 import { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { isEmpty } from 'lodash';
 import { useMemo } from 'react';
 import { markEventAsRead } from '../../../services/enrollments';
+import { isUnreadSubmittedEnrollment } from '../../../lib';
 
 type Props = {
   enrollment: Enrollment;
@@ -21,15 +21,10 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     return submitEvent?.created_at;
   };
 
-  const isUnreadSubmittedEnrollment = useMemo(() => {
-    const filteredEvents = enrollment.events.filter(
-      ({ name, processed_at }) => {
-        return name === 'submit' && !processed_at;
-      }
-    );
-
-    return !isEmpty(filteredEvents);
-  }, [enrollment.events]);
+  const isUnreadSubmittedEnrollmentMemoized = useMemo(
+    () => isUnreadSubmittedEnrollment(enrollment.events),
+    [enrollment.events]
+  );
 
   const markAsRead = async () => {
     await markEventAsRead({ id: enrollment.id, event_name: 'submit' });
@@ -45,7 +40,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
       onClick={markAsRead}
     >
       <div className="quick-view-informations quick-view-informations--small">
-        {isUnreadSubmittedEnrollment && (
+        {isUnreadSubmittedEnrollmentMemoized && (
           <div className="quick-view-header">
             <Badge type={BadgeType.new} icon={true} small={true}>
               Nouveau
@@ -54,7 +49,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
         )}
         <div
           className={`quick-view-title ${
-            isUnreadSubmittedEnrollment ? 'quick-view-title--new' : ''
+            isUnreadSubmittedEnrollmentMemoized ? 'quick-view-title--new' : ''
           }`}
         >
           {enrollment.intitule}
