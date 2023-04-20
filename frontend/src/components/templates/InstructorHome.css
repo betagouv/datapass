@@ -14,20 +14,3 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.table-filters {
-  display: flex;
-  gap: 2rem;
-}
-
-.table-filters > *:first-child {
-  flex: 1;
-}
-
-.table-filters > * {
-  width: 180px;
-}
-
-.table-filters .multi-select {
-  margin-top: 0.5rem;
-}
