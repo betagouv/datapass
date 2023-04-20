@@ -49,17 +49,6 @@ const groups = {
   },
 };
 
-const accessModes = [
-  {
-    id: 'acces_spi',
-    label: 'via le Numéro fiscal (SPI)',
-  },
-  {
-    id: 'acces_etat_civil',
-    label: 'via l’état civil',
-  },
-];
-
 export const CadreJuridiqueDescription = () => (
   <>
     <p>
@@ -107,7 +96,6 @@ const ApiSfipSandbox = () => (
       DonneesDescription={DonneesDescription}
       scopesConfiguration={scopesConfiguration}
       groups={groups}
-      accessModes={accessModes}
       enableFileSubmissionForScopeSelection={true}
     />
     <CadreJuridiqueSection
