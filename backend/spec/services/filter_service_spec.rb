@@ -19,6 +19,21 @@ RSpec.describe FilterService, type: :service do
         ])
       end
     end
+
+    context "when global_search is used" do
+      it "returns items matching the global search" do
+        @enrollment_franceconnect2 = create(:enrollment, :franceconnect, :draft)
+        create(:event, :create, enrollment: @enrollment_franceconnect2)
+
+        filters = [
+          {"key" => "global_search", "value" => "rancecon"}
+        ].to_json
+        params = {filter: filters}
+        enrollments = Enrollment.all
+        filtered_enrollments = FilterService.call(params, enrollments)
+        expect(filtered_enrollments.map(&:id)).to match_array([@enrollment_franceconnect["id"], @enrollment_franceconnect2["id"]])
+      end
+    end
   end
 
   describe "#sanitize_value" do

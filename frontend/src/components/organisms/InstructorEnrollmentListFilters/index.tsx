@@ -40,12 +40,12 @@ const InstructorEnrollmentListFilters = ({
         name="rechercher"
         placeholder="Rechercher dans toutes les habilitations"
         value={
-          filters.find(({ id }: { id: string }) => id === 'nom_raison_sociale')
+          filters.find(({ id }: { id: string }) => id === 'global_search')
             ?.value
         }
-        onChange={(event: any) =>
-          updateFilter('nom_raison_sociale', event.target.value)
-        }
+        onChange={(event: any) => {
+          updateFilter('global_search', event.target.value);
+        }}
       />
       <div className="fr-input-group">
         <Label id="target_api" label="Filtrer par API" />
