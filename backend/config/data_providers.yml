@@ -532,9 +532,8 @@ api_particulier:
       about: https://api.gouv.fr/guides/ccas
       state:
         intitule: >-
-          Récupération du Quotient Familial et des Impôts pour les aides sociales
-          facultatives et les services à la personne du CCAS
-        description: "Le CCAS de notre commune module le montant des aides octroyées aux usagers en difficulté en fonction du QF.\r\nLe prix des services à la personne pour les aînés et personnes en situation de handicap est calculé en fonction de l’impôt sur le revenu.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
+          Récupération du Quotient Familial pour les aides sociales facultatives et les services à la personne du CCAS
+        description: "Le CCAS de notre commune module le montant des aides octroyées et les tarifications des services à la personne en fonction du QF.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux usagers les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
         data_recipients: >-
           agents instructeurs des demandes d'aides, agents instructeurs des demandes
           d'inscriptions aux services à la personne, ...
