@@ -18,16 +18,6 @@ import { additionalTermsOfUse } from './common';
 
 const demarches = {
   ...JSON.parse(JSON.stringify(fcDemarches)),
-  eligibilite_lep: {
-    label: 'Vérification de l’éligibilité au Livret d’épargne populaire (LEP)',
-    state: {
-      scopes: {
-        dgfip_IndLep: true,
-        dgfip_annee_n_moins_1: true,
-        dgfip_annee_n_moins_2: true,
-      },
-    },
-  },
 };
 
 demarches.default.state.scopes['dgfip_IndLep'] = false;
