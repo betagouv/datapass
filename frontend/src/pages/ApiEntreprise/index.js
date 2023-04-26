@@ -80,11 +80,15 @@ const scopesConfiguration = [
   {
     value: 'bilans_bdf',
     label: '3 derniers bilans annuels - Banque de France',
+    triggerWarning: true,
+    warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/banque_de_france/bilans',
   },
   {
     value: 'liasses_fiscales_dgfip',
     label: 'Liasses fiscales - DGFIP',
+    triggerWarning: true,
+    warningType: 'apientreprise_sensitive',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/liasses_fiscales',
   },
   {
@@ -148,7 +152,7 @@ const groups = {
       'certification_cnetp',
     ],
   },
-  open_data: {
+  informations_open_data: {
     label: 'Données en open data disponibles avec API Entreprise :',
     scopes: [
       'open_data',
