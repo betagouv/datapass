@@ -92,7 +92,7 @@ export const CadreJuridiqueDescription = () => (
 
 const target_api = 'api_impot_particulier_unique';
 
-const ApiImpotParticulierSandbox = () => (
+const ApiImpotParticulierUnique = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
@@ -122,4 +122,4 @@ const ApiImpotParticulierSandbox = () => (
   </Form>
 );
 
-export default ApiImpotParticulierSandbox;
+export default ApiImpotParticulierUnique;
