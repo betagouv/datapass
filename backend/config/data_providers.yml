@@ -988,6 +988,10 @@ api_impot_particulier_production:
   label: API Impôt particulier (Production)
   mailer: *shared_mailer
 
+api_impot_particulier_unique:
+  label: API Impôt particulier - Formulaire Unique
+  mailer: *shared_mailer
+
 api_impot_particulier_fc_sandbox:
   label: API Impôt particulier (FC) (Bac à sable)
   mailer: *shared_mailer

@@ -34,6 +34,7 @@ import ApiImpotParticulierFcProduction from '../pages/DgfipPages/ApiImpotParticu
 import ApiImpotParticulierFcSandbox from '../pages/DgfipPages/ApiImpotParticulierFcSandbox';
 import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
+import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
 import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
 import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
 import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
@@ -153,6 +154,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierProduction,
+  },
+  api_impot_particulier_unique: {
+    label: 'API Impôt particulier - Formulaire Unique',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiImpotParticulierUnique,
   },
   api_impot_particulier_fc_sandbox: {
     label: 'API Impôt particulier (FC) (Bac à sable)',
@@ -541,6 +549,7 @@ export const HIDDEN_DATA_PROVIDER_KEYS = [
 export const APISDGFIP = [
   'api_impot_particulier_sandbox',
   'api_impot_particulier_production',
+  'api_impot_particulier_unique',
   'api_r2p_sandbox',
   'api_r2p_production',
   'api_hermes_sandbox',
