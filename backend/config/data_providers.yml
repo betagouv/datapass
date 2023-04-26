@@ -1016,6 +1016,10 @@ api_r2p_production:
   label: API R2P (Production)
   mailer: *shared_mailer
 
+api_r2p_unique:
+  label: API R2P - Formulaire Unique
+  mailer: *shared_mailer
+
 api_ficoba_sandbox:
   label: API FICOBA (Bac à sable)
   mailer: *shared_mailer

@@ -45,6 +45,7 @@ import ApiOpaleProduction from '../pages/DgfipPages/ApiOpaleProduction';
 import ApiOpaleSandbox from '../pages/DgfipPages/ApiOpaleSandbox';
 import ApiR2PProduction from '../pages/DgfipPages/ApiR2PProduction';
 import ApiR2PSandbox from '../pages/DgfipPages/ApiR2PSandbox';
+import ApiR2PUnique from '../pages/DgfipPages/ApiR2PUnique';
 import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
 import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
 import ApiSatelitProduction from '../pages/DgfipPages/ApiSatelitProduction';
@@ -189,6 +190,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiR2PProduction,
+  },
+  api_r2p_unique: {
+    label: 'API R2P - Formulaire Unique',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiR2PUnique,
   },
   api_hermes_sandbox: {
     label: 'API Hermes (Bac à sable)',
