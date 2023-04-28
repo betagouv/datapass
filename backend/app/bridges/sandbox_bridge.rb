@@ -2,6 +2,7 @@
 
 class SandboxBridge < ApplicationBridge
   def call
+    id = @enrollment.id
     demandeur = @enrollment.demandeurs.first
     responsable_technique = @enrollment.team_members.find { |team_member| team_member["type"] == "responsable_technique" }
     responsable_traitement = @enrollment.team_members.find { |team_member| team_member["type"] == "responsable_traitement" }
@@ -19,9 +20,10 @@ class SandboxBridge < ApplicationBridge
     rgpd_destinataires = @enrollment[:data_recipients]
     duree_conservation_donnee_valeur = @enrollment[:data_retention_period]
     justificatif = @enrollment[:data_retention_comment]
+    sandbox_old = @enrollment[:copied_from_enrollment_id]
 
     linked_token_manager_id = create_enrollment_in_token_manager(
-      @enrollment.id,
+      id,
       demandeur,
       responsable_technique,
       responsable_traitement,
@@ -38,12 +40,25 @@ class SandboxBridge < ApplicationBridge
       document_juridique,
       rgpd_destinataires,
       duree_conservation_donnee_valeur,
-      justificatif
+      justificatif,
+      sandbox_old
     )
     @enrollment.update({linked_token_manager_id: linked_token_manager_id})
   end
 
   private
+
+  def api_dgfip_host
+    ENV.fetch("DGFIP_HOST")
+  end
+
+  def client_id
+    ENV.fetch("DGFIP_CLIENT_ID")
+  end
+
+  def client_secret
+    ENV.fetch("DGFIP_CLIENT_SECRET")
+  end
 
   def create_enrollment_in_token_manager(
     id,
@@ -63,7 +78,8 @@ class SandboxBridge < ApplicationBridge
     document_juridique,
     rgpd_destinataires,
     duree_conservation_donnee_valeur,
-    justificatif
+    justificatif,
+    sandbox_old
   )
 
     # 1 call ApiSirene
@@ -81,22 +97,22 @@ class SandboxBridge < ApplicationBridge
 
     # 1.2 Transform document in URl
     unless document_juridique.nil?
-      document_url = "#{ENV["BACK_HOST"]} + #{document_juridique.attachment.url}"
+      document_url = "#{ENV["BACK_HOST"]}#{document_juridique.attachment.url}"
     end
     cadre_juridique_url = fondement_juridique_url.present? ? fondement_juridique_url : document_url
 
+    # 1.4 SandboxOld
+    sandbox_copied_id = sandbox_old.present? ? sandbox_old : nil
+
     # 2 get token
-    api_dgfip_host = ENV.fetch("DGFIP_HOST")
-    dgfip_auth_url = ENV.fetch("DGFIP_AUTH_URL")
-    client_id = ENV.fetch("DGFIP_CLIENT_ID")
-    client_secret = ENV.fetch("DGFIP_CLIENT_SECRET")
 
     token_response = Http.instance.post({
-      url: dgfip_auth_url,
-      body: {grant_type: "client_credentials", scope: "ADMIN"},
-      authorization: Base64.strict_encode64("#{client_id}:#{client_secret}"),
+      url: "#{api_dgfip_host}/token",
+      api_key: Base64.strict_encode64("#{client_id}:#{client_secret}"),
       use_basic_auth_method: true,
-      tag: "sandbox"
+      use_form_content_type: true,
+      tag: "Api Contractualisation DGFiP (sandbox)",
+      body: {grant_type: "client_credentials"}
     })
 
     token = token_response.parse
@@ -104,11 +120,12 @@ class SandboxBridge < ApplicationBridge
 
     # 3 Post Info to DGFIP
     Http.instance.post({
-      url: "#{api_dgfip_host}/contractualisation/v1/sandbox/#{identifiant}",
+      url: "#{api_dgfip_host}/contractualisation/v1/production/#{id}",
       api_key: access_token,
-      use_basic_auth_method: true,
+      use_correlation_id: true,
+      tag: "Api Contractualisation DGFiP (sandbox)",
       body: {
-        identifiantSandBoxOld: id.to_s,
+        identifiantSandBoxOld: sandbox_copied_id,
         organisation: {
           siren: siren,
           libelle: libelle,

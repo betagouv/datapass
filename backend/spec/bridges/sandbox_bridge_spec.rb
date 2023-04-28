@@ -23,7 +23,7 @@ RSpec.describe SandboxBridge, type: :bridge do
     it "returns the collection with impot particulier bridge info" do
       expect(subject).to eq(
         {
-          identifiantSandBoxOld: "956",
+          identifiantSandBoxOld: nil,
           organisation: {
             siren: 219200235,
             libelle: "COMMUNE DE CLAMART",

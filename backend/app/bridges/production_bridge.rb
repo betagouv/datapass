@@ -2,8 +2,10 @@
 
 class ProductionBridge < ApplicationBridge
   def call
+    id = @enrollment.id
     demandeur = @enrollment.demandeurs.first
-    identifiantSandbox = @enrollment[:previous_enrollment_id]
+    identifiant_sandbox = @enrollment[:previous_enrollment_id]
+    identifiant_production_old = @enrollment[:copied_from_enrollment_id]
     siret = @enrollment[:siret]
     created_at = @enrollment[:created_at]
     submit_event = @enrollment.events.find { |event| event["name"] == "submit" }
@@ -16,9 +18,10 @@ class ProductionBridge < ApplicationBridge
     document_homologation = @enrollment.documents.find { |doc| doc["type"] == "Document::DecisionHomologation" }
 
     linked_token_manager_id = create_enrollment_in_token_manager(
-      @enrollment.id,
+      id,
       demandeur,
-      identifiantSandbox,
+      identifiant_sandbox,
+      identifiant_production_old,
       siret,
       created_at,
       submit_event,
@@ -35,10 +38,23 @@ class ProductionBridge < ApplicationBridge
 
   private
 
+  def api_dgfip_host
+    ENV.fetch("DGFIP_HOST")
+  end
+
+  def client_id
+    ENV.fetch("DGFIP_CLIENT_ID")
+  end
+
+  def client_secret
+    ENV.fetch("DGFIP_CLIENT_SECRET")
+  end
+
   def create_enrollment_in_token_manager(
     id,
     demandeur,
-    identifiantSandbox,
+    identifiant_sandbox,
+    identifiant_production_old,
     siret,
     created_at,
     submit_event,
@@ -62,20 +78,20 @@ class ProductionBridge < ApplicationBridge
     cadre_juridique_url = fondement_juridique_url.present? ? fondement_juridique_url : document_url
 
     # 1.3 Homologation document url
-    homologation_document_url = "#{ENV["BACK_HOST"]} + #{document_homologation.attachment.url}"
+    homologation_document_url = "#{ENV["BACK_HOST"]}#{document_homologation.attachment.url}"
+
+    # 1.4 identifiantProductionOld
+    id_production_old = identifiant_production_old.present? ? identifiant_production_old : nil
 
     # 2 get token
-    api_dgfip_host = ENV.fetch("DGFIP_HOST")
-    dgfip_auth_url = ENV.fetch("DGFIP_AUTH_URL")
-    client_id = ENV.fetch("DGFIP_CLIENT_ID")
-    client_secret = ENV.fetch("DGFIP_CLIENT_SECRET")
 
     token_response = Http.instance.post({
-      url: dgfip_auth_url,
-      body: {grant_type: "client_credentials", scope: "ADMIN"},
-      authorization: Base64.strict_encode64("#{client_id}:#{client_secret}"),
+      url: "#{api_dgfip_host}/token",
+      api_key: Base64.strict_encode64("#{client_id}:#{client_secret}"),
       use_basic_auth_method: true,
-      tag: "sandbox"
+      use_form_content_type: true,
+      tag: "Api Contractualisation DGFiP (sandbox)",
+      body: {grant_type: "client_credentials"}
     })
 
     token = token_response.parse
@@ -83,12 +99,13 @@ class ProductionBridge < ApplicationBridge
 
     # 3 Post Info to DGFIP
     Http.instance.post({
-      url: "#{api_dgfip_host}/contractualisation/v1/production/#{identifiant}",
+      url: "#{api_dgfip_host}/contractualisation/v1/production/#{id}",
       api_key: access_token,
-      use_basic_auth_method: true,
+      use_correlation_id: true,
+      tag: "Api Contractualisation DGFiP (production)",
       body: {
-        identifiantSandBox: identifiantSandbox.to_s,
-        identifiantProductionOld: id.to_s,
+        identifiantSandbox: identifiant_sandbox,
+        identifiantProductionOld: id_production_old,
         demande: {
           demandeur: {
             mail: demandeur[:email],
@@ -129,7 +146,7 @@ class ProductionBridge < ApplicationBridge
           documentUrl: homologation_document_url,
           texteUrl: nil
         },
-        quota: homologation["volumetrie_appels_par_minute"],
+        quota: homologation["volumetrie_appels_par_minute"].to_i,
         attestationRecette: true,
         attestationRGPD: true,
         cgu: {

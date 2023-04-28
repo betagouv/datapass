@@ -6,7 +6,7 @@ module ProductionPayloadHelpers
   def stub_production_bridge_call
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
 
-    stub_request(:post, "#{api_dgfip_host}/contractualisation/v1/production/#{identifiant}")
+    stub_request(:post, "#{api_dgfip_host}/contractualisation/v1/production/957")
       # api_key: access_token,
       # use_basic_auth_method: true)
       # .with(
@@ -25,7 +25,7 @@ module ProductionPayloadHelpers
   def production_bridge_payload
     {
       identifiantSandBox: "956",
-      identifiantProductionOld: "957",
+      identifiantProductionOld: nil,
       demande: {
         demandeur: {
           mail: "Lagaff@whatever.gouv.fr",

@@ -6,12 +6,12 @@ module SandboxPayloadHelpers
   def stub_sandbox_bridge_call
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
 
-    stub_request(:post, "#{api_dgfip_host}/contractualisation/v1/sandbox/#{identifiant}")
-      # api_key: access_token,
-      # use_basic_auth_method: true)
-      # .with(
-      #   status: 200
-      # )
+    stub_request(:post, "#{api_dgfip_host}/contractualisation/v1/sandbox/956")
+      api_key: access_token,
+      use_basic_auth_method: true,
+      .with(
+        status: 200
+      )
       .to_return(
         status: 200,
         body: sandbox_bridge_payload.to_json,
@@ -24,7 +24,7 @@ module SandboxPayloadHelpers
 
   def sandbox_bridge_payload
     {
-      identifiantSandBoxOld: "956",
+      identifiantSandBoxOld: nil,
       organisation: {
         siren: 219200235,
         libelle: "COMMUNE DE CLAMART",

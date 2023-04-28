@@ -24,7 +24,7 @@ RSpec.describe ProductionBridge, type: :bridge do
       expect(subject).to eq(
         {
           identifiantSandBox: "956",
-          identifiantProductionOld: "957",
+          identifiantProductionOld: nil,
           demande: {
             demandeur: {
               mail: "Lagaff@whatever.gouv.fr",
