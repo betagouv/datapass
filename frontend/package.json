@@ -65,6 +65,7 @@
     "http-proxy-middleware": "^2.0.4",
     "jest-mock-extended": "^2.0.4",
     "nock": "^13.2.2",
+    "prettier-plugin-organize-imports": "^3.0.0",
     "react-test-renderer": "^18.0.0",
     "serve": "^13.0.2"
   },
