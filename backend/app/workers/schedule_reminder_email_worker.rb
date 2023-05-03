@@ -6,7 +6,7 @@ class ScheduleReminderEmailWorker < ApplicationWorker
   sidekiq_options queue: "reminders"
 
   def perform
-    ExtractEnrollmentsToRemind.new.call.each do |draft_enrollment|
+    EnrollmentsExtractor::ToRemind.new.call.each do |draft_enrollment|
       send_reminder_email(draft_enrollment)
       create_reminder_event(draft_enrollment)
     end

@@ -18,3 +18,7 @@
     cron: '0 7 * * *' # Runs every day at 07:00 am / cron: minute hour day(month) month day(week)
     class: ScheduleReminderBeforeArchiveEmailWorker
     queue: reminders
+  schedule_enrollments_archiveable_worker:
+    cron: '0 5 * * *' # Runs every day at 05:00 am / cron: minute hour day(month) month day(week)
+    class: ScheduleEnrollmentsArchiveableWorker
+    queue: reminders

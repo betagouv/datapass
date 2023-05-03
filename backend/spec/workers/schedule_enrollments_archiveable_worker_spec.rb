@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ScheduleArchiveAfterReminderWorker, type: :worker do
+RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
   subject { described_class.new }
 
   describe "#perform" do
