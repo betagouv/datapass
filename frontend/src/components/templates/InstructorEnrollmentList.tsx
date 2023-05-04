@@ -18,7 +18,6 @@ import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
-import { isUnreadSubmittedEnrollment } from '../../lib';
 import { BadgeType } from '../atoms/hyperTexts/Badge';
 import InstructorEnrollmentListFilters from '../organisms/InstructorEnrollmentListFilters';
 
@@ -38,6 +37,7 @@ export type Enrollment = {
   id: number;
   intitule: string;
   siret: string;
+  recent: boolean;
   nom_raison_sociale: string | null;
   demandeurs: Demandeur[];
   target_api: string;
@@ -85,7 +85,7 @@ const InstructorEnrollmentList: React.FC = () => {
   }, [pagination, sorted, filtered]);
 
   const columns = [
-    columnHelper.accessor(({ events }) => isUnreadSubmittedEnrollment(events), {
+    columnHelper.accessor('recent', {
       header: 'État',
       id: 'state',
       enableSorting: false,
@@ -249,14 +249,14 @@ const InstructorEnrollmentList: React.FC = () => {
             goToItem(target_api, id, event);
           }}
           getRowClassName={(row) => {
-            const { id, events } = row as Enrollment;
+            const { id, recent } = row as Enrollment;
             let className = '';
 
             if (id === previouslySelectedEnrollmentId) {
               className += ' selected';
             }
 
-            if (isUnreadSubmittedEnrollment(events)) {
+            if (recent) {
               className += ' new';
             }
 

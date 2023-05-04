@@ -53,6 +53,9 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/1
   def show
     @enrollment = authorize Enrollment.find(params[:id])
+    if @enrollment.recent
+      @enrollment.mark_event_as_read("submit")
+    end
     render json: @enrollment
   end
 

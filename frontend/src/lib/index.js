@@ -497,14 +497,6 @@ export const isValidMobilePhoneNumber = (phoneNumber) => {
   return !!phoneNumber.match(mobile_phone_prefix_regexp);
 };
 
-export const isUnreadSubmittedEnrollment = (events) => {
-  const filteredEvents = events.filter(({ name, processed_at }) => {
-    return name === 'submit' && !processed_at;
-  });
-
-  return !isEmpty(filteredEvents);
-};
-
 export const stackLowUseAndUnpublishedApi = (
   publishedApis,
   enrollmentByTargetApi,

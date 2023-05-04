@@ -136,6 +136,11 @@ class Enrollment < ActiveRecord::Base
     ).count
   end
 
+  def recent
+    filtered_events = events.select { |event| event[:name] == "submit" && event[:processed_at].nil? }
+    !filtered_events.empty?
+  end
+
   def notify_event(event, **args)
     notifier_class.new(self).public_send(event, **args)
   end
