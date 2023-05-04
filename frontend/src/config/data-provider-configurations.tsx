@@ -52,6 +52,7 @@ import ApiSatelitProduction from '../pages/DgfipPages/ApiSatelitProduction';
 import ApiSatelitSandbox from '../pages/DgfipPages/ApiSatelitSandbox';
 import ApiSfipProduction from '../pages/DgfipPages/ApiSfipProduction';
 import ApiSfipSandbox from '../pages/DgfipPages/ApiSfipSandbox';
+import ApiSfipUnique from '../pages/DgfipPages/ApiSfipUnique';
 import FranceConnect from '../pages/FranceConnect';
 import HubeePortail from '../pages/HubeePortail';
 import HubeePortailDila from '../pages/HubeePortailDila';
@@ -527,6 +528,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     type: DataProviderType.api,
     component: ApiSfipProduction,
   },
+  api_sfip_unique: {
+    label: 'API Courtier fonctionnel SFiP - Formulaire Unique',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiSfipUnique,
+  },
 };
 
 export const HIDDEN_DATA_PROVIDER_KEYS = [
@@ -550,6 +558,7 @@ export const HIDDEN_DATA_PROVIDER_KEYS = [
   'api_infinoe_production',
   'api_sfip_sandbox',
   'api_sfip_production',
+  'api_sfip_unique',
 ];
 
 // Centralise this 2 Const for Login Page and WelcomeMessageRouter
@@ -586,6 +595,7 @@ export const APISDGFIP = [
   'api_satelit_production',
   'api_sfip_sandbox',
   'api_sfip_production',
+  'api_sfip_unique',
 ];
 
 export const APISFRANCECONNECTED = [

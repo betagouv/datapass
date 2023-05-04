@@ -1008,6 +1008,10 @@ api_sfip_production:
   label: API Courtier fonctionnel SFiP (Production)
   mailer: *shared_mailer
 
+api_sfip_unique:
+  label: API Courtier fonctionnel SFiP (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_r2p_sandbox:
   label: API R2P (Bac à sable)
   mailer: *shared_mailer
