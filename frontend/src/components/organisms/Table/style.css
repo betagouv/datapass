@@ -91,6 +91,10 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
+.datapass-table .new {
+  font-weight: bold;
+}
+
 .datapass-table th,
 td {
   padding: 15px;

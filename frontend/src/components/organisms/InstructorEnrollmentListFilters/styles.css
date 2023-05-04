@@ -1,6 +1,7 @@
 .table-filters {
   display: flex;
   gap: 2rem;
+  align-items: end;
 }
 
 .table-filters > *:first-child {
@@ -17,4 +18,8 @@
 
 .table-filters .multiselect-dropdown-button {
   background-color: var(--background-contrast-grey);
+}
+
+.table-filters .fr-input-group {
+  margin-bottom: 1.5rem;
 }

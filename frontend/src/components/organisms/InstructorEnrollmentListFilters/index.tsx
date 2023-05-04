@@ -36,7 +36,6 @@ const InstructorEnrollmentListFilters = ({
   return (
     <div className="table-filters">
       <Input
-        label="Rechercher"
         name="rechercher"
         placeholder="Rechercher dans toutes les habilitations"
         value={
@@ -71,10 +70,14 @@ const InstructorEnrollmentListFilters = ({
         <Label id="status" label="Filtrer par statut" />
         <MultiSelect
           id="status"
-          options={Object.entries(STATUS_LABELS).map(([key, value]) => ({
-            key,
-            label: value,
-          }))}
+          options={Object.entries(STATUS_LABELS)
+            .filter(([key]) =>
+              user?.roles.includes('administrator') ? key : key !== 'archived'
+            )
+            .map(([key, value]) => ({
+              key,
+              label: value,
+            }))}
           values={
             filters.find(({ id }: { id: string }) => id === 'status')?.value
           }

@@ -34,6 +34,7 @@ export type Enrollment = {
   updated_at: Date;
   created_at: Date;
   notify_events_from_demandeurs_count: number;
+  unprocessed_notify_events_from_demandeurs_count: number;
   id: number;
   intitule: string;
   siret: string;
@@ -122,10 +123,14 @@ const InstructorEnrollmentList: React.FC = () => {
       size: 70,
     }),
     columnHelper.accessor('nom_raison_sociale', {
-      header: 'Raison sociale',
+      header: 'Organisation',
       id: 'nom_raison_sociale',
       enableSorting: false,
       enableColumnFilter: false,
+      cell: ({ getValue }) => {
+        const organisation = getValue() as string;
+        return organisation?.toUpperCase();
+      },
     }),
     columnHelper.accessor(
       ({ target_api }) => dataProviderConfigurations?.[target_api].label,
@@ -145,32 +150,48 @@ const InstructorEnrollmentList: React.FC = () => {
         enableColumnFilter: false,
       }
     ),
-    columnHelper.accessor('notify_events_from_demandeurs_count', {
-      header: 'Messages',
-      enableSorting: false,
-      enableColumnFilter: false,
-      size: 50,
-      id: 'notify_events_from_demandeurs_count',
-      cell: ({ getValue }) => {
-        const notify_events_from_demandeurs_count = getValue() as number;
-        const noUnreadMessage = notify_events_from_demandeurs_count === 0;
+    columnHelper.accessor(
+      ({
+        unprocessed_notify_events_from_demandeurs_count,
+        notify_events_from_demandeurs_count,
+      }) => ({
+        unprocessed_notify_events_from_demandeurs_count,
+        notify_events_from_demandeurs_count,
+      }),
+      {
+        header: 'Messages',
+        enableSorting: false,
+        enableColumnFilter: false,
+        size: 50,
+        id: 'unprocessed_notify_events_from_demandeurs_count',
+        cell: ({ getValue }) => {
+          const {
+            unprocessed_notify_events_from_demandeurs_count,
+            notify_events_from_demandeurs_count,
+          } = getValue() as {
+            unprocessed_notify_events_from_demandeurs_count: number;
+            notify_events_from_demandeurs_count: number;
+          };
+          const noUnreadMessage =
+            unprocessed_notify_events_from_demandeurs_count === 0;
 
-        const messagesTitle = noUnreadMessage
-          ? 'Pas de nouveau message'
-          : notify_events_from_demandeurs_count === 1
-          ? `${notify_events_from_demandeurs_count} nouveau message`
-          : notify_events_from_demandeurs_count > 1
-          ? `${notify_events_from_demandeurs_count} nouveaux messages`
-          : '';
+          const messagesTitle = noUnreadMessage
+            ? 'Pas de nouveau message'
+            : unprocessed_notify_events_from_demandeurs_count === 1
+            ? `${unprocessed_notify_events_from_demandeurs_count} nouveau message`
+            : unprocessed_notify_events_from_demandeurs_count > 1
+            ? `${unprocessed_notify_events_from_demandeurs_count} nouveaux messages`
+            : '';
 
-        return (
-          <div title={messagesTitle} className="datapass-message-icon">
-            {!noUnreadMessage && <span className="red-dot"></span>}
-            <Badge round>{notify_events_from_demandeurs_count}</Badge>
-          </div>
-        );
-      },
-    }),
+          return notify_events_from_demandeurs_count > 0 ? (
+            <div title={messagesTitle} className="datapass-message-icon">
+              {!noUnreadMessage && <span className="red-dot"></span>}
+              <Badge round>{notify_events_from_demandeurs_count}</Badge>
+            </div>
+          ) : null;
+        },
+      }
+    ),
     columnHelper.accessor('status', {
       header: 'Statut',
       id: 'status',
@@ -186,7 +207,8 @@ const InstructorEnrollmentList: React.FC = () => {
   return (
     <main className="dark-background">
       <div className="page-container">
-        <ListHeader title="Liste des habilitations">
+        <div className="fr-mt-5w" />
+        <ListHeader title="Toutes les habilitations">
           <Button
             href={`${BACK_HOST}/api/enrollments/export`}
             download
@@ -227,8 +249,18 @@ const InstructorEnrollmentList: React.FC = () => {
             goToItem(target_api, id, event);
           }}
           getRowClassName={(row) => {
-            const { id } = row as Enrollment;
-            return id === previouslySelectedEnrollmentId ? 'selected' : '';
+            const { id, events } = row as Enrollment;
+            let className = '';
+
+            if (id === previouslySelectedEnrollmentId) {
+              className += ' selected';
+            }
+
+            if (isUnreadSubmittedEnrollment(events)) {
+              className += ' new';
+            }
+
+            return className;
           }}
         />
       </div>

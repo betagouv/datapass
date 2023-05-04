@@ -1,5 +1,5 @@
 class LightEnrollmentSerializer < ActiveModel::Serializer
-  attributes :id, :updated_at, :nom_raison_sociale, :target_api, :status, :demandeurs, :notify_events_from_demandeurs_count, :zip_code
+  attributes :id, :updated_at, :nom_raison_sociale, :target_api, :status, :demandeurs, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code
 
   attribute :acl do
     object.policy.acl_methods.map { |method|

@@ -124,6 +124,13 @@ class Enrollment < ActiveRecord::Base
   def notify_events_from_demandeurs_count
     events.where(
       name: "notify",
+      user_id: demandeurs.pluck(:user_id)
+    ).count
+  end
+
+  def unprocessed_notify_events_from_demandeurs_count
+    events.where(
+      name: "notify",
       processed_at: nil,
       user_id: demandeurs.pluck(:user_id)
     ).count
