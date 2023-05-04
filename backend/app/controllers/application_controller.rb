@@ -71,8 +71,7 @@ class ApplicationController < ActionController::API
 
   rescue_from Pundit::NotAuthorizedError do |exception|
     policy = exception.policy
-    error_key = policy.respond_to?(:error_message_key) ? policy.error_message_key : :unknown
-
+    error_key = (policy.respond_to?(:error_message_key) && policy.error_message_key.present?) ? policy.error_message_key : :unknown
     error = I18n.t!("enrollment_errors.#{error_key}")
 
     render status: :forbidden, json: error
