@@ -1032,6 +1032,10 @@ api_ficoba_production:
   label: API FICOBA (Production)
   mailer: *shared_mailer
 
+api_ficoba_unique:
+  label: API FICOBA (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_droits_cnam:
   label: API Droits CNAM
   mailer: *shared_mailer

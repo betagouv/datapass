@@ -27,6 +27,7 @@ import ApiEnsuDocumentsSandbox from '../pages/DgfipPages/ApiEnsuDocumentsSandbox
 import ApiEProProduction from '../pages/DgfipPages/ApiEProProduction';
 import ApiEProSandbox from '../pages/DgfipPages/ApiEProSandbox';
 import ApiFicobaProduction from '../pages/DgfipPages/ApiFicobaProduction';
+import ApiFicobaUnique from '../pages/DgfipPages/ApiFicobaUnique';
 import ApiFicobaSandbox from '../pages/DgfipPages/ApiFicobaSandbox';
 import ApiHermesProduction from '../pages/DgfipPages/ApiHermesProduction';
 import ApiHermesSandbox from '../pages/DgfipPages/ApiHermesSandbox';
@@ -339,6 +340,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     type: DataProviderType.api,
     component: ApiFicobaProduction,
   },
+  api_ficoba_unique: {
+    label: 'API FICOBA (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiFicobaUnique,
+  },
   api_droits_cnam: {
     label: 'API Droits CNAM',
     icon: 'logo-cnam.jpg',
@@ -589,6 +597,7 @@ export const APISDGFIP = [
   'api_infinoe_production',
   'api_ficoba_sandbox',
   'api_ficoba_production',
+  'api_ficoba_unique',
   'api_ensu_documents_sandbox',
   'api_ensu_documents_production',
   'api_satelit_sandbox',
