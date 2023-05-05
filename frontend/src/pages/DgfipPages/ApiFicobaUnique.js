@@ -5,8 +5,9 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
+import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 
 const scopesConfiguration = [
@@ -146,10 +147,9 @@ const ApiFicobaUnique = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <HomologationSecuriteSection />
+    <VolumetrieSection options={[50, 100, 200]} />
+    <CguSection cguLink="/docs/cgu_api_ficoba_production.pdf" />
   </Form>
 );
 

@@ -5,13 +5,12 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
-import { additionalTermsOfUse, DonneesDescription } from './common';
+import { DonneesDescription } from './common';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
-import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const demarches = {
   default: {
@@ -92,7 +91,6 @@ const accessModes = [
 ];
 
 const target_api = 'api_r2p_unique';
-const steps = [target_api, 'api_r2p_production'];
 
 const ApiR2PUnique = () => (
   <Form
@@ -101,7 +99,6 @@ const ApiR2PUnique = () => (
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
-    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DemarcheSection />
     <DescriptionSection />
@@ -111,13 +108,10 @@ const ApiR2PUnique = () => (
       accessModes={accessModes}
     />
     <CadreJuridiqueSection />
+    <ÉquipeSection />
     <HomologationSecuriteSection />
     <VolumetrieSection />
-    <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.5.pdf" />
   </Form>
 );
 

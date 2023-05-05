@@ -5,6 +5,8 @@ import DescriptionSection from '../../components/organisms/form-sections/Descrip
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
+import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import {
@@ -13,7 +15,6 @@ import {
   demarches as fcDemarches,
   DonneesDescription,
 } from './api-sfip-common';
-import { additionalTermsOfUse } from './common';
 
 const demarches = {
   ...JSON.parse(JSON.stringify(fcDemarches)),
@@ -99,10 +100,9 @@ const ApiSfipUnique = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <HomologationSecuriteSection />
+    <VolumetrieSection />
+    <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf" />
   </Form>
 );
 

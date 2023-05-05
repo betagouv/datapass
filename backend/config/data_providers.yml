@@ -1000,6 +1000,10 @@ api_impot_particulier_fc_production:
   label: API Impôt particulier (FC) (Production)
   mailer: *shared_mailer
 
+api_impot_particulier_fc_unique:
+  label: API Impôt particulier (FC) (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_sfip_sandbox:
   label: API Courtier fonctionnel SFiP (Bac à sable)
   mailer: *shared_mailer

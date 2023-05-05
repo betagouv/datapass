@@ -15,7 +15,6 @@ import {
   demarches as fcDemarches,
   DonneesDescription,
 } from './api-impot-particulier-common';
-import { additionalTermsOfUse } from './common';
 
 const demarches = {
   ...JSON.parse(JSON.stringify(fcDemarches)),
@@ -112,13 +111,10 @@ const ApiImpotParticulierUnique = () => (
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
+    <ÉquipeSection />
     <HomologationSecuriteSection />
     <VolumetrieSection />
-    <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf" />
   </Form>
 );
 

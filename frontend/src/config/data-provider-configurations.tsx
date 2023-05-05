@@ -33,6 +33,7 @@ import ApiHermesProduction from '../pages/DgfipPages/ApiHermesProduction';
 import ApiHermesSandbox from '../pages/DgfipPages/ApiHermesSandbox';
 import ApiImpotParticulierFcProduction from '../pages/DgfipPages/ApiImpotParticulierFcProduction';
 import ApiImpotParticulierFcSandbox from '../pages/DgfipPages/ApiImpotParticulierFcSandbox';
+import ApiImpotParticulierFcUnique from '../pages/DgfipPages/ApiImpotParticulierFcUnique';
 import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
 import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
@@ -178,6 +179,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierFcProduction,
+  },
+  api_impot_particulier_fc_unique: {
+    label: 'API Impôt particulier (FC) (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiImpotParticulierFcUnique,
   },
   api_r2p_sandbox: {
     label: 'API R2P (Bac à sable)',
