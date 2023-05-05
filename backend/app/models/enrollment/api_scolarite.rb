@@ -6,6 +6,5 @@ class Enrollment::ApiScolarite < Enrollment
 
     scopes_validation
     responsable_technique_validation
-    previous_enrollment_id_validation
   end
 end
