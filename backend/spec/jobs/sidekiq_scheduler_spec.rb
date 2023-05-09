@@ -8,7 +8,7 @@ require "fugit"
 
 RSpec.describe "sidekiq-scheduler" do
   sidekiq_file = File.join(Rails.root, "config", "sidekiq.yml")
-  schedule = YAML.load_file(sidekiq_file)[:schedule]
+  schedule = YAML.load_file(sidekiq_file)[:scheduler][:schedule]
 
   describe "cron syntax" do
     schedule.each do |k, v|

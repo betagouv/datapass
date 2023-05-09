@@ -1201,6 +1201,10 @@ api_statut_etudiant_boursier:
   label: API Statut étudiant boursier
   mailer: *shared_mailer
 
+api_scolarite:
+  label: API Scolarité
+  mailer: *shared_mailer
+
 api_indemnisation_pole_emploi:
   label: API Indemnisation Pôle emploi
   mailer: *shared_mailer

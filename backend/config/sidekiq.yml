@@ -9,16 +9,17 @@
 :production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 5 %>
 
-:schedule:
-  schedule_reminder_email_worker:
-    cron: '0 6 * * *' # Runs every day at 06:00 am / cron: minute hour day(month) month day(week)
-    class: ScheduleReminderEmailWorker
-    queue: reminders
-  schedule_reminder_before_archive_email_worker:
-    cron: '0 7 * * *' # Runs every day at 07:00 am / cron: minute hour day(month) month day(week)
-    class: ScheduleReminderBeforeArchiveEmailWorker
-    queue: reminders
-  schedule_enrollments_archiveable_worker:
-    cron: '0 5 * * *' # Runs every day at 05:00 am / cron: minute hour day(month) month day(week)
-    class: ScheduleEnrollmentsArchiveableWorker
-    queue: reminders
+:scheduler:
+  :schedule:
+    schedule_reminder_email_worker:
+      cron: '0 6 * * *' # Runs every day at 06:00 am / cron: minute hour day(month) month day(week)
+      class: ScheduleReminderEmailWorker
+      queue: reminders
+    schedule_reminder_before_archive_email_worker:
+      cron: '0 7 * * *' # Runs every day at 07:00 am / cron: minute hour day(month) month day(week)
+      class: ScheduleReminderBeforeArchiveEmailWorker
+      queue: reminders
+    schedule_enrollments_archiveable_worker:
+      cron: '0 5 * * *' # Runs every day at 05:00 am / cron: minute hour day(month) month day(week)
+      class: ScheduleEnrollmentsArchiveableWorker
+      queue: reminders
