@@ -5,9 +5,7 @@ class Enrollment::UniqueEnrollment < Enrollment
     super
 
     responsable_technique_validation
-  end
 
-  def submit_validation
     # Cadre juridique
     cadre_juridique_validation
 
