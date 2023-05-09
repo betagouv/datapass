@@ -100,6 +100,15 @@ api_particulier:
     - value: pole_emploi_inscription
       label: Inscription
       helper: Données concernant l’inscription de la personne à Pôle Emploi
+    - value: men_statut_scolarite
+      label: Scolarisé
+      helper: Indique si l’élève est scolarisé (réponse oui/non)
+    - value: men_statut_boursier
+      label: Boursier
+      helper: Indique si l’élève est boursier (réponse oui/non)
+    - value: men_echelon_bourse
+      label: Échelon de la bourse
+      helper: Indique l’échelon de l’élève boursier
     - value: mesri_identifiant
       label: INE
       helper: Identifiant National de l’étudiant
