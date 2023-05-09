@@ -170,6 +170,12 @@ api_particulier:
         - pole_emploi_contact
         - pole_emploi_adresse
         - pole_emploi_inscription
+    men:
+      label: Statut élève scolarisé et boursier
+      scopes:
+        - men_statut_scolarite
+        - men_statut_boursier
+        - men_echelon_bourse
     mesri:
       label: Statut étudiant
       scopes:
