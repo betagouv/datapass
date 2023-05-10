@@ -8,9 +8,9 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import { additionalTermsOfUse } from './common';
 import {
-  demarches,
-  scopesConfiguration,
-  groups,
+  fcDemarches as demarches,
+  fcScopesConfiguration as scopesConfiguration,
+  fcGroups as groups,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';

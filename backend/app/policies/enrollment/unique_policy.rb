@@ -1,30 +1,17 @@
-class Enrollment::UniquePolicy < EnrollmentPolicy
+class Enrollment::UniquePolicy < Enrollment::SandboxPolicy
   def notify?
     false
   end
 
   def permitted_attributes
-    res = []
+    res = super
 
     res.concat([
-      :cgu_approved,
-      :dpo_is_informed,
-      :target_api,
-      :previous_enrollment_id,
-      :fondement_juridique_title,
-      :fondement_juridique_url,
-      team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
-      documents_attributes: [
-        :attachment,
-        :type
-      ],
-      additional_content: [
+      additional_content: super_additional_content(res) + [
         :autorite_homologation_nom,
         :autorite_homologation_fonction,
         :date_homologation,
         :date_fin_homologation,
-        :recette_fonctionnelle,
-        :rgpd_general_agreement,
         :volumetrie_appels_par_minute
       ]
     ])

@@ -160,7 +160,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: ApiImpotParticulierProduction,
   },
   api_impot_particulier_unique: {
-    label: 'API Impôt particulier - Formulaire Unique',
+    label: 'API Impôt particulier (Formulaire Unique)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
@@ -202,7 +202,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: ApiR2PProduction,
   },
   api_r2p_unique: {
-    label: 'API R2P - Formulaire Unique',
+    label: 'API R2P (Formulaire Unique)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
@@ -545,7 +545,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: ApiSfipProduction,
   },
   api_sfip_unique: {
-    label: 'API Courtier fonctionnel SFiP - Formulaire Unique',
+    label: 'API Courtier fonctionnel SFiP (Formulaire Unique)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
@@ -585,6 +585,7 @@ export const APISDGFIP = [
   'api_impot_particulier_unique',
   'api_r2p_sandbox',
   'api_r2p_production',
+  'api_r2p_unique',
   'api_hermes_sandbox',
   'api_hermes_production',
   'api_e_contacts_sandbox',

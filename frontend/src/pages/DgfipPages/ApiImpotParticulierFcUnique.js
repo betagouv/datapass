@@ -9,40 +9,15 @@ import CadreJuridiqueSection from '../../components/organisms/form-sections/Cadr
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import {
-  demarches,
-  scopesConfiguration,
-  groups,
+  fcDemarches as demarches,
+  fcScopesConfiguration as scopesConfiguration,
+  fcGroups as groups,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
-
-export const CadreJuridiqueDescription = () => (
-  <>
-    <p>
-      Pour pouvoir bénéficier du raccordement à l’API Impôt particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
-    </p>
-    <p>
-      Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
-    </p>
-    <ul>
-      <li>
-        ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
-      </li>
-      <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
-      </li>
-    </ul>
-  </>
-);
+import { CadreJuridiqueDescription } from './ApiImpotParticulierFcSandbox';
 
 const target_api = 'api_impot_particulier_fc_unique';
 const steps = ['franceconnect', target_api];

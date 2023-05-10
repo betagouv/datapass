@@ -9,46 +9,13 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import {
-  scopesConfiguration as fcScopesConfiguration,
-  groups as fcGroups,
-  demarches as fcDemarches,
+  scopesConfiguration,
+  groups,
+  demarches,
   DonneesDescription,
+  accessModes,
 } from './api-impot-particulier-common';
 import { additionalTermsOfUse } from './common';
-
-const demarches = {
-  ...JSON.parse(JSON.stringify(fcDemarches)),
-};
-
-demarches.default.state.scopes['dgfip_IndLep'] = false;
-
-const scopesConfiguration = [
-  ...fcScopesConfiguration,
-  {
-    value: 'dgfip_IndLep',
-    label: 'Indicateur d’éligibilité au LEP',
-  },
-];
-
-const groups = {
-  ...JSON.parse(JSON.stringify(fcGroups)),
-  eligibilite_lep: {
-    label:
-      'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
-    scopes: ['dgfip_IndLep'],
-  },
-};
-
-const accessModes = [
-  {
-    id: 'acces_spi',
-    label: 'via le Numéro fiscal (SPI)',
-  },
-  {
-    id: 'acces_etat_civil',
-    label: 'via l’état civil',
-  },
-];
 
 export const CadreJuridiqueDescription = () => (
   <>
