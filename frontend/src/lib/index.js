@@ -22,6 +22,11 @@ import flatten from 'flat';
 
 export function getErrorMessages(error) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
+    if (error.response?.data?.title && error.response?.data?.message) {
+      return [
+        `${error.response?.data?.title} : ${error.response?.data?.message}`,
+      ];
+    }
     return chain(error.response.data).values().flatten().value();
   }
 
