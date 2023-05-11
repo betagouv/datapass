@@ -2,6 +2,7 @@ import React from 'react';
 import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import Badge from '../StatusBadge';
 import './styles.css';
+import { useLocation } from 'react-router-dom';
 import { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
+  const location = useLocation();
   const getSubmitDate = () => {
     const submitEvent = enrollment.events.find(({ name }) => name === 'submit');
     return submitEvent?.created_at;
@@ -37,6 +39,9 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
     <Link
       to={`/${enrollment.target_api.replace(/_/g, '-')}/${enrollment.id}`}
       className="quick-view"
+      state={{
+        previousPath: `${location.pathname || '/'}${window.location.search}`,
+      }}
       onClick={markAsRead}
     >
       <div className="quick-view-informations quick-view-informations--small">
