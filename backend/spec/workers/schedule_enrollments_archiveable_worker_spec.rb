@@ -12,7 +12,7 @@ RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
 
     before do
       enrollment = create(:enrollment, :api_particulier, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago)
-      create(:event, :reminder, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago)
+      create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago)
     end
 
     after do
@@ -47,7 +47,7 @@ RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
     before do
       enrollment = create(:enrollment, :franceconnect, :draft, created_at: 30.days.ago, updated_at: 15.days.ago)
       create(:event, name: "create", enrollment: enrollment, created_at: 30.days.ago, updated_at: 30.days.ago)
-      create(:event, name: "reminder", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
+      create(:event, name: "reminder_before_archive", enrollment: enrollment, created_at: 15.days.ago, updated_at: 15.days.ago)
     end
 
     after do

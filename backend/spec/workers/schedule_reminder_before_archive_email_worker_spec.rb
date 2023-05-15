@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ScheduleReminderEmailForChangeRequestedEnrollmentsWorker, type: :worker do
+RSpec.describe ScheduleReminderBeforeArchiveEmailWorker, type: :worker do
   subject { described_class.new }
 
   describe "#perform" do
@@ -75,7 +75,7 @@ RSpec.describe ScheduleReminderEmailForChangeRequestedEnrollmentsWorker, type: :
         last_enrollment_event = enrollment.events.last
 
         expect(enrollment.events.count).to eq(5)
-        expect(last_enrollment_event.name).to eq("reminder")
+        expect(last_enrollment_event.name).to eq("reminder_before_archive")
       end
     end
   end
@@ -89,7 +89,7 @@ RSpec.describe ScheduleReminderEmailForChangeRequestedEnrollmentsWorker, type: :
       enrollment = create(:enrollment, :franceconnect, :changes_requested, created_at: 7.months.ago, updated_at: 6.months.ago)
       create(:event, :create, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
       create(:event, :request_changes, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
-      create(:event, :reminder, enrollment: enrollment, created_at: 6.months.ago, updated_at: 6.months.ago)
+      create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 6.months.ago, updated_at: 6.months.ago)
     end
 
     after do

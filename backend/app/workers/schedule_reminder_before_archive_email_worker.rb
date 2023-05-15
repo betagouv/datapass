@@ -2,11 +2,11 @@
 
 require "sidekiq-scheduler"
 
-class ScheduleReminderEmailForChangeRequestedEnrollmentsWorker < ApplicationWorker
+class ScheduleReminderBeforeArchiveEmailWorker < ApplicationWorker
   sidekiq_options queue: "reminders"
 
   def perform
-    ExtractChangesRequestedEnrollmentsToArchive.new.call.each do |changes_requested_enrollment|
+    EnrollmentsExtractor::ToRemindBeforeArchive.new.call.each do |changes_requested_enrollment|
       send_reminder_email(changes_requested_enrollment)
       create_reminder_event(changes_requested_enrollment)
     end
@@ -20,6 +20,6 @@ class ScheduleReminderEmailForChangeRequestedEnrollmentsWorker < ApplicationWork
   end
 
   def create_reminder_event(enrollment)
-    enrollment.events.create!(name: "reminder")
+    enrollment.events.create!(name: "reminder_before_archive")
   end
 end
