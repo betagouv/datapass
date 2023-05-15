@@ -17,7 +17,6 @@ import { EnrollmentStatus } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
-import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import { BadgeType } from '../atoms/hyperTexts/Badge';
 import InstructorEnrollmentListFilters from '../organisms/InstructorEnrollmentListFilters';
 
@@ -61,8 +60,6 @@ const InstructorEnrollmentList: React.FC = () => {
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
     useQueryString('previouslySelectedEnrollmentId', 0);
 
-  const { dataProviderConfigurations } = useDataProviderConfigurations();
-
   useEffect(() => {
     const debouncedFetchData = debounce(() => {
       setLoading(true);
@@ -102,7 +99,6 @@ const InstructorEnrollmentList: React.FC = () => {
     }),
     columnHelper.accessor('updated_at', {
       header: 'Date',
-      enableSorting: false,
       enableColumnFilter: false,
       id: 'updated_at',
       size: 50,
@@ -132,15 +128,12 @@ const InstructorEnrollmentList: React.FC = () => {
         return organisation?.toUpperCase();
       },
     }),
-    columnHelper.accessor(
-      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
-      {
-        header: 'Projet',
-        id: 'intitule',
-        enableSorting: false,
-        enableColumnFilter: false,
-      }
-    ),
+    columnHelper.accessor('intitule', {
+      header: 'Projet',
+      id: 'intitule',
+      enableSorting: false,
+      enableColumnFilter: false,
+    }),
     columnHelper.accessor(
       ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
       {
@@ -159,7 +152,7 @@ const InstructorEnrollmentList: React.FC = () => {
         notify_events_from_demandeurs_count,
       }),
       {
-        header: 'Messages',
+        header: 'Message',
         enableSorting: false,
         enableColumnFilter: false,
         size: 50,
