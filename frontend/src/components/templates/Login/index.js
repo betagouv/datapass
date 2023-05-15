@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import Alert from '../../atoms/Alert';
 import MonComptePro from '../../atoms/MonComptePro';
 import { useDataProvider } from '../hooks/use-data-provider';
 import './style.css';
@@ -117,8 +115,6 @@ export const Login = () => {
   const { type } = useDataProvider(targetApi);
   const isService = type === DataProviderType.service;
 
-  const [isClosed, setIsClosed] = useState(false);
-
   return (
     <section className="fr-container--fluid">
       <div className="fr-grid-row">
@@ -168,19 +164,6 @@ export const Login = () => {
                     </div>
                   </div>
                 </div>
-              )}
-              {!isClosed && (
-                <Alert
-                  type="info"
-                  title="Votre connexion évolue"
-                  onAlertClose={setIsClosed}
-                >
-                  <p>
-                    Votre compte DataPass devient MonComptePro.
-                    <br />
-                    Votre email et votre mot de passe restent inchangés.
-                  </p>
-                </Alert>
               )}
             </div>
           </div>
