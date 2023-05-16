@@ -64,7 +64,7 @@ export const Routes = () => {
         index
         element={
           <AuthRequired>
-            {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
+            {user && isEmpty(user.roles) ? (
               <UserEnrollmentList />
             ) : (
               <InstructorHome />
@@ -77,7 +77,7 @@ export const Routes = () => {
         path="habilitations"
         element={
           <AuthRequired>
-            {user && isEmpty(user.roles) && user.organizations.length < 5 ? (
+            {user && isEmpty(user.roles) ? (
               <Navigate to="/" replace />
             ) : (
               <AdminEnrollmentList />
