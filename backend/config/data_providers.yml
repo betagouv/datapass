@@ -84,15 +84,18 @@ api_particulier:
     délibération](https://api.gouv.fr/guides/deliberation-api-part).
   scopesConfiguration:
     - value: cnaf_quotient_familial
-      label: Quotient familial
+      label: Quotient familial CAF
     - value: cnaf_allocataires
-      label: Nom, prénoms, date de naissance et sexe des parents
+      label: Identités allocataire et conjoint
+      helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
     - value: cnaf_enfants
-      label: Nom, prénoms, date de naissance et sexe des enfants
+      label: Identités enfants
+      helper: Nom, prénoms, date de naissance et sexe des enfants
     - value: cnaf_adresse
-      label: Adresse de la famille
+      label: Adresse du foyer
     - value: pole_emploi_identite
-      label: Identité du demandeur d'emploi
+      label: Statut demandeur d'emploi et identité
+      helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
     - value: pole_emploi_contact
       label: Téléphones et e-mail
     - value: pole_emploi_adresse
@@ -101,40 +104,37 @@ api_particulier:
       label: Données d'inscription Pôle emploi
       helper: Date d'inscription, de cessation, et catégorie d'inscription du demandeur d'emploi
     - value: men_statut_scolarite
-      label: Scolarisé
+      label: Statut scolarisé
       helper: Indique si l’élève est scolarisé (réponse oui/non)
     - value: men_statut_boursier
-      label: Boursier
+      label: Statut boursier
       helper: Indique si l’élève est boursier (réponse oui/non)
     - value: men_echelon_bourse
       label: Échelon de la bourse
       helper: Indique l’échelon de l’élève boursier
     - value: mesri_identifiant
       label: Numéro INE
-      helper: Identifiant national de l’étudiant
+      helper: Permet d'accéder à l'identifiant national de l’étudiant (INE).
     - value: mesri_identite
-      label: Nom, prénom et date de naissance de l'étudiant
+      label: Statut étudiant inscrit et identité
+      helper: Indique si le particulier est étudiant, sous le statut inscrit, et le cas échéant transmet nom, prénom et date de naissance de l'étudiant.
     - value: mesri_admission
-      label: Pré-inscriptions CROUS
-      helper: Permet d’interroger les données des étudiants pré-inscrits pour le CROUS.
+      label: Périmètre étudiants admis
+      helper: Permet d’interroger les données des étudiants au statut d'inscription "admis".
     - value: mesri_etablissements
       label: Liste des établissements
-      helper: Le ou les établissements (nom et identifiant - UAI).
+      helper: Permet de connaitre le nom et l'identifiant UAI du ou des établissements de l'étudiant.
     - value: mesri_inscription_autre
-      label: Inscriptions en formation continue
+      label: Périmètre étudiants en formation continue
       helper: >-
-        Permet d’interroger les données des étudiants en formation continue
-        : date de début, de fin d’inscription, et code COG de la commune du lieu
-        d’étude.
+        Permet d’interroger les données des étudiants dont le régime de formation est la formation continue.
     - value: mesri_inscription_etudiant
-      label: Inscriptions en formation initiale
+      label: Périmètre étudiants en formation initiale
       helper: >-
-        Permet d’interroger les données des étudiants en formation initiale
-        : dates de début, fin d’inscription et code COG de la commune du lieu
-        d’étude.
+        Permet d’interroger les données des étudiants dont le régime de formation est la formation initiale.
     - value: cnous_statut_boursier
       label: Statut étudiant boursier
-      helper: Indique si l‘étudiant est boursier au moment de l‘interrogation (réponse oui/non)
+      helper: Indique si l’étudiant est boursier au moment de l’interrogation (réponse oui/non)
     - value: cnous_echelon_bourse
       label: Échelon de la bourse
       helper: échelon de 0bis à 8
@@ -156,7 +156,7 @@ api_particulier:
       helper: Nom, prénom, date de naissance, lieu de naissance, genre
   groups:
     cnaf:
-      label: Quotient familial CAF
+      label: API Quotient familial CAF
       about: https://particulier.api.gouv.fr/catalogue/cnaf/quotient_familial
       scopes:
         - cnaf_quotient_familial
@@ -164,7 +164,7 @@ api_particulier:
         - cnaf_enfants
         - cnaf_adresse
     pole_emploi:
-      label: Statut demandeur d'emploi
+      label: API Statut demandeur d'emploi
       about: https://particulier.api.gouv.fr/catalogue/pole_emploi/situation
       scopes:
         - pole_emploi_identite
@@ -172,24 +172,24 @@ api_particulier:
         - pole_emploi_adresse
         - pole_emploi_inscription
     men:
-      label: Statut élève scolarisé et boursier
+      label: API Statut élève scolarisé et boursier
       about: https://particulier.api.gouv.fr/catalogue/TODO
       scopes:
         - men_statut_scolarite
         - men_statut_boursier
         - men_echelon_bourse
     mesri:
-      label: Statut étudiant
+      label: API Statut étudiant
       about: https://particulier.api.gouv.fr/catalogue/mesr/statut_etudiant
       scopes:
-        - mesri_identifiant
         - mesri_identite
         - mesri_admission
-        - mesri_etablissements
         - mesri_inscription_etudiant
         - mesri_inscription_autre
+        - mesri_etablissements
+        - mesri_identifiant
     cnous:
-      label: Statut étudiant boursier
+      label: API Statut étudiant boursier
       about: https://particulier.api.gouv.fr/catalogue/cnous/statut_etudiant_boursier
       scopes:
         - cnous_statut_boursier
