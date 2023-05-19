@@ -173,7 +173,7 @@ api_particulier:
         - pole_emploi_inscription
     men:
       label: API Statut élève scolarisé et boursier
-      about: https://particulier.api.gouv.fr/catalogue/TODO
+      about: https://particulier.api.gouv.fr/catalogue/education_nationale/statut_eleve_scolarise
       scopes:
         - men_statut_scolarite
         - men_statut_boursier
