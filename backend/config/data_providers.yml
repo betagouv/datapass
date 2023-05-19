@@ -104,8 +104,8 @@ api_particulier:
       label: Données d'inscription Pôle emploi
       helper: Date d'inscription, de cessation, et catégorie d'inscription du demandeur d'emploi
     - value: men_statut_scolarite
-      label: Statut scolarisé
-      helper: Indique si l’élève est scolarisé (réponse oui/non)
+      label: Statut élève scolarisé et identité
+      helper: Indique si l’élève est scolarisé (réponse oui/non) et le cas échéant transmet statut de scolarité, nom, prénom, sexe, date de naissance et code UAI de l'établissement.
     - value: men_statut_boursier
       label: Statut boursier
       helper: Indique si l’élève est boursier (réponse oui/non)
@@ -117,7 +117,7 @@ api_particulier:
       helper: Permet d'accéder à l'identifiant national de l’étudiant (INE).
     - value: mesri_identite
       label: Statut étudiant inscrit et identité
-      helper: Indique si le particulier est étudiant, sous le statut inscrit, et le cas échéant transmet nom, prénom et date de naissance de l'étudiant.
+      helper: Indique si le particulier est étudiant "inscrit", et le cas échéant transmet nom, prénom et date de naissance de l'étudiant. Pour accéder aux étudiants "admis", cocher la case "Périmètre étudiants admis".
     - value: mesri_admission
       label: Périmètre étudiants admis
       helper: Permet d’interroger les données des étudiants au statut d'inscription "admis".
