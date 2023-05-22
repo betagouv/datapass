@@ -40,21 +40,21 @@ export const ScopeWarningModalConfigurations: {
   apientreprise_sensitive: {
     title: 'Avez-vous vraiment besoin de cette donnée ?',
     body:
-      "Cette donnée est particulièrement sensible, elle n'est pas autorisée dans le cadre des " +
+      'Cette donnée est particulièrement sensible, elle n’est pas autorisée dans le cadre des ' +
       '"marchés publics" et "pré-remplissage". Elle peut être autorisée pour certaines ' +
       '"aides et subventions publiques". ' +
-      "Pour que votre demande d'accès à cette donnée aboutisse, vous devez justifier dans ce formulaire " +
-      "d'un cadre légal adéquat et d'un contexte d'usage attestant de l'utilité de cette donnée pour votre service.",
+      'Pour que votre demande d’accès à cette donnée aboutisse, vous devez justifier dans ce formulaire ' +
+      'd’un cadre légal adéquat et d’un contexte d’usage attestant de l’utilité de cette donnée pour votre service.',
   },
   apientreprise_sensitive_effectifs: {
     title: 'Avez-vous vraiment besoin de cette donnée ?',
     body:
       'Cette donnée est particulièrement sensible. ' +
-      "Pour que votre demande d'accès à cette donnée aboutisse, " +
-      "vous devez justifier dans ce formulaire d'un cadre légal adéquat et d'un contexte d'usage attestant de l'utilité de cette donnée pour votre service. " +
+      'Pour que votre demande d’accès à cette donnée aboutisse, ' +
+      'vous devez justifier dans ce formulaire d’un cadre légal adéquat et d’un contexte d’usage attestant de l’utilité de cette donnée pour votre service. ' +
       'Une donnée moins précise est disponible avec les API "Données de référence d’une entité - INSEE & Infogreffe" ' +
-      'et "Données de référence d\'un établissement - INSEE & Infogreffe" (premières API cochables dans la liste). ' +
-      "Il s'agit des tranches d’effectifs au sens de l’INSEE . Si vous n’avez pas besoin de l’effectif exact, ces API sont suffisantes.",
+      'et "Données de référence d’un établissement - INSEE & Infogreffe" (premières API cochables dans la liste). ' +
+      'Il s’agit des tranches d’effectifs au sens de l’INSEE . Si vous n’avez pas besoin de l’effectif exact, ces API sont suffisantes.',
   },
 };
 
