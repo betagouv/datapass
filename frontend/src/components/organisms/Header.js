@@ -105,11 +105,7 @@ const Header = () => {
                         icon="table"
                         tertiaryNoOutline
                         href={
-                          user &&
-                          isEmpty(user.roles) &&
-                          user.organizations.length < 5
-                            ? '/'
-                            : '/habilitations'
+                          user && isEmpty(user.roles) ? '/' : '/habilitations'
                         }
                       >
                         Toutes mes habilitations

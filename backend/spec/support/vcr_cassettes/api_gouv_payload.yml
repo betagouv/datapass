@@ -1,0 +1,457 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://staging.api.gouv.fr/api/v1/apis
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - staging.api.gouv.fr
+      User-Agent:
+      - http.rb/5.1.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0 (Ubuntu)
+      Date:
+      - Wed, 08 Mar 2023 09:56:35 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '53677'
+      Connection:
+      - close
+      Vary:
+      - Origin, Accept-Encoding
+      Etag:
+      - '"d1ad-HJLKMbuoQfl1ah1eqm/1ZycfZAk"'
+    body:
+      encoding: UTF-8
+      string: '[{"title":"API Ingres - Nomenclatures","tagline":"Récupérez l''ensemble
+        des référentiels utilisés par les Systèmes d''Information des Ressources Humaines
+        de la Fonction Publique d''Etat","path":"/les-api/API_Ingres_Nomenclatures","slug":"API_Ingres_Nomenclatures","openness":"closed","owner":"Centre
+        Interministériel des Systèmes d''Information relatifs aux Ressources Humaines","owner_acronym":"CISIRH","logo":"/images/api-logo/logo-cisirh.png","datapass_link":"https://datapass.api.gouv.fr/api-ingres"},{"title":"API
+        Ingres Noyau","tagline":"Récupérez l''ensemble des référentiels utilisés par
+        les Systèmes d''Informations des Ressources Humaines de la Fonction Publique
+        d''Etat","path":"/les-api/API_Ingres_Noyau","slug":"API_Ingres_Noyau","openness":"closed","owner":"Centre
+        Interministériel des Systèmes d''Information relatifs aux Ressources Humaines","owner_acronym":"CISIRH","logo":"/images/api-logo/logo-cisirh.png","datapass_link":"https://datapass.api.gouv.fr/api-ingres"},{"title":"Légifrance
+        Bêta","tagline":"Réutilisation des données juridiques disponibles sur le site
+        Légifrance","path":"/les-api/DILA_api_Legifrance","slug":"DILA_api_Legifrance","openness":"semi_open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png","datagouv_uuid":["53ae8af9a3a729709f56d50c"]},{"title":"API
+        La Bonne Boite","tagline":"Récupérez la liste des entreprises classées par
+        potentiel d''embauche","path":"/les-api/LaBonneBoite","slug":"LaBonneBoite","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
+        Référentiel SANDRE Version 1","tagline":"L''API Sandre Référentiel version
+        1 donne accès à l''ensemble des jeux de données de référence diffusé par le
+        Service d''Administration Nationale des Données et Référentiels sur l''Eau
+        (SANDRE)","path":"/les-api/Sandre-Referentiel-V1_api","slug":"Sandre-Referentiel-V1_api","openness":"open","owner":"Eaufrance","owner_acronym":null,"logo":"/images/api-logo/eau-france.png"},{"title":"AgentConnect","tagline":"Simplifiez
+        le quotidien des agents publics de l''Etat en leur permettant d’utiliser un
+        même identifiant et mot de passe pour accéder à leurs services en ligne.","path":"/les-api/agent-connect","slug":"agent-connect","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/agent-connect-fs"},{"title":"API
+        Accès à l''emploi","tagline":"Connaître les taux d''accès à l''emploi par
+        métier recherché et par territoire.","path":"/les-api/api-acces-emploi","slug":"api-acces-emploi","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datagouv_uuid":["593156ff88ee38351b503df3"]},{"title":"API
+        Accès libre","tagline":"Savoir si un établissement recevant du public est
+        accessible aux personnes en situation de handicap","path":"/les-api/api-acces-libre","slug":"api-acces-libre","openness":"open","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png","datagouv_uuid":["60a528e8b656ce01b4c0c0a6"]},{"title":"API
+        Référentiel des agences Pôle emploi","tagline":"Trouver rapidement les agences
+        et points relais Pôle emploi partout en France","path":"/les-api/api-agences-pole-emploi","slug":"api-agences-pole-emploi","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
+        Aides Territoires","tagline":"Faciliter la recherche d''aides des collectivités
+        territoriales et de leurs partenaires locaux","path":"/les-api/api-aides-territoires","slug":"api-aides-territoires","openness":"open","owner":"Direction
+        générale de l''aménagement, du logement et de la nature","owner_acronym":"DGALN","logo":"/images/api-logo/mtes.png"},{"title":"API
+        Annonces officielles et comptes annuels des associations","tagline":"Rechercher
+        et consulter les comptes annuels des associations","path":"/les-api/api-annonces-comptes-annuels-associations-joafe","slug":"api-annonces-comptes-annuels-associations-joafe","openness":"open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png","datagouv_uuid":["53ca2be2a3a7294a1ddd7847","53ca2e62a3a7294a1ddd784b"]},{"title":"API
+        Bulletin officiel des annonces des marchés publics (BOAMP)","tagline":"Rechercher
+        et consulter les annonces du Bulletin Officiel des Annonces de Marchés Publics","path":"/les-api/api-annonces-marches-publics-boamp","slug":"api-annonces-marches-publics-boamp","openness":"open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png","datagouv_uuid":["559390f9c751df0139a453ba"]},{"title":"Annuaire
+        de l’Education Nationale","tagline":"Accédez aux données de l’annuaire des
+        établissements de l''Education Nationale","path":"/les-api/api-annuaire-education","slug":"api-annuaire-education","openness":"open","owner":"Ministère
+        de l''Éducation Nationale et de la Jeunesse","owner_acronym":"MENJ","logo":"/images/api-logo/logo_menj.jpg","datagouv_uuid":["5889d03fa3a72974cbf0d5b1"]},{"title":"API
+        Anotéa","tagline":"Accéder aux avis et notes sur les formations professionnelles","path":"/les-api/api-anotea","slug":"api-anotea","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
+        Bulletin officiel des annonces civiles et commerciales (BODACC)","tagline":"Consultez
+        les actes enregistrés au registre du commerce et des sociétés et publiés au
+        bulletin officiel.","path":"/les-api/api-bulletin-annonces-civiles-commerciales-bodacc","slug":"api-bulletin-annonces-civiles-commerciales-bodacc","openness":"open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png","datagouv_uuid":["559395f1c751df0f51a453b9"]},{"title":"API
+        Bulletin des Annonces Légales Obligatoires (BALO)","tagline":"Accédez aux
+        annonces légales des établissements bancaires et des sociétés qui émettent
+        des actions.","path":"/les-api/api-bulletin-annonces-legales-obligatoires-balo","slug":"api-bulletin-annonces-legales-obligatoires-balo","openness":"open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png","datagouv_uuid":["5593976ec751df0139a453bb"]},{"title":"API
+        calendrier scolaire","tagline":"Intégrez le calendrier scolaire officiel sur
+        votre site ou application","path":"/les-api/api-calendrier-scolaire","slug":"api-calendrier-scolaire","openness":"open","owner":"Ministère
+        de l''Éducation Nationale et de la Jeunesse","owner_acronym":"MENJ","logo":"/images/api-logo/logo_menj.jpg","datagouv_uuid":["5889d03ea3a72974cbf0d5b0"]},{"title":"API
+        Camino","tagline":"Ouvrir le cadastre minier pour mieux gérer les projets","path":"/les-api/api-camino","slug":"api-camino","openness":"open","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png","datagouv_uuid":["5dceb39c634f416d5593c858"]},{"title":"API
+        CaptchEtat","tagline":"Générer un CAPTCHA pour sécuriser un service en ligne","path":"/les-api/api-captchetat","slug":"api-captchetat","openness":"closed","owner":"Agence
+        pour l''informatique financière de l''État","owner_acronym":"AIFE","logo":"/images/api-logo/ChorusPro.jpg","datapass_link":"https://datapass.api.gouv.fr/api-captchetat"},{"title":"API
+        Carto - module Nature","tagline":"L''accès simplifié aux données sur les sites
+        et espaces naturels","path":"/les-api/api-carto-nature","slug":"api-carto-nature","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Carto - module WFS Géoportail","tagline":"Rechercher dans tous les flux WFS
+        Géoportail","path":"/les-api/api-carto-wfs-geoportail","slug":"api-carto-wfs-geoportail","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Conventions collectives","tagline":"Retrouvez les conventions collectives
+        d''une entreprise à partir de son numéro SIRET","path":"/les-api/api-conventions-collectives","slug":"api-conventions-collectives","openness":"open","owner":"Ministère
+        du Travail, de l''Emploi et de l''Insertion","owner_acronym":"MTEI","logo":"/images/api-logo/logo-mtei.png","datagouv_uuid":["5e7201d522f2a43e9f736a9a","5b7ffc618b4c4169d30727e0"]},{"title":"API
+        contrôle CVEC (contribution de vie étudiante)","tagline":"Vérifiez si un étudiant
+        s''est  acquitté de la contribution de vie étudiante","path":"/les-api/api-cvec","slug":"api-cvec","openness":"open","owner":"Centre
+        national des œuvres universitaires et scolaires","owner_acronym":"CNOUS","logo":"/images/api-logo/logo-cnous.png"},{"title":"API
+        portail des données de la BnF - data.bnf.fr","tagline":"Accéder aux données
+        de data.bnf.fr, le portail des données BnF","path":"/les-api/api-data-bnf-fr","slug":"api-data-bnf-fr","openness":"open","owner":"Bibliothèque
+        nationale de France","owner_acronym":"BnF","logo":"/images/api-logo/bnf.png"},{"title":"API
+        data subventions","tagline":"Accédez aux données sur les subventions attribuées
+        aux associations","path":"/les-api/api-data-subventions","slug":"api-data-subventions","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png"},{"title":"API
+        Tierce Déclaration auto-entrepreneur","tagline":"Connectez-vous directement
+        à l’Urssaf pour déclarer les chiffres d’affaires pour le compte d’un auto-entrepreneur
+        en tant que tiers-déclarant","path":"/les-api/api-declaration-auto-entrepreneur","slug":"api-declaration-auto-entrepreneur","openness":"closed","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg","datapass_link":"https://datapass.api.gouv.fr/api-declaration-auto-entrepreneur"},{"title":"API
+        Tierce Déclaration Cesu","tagline":"Connectez-vous directement à l’Urssaf
+        pour accéder aux services du Cesu pour le compte d’un particulier employeur
+        en tant que tiers-déclarant","path":"/les-api/api-declaration-cesu","slug":"api-declaration-cesu","openness":"closed","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg","datapass_link":"https://datapass.api.gouv.fr/api-declaration-cesu"},{"title":"API
+        Déclaration préalable à l''embauche","tagline":"Transmettez facilement des
+        dépots de déclaration et obtenez les accusés de réception de la DPAE.","path":"/les-api/api-declaration-embauche","slug":"api-declaration-embauche","openness":"closed","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg"},{"title":"API
+        Tierce Déclaration Pajemploi","tagline":"Connectez-vous directement à l’Urssaf
+        pour accéder aux services de Pajemploi pour le compte d’un particulier employeur
+        en tant que tiers-déclarant","path":"/les-api/api-declaration-pajemploi","slug":"api-declaration-pajemploi","openness":"closed","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg"},{"title":"API
+        Base nationale des défibrillateurs","tagline":"Déclarer des défibrillateurs
+        automatisés externes et interroger la base nationale des défibrillateurs","path":"/les-api/api-defibrillateurs","slug":"api-defibrillateurs","openness":"closed","owner":"Ministère
+        des Solidarités et de la Santé","owner_acronym":null,"logo":"/images/api-logo/mss.png","datagouv_uuid":["61556e1e9d6adb2df86eb0fc"]},{"title":"API
+        Démarches du Ministère de la culture","tagline":"Interrogez la liste des démarches,
+        aides et subventions du Ministère de la culture référencées sur le site culture.gouv.fr.","path":"/les-api/api-demarches-ministere-culture","slug":"api-demarches-ministere-culture","openness":"open","owner":"Ministère
+        de la culture","owner_acronym":null,"logo":"/images/api-logo/LogoMCHP.png"},{"title":"API
+        données foncières","tagline":"Accéder aux bases de données foncières","path":"/les-api/api-donnees-foncieres","slug":"api-donnees-foncieres","openness":"closed","owner":"CEREMA","owner_acronym":null,"logo":"/images/api-logo/cerema.png"},{"title":"API
+        Données locales de consommation d''énergie","tagline":"Accédez aux données
+        de consommations annuelles d’énergie et de vente des carburants","path":"/les-api/api-donnees-locales-energie","slug":"api-donnees-locales-energie","openness":"open","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png","datagouv_uuid":["5bf39f229ce2e77b7d0059b6"]},{"title":"API
+        Données ouvertes d''Enedis","tagline":"Accédez aux données relatives à l''énergie
+        publiées par Enedis","path":"/les-api/api-donnees-ouvertes-enedis","slug":"api-donnees-ouvertes-enedis","openness":"open","owner":"Enedis","owner_acronym":null,"logo":"/images/api-logo/enedis.png","datagouv_uuid":["60cac8db0480dab2ce2fcb3b","5a82655db595081fb6b66415"]},{"title":"API
+        Ecobalyse - impacts environnementaux des produits textiles","tagline":"Interrogez
+        base de données des indicateurs d''impacts environnementaux des produits textiles","path":"/les-api/api-ecobalyse","slug":"api-ecobalyse","openness":"open","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png"},{"title":"API
+        Engagement","tagline":"Accéder aux missions de bénévolat et de volontariat
+        partout en France","path":"/les-api/api-engagement","slug":"api-engagement","openness":"closed","owner":"Ministère
+        de l''Éducation Nationale et de la Jeunesse","owner_acronym":"MENJ","logo":"/images/api-logo/logo_menj.jpg"},{"title":"API
+        Entreprise","tagline":"Entités administratives, simplifiez les démarches des
+        entreprises et des associations en récupérant pour elles leurs informations
+        administratives.","path":"/les-api/api-entreprise","slug":"api-entreprise","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/api-entreprise"},{"title":"API
+        Evénements Pôle emploi","tagline":"Retrouvez en un coup d’œil tous les événements
+        liés à l’emploi sélectionnés par Pôle emploi","path":"/les-api/api-evenements-pole-emploi","slug":"api-evenements-pole-emploi","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
+        FANTOIR","tagline":"Retrouvez les informations sur les communes et les lieux-dits","path":"/les-api/api-fantoir","slug":"api-fantoir","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png","datagouv_uuid":["53699580a3a729239d204738"]},{"title":"API
+        Sortants de formation et accès à l''emploi","tagline":"Mieux appréhender les
+        parcours formations des demandeurs d''emploi","path":"/les-api/api-formation-acces-emploi","slug":"api-formation-acces-emploi","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datagouv_uuid":["593156ff88ee38351b503df3"]},{"title":"API
+        Gels des avoirs","tagline":"Obtenir toutes les informations concernant le
+        registre national des gels des avoirs","path":"/les-api/api-gels-avoirs","slug":"api-gels-avoirs","openness":"open","owner":"Direction
+        Générale du Trésor","owner_acronym":"DGT","logo":"/images/api-logo/DGTresor.png"},{"title":"API
+        Découpage Administratif - (API Geo)","tagline":"Interrogez les référentiels
+        géographiques plus facilement","path":"/les-api/api-geo","slug":"api-geo","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png"},{"title":"API
+        Géorisques","tagline":"Connaître les risques liés à un territoire","path":"/les-api/api-georisques","slug":"api-georisques","openness":"open","owner":"Bureau
+        de Recherches Géologiques et Minières","owner_acronym":"BRGM","logo":"/images/api-logo/brgm.png"},{"title":"API
+        GRDF ADICT","tagline":"Accédez aux données de consommation de gaz des clients
+        de GRDF en tant que tiers","path":"/les-api/api-grdf-adict","slug":"api-grdf-adict","openness":"closed","owner":"GRDF","owner_acronym":null,"logo":"/images/api-logo/grdf.png"},{"title":"API
+        Identifiants et Référentiels pour l''enseignement supérieur et la recherche
+        (IdRef)","tagline":"Récupérer les notices d''autorités du Système Universitaire
+        de Documentation (Sudoc) de l''Enseignement Supérieur et de la Recherche.","path":"/les-api/api-idref","slug":"api-idref","openness":"open","owner":"Agence
+        bibliographique de l''enseignement supérieur","owner_acronym":null,"logo":"/images/api-logo/abes.png"},{"title":"API
+        Indemnisation Pôle emploi","tagline":"Connaitre la situation d’indemnisation
+        d’un demandeur d’emploi","path":"/les-api/api-indemnisation-pole-emploi","slug":"api-indemnisation-pole-emploi","openness":"closed","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datapass_link":"https://datapass.api.gouv.fr/api-indemnisation-pole-emploi"},{"title":"API
+        Indemnités Journalières de la CNAM","tagline":"Accédez au montant des indemnités
+        journalières de l''Assurance Maladie payé à un assuré sur une période.","path":"/les-api/api-indemnites-journalieres-cnam","slug":"api-indemnites-journalieres-cnam","openness":"closed","owner":"Caisse
+        Nationale d''Assurance Maladie","owner_acronym":"CNAM / Ameli","logo":"/images/api-logo/cnam.jpg","datapass_link":"https://datapass.api.gouv.fr/api-indemnites-journalieres-cnam"},{"title":"API
+        info-financière","tagline":"Accédez aux informations réglementées des sociétés
+        cotées (directive européenne « transparence » (OAM))","path":"/les-api/api-info-financiere","slug":"api-info-financiere","openness":"open","owner":"Direction
+        de l''information légale et administrative","owner_acronym":"DILA","logo":"/images/api-logo/dila.png"},{"title":"API
+        Informations sur l''emploi dans un territoire","tagline":"Accéder à toutes
+        les données clés sur l''emploi pour comprendre un territoire - population,
+        établissements, salariés","path":"/les-api/api-informations-emploi-territoire","slug":"api-informations-emploi-territoire","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datagouv_uuid":["593156ff88ee38351b503df3"]},{"title":"API
+        Judilibre","tagline":"Publication des décisions rendues publiquement par la
+        Cour de cassation, enrichies et pseudonymisées.","path":"/les-api/api-judilibre","slug":"api-judilibre","openness":"semi_open","owner":"Cour
+        de cassation","owner_acronym":null,"logo":"/images/api-logo/cour-de-cassation.svg"},{"title":"API
+        Alternance","tagline":"Facilitez la mise en relation des candidats à l’alternance
+        avec les entreprises et organismes de formation.","path":"/les-api/api-la-bonne-alternance","slug":"api-la-bonne-alternance","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png"},{"title":"API
+        données ouvertes de Loire-Atlantique","tagline":"Découvrez les jeux de données
+        publiques ouverts du Département de Loire-Atlantique","path":"/les-api/api-loire-atlantique-donnees-ouvertes","slug":"api-loire-atlantique-donnees-ouvertes","openness":"open","owner":"Département
+        de Loire-Atlantique","owner_acronym":null,"logo":"/images/api-logo/logo-loire-atlantique.svg"},{"title":"API
+        Ma Sécurité","tagline":"Publier des informations et actualités sur l''application
+        Ma Sécurité","path":"/les-api/api-ma-securite","slug":"api-ma-securite","openness":"closed","owner":"Service
+        des Technologies et des Systèmes d''Information de la Sécurité Intérieure","owner_acronym":"ST(SI)2","logo":"/images/api-logo/stsi.png"},{"title":"API
+        Marché du travail","tagline":"Evaluer la situation de l''emploi sur un territoire
+        - tensions, métiers, dynamique","path":"/les-api/api-marche-travail","slug":"api-marche-travail","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datagouv_uuid":["593156ff88ee38351b503df3"]},{"title":"API
+        Métadonnées","tagline":"Accéder aux métadonnées statistiques de l''Insee","path":"/les-api/api-metadonnees-insee","slug":"api-metadonnees-insee","openness":"semi_open","owner":"Institut
+        national de la statistique et des études économiques","owner_acronym":"Insee","logo":"/images/api-logo/Logo_Insee.svg"},{"title":"API
+        Mir@bel (revues)","tagline":"Accéder aux contenus de milliers de revues scientifiques","path":"/les-api/api-mirabel","slug":"api-mirabel","openness":"open","owner":"Sciences
+        Po Lyon","owner_acronym":null,"logo":"/images/api-logo/sciencespolyon.png"},{"title":"API
+        Mobilic","tagline":"Simplifier et améliorer le suivi du temps de travail dans
+        le transport routier","path":"/les-api/api-mobilic","slug":"api-mobilic","openness":"closed","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png"},{"title":"API
+        Mon entreprise","tagline":"Simulez vos revenus et prélèvements en tant que
+        salarié ou entreprise","path":"/les-api/api-mon-entreprise","slug":"api-mon-entreprise","openness":"open","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg"},{"title":"API
+        données ouvertes de l''ONISEP","tagline":"Accédez aux données ouvertes de
+        l''Office national d''information sur les enseignements et les professions","path":"/les-api/api-onisep","slug":"api-onisep","openness":"open","owner":"Office
+        National d''Information Sur les Enseignements et les Professions","owner_acronym":"ONISEP","logo":"/images/api-logo/logo-onisep.png"},{"title":"API
+        données ouvertes de l’Urssaf","tagline":"Accédez au catalogue Open.Urssaf
+        : les jeux de données open data de la branche recouvrement","path":"/les-api/api-open-data-urssaf","slug":"api-open-data-urssaf","openness":"open","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg"},{"title":"API
+        Maladies Rares (ORPHAcode)","tagline":"Interrogez la base de connaissance
+        des maladies rares.","path":"/les-api/api-orphacode","slug":"api-orphacode","openness":"open","owner":"Institut
+        National de la Santé et de la Recherche Médicale","owner_acronym":"INSERM","logo":"/images/api-logo/inserm.jpg"},{"title":"API
+        Particulier","tagline":"Entités administratives, simplifiez les démarches
+        des particuliers en récupérant pour eux leurs informations administratives
+        (quotient familial CAF, composition familiale, statut demandeur d’emploi,
+        étudiant et étudiant boursier)","path":"/les-api/api-particulier","slug":"api-particulier","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/api-particulier"},{"title":"API
+        Examen du permis de conduire","tagline":"Facilitez la portabilité des dossiers
+        de vos élèves en auto-école, et simplifiez leur inscription à l''examen du
+        permis de conduire.","path":"/les-api/api-permis-conduire","slug":"api-permis-conduire","openness":"closed","owner":"Ministère
+        de l''Intérieur","owner_acronym":null,"logo":"/images/api-logo/minint.png"},{"title":"API
+        Prix des contrôles techniques","tagline":"Affichez les tarifs des contrôles
+        et des contre-visites des centres techniques des véhicules légers","path":"/les-api/api-prix-controles-techniques","slug":"api-prix-controles-techniques","openness":"open","owner":"Ministère
+        de l''économie, des finances et de la relance","owner_acronym":"MEFR","logo":"/images/api-logo/logo-mefr.png","datagouv_uuid":["604c02676615dd75067ce5a3"]},{"title":"API
+        Pro Santé Connect","tagline":"Authentifier les professionnels de la santé
+        à partir du Répertoire Partagé des Professionnels de Santé (RPPS)","path":"/les-api/api-pro-sante-connect","slug":"api-pro-sante-connect","openness":"closed","owner":"Agence
+        du Numérique en Santé","owner_acronym":"ANS","logo":"/images/api-logo/ans.png","datapass_link":"https://datapass.api.gouv.fr/api-pro-sante-connect"},{"title":"API
+        Professionnels BIO","tagline":"Accéder à la liste des producteurs, transformateurs
+        et commercants engagés en bio et notifiés auprès de l’Agence Bio","path":"/les-api/api-professionnels-bio","slug":"api-professionnels-bio","openness":"open","owner":"Agence
+        BIO","owner_acronym":null,"logo":"/images/api-logo/AgenceBio.png"},{"title":"API
+        Pseudonymisation de documents (démo)","tagline":"Pseudonymisez des documents
+        et des données contenant des personnes ou des entités nomées","path":"/les-api/api-pseudonymisation-documents","slug":"api-pseudonymisation-documents","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png"},{"title":"API
+        Radio France","tagline":"Accéder aux programmes et aux contenus produits par
+        Radio France","path":"/les-api/api-radio-france","slug":"api-radio-france","openness":"semi_open","owner":"Radio
+        France","owner_acronym":null,"logo":"/images/api-logo/logo-radio-france.png"},{"title":"API
+        RappelConso","tagline":"Retrouvez la liste des produits dangereux rappelés","path":"/les-api/api-rappel-conso","slug":"api-rappel-conso","openness":"open","owner":"Ministère
+        de l''économie, des finances et de la relance","owner_acronym":"MEFR","logo":"/images/api-logo/logo-mefr.png","datagouv_uuid":["6091e2a82a5668334a9baccd"]},{"title":"API
+        Registre des Bénéficiaires Effectifs (RBE)","tagline":"Accéder aux registre
+        de toutes les personnes physiques associées ou actionnaires d’une société
+        civile ou commerciale exerçant un contrôle effectif sur ses organes décisionnels.","path":"/les-api/api-rbe","slug":"api-rbe","openness":"closed","owner":"Institut
+        national de la propriété industrielle","owner_acronym":"INPI","logo":"/images/api-logo/inpi.png"},{"title":"API
+        Recherche d’entreprises","tagline":"Rechercher une entreprise française, par
+        sa dénomination, ou son adresse","path":"/les-api/api-recherche-entreprises","slug":"api-recherche-entreprises","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["5b7ffc618b4c4169d30727e0","5c34c4d1634f4173183a64f1","62bd63b70ff1edf452b83a6b","5fc9b4729dbf684fecb13bae"]},{"title":"API
+        Registre National du Commerce et des Sociétés","tagline":"Le registre public
+        des sociétés françaises immatriculées dans les greffes locales des tribunaux,
+        centralisées à l''INPI.","path":"/les-api/api-rncs","slug":"api-rncs","openness":"semi_open","owner":"Institut
+        national de la propriété industrielle","owner_acronym":"INPI","logo":"/images/api-logo/inpi.png","datagouv_uuid":["59785a7888ee385cb8d806af","5964c402c751df0671f823d0"]},{"title":"API
+        Répertoire Opérationnel des Métiers et des Emplois","tagline":"Accéder à l''ensemble
+        des informations sur les métiers","path":"/les-api/api-rome","slug":"api-rome","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datagouv_uuid":["58da857388ee384902e505f5"]},{"title":"API
+        Service National","tagline":"Vérifiez si un candidat est en règle vis-à-vis
+        de ses obligations de Service National et peut s’inscrire au concours ou à
+        l’examen dont vous êtes en charge.","path":"/les-api/api-service-national","slug":"api-service-national","openness":"closed","owner":"Ministère
+        des Armées","owner_acronym":null,"logo":"/images/api-logo/minarm.jpg","datapass_link":"https://datapass.api.gouv.fr/api-service-national"},{"title":"API
+        Services Publics Plus - Expériences","tagline":"Accédez aux expériences déposées
+        par les usagers sur Service Public Plus, et aux réponses des administrations","path":"/les-api/api-services-publics-experiences","slug":"api-services-publics-experiences","openness":"open","owner":"Direction
+        Interministérielle de la Transformation Publique","owner_acronym":"DITP","logo":"/images/api-logo/logo-ditp.png","datagouv_uuid":["631f4320d215a236920bd4dd"]},{"title":"API
+        Resultats de qualité des services publics","tagline":"Accédez aux résultats
+        de qualité des services publics de près de 15000 structures en France","path":"/les-api/api-services-publics-resultats","slug":"api-services-publics-resultats","openness":"open","owner":"Direction
+        Interministérielle de la Transformation Publique","owner_acronym":"DITP","logo":"/images/api-logo/logo-ditp.png"},{"title":"API
+        Services Publics Plus - Structures","tagline":"Accédez à la liste des structures
+        administratives qui sont en contact direct avec les usagers du service public.","path":"/les-api/api-services-publics-structures","slug":"api-services-publics-structures","openness":"open","owner":"Direction
+        Interministérielle de la Transformation Publique","owner_acronym":"DITP","logo":"/images/api-logo/logo-ditp.png","datagouv_uuid":["62225f6a523b5729143b138c"]},{"title":"API
+        Sesali","tagline":"Accéder à la synthèse médicale d’un patient européen de
+        manière sécurisée, structurée et en français","path":"/les-api/api-sesali","slug":"api-sesali","openness":"closed","owner":"Agence
+        du Numérique en Santé","owner_acronym":"ANS","logo":"/images/api-logo/ans.png"},{"title":"API
+        SI Amiante","tagline":"Connecter une solution logicielle au système d''information
+        national SI-Amiante","path":"/les-api/api-si-amiante","slug":"api-si-amiante","openness":"closed","owner":"Ministère
+        des Solidarités et de la Santé","owner_acronym":null,"logo":"/images/api-logo/mss.png"},{"title":"API
+        Smart Verify","tagline":"Vérifier la validité des données d''un titre, document
+        ou d''un objet à partir de son Cachet Electronique Visible (CEV)","path":"/les-api/api-smart-verify","slug":"api-smart-verify","openness":"closed","owner":"IN
+        Groupe","owner_acronym":null,"logo":"/images/api-logo/ingroupe.png"},{"title":"API
+        statut demandeur d''emploi","tagline":"Vérifier si une personne a le statut
+        de demandeur d''emploi sans lui demander de justificatif","path":"/les-api/api-statut-demandeur-emploi","slug":"api-statut-demandeur-emploi","openness":"closed","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datapass_link":"https://datapass.api.gouv.fr/api-statut-demandeur-emploi"},{"title":"API
+        Statut étudiant boursier","tagline":"Vérifiez si un individu identifié avec
+        FranceConnect est un étudiant boursier","path":"/les-api/api-statut-etudiant-boursier","slug":"api-statut-etudiant-boursier","openness":"closed","owner":"Centre
+        national des œuvres universitaires et scolaires","owner_acronym":"CNOUS","logo":"/images/api-logo/logo-cnous.png","datapass_link":"https://datapass.api.gouv.fr/api-statut-etudiant-boursier"},{"title":"API
+        Statut Etudiant - écriture","tagline":"Alimentez l''API Statut Etudiant en
+        tant qu''établissement de l''enseignement supérieur.","path":"/les-api/api-statut-etudiant-ecriture","slug":"api-statut-etudiant-ecriture","openness":"closed","owner":"Ministère
+        de l''Enseignement Supérieur, de la Recherche et de l''Innovation","owner_acronym":"MESRI","logo":"/images/api-logo/mesri.png"},{"title":"API
+        Statut Etudiant","tagline":"Vérifiez si une personne est inscrite dans un
+        établissement de l''enseignement supérieur","path":"/les-api/api-statut-etudiant","slug":"api-statut-etudiant","openness":"closed","owner":"Ministère
+        de l''Enseignement Supérieur, de la Recherche et de l''Innovation","owner_acronym":"MESRI","logo":"/images/api-logo/mesri.png","datapass_link":"https://datapass.api.gouv.fr/api-statut-etudiant"},{"title":"API
+        Structures de l''inclusion","tagline":"Retrouvez facilement les informations
+        sur les structures de l''inclusion","path":"/les-api/api-structures-inclusion","slug":"api-structures-inclusion","openness":"open","owner":"Ministère
+        du Travail, de l''Emploi et de l''Insertion","owner_acronym":"MTEI","logo":"/images/api-logo/logo-mtei.png"},{"title":"API
+        Système Universitaire de Documentation (Sudoc)","tagline":"Récupérer les notices
+        bibliographiques du Système Universitaire de Documentation (Sudoc) de l''Enseignement
+        Supérieur et de la Recherche.","path":"/les-api/api-sudoc","slug":"api-sudoc","openness":"open","owner":"Agence
+        bibliographique de l''enseignement supérieur","owner_acronym":null,"logo":"/images/api-logo/abes.png"},{"title":"API
+        Terminologies de Santé (SMT)","tagline":"Accéder au catalogue des terminologies
+        de santé (Serveur Multi-Terminologies - SMT)","path":"/les-api/api-terminologies-sante","slug":"api-terminologies-sante","openness":"open","owner":"Agence
+        du Numérique en Santé","owner_acronym":"ANS","logo":"/images/api-logo/ans.png"},{"title":"API
+        Tiers de prestation","tagline":"Transmettez directement les factures de service
+        à la personne à l’Urssaf pour que vos clients bénéficient de l’avance immédiate
+        de crédit d’impôt.","path":"/les-api/api-tiers-de-prestation","slug":"api-tiers-de-prestation","openness":"closed","owner":"Urssaf","owner_acronym":null,"logo":"/images/api-logo/urssaf.jpg","datapass_link":"https://datapass.api.gouv.fr/api-tiers-de-prestation"},{"title":"API
+        Tracabilité des déchets dangereux - Trackdéchets","tagline":"Traçer les déchets
+        dangereux grâce aux Bordereaux de Suivi de Déchets (BSD)","path":"/les-api/api-trackdechets","slug":"api-trackdechets","openness":"closed","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png"},{"title":"API
+        Transparence-Santé (Déclarations Entreprises)","tagline":"Permettre aux entreprises
+        du champ de la santé de déclarer les liens qu''elles ont avec les acteurs
+        de la santé.","path":"/les-api/api-transparence-sante","slug":"api-transparence-sante","openness":"closed","owner":"Direction
+        Générale de la Santé","owner_acronym":"DGS","logo":"/images/api-logo/dgs.png"},{"title":"API
+        Impacts environnementaux - AGRIBALYSE®","tagline":"Interrogez base de données
+        des indicateurs d''impacts environnementaux des produits agricoles et alimentaires
+        produits et/ou consommés en France","path":"/les-api/api_agribalyse","slug":"api_agribalyse","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["6389c6639c0407956f4e43c1"]},{"title":"API
+        Aides financieres de l’ADEME","tagline":"Interrogez l’ensemble des dossiers
+        d’aides engagées par l’ADEME sur les trois dernières années","path":"/les-api/api_aides_financieres_ademe","slug":"api_aides_financieres_ademe","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["5f081465a1409f219b08f0f7"]},{"title":"API
+        Aides financières à la rénovation énergetique (Simul’Aid€s)","tagline":"Interrogez
+        la liste des aides financières à la rénovation énergétique des bâtiments","path":"/les-api/api_aides_renovation_energetique","slug":"api_aides_renovation_energetique","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["5fcf368c7b470cf97746c4c1"]},{"title":"API
+        de droits à l''Assurance Maladie","tagline":"Accédez aux droits d’un individu
+        ou d’une famille (enfants rattachés), gérés par le régime général de l’Assurance
+        Maladie","path":"/les-api/api_ameli_droits_cnam","slug":"api_ameli_droits_cnam","openness":"closed","owner":"Caisse
+        Nationale d''Assurance Maladie","owner_acronym":"CNAM / Ameli","logo":"/images/api-logo/cnam.jpg","datapass_link":"https://datapass.api.gouv.fr/api-droits-cnam"},{"title":"API
+        Base Carbone®","tagline":"Les facteurs d''émissions de GES, nécessaires à
+        la réalisation d’un bilan d’émissions de gaz à effet de serre","path":"/les-api/api_base_carbone","slug":"api_base_carbone","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["5f5605e63ee74d0034395703"]},{"title":"API
+        BDM","tagline":"Accéder aux indices et séries chronologiques de l’Insee","path":"/les-api/api_bdm","slug":"api_bdm","openness":"semi_open","owner":"Institut
+        national de la statistique et des études économiques","owner_acronym":"Insee","logo":"/images/api-logo/Logo_Insee.svg","datagouv_uuid":["53699185a3a729239d203ca3","53699f97a3a729239d206178","53699132a3a729239d203bcd","53699dc9a3a729239d205d08"]},{"title":"API
+        Carto - module AOC","tagline":"L''accès simplifié aux données de zonages AOC
+        de l''INAO","path":"/les-api/api_carto_aoc","slug":"api_carto_aoc","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Carto - module Cadastre","tagline":"L''accès simplifié aux données de cadastre","path":"/les-api/api_carto_cadastre","slug":"api_carto_cadastre","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Carto - module Codes Postaux","tagline":"L''accès simplifié aux codes postaux","path":"/les-api/api_carto_codes_postaux","slug":"api_carto_codes_postaux","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Carto - module Géoportail de l''Urbanisme (GPU)","tagline":"L''accès simplifié
+        aux données de référence d’urbanisme","path":"/les-api/api_carto_gpu","slug":"api_carto_gpu","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"API
+        Carto - module RPG","tagline":"L''accès simplifié aux informations du registre
+        parcellaire graphique","path":"/les-api/api_carto_rpg","slug":"api_carto_rpg","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"Le
+        Point d’Accès National aux données de transport","tagline":"Rassembler les
+        données de toute l’offre de mobilité à travers la France","path":"/les-api/api_catalogue_transport","slug":"api_catalogue_transport","openness":"open","owner":"Ministère
+        de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png"},{"title":"API
+        Fichier des Comptes Bancaires et Assimilés (FICOBA)","tagline":"Accédez aux
+        coordonnées bancaires d''un usager connues de l’administration fiscale (DGFIP)
+        et transmises par les établissements bancaires","path":"/les-api/api_comptes_bancaires_ficoba","slug":"api_comptes_bancaires_ficoba","openness":"closed","owner":"Direction
+        Générale des Finances Publiques","owner_acronym":"DGFiP","logo":"/images/api-logo/logo-dgfip.jpg","datapass_link":"https://datapass.api.gouv.fr/api-ficoba-sandbox"},{"title":"API
+        catalogue des données ouvertes - data.gouv.fr","tagline":"Interagissez avec
+        le catalogue des données publiques","path":"/les-api/api_data_gouv","slug":"api_data_gouv","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["5d13a8b6634f41070a43dff3"]},{"title":"API
+        Diffusion Données Locales","tagline":"Accéder aux données de l''Insee, localisées
+        au niveau de la commune","path":"/les-api/api_donnees_locales","slug":"api_donnees_locales","openness":"semi_open","owner":"Institut
+        national de la statistique et des études économiques","owner_acronym":"Insee","logo":"/images/api-logo/Logo_Insee.svg"},{"title":"API
+        DPE bâtiments tertiaires","tagline":"Le recensement des diagnostics de performance
+        énergétique (DPE) des bâtiments teriaires","path":"/les-api/api_dpe_batiments_publics","slug":"api_dpe_batiments_publics","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["6061abe367b3cc046a5a7e13"]},{"title":"API
+        DPE logements","tagline":"Le recensement des diagnostics de performance énergétique
+        (DPE) des logements par habitation","path":"/les-api/api_dpe_logements","slug":"api_dpe_logements","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["5ee2391763c79811ddfbc86a"]},{"title":"Annuaire
+        des établissements publics de l''administration","tagline":"L’API qui référence
+        les guichets publics locaux","path":"/les-api/api_etablissements_publics","slug":"api_etablissements_publics","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["53699fe4a3a729239d206227"]},{"title":"API
+        Gallica IIIF","tagline":"Accéder aux images numérisées de la Bibliothèque
+        nationale de France","path":"/les-api/api_gallica_IIIF","slug":"api_gallica_IIIF","openness":"open","owner":"Bibliothèque
+        nationale de France","owner_acronym":"BnF","logo":"/images/api-logo/bnf.png"},{"title":"API
+        Gallica Document","tagline":"Accéder aux documents numériques de la Bibliothèque
+        nationale de France","path":"/les-api/api_gallica_document","slug":"api_gallica_document","openness":"open","owner":"Bibliothèque
+        nationale de France","owner_acronym":"BnF","logo":"/images/api-logo/bnf.png"},{"title":"API
+        Gallica Recherche","tagline":"Rechercher dans les documents numériques de
+        la Bibliothèque nationale de France","path":"/les-api/api_gallica_recherche","slug":"api_gallica_recherche","openness":"open","owner":"Bibliothèque
+        nationale de France","owner_acronym":"BnF","logo":"/images/api-logo/bnf.png"},{"title":"Hub''Eau
+        - Qualité de l''eau potable","tagline":"Qualité de l''eau potable","path":"/les-api/api_hubeau_eaupotable","slug":"api_hubeau_eaupotable","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Hydrobiologie","tagline":"Qualité hydrobiologique des cours d''eau","path":"/les-api/api_hubeau_hydrobiologie","slug":"api_hubeau_hydrobiologie","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Hydrométrie","tagline":"Hydrométrie temps réel","path":"/les-api/api_hubeau_hydrometrie","slug":"api_hubeau_hydrometrie","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Indicateurs Eau potable et Assainissement","tagline":"Indicateurs des services
+        d''eau et d''assainissement","path":"/les-api/api_hubeau_indic_EP_Asst","slug":"api_hubeau_indic_EP_Asst","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Ecoulement des cours d''eau","tagline":"Ecoulement des cours d''eau","path":"/les-api/api_hubeau_onde","slug":"api_hubeau_onde","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Piézométrie","tagline":"Piézométrie (niveau des nappes d''eau souterraine)","path":"/les-api/api_hubeau_piezometrie","slug":"api_hubeau_piezometrie","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Etat piscicole des rivières","tagline":"Données sur les poissons de rivières","path":"/les-api/api_hubeau_poissons","slug":"api_hubeau_poissons","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Prélèvements en eau","tagline":"Prélèvements en eau","path":"/les-api/api_hubeau_prelevements","slug":"api_hubeau_prelevements","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Qualité des nappes d''eau souterraine","tagline":"Qualité physico-chimique
+        des nappes d''eau souterraine","path":"/les-api/api_hubeau_qualite_nappes_eau_sout","slug":"api_hubeau_qualite_nappes_eau_sout","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Qualité des cours d''eau","tagline":"Qualité physico-chimique des cours
+        d''eau","path":"/les-api/api_hubeau_qualite_rivieres","slug":"api_hubeau_qualite_rivieres","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Surveillance du littoral","tagline":"Surveillance du littoral","path":"/les-api/api_hubeau_surv_litt","slug":"api_hubeau_surv_litt","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"Hub''Eau
+        - Température des cours d''eau","tagline":"Température en continu dans les
+        cours d''eau","path":"/les-api/api_hubeau_temperature_rivieres","slug":"api_hubeau_temperature_rivieres","openness":"open","owner":"Hub’eau","owner_acronym":null,"logo":"/images/api-logo/hub-eau.png"},{"title":"API
+        Look4 Géoportail","tagline":"la recherche géographique multithématique du
+        Géoportail - adresses, lieux, cadastre, points routiers, etc","path":"/les-api/api_look4","slug":"api_look4","openness":"open","owner":"Institut
+        national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png"},{"title":"Offres
+        d''emploi","tagline":"Accédez aux offres d''emploi disponibles sur pole-emploi.fr","path":"/les-api/api_offresdemplois","slug":"api_offresdemplois","openness":"semi_open","owner":"Pôle
+        Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
+        données ouvertes de l’Éducation Nationale","tagline":"Découvrez les jeux de
+        données publiques ouverts et n’hésitez pas à nous faire connaître vos réutilisations
+        de données et créations de nouveaux services !","path":"/les-api/api_open_data_education_nationale","slug":"api_open_data_education_nationale","openness":"open","owner":"Ministère
+        de l''Éducation Nationale et de la Jeunesse","owner_acronym":"MENJ","logo":"/images/api-logo/logo_menj.jpg"},{"title":"API
+        Professionnels RGE","tagline":"Le recensement des professionnels RGE (Reconnu
+        Garant de l''Environnement)","path":"/les-api/api_professionnels_rge","slug":"api_professionnels_rge","openness":"open","owner":"Agence
+        de la transition écologique","owner_acronym":"ADEME","logo":"/images/api-logo/ademe.png","datagouv_uuid":["62bd63b70ff1edf452b83a6b"]},{"title":"API
+        Recherche des personnes physiques (R2P)","tagline":"Récupérez les données
+        connues par l’administration fiscale (DGFIP) sur une personne physique (état
+        civil, adresse, identifiant fiscal)","path":"/les-api/api_r2p","slug":"api_r2p","openness":"closed","owner":"Direction
+        Générale des Finances Publiques","owner_acronym":"DGFiP","logo":"/images/api-logo/logo-dgfip.jpg","datapass_link":"https://datapass.api.gouv.fr/api-r2p-sandbox"},{"title":"API
+        Répertoire National des Associations","tagline":"Le registre public des associations","path":"/les-api/api_rna","slug":"api_rna","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["58e53811c751df03df38f42d"]},{"title":"API
+        Répertoire National des Métiers","tagline":"Le registre public des entreprises
+        artisanales","path":"/les-api/api_rnm","slug":"api_rnm","openness":"open","owner":"Chambres
+        des Métiers et de l''Artisanat","owner_acronym":"CMA France","logo":"/images/api-logo/CMA_France.png"},{"title":"API
+        Résultats aux examens","tagline":"Accéder aux calendriers de délibération
+        et aux résultats des examens de l''enseignement agricole.","path":"/les-api/arpent-resultats-api","slug":"arpent-resultats-api","openness":"open","owner":"Ministère
+        de l''agriculture et de l''alimentation","owner_acronym":"MAA","logo":"/images/api-logo/maa.jpg"},{"title":"API
+        Adresse (Base Adresse Nationale - BAN)","tagline":"Interrogez la Base Adresse
+        Nationale, base de données de l’intégralité des adresses du territoire français","path":"/les-api/base-adresse-nationale","slug":"base-adresse-nationale","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["5530fbacc751df5ff937dddb"]},{"title":"Données
+        transports Brest métropole","tagline":"Données théoriques et temps-réel des
+        transports publics de Brest métropole","path":"/les-api/brest","slug":"brest","openness":"semi_open","owner":"Brest
+        métropole","owner_acronym":null,"logo":"/images/api-logo/Logo_Brest_metropole.png","datagouv_uuid":["55ffbe0888ee387348ccb97d"]},{"title":"API
+        Chorus Pro","tagline":"Envoyer facilement vos factures électroniques à une
+        entité publique française","path":"/les-api/chorus-pro","slug":"chorus-pro","openness":"closed","owner":"Agence
+        pour l''informatique financière de l''État","owner_acronym":"AIFE","logo":"/images/api-logo/ChorusPro.jpg"},{"title":"FranceConnect
+        et les API FranceConnectées","tagline":"Identifier les utilisateurs de votre
+        site internet et accéder à certaines données d''identité certifiées. Accéder
+        à des données supplémentaires via les API FranceConnectées","path":"/les-api/franceconnect","slug":"franceconnect","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/franceconnect"},{"title":"API
+        Indicateur de Fréquences de Traitements phytopharmaceutiques","tagline":"Faciliter
+        et fiabiliser votre calcul de l''Indicateur de Fréquence de Traitements (IFT)
+        : anonyme & gratuit !","path":"/les-api/ift","slug":"ift","openness":"open","owner":"Ministère
+        de l''agriculture et de l''alimentation","owner_acronym":"MAA","logo":"/images/api-logo/maa.jpg","datagouv_uuid":["56373ad988ee38438a531576"]},{"title":"API
+        Impôt particulier","tagline":"Raccordez-vous directement à la DGFiP pour récupérer
+        les éléments fiscaux nécessaires à vos téléservices, éliminez le traitement
+        et le stockage des pièces justificatives","path":"/les-api/impot-particulier","slug":"impot-particulier","openness":"closed","owner":"Direction
+        Générale des Finances Publiques","owner_acronym":"DGFiP","logo":"/images/api-logo/logo-dgfip.jpg","datapass_link":"https://datapass.api.gouv.fr/api-impot-particulier-sandbox"},{"title":"Jours
+        fériés","tagline":"Obtenir les dates des jours fériés en France","path":"/les-api/jours-feries","slug":"jours-feries","openness":"open","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datagouv_uuid":["5b3cc551c751df4822526c1c"]},{"title":"le.taxi","tagline":"Un
+        clic, un taxi","path":"/les-api/le-taxi","slug":"le-taxi","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/le-taxi"},{"title":"MonComptePro","tagline":"Identifiez
+        les utilisateurs professionnels du privé ou du public","path":"/les-api/moncomptepro","slug":"moncomptepro","openness":"closed","owner":"Direction
+        Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://moncomptepro.beta.gouv.fr/partenaire"},{"title":"OpenFisca","tagline":"Calculer
+        l''impôt, les cotisations, les aides sociales…","path":"/les-api/openfisca","slug":"openfisca","openness":"open","owner":"Agence
+        nationale de la cohésion des territoires","owner_acronym":"ANCT","logo":"/images/api-logo/anct.png"},{"title":"API
+        RVA Rennes Métropole","tagline":"Voies et adresses de Rennes Métropole","path":"/les-api/rennesmetropole-rva","slug":"rennesmetropole-rva","openness":"semi_open","owner":"Rennes
+        Métropole","owner_acronym":null,"logo":"/images/api-logo/rennesmetropole-rva.png"},{"title":"API
+        travaux Rennes Métropole","tagline":"Connaître à l''avance les perturbations
+        dûes aux travaux sur Rennes Métropole","path":"/les-api/rennesmetropole-travaux","slug":"rennesmetropole-travaux","openness":"open","owner":"Rennes
+        Métropole","owner_acronym":null,"logo":"/images/api-logo/rennesmetropole-rva.png"},{"title":"scanR,
+        moteur de la recherche et de l''innovation","tagline":"Explorez le monde de
+        la Recherche et de l''Innovation française avec scanR","path":"/les-api/scanR","slug":"scanR","openness":"open","owner":"Ministère
+        de l''Enseignement Supérieur, de la Recherche et de l''Innovation","owner_acronym":"MESRI","logo":"/images/api-logo/mesri.png","datagouv_uuid":["577cc85ac751df4e1b9901a0"]},{"title":"API
+        Sirene","tagline":"Accéder aux informations concernant les entreprises et
+        les établissements immatriculés au répertoire interadministratif Sirene de
+        l''Insee","path":"/les-api/sirene_v3","slug":"sirene_v3","openness":"semi_open","owner":"Institut
+        national de la statistique et des études économiques","owner_acronym":"Insee","logo":"/images/api-logo/Logo_Insee.svg","datagouv_uuid":["5b7ffc618b4c4169d30727e0"]},{"title":"Webstat","tagline":"Accédez
+        aux séries économiques de la Banque de France","path":"/les-api/webstat","slug":"webstat","openness":"semi_open","owner":"Banque
+        de France","owner_acronym":null,"logo":"/images/api-logo/webstat.jpg"}]'
+  recorded_at: Wed, 08 Mar 2023 09:56:35 GMT
+recorded_with: VCR 6.1.0

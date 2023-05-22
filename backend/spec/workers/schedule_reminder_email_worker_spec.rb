@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ScheduleReminderEmailForDraftEnrollmentsWorker, type: :worker do
+RSpec.describe ScheduleReminderEmailWorker, type: :worker do
   subject { described_class.new }
 
   describe "#perform" do

@@ -11,6 +11,7 @@ RSpec.describe Event, type: :model do
       revoke
       request_changes
       reminder
+      reminder_before_archive
       archive
       delete
     ].each do |trait|
@@ -119,6 +120,7 @@ RSpec.describe Event, type: :model do
         update
         submit
         reminder
+        reminder_before_archive
         archive
         delete
       ].each do |name|
@@ -179,6 +181,7 @@ RSpec.describe Event, type: :model do
     describe "events which not require user presence" do
       %w[
         reminder
+        reminder_before_archive
       ].each do |name|
         context "when name '#{name}'" do
           let(:name) { name }

@@ -16,6 +16,7 @@ import ApiServiceNational from '../pages/ApiServiceNational';
 import ApiStatutDemandeurEmploi from '../pages/ApiStatutDemandeurEmploi';
 import ApiStatutEtudiant from '../pages/ApiStatutEtudiant';
 import ApiStatutEtudiantBoursier from '../pages/ApiStatutEtudiantBoursier';
+import ApiScolarite from '../pages/ApiScolarite';
 import CartoBio from '../pages/CartoBio';
 import ApiCprProProduction from '../pages/DgfipPages/ApiCprProProduction';
 import ApiCprProSandbox from '../pages/DgfipPages/ApiCprProSandbox';
@@ -453,6 +454,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     email: 'api-boursier@cnous.fr',
     type: DataProviderType.api,
     component: ApiStatutEtudiantBoursier,
+  },
+  api_scolarite: {
+    label: 'API Scolarité',
+    icon: 'logo-menj.png',
+    email: 'support@api.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiScolarite,
   },
   api_indemnisation_pole_emploi: {
     label: 'API Indemnisation Pôle emploi',
