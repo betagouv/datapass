@@ -90,6 +90,8 @@ const scopesConfiguration = [
     value: 'effectifs_acoss',
     label: '🔐 Effectif d’une entreprise - Urssaf',
     link: 'https://entreprise.api.gouv.fr/catalogue/urssaf/effectifs',
+    triggerWarning: true,
+    warningType: 'apientreprise_sensitive_effectifs',
   },
   {
     value: 'eori_douanes',
