@@ -12,6 +12,7 @@ class TeamMember < ActiveRecord::Base
     end
   end
 
+  before_validation :clean_phone_number
   belongs_to :enrollment
   belongs_to :user, optional: true
   before_save :set_user, if: :will_save_change_to_email?
@@ -24,6 +25,10 @@ class TeamMember < ActiveRecord::Base
 
   def has_linked_user
     true
+  end
+
+  def clean_phone_number
+    self.phone_number = phone_number&.gsub(/\D/, "") unless phone_number.nil?
   end
 
   protected

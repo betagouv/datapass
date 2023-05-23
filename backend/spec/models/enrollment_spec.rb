@@ -235,6 +235,38 @@ RSpec.describe Enrollment, type: :model do
           expect(subject["team_members"]["2"]["email"]).to eq(["hoho@santa.claus"])
         end
       end
+
+      context "with modification of a non-sanitized phone_number in team_members" do
+        before do
+          tm = JSON.parse(enrollment.team_members.to_json)
+          enrollment.update!(
+            team_members_attributes: [
+              {
+                id: tm[0]["id"],
+                type: "demandeur",
+                email: tm[0]["email"],
+                phone_number: tm[0]["phone_number"],
+                job: tm[0]["job"],
+                given_name: tm[0]["given_name"],
+                family_name: tm[0]["family_name"]
+              },
+              {
+                id: tm[1]["id"],
+                type: "responsable_technique",
+                email: tm[1]["email"],
+                phone_number: "0158453286‬",
+                job: tm[1]["job"],
+                given_name: tm[1]["given_name"],
+                family_name: tm[1]["family_name"]
+              }
+            ]
+          )
+        end
+
+        it "returns a diff for modified phone_number with sanitized value in associated model" do
+          expect(subject["team_members"]["1"]["phone_number"]).to eq(["0636656565", "0158453286"])
+        end
+      end
     end
   end
 
