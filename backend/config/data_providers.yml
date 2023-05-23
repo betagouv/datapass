@@ -157,7 +157,6 @@ api_particulier:
   groups:
     cnaf:
       label: API Quotient familial CAF
-      about: https://particulier.api.gouv.fr/catalogue/cnaf/quotient_familial
       scopes:
         - cnaf_quotient_familial
         - cnaf_allocataires
@@ -165,7 +164,6 @@ api_particulier:
         - cnaf_adresse
     pole_emploi:
       label: API Statut demandeur d'emploi
-      about: https://particulier.api.gouv.fr/catalogue/pole_emploi/situation
       scopes:
         - pole_emploi_identite
         - pole_emploi_contact
@@ -173,14 +171,12 @@ api_particulier:
         - pole_emploi_inscription
     men:
       label: API Statut élève scolarisé et boursier
-      about: https://particulier.api.gouv.fr/catalogue/education_nationale/statut_eleve_scolarise
       scopes:
         - men_statut_scolarite
         - men_statut_boursier
         - men_echelon_bourse
     mesri:
       label: API Statut étudiant
-      about: https://particulier.api.gouv.fr/catalogue/mesr/statut_etudiant
       scopes:
         - mesri_identite
         - mesri_admission
@@ -190,7 +186,6 @@ api_particulier:
         - mesri_identifiant
     cnous:
       label: API Statut étudiant boursier
-      about: https://particulier.api.gouv.fr/catalogue/cnous/statut_etudiant_boursier
       scopes:
         - cnous_statut_boursier
         - cnous_echelon_bourse
