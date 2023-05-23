@@ -1,0 +1,20 @@
+.expandable-section {
+  color: var(--text-action-high-blue-france);
+  font-weight: 500;
+}
+
+.expandable-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.expandable-section-content {
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: var(--background-contrast-info);
+  font-size: small;
+  color: black;
+}

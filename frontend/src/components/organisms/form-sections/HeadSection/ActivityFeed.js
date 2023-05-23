@@ -5,7 +5,6 @@ import { FormContext } from '../../../templates/Form';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
-import Button from '../../../atoms/hyperTexts/Button';
 import {
   ArchiveIcon,
   CheckCircleIcon,
@@ -13,13 +12,14 @@ import {
   ErrorIcon,
   MailIcon,
   MailOpenIcon,
-  InfoIcon,
+  InfoFillIcon,
   WarningIcon,
 } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { Linkify } from '../../../molecules/Linkify';
 import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
+import ExpandableSection from '../../../molecules/ExpandableSection';
 
 const eventToDisplayableContent = {
   request_changes: {
@@ -31,11 +31,11 @@ const eventToDisplayableContent = {
     label: 'a écrit',
   },
   create: {
-    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
+    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
     label: 'a créé la demande d’habilitation',
   },
   submit: {
-    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
+    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
     label: 'a soumis la demande d’habilitation',
   },
   validate: {
@@ -53,11 +53,11 @@ const eventToDisplayableContent = {
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   update_contacts: {
-    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
+    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
     label: 'a mis à jour les contacts',
   },
   update: {
-    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
+    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
     label: 'a mis à jour l’habilitation',
   },
   refuse: {
@@ -77,7 +77,7 @@ const eventToDisplayableContent = {
     label: 'a copié l’habilitation',
   },
   import: {
-    icon: <InfoIcon color={'var(--text-default-info)'} outlined />,
+    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
     label: 'a importé l’habilitation',
   },
 };
@@ -177,12 +177,6 @@ EventItem.defaultProps = {
 };
 
 const ActivityFeed = ({ events }) => {
-  const [showDetails, setShowDetails] = useState(false);
-
-  const {
-    enrollment: { team_members = [] },
-  } = useContext(FormContext) || { enrollment: {} };
-
   let eventsToDisplay = chain(events)
     .sortBy('created_at')
     .reject(
@@ -190,44 +184,25 @@ const ActivityFeed = ({ events }) => {
     )
     .value();
 
-  if (!showDetails && events.length > 0) {
-    const showFromIndex = eventsToDisplay.findIndex(
-      ({ name, user, processed_at }) =>
-        name === 'notify' &&
-        isUserADemandeur({ team_members, user_email: user.email }) &&
-        processed_at === null
-    );
-    // if there is no message from the demandeur then showFromIndex === -1
-    // as a consequence, slice only take the last event from eventsToDisplay
-    eventsToDisplay = eventsToDisplay.slice(showFromIndex);
-  }
-
   return (
     <div>
-      <div className="activity-head">
-        <Button
-          secondary
-          icon="eye"
-          onClick={() => setShowDetails(!showDetails)}
-        >
-          {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
-        </Button>
-      </div>
-      {eventsToDisplay.map(
-        ({ id, comment, name, created_at, processed_at, user, diff }) => (
-          <EventItem
-            key={id}
-            comment={comment}
-            name={name}
-            created_at={created_at}
-            processed_at={processed_at}
-            email={user?.email}
-            family_name={user?.family_name}
-            given_name={user?.given_name}
-            diff={diff}
-          />
-        )
-      )}
+      <ExpandableSection title="Historique de la demande">
+        {eventsToDisplay.map(
+          ({ id, comment, name, created_at, processed_at, user, diff }) => (
+            <EventItem
+              key={id}
+              comment={comment}
+              name={name}
+              created_at={created_at}
+              processed_at={processed_at}
+              email={user?.email}
+              family_name={user?.family_name}
+              given_name={user?.given_name}
+              diff={diff}
+            />
+          )
+        )}
+      </ExpandableSection>
     </div>
   );
 };
