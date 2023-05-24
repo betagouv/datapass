@@ -458,7 +458,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
   api_scolarite: {
     label: 'API Scolarité',
     icon: 'logo-menj.png',
-    email: 'support@api.gouv.fr',
+    email: 'api-sco-eleve_contacts@education.gouv.fr',
     type: DataProviderType.api,
     component: ApiScolarite,
   },
