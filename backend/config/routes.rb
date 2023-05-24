@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         post :copy
         get :copies
         get :next_enrollments
-        patch :mark_event_as_read
+        patch :mark_event_as_processed
 
         get :email_templates, to: "enrollments_email_templates#index"
       end

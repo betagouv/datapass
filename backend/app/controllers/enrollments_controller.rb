@@ -53,8 +53,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/1
   def show
     @enrollment = authorize Enrollment.find(params[:id])
-    if @enrollment.recent
-      @enrollment.mark_event_as_read("submit")
+    unless @enrollment.consulted_by_instructor?
+      @enrollment.mark_event_as_processed("submit")
     end
     render json: @enrollment
   end
@@ -164,7 +164,7 @@ class EnrollmentsController < ApplicationController
     end
 
     if current_user.is_instructor?(@enrollment.target_api)
-      @enrollment.mark_event_as_read("notify")
+      @enrollment.mark_event_as_processed("notify")
     end
 
     if @enrollment.send(
@@ -215,7 +215,7 @@ class EnrollmentsController < ApplicationController
   # GET enrollment/1/mark_event_as_read
   def mark_event_as_read
     @enrollment = authorize Enrollment.find(params[:id])
-    @enrollment.mark_event_as_read(params[:event_name])
+    @enrollment.mark_event_as_processed(params[:event_name])
 
     render json: @enrollment
   end

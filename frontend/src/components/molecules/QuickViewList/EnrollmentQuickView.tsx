@@ -27,7 +27,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
       }}
     >
       <div className="quick-view-informations quick-view-informations--small">
-        {enrollment.recent && (
+        {!enrollment.consulted_by_instructor && (
           <div className="quick-view-header">
             <Badge type={BadgeType.new} icon={true} small={true}>
               Nouveau
@@ -36,7 +36,7 @@ const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
         )}
         <div
           className={`quick-view-title ${
-            enrollment.recent ? 'quick-view-title--new' : ''
+            enrollment.consulted_by_instructor ? '' : 'quick-view-title--new'
           }`}
         >
           {enrollment.intitule}

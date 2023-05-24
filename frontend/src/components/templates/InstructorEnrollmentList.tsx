@@ -36,7 +36,7 @@ export type Enrollment = {
   id: number;
   intitule: string;
   siret: string;
-  recent: boolean;
+  consulted_by_instructor: boolean;
   nom_raison_sociale: string | null;
   demandeurs: Demandeur[];
   target_api: string;
@@ -67,7 +67,6 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
-        detailed: true,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -82,19 +81,19 @@ const InstructorEnrollmentList: React.FC = () => {
   }, [pagination, sorted, filtered]);
 
   const columns = [
-    columnHelper.accessor('recent', {
+    columnHelper.accessor('consulted_by_instructor', {
       header: 'État',
       id: 'state',
       enableSorting: false,
       enableColumnFilter: false,
       size: 70,
       cell: ({ getValue }) => {
-        const isNew = getValue() as boolean;
-        return isNew ? (
+        const consultedByInstructor = getValue();
+        return consultedByInstructor ? null : (
           <Badge type={BadgeType.new} icon={true} small={true}>
             Nouveau
           </Badge>
-        ) : null;
+        );
       },
     }),
     columnHelper.accessor('updated_at', {
@@ -242,14 +241,14 @@ const InstructorEnrollmentList: React.FC = () => {
             goToItem(target_api, id, event);
           }}
           getRowClassName={(row) => {
-            const { id, recent } = row as Enrollment;
+            const { id, consulted_by_instructor } = row as Enrollment;
             let className = '';
 
             if (id === previouslySelectedEnrollmentId) {
               className += ' selected';
             }
 
-            if (recent) {
+            if (!consulted_by_instructor) {
               className += ' new';
             }
 

@@ -3,7 +3,7 @@ class EnrollmentSerializer < ActiveModel::Serializer
     :cgu_approved, :scopes, :team_members, :organization_id, :siret, :nom_raison_sociale, :status, :linked_token_manager_id,
     :additional_content, :intitule, :description, :fondement_juridique_title, :fondement_juridique_url,
     :data_recipients, :data_retention_period, :data_retention_comment, :demarche, :technical_team_type, :technical_team_value, :demandeurs,
-    :type_projet, :date_mise_en_production, :volumetrie_approximative, :dpo_is_informed, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :recent
+    :type_projet, :date_mise_en_production, :volumetrie_approximative, :dpo_is_informed, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code
 
   has_many :team_members, serializer: TeamMemberWithProfileSerializer do
     object.team_members.order(:id)
