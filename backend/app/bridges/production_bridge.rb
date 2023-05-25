@@ -11,7 +11,7 @@ class ProductionBridge < ApplicationBridge
     submit_event = @enrollment.events.find { |event| event["name"] == "submit" }
     validate_event = @enrollment.events.find { |event| event["name"] == "validate" }
     validated_at = @enrollment.validated_at
-    cadre_juridique_title = @enrollment[:fondement_juridique_title]
+    cadre_juridique_title = @enrollment[:fondement_juridique_title].gsub(/(\r?\n|\r)/, " ")
     fondement_juridique_url = @enrollment[:fondement_juridique_url]
     document_juridique = @enrollment.documents.find { |doc| doc["type"] == "Document::LegalBasis" }
     homologation = @enrollment[:additional_content]
@@ -109,7 +109,7 @@ class ProductionBridge < ApplicationBridge
         demande: {
           demandeur: {
             mail: demandeur[:email],
-            telephone: demandeur[:phone_number].gsub(/\D/, ""),
+            telephone: demandeur[:phone_number].gsub(/\D+/, ""),
             denominationEtatCivil: {
               nom: demandeur[:family_name],
               prenom: demandeur[:given_name]
@@ -120,7 +120,7 @@ class ProductionBridge < ApplicationBridge
           },
           valideur: {
             mail: validateur[:email],
-            telephone: validateur[:phone_number].gsub(/\D/, ""),
+            telephone: validateur[:phone_number].gsub(/\D+/, ""),
             denominationEtatCivil: {
               nom: validateur[:family_name],
               prenom: validateur[:given_name]

@@ -12,9 +12,9 @@ class SandboxBridge < ApplicationBridge
     submit_event = @enrollment.events.find { |event| event["name"] == "submit" }
     validate_event = @enrollment.events.find { |event| event["name"] == "validate" }
     validated_at = @enrollment.validated_at
-    cas_usage_libelle = @enrollment[:intitule]
-    cas_usage_detail = @enrollment[:description]
-    cadre_juridique_title = @enrollment[:fondement_juridique_title]
+    cas_usage_libelle = @enrollment[:intitule].gsub(/(\r?\n|\r)/, " ")
+    cas_usage_detail = @enrollment[:description].gsub(/(\r?\n|\r)/, " ")
+    cadre_juridique_title = @enrollment[:fondement_juridique_title].gsub(/(\r?\n|\r)/, " ")
     fondement_juridique_url = @enrollment[:fondement_juridique_url]
     document_juridique = @enrollment.documents.find { |doc| doc["type"] == "Document::LegalBasis" }
     rgpd_destinataires = @enrollment[:data_recipients]
@@ -120,7 +120,7 @@ class SandboxBridge < ApplicationBridge
 
     # 3 Post Info to DGFIP
     Http.instance.post({
-      url: "#{api_dgfip_host}/contractualisation/v1/production/#{id}",
+      url: "#{api_dgfip_host}/contractualisation/v1/sandbox/#{id}",
       api_key: access_token,
       use_correlation_id: true,
       tag: "Api Contractualisation DGFiP (sandbox)",
@@ -141,7 +141,7 @@ class SandboxBridge < ApplicationBridge
         demande: {
           demandeur: {
             mail: demandeur[:email],
-            telephone: demandeur[:phone_number].gsub(/\D/, ""),
+            telephone: demandeur[:phone_number].gsub(/\D+/, ""),
             denominationEtatCivil: {
               nom: demandeur[:family_name],
               prenom: demandeur[:given_name]
@@ -152,7 +152,7 @@ class SandboxBridge < ApplicationBridge
           },
           valideur: {
             mail: validateur[:email],
-            telephone: validateur[:phone_number].gsub(/\D/, ""),
+            telephone: validateur[:phone_number].gsub(/\D+/, ""),
             denominationEtatCivil: {
               nom: validateur[:family_name],
               prenom: validateur[:given_name]
@@ -166,12 +166,12 @@ class SandboxBridge < ApplicationBridge
           dateValidation: validated_at.iso8601
         },
         casUsage: {
-          libelle: cas_usage_libelle,
+          libelle: cas_usage_libelle[0..40].gsub(/\s\w+\s*$/, "..."),
           detail: cas_usage_detail
         },
-        responsable_technique: {
+        responsableTechnique: {
           mail: responsable_technique[:email],
-          telephone: responsable_technique[:phone_number].gsub(/\D/, ""),
+          telephone: responsable_technique[:phone_number].gsub(/\D+/, ""),
           denominationEtatCivil: {
             nom: responsable_technique[:family_name],
             prenom: responsable_technique[:given_name]
@@ -192,29 +192,29 @@ class SandboxBridge < ApplicationBridge
             valeur: duree_conservation_donnee_valeur,
             unite: "mois",
             justificatif: justificatif
+          },
+          responsableTraitement: {
+            mail: responsable_traitement[:email],
+            telephone: responsable_traitement[:phone_number].gsub(/\D+/, ""),
+            denominationEtatCivil: {
+              nom: responsable_traitement[:family_name],
+              prenom: responsable_traitement[:given_name]
+            },
+            denominationService: responsable_traitement[:job],
+            balf: nil,
+            siren: nil
+          },
+          dpd: {
+            mail: dpd[:email],
+            telephone: dpd[:phone_number].gsub(/\D+/, ""),
+            denominationEtatCivil: {
+              nom: dpd[:family_name],
+              prenom: dpd[:given_name]
+            },
+            denominationService: dpd[:job],
+            balf: nil,
+            siren: nil
           }
-        },
-        responsableTraitement: {
-          mail: responsable_traitement[:email],
-          telephone: responsable_traitement[:phone_number].gsub(/\D/, ""),
-          denominationEtatCivil: {
-            nom: responsable_traitement[:family_name],
-            prenom: responsable_traitement[:given_name]
-          },
-          denominationService: responsable_traitement[:job],
-          balf: nil,
-          siren: nil
-        },
-        dpd: {
-          mail: dpd[:email],
-          telephone: dpd[:phone_number].gsub(/\D/, ""),
-          denominationEtatCivil: {
-            nom: dpd[:family_name],
-            prenom: dpd[:given_name]
-          },
-          denominationService: dpd[:job],
-          balf: nil,
-          siren: nil
         },
         cgu: {
           libelle: "Libellé du CGU",
@@ -232,8 +232,8 @@ class SandboxBridge < ApplicationBridge
                 code: nil
               }
             ],
-            version: "a remplir par DGFIP",
-            code: "Nom de L'API"
+            version: "1.0",
+            code: "Impôt_Particulier"
           }
         ]
       }

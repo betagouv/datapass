@@ -67,7 +67,7 @@ RSpec.describe SandboxBridge, type: :bridge do
             libelle: "Dites-le nous une fois - Place en crèche",
             detail: "Simplification des demandes de place en crèche pour les usagers..."
           },
-          responsable_technique: {
+          responsableTechnique: {
             mail: "lebrac@whatever.gouv.fr",
             telephone: "0634890123",
             denominationEtatCivil: {
@@ -90,29 +90,29 @@ RSpec.describe SandboxBridge, type: :bridge do
               valeur: "120",
               unite: "mois",
               justificatif: "Justif. DUA : il s'agit de pièces justificatives comptables..."
+            },
+            responsableTraitement: {
+              mail: "prunelle@whatever.gouv.fr",
+              telephone: "0612345678",
+              denominationEtatCivil: {
+                nom: "Prunelle",
+                prenom: "Leon"
+              },
+              denominationService: "Responsable administrative et finances",
+              balf: nil,
+              siren: "219200235"
+            },
+            dpd: {
+              mail: "jeanne@whatever.gouv.fr",
+              telephone: "0123456789",
+              denominationEtatCivil: {
+                nom: "Madmoizelle",
+                prenom: "Jeanne"
+              },
+              denominationService: "Délégué à la protection des données personnelles",
+              balf: nil,
+              siren: "219200235"
             }
-          },
-          responsableTraitement: {
-            mail: "prunelle@whatever.gouv.fr",
-            telephone: "0612345678",
-            denominationEtatCivil: {
-              nom: "Prunelle",
-              prenom: "Leon"
-            },
-            denominationService: "Responsable administrative et finances",
-            balf: nil,
-            siren: "219200235"
-          },
-          dpd: {
-            mail: "jeanne@whatever.gouv.fr",
-            telephone: "0123456789",
-            denominationEtatCivil: {
-              nom: "Madmoizelle",
-              prenom: "Jeanne"
-            },
-            denominationService: "Délégué à la protection des données personnelles",
-            balf: nil,
-            siren: "219200235"
           },
           cgu: {
             libelle: "Libellé du CGU",
