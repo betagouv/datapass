@@ -1,7 +1,7 @@
 class CleanPhoneNumbersInTeamMembers < ActiveRecord::Migration[7.0]
   def up
     TeamMember.find_each do |team_member|
-      cleaned_phone_number = team_member.phone_number.gsub(/\D/, "") unless team_member.phone_number.nil?
+      cleaned_phone_number = team_member.phone_number.gsub(/[^\x20-\x7E]/, "") unless team_member.phone_number.nil?
       team_member.update_column(:phone_number, cleaned_phone_number)
     end
   end

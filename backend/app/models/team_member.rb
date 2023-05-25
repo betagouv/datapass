@@ -12,7 +12,7 @@ class TeamMember < ActiveRecord::Base
     end
   end
 
-  before_validation :clean_phone_number
+  before_validation :remove_non_ascii_from_phone_number
   belongs_to :enrollment
   belongs_to :user, optional: true
   before_save :set_user, if: :will_save_change_to_email?
@@ -27,8 +27,8 @@ class TeamMember < ActiveRecord::Base
     true
   end
 
-  def clean_phone_number
-    self.phone_number = phone_number&.gsub(/\D/, "") unless phone_number.nil?
+  def remove_non_ascii_from_phone_number
+    self.phone_number = phone_number&.gsub(/[^\x20-\x7E]/, "") unless phone_number.nil?
   end
 
   protected
