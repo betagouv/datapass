@@ -33,12 +33,12 @@ api_particulier:
   cguLink: https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf
   donneesDescription: >-
     L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue). 
-    Chaque API transmet différentes données, regroupées dans des périmètres distincts. En effet, afin de respecter les principes de
+    Chaque API transmet **différentes données, regroupées dans des périmètres distincts**. En effet, afin de respecter les principes de
     collecte, traitement et conservation de données définit par l'article 6 de la loi informatique et libertés, 
     vous devez sélectionner uniquement les données strictement nécessaires à votre téléservice. 
     Le non-respect du principe de proportionnalité vous expose vis-à-vis de la CNIL.
     
-    Chaque périmètre est formalisé par une case à cocher dans ce formulaire. 
+    **Chaque périmètre est formalisé par une case à cocher dans ce formulaire**. 
     Pour chacune des API, un périmètre minimal est à cocher, celui-ci est indiqué par le pictogramme épingle 📌.
   cadreJuridiqueDescription: >-
     Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
