@@ -34,12 +34,11 @@ api_particulier:
   donneesDescription: >-
     L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue). 
     Chaque API transmet **différentes données, regroupées dans des périmètres distincts**. En effet, afin de respecter les principes de
-    collecte, traitement et conservation de données définit par l'article 6 de la loi informatique et libertés, 
+    collecte, traitement et conservation de données définit par l'[article 4 de la loi informatique et libertés](https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article4), 
     vous devez sélectionner uniquement les données strictement nécessaires à votre téléservice. 
     Le non-respect du principe de proportionnalité vous expose vis-à-vis de la CNIL.
     
-    **Chaque périmètre est formalisé par une case à cocher dans ce formulaire**. 
-    Pour chacune des API, un périmètre minimal est à cocher, celui-ci est indiqué par le pictogramme épingle 📌.
+    **Chaque périmètre est formalisé par une case à cocher dans ce formulaire**.
   cadreJuridiqueDescription: >-
     Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
     légal et réglementaire des fournisseurs de service doit permettre à la
@@ -64,8 +63,8 @@ api_particulier:
     délibération](https://api.gouv.fr/guides/deliberation-api-part).
   scopesConfiguration:
     - value: cnaf_quotient_familial
-      label: 📌 Quotient familial CAF
-      helper: Périmètre minimal à cocher pour avoir accès à cette API. Délivre le quotient familial CAF uniquement.
+      label: Quotient familial CAF
+      helper: Délivre le quotient familial CAF.
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
@@ -75,8 +74,8 @@ api_particulier:
     - value: cnaf_adresse
       label: Adresse du foyer
     - value: pole_emploi_identite
-      label: 📌 Statut demandeur d'emploi et identité
-      helper: Périmètre minimal à cocher pour avoir accès à cette API. Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
+      label: Statut demandeur d'emploi et identité
+      helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
     - value: pole_emploi_contact
       label: Téléphones et e-mail
     - value: pole_emploi_adresse
@@ -85,8 +84,8 @@ api_particulier:
       label: Données d'inscription Pôle emploi
       helper: Date d'inscription, de cessation, et catégorie d'inscription du demandeur d'emploi
     - value: men_statut_scolarite
-      label: 📌 Statut élève scolarisé et identité
-      helper: Périmètre minimal à cocher pour avoir accès à cette API. Indique si l’élève est scolarisé (réponse oui/non) et le cas échéant transmet statut de scolarité, nom, prénom, sexe, date de naissance et code UAI de l'établissement.
+      label: Statut élève scolarisé et identité
+      helper: Indique si l’élève est scolarisé (réponse oui/non) et le cas échéant transmet statut de scolarité, nom, prénom, sexe, date de naissance et code UAI de l'établissement.
     - value: men_statut_boursier
       label: Statut boursier
       helper: Indique si l’élève est boursier (réponse oui/non)
@@ -97,8 +96,8 @@ api_particulier:
       label: Numéro INE
       helper: Permet d'accéder à l'identifiant national de l’étudiant (INE).
     - value: mesri_identite
-      label: 📌 Statut étudiant inscrit et identité
-      helper: Périmètre minimal à cocher pour avoir accès à cette API. Indique si le particulier est étudiant "inscrit", et le cas échéant transmet nom, prénom et date de naissance de l'étudiant. Pour accéder aux étudiants "admis", cocher la case "Périmètre étudiants admis".
+      label: Statut étudiant inscrit et identité
+      helper: Indique si le particulier est étudiant "inscrit", et le cas échéant transmet nom, prénom et date de naissance de l'étudiant. Pour accéder aux étudiants "admis", cocher la case "Périmètre étudiants admis".
     - value: mesri_admission
       label: Périmètre étudiants admis
       helper: Permet d’interroger les données des étudiants au statut d'inscription "admis".
@@ -114,8 +113,8 @@ api_particulier:
       helper: >-
         Permet d’interroger les données des étudiants dont le régime de formation est la formation initiale.
     - value: cnous_statut_boursier
-      label: 📌 Statut étudiant boursier
-      helper: Périmètre minimal à cocher pour avoir accès à cette API. Indique si l’étudiant est boursier au moment de l’interrogation (réponse oui/non)
+      label: Statut étudiant boursier
+      helper: Indique si l’étudiant est boursier au moment de l’interrogation (réponse oui/non)
     - value: cnous_echelon_bourse
       label: Échelon de la bourse
       helper: échelon de 0bis à 8
