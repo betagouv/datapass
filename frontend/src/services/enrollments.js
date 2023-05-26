@@ -262,7 +262,7 @@ export function markEventAsRead({ id, event_name }) {
   });
   return httpClient
     .patch(
-      `${BACK_HOST}/api/enrollments/${id}/mark_event_as_read/${queryParam}`,
+      `${BACK_HOST}/api/enrollments/${id}/mark_event_as_processed/${queryParam}`,
       {
         headers: { 'Content-type': 'application/json' },
       }

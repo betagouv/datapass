@@ -213,7 +213,7 @@ class EnrollmentsController < ApplicationController
   end
 
   # GET enrollment/1/mark_event_as_read
-  def mark_event_as_read
+  def mark_event_as_processed
     @enrollment = authorize Enrollment.find(params[:id])
     @enrollment.mark_event_as_processed(params[:event_name])
 
