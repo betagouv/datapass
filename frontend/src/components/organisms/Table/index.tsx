@@ -77,9 +77,9 @@ const Table = ({
     if (column.getCanSort()) {
       return {
         className: 'header-container sorting-header',
-        onClick: getOnSortingChange(
-          column.getToggleSortingHandler() as (event: SyntheticEvent) => void
-        ),
+        onClick: column.getToggleSortingHandler() as (
+          event: SyntheticEvent
+        ) => void,
       };
     }
 
@@ -87,19 +87,6 @@ const Table = ({
       className: 'header-container',
     };
   };
-
-  const getOnSortingChange =
-    (toggleSortingHandler: (event: SyntheticEvent) => void) =>
-    (event: SyntheticEvent) => {
-      toggleSortingHandler(event);
-      table.resetPagination();
-    };
-
-  const getOnFilterChange =
-    (setFilterValue: (updater: any) => void) => (updater: any) => {
-      setFilterValue(updater);
-      table.resetPagination();
-    };
 
   const rowClassName = (row: Row<RowData>) => {
     let className = '';
@@ -179,9 +166,7 @@ const Table = ({
                         ) : null}
                         {header.column.getCanFilter() && (
                           <FilterComponent
-                            onChange={getOnFilterChange(
-                              header.column.setFilterValue
-                            )}
+                            onChange={header.column.setFilterValue}
                             filter={
                               header.column.columnDef.meta?.filter as FilterMeta
                             }

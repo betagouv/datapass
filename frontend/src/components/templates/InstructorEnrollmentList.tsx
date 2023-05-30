@@ -61,6 +61,10 @@ const InstructorEnrollmentList: React.FC = () => {
     useQueryString('previouslySelectedEnrollmentId', 0);
 
   useEffect(() => {
+    setPagination({ pageIndex: 0 });
+  }, [filtered, sorted, setPagination]);
+
+  useEffect(() => {
     const debouncedFetchData = debounce(() => {
       setLoading(true);
       getEnrollments({
