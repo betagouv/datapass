@@ -12,6 +12,15 @@ DEMANDEUR: &DEMANDEUR
   phone_number: 0103821213
   user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
 
+ALTERNATIVE_DEMANDEUR: &ALTERNATIVE_DEMANDEUR
+  <<: *DEFAULTS
+  email: demandeuralternatif@yopmail.com
+  family_name: Demandeur Alternatif
+  type: demandeur
+  job: Demandeur
+  phone_number: 0103821215
+  user_id: <%= ActiveRecord::FixtureSet.identify(:alternative_demandeur) %>
+
 RESPONSABLE_TRAITEMENT: &RESPONSABLE_TRAITEMENT
   <<: *DEFAULTS
   email: responsable_traitement@yopmail.com
@@ -71,6 +80,28 @@ contact_metier_draft_<%= i %>:
   <<: *CONTACT_METIER
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
 <% end %>
+
+# 📝 DRAFT ENROLLMENT FROM AN OTHER DEMANDEUR
+
+demandeur_draft_alternative:
+  <<: *ALTERNATIVE_DEMANDEUR
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
+
+responsable_traitement_draft_alternative:
+  <<: *RESPONSABLE_TRAITEMENT
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
+  
+delegue_protection_donnees_draft_alternative:
+  <<: *DELEGUE_PROTECTION_DONNEES
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
+  
+responsable_technique_draft_alternative:
+  <<: *RESPONSABLE_TECHNIQUE
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
+  
+contact_metier_draft_alternative:
+  <<: *CONTACT_METIER
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
 
 
 # ✅ VALIDATED ENROLLMENT TEAM MEMBERS

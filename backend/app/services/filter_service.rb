@@ -47,14 +47,18 @@ class FilterService < ApplicationService
     when "users"
       query_parts << "email"
     when "enrollments"
-      query_parts += %w[id siret nom_raison_sociale intitule target_api status zip_code]
+      query_parts += %w[id siret nom_raison_sociale intitule target_api status zip_code team_members.email]
     else
       raise "'#{@items.table_name}' is not supported by FilterService"
     end
 
     sanitized_value = sanitize_value(value)
     query = query_parts.map do |key|
-      sanitized_key = sanitize_key(key, @items.table_name)
+      sanitized_key = if key == "team_members.email"
+        "(SELECT string_agg(email, ' ') FROM team_members WHERE team_members.enrollment_id = enrollments.id)"
+      else
+        sanitize_key(key, @items.table_name)
+      end
       "#{sanitized_key}::varchar(255) ~* '.*(#{sanitized_value}).*'"
     end
 

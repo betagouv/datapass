@@ -13,6 +13,11 @@ event_enrollment_draft_create<%= i %>:
   enrollment_id: <%= ActiveRecord::FixtureSet.identify(:"enrollment_draft_#{i}") %>
 <% end %>
 
+
+event_enrollment_draft_alternative_create:
+  <<: *DEFAULTS
+  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_draft_alternative) %>
+
 event_enrollment_draft_3_notify:
   <<: *DEFAULTS
   name: "notify"

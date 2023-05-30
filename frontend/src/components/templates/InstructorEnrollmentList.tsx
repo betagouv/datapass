@@ -76,7 +76,7 @@ const InstructorEnrollmentList: React.FC = () => {
         setEnrollments(enrollments);
         setTotalPages(total_pages > 0 ? total_pages : 1);
       });
-    }, 100);
+    }, 200);
 
     debouncedFetchData();
     return () => {
