@@ -92,9 +92,6 @@ api_particulier:
     - value: men_echelon_bourse
       label: Échelon de la bourse
       helper: Indique l’échelon de l’élève boursier
-    - value: mesri_identifiant
-      label: Numéro INE
-      helper: Permet d'accéder à l'identifiant national de l’étudiant (INE).
     - value: mesri_identite
       label: Statut étudiant inscrit et identité
       helper: Indique si le particulier est étudiant "inscrit", et le cas échéant transmet nom, prénom et date de naissance de l'étudiant. Pour accéder aux étudiants "admis", cocher la case "Périmètre étudiants admis".
@@ -163,7 +160,6 @@ api_particulier:
         - mesri_inscription_etudiant
         - mesri_inscription_autre
         - mesri_etablissements
-        - mesri_identifiant
     cnous:
       label: API Statut étudiant boursier
       scopes:
@@ -251,7 +247,6 @@ api_particulier:
           pole_emploi_contact: false
           pole_emploi_adresse: false
           pole_emploi_inscription: false
-          mesri_identifiant: false
           mesri_identite: false
           mesri_inscription_etudiant: false
           mesri_inscription_autre: false
@@ -574,7 +569,6 @@ api_particulier:
           pole_emploi_contact: true
           pole_emploi_adresse: true
           pole_emploi_inscription: true
-          mesri_identifiant: true
           mesri_identite: true
           cnous_statut_bourse: true
           cnous_identite: true
