@@ -32,34 +32,13 @@ api_particulier:
   type: api
   cguLink: https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf
   donneesDescription: >-
-    ⚠️**Les données fiscales des particuliers ne sont plus disponibles via
-    l’API Particulier, produit opéré par la DINUM**. Pour obtenir ces données
-    (ex : le revenu fiscal de référence, les informations sur les déclarants
-    et le nombre de parts du foyer fiscal), veuillez désormais interroger
-    directement l’API dédiée à l’accès aux données fiscales des particuliers
-    [**l’API Impôt particulier** de la DGFiP](https://api.gouv.fr/les-api/impot-particulier).
-
-
-    La loi informatique et libertés définit les principes à respecter lors de
-    la collecte, du traitement et de la conservation de données personnelles.
-
-
-    L’article 6 précise :
-
-
-    - 3° [les données] sont adéquates, pertinentes et non excessives au regard
-    des finalités pour lesquelles elles sont collectées et de leurs
-    traitements ultérieurs ;
-
-    - 4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les
-    mesures appropriées doivent être prises pour que les données inexactes ou
-    incomplètes au regard des finalités pour lesquelles elles sont collectées
-    ou traitées soient effacées ou rectifiées ;
-
-
-    Nous vous remercions de sélectionner uniquement les données strictement
-    nécessaires à votre téléservice. Le non-respect du principe de
-    proportionnalité vous expose vis-à-vis de la CNIL.
+    L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue). 
+    Chaque API transmet **différentes données, regroupées dans des périmètres distincts**. En effet, afin de respecter les principes de
+    collecte, traitement et conservation de données définit par l'[article 4 de la loi informatique et libertés](https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article4), 
+    vous devez sélectionner uniquement les données strictement nécessaires à votre téléservice. 
+    Le non-respect du principe de proportionnalité vous expose vis-à-vis de la CNIL.
+    
+    **Chaque périmètre est formalisé par une case à cocher dans ce formulaire**.
   cadreJuridiqueDescription: >-
     Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
     légal et réglementaire des fournisseurs de service doit permettre à la
@@ -85,6 +64,7 @@ api_particulier:
   scopesConfiguration:
     - value: cnaf_quotient_familial
       label: Quotient familial CAF
+      helper: Délivre le quotient familial CAF.
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
