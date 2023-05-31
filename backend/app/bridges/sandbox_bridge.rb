@@ -103,7 +103,7 @@ class SandboxBridge < ApplicationBridge
     validateur_id = validate_event[:user_id]
     validateur = User.find_by(id: validateur_id)
 
-    # 1.2 Transform document in URl
+    # 1.2 Transform document in URL
     unless document_juridique.nil?
       document_url = "#{ENV["BACK_HOST"]}#{document_juridique.attachment.url}"
     end
@@ -113,7 +113,6 @@ class SandboxBridge < ApplicationBridge
     sandbox_copied_id = sandbox_old.present? ? sandbox_old : nil
 
     # 2 get token
-
     token_response = Http.instance.post({
       url: "#{api_dgfip_host}/token",
       api_key: Base64.strict_encode64("#{client_id}:#{client_secret}"),
@@ -126,7 +125,7 @@ class SandboxBridge < ApplicationBridge
     token = token_response.parse
     access_token = token["access_token"]
 
-    # 3 Post Info to DGFIP
+    # 3 Post info to DGFiP
     Http.instance.post({
       url: "#{api_dgfip_host}/contractualisation/v1/sandbox/#{id}",
       api_key: access_token,
@@ -174,7 +173,7 @@ class SandboxBridge < ApplicationBridge
           dateValidation: validated_at.iso8601
         },
         casUsage: {
-          libelle: cas_usage_libelle[0..40].gsub(/\s\w+\s*$/, "..."),
+          libelle: cas_usage_libelle.first(40),
           detail: cas_usage_detail
         },
         responsableTechnique: {
