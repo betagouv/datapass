@@ -95,7 +95,7 @@ class EnrollmentPolicy < ApplicationPolicy
     user.is_instructor?(record.target_api)
   end
 
-  def mark_event_as_read?
+  def mark_event_as_processed?
     user.is_instructor?(record.target_api)
   end
 

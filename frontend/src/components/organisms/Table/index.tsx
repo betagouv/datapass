@@ -77,9 +77,9 @@ const Table = ({
     if (column.getCanSort()) {
       return {
         className: 'header-container sorting-header',
-        onClick: getOnSortingChange(
-          column.getToggleSortingHandler() as (event: SyntheticEvent) => void
-        ),
+        onClick: column.getToggleSortingHandler() as (
+          event: SyntheticEvent
+        ) => void,
       };
     }
 
@@ -87,19 +87,6 @@ const Table = ({
       className: 'header-container',
     };
   };
-
-  const getOnSortingChange =
-    (toggleSortingHandler: (event: SyntheticEvent) => void) =>
-    (event: SyntheticEvent) => {
-      toggleSortingHandler(event);
-      table.resetPagination();
-    };
-
-  const getOnFilterChange =
-    (setFilterValue: (updater: any) => void) => (updater: any) => {
-      setFilterValue(updater);
-      table.resetPagination();
-    };
 
   const rowClassName = (row: Row<RowData>) => {
     let className = '';
@@ -127,6 +114,12 @@ const Table = ({
     ));
   };
 
+  const getDefaultOptions = (column: Column<any, any>) =>
+    Array.from(column.getFacetedUniqueValues().keys()).map((value, i) => ({
+      key: value,
+      label: value,
+    }));
+
   return (
     <>
       <div className="datapass-table-wrapper" style={wrapperStyle}>
@@ -139,68 +132,59 @@ const Table = ({
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  const defaultOptions = Array.from(
-                    header.column.getFacetedUniqueValues().keys()
-                  ).map((value, i) => ({ key: value, label: value }));
-
-                  return (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      style={{
-                        width: header.getSize(),
-                        minWidth: header.column.columnDef.minSize,
-                      }}
-                    >
-                      {!!header.column.columnDef.meta?.columnTitle && (
-                        <div className="datapass-table-column-title">
-                          {header.column.columnDef.meta?.columnTitle}
-                        </div>
-                      )}
-                      {header.isPlaceholder ? null : (
-                        <div {...getSortingHeaderProps(header.column)}>
-                          <div className="datapass-table-column-header">
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                          </div>
-                          {header.column.getIsSorted() ? (
-                            <div className="datapass-table-sorting-arrow">
-                              {
-                                {
-                                  asc: '↑',
-                                  desc: '↓',
-                                }[header.column.getIsSorted() as string]
-                              }
-                            </div>
-                          ) : null}
-                          {header.column.getCanFilter() && (
-                            <FilterComponent
-                              onChange={getOnFilterChange(
-                                header.column.setFilterValue
-                              )}
-                              filter={
-                                header.column.columnDef.meta
-                                  ?.filter as FilterMeta
-                              }
-                              value={header.column.getFilterValue()}
-                              placeholder={
-                                header.column.columnDef.meta?.placeholder
-                              }
-                              options={
-                                header.column.columnDef.meta?.selectOptions
-                                  ? header.column.columnDef.meta?.selectOptions
-                                  : defaultOptions
-                              }
-                            />
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    style={{
+                      width: header.getSize(),
+                      minWidth: header.column.columnDef.minSize,
+                    }}
+                  >
+                    {!!header.column.columnDef.meta?.columnTitle && (
+                      <div className="datapass-table-column-title">
+                        {header.column.columnDef.meta?.columnTitle}
+                      </div>
+                    )}
+                    {header.isPlaceholder ? null : (
+                      <div {...getSortingHeaderProps(header.column)}>
+                        <div className="datapass-table-column-header">
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
                           )}
                         </div>
-                      )}
-                    </th>
-                  );
-                })}
+                        {header.column.getIsSorted() ? (
+                          <div className="datapass-table-sorting-arrow">
+                            {
+                              {
+                                asc: '↑',
+                                desc: '↓',
+                              }[header.column.getIsSorted() as string]
+                            }
+                          </div>
+                        ) : null}
+                        {header.column.getCanFilter() && (
+                          <FilterComponent
+                            onChange={header.column.setFilterValue}
+                            filter={
+                              header.column.columnDef.meta?.filter as FilterMeta
+                            }
+                            value={header.column.getFilterValue()}
+                            placeholder={
+                              header.column.columnDef.meta?.placeholder
+                            }
+                            options={
+                              header.column.columnDef.meta?.selectOptions
+                                ? header.column.columnDef.meta?.selectOptions
+                                : getDefaultOptions(header.column)
+                            }
+                          />
+                        )}
+                      </div>
+                    )}
+                  </th>
+                ))}
               </tr>
             ))}
           </thead>

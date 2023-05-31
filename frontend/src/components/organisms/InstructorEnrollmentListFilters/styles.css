@@ -1,0 +1,25 @@
+.table-filters {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+}
+
+.table-filters > *:first-child {
+  flex: 1;
+}
+
+.table-filters > * {
+  width: 180px;
+}
+
+.table-filters .multi-select {
+  margin-top: 0.5rem;
+}
+
+.table-filters .multiselect-dropdown-button {
+  background-color: var(--background-contrast-grey);
+}
+
+.table-filters .fr-input-group {
+  margin-bottom: 1.5rem;
+}

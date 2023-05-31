@@ -36,7 +36,7 @@ footer {
 }
 
 .dark-background {
-  background-color: var(--background-alt-grey);
+  background-color: #f5f5ff;
 }
 
 @media all and (max-width: 1248px) {

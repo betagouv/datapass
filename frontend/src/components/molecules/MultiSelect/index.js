@@ -12,6 +12,7 @@ export const MultiSelect = ({
   onChange,
   alignOptionsLeft = false,
   defaultOverviewLabel = 'Tous',
+  id = '',
 }) => {
   const [isContentOpen, setIsContentOpen] = useState(false);
   const buttonRef = useRef(null);
@@ -62,8 +63,11 @@ export const MultiSelect = ({
   }
 
   return (
-    <div className={alignOptionsLeft ? 'align-options-left' : ''}>
+    <div
+      className={`multi-select ${alignOptionsLeft ? 'align-options-left' : ''}`}
+    >
       <button
+        id={id}
         ref={buttonRef}
         type="button"
         className="multiselect-dropdown-button"

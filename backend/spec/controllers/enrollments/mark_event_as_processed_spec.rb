@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe EnrollmentsController, "#mark_event_as_read", type: :controller do
-  describe "#mark_event_as_read" do
+RSpec.describe EnrollmentsController, "#mark_event_as_processed", type: :controller do
+  describe "#mark_event_as_processed" do
     subject do
-      get :mark_event_as_read, params: {
+      get :mark_event_as_processed, params: {
         id: enrollment.id,
         event_name: event_name
       }

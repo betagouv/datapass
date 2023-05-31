@@ -32,6 +32,14 @@ enrollment_draft_<%= i %>:
   scopes: ["cnaf_quotient_familial"]
 <% end %>
 
+enrollment_draft_alternative:
+  <<: *DEFAULTS
+  status: "draft"
+  target_api: "api_particulier"
+  intitule: "Brouillon API Particulier Alternative"
+  description: "Demande d'habiliation pour API Particulier, en cours d'écriture."
+  scopes: ["cnaf_quotient_familial"]
+
 enrollment_validated:
   <<: *DEFAULTS
   status: "validated"
