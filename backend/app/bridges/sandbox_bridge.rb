@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class SandboxBridge < ApplicationBridge
+  def version
+    fail NotImplementedError
+  end
+
+  def code
+    fail NotImplementedError
+  end
+
   def call
     id = @enrollment.id
     demandeur = @enrollment.demandeurs.first
@@ -232,8 +240,8 @@ class SandboxBridge < ApplicationBridge
                 code: nil
               }
             ],
-            version: "1.0",
-            code: "Impôt_Particulier"
+            version: version,
+            code: code
           }
         ]
       }
