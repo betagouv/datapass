@@ -35,7 +35,7 @@ export const HeadSection = () => {
       <div className="feed-sub-section fr-py-3w">
         {!isEmpty(events) && <ActivityFeed events={events} />}
       </div>
-      <div className="notification-sub-section fr-pb-3w">
+      <div className="fr-pt-3w">
         <NotificationSubSection />
       </div>
     </ScrollablePanel>
