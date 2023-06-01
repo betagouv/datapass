@@ -18,7 +18,6 @@ const EventButton: React.FC<Props> = ({
   <Button
     icon={icon}
     secondary={secondary}
-    large
     onClick={onClick}
     disabled={disabled}
   >

@@ -5,7 +5,7 @@ import {
 } from '../../../../config/event-configuration';
 import { processEvent } from '../../../../lib/process-event';
 import Loader from '../../../atoms/Loader';
-import EventButtonList from '../../../molecules/EventButtonList';
+import EnrollmentActions from '../../../molecules/EnrollmentActions';
 import ConfirmationModal from '../../../organisms/ConfirmationModal';
 import { useFormSubmission } from './hooks/use-form-submission';
 import Prompt from './Prompt';
@@ -36,7 +36,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
 
   return (
     <>
-      <EventButtonList
+      <EnrollmentActions
         disabled={!!pendingEvent || loading}
         acl={enrollment.acl}
         onEventButtonClick={onEventButtonClick}

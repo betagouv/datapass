@@ -8,6 +8,7 @@ export enum EnrollmentEvent {
   request_changes = 'request_changes',
   archive = 'archive',
   validate = 'validate',
+  instruct = 'instruct',
 }
 
 export enum PromptType {

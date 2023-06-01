@@ -1,6 +1,6 @@
-import { listAuthorizedEvents } from './EventButtonList';
+import { listAuthorizedEvents } from './EnrollmentActions';
 
-describe('EventButtonList', () => {
+describe('EnrollmentActions', () => {
   it('lists button to display from enrollment acl', () => {
     const acl = {
       create: false,

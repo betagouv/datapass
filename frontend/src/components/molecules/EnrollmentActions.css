@@ -1,0 +1,58 @@
+.enrollment-actions {
+  position: fixed;
+  bottom: 0;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.enrollment-actions-dialog {
+  width: 300px;
+  max-height: 70vh;
+  background-color: white;
+  border: 2px solid var(--text-action-high-blue-france);
+  display: flex;
+  flex-direction: column;
+}
+
+.enrollment-actions-dialog-header {
+  display: flex;
+  background-color: var(--text-action-high-blue-france);
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 0.5rem;
+  font-size: small;
+}
+
+.enrollment-actions-dialog-header-action {
+  color: white;
+  font-size: small;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.enrollment-actions-dialog-header-action:hover {
+  background-color: transparent !important;
+}
+
+.enrollment-actions-dialog-body {
+  flex-grow: 1;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-bottom: 1rem;
+}
+
+.instruction-dialog {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.instruction-dialog > * {
+  width: 100%;
+  justify-content: center;
+}
