@@ -113,12 +113,14 @@ const scopesConfiguration = [
   },
   {
     value: 'certification_cnetp',
-    label: 'Attestation de cotisations congés payés & chômage-intempéries - CNETP',
+    label:
+      'Attestation de cotisations congés payés & chômage-intempéries - CNETP',
     link: 'https://entreprise.api.gouv.fr/catalogue/cnetp/attestations_cotisations_conges_payes_chomage_intemperies',
   },
   {
     value: 'open_data',
-    label: 'Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Actes - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Brevets, marques et modèles déposés - INPI.',
+    label:
+      'Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Actes - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Brevets, marques et modèles déposés - INPI.',
     link: 'https://entreprise.api.gouv.fr/catalogue',
   },
 ];
@@ -154,9 +156,7 @@ const groups = {
   },
   informations_open_data: {
     label: 'Données en open data disponibles avec API Entreprise :',
-    scopes: [
-      'open_data',
-    ],
+    scopes: ['open_data'],
   },
 };
 
