@@ -185,7 +185,7 @@ class SandboxBridge < ApplicationBridge
           },
           denominationService: responsable_technique[:job],
           balf: nil,
-          siren: nil
+          siren: siren
         },
         cadreJuridique: {
           nature: cadre_juridique_title,

@@ -130,8 +130,8 @@ RSpec.describe SandboxBridge, type: :bridge do
                   code: nil
                 }
               ],
-              version: "a remplir par DGFIP",
-              code: "Nom de L'API"
+              version: "1.0",
+              code: "Impôt_Particulier"
             }
           ]
         }

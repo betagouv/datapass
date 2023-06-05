@@ -7,8 +7,8 @@ module SandboxPayloadHelpers
     api_dgfip_host = ENV.fetch("DGFIP_HOST")
 
     stub_request(:post, "#{api_dgfip_host}/contractualisation/v1/sandbox/956")
-      api_key: access_token,
-      use_basic_auth_method: true,
+      # api_key: access_token,
+      # use_basic_auth_method: true,
       .with(
         status: 200
       )
@@ -131,8 +131,8 @@ module SandboxPayloadHelpers
               code: nil
             }
           ],
-          version: "a remplir par DGFIP",
-          code: "Nom de L'API"
+          version: "1.0",
+          code: "Impôt_Particulier"
         }
       ]
     }
