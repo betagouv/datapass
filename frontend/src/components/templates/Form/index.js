@@ -23,7 +23,7 @@ import { enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
 import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
-import SubmissionPanel from './SubmissionPanel';
+import EnrollmentActions from '../../molecules/EnrollmentActions';
 
 export const FormContext = React.createContext();
 
@@ -168,7 +168,7 @@ export const Form = ({
             <StepperSection />
             <HideSectionsContainer>
               {children}
-              <SubmissionPanel
+              <EnrollmentActions
                 enrollment={enrollment}
                 handlePostEvent={handlePostEvent}
                 updateEnrollment={dispatchSetEnrollment}

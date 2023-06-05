@@ -1,12 +1,18 @@
 import { FunctionComponent, useState } from 'react';
 import {
   EnrollmentEvent,
+  PromptType,
   eventConfigurations,
 } from '../../config/event-configuration';
 import EventButton from '../atoms/EventButton';
 import ButtonGroup from './ButtonGroup';
 import './EnrollmentActions.css';
 import Button from '../atoms/hyperTexts/Button';
+import { useFormSubmission } from '../templates/Form/SubmissionPanel/hooks/use-form-submission';
+import { processEvent } from '../../lib/process-event';
+import Loader from '../atoms/Loader';
+import Prompt from '../templates/Form/SubmissionPanel/Prompt';
+import ConfirmationModal from '../organisms/ConfirmationModal';
 
 export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   (Object.keys(eventConfigurations) as EnrollmentEvent[]).filter(
@@ -14,15 +20,15 @@ export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   );
 
 type EnrollmentActionsProps = {
-  acl: Record<string, boolean>;
-  disabled: boolean;
-  onEventButtonClick: Function;
+  enrollment: any;
+  handlePostEvent: Function;
+  updateEnrollment: Function;
 };
 
 type EnrollmentActionsDialogProps = {
-  currentAction: EnrollmentAction;
+  title: string;
   onClose: Function;
-  authorizedEvents: EnrollmentEvent[];
+  body: any;
 };
 
 type EnrollmentAction =
@@ -32,7 +38,48 @@ type EnrollmentAction =
 
 const EnrollmentActionsDialog: FunctionComponent<
   EnrollmentActionsDialogProps
-> = ({ currentAction, onClose, authorizedEvents }) => {
+> = ({ title, body, onClose }) => {
+  return (
+    <div className="enrollment-actions-dialog">
+      <div className="enrollment-actions-dialog-header">
+        <div className="enrollment-actions-dialog-header-title">{title}</div>
+        <Button
+          className="enrollment-actions-dialog-header-action"
+          onClick={() => onClose()}
+          tertiaryNoOutline
+        >
+          Réduire
+        </Button>
+      </div>
+      <div className="enrollment-actions-dialog-body">{body}</div>
+    </div>
+  );
+};
+
+export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
+  enrollment,
+  updateEnrollment,
+  handlePostEvent,
+}) => {
+  const {
+    loading,
+    pendingEvent,
+    onEventButtonClick,
+    onPromptConfirmation,
+    onPromptCancellation,
+  } = useFormSubmission(
+    handlePostEvent,
+    enrollment,
+    updateEnrollment,
+    processEvent
+  );
+
+  const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
+  const authorizedEvents = listAuthorizedEvents(enrollment.acl);
+
+  const toggleCurrentAction = (action: EnrollmentAction) =>
+    setCurrentAction((prevAction) => (prevAction === action ? null : action));
+
   const getContent = (currentAction: EnrollmentAction) => {
     switch (currentAction) {
       case EnrollmentEvent.instruct:
@@ -48,11 +95,66 @@ const EnrollmentActionsDialog: FunctionComponent<
                   return (
                     <EventButton
                       key={event}
-                      onClick={() => console.log('Hey')}
+                      disabled={!!pendingEvent || loading}
+                      onClick={() => onEventButtonClick(event)}
                       {...eventConfiguration.displayProps}
                     />
                   );
                 })}
+
+              {loading && <Loader enableBePatientMessage />}
+
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.comment && (
+                  <Prompt
+                    onAccept={onPromptConfirmation}
+                    onCancel={onPromptCancellation}
+                    displayProps={
+                      eventConfigurations[pendingEvent!].displayProps
+                    }
+                    selectedEvent={pendingEvent as string}
+                    enrollment={enrollment}
+                  />
+                )}
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.submit_instead && (
+                  <ConfirmationModal
+                    title="Vos modifications vont être enregistrées."
+                    confirmLabel="Soumettre la demande"
+                    handleConfirm={onPromptConfirmation}
+                    cancelLabel="Non, je l’enregistre seulement"
+                    handleCancel={onPromptCancellation}
+                  >
+                    <p>
+                      Souhaitez-vous soumettre votre habilitation à validation,
+                      afin qu'elle soit étudiée par les équipes compétentes ?
+                    </p>
+                  </ConfirmationModal>
+                )}
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.confirm_deletion && (
+                  <ConfirmationModal
+                    title="La suppression d'une habilitation est irréversible"
+                    handleCancel={onPromptCancellation}
+                    handleConfirm={onPromptConfirmation}
+                  >
+                    Voulez vous continuer ?
+                  </ConfirmationModal>
+                )}
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.confirm_archive && (
+                  <ConfirmationModal
+                    title="Vous n’aurez plus accès à cette habilitation"
+                    handleCancel={onPromptCancellation}
+                    handleConfirm={onPromptConfirmation}
+                  >
+                    Voulez vous continuer ?
+                  </ConfirmationModal>
+                )}
             </div>
           ),
         };
@@ -64,54 +166,24 @@ const EnrollmentActionsDialog: FunctionComponent<
         };
 
       default:
-        break;
+        return null;
     }
   };
 
   const content = getContent(currentAction);
 
   return (
-    currentAction && (
-      <div className="enrollment-actions-dialog">
-        <div className="enrollment-actions-dialog-header">
-          <div className="enrollment-actions-dialog-header-title">
-            {content?.title}
-          </div>
-          <Button
-            className="enrollment-actions-dialog-header-action"
-            onClick={() => onClose()}
-            tertiaryNoOutline
-          >
-            Réduire
-          </Button>
-        </div>
-        <div className="enrollment-actions-dialog-body">{content?.body}</div>
-      </div>
-    )
-  );
-};
-
-export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
-  acl,
-  disabled,
-}) => {
-  const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
-  const authorizedEvents = listAuthorizedEvents(acl);
-
-  const toggleCurrentAction = (action: EnrollmentAction) =>
-    setCurrentAction((prevAction) => (prevAction === action ? null : action));
-
-  return (
     <div className="enrollment-actions">
-      <EnrollmentActionsDialog
-        currentAction={currentAction}
-        onClose={() => setCurrentAction(null)}
-        authorizedEvents={authorizedEvents}
-      />
-      <ButtonGroup alignRight>
+      {content && (
+        <EnrollmentActionsDialog
+          title={content.title}
+          body={content.body}
+          onClose={() => setCurrentAction(null)}
+        />
+      )}
+      <ButtonGroup align="right">
         {authorizedEvents.length > 1 && (
           <EventButton
-            disabled={disabled}
             onClick={() => toggleCurrentAction(EnrollmentEvent.instruct)}
             label="Instruction"
             icon="edit"
@@ -119,7 +191,6 @@ export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
         )}
         {authorizedEvents.includes(EnrollmentEvent.notify) && (
           <EventButton
-            disabled={disabled}
             onClick={() => toggleCurrentAction(EnrollmentEvent.notify)}
             label="Messagerie"
             icon="mail"

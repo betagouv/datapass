@@ -9,7 +9,7 @@
 
 .enrollment-actions-dialog {
   width: 300px;
-  max-height: 70vh;
+  height: 60vh;
   background-color: white;
   border: 2px solid var(--text-action-high-blue-france);
   display: flex;

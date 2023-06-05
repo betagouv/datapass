@@ -3,7 +3,7 @@ import { EventConfiguration } from '../../config/event-configuration';
 import Button from './hyperTexts/Button';
 
 type Props = EventConfiguration['displayProps'] & {
-  disabled: boolean;
+  disabled?: boolean;
   onClick: (event: MouseEvent<HTMLElement>) => void;
 };
 

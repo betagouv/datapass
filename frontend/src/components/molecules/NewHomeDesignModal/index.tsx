@@ -47,7 +47,7 @@ const NewHomeDesignModal = () => {
             </p>
           </div>
           <div className="fr-modal__footer">
-            <ButtonGroup alignRight>
+            <ButtonGroup align="right">
               <Button large onClick={() => setHasSeenNewHomeDesign(true)}>
                 Ne plus afficher ce message
               </Button>

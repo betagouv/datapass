@@ -72,7 +72,7 @@ const Prompt = ({
           ))}
         </ExpandableQuote>
       )}
-      <ButtonGroup alignRight>
+      <ButtonGroup align="center">
         <Button secondary onClick={onCancel} disabled={disabled}>
           Annuler
         </Button>
