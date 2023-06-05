@@ -208,7 +208,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
-        "open_data": false
+        "open_data": true
       }
     }
   },
