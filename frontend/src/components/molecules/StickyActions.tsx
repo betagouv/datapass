@@ -183,12 +183,14 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           onClose={() => setCurrentAction(null)}
         />
       )}
-      <ButtonGroup align="right">
+      <ButtonGroup className="sticky-actions-buttons" align="right">
         {authorizedEvents.length > 1 && (
           <EventButton
             onClick={() => toggleCurrentAction(EnrollmentEvent.instruct)}
             label="Instruction"
             icon="edit"
+            quaternary={currentAction !== EnrollmentEvent.instruct}
+            iconFill
           />
         )}
         {authorizedEvents.includes(EnrollmentEvent.notify) && (
@@ -196,6 +198,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
             onClick={() => toggleCurrentAction(EnrollmentEvent.notify)}
             label="Messagerie"
             icon="mail"
+            quaternary={currentAction !== EnrollmentEvent.notify}
+            iconFill
           />
         )}
       </ButtonGroup>
