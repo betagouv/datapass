@@ -43,7 +43,7 @@ export const eventConfigurations: {
 } = {
   notify: {
     displayProps: {
-      label: 'Envoyer un message',
+      label: 'Envoyer',
       icon: 'mail',
       secondary: true,
     },

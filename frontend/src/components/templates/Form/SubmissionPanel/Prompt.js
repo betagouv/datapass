@@ -12,6 +12,7 @@ const Prompt = ({
   displayProps,
   selectedEvent,
   enrollment,
+  alignButtons = 'center',
 }) => {
   const { target_api: targetApi, id } = enrollment;
 
@@ -72,10 +73,12 @@ const Prompt = ({
           ))}
         </ExpandableQuote>
       )}
-      <ButtonGroup align="center">
-        <Button secondary onClick={onCancel} disabled={disabled}>
-          Annuler
-        </Button>
+      <ButtonGroup align={alignButtons}>
+        {onCancel && (
+          <Button secondary onClick={onCancel} disabled={disabled}>
+            Annuler
+          </Button>
+        )}
         <Button
           icon={displayProps.icon}
           onClick={handleAccept}

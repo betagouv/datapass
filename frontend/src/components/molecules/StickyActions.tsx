@@ -13,6 +13,10 @@ import { processEvent } from '../../lib/process-event';
 import Loader from '../atoms/Loader';
 import Prompt from '../templates/Form/SubmissionPanel/Prompt';
 import ConfirmationModal from '../organisms/ConfirmationModal';
+import { chain, isEmpty } from 'lodash';
+import { getChangelog } from '../../lib';
+import moment from 'moment';
+import { useAuth } from '../organisms/AuthContext';
 
 export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   (Object.keys(eventConfigurations) as EnrollmentEvent[]).filter(
@@ -76,6 +80,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     processEvent
   );
 
+  const { user } = useAuth();
   const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
   const authorizedEvents = listAuthorizedEvents(enrollment.acl);
 
@@ -94,7 +99,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         return {
           title: 'Instruire',
           body: (
-            <div className="instruction-dialog">
+            <div className="instruct-dialog">
               <div>Comment souhaitez vous instruire cette demande ?</div>
               {authorizedEvents
                 .filter((event) => event !== EnrollmentEvent.notify)
@@ -168,16 +173,41 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         };
 
       case EnrollmentEvent.notify:
+        let messages = chain(enrollment.events)
+          .sortBy('created_at')
+          .reject(
+            ({ name, diff }) => name !== 'notify' && isEmpty(getChangelog(diff))
+          )
+          .value();
         return {
           title: 'Écrire au demandeur',
           body: (
-            <div>
+            <div className="notify-dialog">
+              <div className="notify-dialog-messages">
+                {messages.map((message) => {
+                  const isFromUser = message.user.id === user?.id;
+                  return (
+                    <div
+                      className={`notify-dialog-message ${
+                        isFromUser && 'notify-dialog-message-from-user'
+                      }`}
+                    >
+                      <div className="notify-dialog-message-content">
+                        {message.comment}
+                      </div>
+                      <div className="notify-dialog-message-footer">
+                        {moment(message.created_at).calendar()}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
               {pendingEvent &&
                 eventConfigurations[pendingEvent].prompt ===
                   PromptType.notify && (
                   <Prompt
+                    alignButtons="right"
                     onAccept={onPromptConfirmation}
-                    onCancel={onPromptCancellation}
                     displayProps={
                       eventConfigurations[pendingEvent!].displayProps
                     }
