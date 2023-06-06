@@ -1,4 +1,4 @@
-.enrollment-actions {
+.sticky-actions {
   position: fixed;
   bottom: 0;
   right: 3rem;
@@ -7,7 +7,7 @@
   align-items: flex-end;
 }
 
-.enrollment-actions-dialog {
+.sticky-actions-dialog {
   width: 300px;
   height: 60vh;
   background-color: white;
@@ -16,7 +16,7 @@
   flex-direction: column;
 }
 
-.enrollment-actions-dialog-header {
+.sticky-actions-dialog-header {
   display: flex;
   background-color: var(--text-action-high-blue-france);
   justify-content: space-between;
@@ -26,18 +26,18 @@
   font-size: small;
 }
 
-.enrollment-actions-dialog-header-action {
+.sticky-actions-dialog-header-action {
   color: white;
   font-size: small;
   background-color: transparent;
   text-decoration: underline;
 }
 
-.enrollment-actions-dialog-header-action:hover {
+.sticky-actions-dialog-header-action:hover {
   background-color: transparent !important;
 }
 
-.enrollment-actions-dialog-body {
+.sticky-actions-dialog-body {
   flex-grow: 1;
   overflow: scroll;
   display: flex;

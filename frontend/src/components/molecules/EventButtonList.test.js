@@ -1,6 +1,6 @@
-import { listAuthorizedEvents } from './EnrollmentActions';
+import { listAuthorizedEvents } from './StickyActions';
 
-describe('EnrollmentActions', () => {
+describe('StickyActions', () => {
   it('lists button to display from enrollment acl', () => {
     const acl = {
       create: false,

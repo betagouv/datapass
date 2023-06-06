@@ -6,7 +6,7 @@ import {
 } from '../../config/event-configuration';
 import EventButton from '../atoms/EventButton';
 import ButtonGroup from './ButtonGroup';
-import './EnrollmentActions.css';
+import './StickyActions.css';
 import Button from '../atoms/hyperTexts/Button';
 import { useFormSubmission } from '../templates/Form/SubmissionPanel/hooks/use-form-submission';
 import { processEvent } from '../../lib/process-event';
@@ -19,13 +19,13 @@ export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
     (key) => acl[key]
   );
 
-type EnrollmentActionsProps = {
+type StickyActionsProps = {
   enrollment: any;
   handlePostEvent: Function;
   updateEnrollment: Function;
 };
 
-type EnrollmentActionsDialogProps = {
+type StickyActionsDialogProps = {
   title: string;
   onClose: Function;
   body: any;
@@ -36,27 +36,29 @@ type EnrollmentAction =
   | EnrollmentEvent.notify
   | null;
 
-const EnrollmentActionsDialog: FunctionComponent<
-  EnrollmentActionsDialogProps
-> = ({ title, body, onClose }) => {
+const StickyActionsDialog: FunctionComponent<StickyActionsDialogProps> = ({
+  title,
+  body,
+  onClose,
+}) => {
   return (
-    <div className="enrollment-actions-dialog">
-      <div className="enrollment-actions-dialog-header">
-        <div className="enrollment-actions-dialog-header-title">{title}</div>
+    <div className="sticky-actions-dialog">
+      <div className="sticky-actions-dialog-header">
+        <div className="sticky-actions-dialog-header-title">{title}</div>
         <Button
-          className="enrollment-actions-dialog-header-action"
+          className="sticky-actions-dialog-header-action"
           onClick={() => onClose()}
           tertiaryNoOutline
         >
           Réduire
         </Button>
       </div>
-      <div className="enrollment-actions-dialog-body">{body}</div>
+      <div className="sticky-actions-dialog-body">{body}</div>
     </div>
   );
 };
 
-export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
+export const StickyActions: FunctionComponent<StickyActionsProps> = ({
   enrollment,
   updateEnrollment,
   handlePostEvent,
@@ -173,9 +175,9 @@ export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
   const content = getContent(currentAction);
 
   return (
-    <div className="enrollment-actions">
+    <div className="sticky-actions">
       {content && (
-        <EnrollmentActionsDialog
+        <StickyActionsDialog
           title={content.title}
           body={content.body}
           onClose={() => setCurrentAction(null)}
@@ -201,4 +203,4 @@ export const EnrollmentActions: FunctionComponent<EnrollmentActionsProps> = ({
   );
 };
 
-export default EnrollmentActions;
+export default StickyActions;
