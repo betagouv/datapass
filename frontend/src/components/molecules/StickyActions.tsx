@@ -79,8 +79,14 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
   const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
   const authorizedEvents = listAuthorizedEvents(enrollment.acl);
 
-  const toggleCurrentAction = (action: EnrollmentAction) =>
-    setCurrentAction((prevAction) => (prevAction === action ? null : action));
+  const handleActionChange = (action: EnrollmentAction) => {
+    if (currentAction !== action) {
+      setCurrentAction(action);
+    } else {
+      setCurrentAction(null);
+    }
+    onPromptCancellation();
+  };
 
   const getContent = (currentAction: EnrollmentAction) => {
     switch (currentAction) {
@@ -164,7 +170,23 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
       case EnrollmentEvent.notify:
         return {
           title: 'Écrire au demandeur',
-          body: null,
+          body: (
+            <div>
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.notify && (
+                  <Prompt
+                    onAccept={onPromptConfirmation}
+                    onCancel={onPromptCancellation}
+                    displayProps={
+                      eventConfigurations[pendingEvent!].displayProps
+                    }
+                    selectedEvent={pendingEvent as string}
+                    enrollment={enrollment}
+                  />
+                )}
+            </div>
+          ),
         };
 
       default:
@@ -176,17 +198,19 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
 
   return (
     <div className="sticky-actions">
-      {content && (
+      {currentAction && content && (
         <StickyActionsDialog
           title={content.title}
           body={content.body}
-          onClose={() => setCurrentAction(null)}
+          onClose={() => {
+            handleActionChange(null);
+          }}
         />
       )}
       <ButtonGroup className="sticky-actions-buttons" align="right">
         {authorizedEvents.length > 1 && (
           <EventButton
-            onClick={() => toggleCurrentAction(EnrollmentEvent.instruct)}
+            onClick={() => handleActionChange(EnrollmentEvent.instruct)}
             label="Instruction"
             icon="edit"
             quaternary={currentAction !== EnrollmentEvent.instruct}
@@ -195,7 +219,10 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         )}
         {authorizedEvents.includes(EnrollmentEvent.notify) && (
           <EventButton
-            onClick={() => toggleCurrentAction(EnrollmentEvent.notify)}
+            onClick={() => {
+              handleActionChange(EnrollmentEvent.notify);
+              onEventButtonClick(EnrollmentEvent.notify);
+            }}
             label="Messagerie"
             icon="mail"
             quaternary={currentAction !== EnrollmentEvent.notify}

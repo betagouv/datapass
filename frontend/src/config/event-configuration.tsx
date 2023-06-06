@@ -13,6 +13,7 @@ export enum EnrollmentEvent {
 
 export enum PromptType {
   comment = 'comment',
+  notify = 'notify',
   confirm_deletion = 'confirm_deletion',
   confirm_archive = 'confirm_archive',
   submit_instead = 'submit_instead',
@@ -46,9 +47,8 @@ export const eventConfigurations: {
       icon: 'mail',
       secondary: true,
     },
-    prompt: PromptType.comment,
+    prompt: PromptType.notify,
     request: RequestType.change_state,
-    redirectToHome: true,
     successMessage:
       'Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.',
   },
