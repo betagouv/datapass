@@ -64,7 +64,6 @@ export const Form = ({
     events: [],
     target_api,
     additional_content: {},
-    ...demarches?.default?.state,
   });
 
   const { label } = useDataProvider(target_api);
