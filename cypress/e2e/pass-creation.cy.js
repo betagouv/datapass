@@ -32,9 +32,11 @@ describe('DataPass', () => {
     );
 
     // Do an intermediate save
+    cy.get('button.fr-btn--quaternary').as('instructionButton').click();
     cy.get('button.fr-icon-save-line').as('draftSaveButton').click();
     cy.get('.fr-modal__footer button.fr-btn.fr-btn--secondary').click();
     cy.contains('Votre demande d’habilitation a été sauvegardée.');
+    cy.get('button.fr-btn--tertiary-no-outline').as('reduireButton').click();
 
     cy.fillField('team_members[1].given_name', 'Jean');
     cy.fillField('team_members[1].family_name', 'Martin');
@@ -55,8 +57,8 @@ describe('DataPass', () => {
     cy.checkBox('dpo_is_informed');
     cy.checkBox('has_alternative_authentication_methods');
 
-    cy.get('button.fr-icon-checkbox-line').click();
-
+    cy.get('button.fr-btn--quaternary').as('instructionButton').first().click();
+    cy.get('button.fr-icon-checkbox-line').as('saveButton').click();
     cy.contains('En cours');
   });
 });
