@@ -56,7 +56,9 @@ const InstructorEnrollmentList: React.FC = () => {
   });
 
   const [filtered, setFiltered] = useQueryString('filtered', []);
-  const [sorted, setSorted] = useQueryString('sorted', []);
+  const [sorted, setSorted] = useQueryString('sorted', [
+    { id: 'updated_at', desc: false },
+  ]);
   const [previouslySelectedEnrollmentId, setPreviouslySelectedEnrollmentId] =
     useQueryString('previouslySelectedEnrollmentId', 0);
 
