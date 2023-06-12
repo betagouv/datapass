@@ -17,7 +17,6 @@ import { chain, isEmpty } from 'lodash';
 import { getChangelog } from '../../lib';
 import moment from 'moment';
 import { useAuth } from '../organisms/AuthContext';
-import Alert, { AlertType } from '../atoms/Alert';
 
 export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   (Object.keys(eventConfigurations) as EnrollmentEvent[]).filter(
@@ -181,9 +180,6 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           )
           .value();
 
-        const showPrompt =
-          pendingEvent &&
-          eventConfigurations[pendingEvent].prompt === PromptType.notify;
         return {
           title: 'Écrire au demandeur',
           body: (
@@ -193,6 +189,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                   const isFromUser = message.user.id === user?.id;
                   return (
                     <div
+                      key={message.id}
                       className={`notify-dialog-message ${
                         isFromUser && 'notify-dialog-message-from-user'
                       }`}
@@ -207,17 +204,19 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                   );
                 })}
               </div>
-              {showPrompt ? (
-                <Prompt
-                  alignButtons="right"
-                  onAccept={onPromptConfirmation}
-                  displayProps={eventConfigurations[pendingEvent!].displayProps}
-                  selectedEvent={pendingEvent as string}
-                  enrollment={enrollment}
-                />
-              ) : (
-                <Alert type={AlertType.success}>Message envoyé !</Alert>
-              )}
+              {pendingEvent &&
+                eventConfigurations[pendingEvent].prompt ===
+                  PromptType.notify && (
+                  <Prompt
+                    alignButtons="right"
+                    onAccept={onPromptConfirmation}
+                    displayProps={
+                      eventConfigurations[pendingEvent!].displayProps
+                    }
+                    selectedEvent={pendingEvent as string}
+                    enrollment={enrollment}
+                  />
+                )}
             </div>
           ),
         };
@@ -241,7 +240,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         />
       )}
       <ButtonGroup className="sticky-actions-buttons" align="right">
-        {authorizedEvents.length > 1 && (
+        {user && user.roles.length > 1 && authorizedEvents.length > 1 && (
           <EventButton
             onClick={() => handleActionChange(EnrollmentEvent.instruct)}
             label="Instruction"

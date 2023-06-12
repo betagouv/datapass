@@ -20,6 +20,7 @@ import { Linkify } from '../../../molecules/Linkify';
 import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
 import ExpandableSection from '../../../molecules/ExpandableSection';
+import { EnrollmentEvent } from '../../../../config/event-configuration';
 
 const eventToDisplayableContent = {
   request_changes: {
@@ -180,7 +181,9 @@ const ActivityFeed = ({ events }) => {
   let eventsToDisplay = chain(events)
     .sortBy('created_at')
     .reject(
-      ({ name, diff }) => name === 'update' && isEmpty(getChangelog(diff))
+      ({ name, diff }) =>
+        [EnrollmentEvent.update, EnrollmentEvent.notify].includes(name) &&
+        isEmpty(getChangelog(diff))
     )
     .value();
 
