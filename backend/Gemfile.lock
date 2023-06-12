@@ -301,6 +301,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.8.1)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.8.0)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -360,10 +362,11 @@ GEM
       addressable (~> 2.3, >= 2.3.0)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
-    sidekiq (6.5.8)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
+    sidekiq (7.1.1)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     sidekiq-scheduler (5.0.3)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
@@ -456,7 +459,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sib-api-v3-sdk
-  sidekiq (~> 6.5)
+  sidekiq (~> 7.1)
   sidekiq-scheduler (~> 5.0)
   simplecov
   standard
