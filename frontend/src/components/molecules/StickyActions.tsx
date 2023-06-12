@@ -46,18 +46,20 @@ const StickyActionsDialog: FunctionComponent<StickyActionsDialogProps> = ({
   onClose,
 }) => {
   return (
-    <div className="sticky-actions-dialog">
-      <div className="sticky-actions-dialog-header">
-        <div className="sticky-actions-dialog-header-title">{title}</div>
+    <div className="datapass-sticky-actions-dialog">
+      <div className="datapass-sticky-actions-dialog-header">
+        <div className="datapass-sticky-actions-dialog-header-title">
+          {title}
+        </div>
         <Button
-          className="sticky-actions-dialog-header-action"
+          className="datapass-sticky-actions-dialog-header-action"
           onClick={() => onClose()}
           tertiaryNoOutline
         >
           Réduire
         </Button>
       </div>
-      <div className="sticky-actions-dialog-body">{body}</div>
+      <div className="datapass-sticky-actions-dialog-body">{body}</div>
     </div>
   );
 };
@@ -99,7 +101,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         return {
           title: 'Instruire',
           body: (
-            <div className="instruct-dialog">
+            <div className="datapass-instruct-dialog">
               <div>Comment souhaitez vous instruire cette demande ?</div>
               {authorizedEvents
                 .filter((event) => event !== EnrollmentEvent.notify)
@@ -183,21 +185,21 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         return {
           title: 'Écrire au demandeur',
           body: (
-            <div className="notify-dialog">
-              <div className="notify-dialog-messages">
+            <div className="datapass-notify-dialog">
+              <div className="datapass-notify-dialog-messages">
                 {messages.map((message) => {
                   const isFromUser = message.user.id === user?.id;
                   return (
                     <div
                       key={message.id}
-                      className={`notify-dialog-message ${
-                        isFromUser && 'notify-dialog-message-from-user'
+                      className={`datapass-notify-dialog-message ${
+                        isFromUser && 'datapass-notify-dialog-message-from-user'
                       }`}
                     >
-                      <div className="notify-dialog-message-content">
+                      <div className="datapass-notify-dialog-message-content">
                         {message.comment}
                       </div>
-                      <div className="notify-dialog-message-footer">
+                      <div className="datapass-notify-dialog-message-footer">
                         {moment(message.created_at).calendar()}
                       </div>
                     </div>
@@ -229,7 +231,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
   const content = getContent(currentAction);
 
   return (
-    <div className="sticky-actions">
+    <div className="datapass-sticky-actions">
       {currentAction && content && (
         <StickyActionsDialog
           title={content.title}
@@ -239,7 +241,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           }}
         />
       )}
-      <ButtonGroup className="sticky-actions-buttons" align="right">
+      <ButtonGroup className="datapass-sticky-actions-buttons" align="right">
         {user && user.roles.length > 1 && authorizedEvents.length > 1 && (
           <EventButton
             onClick={() => handleActionChange(EnrollmentEvent.instruct)}

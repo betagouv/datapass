@@ -58,6 +58,8 @@ const Button: React.FC<Props> = ({
   }
 
   if (quaternary) {
+    // NOTE: The following class doesn't exist in the DSFR.
+    // This will need to be updated with future DSFR versions to maintain compatibility.
     className += ' fr-btn--quaternary';
   }
 
