@@ -68,6 +68,11 @@ class SandboxBridge < ApplicationBridge
     ENV.fetch("DGFIP_CLIENT_SECRET")
   end
 
+  def filter_special_characters(string)
+    special_characters = /[^a-zA-Z0-9\sàâäçèéêëîïôöùûüÿÂÊÎÔÛÄËÏÖÜÀÇÉÈÙ]/
+    string.gsub(special_characters, "")
+  end
+
   def create_enrollment_in_token_manager(
     id,
     demandeur,
@@ -99,9 +104,10 @@ class SandboxBridge < ApplicationBridge
     code_postal = response[:code_postal]
     ville = response[:libelle_commune]
 
-    # 1.1 Get Validateur Person Siren and Info
-    validateur_id = validate_event[:user_id]
-    validateur = User.find_by(id: validateur_id)
+    # 1.1 Get Valideur Person Siren and Info
+    valideur_id = validate_event[:user_id]
+    valideur = User.find_by(id: valideur_id)
+    valideur_siren = valideur.organizations[0]["siret"].first(9)
 
     # 1.2 Transform document in URL
     unless document_juridique.nil?
@@ -148,7 +154,7 @@ class SandboxBridge < ApplicationBridge
         demande: {
           demandeur: {
             mail: demandeur[:email],
-            telephone: demandeur[:phone_number].gsub(/\D+/, ""),
+            telephone: demandeur[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
               nom: demandeur[:family_name],
               prenom: demandeur[:given_name]
@@ -158,27 +164,27 @@ class SandboxBridge < ApplicationBridge
             siren: siren
           },
           valideur: {
-            mail: validateur[:email],
-            telephone: validateur[:phone_number].gsub(/\D+/, ""),
+            mail: valideur[:email],
+            telephone: valideur[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
-              nom: validateur[:family_name],
-              prenom: validateur[:given_name]
+              nom: valideur[:family_name],
+              prenom: valideur[:given_name]
             },
-            denominationService: validateur[:job],
+            denominationService: valideur[:job],
             balf: nil,
-            siren: "130004955"
+            siren: valideur_siren
           },
           dateCreation: created_at.iso8601,
           dateSoumission: submit_event[:created_at].iso8601,
           dateValidation: validated_at.iso8601
         },
         casUsage: {
-          libelle: cas_usage_libelle.first(40),
-          detail: cas_usage_detail
+          libelle: filter_special_characters(cas_usage_libelle.first(40)),
+          detail: filter_special_characters(cas_usage_detail.first(255))
         },
         responsableTechnique: {
           mail: responsable_technique[:email],
-          telephone: responsable_technique[:phone_number].gsub(/\D+/, ""),
+          telephone: responsable_technique[:phone_number].gsub(/[^\d+]/, ""),
           denominationEtatCivil: {
             nom: responsable_technique[:family_name],
             prenom: responsable_technique[:given_name]
@@ -188,7 +194,7 @@ class SandboxBridge < ApplicationBridge
           siren: siren
         },
         cadreJuridique: {
-          nature: cadre_juridique_title,
+          nature: filter_special_characters(cadre_juridique_title.first(255)),
           documentUrl: cadre_juridique_url,
           texteUrl: nil
         },
@@ -202,7 +208,7 @@ class SandboxBridge < ApplicationBridge
           },
           responsableTraitement: {
             mail: responsable_traitement[:email],
-            telephone: responsable_traitement[:phone_number].gsub(/\D+/, ""),
+            telephone: responsable_traitement[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
               nom: responsable_traitement[:family_name],
               prenom: responsable_traitement[:given_name]
@@ -213,7 +219,7 @@ class SandboxBridge < ApplicationBridge
           },
           dpd: {
             mail: dpd[:email],
-            telephone: dpd[:phone_number].gsub(/\D+/, ""),
+            telephone: dpd[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
               nom: dpd[:family_name],
               prenom: dpd[:given_name]

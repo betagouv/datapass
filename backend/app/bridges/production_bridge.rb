@@ -50,6 +50,11 @@ class ProductionBridge < ApplicationBridge
     ENV.fetch("DGFIP_CLIENT_SECRET")
   end
 
+  def filter_special_characters(string)
+    special_characters = /[^a-zA-Z0-9\sàâäçèéêëîïôöùûüÿÂÊÎÔÛÄËÏÖÜÀÇÉÈÙ]/
+    string.gsub(special_characters, "")
+  end
+
   def create_enrollment_in_token_manager(
     id,
     demandeur,
@@ -66,10 +71,11 @@ class ProductionBridge < ApplicationBridge
     homologation,
     document_homologation
   )
-    # 1.1 Get Validateur Person Siren and Info
+    # 1.1 Get Valideur Person Siren and Info
     siren = siret.first(9)
-    validateur_id = validate_event[:user_id]
-    validateur = User.find_by(id: validateur_id)
+    valideur_id = validate_event[:user_id]
+    valideur = User.find_by(id: valideur_id)
+    valideur_siren = valideur.organizations[0]["siret"].first(9)
 
     # 1.2 Cadre Juridique document URl
     unless document_juridique.nil?
@@ -109,7 +115,7 @@ class ProductionBridge < ApplicationBridge
         demande: {
           demandeur: {
             mail: demandeur[:email],
-            telephone: demandeur[:phone_number].gsub(/\D+/, ""),
+            telephone: demandeur[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
               nom: demandeur[:family_name],
               prenom: demandeur[:given_name]
@@ -119,22 +125,22 @@ class ProductionBridge < ApplicationBridge
             siren: siren
           },
           valideur: {
-            mail: validateur[:email],
-            telephone: validateur[:phone_number].gsub(/\D+/, ""),
+            mail: valideur[:email],
+            telephone: valideur[:phone_number].gsub(/[^\d+]/, ""),
             denominationEtatCivil: {
-              nom: validateur[:family_name],
-              prenom: validateur[:given_name]
+              nom: valideur[:family_name],
+              prenom: valideur[:given_name]
             },
-            denominationService: validateur[:job],
+            denominationService: valideur[:job],
             balf: nil,
-            siren: "130004955"
+            siren: valideur_siren
           },
           dateCreation: created_at.iso8601,
           dateSoumission: submit_event[:created_at].iso8601,
           dateValidation: validated_at.iso8601
         },
         cadreJuridique: {
-          nature: cadre_juridique_title,
+          nature: filter_special_characters(cadre_juridique_title.first(255)),
           documentUrl: cadre_juridique_url,
           texteUrl: nil
         },
