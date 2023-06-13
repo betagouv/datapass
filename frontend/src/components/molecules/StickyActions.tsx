@@ -180,9 +180,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
       case EnrollmentEvent.notify:
         let messages = chain(enrollment.events)
           .sortBy('created_at')
-          .reject(
-            ({ name, diff }) => name !== 'notify' && isEmpty(getChangelog(diff))
-          )
+          .filter(({ name }) => name === EnrollmentEvent.notify)
           .value();
 
         return {
@@ -246,25 +244,32 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
       )}
       <ButtonGroup className="datapass-sticky-actions-buttons" align="right">
         {user && user.roles.length > 1 && authorizedEvents.length > 1 && (
-          <EventButton
-            onClick={() => handleActionChange(EnrollmentEvent.instruct)}
-            label="Instruction"
-            icon="edit"
-            quaternary={currentAction !== EnrollmentEvent.instruct}
-            iconFill
-          />
+          <div className="datapass-sticky-actions-container">
+            <EventButton
+              onClick={() => handleActionChange(EnrollmentEvent.instruct)}
+              label="Instruction"
+              icon="edit"
+              quaternary={currentAction !== EnrollmentEvent.instruct}
+              iconFill
+            />
+          </div>
         )}
         {authorizedEvents.includes(EnrollmentEvent.notify) && (
-          <EventButton
-            onClick={() => {
-              handleActionChange(EnrollmentEvent.notify);
-              onEventButtonClick(EnrollmentEvent.notify);
-            }}
-            label="Messagerie"
-            icon="mail"
-            quaternary={currentAction !== EnrollmentEvent.notify}
-            iconFill
-          />
+          <div className="datapass-sticky-actions-container">
+            <EventButton
+              onClick={() => {
+                handleActionChange(EnrollmentEvent.notify);
+                onEventButtonClick(EnrollmentEvent.notify);
+              }}
+              label="Messagerie"
+              icon="mail"
+              quaternary={currentAction !== EnrollmentEvent.notify}
+              iconFill
+            />
+            {enrollment?.unprocessed_notify_events_from_demandeurs_count > 0 ? (
+              <div className="red-dot datapass-sticky-actions-notification"></div>
+            ) : null}
+          </div>
         )}
       </ButtonGroup>
     </div>

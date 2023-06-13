@@ -42,7 +42,7 @@ const Prompt = ({
   };
 
   const promptLabel = {
-    notify: 'Tapez votre réponse',
+    notify: 'Votre message :',
     changes_requested:
       'Précisez au demandeur les modifications à apporter à sa demande d’habilitation :',
     refuse: 'Précisez au demandeur le motif de votre refus :',

@@ -18,6 +18,17 @@
   background-color: var(--text-action-high-blue-france) !important;
 }
 
+.datapass-sticky-actions-container {
+  position: relative;
+}
+
+.red-dot.datapass-sticky-actions-notification {
+  position: absolute;
+  top: -3px;
+  right: 5px;
+  transform: scale(1.2);
+}
+
 .datapass-sticky-actions
   .datapass-sticky-actions-buttons
   .fr-btn--quaternary:hover {
