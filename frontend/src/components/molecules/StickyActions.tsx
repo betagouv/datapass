@@ -95,6 +95,21 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     onPromptCancellation();
   };
 
+  const getEventButtonList = () =>
+    authorizedEvents
+      .filter((event) => event !== EnrollmentEvent.notify)
+      .map((event) => {
+        const eventConfiguration = eventConfigurations[event];
+        return (
+          <EventButton
+            key={event}
+            disabled={!!pendingEvent || loading}
+            onClick={() => onEventButtonClick(event)}
+            {...eventConfiguration.displayProps}
+          />
+        );
+      });
+
   const getContent = (currentAction: EnrollmentAction) => {
     switch (currentAction) {
       case EnrollmentEvent.instruct:
@@ -103,19 +118,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           body: (
             <div className="datapass-instruct-dialog">
               <div>Comment souhaitez vous instruire cette demande ?</div>
-              {authorizedEvents
-                .filter((event) => event !== EnrollmentEvent.notify)
-                .map((event) => {
-                  const eventConfiguration = eventConfigurations[event];
-                  return (
-                    <EventButton
-                      key={event}
-                      disabled={!!pendingEvent || loading}
-                      onClick={() => onEventButtonClick(event)}
-                      {...eventConfiguration.displayProps}
-                    />
-                  );
-                })}
+              {pendingEvent || loading ? null : getEventButtonList()}
 
               {loading && <Loader enableBePatientMessage />}
 
