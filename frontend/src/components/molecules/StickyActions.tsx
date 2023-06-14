@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import {
   EnrollmentEvent,
   PromptType,
@@ -13,10 +13,10 @@ import { processEvent } from '../../lib/process-event';
 import Loader from '../atoms/Loader';
 import Prompt from '../templates/Form/SubmissionPanel/Prompt';
 import ConfirmationModal from '../organisms/ConfirmationModal';
-import { chain, isEmpty } from 'lodash';
-import { getChangelog } from '../../lib';
+import { chain } from 'lodash';
 import moment from 'moment';
 import { useAuth } from '../organisms/AuthContext';
+import { markEventAsRead } from '../../services/enrollments';
 
 export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   (Object.keys(eventConfigurations) as EnrollmentEvent[]).filter(
@@ -82,9 +82,18 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     processEvent
   );
 
-  const { user } = useAuth();
+  const { user, getIsUserAnInstructor } = useAuth();
+  const [hasUnprocessedMessages, setHasUnprocessedMessage] = useState(false);
   const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
   const authorizedEvents = listAuthorizedEvents(enrollment.acl);
+
+  useEffect(() => {
+    if (enrollment) {
+      setHasUnprocessedMessage(
+        enrollment.unprocessed_notify_events_from_demandeurs_count > 0
+      );
+    }
+  }, [enrollment]);
 
   const handleActionChange = (action: EnrollmentAction) => {
     if (currentAction !== action) {
@@ -109,6 +118,10 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           />
         );
       });
+
+  const isUserAnInstructor = useMemo(() => {
+    return getIsUserAnInstructor(enrollment.target_api);
+  }, [getIsUserAnInstructor, enrollment]);
 
   const getContent = (currentAction: EnrollmentAction) => {
     switch (currentAction) {
@@ -184,7 +197,9 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
           .value();
 
         return {
-          title: 'Écrire au demandeur',
+          title: `Écrire ${
+            isUserAnInstructor ? 'au demandeur' : 'à l’instructeur'
+          }`,
           body: (
             <div className="datapass-notify-dialog">
               <div className="datapass-notify-dialog-messages">
@@ -260,13 +275,18 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
               onClick={() => {
                 handleActionChange(EnrollmentEvent.notify);
                 onEventButtonClick(EnrollmentEvent.notify);
+                markEventAsRead({
+                  id: enrollment?.id,
+                  event_name: EnrollmentEvent.notify,
+                });
+                setHasUnprocessedMessage(false);
               }}
               label="Messagerie"
               icon="mail"
               quaternary={currentAction !== EnrollmentEvent.notify}
               iconFill
             />
-            {enrollment?.unprocessed_notify_events_from_demandeurs_count > 0 ? (
+            {hasUnprocessedMessages && isUserAnInstructor ? (
               <div className="red-dot datapass-sticky-actions-notification"></div>
             ) : null}
           </div>
