@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class ProductionBridge < ApplicationBridge
+  def libelle_cgu
+    fail NotImplementedError
+  end
+
+  def version_cgu
+    fail NotImplementedError
+  end
+
   def call
     id = @enrollment.id
     demandeur = @enrollment.demandeurs.first
@@ -156,8 +164,8 @@ class ProductionBridge < ApplicationBridge
         attestationRecette: true,
         attestationRGPD: true,
         cgu: {
-          libelle: "Libellé du CGU",
-          version: "Version des CGU validées",
+          libelle: libelle_cgu,
+          version: version_cgu,
           attestationCGU: true
         }
       }

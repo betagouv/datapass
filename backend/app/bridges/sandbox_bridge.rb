@@ -9,6 +9,14 @@ class SandboxBridge < ApplicationBridge
     fail NotImplementedError
   end
 
+  def libelle_cgu
+    fail NotImplementedError
+  end
+
+  def version_cgu
+    fail NotImplementedError
+  end
+
   def call
     id = @enrollment.id
     demandeur = @enrollment.demandeurs.first
@@ -230,8 +238,8 @@ class SandboxBridge < ApplicationBridge
           }
         },
         cgu: {
-          libelle: "Libellé du CGU",
-          version: "Version des CGU validées",
+          libelle: libelle_cgu,
+          version: version_cgu,
           attestationCGU: true
         },
         apiSouscrites: [
