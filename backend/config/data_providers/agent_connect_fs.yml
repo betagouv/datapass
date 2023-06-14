@@ -1,0 +1,3 @@
+agent_connect_fs:
+  label: AgentConnect - fournisseur de service
+  mailer: *shared_mailer

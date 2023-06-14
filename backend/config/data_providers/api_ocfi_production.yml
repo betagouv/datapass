@@ -1,0 +1,3 @@
+api_ocfi_production:
+  label: API OCFI (Production)
+  mailer: *shared_mailer

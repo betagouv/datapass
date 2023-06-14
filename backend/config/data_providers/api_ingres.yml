@@ -1,0 +1,3 @@
+api_ingres:
+  label: API INGRES
+  mailer: *shared_mailer

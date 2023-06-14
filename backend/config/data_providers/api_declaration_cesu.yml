@@ -1,0 +1,3 @@
+api_declaration_cesu:
+  label: API Tierce Déclaration CESU
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_mire_production:
+  label: API MIRE (Production)
+  mailer: *shared_mailer

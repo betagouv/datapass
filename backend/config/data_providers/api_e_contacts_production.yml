@@ -1,0 +1,3 @@
+api_e_contacts_production:
+  label: API E-Contacts (Production)
+  mailer: *shared_mailer

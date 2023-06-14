@@ -1,0 +1,3 @@
+cartobio:
+  label: CartoBio - Territoires
+  mailer: *shared_mailer

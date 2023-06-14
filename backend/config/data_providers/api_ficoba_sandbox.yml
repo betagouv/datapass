@@ -1,0 +1,3 @@
+api_ficoba_sandbox:
+  label: API FICOBA (Bac à sable)
+  mailer: *shared_mailer

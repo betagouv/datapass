@@ -1,0 +1,3 @@
+api_prestations_sociales_fc:
+  label: API prestations sociales (FC)
+  mailer: *shared_mailer

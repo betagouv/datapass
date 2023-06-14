@@ -1,0 +1,3 @@
+api_droits_cnam:
+  label: API Droits CNAM
+  mailer: *shared_mailer

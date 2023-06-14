@@ -1,0 +1,3 @@
+api_hermes_sandbox:
+  label: API Hermes (Bac à sable)
+  mailer: *shared_mailer

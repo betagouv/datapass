@@ -1,0 +1,3 @@
+api_statut_demandeur_emploi:
+  label: API statut demandeur d’emploi
+  mailer: *shared_mailer

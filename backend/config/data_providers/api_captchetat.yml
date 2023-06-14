@@ -1,0 +1,3 @@
+api_captchetat:
+  label: API CaptchEtat
+  mailer: *shared_mailer

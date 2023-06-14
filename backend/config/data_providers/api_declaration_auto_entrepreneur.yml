@@ -1,0 +1,3 @@
+api_declaration_auto_entrepreneur:
+  label: API Tierce Déclaration auto-entrepreneur
+  mailer: *shared_mailer

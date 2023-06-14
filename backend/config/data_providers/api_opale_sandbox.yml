@@ -1,0 +1,3 @@
+api_opale_sandbox:
+  label: API OPALE (Bac à sable)
+  mailer: *shared_mailer

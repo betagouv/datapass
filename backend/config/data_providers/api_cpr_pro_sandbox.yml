@@ -1,0 +1,3 @@
+api_cpr_pro_sandbox:
+  label: API CPR PRO - ADELIE (Bac à sable)
+  mailer: *shared_mailer

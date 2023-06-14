@@ -1,0 +1,4 @@
+hubee_portail_dila:
+  label: Portail HubEE - Démarches DILA
+  mailer: *shared_mailer
+  reply_to: support.partenaires@service-public.fr

@@ -1,0 +1,4 @@
+franceconnect:
+  label: FranceConnect
+  mailer: *shared_mailer
+  reply_to: support.partenaires@franceconnect.gouv.fr

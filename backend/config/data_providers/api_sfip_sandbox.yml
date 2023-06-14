@@ -1,0 +1,3 @@
+api_sfip_sandbox:
+  label: API Courtier fonctionnel SFiP (Bac à sable)
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_satelit_production:
+  label: API Satelit (Production)
+  mailer: *shared_mailer

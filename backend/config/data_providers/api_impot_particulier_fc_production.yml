@@ -1,0 +1,3 @@
+api_impot_particulier_fc_production:
+  label: API Impôt particulier (FC) (Production)
+  mailer: *shared_mailer

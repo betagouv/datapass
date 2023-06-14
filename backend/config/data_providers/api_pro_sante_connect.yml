@@ -1,0 +1,3 @@
+api_pro_sante_connect:
+  label: API Pro Santé Connect
+  mailer: *shared_mailer

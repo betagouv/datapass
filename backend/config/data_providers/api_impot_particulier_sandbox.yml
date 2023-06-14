@@ -1,0 +1,3 @@
+api_impot_particulier_sandbox:
+  label: API Impôt particulier (Bac à sable)
+  mailer: *shared_mailer

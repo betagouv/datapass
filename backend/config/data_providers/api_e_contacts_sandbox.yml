@@ -1,0 +1,3 @@
+api_e_contacts_sandbox:
+  label: API E-Contacts (Bac à sable)
+  mailer: *shared_mailer

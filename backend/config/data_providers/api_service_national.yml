@@ -1,0 +1,3 @@
+api_service_national:
+  label: API Service National
+  mailer: *shared_mailer

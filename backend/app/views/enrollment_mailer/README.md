@@ -39,7 +39,7 @@ particulier, utilisez la méthode décrite ci-dessous.
 
 1. Créer un dossier `target_api` (si celui-ci n'existe pas)
    correspondant au nom technique de votre service. Vous pouvez trouver ce nom
-   dans le fichier [data_providers.yml](../../config/data_providers.yml).
+   dans le fichier correspondant à l'API au sein du dossier [data_providers](../../config/data_providers/).
    Par exemple pour API Entreprise, il faut créer le dossier `api_entreprise`.
 2. Créer le fichier correspondant à l'email que vous voulez personnaliser. Par
    exemple, dans le cas d'API Entreprise pour l'email de demande de
@@ -49,7 +49,7 @@ particulier, utilisez la méthode décrite ci-dessous.
    signature : cet email sera renvoyé tel quel
 
 Vous pouvez de même modifier le sujet de l'email au besoin directement dans le
-fichier [data_providers.yml](../../config/data_providers.yml) sous la clé correspondant à
+dossier [data_providers](../../config/data_providers/) au sein du fichier correspondant à
 votre service.
 
 Par exemple pour API Entreprise, si on modifie seulement le sujet de

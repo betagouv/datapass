@@ -1,0 +1,3 @@
+api_tiers_de_prestation:
+  label: API Tiers de prestation
+  mailer: *shared_mailer

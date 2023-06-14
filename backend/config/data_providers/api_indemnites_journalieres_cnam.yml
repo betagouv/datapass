@@ -1,0 +1,3 @@
+api_indemnites_journalieres_cnam:
+  label: API Indemnités Journalières (CNAM)
+  mailer: *shared_mailer

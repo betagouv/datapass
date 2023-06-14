@@ -1,0 +1,3 @@
+api_indemnisation_pole_emploi:
+  label: API Indemnisation Pôle emploi
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_ocfi_sandbox:
+  label: API OCFI (Bac à sable)
+  mailer: *shared_mailer

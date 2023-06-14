@@ -1,0 +1,3 @@
+api_e_pro_sandbox:
+  label: API E-PRO (Bac à sable)
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_prestations_sociales:
+  label: API prestations sociales
+  mailer: *shared_mailer

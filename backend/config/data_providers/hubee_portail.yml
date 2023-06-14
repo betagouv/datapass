@@ -1,0 +1,4 @@
+hubee_portail:
+  label: Portail HubEE - Démarche CertDC
+  mailer: *shared_mailer
+  reply_to: dgs-certdc@sante.gouv.fr

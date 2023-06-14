@@ -1,0 +1,3 @@
+api_histovec:
+  label: API Historique d’un véhicule
+  mailer: *shared_mailer

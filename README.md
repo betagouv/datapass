@@ -41,7 +41,7 @@ Pour ajouter un formulaire voici la liste des fichiers à modifier :
       backend/app/policies/enrollment/<name_of_api>\_policy.rb)
    2. définitions de règles de validation spécifiques (création de backend/app/models/enrollment/<name_of_api>.rb)
    3. configuration du label de service et de l’adresse email pour les notifications mails émises
-      depuis DataPass (backend/config/data_providers.yml)
+      depuis DataPass (backend/config/data_providers)
    4. [optionnel] configuration d’un Webhook DataPass
    5. [optionnel] modèle d’email de réponse personnalisé
 

@@ -1,0 +1,3 @@
+api_ensu_documents_sandbox:
+  label: API ENSU Documents (Bac à sable)
+  mailer: *shared_mailer

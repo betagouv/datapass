@@ -1,0 +1,3 @@
+api_ensu_documents_production:
+  label: API ENSU Documents (Production)
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+aidants_connect:
+  label: Aidants Connect
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+le_taxi:
+  label: API le.Taxi
+  mailer: *shared_mailer

@@ -20,13 +20,16 @@ class DataProviderConfigurations
     end
   end
 
-  private
-
   def config
-    @config ||= YAML.load_file(config_file, aliases: true)
+    @config ||= YAML.safe_load(config_raw, aliases: true)
   end
 
-  def config_file
-    Rails.root.join("config/data_providers.yml")
+  def config_raw
+    @file_names = Dir.glob("config/data_providers/*")
+    @yml_content = ""
+    @file_names.each do |file_name|
+      @yml_content += File.read(file_name)
+    end
+    @yml_content
   end
 end

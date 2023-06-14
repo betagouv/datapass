@@ -1,0 +1,3 @@
+api_infinoe_sandbox:
+  label: API INFINOE (Bac à sable)
+  mailer: *shared_mailer

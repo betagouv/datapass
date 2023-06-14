@@ -1,0 +1,3 @@
+api_statut_etudiant_boursier:
+  label: API Statut étudiant boursier
+  mailer: *shared_mailer

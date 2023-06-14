@@ -1,0 +1,3 @@
+api_robf_sandbox:
+  label: API ROBF (Bac à sable)
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_r2p_sandbox:
+  label: API R2P (Bac à sable)
+  mailer: *shared_mailer

@@ -1,0 +1,3 @@
+api_scolarite:
+  label: API Scolarité
+  mailer: *shared_mailer

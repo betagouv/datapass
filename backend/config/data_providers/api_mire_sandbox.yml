@@ -1,0 +1,3 @@
+api_mire_sandbox:
+  label: API MIRE (Bac à sable)
+  mailer: *shared_mailer
