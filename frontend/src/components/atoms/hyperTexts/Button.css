@@ -1,0 +1,9 @@
+.fr-btn--quaternary {
+  background-color: var(--info-950-100);
+  color: var(--text-action-high-blue-france);
+  border: 1px solid var(--text-action-high-blue-france);
+}
+
+.fr-btn--quaternary:hover {
+  background-color: var(--info-950-100-hover) !important;
+}

@@ -32,7 +32,11 @@ export const processEvent = async (
     let comment = null;
     let enrollmentId = enrollment.id;
 
-    if (eventConfiguration.prompt === PromptType.comment) {
+    if (
+      [PromptType.comment, PromptType.notify].includes(
+        eventConfiguration.prompt as PromptType
+      )
+    ) {
       try {
         comment = message;
       } catch (e) {

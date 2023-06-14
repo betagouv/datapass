@@ -9,6 +9,7 @@ import EventButtonList from '../../../molecules/EventButtonList';
 import ConfirmationModal from '../../../organisms/ConfirmationModal';
 import { useFormSubmission } from './hooks/use-form-submission';
 import Prompt from './Prompt';
+import { useAuth } from '../../../organisms/AuthContext';
 
 type Props = {
   enrollment: any;
@@ -21,6 +22,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
   handlePostEvent,
   updateEnrollment,
 }) => {
+  const { user } = useAuth();
   const {
     loading,
     pendingEvent,
@@ -33,6 +35,9 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     updateEnrollment,
     processEvent
   );
+  if (user && user?.roles?.length > 1) {
+    return null;
+  }
 
   return (
     <>

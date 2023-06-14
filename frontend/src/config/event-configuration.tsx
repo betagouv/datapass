@@ -8,10 +8,12 @@ export enum EnrollmentEvent {
   request_changes = 'request_changes',
   archive = 'archive',
   validate = 'validate',
+  instruct = 'instruct',
 }
 
 export enum PromptType {
   comment = 'comment',
+  notify = 'notify',
   confirm_deletion = 'confirm_deletion',
   confirm_archive = 'confirm_archive',
   submit_instead = 'submit_instead',
@@ -41,11 +43,11 @@ export const eventConfigurations: {
 } = {
   notify: {
     displayProps: {
-      label: 'Envoyer un message',
+      label: 'Envoyer',
       icon: 'mail',
       secondary: true,
     },
-    prompt: PromptType.comment,
+    prompt: PromptType.notify,
     request: RequestType.change_state,
     redirectToHome: true,
     successMessage:

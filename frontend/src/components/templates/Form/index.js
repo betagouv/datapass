@@ -23,6 +23,7 @@ import { enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
 import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
+import StickyActions from '../../molecules/StickyActions';
 import SubmissionPanel from './SubmissionPanel';
 
 export const FormContext = React.createContext();
@@ -169,6 +170,11 @@ export const Form = ({
             <HideSectionsContainer>
               {children}
               <SubmissionPanel
+                enrollment={enrollment}
+                handlePostEvent={handlePostEvent}
+                updateEnrollment={dispatchSetEnrollment}
+              />
+              <StickyActions
                 enrollment={enrollment}
                 handlePostEvent={handlePostEvent}
                 updateEnrollment={dispatchSetEnrollment}

@@ -1,5 +1,6 @@
 import React, { MouseEvent } from 'react';
 import HyperText from './HyperText';
+import './Button.css';
 
 type Props = {
   href?: string;
@@ -7,6 +8,7 @@ type Props = {
   secondary?: boolean;
   tertiary?: boolean;
   tertiaryNoOutline?: boolean;
+  quaternary?: boolean;
   large?: boolean;
   xLarge?: boolean;
   icon?: string;
@@ -23,6 +25,7 @@ const Button: React.FC<Props> = ({
   secondary = false,
   tertiary = false,
   tertiaryNoOutline = false,
+  quaternary = false,
   large = false,
   xLarge = false,
   icon,
@@ -52,6 +55,12 @@ const Button: React.FC<Props> = ({
 
   if (tertiaryNoOutline) {
     className += ' fr-btn--tertiary-no-outline';
+  }
+
+  if (quaternary) {
+    // NOTE: The following class doesn't exist in the DSFR.
+    // This will need to be updated with future DSFR versions to maintain compatibility.
+    className += ' fr-btn--quaternary';
   }
 
   return (

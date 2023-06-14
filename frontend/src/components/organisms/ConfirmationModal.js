@@ -41,7 +41,7 @@ const ConfirmationModal = ({
           {children}
         </div>
         <div className="fr-modal__footer">
-          <ButtonGroup alignRight>
+          <ButtonGroup align="right">
             <Button secondary large onClick={handleCancel}>
               {cancelLabel}
             </Button>

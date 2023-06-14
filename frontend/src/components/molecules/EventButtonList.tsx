@@ -25,22 +25,24 @@ export const EventButtonList: FunctionComponent<Props> = ({
   const authorizedEvents = listAuthorizedEvents(acl);
 
   return (
-    <ButtonGroup alignRight>
-      {authorizedEvents.map((event) => {
-        const eventConfiguration = eventConfigurations[event];
-        const onClick = (e: MouseEvent<HTMLElement>) => {
-          e.preventDefault();
-          onEventButtonClick(event);
-        };
-        return (
-          <EventButton
-            key={event}
-            disabled={disabled}
-            onClick={onClick}
-            {...eventConfiguration.displayProps}
-          />
-        );
-      })}
+    <ButtonGroup align="right">
+      {authorizedEvents
+        .filter((event) => event !== EnrollmentEvent.notify)
+        .map((event) => {
+          const eventConfiguration = eventConfigurations[event];
+          const onClick = (e: MouseEvent<HTMLElement>) => {
+            e.preventDefault();
+            onEventButtonClick(event);
+          };
+          return (
+            <EventButton
+              key={event}
+              disabled={disabled}
+              onClick={onClick}
+              {...eventConfiguration.displayProps}
+            />
+          );
+        })}
     </ButtonGroup>
   );
 };

@@ -56,7 +56,6 @@ describe('DataPass', () => {
     cy.checkBox('has_alternative_authentication_methods');
 
     cy.get('button.fr-icon-checkbox-line').click();
-
     cy.contains('En cours');
   });
 });

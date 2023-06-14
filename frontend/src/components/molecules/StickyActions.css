@@ -1,0 +1,142 @@
+.datapass-sticky-actions {
+  position: fixed;
+  bottom: 0;
+  right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.datapass-sticky-actions .datapass-sticky-actions-buttons .fr-btn {
+  border: 1px solid var(--text-action-high-blue-france);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.datapass-sticky-actions .datapass-sticky-actions-buttons .fr-btn:hover {
+  background-color: var(--text-action-high-blue-france) !important;
+}
+
+.datapass-sticky-actions-container {
+  position: relative;
+}
+
+.red-dot.datapass-sticky-actions-notification {
+  position: absolute;
+  top: -3px;
+  right: 5px;
+  transform: scale(1.2);
+}
+
+.datapass-sticky-actions
+  .datapass-sticky-actions-buttons
+  .fr-btn--quaternary:hover {
+  background-color: var(--info-950-100-hover) !important;
+}
+
+.datapass-sticky-actions-dialog {
+  width: 350px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  height: 60vh;
+  background-color: white;
+  border: 2px solid var(--text-action-high-blue-france);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.datapass-sticky-actions-dialog-header {
+  display: flex;
+  background-color: var(--text-action-high-blue-france);
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 0.5rem;
+  font-size: small;
+}
+
+.datapass-sticky-actions-dialog-header-action {
+  color: white;
+  font-size: small;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.datapass-sticky-actions-dialog-header-action:hover {
+  background-color: transparent !important;
+}
+
+.datapass-sticky-actions-dialog-body {
+  flex-grow: 1;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1rem 0;
+}
+
+.datapass-instruct-dialog {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.datapass-instruct-dialog > * {
+  width: 100%;
+  justify-content: center;
+}
+
+.datapass-notify-dialog {
+  padding: 0.5rem 1rem;
+}
+
+.datapass-notify-dialog textarea {
+  height: 1.75rem !important;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.datapass-notify-dialog .fr-input-group {
+  margin-bottom: 0.5rem;
+}
+
+.datapass-notify-dialog .fr-btn {
+  margin-bottom: 0;
+}
+
+.datapass-notify-dialog-messages {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.datapass-notify-dialog-message {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.datapass-notify-dialog-message-from-user {
+  margin-left: auto;
+}
+
+.datapass-notify-dialog-message-from-user
+  .datapass-notify-dialog-message-content {
+  background-color: var(--blue-cumulus-950-100);
+}
+
+.datapass-notify-dialog-message-content {
+  background-color: var(--purple-glycine-975-75);
+  padding: 0.5rem;
+}
+
+.datapass-notify-dialog-message-footer {
+  font-size: small;
+  font-style: italic;
+  color: var(--text-mention-grey);
+  margin-left: auto;
+}
