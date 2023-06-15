@@ -140,6 +140,14 @@ class Enrollment < ActiveRecord::Base
     events.none? { |event| event[:name] == "submit" && event[:processed_at].nil? }
   end
 
+  def requested_changes_have_been_done?
+    return false if status != "submitted"
+
+    penultimate_event = events.order(:created_at).second_to_last
+    ultimate_event = events.order(:created_at).last
+    penultimate_event&.name == "update" && ultimate_event&.name == "submit"
+  end
+
   def notify_event(event, **args)
     notifier_class.new(self).public_send(event, **args)
   end
