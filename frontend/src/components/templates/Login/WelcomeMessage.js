@@ -9,14 +9,21 @@ const WelcomeMessage = ({
 }) => {
   const { label } = useDataProvider(targetApi);
 
+  const getLabel = () => {
+    const labelElement = <b>{label}</b>;
+    if (label.startsWith('API')) {
+      return <>l’{labelElement}</>;
+    }
+
+    return labelElement;
+  };
+
   return (
     <>
       {isOnNewEnrollmentPage ? (
         <div className="fr-mb-3w">
           {newEnrollmentPageMessage || (
-            <>
-              Vous souhaitez accéder à l'<b>{label}</b>.
-            </>
+            <>Vous souhaitez accéder à {getLabel()}.</>
           )}
           {newEnrollmentPageSubTitleMessage || (
             <>
