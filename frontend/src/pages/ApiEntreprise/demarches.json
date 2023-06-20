@@ -214,7 +214,7 @@
   },
   "e_attestations": {
     "label": "Éditeur e-Attestations - Conformité titulaires de marchés",
-    "about": "https://v2.entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "p.gue@e-attestations.com",
@@ -254,7 +254,7 @@
   },
   "provigis": {
     "label": "Éditeur Provigis - Conformité titulaires de marchés",
-    "about": "https://v2.entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "client.services@provigis.com",
@@ -294,7 +294,7 @@
   },
   "achat_solution": {
     "label": "Éditeur Achat Solution - Conformité titulaires de marchés",
-    "about": "https://v2.entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "gmorel@achat-solution.com",
