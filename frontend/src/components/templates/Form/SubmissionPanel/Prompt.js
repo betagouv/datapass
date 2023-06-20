@@ -12,6 +12,7 @@ const Prompt = ({
   displayProps,
   selectedEvent,
   enrollment,
+  hideMostUsedComments = false,
   alignButtons = 'center',
 }) => {
   const { target_api: targetApi, id } = enrollment;
@@ -60,7 +61,7 @@ const Prompt = ({
           value={input}
         />
       )}
-      {mostUsedComments.length > 0 && (
+      {!hideMostUsedComments && mostUsedComments.length > 0 && (
         <ExpandableQuote
           title="Voir les réponses que vous avez apportées précédemment pour des demandes d’habilitation similaires"
           large

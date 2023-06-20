@@ -226,6 +226,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                 eventConfigurations[pendingEvent].prompt ===
                   PromptType.notify && (
                   <Prompt
+                    hideMostUsedComments
                     alignButtons="right"
                     onAccept={onPromptConfirmation}
                     displayProps={
