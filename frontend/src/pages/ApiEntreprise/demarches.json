@@ -43,7 +43,7 @@
   },
   "marches_publics": {
     "label": "Marchés publics",
-    "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "state": {
       "fondement_juridique_title": "R2143-13 Code de la commande publique",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730589",
@@ -67,7 +67,7 @@
   },
   "aides_publiques": {
     "label": "Aides et subventions publiques",
-    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/aides_publiques",
     "state": {
       "scopes": {
         "unites_legales_etablissements_insee": true,
@@ -111,7 +111,7 @@
   },
   "portail_gru": {
     "label": "Portail GRU - Préremplissage",
-    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/portail_gru",
     "state": {
       "intitule": "Préremplissage du portail de gestion relation usager ",
       "description": "Cette demande d’habilitation spécifique au cas d’usage \"Portail GRU - Préremplissage\" vous donne uniquement accès aux données ouvertes de l’API Entreprise. Si votre portail propose d’autres services, tels que la délivrance d’aides/subventions publiques et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d’habilitation supplémentaire pour ce cas d’usage.",
@@ -137,7 +137,7 @@
   },
   "portail_gru_instruction": {
     "label": "Portail GRU - Instruction des démarches",
-    "about": "https://entreprise.api.gouv.fr/use_cases/portail_gru_instruction/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/portail_gru_instruction",
     "state": {
       "intitule": "Instruction des démarches du portail de gestion relation usager",
       "description": "Cette demande d’habilitation spécifique au cas d’usage \"Portail GRU - Instruction des démarches\" . Si votre portail propose d’autres services, tels que la délivrance d’aides/subventions publiques et que vous souhaitez accéder à des données administratives protégées pour instruire les dossiers, il vous faudra faire une demande d’habilitation supplémentaire pour ce cas d’usage.",
@@ -163,7 +163,7 @@
   },
   "detection_fraude": {
     "label": "Détection de la fraude",
-    "about": "https://entreprise.api.gouv.fr/use_cases/detection_fraude/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/fraude",
     "state": {
       "description": "Ce cas d’usage est EXCLUSIVEMENT réservé aux administrations dont la détection des fraudes fait partie de ses missions.",
       "scopes": {
@@ -186,7 +186,7 @@
   },
   "editeur": {
     "label": "Demande spécifique aux éditeurs de logiciels",
-    "about": "https://entreprise.api.gouv.fr/use_cases/editeur/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/editeur",
     "state": {
       "intitule": "Demande spécifique aux éditeurs de logiciels",
       "description": "Attention, cette demande concerne exclusivement les prestataires éditeurs de logiciels à destination d’acteurs publics.\r\n\r\nÉditeurs de logiciels, merci de répondre à toutes les questions suivantes :\r\n\r\n1- Quelles sont les différentes activités de votre organisation (description et site internet) ?\r\n\r\n2- Qui sont vos différents clients (privés et/ou publics) ?\r\n\r\n3- Qui seront les clients publics qui bénéficieront des données obtenues par l’API Entreprise ?\r\n\r\n4- À quoi sert le logiciel qui utilisera API Entreprise ? Décrivez-nous le produit et son rôle auprès de vos clients du secteur public.\r\n\r\n5- Quels sont les cas d’usage de vos clients publics ? Exemples : Marchés publics, Aides et subventions publiques, Portail de gestion relation usager, Fiabilisation de base de tiers, Autres ?",
@@ -214,7 +214,7 @@
   },
   "e_attestations": {
     "label": "Éditeur e-Attestations - Conformité titulaires de marchés",
-    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "p.gue@e-attestations.com",
@@ -254,7 +254,7 @@
   },
   "provigis": {
     "label": "Éditeur Provigis - Conformité titulaires de marchés",
-    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "client.services@provigis.com",
@@ -294,7 +294,7 @@
   },
   "achat_solution": {
     "label": "Éditeur Achat Solution - Conformité titulaires de marchés",
-    "about": "https://entreprise.api.gouv.fr/use_cases/formulaires_preremplis_editeurs/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "gmorel@achat-solution.com",
@@ -334,7 +334,8 @@
   },
   "atexo": {
     "label": "Éditeur Atexo - Dématérialisation des marchés publics",
-    "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
+    "about": "",
     "team_members": {
       "contact_metier": {
         "email": "produits@atexo.com",
@@ -374,7 +375,7 @@
   },
   "mgdis": {
     "label": "Éditeur MGDIS - Portail des aides - Solution de dématérialisation et de pilotage des aides",
-    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/aides_publiques",
     "team_members": {
       "contact_metier": {
         "email": "assistance@mgdis.fr",
@@ -414,7 +415,7 @@
   },
   "setec": {
     "label": "Éditeur Setec/Atexo - Dématérialisation des marchés publics",
-    "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
+    "about": "https://entreprise.api.gouv.fr/cas_usages/marches_publics",
     "team_members": {
       "contact_metier": {
         "email": "etienne.gaillat@setec.com",
