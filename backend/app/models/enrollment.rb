@@ -143,9 +143,9 @@ class Enrollment < ActiveRecord::Base
   def requested_changes_have_been_done?
     return false if status != "submitted"
 
-    penultimate_event = events.order(:created_at).second_to_last
+    second_to_last_event = events.order(:created_at).second_to_last
     ultimate_event = events.order(:created_at).last
-    penultimate_event&.name == "update" && ultimate_event&.name == "submit"
+    second_to_last_event&.name == "update" && ultimate_event&.name == "submit"
   end
 
   def notify_event(event, **args)
