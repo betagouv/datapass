@@ -1,5 +1,5 @@
 class LightEnrollmentSerializer < ActiveModel::Serializer
-  attributes :id, :updated_at, :nom_raison_sociale, :intitule, :target_api, :status, :demandeurs, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :consulted_by_instructor
+  attributes :id, :updated_at, :nom_raison_sociale, :intitule, :target_api, :status, :demandeurs, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :consulted_by_instructor, :requested_changes_have_been_done
 
   attribute :acl do
     object.policy.acl_methods.map { |method|
@@ -19,5 +19,9 @@ class LightEnrollmentSerializer < ActiveModel::Serializer
 
   attribute :consulted_by_instructor do
     object.consulted_by_instructor?
+  end
+
+  attribute :requested_changes_have_been_done do
+    object.requested_changes_have_been_done?
   end
 end

@@ -17,8 +17,8 @@ import { EnrollmentStatus } from '../../config/status-parameters';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
-import { BadgeType } from '../atoms/hyperTexts/Badge';
 import InstructorEnrollmentListFilters from '../organisms/InstructorEnrollmentListFilters';
+import StateBadge from '../molecules/StateBadge';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -37,6 +37,7 @@ export type Enrollment = {
   intitule: string;
   siret: string;
   consulted_by_instructor: boolean;
+  requested_changes_have_been_done: boolean;
   nom_raison_sociale: string | null;
   demandeurs: Demandeur[];
   target_api: string;
@@ -87,19 +88,15 @@ const InstructorEnrollmentList: React.FC = () => {
   }, [pagination, sorted, filtered]);
 
   const columns = [
-    columnHelper.accessor('consulted_by_instructor', {
+    columnHelper.accessor((enrollment) => enrollment, {
       header: 'État',
       id: 'state',
       enableSorting: false,
       enableColumnFilter: false,
       size: 70,
       cell: ({ getValue }) => {
-        const consultedByInstructor = getValue();
-        return consultedByInstructor ? null : (
-          <Badge type={BadgeType.new} icon={true} small={true}>
-            Nouveau
-          </Badge>
-        );
+        const enrollment = getValue();
+        return <StateBadge enrollment={enrollment} />;
       },
     }),
     columnHelper.accessor('updated_at', {
@@ -247,14 +244,18 @@ const InstructorEnrollmentList: React.FC = () => {
             goToItem(target_api, id, event);
           }}
           getRowClassName={(row) => {
-            const { id, consulted_by_instructor } = row as Enrollment;
+            const {
+              id,
+              consulted_by_instructor,
+              requested_changes_have_been_done,
+            } = row as Enrollment;
             let className = '';
 
             if (id === previouslySelectedEnrollmentId) {
               className += ' selected';
             }
 
-            if (!consulted_by_instructor) {
+            if (!consulted_by_instructor && !requested_changes_have_been_done) {
               className += ' new';
             }
 
