@@ -7,6 +7,8 @@ import useEmailTemplate from './hooks/use-email-template';
 import useMostUsedComments from './hooks/use-most-used-comments';
 
 const Prompt = ({
+  inputValue,
+  setInputValue,
   onAccept,
   onCancel,
   displayProps,
@@ -17,29 +19,29 @@ const Prompt = ({
 }) => {
   const { target_api: targetApi, id } = enrollment;
 
-  const [input, setInput] = useState('');
   const [disabled, setDisabled] = useState(false);
   const mostUsedComments = useMostUsedComments(selectedEvent, targetApi);
   const emailTemplate = useEmailTemplate(id, selectedEvent, targetApi);
   const refPanel = useRef(null);
 
   useEffect(() => {
-    if (!input && emailTemplate) {
-      setInput(emailTemplate);
+    if (!inputValue && emailTemplate) {
+      setInputValue(emailTemplate);
     }
-  }, [input, emailTemplate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emailTemplate]);
 
   useEffect(() => {
     refPanel.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   const handleInputChange = (event) => {
-    setInput(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const handleAccept = () => {
     setDisabled(true);
-    onAccept(input.trim());
+    onAccept(inputValue.trim());
   };
 
   const promptLabel = {
@@ -52,13 +54,13 @@ const Prompt = ({
 
   return (
     <div ref={refPanel} className="panel">
-      {typeof input !== 'undefined' && (
+      {typeof inputValue !== 'undefined' && (
         <TextAreaInput
           label={promptLabel}
           onChange={handleInputChange}
           name="comment"
           rows="15"
-          value={input}
+          value={inputValue}
         />
       )}
       {!hideMostUsedComments && mostUsedComments.length > 0 && (

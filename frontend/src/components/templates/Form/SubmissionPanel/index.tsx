@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import {
   eventConfigurations,
   PromptType,
@@ -22,6 +22,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
   handlePostEvent,
   updateEnrollment,
 }) => {
+  const [promptInputValue, setPromptInputValue] = useState('');
   const { user } = useAuth();
   const {
     loading,
@@ -52,6 +53,8 @@ const SubmissionPanel: FunctionComponent<Props> = ({
       {pendingEvent &&
         eventConfigurations[pendingEvent].prompt === PromptType.comment && (
           <Prompt
+            inputValue={promptInputValue}
+            setInputValue={setPromptInputValue}
             onAccept={onPromptConfirmation}
             onCancel={onPromptCancellation}
             displayProps={eventConfigurations[pendingEvent!].displayProps}

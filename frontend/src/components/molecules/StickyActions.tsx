@@ -81,7 +81,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     updateEnrollment,
     processEvent
   );
-
+  const [notifyPrompt, setNotifyPrompt] = useState('');
+  const [commentPrompt, setCommentPrompt] = useState('');
   const { user, getIsUserAnInstructor } = useAuth();
   const [hasUnprocessedMessages, setHasUnprocessedMessage] = useState(false);
   const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
@@ -139,6 +140,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                 eventConfigurations[pendingEvent].prompt ===
                   PromptType.comment && (
                   <Prompt
+                    inputValue={commentPrompt}
+                    setInputValue={setCommentPrompt}
                     onAccept={onPromptConfirmation}
                     onCancel={onPromptCancellation}
                     displayProps={
@@ -227,6 +230,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                   PromptType.notify && (
                   <Prompt
                     hideMostUsedComments
+                    inputValue={notifyPrompt}
+                    setInputValue={setNotifyPrompt}
                     alignButtons="right"
                     onAccept={onPromptConfirmation}
                     displayProps={
