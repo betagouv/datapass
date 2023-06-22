@@ -1,4 +1,5 @@
 import Badge, { BadgeType } from '../../atoms/hyperTexts/Badge';
+import { RecycleIcon } from '../../atoms/icons/fr-fi-icons';
 import { Enrollment } from '../../templates/InstructorEnrollmentList';
 
 type Props = {
@@ -8,9 +9,10 @@ type Props = {
 const StateBadge: React.FC<Props> = ({ enrollment }) => {
   if (enrollment.requested_changes_have_been_done) {
     return (
-      <Badge type={BadgeType.info} icon={true} small={true}>
-        Modifications effectuées
-      </Badge>
+      <p className="fr-badge fr-badge--sm fr-badge--blue-cumulus">
+        <RecycleIcon small />
+        &nbsp;Modifié
+      </p>
     );
   }
 

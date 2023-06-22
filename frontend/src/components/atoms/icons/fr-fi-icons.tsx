@@ -7,6 +7,7 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-device/icons-device.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-others/icons-others.min.css';
 
 const FrFiIcon: React.FC<{
   color?: string;
@@ -145,4 +146,8 @@ export const FilterIcon: React.FC<Props> = ({ color, large, small }) => (
 
 export const ArchiveIcon: React.FC<Props> = ({ color, large, small }) => (
   <FrFiIcon type="archive-line" color={color} large={large} small={small} />
+);
+
+export const RecycleIcon: React.FC<Props> = ({ color, large, small }) => (
+  <FrFiIcon type="recycle-fill" color={color} large={large} small={small} />
 );
