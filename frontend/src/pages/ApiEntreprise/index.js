@@ -57,8 +57,8 @@ const scopesConfiguration = [
   },
   {
     value: 'effectifs_urssaf',
-    label: 'Effectifs - Urssaf',
-    link: 'https://entreprise.api.gouv.fr/catalogue/urssaf/effectifs',
+    label: 'Effectifs - GIP-MDS',
+    link: 'https://entreprise.api.gouv.fr/catalogue/?APIEntreprise_Endpoint%5Bquery%5D=effectif%20gip',
     triggerWarning: true,
     warningType: 'apientreprise_sensitive_effectifs',
   },
