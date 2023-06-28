@@ -25,11 +25,12 @@ class DataProviderConfigurations
   end
 
   def config_raw
-    @file_names = Dir.glob("config/data_providers/*")
-    @yml_content = ""
-    @file_names.each do |file_name|
-      @yml_content += File.read(file_name)
+    data_providers_files.inject("") do |string, endpoint_file|
+      string + File.read(endpoint_file)
     end
-    @yml_content
+  end
+
+  def data_providers_files
+    Dir.glob("config/data_providers/*")
   end
 end
