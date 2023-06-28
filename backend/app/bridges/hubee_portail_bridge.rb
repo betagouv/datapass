@@ -87,41 +87,56 @@ class HubeePortailBridge < ApplicationBridge
     # 3. create subscriptions
     subscription_ids = []
     scopes.each do |scope|
-      create_subscription_response = Http.instance.post({
+      # verify if subscription exists
+      subscription_response = Http.instance.get({
         url: "#{api_host}/referential/v1/subscriptions",
-        body: {
-          datapassId: id,
-          processCode: scope,
-          subscriber: {
-            type: "SI",
-            companyRegister: siret,
-            branchCode: code_commune
-          },
-          accessMode: nil,
-          notificationFrequency: "unitaire",
-          activateDateTime: nil,
-          validateDateTime: validated_at.iso8601,
-          rejectDateTime: nil,
-          endDateTime: nil,
-          updateDateTime: updated_at.iso8601,
-          delegationActor: nil,
-          rejectionReason: nil,
-          status: "Inactif",
-          email: responsable_metier["email"],
-          localAdministrator: {
-            email: responsable_metier["email"],
-            firstName: responsable_metier["given_name"],
-            lastName: responsable_metier["family_name"],
-            function: responsable_metier["job"],
-            phoneNumber: responsable_metier["phone_number"].delete(" ").delete(".").delete("-"),
-            mobileNumber: nil
-          }
+        params: {
+          branchCode: code_commune,
+          companyRegister: siret,
+          processCode: scope
         },
         api_key: access_token,
         tag: "Portail HubEE"
       })
 
-      subscription_ids.push create_subscription_response.parse["id"]
+      # if subscription does not exist, create new subscription
+      if subscription_response.parse.empty?
+        create_subscription_response = Http.instance.post({
+          url: "#{api_host}/referential/v1/subscriptions",
+          body: {
+            datapassId: id,
+            processCode: scope,
+            subscriber: {
+              type: "SI",
+              companyRegister: siret,
+              branchCode: code_commune
+            },
+            accessMode: nil,
+            notificationFrequency: "unitaire",
+            activateDateTime: nil,
+            validateDateTime: validated_at.iso8601,
+            rejectDateTime: nil,
+            endDateTime: nil,
+            updateDateTime: updated_at.iso8601,
+            delegationActor: nil,
+            rejectionReason: nil,
+            status: "Inactif",
+            email: responsable_metier["email"],
+            localAdministrator: {
+              email: responsable_metier["email"],
+              firstName: responsable_metier["given_name"],
+              lastName: responsable_metier["family_name"],
+              function: responsable_metier["job"],
+              phoneNumber: responsable_metier["phone_number"].delete(" ").delete(".").delete("-"),
+              mobileNumber: nil
+            }
+          },
+          api_key: access_token,
+          tag: "Portail HubEE"
+        })
+
+        subscription_ids.push create_subscription_response.parse["id"]
+      end
     end
 
     subscription_ids.join(",")
