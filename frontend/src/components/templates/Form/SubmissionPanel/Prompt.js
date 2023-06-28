@@ -77,11 +77,6 @@ const Prompt = ({
         </ExpandableQuote>
       )}
       <ButtonGroup align={alignButtons}>
-        {onCancel && (
-          <Button secondary onClick={onCancel} disabled={disabled}>
-            Annuler
-          </Button>
-        )}
         <Button
           icon={displayProps.icon}
           onClick={handleAccept}
@@ -89,6 +84,16 @@ const Prompt = ({
         >
           {displayProps.label}
         </Button>
+        {onCancel && (
+          <Button
+            style={{ textDecoration: 'underline' }}
+            tertiaryNoOutline
+            onClick={onCancel}
+            disabled={disabled}
+          >
+            Annuler
+          </Button>
+        )}
       </ButtonGroup>
     </div>
   );
