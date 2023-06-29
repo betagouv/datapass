@@ -10,7 +10,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
-const scopesConfiguration = [
+export const scopesConfiguration = [
   {
     value: 'dgfip_ficoba_etat_civil_denomination',
     label: 'État civil ou dénomination',
@@ -34,7 +34,7 @@ const scopesConfiguration = [
   },
 ];
 
-const accessModes = [
+export const accessModes = [
   {
     id: 'acces_ficoba_iban',
     label: 'via IBAN',

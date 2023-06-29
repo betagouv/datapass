@@ -4,30 +4,29 @@ import DemarcheSection from '../../components/organisms/form-sections/DemarcheSe
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
+import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import Form from '../../components/templates/Form';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import {
   scopesConfiguration,
   groups,
   demarches,
+  accessModes,
   DonneesDescription,
 } from './api-impot-particulier-common';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierSandbox';
-import { additionalTermsOfUse } from './common';
 
-const target_api = 'api_sfip_sandbox';
-const steps = [target_api, 'api_sfip_production'];
+const target_api = 'api_impot_particulier_unique';
 
-const ApiSfipSandbox = () => (
+const ApiImpotParticulierUnique = () => (
   <Form
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
-    <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
@@ -35,17 +34,17 @@ const ApiSfipSandbox = () => (
       DonneesDescription={DonneesDescription}
       scopesConfiguration={scopesConfiguration}
       groups={groups}
+      accessModes={accessModes}
       enableFileSubmissionForScopeSelection={true}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <HomologationSecuriteSection />
+    <VolumetrieSection />
+    <CguSection cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_decembre2022_v4.0.pdf" />
   </Form>
 );
 
-export default ApiSfipSandbox;
+export default ApiImpotParticulierUnique;

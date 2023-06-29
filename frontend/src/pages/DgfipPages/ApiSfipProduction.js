@@ -7,7 +7,7 @@ import VolumetrieSection from '../../components/organisms/form-sections/dgfip-se
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
-import { CadreJuridiqueDescription } from './ApiSfipSandbox';
+import { CadreJuridiqueDescription } from './ApiImpotParticulierSandbox';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_sfip_production';

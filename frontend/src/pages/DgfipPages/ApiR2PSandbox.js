@@ -11,7 +11,7 @@ import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 
-const demarches = {
+export const demarches = {
   default: {
     label: 'Demande Libre',
     state: {
@@ -66,7 +66,7 @@ export const DataAreInAccessModes = () => (
   </>
 );
 
-const accessModes = [
+export const accessModes = [
   {
     id: 'acces_etat_civil',
     label:

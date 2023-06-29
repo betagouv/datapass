@@ -1,4 +1,4 @@
-class Enrollment::ApiR2pSandboxPolicy < Enrollment::SandboxPolicy
+class Enrollment::ApiR2pUniquePolicy < Enrollment::UniquePolicy
   include DgfipPolicyMethods
 
   def permitted_attributes

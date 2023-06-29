@@ -1,4 +1,6 @@
-class Enrollment::ApiImpotParticulierSandboxPolicy < Enrollment::SandboxPolicy
+# frozen_string_literal: true
+
+class Enrollment::ApiSfipUniquePolicy < Enrollment::UniquePolicy
   include DgfipPolicyMethods
 
   def permitted_attributes

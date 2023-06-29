@@ -21,7 +21,7 @@ export const DonneesDescription = () => (
   </>
 );
 
-export const demarches = {
+export const fcDemarches = {
   default: {
     label: 'Demande libre',
     state: {
@@ -158,7 +158,10 @@ export const demarches = {
   },
 };
 
-export const scopesConfiguration = [
+export const demarches = fcDemarches;
+demarches.default.state.scopes['dgfip_IndLep'] = false;
+
+export const fcScopesConfiguration = [
   {
     value: 'dgfip_annee_n_moins_1',
     label: 'Dernière année de revenu',
@@ -323,7 +326,15 @@ export const scopesConfiguration = [
   },
 ];
 
-export const groups = {
+export const scopesConfiguration = [
+  ...fcScopesConfiguration,
+  {
+    value: 'dgfip_IndLep',
+    label: 'Indicateur d’éligibilité au LEP',
+  },
+];
+
+export const fcGroups = {
   annees: {
     label: 'Années sur lesquelles porte votre demande',
     scopes: [
@@ -408,3 +419,23 @@ export const groups = {
     ],
   },
 };
+
+export const groups = {
+  ...JSON.parse(JSON.stringify(fcGroups)),
+  eligibilite_lep: {
+    label:
+      'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
+    scopes: ['dgfip_IndLep'],
+  },
+};
+
+export const accessModes = [
+  {
+    id: 'acces_spi',
+    label: 'via le Numéro fiscal (SPI)',
+  },
+  {
+    id: 'acces_etat_civil',
+    label: 'via l’état civil',
+  },
+];

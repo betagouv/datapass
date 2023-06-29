@@ -976,12 +976,20 @@ api_impot_particulier_production:
   label: API Impôt particulier (Production)
   mailer: *shared_mailer
 
+api_impot_particulier_unique:
+  label: API Impôt particulier (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_impot_particulier_fc_sandbox:
   label: API Impôt particulier (FC) (Bac à sable)
   mailer: *shared_mailer
 
 api_impot_particulier_fc_production:
   label: API Impôt particulier (FC) (Production)
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_unique:
+  label: API Impôt particulier (FC) (Formulaire Unique)
   mailer: *shared_mailer
 
 api_sfip_sandbox:
@@ -992,6 +1000,10 @@ api_sfip_production:
   label: API Courtier fonctionnel SFiP (Production)
   mailer: *shared_mailer
 
+api_sfip_unique:
+  label: API Courtier fonctionnel SFiP (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_r2p_sandbox:
   label: API R2P (Bac à sable)
   mailer: *shared_mailer
@@ -1000,12 +1012,20 @@ api_r2p_production:
   label: API R2P (Production)
   mailer: *shared_mailer
 
+api_r2p_unique:
+  label: API R2P (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_ficoba_sandbox:
   label: API FICOBA (Bac à sable)
   mailer: *shared_mailer
 
 api_ficoba_production:
   label: API FICOBA (Production)
+  mailer: *shared_mailer
+
+api_ficoba_unique:
+  label: API FICOBA (Formulaire Unique)
   mailer: *shared_mailer
 
 api_droits_cnam:

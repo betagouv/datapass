@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::SandboxEnrollment
+class Enrollment::ApiImpotParticulierFcUnique < Enrollment::UniqueEnrollment
   include DgfipValidationMethods
 
   protected

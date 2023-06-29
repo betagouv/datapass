@@ -15,8 +15,10 @@ class Enrollment::ProductionPolicy < EnrollmentPolicy
       :fondement_juridique_url,
       team_members_attributes: [:id, :type, :family_name, :given_name, :email, :phone_number, :job],
       documents_attributes: [
+        :id,
         :attachment,
-        :type
+        :type,
+        :_destroy
       ],
       additional_content: [
         :autorite_homologation_nom,

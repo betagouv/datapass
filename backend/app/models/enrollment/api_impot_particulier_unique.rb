@@ -1,4 +1,6 @@
-class Enrollment::ApiImpotParticulierSandbox < Enrollment::SandboxEnrollment
+# frozen_string_literal: true
+
+class Enrollment::ApiImpotParticulierUnique < Enrollment::UniqueEnrollment
   include DgfipValidationMethods
 
   protected
