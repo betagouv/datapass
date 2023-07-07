@@ -120,7 +120,7 @@ const scopesConfiguration = [
   {
     value: 'open_data',
     label:
-      'Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Actes - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Brevets, marques et modèles déposés - INPI.',
+      'Données des unités légales et établissements diffusibles - Insee ; Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Actes - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Brevets, marques et modèles déposés - INPI.',
     link: 'https://entreprise.api.gouv.fr/catalogue',
     checkedByDefault: true,
   },
