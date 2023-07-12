@@ -34,6 +34,28 @@ RSpec.describe FilterService, type: :service do
         expect(filtered_enrollments.map(&:id)).to match_array([@enrollment_franceconnect["id"], @enrollment_franceconnect2["id"]])
       end
     end
+
+    context "when global_search is used with fuzzy matching" do
+      it "returns items even when the search term is not exact" do
+        filters = [
+          {"key" => "global_search", "value" => "commune d clamart"}
+        ].to_json
+        params = {filter: filters}
+        enrollments = Enrollment.all
+        filtered_enrollments = FilterService.call(params, enrollments)
+        expect(filtered_enrollments.map(&:id)).to match_array([@enrollment_franceconnect.id, @enrollment_api_entreprise.id])
+      end
+
+      it "returns no items when the search term has too much typos" do
+        filters = [
+          {"key" => "global_search", "value" => "commune d calmart"}
+        ].to_json
+        params = {filter: filters}
+        enrollments = Enrollment.all
+        filtered_enrollments = FilterService.call(params, enrollments)
+        expect(filtered_enrollments.map(&:id)).to match_array([])
+      end
+    end
   end
 
   describe "#sanitize_value" do
