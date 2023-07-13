@@ -133,8 +133,10 @@ export const Contact = ({
       isEmailValid(email) &&
       isIndividualEmailAddress(email) && (
         <div className="fr-mb-3w">
-          <Alert type="warning">
-            Merci d’utiliser une adresse email générique.
+          <Alert type="info">
+            Merci de préférer une adresse générique pérenne
+            (ex&nbsp;:&nbsp;contact@) et ainsi limiter les modifications de ce
+            contrat.
           </Alert>
         </div>
       )}
