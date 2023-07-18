@@ -6,12 +6,8 @@ class Enrollment::ApiSfipSandboxPolicy < Enrollment::SandboxPolicy
   def permitted_attributes
     res = super
 
-    res.concat([
-      scopes: impot_particulier_permitted_scopes,
-      additional_content:
-        super_additional_content(res) + impot_particulier_permitted_acces
-    ])
-
+    res[:scopes] = impot_particulier_permitted_scopes
+    augment_permitted_attributes(res, :additional_content, *impot_particulier_permitted_acces)
     res
   end
 end
