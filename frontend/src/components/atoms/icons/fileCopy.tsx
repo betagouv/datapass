@@ -1,7 +1,10 @@
-import React from 'react';
+import { IconProps } from './fr-fi-icons';
 
 // Source: https://material.io/resources/icons/?icon=file_copy&style=outline
-const FileCopyIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
+const FileCopyIcon: React.FC<IconProps> = ({
+  color = 'var(--text-default-grey)',
+  size = 24,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

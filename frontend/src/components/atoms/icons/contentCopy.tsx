@@ -1,7 +1,10 @@
-import React from 'react';
+import { IconProps } from './fr-fi-icons';
 
 // Source: https://fonts.google.com/icons?selected=Material+Icons&icon.query=content+copy
-const ContentCopyIcon = ({ color = 'var(--text-default-grey)', size = 24 }) => (
+const ContentCopyIcon: React.FC<IconProps> = ({
+  color = 'var(--text-default-grey)',
+  size = 24,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}

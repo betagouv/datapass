@@ -1,6 +1,6 @@
-import React from 'react';
+import { IconProps } from './fr-fi-icons';
 
-const habilitationIcon = ({
+const habilitationIcon: React.FC<IconProps> = ({
   color = 'var(--text-action-high-blue-france)',
   size = 32,
 }) => (
