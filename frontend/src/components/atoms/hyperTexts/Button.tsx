@@ -17,6 +17,7 @@ type Props = {
   className?: string;
   disabled?: boolean;
   download?: boolean;
+  children: React.ReactNode;
 };
 
 const Button: React.FC<Props> = ({

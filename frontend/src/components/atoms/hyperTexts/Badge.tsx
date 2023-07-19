@@ -15,6 +15,7 @@ type Props = {
   small?: boolean;
   className?: string;
   round?: boolean;
+  children: React.ReactNode;
 };
 
 export const Badge: React.FC<Props> = ({
