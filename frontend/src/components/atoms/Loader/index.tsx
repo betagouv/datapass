@@ -1,7 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './style.css';
 
-const Loader = ({
+type LoaderProps = {
+  message?: string;
+  small?: boolean;
+  enableBePatientMessage?: boolean;
+};
+
+const Loader: React.FC<LoaderProps> = ({
   message = '',
   small = false,
   enableBePatientMessage = false,
@@ -9,7 +15,7 @@ const Loader = ({
   const [bePatientMessage, setBePatientMessage] = useState('');
 
   const bePatientEffect = useCallback(
-    (message, timeInSecond) => {
+    (message: string, timeInSecond: number) => {
       if (enableBePatientMessage) {
         const timer = setTimeout(
           () => setBePatientMessage(message),
