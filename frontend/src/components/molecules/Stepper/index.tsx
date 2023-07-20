@@ -1,8 +1,14 @@
-import React from 'react';
 import './style.css';
 import { useDataProviderConfigurations } from '../../templates/hooks/use-data-provider-configurations';
 
-const Stepper = ({
+type StepperProps = {
+  children: React.ReactNode;
+  steps: string[];
+  currentStep: string | null;
+  previousStepNotCompleted?: boolean;
+};
+
+const Stepper: React.FC<StepperProps> = ({
   steps,
   currentStep = null,
   previousStepNotCompleted = false,
@@ -11,7 +17,7 @@ const Stepper = ({
 
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
-  const getStepCssClass = (index) => {
+  const getStepCssClass = (index: number) => {
     if (!currentStep) {
       return '';
     }

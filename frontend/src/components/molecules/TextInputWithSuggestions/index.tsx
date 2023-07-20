@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { chain, isEmpty, isNull, isNumber, max, min, uniqueId } from 'lodash';
+// @ts-ignore
 import * as levenshtein from 'damerau-levenshtein';
 import Dropdown from '../Dropdown';
 import './style.css';
+import { InputProps } from '../../atoms/inputs/Input';
 
-export const TextInputWithSuggestions = ({
-  label,
-  name,
-  options = [],
-  value,
-  disabled,
-  onChange,
-  required,
-}) => {
+export interface TextInputWithSuggestionsProps extends InputProps {
+  options: { id: string; label: string }[];
+}
+
+export const TextInputWithSuggestions: React.FC<
+  TextInputWithSuggestionsProps
+> = ({ label, name, options = [], value, disabled, onChange, required }) => {
   // id will be set once when the component initially renders, but never again
   // we generate a unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<
+    { id: string; label: string }[]
+  >([]);
 
   // from https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
   const normalize = (string = '') =>
@@ -32,7 +34,8 @@ export const TextInputWithSuggestions = ({
       .map(({ id, label }) => ({
         id,
         label,
-        distance: levenshtein(normalize(value), normalize(label)).similarity,
+        distance: levenshtein(normalize(value as string), normalize(label))
+          .similarity,
       }))
       .sortBy(['distance'])
       .reverse()
@@ -43,15 +46,15 @@ export const TextInputWithSuggestions = ({
     setSuggestions(newSuggestions);
   }, [options, value]);
 
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [activeSuggestion, setActiveSuggestion] = useState(null);
+  const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
+  const [activeSuggestion, setActiveSuggestion] = useState<number | null>(null);
 
   const closeDropDown = () => {
     setIsDropDownOpen(false);
     setActiveSuggestion(null);
   };
 
-  const onKeyDown = (e) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Tab' && isDropDownOpen) {
       closeDropDown();
     }
@@ -79,26 +82,37 @@ export const TextInputWithSuggestions = ({
 
     if (e.key === 'ArrowDown' && isDropDownOpen && isNumber(activeSuggestion)) {
       e.preventDefault();
-      setActiveSuggestion(min([activeSuggestion + 1, suggestions.length - 1]));
+      setActiveSuggestion(
+        min([activeSuggestion + 1, suggestions.length - 1]) as number
+      );
     }
 
-    if (e.key === 'ArrowUp' && isDropDownOpen) {
+    if (e.key === 'ArrowUp' && isDropDownOpen && isNumber(activeSuggestion)) {
       e.preventDefault();
-      setActiveSuggestion(max([activeSuggestion - 1, 0]));
+      setActiveSuggestion(max([activeSuggestion - 1, 0]) as number);
     }
 
-    if (e.key === 'Enter' && isDropDownOpen) {
+    if (e.key === 'Enter' && isDropDownOpen && isNumber(activeSuggestion)) {
       e.preventDefault();
-      onChange({
-        target: { name, value: suggestions[activeSuggestion]?.label },
-      });
+      if (onChange) {
+        onChange({
+          // @ts-ignore
+          target: {
+            name: name as string,
+            value: suggestions[activeSuggestion]?.label,
+          },
+        });
+      }
       closeDropDown();
     }
   };
 
-  const handleChange = (value) => {
+  const handleChange = (value: string) => {
     closeDropDown();
-    onChange({ target: { name, value } });
+    if (onChange) {
+      // @ts-ignore
+      onChange({ target: { name: name as string, value } });
+    }
   };
 
   return (
