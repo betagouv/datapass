@@ -2,7 +2,19 @@ import Highlight from '../../atoms/Highlight';
 import Button from '../../atoms/hyperTexts/Button';
 import './style.css';
 
-export const HighlightWithButton = ({ title, children, onClick, label }) => (
+type HighlightWithButtonProps = {
+  children: React.ReactNode;
+  title: string;
+  label: string;
+  onClick: React.MouseEventHandler<HTMLElement>;
+};
+
+export const HighlightWithButton: React.FC<HighlightWithButtonProps> = ({
+  title,
+  children,
+  onClick,
+  label,
+}) => (
   <div className="datapass-notification-with-buttons">
     <Highlight>
       <span className="fr-h5">{title}</span>

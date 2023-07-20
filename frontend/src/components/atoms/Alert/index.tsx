@@ -13,6 +13,7 @@ type Props = {
   type?: AlertType;
   title?: string;
   onAlertClose?: MouseEventHandler<HTMLButtonElement>;
+  children: React.ReactNode;
 };
 
 export const Alert: React.FC<Props> = ({
