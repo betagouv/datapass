@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { uniqueId } from 'lodash';
 import FieldsetWrapper from './FieldsetWrapper';
 import Label from './Label';
+import { InputProps } from './Input';
 
-export const RadioInput = ({
+interface RadioInputProps extends InputProps {
+  options?: { id: string; label: string }[];
+}
+
+export const RadioInput: React.FC<RadioInputProps> = ({
   label,
   name,
   options = [],
@@ -27,7 +32,7 @@ export const RadioInput = ({
             value={optionId}
             checked={value === optionId}
             onChange={onChange}
-            disabled={disabled ? 'disabled' : false}
+            disabled={disabled}
             required={required}
           />
           <Label id={`${id}-${optionId}`} label={optionLabel} />

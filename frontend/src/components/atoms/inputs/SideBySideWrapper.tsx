@@ -1,7 +1,12 @@
-import React from 'react';
 import './SideBySideWrapper.css';
 
-export const SideBySideWrapper = ({ children = [] }) => (
+type SideBySideWrapperProps = {
+  children: React.ReactNode[];
+};
+
+export const SideBySideWrapper: React.FC<SideBySideWrapperProps> = ({
+  children = [],
+}) => (
   <div className="form-row">
     {children.slice(0, 2).map((child, index) =>
       child ? (

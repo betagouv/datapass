@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import { TextareaHTMLAttributes, useState } from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
 
-export const TextAreaInput = ({
+interface TextAreaInputProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string;
+  helper: string;
+  meta: string;
+  ariaLabel: string;
+}
+
+export const TextAreaInput: React.FC<TextAreaInputProps> = ({
   label,
   helper,
   meta,
   name,
   placeholder = '',
-  value = null,
+  value = undefined,
   disabled,
   onChange,
   ariaLabel,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import TextInput from '../../../atoms/inputs/TextInput';
 import EmailInput from '../../../atoms/inputs/EmailInput';
-import TelInput from '../../../atoms/inputs/TelInput';
+import PhoneNumberInput from '../../../atoms/inputs/PhoneNumberInput';
 import Button from '../../../atoms/hyperTexts/Button';
 import {
   isEmailValid,
@@ -141,7 +141,7 @@ export const Contact = ({
         </div>
       )}
     {!contactByEmailOnly && (
-      <TelInput
+      <PhoneNumberInput
         label={
           displayMobilePhoneLabel
             ? 'Numéro de téléphone mobile'

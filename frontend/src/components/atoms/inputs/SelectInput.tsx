@@ -1,10 +1,23 @@
-import React, { useMemo, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  SelectHTMLAttributes,
+  useMemo,
+  useState,
+} from 'react';
 import { uniqueId } from 'lodash';
 import TextInput from './TextInput';
 import SideBySideWrapper from './SideBySideWrapper';
 import Label from './Label';
 
-export const SelectInput = ({
+interface SelectInputProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  options?: { id: string; label: string }[];
+  useOtherOption?: boolean;
+  label: string;
+  helper: string;
+  meta: string;
+}
+
+export const SelectInput: React.FC<SelectInputProps> = ({
   label,
   name,
   helper,
@@ -21,7 +34,9 @@ export const SelectInput = ({
   const [id] = useState(uniqueId(name));
 
   const isOtherSelected = useMemo(
-    () => useOtherOption && !options.map(({ id: i }) => i).includes(value),
+    () =>
+      useOtherOption &&
+      !options.map(({ id: i }) => i).includes(value as string),
     [useOtherOption, options, value]
   );
 
@@ -41,7 +56,7 @@ export const SelectInput = ({
           name={name}
           value={isOtherSelected ? '' : value}
           disabled={disabled}
-          onChange={onChange}
+          onChange={onChange as ChangeEventHandler<HTMLSelectElement>}
           required={required}
         >
           {options.map(({ id, label: optionLabel }) => (
@@ -62,7 +77,6 @@ export const SelectInput = ({
           name={name}
           value={value}
           disabled={disabled}
-          onChange={onChange}
           required={required}
           ariaLabel={`Précisez le ${label}`}
         />

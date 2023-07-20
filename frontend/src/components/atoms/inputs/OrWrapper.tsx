@@ -1,17 +1,21 @@
-import React from 'react';
+import { Fragment } from 'react';
 import './OrWrapper.css';
 
-export const OrWrapper = ({ children = [] }) => (
+type OrWrapperProps = {
+  children: React.ReactNode[];
+};
+
+export const OrWrapper: React.FC<OrWrapperProps> = ({ children = [] }) => (
   <div className="or-input-form">
     {children.slice(0, 2).map((child, index) => (
-      <React.Fragment key={index}>
+      <Fragment key={index}>
         <div>{child}</div>
         {index < children.length - 1 && (
           <div className="separator">
             <span>ou</span>
           </div>
         )}
-      </React.Fragment>
+      </Fragment>
     ))}
   </div>
 );

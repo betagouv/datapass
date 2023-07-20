@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, InputHTMLAttributes } from 'react';
 import { uniqueId } from 'lodash';
 import Label from './Label';
 
-export const Input = ({
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  helper?: string;
+  meta?: string;
+  ariaLabel?: string;
+}
+
+export const Input: React.FC<InputProps> = ({
   type = 'text',
   label = '',
   helper = '',

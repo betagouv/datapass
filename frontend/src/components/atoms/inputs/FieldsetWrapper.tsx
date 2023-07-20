@@ -1,7 +1,15 @@
-import React from 'react';
 import './FieldsetWrapper.css';
 
-export const FieldsetWrapper = ({
+type FieldsetWrapperProps = {
+  title?: string;
+  required?: boolean;
+  grid?: boolean;
+  inline?: boolean;
+  small?: boolean;
+  children: React.ReactNode;
+};
+
+export const FieldsetWrapper: React.FC<FieldsetWrapperProps> = ({
   title,
   required = false,
   grid = false,
