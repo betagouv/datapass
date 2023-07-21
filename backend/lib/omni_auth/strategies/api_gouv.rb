@@ -10,7 +10,7 @@ module OmniAuth
         authorize_url: "/oauth/authorize",
         auth_scheme: :basic_auth
       }
-      option :scope, "openid email profile organizations"
+      option :scope, "openid email profile phone organizations"
 
       uid { raw_info["sub"] }
 
