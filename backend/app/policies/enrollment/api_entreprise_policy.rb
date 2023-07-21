@@ -15,7 +15,6 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
         :effectifs_urssaf,
         :mandataires_sociaux_infogreffe,
         :chiffre_affaires_dgfip,
-        :comptes_annuels_inpi,
         :bilans_bdf,
         :liasses_fiscales_dgfip,
         :attestation_fiscale_dgfip,
