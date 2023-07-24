@@ -73,11 +73,6 @@ const scopesConfiguration = [
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/chiffres_affaires',
   },
   {
-    value: 'comptes_annuels_inpi',
-    label: 'Comptes annuels du RNCS - INPI',
-    link: 'https://entreprise.api.gouv.fr/catalogue/inpi/comptes_annuels_rncs',
-  },
-  {
     value: 'bilans_bdf',
     label: '3 derniers bilans annuels - Banque de France',
     triggerWarning: true,
@@ -138,12 +133,7 @@ const groups = {
   },
   informations_financieres: {
     label: '🔐 Informations protégées financières :',
-    scopes: [
-      'chiffre_affaires_dgfip',
-      'comptes_annuels_inpi',
-      'bilans_bdf',
-      'liasses_fiscales_dgfip',
-    ],
+    scopes: ['chiffre_affaires_dgfip', 'bilans_bdf', 'liasses_fiscales_dgfip'],
   },
   attestations_sociales_et_fiscales: {
     label: '🔐 Informations protégées de régularité sociale et fiscale :',
