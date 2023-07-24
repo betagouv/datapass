@@ -133,11 +133,7 @@ const groups = {
   },
   informations_financieres: {
     label: '🔐 Informations protégées financières :',
-    scopes: [
-      'chiffre_affaires_dgfip',
-      'bilans_bdf',
-      'liasses_fiscales_dgfip',
-    ],
+    scopes: ['chiffre_affaires_dgfip', 'bilans_bdf', 'liasses_fiscales_dgfip'],
   },
   attestations_sociales_et_fiscales: {
     label: '🔐 Informations protégées de régularité sociale et fiscale :',
