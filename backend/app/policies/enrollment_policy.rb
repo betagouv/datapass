@@ -101,13 +101,7 @@ class EnrollmentPolicy < ApplicationPolicy
 
   def augment_permitted_attributes(attributes, key, *new_values)
     attribute_hash = attributes.find { |attribute| attribute.is_a?(Hash) && attribute.key?(key) }
-
-    if attribute_hash
-      attribute_hash[key] += new_values
-    else
-      attributes << {key => new_values}
-    end
-
+    attribute_hash[key] += new_values
     attributes
   end
 
