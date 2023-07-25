@@ -3,6 +3,7 @@ import './style.css';
 
 type Props = {
   title: string;
+  children: React.ReactNode;
 };
 
 export const ListHeader: React.FC<Props> = ({ title, children = null }) => {

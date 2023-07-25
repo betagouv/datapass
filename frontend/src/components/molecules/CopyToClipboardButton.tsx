@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { uniqueId } from 'lodash';
 import ClipboardJS from 'clipboard';
 import ContentCopyIcon from '../atoms/icons/contentCopy';
 
-export const CopyToClipboardButton = ({ textToCopy }) => {
+type Props = {
+  textToCopy: string;
+};
+
+export const CopyToClipboardButton: React.FC<Props> = ({ textToCopy }) => {
   const [id] = useState(uniqueId());
   const clipboard = new ClipboardJS(`#clipboard-${id}`);
 
@@ -18,8 +22,8 @@ export const CopyToClipboardButton = ({ textToCopy }) => {
       title="Copier dans le presse papier"
       id={`clipboard-${id}`}
       data-clipboard-text={textToCopy}
-      className="inline-icon-button tooltip-controlled"
-      tooltip="Copié !"
+      className="inline-icon-button data-tooltip-controlled"
+      data-tooltip="Copié !"
     >
       <ContentCopyIcon
         color={'var(--border-action-high-blue-france)'}

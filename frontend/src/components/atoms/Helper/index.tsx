@@ -12,7 +12,7 @@ const Helper: React.FC<Props> = ({ title = '' }) => {
     helperClass += ' helper-large';
   }
   return (
-    <span title={title} className={helperClass}>
+    <span data-tooltip={title} className={helperClass}>
       <HelpIcon color={'var(--text-default-grey)'} />
     </span>
   );
