@@ -1,11 +1,27 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { union, xor } from 'lodash';
 import './style.css';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
 import FieldsetWrapper from '../../atoms/inputs/FieldsetWrapper';
 import Dropdown from '../Dropdown';
 
-export const MultiSelect = ({
+type Props = {
+  options: { key: string; label: string }[];
+  values: string[];
+  disabled: boolean;
+  onChange: (values: string[]) => void;
+  alignOptionsLeft: boolean;
+  defaultOverviewLabel: string;
+  id: string;
+};
+
+export const MultiSelect: React.FC<Props> = ({
   options = [],
   values = [],
   disabled = false,
@@ -15,7 +31,7 @@ export const MultiSelect = ({
   id = '',
 }) => {
   const [isContentOpen, setIsContentOpen] = useState(false);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleButtonClick = () => {
     setIsContentOpen(!isContentOpen);
@@ -26,10 +42,10 @@ export const MultiSelect = ({
   };
 
   const escFunction = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         if (isContentOpen) {
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }
         handleOutsideClick();
       }
@@ -45,10 +61,8 @@ export const MultiSelect = ({
     };
   }, [escFunction]);
 
-  const handleChange = (event) => {
-    const {
-      target: { name, checked },
-    } = event;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
     let newValues = checked ? union(values, [name]) : xor(values, [name]);
     onChange(newValues);
   };
