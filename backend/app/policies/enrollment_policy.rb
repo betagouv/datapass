@@ -99,11 +99,10 @@ class EnrollmentPolicy < ApplicationPolicy
     user.is_instructor?(record.target_api)
   end
 
-  def super_additional_content(res)
-    super_additional_content_attribute = res.find do |att|
-      att.instance_of?(Hash) && att.key?(:additional_content)
-    end
-    super_additional_content_attribute[:additional_content]
+  def augment_permitted_attributes(attributes, key, *new_values)
+    attribute_hash = attributes.find { |attribute| attribute.is_a?(Hash) && attribute.key?(key) }
+    attribute_hash[key] += new_values
+    attributes
   end
 
   def permitted_attributes

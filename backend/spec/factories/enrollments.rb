@@ -395,5 +395,24 @@ FactoryBot.define do
         ]
       end
     end
+
+    trait :api_r2p_unique do
+      initialize_with do
+        Enrollment::ApiR2pUnique.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
   end
 end

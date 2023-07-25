@@ -1,17 +1,32 @@
 RSpec.describe EnrollmentsController, "#update", type: :controller do
   subject(:update_enrollment) do
     patch :update, params: {
-      id: enrollment.id,
-      enrollment: enrollment_attributes
+      id: target_enrollment.id,
+      enrollment: target_enrollment_attributes
     }
   end
 
-  let(:enrollment) { create(:enrollment, :franceconnect, enrollment_status, user: enrollment_creator) }
-  let(:enrollment_attributes) do
+  let(:franceconnect_enrollment) { create(:enrollment, :franceconnect, enrollment_status, user: enrollment_creator) }
+  let(:api_r2p_enrollment) { create(:enrollment, :api_r2p_unique, enrollment_status, user: enrollment_creator) }
+  let(:target_enrollment) { franceconnect_enrollment }
+
+  let(:franceconnect_attributes) do
     {
       intitule: new_intitule
     }
   end
+  let(:api_r2p_attributes) do
+    {
+      additional_content: {
+        autorite_homologation_fonction: "JHDJKZJHJKJ",
+        autorite_homologation_nom: "PONEY PONEY",
+        date_homologation: "2022-12-12"
+      }
+    }
+  end
+
+  let(:target_enrollment_attributes) { franceconnect_attributes }
+
   let(:new_intitule) { "Nouvel intitulé" }
   let(:enrollment_status) { :draft }
   let(:enrollment_creator) { create(:user) }
@@ -58,22 +73,38 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
       login(user)
     end
 
-    it "updates enrollment" do
-      expect {
-        update_enrollment
-      }.to change { enrollment.reload.intitule }.to(new_intitule)
+    context "when updating franceconnect enrollment" do
+      let(:target_enrollment) { franceconnect_enrollment }
+      let(:target_enrollment_attributes) { franceconnect_attributes }
+
+      it "updates enrollment" do
+        expect {
+          update_enrollment
+        }.to change { franceconnect_enrollment.reload.intitule }.to(new_intitule)
+      end
+
+      it "creates an event 'update' associated to this enrollment and user" do
+        expect {
+          update_enrollment
+        }.to change { user.events.count }.by(1)
+
+        latest_user_event = user.events.last
+        latest_user_enrollment = user.enrollments.last
+
+        expect(latest_user_event.name).to eq("update")
+        expect(latest_user_event.enrollment).to eq(latest_user_enrollment)
+      end
     end
 
-    it "creates an event 'update' associated to this enrollment and user" do
-      expect {
-        update_enrollment
-      }.to change { user.events.count }.by(1)
+    context "when updating api_r2p enrollment" do
+      let(:target_enrollment) { api_r2p_enrollment }
+      let(:target_enrollment_attributes) { api_r2p_attributes }
 
-      latest_user_event = user.events.last
-      latest_user_enrollment = user.enrollments.last
-
-      expect(latest_user_event.name).to eq("update")
-      expect(latest_user_event.enrollment).to eq(latest_user_enrollment)
+      it "updates enrollment" do
+        expect {
+          update_enrollment
+        }.to change { api_r2p_enrollment.reload.additional_content }.to(api_r2p_attributes[:additional_content].transform_keys(&:to_s))
+      end
     end
   end
 end
