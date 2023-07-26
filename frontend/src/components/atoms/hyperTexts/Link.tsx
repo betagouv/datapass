@@ -16,6 +16,7 @@ type Props = {
   closeButton?: boolean;
   icon?: string;
   newTab?: boolean;
+  children: React.ReactNode;
 };
 
 const Link: React.FC<Props> = ({

@@ -10,6 +10,7 @@ type Props = {
   className?: string;
   submit?: boolean;
   iconFill?: boolean;
+  children: React.ReactNode;
 };
 
 const HyperText: React.FC<Props> = ({

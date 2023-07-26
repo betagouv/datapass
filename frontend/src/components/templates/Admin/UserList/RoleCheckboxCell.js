@@ -29,7 +29,7 @@ const RoleCheckboxCell = (props) => {
         const isChecked = row.original.roles.includes(role);
         return (
           <button
-            tooltip={label}
+            data-tooltip={label}
             key={roleId}
             onClick={() => onChange({ isChecked: !isChecked, role })}
           >

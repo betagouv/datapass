@@ -8,6 +8,7 @@ type Props = {
   dismiss?: boolean;
   isActive?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
+  children: React.ReactNode;
 };
 
 export const Tag: React.FC<Props> = ({

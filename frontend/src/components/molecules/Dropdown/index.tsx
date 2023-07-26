@@ -4,6 +4,7 @@ import './style.css';
 type Props = {
   onOutsideClick: (event: MouseEvent<HTMLElement>) => void;
   fillWidth?: boolean;
+  children: React.ReactNode;
 };
 
 export const Dropdown: FunctionComponent<Props> = ({

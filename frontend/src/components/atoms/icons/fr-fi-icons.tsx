@@ -9,12 +9,15 @@ import '@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css';
 import '@gouvfr/dsfr/dist/utility/icons/icons-others/icons-others.min.css';
 
-const FrFiIcon: React.FC<{
+export type IconProps = {
   color?: string;
-  type: string;
   large?: boolean;
   small?: boolean;
-}> = ({
+  type?: string;
+  size?: number;
+};
+
+const FrFiIcon: React.FC<IconProps> = ({
   color = 'var(--text-default-info)',
   type,
   large = false,
@@ -33,27 +36,33 @@ const FrFiIcon: React.FC<{
   return <span className={className} aria-hidden="true" style={{ color }} />;
 };
 
-type Props = { color?: string; large?: boolean; small?: boolean };
-
 // Icons - Business
-export const MailIcon: React.FC<Props> = ({ color, large, small }) => (
+export const MailIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="mail-line" color={color} large={large} small={small} />
 );
 
-export const MailIconFill: React.FC<Props> = ({ color, large, small }) => (
+export const MailIconFill: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="mail-fill" color={color} large={large} small={small} />
 );
 
-export const MailOpenIcon: React.FC<Props> = ({ color, large, small }) => (
+export const MailOpenIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="mail-open-line" color={color} large={large} small={small} />
 );
 
-export const MailOpenIconFill: React.FC<Props> = ({ color, large, small }) => (
+export const MailOpenIconFill: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+}) => (
   <FrFiIcon type="mail-open-fill" color={color} large={large} small={small} />
 );
 
 // Icons - Media
-export const NotificationIcon: React.FC<Props> = ({ color, large, small }) => (
+export const NotificationIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+}) => (
   <FrFiIcon
     type="notification-3-line"
     color={color}
@@ -63,28 +72,28 @@ export const NotificationIcon: React.FC<Props> = ({ color, large, small }) => (
 );
 
 // Icons - System DSFR
-export const InfoFillIcon: React.FC<Props> = ({ color, large, small }) => (
+export const InfoFillIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="info-fill" color={color} large={large} small={small} />
 );
 
-export const InfoIcon: React.FC<Props> = ({ color, large, small }) => (
+export const InfoIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="info-line" color={color} large={large} small={small} />
 );
 
-export const WarningIcon: React.FC<Props> = ({ color, large, small }) => (
+export const WarningIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="warning-fill" color={color} large={large} small={small} />
 );
 
 // RemixIcon
-export const AddCircleIcon: React.FC<Props> = ({ color, large, small }) => (
+export const AddCircleIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="add-circle-line" color={color} large={large} small={small} />
 );
 
-export const ArrowUpIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ArrowUpIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="arrow-up-s-line" color={color} large={large} small={small} />
 );
 
-export const ArrowDownIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ArrowDownIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon
     type="arrow-down-s-line"
     color={color}
@@ -93,7 +102,11 @@ export const ArrowDownIcon: React.FC<Props> = ({ color, large, small }) => (
   />
 );
 
-export const ArrowRightIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ArrowRightIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+}) => (
   <FrFiIcon
     type="arrow-right-s-line"
     color={color}
@@ -102,7 +115,11 @@ export const ArrowRightIcon: React.FC<Props> = ({ color, large, small }) => (
   />
 );
 
-export const CheckCircleIcon: React.FC<Props> = ({ color, large, small }) => (
+export const CheckCircleIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+}) => (
   <FrFiIcon
     type="checkbox-circle-fill"
     color={color}
@@ -111,7 +128,7 @@ export const CheckCircleIcon: React.FC<Props> = ({ color, large, small }) => (
   />
 );
 
-export const ErrorIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ErrorIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon
     type="error-warning-fill"
     color={color}
@@ -120,34 +137,34 @@ export const ErrorIcon: React.FC<Props> = ({ color, large, small }) => (
   />
 );
 
-export const HelpIcon: React.FC<Props> = ({ color, large, small }) => (
+export const HelpIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="question-fill" color={color} large={large} small={small} />
 );
 
-export const RefreshIcon: React.FC<Props> = ({ color, large, small }) => (
+export const RefreshIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="refresh-line" color={color} large={large} small={small} />
 );
 
-export const ScheduleIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ScheduleIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="time-line" color={color} large={large} small={small} />
 );
 
-export const EyeIcon: React.FC<Props> = ({ color, large, small }) => (
+export const EyeIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="eye-line" color={color} large={large} small={small} />
 );
 
-export const EditIcon: React.FC<Props> = ({ color, large, small }) => (
+export const EditIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="edit-line" color={color} large={large} small={small} />
 );
 
-export const FilterIcon: React.FC<Props> = ({ color, large, small }) => (
+export const FilterIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="filter-line" color={color} large={large} small={small} />
 );
 
-export const ArchiveIcon: React.FC<Props> = ({ color, large, small }) => (
+export const ArchiveIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="archive-line" color={color} large={large} small={small} />
 );
 
-export const RecycleIcon: React.FC<Props> = ({ color, large, small }) => (
+export const RecycleIcon: React.FC<IconProps> = ({ color, large, small }) => (
   <FrFiIcon type="recycle-fill" color={color} large={large} small={small} />
 );

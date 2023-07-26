@@ -15,11 +15,11 @@
 }
 
 /*CSS tooltip is heavily inspired from https://medium.freecodecamp.org/a-step-by-step-guide-to-making-pure-css-tooltips-3d5a3e237346*/
-[tooltip] {
+[data-tooltip] {
   position: relative;
 }
 
-[tooltip]::before {
+[data-tooltip]::before {
   content: '';
   position: absolute;
   top: -6px;
@@ -32,8 +32,8 @@
   opacity: 0;
 }
 
-[tooltip]::after {
-  content: attr(tooltip);
+[data-tooltip]::after {
+  content: attr(data-tooltip);
   position: absolute;
   left: 50%;
   top: -6px;
@@ -52,23 +52,23 @@
   opacity: 0;
 }
 
-[tooltip]:hover::after,
-[tooltip]:hover::before {
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
   opacity: 1;
 }
 
-[tooltip]:focus,
-[tooltip]:focus::after,
-[tooltip]:focus::before {
+[data-tooltip]:focus,
+[data-tooltip]:focus::after,
+[data-tooltip]:focus::before {
   outline: 0;
 }
 
-[tooltip].tooltip-controlled:hover::after,
-[tooltip].tooltip-controlled:hover::before {
+[data-tooltip].tooltip-controlled:hover::after,
+[data-tooltip].tooltip-controlled:hover::before {
   opacity: 0;
 }
 
-[tooltip].tooltip-controlled.tooltip-opened::after,
-[tooltip].tooltip-controlled.tooltip-opened::before {
+[data-tooltip].tooltip-controlled.tooltip-opened::after,
+[data-tooltip].tooltip-controlled.tooltip-opened::before {
   opacity: 1;
 }
