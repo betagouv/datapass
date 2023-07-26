@@ -21,40 +21,42 @@ RSpec.describe FilterService, type: :service do
     end
 
     context "when global_search is used" do
-      it "returns items matching the global search" do
+      before do
         @enrollment_franceconnect2 = create(:enrollment, :franceconnect, :draft)
         create(:event, :create, enrollment: @enrollment_franceconnect2)
+      end
 
-        filters = [
-          {"key" => "global_search", "value" => "rancecon"}
-        ].to_json
-        params = {filter: filters}
-        enrollments = Enrollment.all
-        filtered_enrollments = FilterService.call(params, enrollments)
-        expect(filtered_enrollments.map(&:id)).to match_array([@enrollment_franceconnect["id"], @enrollment_franceconnect2["id"]])
+      let(:filters) { [{"key" => "global_search", "value" => "rancecon"}].to_json }
+      let(:params) { {filter: filters} }
+      let(:enrollments) { Enrollment.all }
+
+      subject { FilterService.call(params, enrollments) }
+
+      it "returns items matching the global search" do
+        expect(subject.map(&:id)).to match_array([@enrollment_franceconnect["id"], @enrollment_franceconnect2["id"]])
       end
     end
 
     context "when global_search is used with fuzzy matching" do
-      it "returns items even when the search term is not exact" do
-        filters = [
-          {"key" => "global_search", "value" => "commune d clamart"}
-        ].to_json
-        params = {filter: filters}
-        enrollments = Enrollment.all
-        filtered_enrollments = FilterService.call(params, enrollments)
-        expect(filtered_enrollments.map(&:id)).to match_array([@enrollment_franceconnect.id, @enrollment_api_entreprise.id])
-      end
+      let(:filters) { [{"key" => "global_search", "value" => "commune d clamart"}].to_json }
+      let(:params) { {filter: filters} }
+      let(:enrollments) { Enrollment.all }
 
-      it "returns no items when the search term has too much typos" do
-        filters = [
-          {"key" => "global_search", "value" => "commune d calmart"}
-        ].to_json
-        params = {filter: filters}
-        enrollments = Enrollment.all
-        filtered_enrollments = FilterService.call(params, enrollments)
-        expect(filtered_enrollments.map(&:id)).to match_array([])
+      subject { FilterService.call(params, enrollments) }
+
+      it "returns items even when the search term is not exact" do
+        expect(subject.map(&:id)).to match_array([@enrollment_franceconnect.id, @enrollment_api_entreprise.id])
       end
+    end
+
+    context "when the global_search term has too many typos" do
+      let(:filters) { [{"key" => "global_search", "value" => "commune d calmart"}].to_json }
+      let(:params) { {filter: filters} }
+      let(:enrollments) { Enrollment.all }
+
+      subject { FilterService.call(params, enrollments) }
+
+      it { is_expected.to be_empty }
     end
   end
 
