@@ -1,12 +1,13 @@
 import { RateLimiter } from 'limiter';
 import { memoize } from 'lodash';
 import httpClient from '../lib/http-client';
+import { Enrollment } from '../components/templates/InstructorEnrollmentList';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const limiter = new RateLimiter({ tokensPerInterval: 2, interval: 300 });
 
-const getOrganizationInformation = async (siret) => {
+const getOrganizationInformation = async (siret: Enrollment['siret']) => {
   await limiter.removeTokens(1);
 
   const {
@@ -39,7 +40,9 @@ const getOrganizationInformation = async (siret) => {
 
 const memoizedGetOrganizationInformation = memoize(getOrganizationInformation);
 
-export const getCachedOrganizationInformation = async (siret) => {
+export const getCachedOrganizationInformation = async (
+  siret: Enrollment['siret']
+) => {
   try {
     return await memoizedGetOrganizationInformation(siret);
   } catch (e) {

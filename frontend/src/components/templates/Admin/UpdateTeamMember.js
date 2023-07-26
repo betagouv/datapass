@@ -21,11 +21,11 @@ export const UpdateTeamMember = () => {
     try {
       setSuccess(false);
       await updateTeamMember({
-        teamMemberId,
-        nom: nom.trim(),
-        prenom: prenom.trim(),
+        id: teamMemberId,
+        family_name: nom.trim(),
+        given_name: prenom.trim(),
         email: email.trim(),
-        phoneNumber: phoneNumber.trim(),
+        phone_number: phoneNumber.trim(),
         job: job.trim(),
       });
       setTeamMemberId('');

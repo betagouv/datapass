@@ -19,30 +19,140 @@ import { debounce } from 'lodash';
 import useListItemNavigation from './hooks/use-list-item-navigation';
 import InstructorEnrollmentListFilters from '../organisms/InstructorEnrollmentListFilters';
 import StateBadge from '../molecules/StateBadge';
+import { EnrollmentEvent } from '../../config/event-configuration';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-type Demandeur = {
-  id: number;
-  type: string;
+export type Demandeur = {
+  created_at: string;
   email: string;
+  enrollment_id: number;
+  family_name: string;
+  given_name: string;
+  id: number;
+  job: string;
+  phone_number: string;
+  updated_at: string;
+  user_id: 227792459;
+};
+
+export type User = {
+  family_name?: string;
+  given_name?: string;
+  id: number;
+  email?: string;
+  created_at?: string;
+  updated_at?: string;
+  roles?: string[];
+  uid?: string;
+  email_verified?: boolean;
+};
+
+export type Event = {
+  comment: string;
+  created_at: string;
+  diff?: any;
+  id: number;
+  name: EnrollmentEvent;
+  processed_at?: string;
+  updated_at: string;
+  user: User;
+};
+
+export enum TeamMemberType {
+  contact_metier = 'contact_metier',
+  delegue_protection_donnees = 'delegue_protection_donnees',
+  demandeur = 'demandeur',
+  responsable_metier = 'responsable_metier',
+  responsable_technique = 'responsable_technique',
+  responsable_traitement = 'responsable_traitement',
+}
+
+export type TeamMember = {
+  email: string;
+  family_name: string;
+  given_name: string;
+  id: number;
+  job: string;
+  phone_number: string;
+  type: TeamMemberType;
+  uid: string;
+};
+
+export type Contact = {
+  email?: string;
+  heading?: string;
+  id: string;
+  nom?: string;
+  phone_number?: string;
+};
+
+export type Document = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  attachment: Record<string, unknown>;
+  type: string;
 };
 
 export type Enrollment = {
-  updated_at: Date;
-  created_at: Date;
-  notify_events_from_demandeurs_count: number;
-  unprocessed_notify_events_from_demandeurs_count: number;
+  updated_at: string;
+  created_at: string;
+  notify_events_from_demandeurs_count?: number;
+  unprocessed_notify_events_from_demandeurs_count?: number;
   id: number;
   intitule: string;
   siret: string;
-  consulted_by_instructor: boolean;
-  requested_changes_have_been_done: boolean;
-  nom_raison_sociale: string | null;
-  demandeurs: Demandeur[];
+  consulted_by_instructor?: boolean;
+  requested_changes_have_been_done?: boolean;
+  nom_raison_sociale?: string | null;
+  demandeurs?: Demandeur[];
   target_api: string;
-  status: EnrollmentStatus;
-  events: Array<any>;
+  status: EnrollmentStatus | string;
+  linked_franceconnect_enrollment_id?: number | null;
+  events?: Event[];
+  acl?: {
+    archive: boolean;
+    copy: boolean;
+    create: boolean;
+    destroy: boolean;
+    get_email_templates: boolean;
+    index: boolean;
+    mark_event_as_processed: boolean;
+    notify: boolean;
+    refuse: boolean;
+    request_changes: boolean;
+    revoke: boolean;
+    show: boolean;
+    submit: boolean;
+    update: boolean;
+    validate: boolean;
+  };
+  additional_content?: Record<string, unknown>;
+  cgu_approved: boolean;
+  copied_from_enrollment_id?: number;
+  data_recipients: any;
+  data_retention_comment: any;
+  data_retention_period: number;
+  date_mise_en_production?: string;
+  demarche?: any;
+  description?: string;
+  documents?: Document[];
+  dpo_is_informed?: boolean;
+  fondement_juridique_title?: string;
+  fondement_juridique_url?: string;
+  linked_token_manager_id?: number | null;
+  organization_id?: number;
+  previous_enrollment_id?: number;
+  scopes?: Record<string, unknown>;
+  team_members?: TeamMember[];
+  technical_team_type?: any;
+  technical_team_value?: any;
+  type_projet?: any;
+  volumetrie_approximative?: any;
+  zip_code?: string;
+  contacts?: Contact[];
+  user?: User;
 };
 
 const columnHelper = createColumnHelper<Enrollment>();
@@ -105,7 +215,7 @@ const InstructorEnrollmentList: React.FC = () => {
       id: 'updated_at',
       size: 50,
       cell: ({ getValue }) => {
-        const updatedAt = getValue() as Date;
+        const updatedAt = getValue() as string;
         return (
           <span title={moment(updatedAt).format('llll')}>
             {moment(updatedAt).format('DD/MM/YYYY')}
@@ -137,7 +247,7 @@ const InstructorEnrollmentList: React.FC = () => {
       enableColumnFilter: false,
     }),
     columnHelper.accessor(
-      ({ demandeurs }) => demandeurs.map(({ email }) => email).join(', '),
+      ({ demandeurs }) => demandeurs?.map(({ email }) => email).join(', '),
       {
         header: 'Email du demandeur',
         id: 'team_members.email',
