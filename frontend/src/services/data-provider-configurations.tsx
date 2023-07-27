@@ -3,7 +3,7 @@ import { memoize } from 'lodash';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-function getDataProviderConfiguration(targetApi) {
+function getDataProviderConfiguration(targetApi: string) {
   return httpClient
     .get(`${BACK_HOST}/api/data_provider_configurations/${targetApi}`, {
       headers: { 'Content-type': 'application/json' },

@@ -30,7 +30,13 @@ export function getUsers({
     .then(({ data }) => data);
 }
 
-export function updateUser({ id, roles = [] }) {
+export function updateUser({
+  id,
+  roles = [],
+}: {
+  id: number;
+  roles: string[];
+}) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +48,7 @@ export function updateUser({ id, roles = [] }) {
     .then(({ data }) => data);
 }
 
-export function createUser({ email }) {
+export function createUser({ email }: { email: string }) {
   const config = {
     headers: {
       'Content-Type': 'application/json',
