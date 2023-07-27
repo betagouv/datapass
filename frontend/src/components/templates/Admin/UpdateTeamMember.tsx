@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { updateTeamMember } from '../../../services/enrollments';
 import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
 import Button from '../../atoms/hyperTexts/Button';
-import Alert from '../../atoms/Alert';
+import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 
 export const UpdateTeamMember = () => {
@@ -13,15 +13,15 @@ export const UpdateTeamMember = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [job, setJob] = useState('');
-  const [success, setSuccess] = useState();
-  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState<boolean>();
+  const [error, setError] = useState<any>(null);
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setSuccess(false);
       await updateTeamMember({
-        id: teamMemberId,
+        id: Number(teamMemberId),
         family_name: nom.trim(),
         given_name: prenom.trim(),
         email: email.trim(),
@@ -36,7 +36,7 @@ export const UpdateTeamMember = () => {
       setJob('');
       setError(null);
       setSuccess(true);
-    } catch (e) {
+    } catch (e: any) {
       setError(getErrorMessages(e));
     }
   };
@@ -45,12 +45,12 @@ export const UpdateTeamMember = () => {
     <div className="page-container">
       <ListHeader title="Modification d’un membre de l’équipe" />
       {success && (
-        <Alert type="success" title="Succès">
+        <Alert type={AlertType.success} title="Succès">
           Contact mis à jour et mail envoyé avec succès !
         </Alert>
       )}
       {error && (
-        <Alert type="error" title="Erreur">
+        <Alert type={AlertType.error} title="Erreur">
           {error}
         </Alert>
       )}

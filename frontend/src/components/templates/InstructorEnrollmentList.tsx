@@ -45,7 +45,16 @@ export type User = {
   updated_at?: string;
   roles?: string[];
   uid?: string;
+  job?: string;
+  phone_number?: string;
   email_verified?: boolean;
+  organizations?: [
+    {
+      id: number;
+      siret: string;
+      is_external: boolean;
+    }
+  ];
 };
 
 export type Event = {
@@ -75,8 +84,8 @@ export type TeamMember = {
   id: number;
   job: string;
   phone_number: string;
-  type: TeamMemberType;
-  uid: string;
+  type?: TeamMemberType;
+  uid?: string;
 };
 
 export type Contact = {

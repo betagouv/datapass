@@ -2,25 +2,9 @@ import React from 'react';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
 import { Login } from '../templates/Login';
+import { User } from '../templates/InstructorEnrollmentList';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
-
-export type User = {
-  id: number;
-  email: string;
-  given_name: string;
-  family_name: string;
-  phone_number: string;
-  job: string;
-  roles: string[];
-  organizations: [
-    {
-      id: number;
-      siret: string;
-      is_external: boolean;
-    }
-  ];
-};
 
 type AuthContextType = {
   user: User | null;
@@ -127,7 +111,7 @@ export class AuthStore extends React.Component<{ children: React.ReactNode }> {
   };
 
   render() {
-    const { children } = this.props;
+    const { children }: { children?: React.ReactNode } = this.props;
     const { user, isLoading, connectionError } = this.state;
 
     return (

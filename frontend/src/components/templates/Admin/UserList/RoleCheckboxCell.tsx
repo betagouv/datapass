@@ -1,17 +1,31 @@
+import { Column, Row } from '@tanstack/react-table';
 import { updateUser } from '../../../../services/users';
 import { EditIcon, EyeIcon, MailIcon } from '../../../atoms/icons/fr-fi-icons';
 import './RoleCheckboxCell.css';
+import { User } from '../../InstructorEnrollmentList';
 
-const RoleCheckboxCell = (props) => {
+type Props = {
+  row: Row<User>;
+  column: Column<User>;
+  updateData: (rowIndex: number, columnId: string, value: any) => void;
+};
+
+const RoleCheckboxCell: React.FC<Props> = (props) => {
   const { row, column, updateData } = props;
 
-  const onChange = async ({ isChecked, role }) => {
+  const onChange = async ({
+    isChecked,
+    role,
+  }: {
+    isChecked: boolean;
+    role: string;
+  }) => {
     const newRoles = isChecked
-      ? [...row?.original.roles, role]
-      : row?.original.roles.filter((e) => e !== role);
+      ? [...(row?.original.roles ?? []), role]
+      : row?.original?.roles?.filter((e) => e !== role);
 
     try {
-      await updateUser({ id: row?.original.id, roles: newRoles });
+      await updateUser({ id: row?.original.id, roles: newRoles ?? [] });
       updateData(row?.index, role, isChecked);
     } catch (e) {
       updateData(row?.index, role, !isChecked);
@@ -26,7 +40,7 @@ const RoleCheckboxCell = (props) => {
         { roleId: 'subscriber', label: 'Abonné', Icon: MailIcon },
       ].map(({ roleId, label, Icon }) => {
         const role = `${column.id}:${roleId}`;
-        const isChecked = row.original.roles.includes(role);
+        const isChecked = row?.original?.roles?.includes(role);
         return (
           <button
             data-tooltip={label}

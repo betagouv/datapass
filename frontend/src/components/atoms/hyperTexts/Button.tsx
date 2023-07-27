@@ -14,6 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconRight?: boolean;
   iconFill?: boolean;
   download?: boolean;
+  submit?: boolean;
   children?: React.ReactNode;
 }
 
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   iconRight = false,
   iconFill = false,
+  submit = false,
   children,
   className = '',
   ...props
@@ -70,6 +72,7 @@ const Button: React.FC<ButtonProps> = ({
       href={href}
       children={children}
       className={className}
+      submit={submit}
       {...props}
     />
   );
