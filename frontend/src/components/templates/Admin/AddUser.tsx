@@ -1,42 +1,42 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
 import { RefreshIcon } from '../../atoms/icons/fr-fi-icons';
 import { getErrorMessages } from '../../../lib';
 import Button from '../../atoms/hyperTexts/Button';
-import Alert from '../../atoms/Alert';
+import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 
 export const AddUser = () => {
-  const [newUserEmail, setNewUserEmail] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [newUserEmail, setNewUserEmail] = useState<string>('');
+  const [success, setSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewUserEmail(event.target.value);
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSuccess(false);
-    setError(false);
+    setError(null);
     try {
       if (newUserEmail) {
         await createUser({ email: newUserEmail.trim() });
         setSuccess(true);
         setNewUserEmail('');
       }
-    } catch (e) {
+    } catch (e: any) {
       setError(getErrorMessages(e));
     }
   };
 
   return (
     <div className="page-container">
-      <ListHeader className="fr-text-bold" title="Ajouter un utilisateur" />
+      <ListHeader title="Ajouter un utilisateur" />
       {success && (
         <div className="fr-mb-2w">
-          <Alert type="success" title="Succès">
+          <Alert type={AlertType.success} title="Succès">
             L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
             liste des utilisateurs en cliquant sur l’icone <RefreshIcon />.
           </Alert>
@@ -44,7 +44,7 @@ export const AddUser = () => {
       )}
       {error && (
         <div className="fr-mb-2w">
-          <Alert type="error" title="Erreur">
+          <Alert type={AlertType.error} title="Erreur">
             {error}
           </Alert>
         </div>

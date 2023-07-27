@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  Column,
+  ColumnFilter,
+  createColumnHelper,
+  getCoreRowModel,
+} from '@tanstack/react-table';
 import { getUsers } from '../../../../services/users';
 import { useDataProviderConfigurations } from '../../hooks/use-data-provider-configurations';
 import RoleCheckboxCell from './RoleCheckboxCell';
@@ -10,25 +15,26 @@ import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../organisms/Table';
 import { debounce } from 'lodash';
+import { User } from '../../InstructorEnrollmentList';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
+    pageSize: 10,
   });
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState<ColumnFilter[]>([]);
 
-  const columnHelper = createColumnHelper();
+  const columnHelper = createColumnHelper<User>();
 
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   const columns = [
     columnHelper.accessor('email', {
       header: 'Email',
-      accessorKey: 'email',
       id: 'email',
       minSize: 150,
       filterFn: 'includesString',
@@ -51,20 +57,22 @@ const UserList = () => {
     ),
     columnHelper.accessor('id', {
       header: 'Id',
-      accessorKey: 'id',
       id: 'id',
       enableColumnFilter: false,
       enableSorting: false,
     }),
   ];
 
-  const updateRole = (rowIndex, columnId, value) => {
+  const updateRole = (rowIndex: number, columnId: string, value: any) => {
     setUsers((old) =>
       old.map((row, index) => {
         if (index === rowIndex) {
-          const newRoles = value
-            ? [...row.roles, columnId]
-            : row.roles.filter((e) => e !== columnId);
+          let newRoles;
+          if (value) {
+            newRoles = [...(row.roles ?? []), columnId];
+          } else {
+            newRoles = row.roles ? row.roles.filter((e) => e !== columnId) : [];
+          }
           return {
             ...old[rowIndex],
             roles: newRoles,
@@ -128,7 +136,7 @@ const UserList = () => {
         loading={isLoading}
         noDataPlaceholder="Aucun utilisateur"
         tableOptions={{
-          columns: columns,
+          columns: columns as Column<User>[],
           data: users,
           pageCount: totalPages,
           state: {
@@ -139,6 +147,7 @@ const UserList = () => {
           onColumnFiltersChange: setFiltered,
           manualPagination: true,
           manualFiltering: true,
+          getCoreRowModel: getCoreRowModel(),
         }}
       />
     </>
