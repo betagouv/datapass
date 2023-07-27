@@ -8,7 +8,15 @@ import { DataProviderType } from '../../../config/data-provider-configurations';
 import { APISDGFIP } from '../../../config/data-provider-configurations';
 import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
 
-const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
+type WelcomeMessageRouterProps = {
+  targetApi: string;
+  isOnNewEnrollmentPage: boolean;
+};
+
+const WelcomeMessageRouter: React.FC<WelcomeMessageRouterProps> = ({
+  targetApi,
+  isOnNewEnrollmentPage,
+}) => {
   if (!isOnNewEnrollmentPage) {
     return (
       <WelcomeMessage
@@ -22,7 +30,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
     return (
       <WelcomeMessage
         isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-        target_api={targetApi}
+        targetApi={targetApi}
         newEnrollmentPageSubTitleMessage={
           <>
             <br />
