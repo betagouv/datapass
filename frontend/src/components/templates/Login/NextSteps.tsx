@@ -9,7 +9,15 @@ import { APISDGFIP } from '../../../config/data-provider-configurations';
 import { APISFRANCECONNECTED } from '../../../config/data-provider-configurations';
 import { useDataProvider } from '../hooks/use-data-provider';
 
-const NextSteps = ({ targetApi, isService = false }) => {
+type NextStepsProps = {
+  targetApi: string;
+  isService: boolean;
+};
+
+const NextSteps: React.FC<NextStepsProps> = ({
+  targetApi,
+  isService = false,
+}) => {
   const [stat, setStat] = useState(null);
 
   const { label: targetApiLabel } = useDataProvider(targetApi);
