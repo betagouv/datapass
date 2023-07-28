@@ -77,8 +77,8 @@ api_particulier:
       label: Statut demandeur d'emploi et identité
       helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
     - value: pole_emploi_paiements
-      label: Paiements Pôle emploi
-      helper: Montants et dates des paiements Pôle emploi (allocations et aides).
+      label: Montants et dates des paiements Pôle emploi
+      helper: Paiements de type allocations, aides complémentaires aux allocations et autres
     - value: pole_emploi_contact
       label: Téléphones et e-mail
     - value: pole_emploi_adresse
