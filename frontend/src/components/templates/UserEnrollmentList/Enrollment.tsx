@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 import { chain } from 'lodash';
 import './Enrollment.css';
@@ -8,8 +7,23 @@ import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { StatusBadge } from '../../molecules/StatusBadge';
 import NextStepButton from '../../molecules/NextStepButton';
+import { Enrollment } from '../InstructorEnrollmentList';
 
-const Enrollment = ({
+type EnrollmentProps = {
+  id: Enrollment['id'];
+  events: Enrollment['events'];
+  target_api: Enrollment['target_api'];
+  intitule: Enrollment['intitule'];
+  description: Enrollment['description'];
+  status: Enrollment['status'];
+  onSelect: (
+    target_api: string,
+    id: number,
+    e: React.MouseEvent<HTMLElement>
+  ) => void;
+};
+
+const Enrollment: React.FC<EnrollmentProps> = ({
   id,
   events,
   target_api,
@@ -21,7 +35,7 @@ const Enrollment = ({
   const { label, icon } = useDataProvider(target_api);
 
   const handleClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       onSelect(target_api, id, e);
     },
     [id, target_api, onSelect]
@@ -83,15 +97,6 @@ const Enrollment = ({
       </div>
     </div>
   );
-};
-
-Enrollment.propTypes = {
-  id: PropTypes.number.isRequired,
-  target_api: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  intitule: PropTypes.string,
-  onSelect: PropTypes.func.isRequired,
 };
 
 export default Enrollment;

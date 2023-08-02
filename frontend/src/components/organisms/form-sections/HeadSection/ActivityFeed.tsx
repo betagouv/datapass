@@ -3,7 +3,6 @@ import { useContext, useMemo, useState } from 'react';
 import { FormContext } from '../../../templates/Form';
 
 import moment from 'moment';
-import PropTypes from 'prop-types';
 import { getChangelog, isUserADemandeur } from '../../../../lib';
 import {
   ArchiveIcon,
@@ -21,69 +20,89 @@ import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
 import ExpandableSection from '../../../molecules/ExpandableSection';
 import { EnrollmentEvent } from '../../../../config/event-configuration';
+import { Event } from '../../../templates/InstructorEnrollmentList';
 
 const eventToDisplayableContent = {
-  request_changes: {
+  [EnrollmentEvent.request_changes]: {
     icon: <WarningIcon color={'var(--text-default-warning)'} />,
     label: 'a demandé des modifications',
   },
-  notify: {
+  [EnrollmentEvent.notify]: {
     icon: <MailIcon color={'var(--text-default-info)'} />,
     label: 'a écrit',
   },
-  create: {
-    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
+  [EnrollmentEvent.create]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
     label: 'a créé la demande d’habilitation',
   },
-  submit: {
-    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
+  [EnrollmentEvent.submit]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
     label: 'a soumis la demande d’habilitation',
   },
-  validate: {
+  [EnrollmentEvent.validate]: {
     icon: <CheckCircleIcon color={'var(--text-default-success)'} />,
     label: 'a validé l’habilitation',
   },
-  reminder_before_archive: {
+  [EnrollmentEvent.reminder_before_archive]: {
     icon: <NotificationIcon color={'var(--text-default-warning)'} />,
     label: 'a envoyé un email de relance avant archivage',
   },
-  reminder: {
+  [EnrollmentEvent.reminder]: {
     icon: <NotificationIcon color={'var(--text-default-info)'} />,
     label: 'a envoyé un email de relance',
   },
   // This event is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
-  update_contacts: {
-    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
+  [EnrollmentEvent.update_contacts]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
     label: 'a mis à jour les contacts',
   },
-  update: {
-    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
+  [EnrollmentEvent.update]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
     label: 'a mis à jour l’habilitation',
   },
-  refuse: {
+  [EnrollmentEvent.refuse]: {
     icon: <ErrorIcon color={'var(--text-default-error)'} />,
     label: 'a refusé l’habilitation',
   },
-  revoke: {
+  [EnrollmentEvent.revoke]: {
     icon: <ErrorIcon color={'var(--text-default-error)'} />,
     label: 'a révoqué l’habilitation',
   },
-  archive: {
+  [EnrollmentEvent.archive]: {
     icon: <ArchiveIcon color={'var(--text-default-info)'} />,
     label: 'a archivé l’habilitation',
   },
-  copy: {
+  [EnrollmentEvent.copy]: {
     icon: <FileCopyIcon color={'var(--text-default-info)'} />,
     label: 'a copié l’habilitation',
   },
-  import: {
-    icon: <InfoFillIcon color={'var(--text-default-info)'} outlined />,
+  [EnrollmentEvent.import]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
     label: 'a importé l’habilitation',
+  },
+  [EnrollmentEvent.destroy]: {
+    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
+    label: 'a supprimé l’habilitation',
+  },
+  [EnrollmentEvent.instruct]: {
+    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
+    label: 'a instruit l’habilitation',
   },
 };
 
-export const EventItem = ({
+type EventItemProps = {
+  comment: string;
+  name: EnrollmentEvent;
+  created_at?: string;
+  processed_at?: string;
+  family_name?: string;
+  given_name?: string;
+  email?: string;
+  diff?: any;
+};
+
+export const EventItem: React.FC<EventItemProps> = ({
   comment,
   name,
   created_at,
@@ -152,7 +171,7 @@ export const EventItem = ({
         )}
         {!isEmpty(changelog) && showDiff && (
           <div className={eventCommentClass}>
-            {changelog.map((log) => (
+            {changelog.map((log: string) => (
               <p key={log.slice(20)}>{log}</p>
             ))}
           </div>
@@ -162,22 +181,11 @@ export const EventItem = ({
   );
 };
 
-EventItem.propTypes = {
-  comment: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  created_at: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  family_name: PropTypes.string,
-  given_name: PropTypes.string,
-  diff: PropTypes.object,
+type ActivityFeedProps = {
+  events: Event[];
 };
 
-EventItem.defaultProps = {
-  comment: '',
-  diff: {},
-};
-
-const ActivityFeed = ({ events }) => {
+const ActivityFeed: React.FC<ActivityFeedProps> = ({ events }) => {
   let eventsToDisplay = chain(events)
     .sortBy('created_at')
     .reject(
@@ -208,14 +216,6 @@ const ActivityFeed = ({ events }) => {
       </ExpandableSection>
     </div>
   );
-};
-
-ActivityFeed.propTypes = {
-  events: PropTypes.array,
-};
-
-ActivityFeed.defaultProps = {
-  events: [],
 };
 
 export default ActivityFeed;
