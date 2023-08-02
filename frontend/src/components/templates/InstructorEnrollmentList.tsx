@@ -78,14 +78,15 @@ export enum TeamMemberType {
 }
 
 export type TeamMember = {
-  email: string;
-  family_name: string;
-  given_name: string;
+  email?: string;
+  family_name?: string;
+  given_name?: string;
   id: number;
-  job: string;
-  phone_number: string;
+  job?: string;
+  phone_number?: string;
   type?: TeamMemberType;
   uid?: string;
+  tmp_id?: string;
 };
 
 export type Contact = {
@@ -110,8 +111,8 @@ export type Enrollment = {
   notify_events_from_demandeurs_count?: number;
   unprocessed_notify_events_from_demandeurs_count?: number;
   id: number;
-  intitule: string;
-  siret: string;
+  intitule?: string;
+  siret?: string;
   consulted_by_instructor?: boolean;
   requested_changes_have_been_done?: boolean;
   nom_raison_sociale?: string | null;
@@ -122,29 +123,13 @@ export type Enrollment = {
   events?: Event[];
   responsable_traitement_given_name?: string;
   responsable_traitement_family_name?: string;
-  acl?: {
-    archive: boolean;
-    copy: boolean;
-    create: boolean;
-    destroy: boolean;
-    get_email_templates: boolean;
-    index: boolean;
-    mark_event_as_processed: boolean;
-    notify: boolean;
-    refuse: boolean;
-    request_changes: boolean;
-    revoke: boolean;
-    show: boolean;
-    submit: boolean;
-    update: boolean;
-    validate: boolean;
-  };
+  acl?: Partial<Record<EnrollmentEvent, boolean>>;
   additional_content?: Record<string, unknown>;
-  cgu_approved: boolean;
+  cgu_approved?: boolean;
   copied_from_enrollment_id?: number;
-  data_recipients: any;
-  data_retention_comment: any;
-  data_retention_period: number;
+  data_recipients?: any;
+  data_retention_comment?: any;
+  data_retention_period?: number;
   date_mise_en_production?: string;
   demarche?: any;
   description?: string;

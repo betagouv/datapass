@@ -1,29 +1,38 @@
+import { EnrollmentEvent } from '../../../config/event-configuration';
+import { EnrollmentStatus } from '../../../config/status-parameters';
+import { TeamMemberType } from '../InstructorEnrollmentList';
 import enrollmentReducerFactory from './enrollmentReducer';
 
 describe('enrollmentReducerFactory', () => {
   const previousEnrollment = {
+    id: 1,
     acl: {
-      update: true,
-      submit: true,
+      [EnrollmentEvent.update]: true,
+      [EnrollmentEvent.submit]: true,
     },
-    status: 'draft',
+    status: EnrollmentStatus.draft,
     target_api: 'api_particulier',
     scopes: {
       dgfip_declarant1_nom: false,
       cnaf_quotient_familial: false,
     },
+    updated_at: 'now',
+    created_at: 'now',
     team_members: [
       {
-        type: 'demandeur',
+        id: 1,
+        type: TeamMemberType.demandeur,
         tmp_id: 'tmp_31',
         email: 'datapass@yopmail.com',
       },
       {
-        type: 'responsable_technique',
+        id: 2,
+        type: TeamMemberType.responsable_technique,
         tmp_id: 'tmp_34',
       },
     ],
   };
+
   describe('enrollmentReducer with no demarches', () => {
     const enrollmentReducer = enrollmentReducerFactory(null);
 
@@ -65,7 +74,8 @@ describe('enrollmentReducerFactory', () => {
       };
 
       expect(
-        enrollmentReducer(previousEnrollment, event).scopes.dgfip_declarant1_nom
+        enrollmentReducer(previousEnrollment, event)?.scopes
+          ?.dgfip_declarant1_nom
       ).toEqual(true);
     });
 
@@ -88,12 +98,14 @@ describe('enrollmentReducerFactory', () => {
           {
             type: 'demandeur',
             tmp_id: 'tmp_31',
+            id: 1,
             email: 'datapass@yopmail.com',
           },
           {
             type: 'responsable_technique',
             tmp_id: 'tmp_34',
             email: newEmail,
+            id: 2,
           },
         ]
       );
@@ -235,6 +247,7 @@ describe('enrollmentReducerFactory', () => {
         ).toEqual([
           {
             type: 'demandeur',
+            id: 1,
             email: 'datapass@yopmail.com',
             tmp_id: 'tmp_31',
           },
@@ -242,6 +255,7 @@ describe('enrollmentReducerFactory', () => {
             type: 'responsable_technique',
             email: 'technique@editeur.fr',
             tmp_id: 'tmp_34',
+            id: 2,
           },
         ]);
       });
@@ -261,6 +275,7 @@ describe('enrollmentReducerFactory', () => {
         ).toEqual([
           {
             type: 'demandeur',
+            id: 1,
             email: 'datapass@yopmail.com',
             tmp_id: 'tmp_31',
           },
@@ -268,6 +283,7 @@ describe('enrollmentReducerFactory', () => {
             type: 'responsable_technique',
             email: '',
             tmp_id: 'tmp_34',
+            id: 2,
           },
         ]);
       });
@@ -317,11 +333,13 @@ describe('enrollmentReducerFactory', () => {
             type: 'demandeur',
             email: 'datapass@yopmail.com',
             tmp_id: 'tmp_31',
+            id: 1,
           },
           {
             type: 'responsable_technique',
             email: '',
             tmp_id: 'tmp_34',
+            id: 2,
           },
         ]);
       });
