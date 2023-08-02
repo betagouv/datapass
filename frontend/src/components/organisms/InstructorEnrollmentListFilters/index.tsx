@@ -52,7 +52,7 @@ const InstructorEnrollmentListFilters = ({
           id="target_api"
           options={
             user?.roles
-              .filter((role) => role.endsWith(':reporter'))
+              ?.filter((role) => role.endsWith(':reporter'))
               .map((role) => {
                 const targetApiKey = role.split(':')[0];
 
@@ -75,7 +75,7 @@ const InstructorEnrollmentListFilters = ({
           id="status"
           options={Object.entries(STATUS_LABELS)
             .filter(([key]) =>
-              user?.roles.includes('administrator') ? key : key !== 'archived'
+              user?.roles?.includes('administrator') ? key : key !== 'archived'
             )
             .map(([key, value]) => ({
               key,

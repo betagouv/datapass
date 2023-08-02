@@ -74,7 +74,7 @@ const USER_STATUS_COLORS = {
   revoked: '#FF4747',
 };
 
-type Stats = {
+type StatsData = {
   enrollment_count: number;
   validated_enrollment_count: number;
   average_processing_time_in_days: number;
@@ -91,7 +91,7 @@ type Stats = {
 };
 
 export const Stats = () => {
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useState<StatsData | null>(null);
   const { targetApi } = useParams();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 

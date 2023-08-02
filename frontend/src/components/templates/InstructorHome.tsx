@@ -57,7 +57,7 @@ const InstructorHome: React.FC = () => {
 
   const instructorTargetApis: TargetAPI[] =
     user?.roles
-      .filter((role) => role.endsWith(':reporter'))
+      ?.filter((role) => role.endsWith(':reporter'))
       .map((role) => role.split(':')[0] as TargetAPI) || [];
 
   return (
@@ -73,7 +73,7 @@ const InstructorHome: React.FC = () => {
                 defaultOverviewLabel="Toutes les habilitations"
                 options={instructorTargetApis.map((targetApiKey) => ({
                   key: targetApiKey,
-                  label: dataProviderConfigurations?.[targetApiKey].label,
+                  label: dataProviderConfigurations?.[targetApiKey]?.label,
                 }))}
                 values={targetApis.length === 0 ? [] : targetApis}
                 onChange={(values = []) => setTargetApis(values)}
