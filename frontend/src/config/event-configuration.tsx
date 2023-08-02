@@ -1,14 +1,20 @@
 export enum EnrollmentEvent {
   notify = 'notify',
+  create = 'create',
   destroy = 'destroy',
   update = 'update',
   submit = 'submit',
   refuse = 'refuse',
   revoke = 'revoke',
   request_changes = 'request_changes',
+  reminder_before_archive = 'reminder_before_archive',
+  reminder = 'reminder',
+  import = 'import',
   archive = 'archive',
   validate = 'validate',
   instruct = 'instruct',
+  update_contacts = 'update_contacts',
+  copy = 'copy',
 }
 
 export enum PromptType {

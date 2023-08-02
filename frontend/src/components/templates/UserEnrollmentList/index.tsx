@@ -3,16 +3,18 @@ import { groupBy, isEmpty } from 'lodash';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Enrollment from './Enrollment';
-import Alert from '../../atoms/Alert';
+import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
+import { Enrollment as EnrollmentType } from '../InstructorEnrollmentList';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
+  const [enrollmentsByOrganization, setEnrollmentsByOrganization] =
+    useState<Record<string, EnrollmentType[]>>();
   const [showAlert, setShowAlert] = useState(false);
 
   const { state } = useLocation();
@@ -59,7 +61,7 @@ const UserEnrollmentList = () => {
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
         <div className="page-container list-container">
           {showAlert && (
-            <Alert type="success" onAlertClose={handleClose}>
+            <Alert type={AlertType.success} onAlertClose={handleClose}>
               {state?.message}
             </Alert>
           )}
@@ -71,8 +73,13 @@ const UserEnrollmentList = () => {
               {enrollmentsByOrganization[group].map((enrollment) => (
                 <Enrollment
                   key={enrollment.id}
-                  {...enrollment}
                   onSelect={goToItem}
+                  id={enrollment.id}
+                  events={enrollment.events}
+                  target_api={enrollment.target_api}
+                  intitule={enrollment.intitule}
+                  description={enrollment.description}
+                  status={enrollment.status}
                 />
               ))}
             </React.Fragment>

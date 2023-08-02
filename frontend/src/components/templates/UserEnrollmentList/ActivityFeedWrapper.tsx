@@ -1,12 +1,25 @@
 import { chain } from 'lodash';
-import PropTypes from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
-import { STATUS_LABELS } from '../../../config/status-parameters';
+import {
+  EnrollmentStatus,
+  STATUS_LABELS,
+} from '../../../config/status-parameters';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
-import Alert from '../../atoms/Alert';
+import Alert, { AlertType } from '../../atoms/Alert';
 import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
+import { Enrollment } from '../InstructorEnrollmentList';
 
-const ActivityFeedWrapper = ({ events, status, target_api }) => {
+type ActivityFeedWrapperProps = {
+  events: Enrollment['events'];
+  status: EnrollmentStatus;
+  target_api: string;
+};
+
+const ActivityFeedWrapper: React.FC<ActivityFeedWrapperProps> = ({
+  events,
+  status,
+  target_api,
+}) => {
   const [
     majorityPercentileProcessingTimeInDays,
     setMajorityPercentileTimeInDays,
@@ -29,10 +42,10 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
 
   const {
     comment = '',
-    name: lastEventName = '',
-    updated_at = '',
+    name: lastEventName,
     user,
     diff,
+    created_at,
   } = useMemo(
     () => chain(events).sortBy('updated_at').last().value() || {},
     [events]
@@ -47,14 +60,14 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     ['request_changes'].includes(lastEventName)
   ) {
     return (
-      <Alert title={STATUS_LABELS[status]} type="warning">
+      <Alert title={STATUS_LABELS[status]} type={AlertType.warning}>
         Votre demande d’habilitation est incomplète et requiert les
         modifications suivantes :
         <div style={{ margin: '1rem 0' }}>
           <EventItem
             comment={comment}
             name={lastEventName}
-            updated_at={updated_at}
+            created_at={created_at}
             email={email}
             given_name={given_name}
             family_name={family_name}
@@ -93,12 +106,6 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   }
 
   return null;
-};
-
-ActivityFeedWrapper.propTypes = {
-  events: PropTypes.array.isRequired,
-  status: PropTypes.string.isRequired,
-  target_api: PropTypes.string.isRequired,
 };
 
 export default ActivityFeedWrapper;
