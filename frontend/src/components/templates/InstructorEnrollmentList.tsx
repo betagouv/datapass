@@ -120,6 +120,8 @@ export type Enrollment = {
   status: EnrollmentStatus;
   linked_franceconnect_enrollment_id?: number | null;
   events?: Event[];
+  responsable_traitement_given_name?: string;
+  responsable_traitement_family_name?: string;
   acl?: {
     archive: boolean;
     copy: boolean;

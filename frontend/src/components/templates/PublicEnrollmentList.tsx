@@ -4,13 +4,18 @@ import { getPublicValidatedEnrollments } from '../../services/enrollments';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  Column,
+  createColumnHelper,
+  getCoreRowModel,
+} from '@tanstack/react-table';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
+import { Enrollment } from './InstructorEnrollmentList';
 
-const columnHelper = createColumnHelper();
+const columnHelper = createColumnHelper<Enrollment>();
 
 const PublicEnrollmentList = () => {
   const { dataProviderConfigurations } = useDataProviderConfigurations();
@@ -114,7 +119,7 @@ const PublicEnrollmentList = () => {
         <Table
           tableOptions={{
             data: enrollments,
-            columns: columns,
+            columns: columns as Column<Enrollment>[],
             pageCount: totalPages,
             state: {
               columnFilters: filtered,
@@ -124,6 +129,7 @@ const PublicEnrollmentList = () => {
             onColumnFiltersChange: setFiltered,
             manualPagination: true,
             manualFiltering: true,
+            getCoreRowModel: getCoreRowModel(),
           }}
           loading={loading}
         />
