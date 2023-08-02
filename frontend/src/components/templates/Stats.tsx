@@ -18,7 +18,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
+import {
+  DataProviderConfiguration,
+  HIDDEN_DATA_PROVIDER_KEYS,
+} from '../../config/data-provider-configurations';
 import {
   EnrollmentStatus,
   STATUS_LABELS,
@@ -71,8 +74,24 @@ const USER_STATUS_COLORS = {
   revoked: '#FF4747',
 };
 
+type Stats = {
+  enrollment_count: number;
+  validated_enrollment_count: number;
+  average_processing_time_in_days: number;
+  go_back_ratio: number;
+  monthly_enrollment_count: Record<string, unknown>[];
+  enrollment_by_status: {
+    name: EnrollmentStatus;
+    count: number;
+  }[];
+  enrollment_by_target_api: {
+    name: string;
+    count: number;
+  }[];
+};
+
 export const Stats = () => {
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const { targetApi } = useParams();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
@@ -86,8 +105,11 @@ export const Stats = () => {
     );
   }, [dataProviderConfigurations]);
 
-  const getApisList = (targetApi, dataProviderConfigurations) => {
-    const getProvidersKeyByType = (type) =>
+  const getApisList = (
+    targetApi: string | undefined,
+    dataProviderConfigurations: Record<string, DataProviderConfiguration> | null
+  ) => {
+    const getProvidersKeyByType = (type: 'api' | 'service') =>
       Object.keys(
         pickBy(
           dataProviderConfigurations,
@@ -108,7 +130,7 @@ export const Stats = () => {
   };
 
   const getTargetAPIList = useCallback(
-    async function (targetApi) {
+    async function (targetApi: string | undefined) {
       return getAPIStats(getApisList(targetApi, dataProviderConfigurations));
     },
     [dataProviderConfigurations]
@@ -240,21 +262,24 @@ export const Stats = () => {
                   />
                   <YAxis />
                   <Tooltip
-                    formatter={(value, name, props) => [
+                    formatter={(value, name) => [
                       value,
-                      STATUS_LABELS[name],
-                      props,
+                      STATUS_LABELS[name as EnrollmentStatus],
                     ]}
                     labelFormatter={(value) => moment(value).format('MMM YYYY')}
                   />
-                  <Legend formatter={(value) => STATUS_LABELS[value]} />
+                  <Legend
+                    formatter={(value: EnrollmentStatus) =>
+                      STATUS_LABELS[value]
+                    }
+                  />
                   <CartesianGrid vertical={false} />
                   {Object.keys(EnrollmentStatus).map((status, index, array) => (
                     <Bar
                       key={status}
                       stackId="count"
                       dataKey={status}
-                      fill={USER_STATUS_COLORS[status]}
+                      fill={USER_STATUS_COLORS[status as EnrollmentStatus]}
                     >
                       {index === array.length - 1 && (
                         <LabelList dataKey="total" position="top" />
@@ -283,13 +308,14 @@ export const Stats = () => {
                     layout={'vertical'}
                     align={'right'}
                     verticalAlign={'middle'}
-                    formatter={(value) => STATUS_LABELS[value]}
+                    formatter={(value: EnrollmentStatus) =>
+                      STATUS_LABELS[value]
+                    }
                   />
                   <Tooltip
-                    formatter={(value, name, props) => [
+                    formatter={(value, name) => [
                       value,
-                      STATUS_LABELS[name],
-                      props,
+                      STATUS_LABELS[name as EnrollmentStatus],
                     ]}
                   />
                 </PieChart>
@@ -315,12 +341,11 @@ export const Stats = () => {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(value, name, props) => [
+                    formatter={(value, name) => [
                       value,
                       name === 'others'
                         ? 'Autres'
-                        : dataProviderConfigurations?.[name].label,
-                      props,
+                        : (dataProviderConfigurations?.[name]?.label as string),
                     ]}
                   />
                   <Legend
@@ -330,7 +355,9 @@ export const Stats = () => {
                     formatter={(value) =>
                       (value === 'others'
                         ? 'Autres'
-                        : dataProviderConfigurations?.[value].label
+                        : dataProviderConfigurations
+                        ? dataProviderConfigurations[value].label
+                        : ''
                       ).substring(0, 32)
                     }
                   />

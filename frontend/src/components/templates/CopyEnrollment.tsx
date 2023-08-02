@@ -5,26 +5,33 @@ import { Navigate, useParams } from 'react-router-dom';
 import { getErrorMessages } from '../../lib';
 import Loader from '../atoms/Loader';
 import { Linkify } from '../molecules/Linkify';
-import Alert from '../atoms/Alert';
+import Alert, { AlertType } from '../atoms/Alert';
 
 const CopyEnrollment = () => {
-  const { enrollmentId } = useParams();
+  const { enrollmentId }: { enrollmentId?: string } = useParams();
 
-  const [copyErrorMessage, setCopyErrorMessage] = useState(null);
+  const [copyErrorMessage, setCopyErrorMessage] = useState<{
+    title: string;
+    message: string;
+  } | null>(null);
   const [copiedEnrollmentId, setCopiedEnrollmentId] = useState(null);
-  const [copiedTargetApi, setCopiedTargetApi] = useState(null);
+  const [copiedTargetApi, setCopiedTargetApi] = useState<string | null>(null);
 
-  const triggerEnrollmentCopy = async ({ enrollmentId }) => {
+  const triggerEnrollmentCopy = async ({
+    enrollmentId,
+  }: {
+    enrollmentId: string;
+  }) => {
     try {
       setCopyErrorMessage(null);
 
       const { id, target_api } = await copyEnrollment({
-        id: enrollmentId,
+        id: Number(enrollmentId),
       });
 
       setCopiedEnrollmentId(id);
       setCopiedTargetApi(target_api);
-    } catch (e) {
+    } catch (e: any) {
       if (e.response?.data?.title && e.response?.data?.message) {
         setCopyErrorMessage(e.response.data);
       } else if (getErrorMessages(e)[0]) {
@@ -50,13 +57,8 @@ const CopyEnrollment = () => {
   if (copiedEnrollmentId && copiedTargetApi) {
     return (
       <Navigate
-        to={{
-          pathname: `/${copiedTargetApi.replace(
-            /_/g,
-            '-'
-          )}/${copiedEnrollmentId}`,
-          state: { source: 'copy-authorization-request' },
-        }}
+        to={`/${copiedTargetApi.replace(/_/g, '-')} /${copiedEnrollmentId}`}
+        state={{ source: 'copy-authorization-request' }}
         replace
       />
     );
@@ -65,7 +67,7 @@ const CopyEnrollment = () => {
   if (copyErrorMessage) {
     return (
       <div className="full-page">
-        <Alert title={copyErrorMessage.title} type="warning">
+        <Alert title={copyErrorMessage.title} type={AlertType.warning}>
           <Linkify
             message={`${copyErrorMessage.message} L’habilitation #${enrollmentId} n’a pas été copiée.`}
           />

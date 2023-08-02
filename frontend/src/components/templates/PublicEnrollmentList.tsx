@@ -4,13 +4,18 @@ import { getPublicValidatedEnrollments } from '../../services/enrollments';
 import { ScheduleIcon } from '../atoms/icons/fr-fi-icons';
 import ListHeader from '../molecules/ListHeader';
 import Table from '../organisms/Table';
-import { createColumnHelper } from '@tanstack/react-table';
+import {
+  Column,
+  createColumnHelper,
+  getCoreRowModel,
+} from '@tanstack/react-table';
 import { useDataProviderConfigurations } from './hooks/use-data-provider-configurations';
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
+import { Enrollment } from './InstructorEnrollmentList';
 
-const columnHelper = createColumnHelper();
+const columnHelper = createColumnHelper<Enrollment>();
 
 const PublicEnrollmentList = () => {
   const { dataProviderConfigurations } = useDataProviderConfigurations();
@@ -66,26 +71,6 @@ const PublicEnrollmentList = () => {
       enableSorting: false,
     }),
     columnHelper.accessor(
-      ({
-        responsable_traitement_given_name: given_name,
-        responsable_traitement_family_name: family_name,
-      }) => {
-        if (!given_name && !family_name) {
-          return '';
-        }
-        if (!given_name) {
-          return family_name;
-        }
-        return `${given_name} ${family_name}`;
-      },
-      {
-        enableColumnFilter: false,
-        enableSorting: false,
-        header: 'Responsable traitement',
-        id: 'responsable_traitement_name',
-      }
-    ),
-    columnHelper.accessor(
       ({ target_api }) => dataProviderConfigurations?.[target_api].label,
       {
         header: 'Fournisseur',
@@ -114,7 +99,7 @@ const PublicEnrollmentList = () => {
         <Table
           tableOptions={{
             data: enrollments,
-            columns: columns,
+            columns: columns as Column<Enrollment>[],
             pageCount: totalPages,
             state: {
               columnFilters: filtered,
@@ -124,6 +109,7 @@ const PublicEnrollmentList = () => {
             onColumnFiltersChange: setFiltered,
             manualPagination: true,
             manualFiltering: true,
+            getCoreRowModel: getCoreRowModel(),
           }}
           loading={loading}
         />
