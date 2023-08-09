@@ -15,7 +15,9 @@ type Props = {
 const EnrollmentQuickView: React.FC<Props> = ({ enrollment }) => {
   const location = useLocation();
   const getSubmitDate = () => {
-    const submitEvent = enrollment.events.find(({ name }) => name === 'submit');
+    const submitEvent = enrollment?.events?.find(
+      ({ name }) => name === 'submit'
+    );
     return submitEvent?.created_at;
   };
 

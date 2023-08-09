@@ -1,6 +1,13 @@
-import { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import {
+  FunctionComponent,
+  MouseEventHandler,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   EnrollmentEvent,
+  EventConfiguration,
   PromptType,
   eventConfigurations,
 } from '../../config/event-configuration';
@@ -86,7 +93,9 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
   const { user, getIsUserAnInstructor } = useAuth();
   const [hasUnprocessedMessages, setHasUnprocessedMessage] = useState(false);
   const [currentAction, setCurrentAction] = useState<EnrollmentAction>(null);
-  const authorizedEvents = listAuthorizedEvents(enrollment.acl);
+  const authorizedEvents: EnrollmentEvent[] = listAuthorizedEvents(
+    enrollment.acl
+  );
 
   useEffect(() => {
     if (enrollment) {
@@ -110,14 +119,19 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
       .filter((event) => event !== EnrollmentEvent.notify)
       .map((event) => {
         const eventConfiguration = eventConfigurations[event];
-        return (
-          <EventButton
-            key={event}
-            disabled={!!pendingEvent || loading}
-            onClick={() => onEventButtonClick(event)}
-            {...eventConfiguration.displayProps}
-          />
-        );
+
+        if (eventConfiguration) {
+          return (
+            <EventButton
+              key={event}
+              disabled={!!pendingEvent || loading}
+              onClick={() => onEventButtonClick(event)}
+              {...eventConfiguration.displayProps}
+            />
+          );
+        }
+
+        return null;
       });
 
   const isUserAnInstructor = useMemo(() => {
@@ -137,22 +151,27 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
               {loading && <Loader enableBePatientMessage />}
 
               {pendingEvent &&
-                eventConfigurations[pendingEvent].prompt ===
+                eventConfigurations[pendingEvent] &&
+                eventConfigurations[pendingEvent]?.prompt ===
                   PromptType.comment && (
                   <Prompt
                     inputValue={commentPrompt}
                     setInputValue={setCommentPrompt}
                     onAccept={onPromptConfirmation}
-                    onCancel={onPromptCancellation}
-                    displayProps={
-                      eventConfigurations[pendingEvent!].displayProps
+                    onCancel={
+                      onPromptCancellation as MouseEventHandler<HTMLButtonElement>
                     }
-                    selectedEvent={pendingEvent as string}
+                    displayProps={
+                      eventConfigurations[pendingEvent!]
+                        ?.displayProps as EventConfiguration['displayProps']
+                    }
+                    selectedEvent={pendingEvent}
                     enrollment={enrollment}
                   />
                 )}
               {pendingEvent &&
-                eventConfigurations[pendingEvent].prompt ===
+                eventConfigurations[pendingEvent] &&
+                eventConfigurations[pendingEvent]?.prompt ===
                   PromptType.submit_instead && (
                   <ConfirmationModal
                     title="Vos modifications vont être enregistrées."
@@ -168,7 +187,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                   </ConfirmationModal>
                 )}
               {pendingEvent &&
-                eventConfigurations[pendingEvent].prompt ===
+                eventConfigurations[pendingEvent] &&
+                eventConfigurations[pendingEvent]?.prompt ===
                   PromptType.confirm_deletion && (
                   <ConfirmationModal
                     title="La suppression d'une habilitation est irréversible"
@@ -179,7 +199,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                   </ConfirmationModal>
                 )}
               {pendingEvent &&
-                eventConfigurations[pendingEvent].prompt ===
+                eventConfigurations[pendingEvent] &&
+                eventConfigurations[pendingEvent]?.prompt ===
                   PromptType.confirm_archive && (
                   <ConfirmationModal
                     title="Vous n’aurez plus accès à cette habilitation"
@@ -226,7 +247,8 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                 })}
               </div>
               {pendingEvent &&
-                eventConfigurations[pendingEvent].prompt ===
+                eventConfigurations[pendingEvent] &&
+                eventConfigurations[pendingEvent]?.prompt ===
                   PromptType.notify && (
                   <Prompt
                     hideMostUsedComments
@@ -235,9 +257,10 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                     alignButtons="right"
                     onAccept={onPromptConfirmation}
                     displayProps={
-                      eventConfigurations[pendingEvent!].displayProps
+                      eventConfigurations[pendingEvent!]
+                        ?.displayProps as EventConfiguration['displayProps']
                     }
-                    selectedEvent={pendingEvent as string}
+                    selectedEvent={pendingEvent}
                     enrollment={enrollment}
                   />
                 )}

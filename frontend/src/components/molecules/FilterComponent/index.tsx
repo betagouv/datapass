@@ -12,7 +12,7 @@ const FilterComponent = ({
   value: any;
   onChange: (any: any) => void;
   filter: FilterMeta;
-  options?: any[];
+  options?: { key: string; label: string }[];
   placeholder: string | undefined;
 }) => {
   if (filter === 'select') {

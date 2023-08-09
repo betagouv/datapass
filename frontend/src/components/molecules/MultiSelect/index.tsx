@@ -8,11 +8,11 @@ import Dropdown from '../Dropdown';
 type Props = {
   options: { key: string; label: string }[];
   values: string[];
-  disabled: boolean;
+  disabled?: boolean;
   onChange: (values: string[]) => void;
-  alignOptionsLeft: boolean;
-  defaultOverviewLabel: string;
-  id: string;
+  alignOptionsLeft?: boolean;
+  defaultOverviewLabel?: string;
+  id?: string;
 };
 
 export const MultiSelect: React.FC<Props> = ({

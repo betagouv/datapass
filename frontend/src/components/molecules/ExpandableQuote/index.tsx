@@ -11,6 +11,7 @@ type Props = {
   large?: boolean;
   openOnMount?: boolean;
   scrollOnMount?: boolean;
+  children: React.ReactNode;
 };
 
 export const ExpandableQuote: React.FC<Props> = ({

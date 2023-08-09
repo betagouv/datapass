@@ -4,6 +4,7 @@ import { ArrowDownIcon, ArrowUpIcon } from '../../atoms/icons/fr-fi-icons';
 
 type Props = {
   title: string;
+  children: React.ReactNode;
 };
 
 export const ExpandableSection: React.FC<Props> = ({ title, children }) => {

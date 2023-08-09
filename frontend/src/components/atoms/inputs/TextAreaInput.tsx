@@ -5,9 +5,9 @@ import Label from './Label';
 interface TextAreaInputProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
-  helper: string;
-  meta: string;
-  ariaLabel: string;
+  helper?: string;
+  meta?: string;
+  ariaLabel?: string;
 }
 
 export const TextAreaInput: React.FC<TextAreaInputProps> = ({

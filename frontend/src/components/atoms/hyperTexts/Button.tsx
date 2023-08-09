@@ -1,10 +1,9 @@
-import React, { MouseEvent } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import HyperText from './HyperText';
 import './Button.css';
 
-type Props = {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
   secondary?: boolean;
   tertiary?: boolean;
   tertiaryNoOutline?: boolean;
@@ -14,13 +13,11 @@ type Props = {
   icon?: string;
   iconRight?: boolean;
   iconFill?: boolean;
-  className?: string;
-  disabled?: boolean;
   download?: boolean;
-  children: React.ReactNode;
-};
+  children?: React.ReactNode;
+}
 
-const Button: React.FC<Props> = ({
+const Button: React.FC<ButtonProps> = ({
   href,
   onClick,
   secondary = false,

@@ -108,7 +108,7 @@ export type Enrollment = {
   nom_raison_sociale?: string | null;
   demandeurs?: Demandeur[];
   target_api: string;
-  status: EnrollmentStatus | string;
+  status: EnrollmentStatus;
   linked_franceconnect_enrollment_id?: number | null;
   events?: Event[];
   acl?: {

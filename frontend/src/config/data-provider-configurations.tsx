@@ -104,17 +104,83 @@ export type DataProviderConfiguration = {
   url?: string;
 };
 
+export enum TargetAPI {
+  aidants_connect = 'aidants_connect',
+  hubee_portail = 'hubee_portail',
+  hubee_portail_dila = 'hubee_portail_dila',
+  franceconnect = 'franceconnect',
+  api_entreprise = 'api_entreprise',
+  api_impot_particulier_sandbox = 'api_impot_particulier_sandbox',
+  api_impot_particulier_production = 'api_impot_particulier_production',
+  api_impot_particulier_unique = 'api_impot_particulier_unique',
+  api_impot_particulier_fc_sandbox = 'api_impot_particulier_fc_sandbox',
+  api_impot_particulier_fc_production = 'api_impot_particulier_fc_production',
+  api_impot_particulier_fc_unique = 'api_impot_particulier_fc_unique',
+  api_r2p_sandbox = 'api_r2p_sandbox',
+  api_r2p_production = 'api_r2p_production',
+  api_r2p_unique = 'api_r2p_unique',
+  api_hermes_sandbox = 'api_hermes_sandbox',
+  api_hermes_production = 'api_hermes_production',
+  api_e_contacts_sandbox = 'api_e_contacts_sandbox',
+  api_e_contacts_production = 'api_e_contacts_production',
+  api_opale_sandbox = 'api_opale_sandbox',
+  api_opale_production = 'api_opale_production',
+  api_mire_sandbox = 'api_mire_sandbox',
+  api_mire_production = 'api_mire_production',
+  api_ocfi_sandbox = 'api_ocfi_sandbox',
+  api_ocfi_production = 'api_ocfi_production',
+  api_e_pro_sandbox = 'api_e_pro_sandbox',
+  api_e_pro_production = 'api_e_pro_production',
+  api_robf_sandbox = 'api_robf_sandbox',
+  api_robf_production = 'api_robf_production',
+  api_cpr_pro_sandbox = 'api_cpr_pro_sandbox',
+  api_cpr_pro_production = 'api_cpr_pro_production',
+  api_infinoe_sandbox = 'api_infinoe_sandbox',
+  api_infinoe_production = 'api_infinoe_production',
+  api_ficoba_sandbox = 'api_ficoba_sandbox',
+  api_ficoba_production = 'api_ficoba_production',
+  api_ficoba_unique = 'api_ficoba_unique',
+  api_droits_cnam = 'api_droits_cnam',
+  le_taxi = 'le_taxi',
+  cartobio = 'cartobio',
+  api_service_national = 'api_service_national',
+  api_tiers_de_prestation = 'api_tiers_de_prestation',
+  api_pro_sante_connect = 'api_pro_sante_connect',
+  api_declaration_auto_entrepreneur = 'api_declaration_auto_entrepreneur',
+  api_indemnites_journalieres_cnam = 'api_indemnites_journalieres_cnam',
+  api_declaration_cesu = 'api_declaration_cesu',
+  api_histovec = 'api_histovec',
+  api_prestations_sociales = 'api_prestations_sociales',
+  api_prestations_sociales_fc = 'api_prestations_sociales_fc',
+  api_ensu_documents_sandbox = 'api_ensu_documents_sandbox',
+  api_ensu_documents_production = 'api_ensu_documents_production',
+  api_ingres = 'api_ingres',
+  api_statut_etudiant = 'api_statut_etudiant',
+  api_statut_demandeur_emploi = 'api_statut_demandeur_emploi',
+  api_captchetat = 'api_captchetat',
+  api_statut_etudiant_boursier = 'api_statut_etudiant_boursier',
+  api_scolarite = 'api_scolarite',
+  api_indemnisation_pole_emploi = 'api_indemnisation_pole_emploi',
+  agent_connect_fi = 'agent_connect_fi',
+  agent_connect_fs = 'agent_connect_fs',
+  api_satelit_sandbox = 'api_satelit_sandbox',
+  api_satelit_production = 'api_satelit_production',
+  api_sfip_sandbox = 'api_sfip_sandbox',
+  api_sfip_production = 'api_sfip_production',
+  api_sfip_unique = 'api_sfip_unique',
+}
+
 export const DATA_PROVIDER_CONFIGURATIONS: {
-  [k: string]: DataProviderConfiguration;
+  [k in TargetAPI]?: DataProviderConfiguration;
 } = {
-  aidants_connect: {
+  [TargetAPI.aidants_connect]: {
     label: 'Aidants Connect',
     icon: 'aidants-connect_logo.png',
     email: 'contact@aidantsconnect.beta.gouv.fr',
     type: DataProviderType.service,
     component: AidantsConnect,
   },
-  hubee_portail: {
+  [TargetAPI.hubee_portail]: {
     label: 'Portail HubEE - Démarche CertDC',
     icon: 'logo-hubee.png',
     email: 'dgs-certdc@sante.gouv.fr',
@@ -122,7 +188,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: HubeePortail,
     url: 'https://portail.hubee.numerique.gouv.fr/',
   },
-  hubee_portail_dila: {
+  [TargetAPI.hubee_portail_dila]: {
     label: 'Portail HubEE - Démarches DILA',
     icon: 'logo-hubee.png',
     email: 'support.partenaires@service-public.fr',
@@ -130,14 +196,14 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: HubeePortailDila,
     url: 'https://portail.hubee.numerique.gouv.fr/',
   },
-  franceconnect: {
+  [TargetAPI.franceconnect]: {
     label: 'FranceConnect',
     icon: 'logo-fc-with-label.png',
     email: 'support.partenaires@franceconnect.gouv.fr',
     type: DataProviderType.api,
     component: FranceConnect,
   },
-  api_entreprise: {
+  [TargetAPI.api_entreprise]: {
     label: 'API Entreprise',
     icon: null,
     email: 'support@entreprise.api.gouv.fr',
@@ -145,406 +211,406 @@ export const DATA_PROVIDER_CONFIGURATIONS: {
     component: ApiEntreprise,
     url: 'https://entreprise.api.gouv.fr/compte',
   },
-  api_impot_particulier_sandbox: {
+  [TargetAPI.api_impot_particulier_sandbox]: {
     label: 'API Impôt particulier (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierSandbox,
   },
-  api_impot_particulier_production: {
+  [TargetAPI.api_impot_particulier_production]: {
     label: 'API Impôt particulier (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierProduction,
   },
-  // api_impot_particulier_unique: {
+  // [TargetAPI.api_impot_particulier_unique]: {
   //   label: 'API Impôt particulier (Formulaire Unique)',
   //   icon: 'logo-dgfip-with-label.png',
   //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
   //   type: DataProviderType.api,
   //   component: ApiImpotParticulierUnique,
   // },
-  api_impot_particulier_fc_sandbox: {
+  [TargetAPI.api_impot_particulier_fc_sandbox]: {
     label: 'API Impôt particulier (FC) (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierFcSandbox,
   },
-  api_impot_particulier_fc_production: {
+  [TargetAPI.api_impot_particulier_fc_production]: {
     label: 'API Impôt particulier (FC) (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiImpotParticulierFcProduction,
   },
-  // api_impot_particulier_fc_unique: {
+  // [TargetAPI.api_impot_particulier_fc_unique]: {
   //   label: 'API Impôt particulier (FC) (Formulaire Unique)',
   //   icon: 'logo-dgfip-with-label.png',
   //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
   //   type: DataProviderType.api,
   //   component: ApiImpotParticulierFcUnique,
   // },
-  api_r2p_sandbox: {
+  [TargetAPI.api_r2p_sandbox]: {
     label: 'API R2P (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiR2PSandbox,
   },
-  api_r2p_production: {
+  [TargetAPI.api_r2p_production]: {
     label: 'API R2P (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiR2PProduction,
   },
-  // api_r2p_unique: {
+  // [TargetAPI.api_r2p_unique]: {
   //   label: 'API R2P (Formulaire Unique)',
   //   icon: 'logo-dgfip-with-label.png',
   //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
   //   type: DataProviderType.api,
   //   component: ApiR2PUnique,
   // },
-  api_hermes_sandbox: {
+  [TargetAPI.api_hermes_sandbox]: {
     label: 'API Hermes (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiHermesSandbox,
   },
-  api_hermes_production: {
+  [TargetAPI.api_hermes_production]: {
     label: 'API Hermes (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiHermesProduction,
   },
-  api_e_contacts_sandbox: {
+  [TargetAPI.api_e_contacts_sandbox]: {
     label: 'API E-Contacts (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEContactsSandbox,
   },
-  api_e_contacts_production: {
+  [TargetAPI.api_e_contacts_production]: {
     label: 'API E-Contacts (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEContactsProduction,
   },
-  api_opale_sandbox: {
+  [TargetAPI.api_opale_sandbox]: {
     label: 'API OPALE (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiOpaleSandbox,
   },
-  api_opale_production: {
+  [TargetAPI.api_opale_production]: {
     label: 'API OPALE (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiOpaleProduction,
   },
-  api_mire_sandbox: {
+  [TargetAPI.api_mire_sandbox]: {
     label: 'API MIRE (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiMireSandbox,
   },
-  api_mire_production: {
+  [TargetAPI.api_mire_production]: {
     label: 'API MIRE (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiMireProduction,
   },
-  api_ocfi_sandbox: {
+  [TargetAPI.api_ocfi_sandbox]: {
     label: 'API OCFI (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiOcfiSandbox,
   },
-  api_ocfi_production: {
+  [TargetAPI.api_ocfi_production]: {
     label: 'API OCFI (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiOcfiProduction,
   },
-  api_e_pro_sandbox: {
+  [TargetAPI.api_e_pro_sandbox]: {
     label: 'API E-PRO (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEProSandbox,
   },
-  api_e_pro_production: {
+  [TargetAPI.api_e_pro_production]: {
     label: 'API E-PRO (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEProProduction,
   },
-  api_robf_sandbox: {
+  [TargetAPI.api_robf_sandbox]: {
     label: 'API ROBF (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiRobfSandbox,
   },
-  api_robf_production: {
+  [TargetAPI.api_robf_production]: {
     label: 'API ROBF (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiRobfProduction,
   },
-  api_cpr_pro_sandbox: {
+  [TargetAPI.api_cpr_pro_sandbox]: {
     label: 'API CPR PRO - ADELIE (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiCprProSandbox,
   },
-  api_cpr_pro_production: {
+  [TargetAPI.api_cpr_pro_production]: {
     label: 'API CPR PRO - ADELIE (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiCprProProduction,
   },
-  api_infinoe_sandbox: {
+  [TargetAPI.api_infinoe_sandbox]: {
     label: 'API INFINOE (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiInfinoeSandbox,
   },
-  api_infinoe_production: {
+  [TargetAPI.api_infinoe_production]: {
     label: 'API INFINOE (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiInfinoeProduction,
   },
-  api_ficoba_sandbox: {
+  [TargetAPI.api_ficoba_sandbox]: {
     label: 'API FICOBA (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiFicobaSandbox,
   },
-  api_ficoba_production: {
+  [TargetAPI.api_ficoba_production]: {
     label: 'API FICOBA (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiFicobaProduction,
   },
-  // api_ficoba_unique: {
+  // [TargetAPI.api_ficoba_unique]: {
   //   label: 'API FICOBA (Formulaire Unique)',
   //   icon: 'logo-dgfip-with-label.png',
   //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
   //   type: DataProviderType.api,
   //   component: ApiFicobaUnique,
   // },
-  api_droits_cnam: {
+  [TargetAPI.api_droits_cnam]: {
     label: 'API Droits CNAM',
     icon: 'logo-cnam.jpg',
     email: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
     type: DataProviderType.api,
     component: ApiDroitsCnam,
   },
-  le_taxi: {
+  [TargetAPI.le_taxi]: {
     label: 'API le.Taxi',
     icon: 'logo-le.taxi.svg',
     email: 'equipe@le.taxi',
     type: DataProviderType.api,
     component: LeTaxi,
   },
-  cartobio: {
+  [TargetAPI.cartobio]: {
     label: 'CartoBio - Territoires',
     icon: 'logo-cartobio-text.svg',
     email: 'cartobio@beta.gouv.fr',
     type: DataProviderType.api,
     component: CartoBio,
   },
-  api_service_national: {
+  [TargetAPI.api_service_national]: {
     label: 'API Service National',
     icon: null,
     email: 'dsnj-api.contact.fct@intradef.gouv.fr',
     type: DataProviderType.api,
     component: ApiServiceNational,
   },
-  api_tiers_de_prestation: {
+  [TargetAPI.api_tiers_de_prestation]: {
     label: 'API Tiers de prestation',
     icon: 'logo-urssaf.png',
     email: 'habilitation-api@urssaf.fr',
     type: DataProviderType.api,
     component: ApiTiersDePrestation,
   },
-  api_pro_sante_connect: {
+  [TargetAPI.api_pro_sante_connect]: {
     label: 'API Pro Santé Connect',
     icon: 'logo-ans.png',
     email: 'prosanteconnect.editeurs@esante.gouv.fr',
     type: DataProviderType.api,
     component: ApiProSanteConnect,
   },
-  api_declaration_auto_entrepreneur: {
+  [TargetAPI.api_declaration_auto_entrepreneur]: {
     label: 'API Tierce Déclaration auto-entrepreneur',
     icon: 'logo-urssaf.png',
     email: 'contact.tiercedeclaration@urssaf.fr',
     type: DataProviderType.api,
     component: ApiDeclarationAutoEntrepreneur,
   },
-  api_indemnites_journalieres_cnam: {
+  [TargetAPI.api_indemnites_journalieres_cnam]: {
     label: 'API Indemnités Journalières (CNAM)',
     icon: 'logo-cnam.jpg',
     email: 'partenaires-api-ameli.cnam@assurance-maladie.fr',
     type: DataProviderType.api,
     component: ApiIndemnitesJournalieresCnam,
   },
-  api_declaration_cesu: {
+  [TargetAPI.api_declaration_cesu]: {
     label: 'API Tierce Déclaration CESU',
     icon: 'logo-urssaf.png',
     email: 'habilitation-api@urssaf.fr',
     type: DataProviderType.api,
     component: ApiDeclarationCesu,
   },
-  api_histovec: {
+  [TargetAPI.api_histovec]: {
     label: 'API Historique d’un véhicule',
     icon: 'logo-minint.png',
     email: null,
     type: DataProviderType.api,
     component: ApiHistovec,
   },
-  api_prestations_sociales: {
+  [TargetAPI.api_prestations_sociales]: {
     label: 'API prestations sociales',
     icon: null,
     email: 'contact@apisecu.fr',
     type: DataProviderType.api,
     component: ApiPrestationsSociales,
   },
-  api_prestations_sociales_fc: {
+  [TargetAPI.api_prestations_sociales_fc]: {
     label: 'API prestations sociales (FC)',
     icon: null,
     email: null,
     type: DataProviderType.api,
     component: ApiPrestationsSocialesFc,
   },
-  api_ensu_documents_sandbox: {
+  [TargetAPI.api_ensu_documents_sandbox]: {
     label: 'API ENSU Documents (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEnsuDocumentsSandbox,
   },
-  api_ensu_documents_production: {
+  [TargetAPI.api_ensu_documents_production]: {
     label: 'API ENSU Documents (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiEnsuDocumentsProduction,
   },
-  api_ingres: {
+  [TargetAPI.api_ingres]: {
     label: 'API INGRES',
     icon: null,
     email: 'api.cisirh@finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiIngres,
   },
-  api_statut_etudiant: {
+  [TargetAPI.api_statut_etudiant]: {
     label: 'API Statut étudiant',
     icon: 'logo-mesri.png',
     email: 'support-statutetudiant@renater.fr',
     type: DataProviderType.api,
     component: ApiStatutEtudiant,
   },
-  api_statut_demandeur_emploi: {
+  [TargetAPI.api_statut_demandeur_emploi]: {
     label: 'API statut demandeur d’emploi',
     icon: 'logo-pole-emploi.png',
     email: 'support@pole-emploi.io',
     type: DataProviderType.api,
     component: ApiStatutDemandeurEmploi,
   },
-  api_captchetat: {
+  [TargetAPI.api_captchetat]: {
     label: 'API CaptchEtat',
     icon: 'logo-aife.png',
     email: 'piste.aife@finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiCaptchetat,
   },
-  api_statut_etudiant_boursier: {
+  [TargetAPI.api_statut_etudiant_boursier]: {
     label: 'API Statut étudiant boursier',
     icon: 'logo-cnous.png',
     email: 'api-boursier@cnous.fr',
     type: DataProviderType.api,
     component: ApiStatutEtudiantBoursier,
   },
-  api_scolarite: {
+  [TargetAPI.api_scolarite]: {
     label: 'API Scolarité',
     icon: 'logo-menj.png',
     email: 'api-sco-eleve_contacts@education.gouv.fr',
     type: DataProviderType.api,
     component: ApiScolarite,
   },
-  api_indemnisation_pole_emploi: {
+  [TargetAPI.api_indemnisation_pole_emploi]: {
     label: 'API Indemnisation Pôle emploi',
     icon: 'logo-pole-emploi.png',
     email: 'support@pole-emploi.io',
     type: DataProviderType.api,
     component: ApiIndemnisationPoleEmploi,
   },
-  agent_connect_fi: {
+  [TargetAPI.agent_connect_fi]: {
     label: 'AgentConnect - fournisseur d’identité',
     icon: 'logo-agentconnect.png',
     email: 'support.partenaires@agentconnect.gouv.fr',
     type: DataProviderType.api,
     component: AgentConnectFi,
   },
-  agent_connect_fs: {
+  [TargetAPI.agent_connect_fs]: {
     label: 'AgentConnect - fournisseur de service',
     icon: 'logo-agentconnect.png',
     email: 'support.partenaires@agentconnect.gouv.fr',
     type: DataProviderType.api,
     component: AgentConnectFs,
   },
-  api_satelit_sandbox: {
+  [TargetAPI.api_satelit_sandbox]: {
     label: 'API Satelit (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiSatelitSandbox,
   },
-  api_satelit_production: {
+  [TargetAPI.api_satelit_production]: {
     label: 'API Satelit (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiSatelitProduction,
   },
-  api_sfip_sandbox: {
+  [TargetAPI.api_sfip_sandbox]: {
     label: 'API Courtier fonctionnel SFiP (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiSfipSandbox,
   },
-  api_sfip_production: {
+  [TargetAPI.api_sfip_production]: {
     label: 'API Courtier fonctionnel SFiP (Production)',
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiSfipProduction,
   },
-  // api_sfip_unique: {
+  // [TargetAPI.api_sfip_unique]: {
   //   label: 'API Courtier fonctionnel SFiP (Formulaire Unique)',
   //   icon: 'logo-dgfip-with-label.png',
   //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',

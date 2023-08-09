@@ -12,14 +12,17 @@ type Props = {
 
 const MessageQuickView: React.FC<Props> = ({ enrollment }) => {
   const getLastUnprocessedMessageDate = () => {
-    const unprocessedMessages = enrollment.events.filter(
-      ({ name, processed_at }) => name === 'notify' && !processed_at
-    );
-    const lastUnprocessedMessage = unprocessedMessages.sort(
-      (a, b) => b.created_at - a.created_at
-    )[0];
+    if (enrollment?.events) {
+      const unprocessedMessages = enrollment.events.filter(
+        ({ name, processed_at }) => name === 'notify' && !processed_at
+      );
+      const lastUnprocessedMessage = unprocessedMessages.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      )[0];
 
-    return lastUnprocessedMessage?.created_at;
+      return lastUnprocessedMessage?.created_at;
+    }
   };
 
   return (

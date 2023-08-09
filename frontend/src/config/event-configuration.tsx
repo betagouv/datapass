@@ -39,9 +39,9 @@ export type EventConfiguration = {
 };
 
 export const eventConfigurations: {
-  [key in EnrollmentEvent]: EventConfiguration;
+  [key in EnrollmentEvent]?: EventConfiguration;
 } = {
-  notify: {
+  [EnrollmentEvent.notify]: {
     displayProps: {
       label: 'Envoyer',
       icon: 'mail',
@@ -53,7 +53,7 @@ export const eventConfigurations: {
     successMessage:
       'Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.',
   },
-  destroy: {
+  [EnrollmentEvent.destroy]: {
     displayProps: {
       label: 'Supprimer l’habilitation',
       icon: 'delete',
@@ -64,7 +64,7 @@ export const eventConfigurations: {
     redirectToHome: true,
     successMessage: 'Votre demande d’habilitation a été supprimée.',
   },
-  update: {
+  [EnrollmentEvent.update]: {
     displayProps: {
       label: 'Enregistrer les modifications',
       icon: 'save',
@@ -74,7 +74,7 @@ export const eventConfigurations: {
     request: RequestType.create_or_update,
     successMessage: 'Votre demande d’habilitation a été sauvegardée.',
   },
-  submit: {
+  [EnrollmentEvent.submit]: {
     displayProps: {
       label: 'Soumettre la demande d’habilitation',
       icon: 'checkbox',
@@ -83,7 +83,7 @@ export const eventConfigurations: {
     redirectToHome: true,
     successMessage: 'Votre demande d’habilitation a été soumise.',
   },
-  refuse: {
+  [EnrollmentEvent.refuse]: {
     displayProps: {
       label: 'Refuser',
       icon: 'alert',
@@ -93,7 +93,7 @@ export const eventConfigurations: {
     request: RequestType.change_state,
     redirectToHome: true,
   },
-  revoke: {
+  [EnrollmentEvent.revoke]: {
     displayProps: {
       label: 'Révoquer',
       icon: 'alert',
@@ -103,7 +103,7 @@ export const eventConfigurations: {
     request: RequestType.change_state,
     redirectToHome: true,
   },
-  archive: {
+  [EnrollmentEvent.archive]: {
     displayProps: {
       label: 'Archiver',
       icon: 'archive',
@@ -114,7 +114,7 @@ export const eventConfigurations: {
     redirectToHome: true,
     successMessage: 'Cette demande d’habilitation a été archivée.',
   },
-  request_changes: {
+  [EnrollmentEvent.request_changes]: {
     displayProps: {
       label: 'Demander une modification',
       icon: 'edit',
@@ -124,7 +124,7 @@ export const eventConfigurations: {
     request: RequestType.change_state,
     redirectToHome: true,
   },
-  validate: {
+  [EnrollmentEvent.validate]: {
     displayProps: {
       label: 'Valider',
       icon: 'checkbox',
