@@ -19,6 +19,9 @@ require "./app/middleware/validate_request_params"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require "dotenv/rails"
+Dotenv::Railtie.load
+
 module DataPass
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
