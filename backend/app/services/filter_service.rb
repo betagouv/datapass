@@ -59,7 +59,8 @@ class FilterService < ApplicationService
       else
         sanitize_key(key, @items.table_name)
       end
-      "#{sanitized_key}::varchar(255) ~* '.*(#{sanitized_value}).*'"
+
+      "#{sanitized_key}::varchar(255) ~* '.*(#{sanitized_value}).*' OR levenshtein(lower(#{sanitized_key}::varchar(255)), '#{sanitized_value.downcase}') <= 3"
     end
 
     query.join(" OR ")
