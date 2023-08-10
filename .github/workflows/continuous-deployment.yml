@@ -17,17 +17,17 @@ jobs:
       matrix:
         include:
           - environment: staging
-            url: https://datapass-staging.api.gouv.fr
+            host: staging1.datapass.api.gouv.fr
             ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
           - environment: staging
-            url: https://datapass-staging.api.gouv.fr
-            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+            host: staging2.datapass.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
     environment:
-      url: ${{ matrix.url }}
+      url: https://${{ matrix.host }}
       name: ${{ matrix.environment }}
     env:
       SSH_PRIVATE_KEY: ${{ secrets[matrix.ssh_key] }}
-      SSH_HOST: ${{secrets.SSH_HOST}}
+      SSH_HOST: ${{ matrix.host }}
       APP_USER: ${{secrets.APP_USER}}
     steps:
       - name: Setup private SSH deployment key
