@@ -9,17 +9,22 @@ on:
 env:
   CI: true
   COVERAGE: true
-  BACK_HOST: http://localhost:3001
-  ALLOWED_ORIGINS: http://localhost:3000
   RUBY_VERSION: 3.2.0
-  PG_HOST: localhost
+
+  BACK_HOST: http://localhost:3001
+  FRONT_HOST: http://localhost:3000
+  ALLOWED_ORIGINS: http://localhost:3000
+  OAUTH_HOST: https://app-test.moncomptepro.beta.gouv.fr
+  API_GOUV_HOST: https://staging.api.gouv.fr
   PG_USER: datapass
   PG_PASSWORD: datapass
+  PG_HOST: localhost
   PG_DATABASE: datapass
   INSEE_HOST: http://localhost
   INSEE_CONSUMER_KEY: fake_key
   INSEE_CONSUMER_SECRET: fake_secret
   DO_NOT_VALIDATE_MAIL: "True"
+  DO_NOT_SEND_MAIL: "False"
 
 jobs:
   test:
