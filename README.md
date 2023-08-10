@@ -203,3 +203,11 @@ Ask a colleague to give you access to the Gitlab Infratrusture repository.
 
 Powered
 by: [<img src="http://www.browserstack.com/images/layout/browserstack-logo-600x315.png" height="100"/>](https://www.browserstack.com/)
+
+## Deployment
+
+### Staging
+
+```sh
+./bin/deploy-staging.sh
+```
