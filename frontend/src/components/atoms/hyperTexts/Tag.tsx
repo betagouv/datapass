@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEventHandler } from 'react';
 import HyperText from './HyperText';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   small?: boolean;
   dismiss?: boolean;
   isActive?: boolean;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  onClick?: MouseEventHandler<HTMLElement>;
   children: React.ReactNode;
 };
 

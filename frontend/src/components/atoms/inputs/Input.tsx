@@ -5,7 +5,7 @@ import Label from './Label';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   helper?: string;
-  meta?: string;
+  meta?: string | React.ReactNode;
   ariaLabel?: string;
 }
 

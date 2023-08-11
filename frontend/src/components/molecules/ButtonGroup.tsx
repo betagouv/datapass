@@ -1,7 +1,7 @@
 type Props = {
   align: string;
   children: React.ReactNode;
-  className: string;
+  className?: string;
 };
 
 export const ButtonGroup: React.FC<Props> = ({

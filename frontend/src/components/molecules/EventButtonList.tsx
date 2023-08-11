@@ -34,14 +34,18 @@ export const EventButtonList: FunctionComponent<Props> = ({
             e.preventDefault();
             onEventButtonClick(event);
           };
-          return (
-            <EventButton
-              key={event}
-              disabled={disabled}
-              onClick={onClick}
-              {...eventConfiguration.displayProps}
-            />
-          );
+          if (eventConfiguration) {
+            return (
+              <EventButton
+                key={event}
+                disabled={disabled}
+                onClick={onClick}
+                {...eventConfiguration.displayProps}
+              />
+            );
+          }
+
+          return null;
         })}
     </ButtonGroup>
   );

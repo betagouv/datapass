@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
 import { Login } from '../templates/Login';
@@ -64,7 +64,7 @@ export const useAuth = () => {
  */
 export let resetAuthContext = (): void => {};
 
-export class AuthStore extends React.Component {
+export class AuthStore extends React.Component<{ children: React.ReactNode }> {
   _isMounted: boolean;
   state: {
     user: any;
@@ -147,7 +147,11 @@ export class AuthStore extends React.Component {
   }
 }
 
-export const AuthRequired: FunctionComponent = ({ children }) => {
+type AuthRequiredProps = {
+  children: React.ReactNode;
+};
+
+export const AuthRequired: React.FC<AuthRequiredProps> = ({ children }) => {
   const { user } = useAuth();
 
   if (!user) {

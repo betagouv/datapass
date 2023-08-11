@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEventHandler } from 'react';
 import { EventConfiguration } from '../../config/event-configuration';
 import Button from './hyperTexts/Button';
 
@@ -6,7 +6,7 @@ type Props = EventConfiguration['displayProps'] & {
   disabled?: boolean;
   quaternary?: boolean;
   iconFill?: boolean;
-  onClick: (event: MouseEvent<HTMLElement>) => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 const EventButton: React.FC<Props> = ({

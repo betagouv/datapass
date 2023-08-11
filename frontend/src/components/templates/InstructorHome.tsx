@@ -14,6 +14,7 @@ import qs from 'query-string';
 import './InstructorHome.css';
 import MultiSelect from '../molecules/MultiSelect';
 import NewHomeDesignModal from '../molecules/NewHomeDesignModal';
+import { TargetAPI } from '../../config/data-provider-configurations';
 
 const InstructorHome: React.FC = () => {
   const { user } = useAuth();
@@ -54,10 +55,10 @@ const InstructorHome: React.FC = () => {
     });
   }, [targetApis]);
 
-  const instructorTargetApis =
+  const instructorTargetApis: TargetAPI[] =
     user?.roles
       .filter((role) => role.endsWith(':reporter'))
-      .map((role) => role.split(':')[0]) || [];
+      .map((role) => role.split(':')[0] as TargetAPI) || [];
 
   return (
     <>
@@ -65,7 +66,7 @@ const InstructorHome: React.FC = () => {
       <main className="dark-background fr-pb-5w instructor-home">
         <div className="page-container">
           <h1 className="fr-mt-5w">Accueil</h1>
-          {instructorTargetApis?.length > 3 ? (
+          {dataProviderConfigurations && instructorTargetApis?.length > 3 ? (
             <div className="target-apis-selector-container">
               <MultiSelect
                 alignOptionsLeft

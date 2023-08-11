@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
 type Props = {
   icon?: string;
   secondary?: boolean;
   iconRight?: boolean;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  onClick?: MouseEventHandler<HTMLElement>;
   href?: string;
   className?: string;
   submit?: boolean;
@@ -53,7 +53,11 @@ const HyperText: React.FC<Props> = ({
 
   if (onClick) {
     return (
-      <button className={className} onClick={onClick} {...props}>
+      <button
+        className={className}
+        onClick={onClick as (event: MouseEvent<HTMLElement>) => void}
+        {...props}
+      >
         {children}
       </button>
     );

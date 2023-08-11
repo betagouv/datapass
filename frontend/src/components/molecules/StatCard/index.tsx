@@ -5,11 +5,11 @@ import './styles.css';
 
 type Stats = {
   main: {
-    value: string | number;
+    value: number;
     label: string;
   };
   second: {
-    value: string | number;
+    value: number;
     label: string;
   };
 };
