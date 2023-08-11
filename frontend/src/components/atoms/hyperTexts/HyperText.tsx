@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
 type Props = {
   icon?: string;
   secondary?: boolean;
   iconRight?: boolean;
-  onClick?: Function | ((event: MouseEvent<HTMLElement>) => void);
+  onClick?: MouseEventHandler<HTMLElement>;
   href?: string;
   className?: string;
   submit?: boolean;

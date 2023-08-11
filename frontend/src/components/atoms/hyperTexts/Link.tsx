@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEventHandler } from 'react';
 import HyperText from './HyperText';
 
 type linkProps = {
@@ -8,7 +8,7 @@ type linkProps = {
 
 type Props = {
   href?: string;
-  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  onClick?: MouseEventHandler<HTMLElement>;
   inline?: boolean;
   footerContent?: boolean;
   footerBottom?: boolean;
