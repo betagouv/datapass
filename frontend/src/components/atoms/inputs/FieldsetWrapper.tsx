@@ -1,7 +1,7 @@
 import './FieldsetWrapper.css';
 
 type FieldsetWrapperProps = {
-  title?: string;
+  title?: string | React.ReactNode;
   required?: boolean;
   grid?: boolean;
   inline?: boolean;

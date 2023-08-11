@@ -6,7 +6,7 @@ type Props = {
   label: ReactNode;
   required?: boolean;
   helper?: string;
-  meta?: string;
+  meta?: string | React.ReactNode;
 };
 
 export const Label: FunctionComponent<Props> = ({

@@ -60,7 +60,8 @@ describe('getUserEnrollment', () => {
 describe('serializeEnrollment', () => {
   describe('When there is a response', () => {
     it('should return a 200 status', () => {
-      const enrollment: Enrollment = FIRST_ENROLLMENT_1.enrollment;
+      const enrollment: Enrollment =
+        FIRST_ENROLLMENT_1.enrollment as Enrollment;
 
       const formData = serializeEnrollment(enrollment);
       expect(formData.getAll('enrollment[status]')).toEqual(['draft']);

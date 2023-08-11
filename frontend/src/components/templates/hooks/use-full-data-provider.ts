@@ -1,16 +1,21 @@
 import {
   DATA_PROVIDER_CONFIGURATIONS,
   FullDataProviderConfiguration,
+  TargetAPI,
 } from '../../../config/data-provider-configurations';
 import { useEffect, useState } from 'react';
 import { getCachedDataProviderConfiguration } from '../../../services/data-provider-configurations';
 import { AxiosError } from 'axios';
 
-function getLocalConfiguration(targetApi: string) {
+function getLocalConfiguration(targetApi: TargetAPI) {
   return DATA_PROVIDER_CONFIGURATIONS[targetApi];
 }
 
-export const useFullDataProvider = ({ targetApi }: { targetApi: string }) => {
+export const useFullDataProvider = ({
+  targetApi,
+}: {
+  targetApi: TargetAPI;
+}) => {
   const [notFound, setNotFound] = useState<boolean>(false);
   const [configuration, setConfiguration] =
     useState<FullDataProviderConfiguration | null>(null);

@@ -1,5 +1,6 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, MouseEventHandler, useState } from 'react';
 import {
+  EventConfiguration,
   eventConfigurations,
   PromptType,
 } from '../../../../config/event-configuration';
@@ -51,19 +52,26 @@ const SubmissionPanel: FunctionComponent<Props> = ({
       {loading && <Loader enableBePatientMessage />}
 
       {pendingEvent &&
-        eventConfigurations[pendingEvent].prompt === PromptType.comment && (
+        eventConfigurations[pendingEvent] &&
+        eventConfigurations[pendingEvent]?.prompt === PromptType.comment && (
           <Prompt
             inputValue={promptInputValue}
             setInputValue={setPromptInputValue}
             onAccept={onPromptConfirmation}
-            onCancel={onPromptCancellation}
-            displayProps={eventConfigurations[pendingEvent!].displayProps}
-            selectedEvent={pendingEvent as string}
+            onCancel={
+              onPromptCancellation as MouseEventHandler<HTMLButtonElement>
+            }
+            displayProps={
+              eventConfigurations[pendingEvent!]
+                ?.displayProps as EventConfiguration['displayProps']
+            }
+            selectedEvent={pendingEvent}
             enrollment={enrollment}
           />
         )}
       {pendingEvent &&
-        eventConfigurations[pendingEvent].prompt ===
+        eventConfigurations[pendingEvent] &&
+        eventConfigurations[pendingEvent]?.prompt ===
           PromptType.submit_instead && (
           <ConfirmationModal
             title="Vos modifications vont être enregistrées."
@@ -79,7 +87,8 @@ const SubmissionPanel: FunctionComponent<Props> = ({
           </ConfirmationModal>
         )}
       {pendingEvent &&
-        eventConfigurations[pendingEvent].prompt ===
+        eventConfigurations[pendingEvent] &&
+        eventConfigurations[pendingEvent]?.prompt ===
           PromptType.confirm_deletion && (
           <ConfirmationModal
             title="La suppression d'une habilitation est irréversible"
@@ -90,7 +99,8 @@ const SubmissionPanel: FunctionComponent<Props> = ({
           </ConfirmationModal>
         )}
       {pendingEvent &&
-        eventConfigurations[pendingEvent].prompt ===
+        eventConfigurations[pendingEvent] &&
+        eventConfigurations[pendingEvent]?.prompt ===
           PromptType.confirm_archive && (
           <ConfirmationModal
             title="Vous n’aurez plus accès à cette habilitation"

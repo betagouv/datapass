@@ -19,7 +19,9 @@ export const HideSectionsContext = createContext<HideSectionsContextType>({
   setLastIndexToShow: () => null,
 });
 
-export const HideSectionsContainer: FunctionComponent = ({ children }) => {
+export const HideSectionsContainer: FunctionComponent<{
+  children: React.ReactNode | React.ReactNode[];
+}> = ({ children }) => {
   const [showOnlyFirstStep, setShowOnlyFirstStep] = useState(false);
   const [isShowNextStepButtonDisabled, setIsShowNextStepButtonDisabled] =
     useState(false);

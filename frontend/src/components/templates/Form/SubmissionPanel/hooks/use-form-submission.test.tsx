@@ -14,7 +14,9 @@ describe('The form submission hook', () => {
   const updateEnrollment = jest.fn();
   const processEvent = jest.fn();
 
-  const wrapper: FunctionComponent = ({ children }) => (
+  const wrapper: FunctionComponent<{ children: React.ReactNode }> = ({
+    children,
+  }) => (
     <OpenMessagePromptContext.Provider
       value={{
         onClick: jest.fn(),

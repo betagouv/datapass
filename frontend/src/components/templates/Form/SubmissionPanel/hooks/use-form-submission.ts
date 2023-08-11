@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {
   EnrollmentEvent,
+  EventConfiguration,
   eventConfigurations,
   PromptType,
 } from '../../../../../config/event-configuration';
@@ -22,7 +23,9 @@ export const useFormSubmission = (
     async (event: EnrollmentEvent) => {
       setPendingEvent(event);
 
-      const eventConfiguration = eventConfigurations[event];
+      const eventConfiguration = eventConfigurations[
+        event
+      ] as EventConfiguration;
       if (!eventConfiguration.prompt) {
         setLoading(true);
         setPendingEvent(undefined);
@@ -62,20 +65,20 @@ export const useFormSubmission = (
 
   const eventToProcess =
     pendingEvent &&
-    eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+    eventConfigurations[pendingEvent]?.prompt === PromptType.submit_instead
       ? EnrollmentEvent.submit
       : pendingEvent;
 
   const onPromptConfirmation = pendingEvent
     ? onPromptConfirmationFactory(
-        eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+        eventConfigurations[pendingEvent]?.prompt === PromptType.submit_instead
           ? EnrollmentEvent.submit
           : eventToProcess!
       )
     : () => null;
 
   const onPromptCancellation = pendingEvent
-    ? eventConfigurations[pendingEvent].prompt === PromptType.submit_instead
+    ? eventConfigurations[pendingEvent]?.prompt === PromptType.submit_instead
       ? onPromptConfirmationFactory(pendingEvent)
       : () => {
           setPendingEvent(undefined);

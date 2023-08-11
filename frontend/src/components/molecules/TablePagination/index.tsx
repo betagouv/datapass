@@ -3,7 +3,7 @@ import NumberInput from '../../atoms/inputs/NumberInput';
 import './style.css';
 import { Table } from '@tanstack/react-table';
 
-const TablePagination = ({ table }: { table: Table<any> }) => {
+const TablePagination = ({ table }: { table: Table<unknown> }) => {
   return (
     <div className="table-pagination-container page-container">
       <Button

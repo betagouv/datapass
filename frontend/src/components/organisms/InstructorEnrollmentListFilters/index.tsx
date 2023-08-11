@@ -50,16 +50,19 @@ const InstructorEnrollmentListFilters = ({
         <Label id="target_api" label="Filtrer par API" />
         <MultiSelect
           id="target_api"
-          options={user?.roles
-            .filter((role) => role.endsWith(':reporter'))
-            .map((role) => {
-              const targetApiKey = role.split(':')[0];
+          options={
+            user?.roles
+              .filter((role) => role.endsWith(':reporter'))
+              .map((role) => {
+                const targetApiKey = role.split(':')[0];
 
-              return {
-                key: targetApiKey,
-                label: dataProviderConfigurations?.[targetApiKey].label,
-              };
-            })}
+                return {
+                  key: targetApiKey,
+                  label: dataProviderConfigurations?.[targetApiKey]
+                    .label as string,
+                };
+              }) || []
+          }
           values={
             filters.find(({ id }: { id: string }) => id === 'target_api')?.value
           }
