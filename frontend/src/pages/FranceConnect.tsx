@@ -10,6 +10,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurations';
 import DemarcheSection from '../components/organisms/form-sections/DemarcheSection';
 import Link from '../components/atoms/hyperTexts/Link';
+import { ScopeWarningModalType } from '../config/scope-warning-modal-configuration';
 
 const DonneesDescription = () => (
   <>
@@ -185,7 +186,7 @@ export const scopesConfiguration = [
     value: 'preferred_username',
     label: 'Nom d’usage',
     triggerWarning: true,
-    warningType: 'fc_incomplete',
+    warningType: ScopeWarningModalType.fc_incomplete,
   },
   {
     value: 'email',

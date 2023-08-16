@@ -26,7 +26,7 @@ type Props = {
   documentType: string;
   disabled: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  mimeTypes: string;
+  mimeTypes?: string;
   meta?: string;
   documentsToUpload: DocumentToUpload[];
   uploadedDocuments: Document[];

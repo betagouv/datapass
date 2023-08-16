@@ -6,8 +6,12 @@ import { useAuth } from '../../AuthContext';
 import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
+import { ScopeConfiguration } from '../DonneesSection/Scopes';
 
-const valueToLabel = (key, scopesConfiguration) => {
+const valueToLabel = (
+  key: string,
+  scopesConfiguration: ScopeConfiguration[]
+) => {
   const scope = find(scopesConfiguration, { value: key });
   if (scope) {
     return scope.label;
@@ -16,18 +20,20 @@ const valueToLabel = (key, scopesConfiguration) => {
   }
 };
 
-export const DemarcheSectionReadOnly = ({
-  scrollableId,
-  scopesConfiguration,
-}) => {
+type DemarcheSectionReadOnlyProps = {
+  scrollableId: string;
+  scopesConfiguration: ScopeConfiguration[];
+};
+
+export const DemarcheSectionReadOnly: React.FC<
+  DemarcheSectionReadOnlyProps
+> = ({ scrollableId, scopesConfiguration }) => {
   const { enrollment, demarches } = useContext(FormContext);
 
   const { demarche: selectedDemarcheId } = enrollment;
-  const {
-    user: { roles },
-  } = useAuth();
+  const { user } = useAuth();
 
-  const [modifiedFields, setModifiedFields] = useState([]);
+  const [modifiedFields, setModifiedFields] = useState<any[]>([]);
   const [modifiedScopes, setModifiedScopes] = useState({});
 
   useEffect(() => {
@@ -63,7 +69,7 @@ export const DemarcheSectionReadOnly = ({
                     selectedDemarcheId}
                 </i>
               </p>
-              {!isEmpty(roles) && !isEmpty(modifiedFields) && (
+              {!isEmpty(user?.roles) && !isEmpty(modifiedFields) && (
                 <p>
                   Certaines des sections pré-remplies par le cas d’usage ont été
                   modifiées.

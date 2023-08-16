@@ -159,7 +159,7 @@ export const fcDemarches = {
 };
 
 export const demarches = fcDemarches;
-demarches.default.state.scopes['dgfip_IndLep'] = false;
+(demarches.default.state.scopes as any).dgfip_IndLep = false;
 
 export const fcScopesConfiguration = [
   {

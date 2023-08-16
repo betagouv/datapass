@@ -1,4 +1,3 @@
-import React from 'react';
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
@@ -14,6 +13,7 @@ import ÉquipeSection, {
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
 import Link from '../../components/atoms/hyperTexts/Link';
+import { ScopeWarningModalType } from '../../config/scope-warning-modal-configuration';
 
 const DonneesDescription = () => (
   <>
@@ -60,7 +60,7 @@ const scopesConfiguration = [
     label: 'Effectifs - GIP-MDS',
     link: 'https://entreprise.api.gouv.fr/catalogue/?APIEntreprise_Endpoint%5Bquery%5D=effectif%20gip',
     triggerWarning: true,
-    warningType: 'apientreprise_sensitive_effectifs',
+    warningType: ScopeWarningModalType.apientreprise_sensitive_effectifs,
   },
   {
     value: 'mandataires_sociaux_infogreffe',
@@ -76,14 +76,14 @@ const scopesConfiguration = [
     value: 'bilans_bdf',
     label: '3 derniers bilans annuels - Banque de France',
     triggerWarning: true,
-    warningType: 'apientreprise_sensitive',
+    warningType: ScopeWarningModalType.apientreprise_sensitive,
     link: 'https://entreprise.api.gouv.fr/catalogue/banque_de_france/bilans',
   },
   {
     value: 'liasses_fiscales_dgfip',
     label: 'Liasses fiscales - DGFIP',
     triggerWarning: true,
-    warningType: 'apientreprise_sensitive',
+    warningType: ScopeWarningModalType.apientreprise_sensitive,
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/liasses_fiscales',
   },
   {

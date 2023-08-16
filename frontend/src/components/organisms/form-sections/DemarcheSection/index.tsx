@@ -2,11 +2,24 @@ import React, { useContext } from 'react';
 import DemarcheSectionReadOnly from './DemarcheSectionReadOnly';
 import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../../templates/Form';
+import { ScopeConfiguration } from '../DonneesSection/Scopes';
 
 const SECTION_LABEL = 'Les modèles pré-remplis';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const DemarcheSection = ({ body, scopesConfiguration }) => {
+type DemarcheSectionProps = {
+  body?: React.ReactNode;
+  scopesConfiguration?: ScopeConfiguration[];
+};
+
+interface DemarcheSectionType extends React.FC<DemarcheSectionProps> {
+  sectionLabel: string;
+}
+
+export const DemarcheSection: DemarcheSectionType = ({
+  body,
+  scopesConfiguration,
+}) => {
   const { disabled } = useContext(FormContext);
 
   return (

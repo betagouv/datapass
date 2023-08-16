@@ -4,7 +4,7 @@ import Label from './Label';
 
 interface TextAreaInputProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label: string;
+  label: string | React.ReactNode;
   helper?: string;
   meta?: string;
   ariaLabel?: string;

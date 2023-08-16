@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
 import OrWrapper from '../../atoms/inputs/OrWrapper';
@@ -13,7 +12,17 @@ import Link from '../../atoms/hyperTexts/Link';
 const SECTION_LABEL = 'Le cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const CadreJuridiqueSection = ({
+type CadreJuridiqueSectionProps = {
+  CadreJuridiqueDescription?: React.ComponentType;
+  defaultFondementJuridiqueTitle?: string;
+  defaultFondementJuridiqueUrl?: string;
+};
+
+interface CadreJuridiqueSectionType
+  extends React.FC<CadreJuridiqueSectionProps> {
+  sectionLabel: string;
+}
+const CadreJuridiqueSection: CadreJuridiqueSectionType = ({
   CadreJuridiqueDescription,
   defaultFondementJuridiqueTitle,
   defaultFondementJuridiqueUrl,
@@ -129,9 +138,5 @@ const CadreJuridiqueSection = ({
 };
 
 CadreJuridiqueSection.sectionLabel = SECTION_LABEL;
-
-CadreJuridiqueSection.propTypes = {
-  CadreJuridiqueDescription: PropTypes.func,
-};
 
 export default CadreJuridiqueSection;
