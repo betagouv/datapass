@@ -7,8 +7,8 @@ import useFileDownloader from '../../templates/hooks/use-file-downloader';
 
 type Props = {
   id: string;
-  label: string;
-  disabled: boolean;
+  label: string | React.ReactNode;
+  disabled?: boolean;
   onReplaceFile: () => void;
   uploadedDocuments: Document[];
   documentType: string;

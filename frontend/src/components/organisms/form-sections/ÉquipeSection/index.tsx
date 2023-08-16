@@ -8,9 +8,27 @@ import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
 import Link from '../../../atoms/hyperTexts/Link';
+import {
+  TeamMember,
+  TeamMemberType,
+  User,
+} from '../../../templates/InstructorEnrollmentList';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
+export type ContactConfigurationType = {
+  [k in TeamMemberType]?: {
+    header: string;
+    description: React.ReactNode;
+    forceDisable?: boolean;
+    displayMobilePhoneLabel?: boolean;
+    displayIndividualEmailLabel?: boolean;
+    displayGroupEmailLabel?: boolean;
+    contactByEmailOnly?: boolean;
+    multiple?: boolean;
+  };
+};
 
 export const getDefaultDemandeurDescription = () => (
   <>
@@ -87,22 +105,22 @@ const ÉquipeSection = ({
     enrollment: { team_members = [] },
   } = useContext(FormContext);
   const { user } = useAuth();
-  const contactConfiguration = useMemo(() => {
-    const defaultInitialContacts = {
-      demandeur: {
+  const contactConfiguration: ContactConfigurationType = useMemo(() => {
+    const defaultInitialContacts: ContactConfigurationType = {
+      [TeamMemberType.demandeur]: {
         header: 'Demandeur',
         description: getDefaultDemandeurDescription(),
         forceDisable: true,
       },
-      responsable_traitement: {
+      [TeamMemberType.responsable_traitement]: {
         header: 'Responsable de traitement',
         description: getDefaultResponsableTraitementDescription(),
       },
-      delegue_protection_donnees: {
+      [TeamMemberType.delegue_protection_donnees]: {
         header: 'Délégué à la protection des données',
         description: getDefaultDelegueProtectionDonneesDescription(),
       },
-      responsable_technique: {
+      [TeamMemberType.responsable_technique]: {
         header: 'Responsable technique',
         description: getDefaultResponsableTechniqueDescription(
           responsableTechniqueNeedsMobilePhone
@@ -118,7 +136,7 @@ const ÉquipeSection = ({
   }, [initialContacts, responsableTechniqueNeedsMobilePhone]);
 
   const newTeamMembers = useNewTeamMembers({
-    user,
+    user: user as User,
     team_members,
     contactConfiguration,
   });
@@ -141,49 +159,49 @@ const ÉquipeSection = ({
   ]);
 
   const displayIdForAdministrator = useMemo(
-    () => user && user.roles.includes('administrator'),
+    () => user && user?.roles?.includes('administrator'),
     [user]
   );
 
   const updateWithUserInformation = useCallback(
-    (index) => {
-      if (team_members[index]?.email !== user.email) {
+    (index: number) => {
+      if (team_members[index]?.email !== user?.email) {
         onChange({
           target: {
             name: `team_members[${index}].email`,
-            value: user.email,
+            value: user?.email,
           },
         });
       }
-      if (team_members[index]?.given_name !== user.given_name) {
+      if (team_members[index]?.given_name !== user?.given_name) {
         onChange({
           target: {
             name: `team_members[${index}].given_name`,
-            value: user.given_name,
+            value: user?.given_name,
           },
         });
       }
-      if (team_members[index]?.family_name !== user.family_name) {
+      if (team_members[index]?.family_name !== user?.family_name) {
         onChange({
           target: {
             name: `team_members[${index}].family_name`,
-            value: user.family_name,
+            value: user?.family_name,
           },
         });
       }
-      if (team_members[index]?.phone_number !== user.phone_number) {
+      if (team_members[index]?.phone_number !== user?.phone_number) {
         onChange({
           target: {
             name: `team_members[${index}].phone_number`,
-            value: user.phone_number,
+            value: user?.phone_number,
           },
         });
       }
-      if (team_members[index]?.job !== user.job) {
+      if (team_members[index]?.job !== user?.job) {
         onChange({
           target: {
             name: `team_members[${index}].job`,
-            value: user.job,
+            value: user?.job,
           },
         });
       }
@@ -194,7 +212,8 @@ const ÉquipeSection = ({
   useEffect(() => {
     if (!isUserEnrollmentLoading && !disabled && !isEmpty(team_members)) {
       const currentDemandeurIndex = team_members.findIndex(
-        ({ type, email }) => type === 'demandeur' && email === user.email
+        ({ type, email }: { type: TeamMemberType; email: string }) =>
+          type === 'demandeur' && email === user?.email
       );
 
       if (currentDemandeurIndex !== -1) {
@@ -209,7 +228,7 @@ const ÉquipeSection = ({
     updateWithUserInformation,
   ]);
 
-  const addTeamMemberFactory = (type) => {
+  const addTeamMemberFactory = (type: TeamMemberType) => {
     const tmp_id = uniqueId(`tmp_`);
     const newTeamMember = { type, tmp_id };
 
@@ -222,7 +241,7 @@ const ÉquipeSection = ({
       });
   };
 
-  const removeTeamMember = (index) => {
+  const removeTeamMember = (index: number) => {
     onChange({
       target: {
         name: 'team_members',
@@ -257,7 +276,7 @@ const ÉquipeSection = ({
             },
           ]) => (
             <React.Fragment key={type}>
-              {team_members
+              {(team_members as TeamMember[])
                 .filter(({ type: t }) => t === type)
                 .map(({ id, tmp_id, ...team_member }) => (
                   <Contact
@@ -281,24 +300,24 @@ const ÉquipeSection = ({
                     displayIndividualEmailLabel={displayIndividualEmailLabel}
                     displayGroupEmailLabel={displayGroupEmailLabel}
                     contactByEmailOnly={contactByEmailOnly}
-                    displayIdForAdministrator={displayIdForAdministrator}
+                    displayIdForAdministrator={!!displayIdForAdministrator}
                     disabled={forceDisable || disabled}
                     onChange={onChange}
-                    onDelete={multiple && !id && removeTeamMember}
+                    onDelete={multiple && !id ? removeTeamMember : null}
                     onUpdateWithUserInformation={updateWithUserInformation}
                     canUpdatePersonalInformation={
-                      team_member.email === user.email &&
-                      (team_member.given_name !== user.given_name ||
-                        team_member.family_name !== user.family_name ||
-                        team_member.phone_number !== user.phone_number ||
-                        team_member.job !== user.job)
+                      team_member.email === user?.email &&
+                      (team_member.given_name !== user?.given_name ||
+                        team_member.family_name !== user?.family_name ||
+                        team_member.phone_number !== user?.phone_number ||
+                        team_member.job !== user?.job)
                     }
                   />
                 ))}
               {!disabled && multiple && (
                 <AddCard
                   label={`ajouter un ${header.toLowerCase()}`}
-                  onClick={addTeamMemberFactory(type)}
+                  onClick={addTeamMemberFactory(type as TeamMemberType)}
                 />
               )}
             </React.Fragment>

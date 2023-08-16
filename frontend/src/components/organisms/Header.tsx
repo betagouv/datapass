@@ -13,8 +13,8 @@ import { isEmpty } from 'lodash';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const Header = () => {
-  const [displayContactLink, setDisplayContactLink] = useState();
-  const [targetApi, setTargetApi] = useState();
+  const [displayContactLink, setDisplayContactLink] = useState<boolean>();
+  const [targetApi, setTargetApi] = useState<string>();
   let location = useLocation();
   const { user, logout } = useAuth();
   const { dataProviderConfigurations } = useDataProviderConfigurations();
@@ -119,7 +119,7 @@ const Header = () => {
                       </Button>
                     </li>
                   )}
-                  {user && user.roles.includes('administrator') && (
+                  {user && user?.roles?.includes('administrator') && (
                     <>
                       <li>
                         <Button icon="calendar" href="/admin">

@@ -10,7 +10,11 @@ export const AidantsSection = () => {
     enrollment: { documents = [], documents_attributes = [] },
   } = useContext(FormContext);
 
-  if (!documents.some(({ type }) => type === 'Document::ListeAidants')) {
+  if (
+    !documents.some(
+      ({ type }: { type: string }) => type === 'Document::ListeAidants'
+    )
+  ) {
     return null;
   }
 

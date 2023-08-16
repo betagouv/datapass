@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { FormContext } from '../../../templates/Form';
 import { isEmpty } from 'lodash';
 
-const IntituleInitializerSection = ({ value }) => {
+const IntituleInitializerSection = ({ value }: { value: string }) => {
   const {
     isUserEnrollmentLoading,
     disabled,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler, SyntheticEvent } from 'react';
 import AriaModal from '@justfixnyc/react-aria-modal';
 import Button from '../atoms/hyperTexts/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
@@ -6,7 +6,16 @@ import Link from '../atoms/hyperTexts/Link';
 import { InfoIcon } from '../atoms/icons/fr-fi-icons';
 import './ConfirmationModal.css';
 
-const ConfirmationModal = ({
+type ConfirmationModalProps = {
+  handleConfirm: MouseEventHandler<HTMLButtonElement>;
+  confirmLabel: string;
+  handleCancel: (event: Event | SyntheticEvent<Element, Event>) => void;
+  cancelLabel?: string;
+  title: string;
+  children: React.ReactNode;
+};
+
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   handleConfirm,
   confirmLabel = 'Confirmer',
   handleCancel,
@@ -18,7 +27,7 @@ const ConfirmationModal = ({
     titleText={title}
     onExit={handleCancel}
     focusDialog
-    getApplicationNode={() => document.getElementById('root')}
+    getApplicationNode={() => document.getElementById('root') as Element}
     scrollDisabled={false}
     alert
   >

@@ -1,6 +1,7 @@
 import React, {
   ChangeEventHandler,
   FunctionComponent,
+  InputHTMLAttributes,
   useEffect,
   useState,
 } from 'react';
@@ -10,18 +11,16 @@ import { DocumentToUpload } from './index';
 // NB: please keep this limit in sync with the limit in nginx datapass-backend configuration
 const FILE_SIZE_LIMIT_IN_MB = 10;
 
-type Props = {
-  id: string;
-  label: string;
+export interface FileInputProps extends InputHTMLAttributes<HTMLInputElement> {
   documentType: string;
-  disabled: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  mimeTypes: string;
-  meta?: string;
   documentsToUpload: DocumentToUpload[];
-};
+  mimeTypes?: string;
+  meta?: string;
+  label: string | React.ReactNode;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+}
 
-export const FileInput: FunctionComponent<Props> = ({
+export const FileInput: FunctionComponent<FileInputProps> = ({
   id,
   label,
   documentType,

@@ -5,14 +5,19 @@ import { Linkify } from '../../../molecules/Linkify';
 import Alert from '../../../atoms/Alert';
 import IndexPointingRightEmoji from '../../../atoms/icons/IndexPointingRightEmoji';
 import { useDataProviderConfigurations } from '../../../templates/hooks/use-data-provider-configurations';
+import { Enrollment } from '../../../templates/InstructorEnrollmentList';
 
-const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
-  const [nextEnrollments, setNextEnrollments] = useState(false);
+const HasNextEnrollmentsNotification = ({
+  enrollmentId,
+}: {
+  enrollmentId: number;
+}) => {
+  const [nextEnrollments, setNextEnrollments] = useState<Enrollment[]>([]);
   const { dataProviderConfigurations } = useDataProviderConfigurations();
 
   useEffect(() => {
     async function fetchNextEnrollments() {
-      if (!enrollmentId) return setNextEnrollments(false);
+      if (!enrollmentId) return setNextEnrollments([]);
 
       const fetchedNextEnrollments = await getNextEnrollments(enrollmentId);
 
@@ -22,7 +27,7 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
     fetchNextEnrollments();
   }, [enrollmentId]);
 
-  const formatNextEnrollment = (enrollment) =>
+  const formatNextEnrollment = (enrollment: Enrollment) =>
     `${
       dataProviderConfigurations?.[enrollment.target_api]?.label ||
       enrollment.target_api

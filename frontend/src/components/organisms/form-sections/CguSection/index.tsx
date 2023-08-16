@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
@@ -9,7 +8,19 @@ import Link from '../../../atoms/hyperTexts/Link';
 const SECTION_LABEL = 'Les modalités d’utilisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const CguSection = ({ cguLink, additionalTermsOfUse = [] }) => {
+type CguSectionProps = {
+  cguLink: string;
+  additionalTermsOfUse: { id: string; label: string }[];
+};
+
+interface CguSectionType extends React.FC<CguSectionProps> {
+  sectionLabel: string;
+}
+
+export const CguSection: CguSectionType = ({
+  cguLink,
+  additionalTermsOfUse = [],
+}) => {
   const {
     disabled,
     onChange,
@@ -61,11 +72,5 @@ export const CguSection = ({ cguLink, additionalTermsOfUse = [] }) => {
 };
 
 CguSection.sectionLabel = SECTION_LABEL;
-
-CguSection.propTypes = {
-  CguDescription: PropTypes.func,
-  cguLink: PropTypes.string.isRequired,
-  AdditionalCguContent: PropTypes.func,
-};
 
 export default CguSection;

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ChangeEventHandler } from 'react';
 
 import TextInput from '../../../atoms/inputs/TextInput';
 import EmailInput from '../../../atoms/inputs/EmailInput';
@@ -13,10 +12,27 @@ import {
 } from '../../../../lib';
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
-import Alert from '../../../atoms/Alert';
+import Alert, { AlertType } from '../../../atoms/Alert';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
+import { TeamMember } from '../../../templates/InstructorEnrollmentList';
 
-export const Contact = ({
+interface ContactProps extends TeamMember {
+  sectionLabel?: string;
+  displayIndividualEmailLabel?: boolean;
+  displayGroupEmailLabel?: boolean;
+  displayMobilePhoneLabel?: boolean;
+  contactByEmailOnly?: boolean;
+  displayIdForAdministrator: boolean;
+  disabled: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onDelete: Function | null;
+  onUpdateWithUserInformation: Function;
+  canUpdatePersonalInformation: boolean;
+  heading: string;
+  index: number;
+}
+
+export const Contact: React.FC<ContactProps> = ({
   heading,
   id,
   index,
@@ -126,14 +142,16 @@ export const Contact = ({
       isEmailValid(email) &&
       !isIndividualEmailAddress(email) && (
         <div className="fr-mb-3w">
-          <Alert type="warning">Merci d’utiliser un email nominatif.</Alert>
+          <Alert type={AlertType.warning}>
+            Merci d’utiliser un email nominatif.
+          </Alert>
         </div>
       )}
     {displayGroupEmailLabel &&
       isEmailValid(email) &&
       isIndividualEmailAddress(email) && (
         <div className="fr-mb-3w">
-          <Alert type="info">
+          <Alert type={AlertType.info}>
             Merci de préférer une adresse générique pérenne
             (ex&nbsp;:&nbsp;contact@) et ainsi limiter les modifications de ce
             contrat.
@@ -160,23 +178,11 @@ export const Contact = ({
     {displayMobilePhoneLabel &&
       isValidPhoneNumber(phone_number) &&
       !isValidMobilePhoneNumber(phone_number) && (
-        <Alert type="error">
+        <Alert type={AlertType.error}>
           Ce numéro ne correspond pas à un numéro de téléphone mobile
         </Alert>
       )}
   </Card>
 );
-
-Contact.propTypes = {
-  type: PropTypes.string,
-  heading: PropTypes.string,
-  link: PropTypes.string,
-  nom: PropTypes.string,
-  email: PropTypes.string,
-  emailPlaceholder: PropTypes.string,
-  phone_number: PropTypes.string,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-};
 
 export default Contact;

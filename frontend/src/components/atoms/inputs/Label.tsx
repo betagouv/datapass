@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import Helper from '../Helper';
 
 type Props = {
-  id: string;
+  id?: string;
   label: ReactNode;
   required?: boolean;
   helper?: string;

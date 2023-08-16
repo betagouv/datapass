@@ -1,9 +1,9 @@
 import React from 'react';
-import Alert from '../atoms/Alert';
+import Alert, { AlertType } from '../atoms/Alert';
 
 export const NotFound = () => (
   <div className="full-page">
-    <Alert type="error" title="Erreur 404">
+    <Alert type={AlertType.error} title="Erreur 404">
       La page que vous recherchez est introuvable.
     </Alert>
   </div>
