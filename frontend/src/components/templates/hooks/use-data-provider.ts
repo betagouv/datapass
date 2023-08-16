@@ -5,7 +5,7 @@ import {
   DataProviderType,
 } from '../../../config/data-provider-configurations';
 
-export const useDataProvider = (targetApi?: string) => {
+export const useDataProvider = (targetApi?: string | null) => {
   const [dataProviderConfiguration, setDataProviderConfiguration] =
     useState<DataProviderConfiguration>({
       label: '',

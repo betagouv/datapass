@@ -2,7 +2,7 @@ import './style.css';
 import { useDataProviderConfigurations } from '../../templates/hooks/use-data-provider-configurations';
 
 type StepperProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   steps: string[];
   currentStep: string | null;
   previousStepNotCompleted?: boolean;

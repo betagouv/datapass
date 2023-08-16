@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { isValidNAFCode } from '../../../../lib';
 import { getCachedOrganizationInformation } from '../../../../services/external';
-import Alert from '../../../atoms/Alert';
+import Alert, { AlertType } from '../../../atoms/Alert';
 import Button from '../../../atoms/hyperTexts/Button';
 import Loader from '../../../atoms/Loader';
 import { Card, CardHead } from '../../../molecules/Card';
@@ -43,7 +43,13 @@ export const OrganisationCard = () => {
   const { user, isLoading } = useAuth();
 
   const updateOrganizationInfo = useCallback(
-    ({ organization_id, siret }) => {
+    ({
+      organization_id,
+      siret,
+    }: {
+      organization_id: number;
+      siret: string;
+    }) => {
       onChange({
         target: {
           name: 'organization_id',
@@ -63,7 +69,8 @@ export const OrganisationCard = () => {
       !isUserEnrollmentLoading &&
       !disabled &&
       !organization_id &&
-      !isEmpty(user.organizations)
+      user?.organizations &&
+      user.organizations.length > 0
     ) {
       updateOrganizationInfo({
         organization_id: user.organizations[0].id,
@@ -79,7 +86,7 @@ export const OrganisationCard = () => {
   ]);
 
   useEffect(() => {
-    const fetchOrganizationInfo = async (siret) => {
+    const fetchOrganizationInfo = async (siret: string) => {
       try {
         setIsOrganizationInfoLoading(true);
         const {
@@ -131,14 +138,14 @@ export const OrganisationCard = () => {
     }
   }, [siret]);
 
-  const onOrganizationChange = (new_organization_id) => {
+  const onOrganizationChange = (new_organization_id: number) => {
     setShowOrganizationPrompt(false);
 
-    if (!isEmpty(user.organizations)) {
+    if (!isEmpty(user?.organizations)) {
       updateOrganizationInfo({
         organization_id: new_organization_id,
-        siret: user.organizations.find((o) => o.id === new_organization_id)
-          .siret,
+        siret: user?.organizations?.find((o) => o.id === new_organization_id)
+          ?.siret as string,
       });
     }
   };
@@ -157,21 +164,21 @@ export const OrganisationCard = () => {
           <h3>Vous faites cette demande pour</h3>
           {activite && !isValidNAFCode(target_api, activite) && (
             <div className="fr-mb-1w">
-              <Alert type="warning">
+              <Alert type={AlertType.warning}>
                 Votre organisme ne semble pas être éligible
               </Alert>
             </div>
           )}
           {showOrganizationInfoNotFound && (
             <div className="fr-mb-1w">
-              <Alert type="warning">
+              <Alert type={AlertType.warning}>
                 Cet établissement est fermé ou le SIRET est invalide.
               </Alert>
             </div>
           )}
           {showOrganizationInfoError && (
             <div className="fr-mb-1w">
-              <Alert type="error">
+              <Alert type={AlertType.error}>
                 Erreur inconnue lors de la récupération des informations de cet
                 établissement.
               </Alert>
@@ -215,7 +222,7 @@ export const OrganisationCard = () => {
           onSelect={onOrganizationChange}
           onJoinOrganization={onJoinOrganization}
           onClose={() => setShowOrganizationPrompt(false)}
-          organizations={user.organizations}
+          organizations={user?.organizations}
         />
       )}
 

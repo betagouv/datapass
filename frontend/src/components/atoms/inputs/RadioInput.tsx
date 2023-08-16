@@ -5,7 +5,7 @@ import Label from './Label';
 import { InputProps } from './Input';
 
 interface RadioInputProps extends InputProps {
-  options?: { id: string; label: string }[];
+  options?: { id: string | number; label: string }[];
 }
 
 export const RadioInput: React.FC<RadioInputProps> = ({
