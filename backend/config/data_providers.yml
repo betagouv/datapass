@@ -32,12 +32,12 @@ api_particulier:
   type: api
   cguLink: https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf
   donneesDescription: >-
-    L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue). 
+    L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue).
     Chaque API transmet **différentes données, regroupées dans des périmètres distincts**. En effet, afin de respecter les principes de
-    collecte, traitement et conservation de données définit par l'[article 4 de la loi informatique et libertés](https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article4), 
-    vous devez sélectionner uniquement les données strictement nécessaires à votre téléservice. 
+    collecte, traitement et conservation de données définit par l'[article 4 de la loi informatique et libertés](https://www.cnil.fr/fr/la-loi-informatique-et-libertes#article4),
+    vous devez sélectionner uniquement les données strictement nécessaires à votre téléservice.
     Le non-respect du principe de proportionnalité vous expose vis-à-vis de la CNIL.
-    
+
     **Chaque périmètre est formalisé par une case à cocher dans ce formulaire**.
   cadreJuridiqueDescription: >-
     Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
@@ -76,6 +76,9 @@ api_particulier:
     - value: pole_emploi_identite
       label: Statut demandeur d'emploi et identité
       helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
+    - value: pole_emploi_paiements
+      label: Montants et dates des paiements Pôle emploi
+      helper: Paiements de type allocations, aides complémentaires aux allocations et autres
     - value: pole_emploi_contact
       label: Téléphones et e-mail
     - value: pole_emploi_adresse
@@ -146,6 +149,11 @@ api_particulier:
         - pole_emploi_contact
         - pole_emploi_adresse
         - pole_emploi_inscription
+    pole_emploi_indemnites:
+      label: API Paiements Pôle emploi
+      scopes:
+        - pole_emploi_paiements
+
     men:
       label: API Statut élève scolarisé et boursier
       scopes:
