@@ -1,4 +1,9 @@
-import React, { ChangeEventHandler, useMemo } from 'react';
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  SyntheticEvent,
+  useMemo,
+} from 'react';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 import ConfirmationModal from '../../ConfirmationModal';
 import { User } from '../../../templates/InstructorEnrollmentList';
@@ -6,8 +11,8 @@ import { User } from '../../../templates/InstructorEnrollmentList';
 type OrganizationPromptProps = {
   selectedOrganizationId: number;
   onSelect: Function;
-  onClose: Function;
-  onJoinOrganization: Function;
+  onClose: (event: Event | SyntheticEvent<Element, Event>) => void;
+  onJoinOrganization: MouseEventHandler<HTMLButtonElement>;
   organizations: User['organizations'];
 };
 

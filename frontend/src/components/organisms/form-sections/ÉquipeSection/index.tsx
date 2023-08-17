@@ -19,8 +19,8 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export type ContactConfigurationType = {
   [k in TeamMemberType]?: {
-    header: string;
-    description: React.ReactNode;
+    header?: string;
+    description?: React.ReactNode;
     forceDisable?: boolean;
     displayMobilePhoneLabel?: boolean;
     displayIndividualEmailLabel?: boolean;
@@ -280,7 +280,7 @@ const ÉquipeSection = ({
                 .filter(({ type: t }) => t === type)
                 .map(({ id, tmp_id, ...team_member }) => (
                   <Contact
-                    heading={header}
+                    heading={header!}
                     key={id || tmp_id}
                     id={id}
                     index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
@@ -316,7 +316,7 @@ const ÉquipeSection = ({
                 ))}
               {!disabled && multiple && (
                 <AddCard
-                  label={`ajouter un ${header.toLowerCase()}`}
+                  label={`ajouter un ${header?.toLowerCase()}`}
                   onClick={addTeamMemberFactory(type as TeamMemberType)}
                 />
               )}

@@ -18,6 +18,7 @@ type Props = {
   newTab?: boolean;
   children: React.ReactNode;
   title?: string;
+  target?: string;
 };
 
 const Link: React.FC<Props> = ({

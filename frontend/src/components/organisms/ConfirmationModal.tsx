@@ -8,7 +8,7 @@ import './ConfirmationModal.css';
 
 type ConfirmationModalProps = {
   handleConfirm: MouseEventHandler<HTMLButtonElement>;
-  confirmLabel: string;
+  confirmLabel?: string;
   handleCancel: (event: Event | SyntheticEvent<Element, Event>) => void;
   cancelLabel?: string;
   title: string;

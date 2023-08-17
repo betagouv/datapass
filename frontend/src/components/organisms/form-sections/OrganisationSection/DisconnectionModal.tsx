@@ -1,9 +1,9 @@
-import { MouseEventHandler } from 'react';
+import { SyntheticEvent } from 'react';
 import ConfirmationModal from '../../ConfirmationModal';
 
 type DisconnectionModalProps = {
   disconnectionUrl: string;
-  handleCancel: MouseEventHandler<HTMLElement>;
+  handleCancel: (event: Event | SyntheticEvent<Element, Event>) => void;
 };
 
 export const DisconnectionModal: React.FC<DisconnectionModalProps> = ({

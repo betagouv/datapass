@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode, RefObject } from 'react';
 import { delay, throttle } from 'lodash';
-import PropTypes from 'prop-types';
+
 import Link from '../atoms/hyperTexts/Link';
 
-const getWindowHash = () =>
+const getWindowHash = (): string | null =>
   window.location.hash ? window.location.hash.substr(1) : null;
 
-export class ScrollablePanel extends Component {
-  constructor(props) {
+interface ScrollablePanelProps {
+  scrollableId?: string;
+  children?: ReactNode;
+  className?: string;
+}
+
+export class ScrollablePanel extends Component<ScrollablePanelProps, {}> {
+  private panelRef: RefObject<HTMLDivElement>;
+
+  constructor(props: ScrollablePanelProps) {
     super(props);
     this.panelRef = React.createRef();
   }
 
   handleScroll = throttle(() => {
-    const offsetTop = this.panelRef.current.offsetTop;
-    const offsetBottom = offsetTop + this.panelRef.current.offsetHeight;
+    const offsetTop = this.panelRef.current!.offsetTop;
+    const offsetBottom = offsetTop + this.panelRef.current!.offsetHeight;
     const hash = getWindowHash();
 
     if (
@@ -22,22 +30,18 @@ export class ScrollablePanel extends Component {
       window.scrollY > offsetTop &&
       window.scrollY < offsetBottom
     ) {
-      window.history.replaceState(
-        undefined,
-        undefined,
-        `#${this.props.scrollableId}`
-      );
+      window.history.replaceState({}, '', `#${this.props.scrollableId}`);
     }
     // approx 8 frames
   }, 16 * 8);
 
   componentDidMount() {
-    return window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     this.handleScroll.cancel();
-    return window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
@@ -48,21 +52,27 @@ export class ScrollablePanel extends Component {
       </div>
     );
   }
+
+  static defaultProps = {
+    children: null,
+    className: 'panel',
+  };
 }
 
-ScrollablePanel.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  scrollableId: PropTypes.string.isRequired,
-};
+interface ScrollableLinkProps {
+  scrollableId: string;
+  children: ReactNode;
+}
 
-ScrollablePanel.defaultProps = {
-  children: null,
-  className: 'panel',
-};
+interface ScrollableLinkState {
+  selected: boolean;
+}
 
-export class ScrollableLink extends Component {
-  constructor(props) {
+export class ScrollableLink extends Component<
+  ScrollableLinkProps,
+  ScrollableLinkState
+> {
+  constructor(props: ScrollableLinkProps) {
     super(props);
     this.state = {
       selected: false,
@@ -81,40 +91,35 @@ export class ScrollableLink extends Component {
   }, 16 * 8);
 
   componentDidMount() {
-    // Hackish way to trigger initial scroll.
-    // As it's difficult to determine when all ScrollablePanels are fully rendered,
-    // we suppose that after 500ms this is the case to avoid complex implementation.
-    // Then we simply trigger the link by clicking on it.
     delay(() => {
       const hash = getWindowHash();
       if (!this.state.selected && this.props.scrollableId === hash) {
-        document
-          .querySelector(
+        (
+          document.querySelector(
             `.fr-sidemenu__item a[href="#${this.props.scrollableId}"]`
-          )
-          ?.click();
+          ) as HTMLElement
+        )?.click();
       }
     }, 500);
 
-    return window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
     this.handleScroll.cancel();
-    return window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
-    const { scrollableId, children, style } = this.props;
+    const { scrollableId, children } = this.props;
 
     return (
       <li className="fr-sidemenu__item">
         <Link
           sidemenu
           href={`#${scrollableId}`}
-          style={style}
           target="_self"
-          aria-current={this.state.selected ? true : null}
+          aria-current={this.state.selected ? 'true' : null}
         >
           {children}
         </Link>
@@ -122,9 +127,3 @@ export class ScrollableLink extends Component {
     );
   }
 }
-
-ScrollableLink.propTypes = {
-  scrollableId: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  style: PropTypes.object,
-};

@@ -11,6 +11,7 @@ type Props = {
   submit?: boolean;
   iconFill?: boolean;
   children: React.ReactNode;
+  target?: string;
 };
 
 const HyperText: React.FC<Props> = ({
