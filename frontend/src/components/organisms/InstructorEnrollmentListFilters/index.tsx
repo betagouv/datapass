@@ -59,7 +59,7 @@ const InstructorEnrollmentListFilters = ({
                 return {
                   key: targetApiKey,
                   label: dataProviderConfigurations?.[targetApiKey]
-                    .label as string,
+                    ?.label as string,
                 };
               }) || []
           }
