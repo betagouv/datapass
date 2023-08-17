@@ -24,7 +24,7 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
 
   const formatNextEnrollment = (enrollment) =>
     `${
-      dataProviderConfigurations?.[enrollment.target_api].label ||
+      dataProviderConfigurations?.[enrollment.target_api]?.label ||
       enrollment.target_api
     } : #${enrollment.id}`;
 

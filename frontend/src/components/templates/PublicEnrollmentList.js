@@ -86,7 +86,7 @@ const PublicEnrollmentList = () => {
       }
     ),
     columnHelper.accessor(
-      ({ target_api }) => dataProviderConfigurations?.[target_api].label,
+      ({ target_api }) => dataProviderConfigurations?.[target_api]?.label,
       {
         header: 'Fournisseur',
         id: 'target_api',

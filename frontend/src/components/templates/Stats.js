@@ -160,7 +160,7 @@ export const Stats = () => {
             <NavLink key={targetApi} end to={`/stats/${targetApi}`}>
               {({ isActive }) => (
                 <Tag isActive={!!isActive}>
-                  {dataProviderConfigurations?.[targetApi].label}
+                  {dataProviderConfigurations?.[targetApi]?.label}
                 </Tag>
               )}
             </NavLink>
@@ -319,7 +319,7 @@ export const Stats = () => {
                       value,
                       name === 'others'
                         ? 'Autres'
-                        : dataProviderConfigurations?.[name].label,
+                        : dataProviderConfigurations?.[name]?.label,
                       props,
                     ]}
                   />
@@ -330,7 +330,7 @@ export const Stats = () => {
                     formatter={(value) =>
                       (value === 'others'
                         ? 'Autres'
-                        : dataProviderConfigurations?.[value].label
+                        : dataProviderConfigurations?.[value]?.label
                       ).substring(0, 32)
                     }
                   />

@@ -43,7 +43,7 @@ const Stepper: React.FC<StepperProps> = ({
     <ul className="steps-form">
       {steps.map((e, i) => (
         <li key={e} className={getStepCssClass(i)}>
-          <div>{dataProviderConfigurations?.[e].label}</div>
+          <div>{dataProviderConfigurations?.[e]?.label}</div>
         </li>
       ))}
       <li className="check-mark">

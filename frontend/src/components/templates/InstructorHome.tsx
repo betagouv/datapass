@@ -73,7 +73,7 @@ const InstructorHome: React.FC = () => {
                 defaultOverviewLabel="Toutes les habilitations"
                 options={instructorTargetApis.map((targetApiKey) => ({
                   key: targetApiKey,
-                  label: dataProviderConfigurations?.[targetApiKey].label,
+                  label: dataProviderConfigurations?.[targetApiKey]?.label,
                 }))}
                 values={targetApis.length === 0 ? [] : targetApis}
                 onChange={(values = []) => setTargetApis(values)}
@@ -95,7 +95,7 @@ const InstructorHome: React.FC = () => {
                   onClick={() => setTargetApis([targetApiKey])}
                   isActive={targetApis[0] === targetApiKey}
                 >
-                  {dataProviderConfigurations?.[targetApiKey].label}
+                  {dataProviderConfigurations?.[targetApiKey]?.label}
                 </Tag>
               ))}
             </TagContainer>

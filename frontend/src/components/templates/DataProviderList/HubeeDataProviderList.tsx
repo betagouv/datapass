@@ -31,7 +31,7 @@ export const HubeeDataProviderList = () => {
           HubeeDataProviders.map(({ target_api, description }) => (
             <DataProviderCard
               key={target_api}
-              label={dataProviderConfigurations?.[target_api].label}
+              label={dataProviderConfigurations?.[target_api]?.label}
               iconPath={`/images/logo-hubee-small.png`}
               passPath={`/${target_api}`}
               description={description}
