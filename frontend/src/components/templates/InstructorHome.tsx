@@ -14,7 +14,6 @@ import qs from 'query-string';
 import './InstructorHome.css';
 import MultiSelect from '../molecules/MultiSelect';
 import NewHomeDesignModal from '../molecules/NewHomeDesignModal';
-import { TargetAPI } from '../../config/data-provider-configurations';
 
 const InstructorHome: React.FC = () => {
   const { user } = useAuth();
@@ -55,10 +54,10 @@ const InstructorHome: React.FC = () => {
     });
   }, [targetApis]);
 
-  const instructorTargetApis: TargetAPI[] =
+  const instructorTargetApis: string[] =
     user?.roles
       .filter((role) => role.endsWith(':reporter'))
-      .map((role) => role.split(':')[0] as TargetAPI) || [];
+      .map((role) => role.split(':')[0]) || [];
 
   return (
     <>
