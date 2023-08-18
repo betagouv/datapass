@@ -19,8 +19,22 @@ import {
   transform,
 } from 'lodash';
 import flatten from 'flat';
+import { AxiosError, AxiosResponse } from 'axios';
 
-export function getErrorMessages(error) {
+interface ExtendedData {
+  title?: string;
+  message?: string;
+}
+
+interface ExtendedAxiosResponse extends AxiosResponse {
+  data: ExtendedData;
+}
+
+export interface NetworkError extends AxiosError {
+  response?: ExtendedAxiosResponse;
+}
+
+export function getErrorMessages(error: NetworkError) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
     if (error.response?.data?.title && error.response?.data?.message) {
       return [
@@ -62,25 +76,28 @@ const publicServicesNAFCodes = [
   '88', // Action sociale sans hébergement
 ];
 
-const validNAFCode = {
+const validNAFCode: Record<string, string[]> = {
   api_particulier: publicServicesNAFCodes,
   hubee_portail: ['84.11Z'], // Administration publique générale
 };
 
-export function isValidNAFCode(provider, NAFcode) {
+export function isValidNAFCode(target_api: string, NAFcode: string): boolean {
   if (!isString(NAFcode)) {
     return false;
   }
 
-  if (isEmpty(validNAFCode[provider])) {
-    return true;
-  }
+  const validCodes = validNAFCode[target_api];
 
-  if (!validNAFCode[provider].some((code) => NAFcode.startsWith(code))) {
+  if (!validCodes) {
+    console.warn(`No NAF codes found for target_api: ${target_api}`);
     return false;
   }
 
-  return true;
+  if (isEmpty(validCodes)) {
+    return true;
+  }
+
+  return validCodes.some((code) => NAFcode.startsWith(code));
 }
 
 function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
@@ -113,7 +130,7 @@ function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
   return accumulatorObject;
 }
 
-const diffFieldLabels = {
+const diffFieldLabels: Record<string, string> = {
   cgu_approved: 'de l’approbation des CGU',
   data_recipients: 'des destinataires des données',
   data_retention_period: 'de la durée de conservation des données',
@@ -159,7 +176,7 @@ const diffFieldLabels = {
   dpo_is_informed: 'de la case "le DPD est informé de ma demande"',
 };
 
-const getLabel = (key) => {
+const getLabel = (key: string) => {
   if (diffFieldLabels[key]) {
     return diffFieldLabels[key];
   }
@@ -171,7 +188,7 @@ const getLabel = (key) => {
   return `du champ "${key}"`;
 };
 
-const getDisplayValue = (rawValue) => {
+const getDisplayValue = (rawValue: any) => {
   if (isBoolean(rawValue)) {
     return rawValue ? 'coché' : 'décoché';
   }
@@ -183,7 +200,11 @@ const getDisplayValue = (rawValue) => {
   return rawValue;
 };
 
-function changelogFormatTransformer(accumulatorArray, changes, key) {
+function changelogFormatTransformer(
+  accumulatorArray: Array<any>,
+  changes: Array<any>,
+  key: string
+) {
   let valueBefore, valueAfter;
   if (changes.length === 2) [valueBefore, valueAfter] = changes;
   if (changes.length === 1) [valueAfter] = changes;

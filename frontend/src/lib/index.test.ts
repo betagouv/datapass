@@ -1,4 +1,5 @@
 import {
+  NetworkError,
   collectionWithKeyToObject,
   dataProviderConfigurationsToContactInfo,
   findModifiedFields,
@@ -22,7 +23,7 @@ import { transform } from 'lodash';
 describe('utils', () => {
   describe('getErrorMessages', () => {
     it('should return proper error message for error from nginx', () => {
-      const errorObject = {
+      const errorObject: NetworkError = {
         response: {
           data: '<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body bgcolor="white">\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.10.3 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n',
           status: 502,
