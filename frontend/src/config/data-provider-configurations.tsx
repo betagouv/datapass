@@ -226,13 +226,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiImpotParticulierProduction,
   },
-  // [TargetAPI.api_impot_particulier_unique]: {
-  //   label: 'API Impôt particulier (Formulaire Unique)',
-  //   icon: 'logo-dgfip-with-label.png',
-  //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-  //   type: DataProviderType.api,
-  //   component: ApiImpotParticulierUnique,
-  // },
+  [TargetAPI.api_impot_particulier_unique]: {
+    label: 'API Impôt particulier (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    // component: ApiImpotParticulierUnique,
+  },
   [TargetAPI.api_impot_particulier_fc_sandbox]: {
     label: 'API Impôt particulier (FC) (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
@@ -247,13 +247,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiImpotParticulierFcProduction,
   },
-  // [TargetAPI.api_impot_particulier_fc_unique]: {
-  //   label: 'API Impôt particulier (FC) (Formulaire Unique)',
-  //   icon: 'logo-dgfip-with-label.png',
-  //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-  //   type: DataProviderType.api,
-  //   component: ApiImpotParticulierFcUnique,
-  // },
+  [TargetAPI.api_impot_particulier_fc_unique]: {
+    label: 'API Impôt particulier (FC) (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    // component: ApiImpotParticulierFcUnique,
+  },
   [TargetAPI.api_r2p_sandbox]: {
     label: 'API R2P (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
@@ -268,13 +268,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiR2PProduction,
   },
-  // [TargetAPI.api_r2p_unique]: {
-  //   label: 'API R2P (Formulaire Unique)',
-  //   icon: 'logo-dgfip-with-label.png',
-  //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-  //   type: DataProviderType.api,
-  //   component: ApiR2PUnique,
-  // },
+  [TargetAPI.api_r2p_unique]: {
+    label: 'API R2P (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    // component: ApiR2PUnique,
+  },
   [TargetAPI.api_hermes_sandbox]: {
     label: 'API Hermes (Bac à sable)',
     icon: 'logo-dgfip-with-label.png',
@@ -415,13 +415,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiFicobaProduction,
   },
-  // [TargetAPI.api_ficoba_unique]: {
-  //   label: 'API FICOBA (Formulaire Unique)',
-  //   icon: 'logo-dgfip-with-label.png',
-  //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-  //   type: DataProviderType.api,
-  //   component: ApiFicobaUnique,
-  // },
+  [TargetAPI.api_ficoba_unique]: {
+    label: 'API FICOBA (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    // component: ApiFicobaUnique,
+  },
   [TargetAPI.api_droits_cnam]: {
     label: 'API Droits CNAM',
     icon: 'logo-cnam.jpg',
@@ -611,13 +611,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiSfipProduction,
   },
-  // [TargetAPI.api_sfip_unique]: {
-  //   label: 'API Courtier fonctionnel SFiP (Formulaire Unique)',
-  //   icon: 'logo-dgfip-with-label.png',
-  //   email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
-  //   type: DataProviderType.api,
-  //   component: ApiSfipUnique,
-  // },
+  [TargetAPI.api_sfip_unique]: {
+    label: 'API Courtier fonctionnel SFiP (Formulaire Unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    // component: ApiSfipUnique,
+  },
 };
 
 export const HIDDEN_DATA_PROVIDER_KEYS = [
@@ -649,10 +649,10 @@ export const HIDDEN_DATA_PROVIDER_KEYS = [
 export const APISDGFIP = [
   'api_impot_particulier_sandbox',
   'api_impot_particulier_production',
-  // 'api_impot_particulier_unique',
+  'api_impot_particulier_unique',
   'api_r2p_sandbox',
   'api_r2p_production',
-  // 'api_r2p_unique',
+  'api_r2p_unique',
   'api_hermes_sandbox',
   'api_hermes_production',
   'api_e_contacts_sandbox',
@@ -673,14 +673,14 @@ export const APISDGFIP = [
   'api_infinoe_production',
   'api_ficoba_sandbox',
   'api_ficoba_production',
-  // 'api_ficoba_unique',
+  'api_ficoba_unique',
   'api_ensu_documents_sandbox',
   'api_ensu_documents_production',
   'api_satelit_sandbox',
   'api_satelit_production',
   'api_sfip_sandbox',
   'api_sfip_production',
-  // 'api_sfip_unique',
+  'api_sfip_unique',
 ];
 
 export const APISFRANCECONNECTED = [
