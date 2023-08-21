@@ -104,4 +104,33 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
       end
     end
   end
+
+  describe "API impot particulier sandbox (non-regression test)" do
+    let(:enrollment_attributes) do
+      enrollment = build(:enrollment, :api_impot_particulier_sandbox, user: user)
+
+      scopes = {
+        dgfip_aft: false,
+        dgfip_pac: true,
+        dgfip_rfr: true
+      }
+
+      enrollment.attributes.merge(
+        "scopes" => scopes,
+        "team_members_attributes" => enrollment.team_members.map(&:attributes)
+      )
+    end
+
+    it { is_expected.to have_http_status(:ok) }
+
+    it "affects valid scopes" do
+      expect {
+        create_enrollment
+      }.to change { user.enrollments.count }.by(1)
+
+      latest_user_enrollment = user.enrollments.last
+
+      expect(latest_user_enrollment.scopes.sort).to eq(["dgfip_pac", "dgfip_rfr"].sort)
+    end
+  end
 end
