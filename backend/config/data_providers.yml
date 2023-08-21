@@ -65,6 +65,9 @@ api_particulier:
     - value: cnaf_quotient_familial
       label: Quotient familial CAF
       helper: Délivre le quotient familial CAF.
+    - value: complementaire_sante_solidaire
+      label: Complémentaire Santé Solidaire
+      helper: Délivre le status et le montant du droit à la complémentaire santé solidaire.
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
@@ -153,7 +156,6 @@ api_particulier:
       label: API Paiements Pôle emploi
       scopes:
         - pole_emploi_paiements
-
     men:
       label: API Statut élève scolarisé et boursier
       scopes:
@@ -178,6 +180,10 @@ api_particulier:
         - cnous_statut_bourse
         - cnous_ville_etudes
         - cnous_identite
+    css:
+      label: API Complémentaire Santé Solidaire
+      scopes:
+        - complementaire_sante_solidaire
   editeurs:
     - name: Abelium Collectivités
       siret: '42172024400050'
