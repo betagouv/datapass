@@ -68,7 +68,10 @@ class FilterService < ApplicationService
 
   def call
     global_search = @filters.find { |filter_item| filter_item["key"] == "global_search" }
-    if global_search
+
+    if global_search && global_search["value"].to_i.to_s == global_search["value"]
+      return @items.where(id: global_search["value"])
+    elsif global_search
       @items = @items.where(global_search_query(global_search["value"]))
       @filters.reject! { |filter_item| filter_item["key"] == "global_search" }
     end
