@@ -35,6 +35,14 @@ RSpec.describe FilterService, type: :service do
       it "returns items matching the global search" do
         expect(subject.map(&:id)).to match_array([@enrollment_franceconnect["id"], @enrollment_franceconnect2["id"]])
       end
+
+      context "when value is an exact enrollment id" do
+        let(:filters) { [{"key" => "global_search", "value" => @enrollment_franceconnect.id.to_s}].to_json }
+
+        it "returns only this item" do
+          expect(subject.map(&:id)).to eq([@enrollment_franceconnect["id"]])
+        end
+      end
     end
 
     context "when global_search is used with fuzzy matching" do
