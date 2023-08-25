@@ -61,8 +61,6 @@ module DataPass
     config.action_mailer.raise_delivery_errors = false
     config.action_mailer.default charset: "utf-8"
 
-    config.action_mailer.perform_deliveries = true
-
     # remove scheme from url
     uri = URI(ENV.fetch("BACK_HOST"))
     config.action_mailer.default_url_options = {host: uri.hostname + uri.path}
@@ -75,11 +73,6 @@ module DataPass
       authentication: :plain,
       enable_starttls_auto: true
     }
-
-    if ENV.fetch("DO_NOT_SEND_MAIL", "False") == "True"
-      config.action_mailer.perform_deliveries = false
-      config.action_mailer.delivery_method = :test
-    end
 
     if ENV.fetch("FORCE_COOKIES_SAME_SITE_PROTECTION", "False") != "True" &&
         ENV.fetch("ALLOWED_ORIGINS", "").include?("localhost")
