@@ -9,7 +9,7 @@ on:
 env:
   CI: true
   COVERAGE: true
-  RUBY_VERSION: 3.2.0
+  RUBY_VERSION: 3.2.2
 
   BACK_HOST: http://localhost:3001
   FRONT_HOST: http://localhost:3000
