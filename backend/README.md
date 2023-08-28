@@ -10,7 +10,7 @@ Pour le développement en local, suivez les instructions ci-dessous:
 
 ## Dépendances
 
-- ruby 3.2.0
+- ruby 3.2.2
 - postgresql 12.11
 
 ## Installation
