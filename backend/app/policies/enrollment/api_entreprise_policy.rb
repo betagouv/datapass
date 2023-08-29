@@ -22,6 +22,7 @@ class Enrollment::ApiEntreprisePolicy < EnrollmentPolicy
         :cotisations_msa,
         :cotisations_probtp,
         :certification_cnetp,
+        :certifications_qualiopi_france_competences,
         :open_data
       ]
     ])
