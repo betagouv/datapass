@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../atoms/hyperTexts/Button';
 
 const Accessibilite = () => (

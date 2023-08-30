@@ -37,7 +37,7 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     updateEnrollment,
     processEvent
   );
-  if (user && user?.roles?.length > 1) {
+  if (user && user?.roles && user?.roles?.length > 1) {
     return null;
   }
 

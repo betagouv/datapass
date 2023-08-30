@@ -56,7 +56,7 @@ const InstructorHome: React.FC = () => {
 
   const instructorTargetApis: string[] =
     user?.roles
-      .filter((role) => role.endsWith(':reporter'))
+      ?.filter((role) => role.endsWith(':reporter'))
       .map((role) => role.split(':')[0]) || [];
 
   return (

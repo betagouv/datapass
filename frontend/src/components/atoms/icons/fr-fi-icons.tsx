@@ -15,6 +15,7 @@ export type IconProps = {
   small?: boolean;
   type?: string;
   size?: number;
+  title?: string;
 };
 
 const FrFiIcon: React.FC<IconProps> = ({
@@ -37,24 +38,64 @@ const FrFiIcon: React.FC<IconProps> = ({
 };
 
 // Icons - Business
-export const MailIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="mail-line" color={color} large={large} small={small} />
+export const MailIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="mail-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const MailIconFill: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="mail-fill" color={color} large={large} small={small} />
+export const MailIconFill: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="mail-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const MailOpenIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="mail-open-line" color={color} large={large} small={small} />
+export const MailOpenIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="mail-open-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
 export const MailOpenIconFill: React.FC<IconProps> = ({
   color,
   large,
   small,
+  title,
 }) => (
-  <FrFiIcon type="mail-open-fill" color={color} large={large} small={small} />
+  <FrFiIcon
+    type="mail-open-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
 // Icons - Media
@@ -62,43 +103,106 @@ export const NotificationIcon: React.FC<IconProps> = ({
   color,
   large,
   small,
+  title,
 }) => (
   <FrFiIcon
     type="notification-3-line"
     color={color}
     large={large}
     small={small}
+    title={title}
   />
 );
 
 // Icons - System DSFR
-export const InfoFillIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="info-fill" color={color} large={large} small={small} />
+export const InfoFillIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="info-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const InfoIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="info-line" color={color} large={large} small={small} />
+export const InfoIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="info-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const WarningIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="warning-fill" color={color} large={large} small={small} />
+export const WarningIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="warning-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
 // RemixIcon
-export const AddCircleIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="add-circle-line" color={color} large={large} small={small} />
+export const AddCircleIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="add-circle-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const ArrowUpIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="arrow-up-s-line" color={color} large={large} small={small} />
+export const ArrowUpIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="arrow-up-s-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const ArrowDownIcon: React.FC<IconProps> = ({ color, large, small }) => (
+export const ArrowDownIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
   <FrFiIcon
     type="arrow-down-s-line"
     color={color}
     large={large}
     small={small}
+    title={title}
   />
 );
 
@@ -106,12 +210,14 @@ export const ArrowRightIcon: React.FC<IconProps> = ({
   color,
   large,
   small,
+  title,
 }) => (
   <FrFiIcon
     type="arrow-right-s-line"
     color={color}
     large={large}
     small={small}
+    title={title}
   />
 );
 
@@ -119,52 +225,148 @@ export const CheckCircleIcon: React.FC<IconProps> = ({
   color,
   large,
   small,
+  title,
 }) => (
   <FrFiIcon
     type="checkbox-circle-fill"
     color={color}
     large={large}
     small={small}
+    title={title}
   />
 );
 
-export const ErrorIcon: React.FC<IconProps> = ({ color, large, small }) => (
+export const ErrorIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
   <FrFiIcon
     type="error-warning-fill"
     color={color}
     large={large}
     small={small}
+    title={title}
   />
 );
 
-export const HelpIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="question-fill" color={color} large={large} small={small} />
+export const HelpIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="question-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const RefreshIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="refresh-line" color={color} large={large} small={small} />
+export const RefreshIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="refresh-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const ScheduleIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="time-line" color={color} large={large} small={small} />
+export const ScheduleIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="time-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const EyeIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="eye-line" color={color} large={large} small={small} />
+export const EyeIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="eye-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const EditIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="edit-line" color={color} large={large} small={small} />
+export const EditIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="edit-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const FilterIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="filter-line" color={color} large={large} small={small} />
+export const FilterIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="filter-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const ArchiveIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="archive-line" color={color} large={large} small={small} />
+export const ArchiveIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="archive-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );
 
-export const RecycleIcon: React.FC<IconProps> = ({ color, large, small }) => (
-  <FrFiIcon type="recycle-fill" color={color} large={large} small={small} />
+export const RecycleIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="recycle-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
 );

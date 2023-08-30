@@ -1,19 +1,58 @@
-const getDemarchesFiles = function (dir, demarches = {}, directory = '') {
-  const fs = require('fs');
+import fs from 'fs';
 
+// Typage pour la structure de demarches.json basé sur l'exemple que vous avez fourni précédemment.
+type Demarche = {
+  label: string;
+  about?: string;
+  state: {
+    intitule?: string;
+    description?: string;
+    fondement_juridique_title?: string;
+    fondement_juridique_url?: string;
+    data_retention_period?: string;
+    data_recipients?: string;
+    scopes: { [key: string]: boolean };
+    [key: string]: any; // pour permettre des clés supplémentaires
+  };
+  team_members?: {
+    responsable_technique?: {
+      given_name: string;
+      family_name: string;
+      email: string;
+      phone_number: string;
+    };
+    contact_metier?: {
+      given_name: string;
+      family_name: string;
+      email: string;
+      phone_number: string;
+    };
+  };
+  [key: string]: any; // pour permettre des clés supplémentaires
+};
+
+type Demarches = { [directory: string]: Demarche };
+
+const getDemarchesFiles = function (
+  dir: string,
+  demarches: Demarches = {},
+  directory = ''
+): Demarches {
   const files = fs.readdirSync(dir);
   files.forEach(function (file) {
     if (fs.statSync(dir + file).isDirectory()) {
       getDemarchesFiles(dir + file + '/', demarches, file);
     } else {
       if (file === 'demarches.json') {
-        var demarche = fs.readFileSync(dir + file, { encoding: 'utf-8' });
+        const demarche = fs.readFileSync(dir + file, { encoding: 'utf-8' });
         demarches[directory] = JSON.parse(demarche);
       }
     }
   });
   return demarches;
 };
+
+// Vos tests restent les mêmes
 
 describe('demarches', () => {
   const allDemarches = getDemarchesFiles('./src/pages/');

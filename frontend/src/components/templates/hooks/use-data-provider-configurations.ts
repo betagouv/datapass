@@ -6,9 +6,10 @@ import {
 import { getCachedDataProviderConfigurations } from '../../../services/data-provider-configurations';
 
 export const useDataProviderConfigurations = () => {
-  const [configurations, setConfigurations] = useState<{
-    [k: string]: DataProviderConfiguration;
-  } | null>(null);
+  const [configurations, setConfigurations] = useState<Record<
+    string,
+    DataProviderConfiguration
+  > | null>(null);
 
   useEffect(() => {
     async function fetchDataProviderConfigurations() {

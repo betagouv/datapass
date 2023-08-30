@@ -1,4 +1,3 @@
-import React from 'react';
 import ListHeader from '../../molecules/ListHeader';
 import { DataProviderCard } from './DataProviderCard';
 import Button from '../../atoms/hyperTexts/Button';

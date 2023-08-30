@@ -287,17 +287,20 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         />
       )}
       <ButtonGroup className="datapass-sticky-actions-buttons" align="right">
-        {user && user.roles.length > 1 && authorizedEvents.length > 1 && (
-          <div className="datapass-sticky-actions-container">
-            <EventButton
-              onClick={() => handleActionChange(EnrollmentEvent.instruct)}
-              label="Instruction"
-              icon="edit"
-              quaternary={currentAction !== EnrollmentEvent.instruct}
-              iconFill
-            />
-          </div>
-        )}
+        {user &&
+          user.roles &&
+          user.roles.length > 1 &&
+          authorizedEvents.length > 1 && (
+            <div className="datapass-sticky-actions-container">
+              <EventButton
+                onClick={() => handleActionChange(EnrollmentEvent.instruct)}
+                label="Instruction"
+                icon="edit"
+                quaternary={currentAction !== EnrollmentEvent.instruct}
+                iconFill
+              />
+            </div>
+          )}
         {authorizedEvents.includes(EnrollmentEvent.notify) && (
           <div className="datapass-sticky-actions-container">
             <EventButton

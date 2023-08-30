@@ -8,6 +8,11 @@ export function getUsers({
   filter = [],
   page = null,
   size = null,
+}: {
+  usersWithRolesOnly?: boolean;
+  filter: { id: string; value: any }[];
+  page?: number | null;
+  size?: number | null;
 }) {
   const formatedFilter = filter.map(({ id, value }) => ({
     key: id,

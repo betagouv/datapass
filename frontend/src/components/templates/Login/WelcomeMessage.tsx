@@ -1,7 +1,14 @@
 import React from 'react';
 import { useDataProvider } from '../hooks/use-data-provider';
 
-const WelcomeMessage = ({
+type WelcomeMessageProps = {
+  isOnNewEnrollmentPage: boolean;
+  targetApi: string;
+  newEnrollmentPageMessage?: JSX.Element;
+  newEnrollmentPageSubTitleMessage?: JSX.Element;
+};
+
+const WelcomeMessage: React.FC<WelcomeMessageProps> = ({
   isOnNewEnrollmentPage,
   targetApi,
   newEnrollmentPageMessage,
