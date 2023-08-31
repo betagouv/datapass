@@ -10,7 +10,7 @@ import { ScopeConfiguration } from '../DonneesSection/Scopes';
 
 const valueToLabel = (
   key: string,
-  scopesConfiguration: ScopeConfiguration[]
+  scopesConfiguration?: ScopeConfiguration[]
 ) => {
   const scope = find(scopesConfiguration, { value: key });
   if (scope) {
@@ -22,7 +22,7 @@ const valueToLabel = (
 
 type DemarcheSectionReadOnlyProps = {
   scrollableId: string;
-  scopesConfiguration: ScopeConfiguration[];
+  scopesConfiguration?: ScopeConfiguration[];
 };
 
 export const DemarcheSectionReadOnly: React.FC<

@@ -53,6 +53,7 @@ export type User = {
       id: number;
       siret: string;
       is_external: boolean;
+      label?: string;
     }
   ];
 };

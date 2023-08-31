@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { hasAccessToEnrollment } from '../../../../services/enrollments';
 
-const useAccessToEnrollment = (enrollmentId) => {
+const useAccessToEnrollment = (enrollmentId: number) => {
   const [hasAccessToPreviousEnrollment, setHasAccessToPreviousEnrollment] =
     useState(false);
 

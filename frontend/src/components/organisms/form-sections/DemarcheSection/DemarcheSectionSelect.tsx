@@ -1,5 +1,12 @@
 import { get, has, isEmpty, merge, pickBy } from 'lodash';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  ChangeEventHandler,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { findModifiedFields } from '../../../../lib';
 import SelectInput from '../../../atoms/inputs/SelectInput';
 import { FormContext } from '../../../templates/Form';
@@ -7,16 +14,24 @@ import ConfirmationModal from '../../ConfirmationModal';
 import { ScrollablePanel } from '../../Scrollable';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 
-export const DemarcheSectionSelect = ({ body, scrollableId }) => {
+export const DemarcheSectionSelect = ({
+  body,
+  scrollableId,
+}: {
+  body: React.ReactNode;
+  scrollableId: string;
+}) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
+  const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState<
+    string | null
+  >(null);
 
   // reducer expects onChange events from HTML Element
   const selectNewDemarche = useCallback(
-    (newDemarcheId) => {
+    (newDemarcheId: string) => {
       onChange({ target: { value: newDemarcheId, name: 'demarche' } });
     },
     [onChange]
@@ -36,7 +51,7 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
     [demarches, enrollment.technical_team_value, selectedDemarcheId]
   );
 
-  const onSelectDemarche = (event) => {
+  const onSelectDemarche: ChangeEventHandler<HTMLSelectElement> = (event) => {
     let newDemarcheId = event.target.value || 'default';
 
     const preFilledEnrollment = merge(
@@ -97,9 +112,9 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
         {confirmNewDemarcheId && (
           <ConfirmationModal
             title="Attention, vous allez écraser certains de vos changements"
-            handleCancel={() => setConfirmNewDemarcheId(false)}
+            handleCancel={() => setConfirmNewDemarcheId(null)}
             handleConfirm={() => {
-              setConfirmNewDemarcheId(false);
+              setConfirmNewDemarcheId(null);
               selectNewDemarche(confirmNewDemarcheId);
             }}
             confirmLabel="Changer tout de même"

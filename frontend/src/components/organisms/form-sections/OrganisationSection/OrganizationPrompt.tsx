@@ -1,19 +1,35 @@
-import React, { useMemo } from 'react';
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  SyntheticEvent,
+  useMemo,
+} from 'react';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 import ConfirmationModal from '../../ConfirmationModal';
+import { User } from '../../../templates/InstructorEnrollmentList';
 
-const OrganizationPrompt = ({
+type OrganizationPromptProps = {
+  selectedOrganizationId: number;
+  onSelect: Function;
+  onClose: (event: Event | SyntheticEvent<Element, Event>) => void;
+  onJoinOrganization: MouseEventHandler<HTMLButtonElement>;
+  organizations: User['organizations'];
+};
+
+const OrganizationPrompt: React.FC<OrganizationPromptProps> = ({
   selectedOrganizationId,
   onSelect,
   onClose,
   onJoinOrganization,
   organizations,
 }) => {
-  const onChange = ({ target: { value } }) => onSelect(parseInt(value));
+  const onChange: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value },
+  }) => onSelect(parseInt(value));
 
   const options = useMemo(
     () =>
-      organizations.map(({ id, label, siret }) => ({
+      organizations?.map(({ id, label, siret }) => ({
         id,
         label: label || siret,
       })),

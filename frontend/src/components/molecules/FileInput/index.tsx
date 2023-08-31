@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { isEmpty, uniqueId } from 'lodash';
 import DownloadButton from './DownloadButton';
-import FileInput from './FileInput';
+import FileInput, { FileInputProps } from './FileInput';
 
 export type DocumentToUpload = { attachment: File; type: string };
 
@@ -21,18 +21,12 @@ export type Document = {
   filename: string;
 };
 
-type Props = {
-  label: string;
-  documentType: string;
-  disabled: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  mimeTypes?: string;
-  meta?: string;
-  documentsToUpload: DocumentToUpload[];
+interface IndexProps extends FileInputProps {
   uploadedDocuments: Document[];
-};
+  disabled?: boolean;
+}
 
-const Index: FunctionComponent<Props> = ({
+const Index: FunctionComponent<IndexProps> = ({
   label,
   meta,
   mimeTypes = '.pdf, application/pdf',

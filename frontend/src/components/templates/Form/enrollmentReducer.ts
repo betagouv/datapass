@@ -1,7 +1,7 @@
 import { cloneDeep, get, isEmpty, isObject, merge, omitBy, set } from 'lodash';
 import { Enrollment } from '../InstructorEnrollmentList';
 
-type Demarche = {
+export type Demarche = {
   label: string;
   about: string;
   state: any;

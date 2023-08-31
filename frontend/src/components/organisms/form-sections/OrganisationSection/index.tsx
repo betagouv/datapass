@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNumber } from 'lodash';
 import { CardContainer } from '../../../molecules/Card';
 import { ScrollablePanel } from '../../Scrollable';
 import OrganisationCard from './OrganisationCard';
@@ -27,7 +27,7 @@ const OrganisationSection: OrganisationSectionType = ({
     <CardContainer>
       <PersonalInformationCard />
       <OrganisationCard />
-      {!isEmpty(editorList) && (
+      {!isEmpty(editorList) && isNumber(sectionIndex) && (
         <TechnicalTeamCard
           editorList={editorList}
           sectionIndex={sectionIndex}

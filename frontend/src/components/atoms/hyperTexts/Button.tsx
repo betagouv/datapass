@@ -16,6 +16,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   download?: boolean;
   submit?: boolean;
   children?: React.ReactNode;
+  target?: string;
+  rel?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -11,7 +11,7 @@ export enum AlertType {
 
 type Props = {
   type?: AlertType;
-  title?: string;
+  title?: string | React.ReactNode;
   onAlertClose?: MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 };

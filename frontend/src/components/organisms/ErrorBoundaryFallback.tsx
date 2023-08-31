@@ -1,11 +1,11 @@
 import React from 'react';
-import Alert from '../atoms/Alert';
+import Alert, { AlertType } from '../atoms/Alert';
 import IndexPointingRightEmoji from '../atoms/icons/IndexPointingRightEmoji';
 
 export const ErrorBoundaryFallback = () => (
   <div className="page">
     <main className="full-page">
-      <Alert type="error" title="Erreur inconnue">
+      <Alert type={AlertType.error} title="Erreur inconnue">
         <p>
           Une erreur est survenue. Merci de réessayer ultérieurement. Vous
           pouvez également essayer d'utiliser un autre navigateur (ex: Firefox

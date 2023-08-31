@@ -4,13 +4,21 @@ import { ScrollableLink } from './Scrollable';
 import Button from '../atoms/hyperTexts/Button';
 import useListItemNavigation from '../templates/hooks/use-list-item-navigation';
 import Link from '../atoms/hyperTexts/Link';
+import { TargetAPI } from '../../config/data-provider-configurations';
 
-export const getDefaultDocumentationUrl = (target_api) =>
+export const getDefaultDocumentationUrl = (target_api: TargetAPI) =>
   `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`;
 
 export const DEFAULT_CONTACT_EMAIL = 'datapass@api.gouv.fr';
 
-const Nav = ({
+type NavProps = {
+  target_api: TargetAPI;
+  sectionLabels: string[];
+  contactEmail: string;
+  documentationUrl: string;
+};
+
+const Nav: React.FC<NavProps> = ({
   target_api,
   sectionLabels = [],
   contactEmail,

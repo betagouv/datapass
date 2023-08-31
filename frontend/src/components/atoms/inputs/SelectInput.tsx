@@ -10,11 +10,11 @@ import SideBySideWrapper from './SideBySideWrapper';
 import Label from './Label';
 
 interface SelectInputProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  options?: { id: string; label: string }[];
+  options?: { id: string | number; label: string }[];
   useOtherOption?: boolean;
-  label: string;
-  helper: string;
-  meta: string;
+  label: string | React.ReactNode;
+  helper?: string;
+  meta?: string;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({

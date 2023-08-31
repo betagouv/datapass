@@ -17,13 +17,19 @@ export const PersonalInformationCard = () => {
 
   const { isLoading } = useAuth();
 
-  const [personalInformation, setPersonalInformation] = useState({});
+  const [personalInformation, setPersonalInformation] = useState<{
+    given_name: string;
+    family_name: string;
+    email: string;
+    phone_number: string;
+    job: string;
+  } | null>(null);
   const [showDisconnectionPrompt, setShowDisconnectionPrompt] = useState(false);
 
   useEffect(() => {
     const firstDemandeur =
       !isEmpty(team_members) &&
-      team_members.find(({ type }) => type === 'demandeur');
+      team_members.find(({ type }: { type: string }) => type === 'demandeur');
     if (firstDemandeur) {
       // note that they might be more than one demandeur
       // for now we just display the first demandeur found
@@ -38,7 +44,7 @@ export const PersonalInformationCard = () => {
       <h3>Vous êtes</h3>
       <CardHead>
         <b>
-          {personalInformation.given_name} {personalInformation.family_name}
+          {personalInformation?.given_name} {personalInformation?.family_name}
         </b>
         {!disabled && (
           <Button
@@ -50,11 +56,13 @@ export const PersonalInformationCard = () => {
         )}
       </CardHead>
       <div>
-        {personalInformation.email}
-        <CopyToClipboardButton textToCopy={personalInformation.email} />
+        {personalInformation?.email}
+        <CopyToClipboardButton
+          textToCopy={personalInformation?.email as string}
+        />
       </div>
-      <div>{personalInformation.phone_number}</div>
-      <div>{personalInformation.job}</div>
+      <div>{personalInformation?.phone_number}</div>
+      <div>{personalInformation?.job}</div>
 
       {!disabled && !isLoading && showDisconnectionPrompt && (
         <DisconnectionModal

@@ -3,6 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { isEmpty } from 'lodash';
+import { User } from '../../../templates/InstructorEnrollmentList';
 
 export const ÉquipeInitializerSection = () => {
   const {
@@ -14,7 +15,7 @@ export const ÉquipeInitializerSection = () => {
   const { user } = useAuth();
 
   const newTeamMembers = useNewTeamMembers({
-    user,
+    user: user as User,
     team_members,
     contactConfiguration: { demandeur: {} },
   });

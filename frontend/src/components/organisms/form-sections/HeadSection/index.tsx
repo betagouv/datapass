@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 import { useContext } from 'react';
-import Badge from '../../../atoms/hyperTexts/Badge';
+import Badge, { BadgeType } from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { StatusBadge } from '../../../molecules/StatusBadge';
 import { FormContext } from '../../../templates/Form';
@@ -23,7 +23,7 @@ export const HeadSection = () => {
         <>Vous demandez l’accès à</>
         <h1>{label}</h1>
         <div className="datapass-badge-group">
-          {id && <Badge type="info">Habilitation n°{id}</Badge>}
+          {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
           <StatusBadge status={status} />
           {copied_from_enrollment_id && (
             <Link href={`/authorization-request/${copied_from_enrollment_id}`}>

@@ -9,13 +9,25 @@ import SelectInput from '../../../atoms/inputs/SelectInput';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
-import Alert from '../../../atoms/Alert';
+import Alert, { AlertType } from '../../../atoms/Alert';
 import Link from '../../../atoms/hyperTexts/Link';
+import { Enrollment } from '../../../templates/InstructorEnrollmentList';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const PreviousEnrollmentSection = ({ steps }) => {
+type PreviousEnrollmentSectionProps = {
+  steps: string[];
+};
+
+interface PreviousEnrollmentSectionType
+  extends React.FC<PreviousEnrollmentSectionProps> {
+  sectionLabel: string;
+}
+
+const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
+  steps,
+}) => {
   const {
     isUserEnrollmentLoading,
     disabled,
@@ -28,12 +40,14 @@ const PreviousEnrollmentSection = ({ steps }) => {
     disabled && !isUserEnrollmentLoading && previous_enrollment_id
   );
 
-  const [validatedEnrollments, setValidatedEnrollments] = useState([]);
+  const [validatedEnrollments, setValidatedEnrollments] = useState<
+    Enrollment[]
+  >([]);
   const [isValidatedEnrollmentsLoading, setIsValidatedEnrollmentsLoading] =
     useState(false);
   const [validatedEnrollmentsError, setValidatedEnrollmentsError] =
     useState(false);
-  const [previousTargetApi, setPreviousTargetApi] = useState();
+  const [previousTargetApi, setPreviousTargetApi] = useState<string | null>();
 
   const { label: targetApiLabel } = useDataProvider(target_api);
   const { label: previousTargetApiLabel } = useDataProvider(previousTargetApi);
@@ -50,7 +64,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
         setIsValidatedEnrollmentsLoading(true);
         setValidatedEnrollmentsError(false);
         const enrollments = await getUserValidatedEnrollments(
-          previousTargetApi
+          previousTargetApi as string
         );
         setValidatedEnrollments(enrollments);
         setIsValidatedEnrollmentsLoading(false);
@@ -90,7 +104,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
             currentStep={!isValidatedEnrollmentsLoading && target_api}
             previousStepNotCompleted={
               !isValidatedEnrollmentsLoading &&
-              previousTargetApi &&
+              !!previousTargetApi &&
               validatedEnrollments.length === 0
             }
           />
@@ -101,7 +115,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
         !isValidatedEnrollmentsLoading &&
         previousTargetApi &&
         validatedEnrollments.length === 0 && (
-          <Alert type="warning">
+          <Alert type={AlertType.warning}>
             <p>
               Pour demander l’accès à <b>{targetApiLabel}</b>, vous devez avoir
               préalablement obtenu une habilitation à{' '}
@@ -112,8 +126,8 @@ const PreviousEnrollmentSection = ({ steps }) => {
               <ReactRouterLink
                 to={{
                   pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
-                  state: { fromFranceConnectedAPI: target_api },
                 }}
+                state={{ fromFranceConnectedAPI: target_api }}
               >
                 demander votre habilitation à <b>{previousTargetApiLabel}</b>
               </ReactRouterLink>{' '}
@@ -160,7 +174,7 @@ const PreviousEnrollmentSection = ({ steps }) => {
               </>
             )}
           {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
-            <Alert title="Erreur" type="error">
+            <Alert title="Erreur" type={AlertType.error}>
               Erreur inconnue lors de la récupération de vos habilitations{' '}
               {previousTargetApiLabel}.
             </Alert>

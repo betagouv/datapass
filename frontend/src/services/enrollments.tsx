@@ -145,7 +145,7 @@ export function getEnrollments({
     .then(({ data }) => data);
 }
 
-export function getUserValidatedEnrollments(targetApi: string) {
+export function getUserValidatedEnrollments(targetApi: string | null) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won’t be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
   return getEnrollments({

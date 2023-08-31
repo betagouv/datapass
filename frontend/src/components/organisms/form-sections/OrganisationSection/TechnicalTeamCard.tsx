@@ -1,5 +1,10 @@
 import { isNumber } from 'lodash';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, {
+  ChangeEventHandler,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react';
 import Alert from '../../../atoms/Alert';
 import Button from '../../../atoms/hyperTexts/Button';
 import Link from '../../../atoms/hyperTexts/Link';
@@ -16,7 +21,15 @@ const typeOptions = [
   { id: 'other', label: 'Autre' },
 ];
 
-export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
+type TechnicalTeamCardProps = {
+  editorList: { siret: string; name: string }[];
+  sectionIndex: number;
+};
+
+export const TechnicalTeamCard: React.FC<TechnicalTeamCardProps> = ({
+  editorList = [],
+  sectionIndex,
+}) => {
   const {
     disabled,
     onChange,
@@ -68,7 +81,9 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
     });
   };
 
-  const onTypeChange = ({ target: { value } }) => {
+  const onTypeChange: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value },
+  }) => {
     onChange({
       target: { name: 'technical_team_type', value },
     });
@@ -84,7 +99,9 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
     [editorList, technical_team_value]
   );
 
-  const onValueChange = ({ target: { value: valueLabel } }) => {
+  const onValueChange: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value: valueLabel },
+  }) => {
     const value =
       editorList.find(({ name }) => name === valueLabel)?.siret || valueLabel;
 
@@ -129,7 +146,7 @@ export const TechnicalTeamCard = ({ editorList = [], sectionIndex }) => {
           )}
           <RadioInput
             label="Qui s’occupera des aspects techniques et informatiques ?"
-            options={[{ id: '', label: selectedTypeLabel }]}
+            options={[{ id: '', label: selectedTypeLabel as string }]}
             name="technical_team_type"
             value=""
             disabled={disabled}

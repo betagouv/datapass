@@ -1,11 +1,23 @@
 import { useMemo } from 'react';
 import { chain, uniqueId } from 'lodash';
+import {
+  TeamMember,
+  TeamMemberType,
+  User,
+} from '../../../templates/InstructorEnrollmentList';
+import { ContactConfigurationType } from '.';
+
+type useNewTeamMembersProps = {
+  user: User;
+  team_members: TeamMember[];
+  contactConfiguration: ContactConfigurationType;
+};
 
 export const useNewTeamMembers = ({
   user,
   team_members,
   contactConfiguration,
-}) =>
+}: useNewTeamMembersProps) =>
   useMemo(
     () =>
       chain(contactConfiguration)
@@ -19,7 +31,11 @@ export const useNewTeamMembers = ({
           }
 
           const tmp_id = uniqueId(`tmp_`);
-          let newTeamMember = { type, tmp_id };
+          let newTeamMember = { type, tmp_id } as {
+            type: TeamMemberType;
+            tmp_id: string | number;
+            email?: string;
+          };
           if (type === 'demandeur') {
             newTeamMember = {
               ...newTeamMember,
