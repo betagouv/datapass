@@ -1,5 +1,4 @@
 import {
-  NetworkError,
   collectionWithKeyToObject,
   dataProviderConfigurationsToContactInfo,
   findModifiedFields,
@@ -33,7 +32,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'Une erreur est survenue. Le code de l’erreur est 502 (Bad Gateway). Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à datapass@api.gouv.fr.',
       ]);
     });
@@ -55,7 +54,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'Vous devez renseigner la description de la démarche avant de continuer',
         'Vous devez renseigner un prénom pour le contact technique avant de continuer',
         'Vous devez renseigner un nom pour le contact technique avant de continuer',
@@ -67,7 +66,7 @@ describe('utils', () => {
         message: 'Network Error',
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'Une erreur de connexion au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à l’administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à datapass@api.gouv.fr.',
       ]);
     });
@@ -84,7 +83,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'La validation a échoué : Copied from enrollment n’est pas disponible',
       ]);
     });
@@ -100,7 +99,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'Vous n’êtes pas autorisé à modifier cette ressource',
       ]);
     });
@@ -117,7 +116,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
+      expect(getErrorMessages(errorObject)).toEqual([
         'Vous devez vous connecter ou vous inscrire pour continuer.',
       ]);
     });
