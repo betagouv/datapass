@@ -20,7 +20,7 @@ export const DemarcheSection: DemarcheSectionType = ({
   body,
   scopesConfiguration,
 }) => {
-  const { disabled } = useContext(FormContext);
+  const { disabled } = useContext(FormContext)!;
 
   return (
     <>

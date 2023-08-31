@@ -10,7 +10,7 @@ import React, {
 import { useNavigate, useParams } from 'react-router-dom';
 import { getStateFromUrlParams } from '../../../lib';
 import { getUserEnrollment } from '../../../services/enrollments';
-import Alert from '../../atoms/Alert';
+import Alert, { AlertType } from '../../atoms/Alert';
 import WarningEmoji from '../../atoms/icons/WarningEmoji';
 import { Linkify } from '../../molecules/Linkify';
 import HeadSection from '../../organisms/form-sections/HeadSection';
@@ -19,16 +19,45 @@ import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
 import { useDataProvider } from '../hooks/use-data-provider';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
-import { enrollmentReducerFactory } from './enrollmentReducer';
+import { Demarche, enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
 import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
 import StickyActions from '../../molecules/StickyActions';
 import SubmissionPanel from './SubmissionPanel';
+import { AxiosError } from 'axios';
+import { Enrollment } from '../InstructorEnrollmentList';
+import { EnrollmentStatus } from '../../../config/status-parameters';
 
-export const FormContext = React.createContext();
+type FormContextType = {
+  disabled: boolean;
+  onChange: (value: any) => void;
+  enrollment: Enrollment;
+  isUserEnrollmentLoading: boolean;
+  demarches: Demarche[] | null;
+};
 
-export const Form = ({
+export const FormContext = React.createContext<FormContextType | undefined>(
+  undefined
+);
+
+type ChildWithSectionLabel = React.ReactElement & {
+  type: {
+    sectionLabel: string;
+  };
+};
+
+type FormProps = {
+  target_api: string;
+  demarches?: any;
+  children:
+    | React.ReactElement<ChildWithSectionLabel>[]
+    | React.ReactElement<ChildWithSectionLabel>;
+  documentationUrl: string;
+  contactEmail: string;
+};
+
+export const Form: React.FC<FormProps> = ({
   target_api,
   demarches = null,
   children,
@@ -42,13 +71,19 @@ export const Form = ({
   const [hasNotFoundError, setHasNotFoundError] = useState(false);
   const navigate = useNavigate();
   const { goBackToList } = useListItemNavigation();
-  const alertRef = useRef(null);
+  const alertRef: React.RefObject<HTMLDivElement> = useRef(null);
+
+  const hasSectionLabel = (child: any): child is ChildWithSectionLabel => {
+    return typeof child.type === 'object' && 'sectionLabel' in child.type;
+  };
 
   const sectionLabels = useMemo(() => {
-    return React.Children.map(
-      children,
-      ({ type: { sectionLabel } }) => sectionLabel
-    );
+    return React.Children.map(children, (child) => {
+      if (hasSectionLabel(child)) {
+        return child.type.sectionLabel;
+      }
+      return null;
+    }).filter(Boolean);
   }, [children]);
 
   const enrollmentReducer = useMemo(
@@ -56,12 +91,14 @@ export const Form = ({
     [demarches]
   );
 
-  const [enrollment, dispatchSetEnrollment] = useReducer(enrollmentReducer, {
+  const [enrollment, dispatchSetEnrollment] = useReducer<
+    (state: Enrollment, action: Enrollment | Event | string) => Enrollment
+  >(enrollmentReducer, {
     acl: {
       update: true,
-      submit: true, // Enable edition for new enrollment (ie. enrollment has no id)
+      submit: true,
     },
-    status: 'draft',
+    status: EnrollmentStatus.draft,
     events: [],
     target_api,
     additional_content: {},
@@ -72,11 +109,12 @@ export const Form = ({
   useEffect(() => {
     async function fetchUserEnrollment() {
       try {
-        const userEnrollment = await getUserEnrollment(enrollmentId);
+        const userEnrollment = await getUserEnrollment(Number(enrollmentId));
         dispatchSetEnrollment(userEnrollment);
         setIsUserEnrollmentLoading(false);
       } catch (error) {
-        if ([403, 404].includes(error.response?.status)) {
+        const axiosError = error as AxiosError;
+        if ([403, 404].includes(axiosError?.response!.status)) {
           setHasNotFoundError(true);
         }
       }
@@ -138,7 +176,9 @@ export const Form = ({
 
   useEffect(() => {
     if (!isEmpty(successMessages) || !isEmpty(errorMessages)) {
-      alertRef.current.scrollIntoView({ behavior: 'smooth' });
+      if (alertRef.current) {
+        alertRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }, [successMessages, errorMessages, alertRef]);
 
@@ -186,12 +226,12 @@ export const Form = ({
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div ref={alertRef}>
             {successMessages.map((successMessage) => (
-              <Alert type="success" key={successMessage}>
+              <Alert type={AlertType.success} key={successMessage}>
                 <Linkify message={successMessage} />
               </Alert>
             ))}
             {!isEmpty(errorMessages) && (
-              <Alert title="Erreur" type="error">
+              <Alert title="Erreur" type={AlertType.error}>
                 {errorMessages.map((errorMessage) => (
                   <p key={errorMessage} style={{ whiteSpace: 'pre-line' }}>
                     <WarningEmoji />

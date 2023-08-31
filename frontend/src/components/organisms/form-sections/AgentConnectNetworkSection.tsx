@@ -15,7 +15,7 @@ export const AgentConnectNetworkSection: FunctionSectionComponent = () => {
     enrollment: {
       additional_content: { acces_rie = false, acces_internet = false },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

@@ -44,7 +44,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       documents = [],
       documents_attributes = [],
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   useEffect(() => {
     if (!isEmpty(scopesConfiguration) && isEmpty(scopes)) {

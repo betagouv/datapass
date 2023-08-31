@@ -8,7 +8,7 @@ const IntituleInitializerSection = ({ value }: { value: string }) => {
     disabled,
     onChange,
     enrollment: { intitule },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
   useEffect(() => {
     if (!isUserEnrollmentLoading && !disabled && isEmpty(intitule)) {
       onChange({

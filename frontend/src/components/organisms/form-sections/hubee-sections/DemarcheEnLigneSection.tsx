@@ -16,7 +16,7 @@ export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
     onChange,
     isUserEnrollmentLoading,
     enrollment: { scopes = {}, siret },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   const subscribedDemarcheEnLigne = useGetSubscribedDemarcheEnLigne({
     isUserEnrollmentLoading,

@@ -40,7 +40,7 @@ export const StructureSection = () => {
         participation_reseau = false,
       },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   useEffect(() => {
     const fetchOrganizationInfo = async (siret: string) => {

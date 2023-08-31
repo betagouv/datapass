@@ -20,6 +20,7 @@ import useListItemNavigation from './hooks/use-list-item-navigation';
 import InstructorEnrollmentListFilters from '../organisms/InstructorEnrollmentListFilters';
 import StateBadge from '../molecules/StateBadge';
 import { EnrollmentEvent } from '../../config/event-configuration';
+import { Document } from '../molecules/FileInput';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -98,14 +99,6 @@ export type Contact = {
   phone_number?: string;
 };
 
-export type Document = {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  attachment: Record<string, unknown>;
-  type: string;
-};
-
 export type Enrollment = {
   updated_at: string;
   created_at: string;
@@ -135,6 +128,7 @@ export type Enrollment = {
   demarche?: any;
   description?: string;
   documents?: Document[];
+  documents_attributes?: any[];
   dpo_is_informed?: boolean;
   fondement_juridique_title?: string;
   fondement_juridique_url?: string;

@@ -24,7 +24,7 @@ export const OrganisationCard = () => {
       siret = '',
       target_api,
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   const [title, setTitle] = useState('');
   const [adresse, setAdresse] = useState('');

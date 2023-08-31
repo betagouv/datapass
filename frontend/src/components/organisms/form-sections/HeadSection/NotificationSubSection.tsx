@@ -12,7 +12,7 @@ export const NotificationSubSection = () => {
   const {
     isUserEnrollmentLoading,
     enrollment: { id, acl = {} },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <>

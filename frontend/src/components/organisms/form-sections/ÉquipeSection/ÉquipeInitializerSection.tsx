@@ -11,7 +11,7 @@ export const ÉquipeInitializerSection = () => {
     disabled,
     onChange,
     enrollment: { team_members = [] },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
   const { user } = useAuth();
 
   const newTeamMembers = useNewTeamMembers({

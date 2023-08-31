@@ -17,7 +17,7 @@ export const FranceConnectPlusSection = () => {
     enrollment: {
       additional_content: { eidas_level = '' },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   useEffect(() => {
     if (!isUserEnrollmentLoading && !disabled && eidas_level === '') {

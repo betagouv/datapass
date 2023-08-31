@@ -37,7 +37,7 @@ const CadreJuridiqueSection: CadreJuridiqueSectionType = ({
       documents = [],
       documents_attributes = [],
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   useEffect(() => {
     if (

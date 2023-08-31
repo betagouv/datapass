@@ -8,7 +8,7 @@ export const AidantsSection = () => {
   const {
     onChange,
     enrollment: { documents = [], documents_attributes = [] },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   if (
     !documents.some(

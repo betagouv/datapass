@@ -33,7 +33,7 @@ const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
     disabled,
     onChange,
     enrollment: { previous_enrollment_id = '', target_api },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   // disable fetch if not disabled or is loading
   const hasAccessToPreviousEnrollment = useAccessToEnrollment(
