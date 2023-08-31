@@ -19,39 +19,15 @@ import {
   transform,
 } from 'lodash';
 import flatten from 'flat';
-import { AxiosError, AxiosResponse } from 'axios';
-import {
-  Enrollment,
-  TeamMember,
-} from '../components/templates/InstructorEnrollmentList';
-import { DataProviderConfiguration } from '../config/data-provider-configurations';
 
-interface ExtendedData {
-  title?: string;
-  message?: string;
-}
-
-interface ExtendedAxiosResponse extends AxiosResponse {
-  data: ExtendedData | any;
-}
-
-export interface NetworkError extends AxiosError {
-  response?: ExtendedAxiosResponse;
-}
-
-export function getErrorMessages(error: NetworkError) {
+export function getErrorMessages(error) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
-    if (
-      (error.response?.data as ExtendedData).title &&
-      (error.response?.data as ExtendedData).message
-    ) {
+    if (error.response?.data?.title && error.response?.data?.message) {
       return [
-        `${(error.response?.data as ExtendedData).title} : ${
-          (error.response?.data as ExtendedData).message
-        }`,
+        `${error.response?.data?.title} : ${error.response?.data?.message}`,
       ];
     }
-    return (chain(error.response.data).values().flatten() as any).value();
+    return chain(error.response.data).values().flatten().value();
   }
 
   const errorMessageEnd =
@@ -86,65 +62,58 @@ const publicServicesNAFCodes = [
   '88', // Action sociale sans hébergement
 ];
 
-const validNAFCode: Record<string, string[]> = {
+const validNAFCode = {
   api_particulier: publicServicesNAFCodes,
   hubee_portail: ['84.11Z'], // Administration publique générale
 };
 
-export function isValidNAFCode(target_api: string, NAFcode: string): boolean {
+export function isValidNAFCode(provider, NAFcode) {
   if (!isString(NAFcode)) {
     return false;
   }
 
-  const validCodes = validNAFCode[target_api];
-
-  if (isEmpty(validCodes)) {
+  if (isEmpty(validNAFCode[provider])) {
     return true;
   }
 
-  if (!validCodes) {
-    console.warn(`No NAF codes found for target_api: ${target_api}`);
+  if (!validNAFCode[provider].some((code) => NAFcode.startsWith(code))) {
     return false;
   }
 
-  return validCodes.some((code) => NAFcode.startsWith(code));
+  return true;
 }
 
-function flattenDiffTransformer(
-  accumulatorObject: DiffObject,
-  fullObjectDiff: any[],
-  objectKey: string
-): DiffObject {
+function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
   if (!isObject(fullObjectDiff[0])) {
     accumulatorObject[objectKey] = fullObjectDiff;
 
     return accumulatorObject;
   }
-
-  const objectBefore = flatten(fullObjectDiff[0], objectKey as any);
-  const objectAfter = flatten(fullObjectDiff[1], objectKey as any);
+  // {contacts: [[{'name': 'c', email: 'd', work_email: 'a'}], [{'name': 'e', email: 'd'}]]}
+  const objectBefore = flatten(fullObjectDiff[0], objectKey);
+  const objectAfter = flatten(fullObjectDiff[1], objectKey);
   const objectDiff = mergeWith(
     objectBefore,
     objectAfter,
-    (valueBefore: any, valueAfter: any) => [valueBefore, valueAfter]
-  ) as DiffObject;
-
+    (valueBefore, valueAfter) => [valueBefore, valueAfter]
+  );
+  // {0.name: ['c', 'e'], 0.email: ['d', 'd'], 0.work_email: 'a'}
   const objectDiffNoUnchangedNoDeprecated = omitBy(
     objectDiff,
-    (value: any) => !isArray(value) || value[0] === value[1]
+    (value) => !isArray(value) || value[0] === value[1]
   );
-
+  // {0.name: ['c', 'e']}
   const objectDiffPrefixedKey = mapKeys(
     objectDiffNoUnchangedNoDeprecated,
-    (value: any, flatKey: string) => `${objectKey}.${flatKey}`
+    (value, flatKey) => `${objectKey}.${flatKey}`
   );
-
+  // {contacts.0.name: ['c', 'e']}
   Object.assign(accumulatorObject, objectDiffPrefixedKey);
 
   return accumulatorObject;
 }
 
-const diffFieldLabels: Record<string, string> = {
+const diffFieldLabels = {
   cgu_approved: 'de l’approbation des CGU',
   data_recipients: 'des destinataires des données',
   data_retention_period: 'de la durée de conservation des données',
@@ -190,7 +159,7 @@ const diffFieldLabels: Record<string, string> = {
   dpo_is_informed: 'de la case "le DPD est informé de ma demande"',
 };
 
-const getLabel = (key: string) => {
+const getLabel = (key) => {
   if (diffFieldLabels[key]) {
     return diffFieldLabels[key];
   }
@@ -202,7 +171,7 @@ const getLabel = (key: string) => {
   return `du champ "${key}"`;
 };
 
-const getDisplayValue = (rawValue: any) => {
+const getDisplayValue = (rawValue) => {
   if (isBoolean(rawValue)) {
     return rawValue ? 'coché' : 'décoché';
   }
@@ -214,17 +183,8 @@ const getDisplayValue = (rawValue: any) => {
   return rawValue;
 };
 
-type DiffObject = { [key: string]: any };
-type ChangeValue = any;
-type AccumulatorArray = Array<string>;
-type ChangesArray = Array<ChangeValue>;
-
-function changelogFormatTransformer(
-  accumulatorArray: AccumulatorArray,
-  changes: ChangesArray,
-  key: string
-): AccumulatorArray {
-  let valueBefore: ChangeValue, valueAfter: ChangeValue;
+function changelogFormatTransformer(accumulatorArray, changes, key) {
+  let valueBefore, valueAfter;
   if (changes.length === 2) [valueBefore, valueAfter] = changes;
   if (changes.length === 1) [valueAfter] = changes;
 
@@ -246,26 +206,26 @@ function changelogFormatTransformer(
   return accumulatorArray;
 }
 
-const getChangelogV1 = (diff: DiffObject): AccumulatorArray =>
+const getChangelogV1 = (diff) =>
   chain(diff)
+    // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
     .omit(['updated_at'])
     .transform(flattenDiffTransformer, {})
+    // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
     .transform(changelogFormatTransformer, [])
+    // ['changement d’intitulé de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
     .value();
 
 export const flattenDiffTransformerV2Factory =
-  (keyPrefix: string | null = null) =>
-  (
-    accumulatorObject: DiffObject,
-    objectValue: any,
-    objectKey: string
-  ): DiffObject => {
+  (keyPrefix = null) =>
+  (accumulatorObject, objectValue, objectKey) => {
     const key = [keyPrefix, objectKey].filter((e) => e).join('.');
 
     if (isArray(objectValue)) {
       accumulatorObject[key] = objectValue;
     }
 
+    // { scope: { nom: [false, true] } }
     if (isObject(objectValue)) {
       transform(
         objectValue,
@@ -277,23 +237,22 @@ export const flattenDiffTransformerV2Factory =
     return accumulatorObject;
   };
 
-const getChangelogV2 = (diff: DiffObject): AccumulatorArray =>
+const getChangelogV2 = (diff) =>
   chain(diff)
+    // { intitule: ['a', 'b'], team_members: { _t: 'a', '0': { name: ['c','e'], email: ['d'] } } }
     .transform(flattenDiffTransformerV2Factory(), {})
+    // { intitule: ['a', 'b'], team_members.0.name: ['c', 'e'] , team_members.0.email: ['d'] }
     .transform(changelogFormatTransformer, [])
+    // ['changement d’intitule de "a" en "b"', ...]
     .value();
 
-const turnV3ToV2Scopes = (
-  accumulatorObject: DiffObject,
-  objectValue: any,
-  objectKey: string
-): DiffObject => {
+const turnV3ToV2Scopes = (accumulatorObject, objectValue, objectKey) => {
   if (objectKey === 'scopes') {
-    const [previousScopes, newScopes] = objectValue as [string[], string[]];
+    const [previousScopes, newScopes] = objectValue;
     const commonScopes = intersection(previousScopes, newScopes);
-    const removedScopes = difference(previousScopes, commonScopes) as string[];
-    const addedScopes = difference(newScopes, commonScopes) as string[];
-    const scopes: { [key: string]: [boolean, boolean] } = {};
+    const removedScopes = difference(previousScopes, commonScopes);
+    const addedScopes = difference(newScopes, commonScopes);
+    const scopes = {};
     removedScopes.forEach(
       (removedScope) => (scopes[removedScope] = [true, false])
     );
@@ -305,14 +264,18 @@ const turnV3ToV2Scopes = (
   return accumulatorObject;
 };
 
-const getChangelogV3 = (diff: DiffObject): AccumulatorArray =>
+const getChangelogV3 = (diff) =>
   chain(diff)
+    // { team_members: { _t: 'a', '0': { 'name': ['c','e'] } }, scopes: [['a', 'b'], ['b', 'c']] }
     .transform(turnV3ToV2Scopes, {})
+    // { team_members: { _t: 'a', '0': { 'name': ['c','e'] } }, scopes: { a: [true, false], c: [false, true] } }
     .transform(flattenDiffTransformerV2Factory(), {})
+    // { team_members.0.name: ['c', 'e'], scopes.a: [true, false], scopes.c: [false, true] }
     .transform(changelogFormatTransformer, [])
+    // ['changement d’intitule de "a" en "b"', ...]
     .value();
 
-export function getChangelog(diff: DiffObject): AccumulatorArray {
+export function getChangelog(diff) {
   try {
     return diff?.['_v'] === '3'
       ? getChangelogV3(diff)
@@ -320,12 +283,14 @@ export function getChangelog(diff: DiffObject): AccumulatorArray {
       ? getChangelogV2(diff)
       : getChangelogV1(diff);
   } catch (e) {
+    // There is a lot of operation involved in this function.
+    // We rather fail silently than causing the entire page not to render.
     console.error(e);
     return [];
   }
 }
 
-export function hashToQueryParams(hash: any, initialSearchParams?: string) {
+export function hashToQueryParams(hash, initialSearchParams) {
   const urlParams = new URLSearchParams(initialSearchParams);
 
   forOwn(hash, (value, key) =>
@@ -340,18 +305,17 @@ export function hashToQueryParams(hash: any, initialSearchParams?: string) {
 
   return isEmpty(urlParams.toString()) ? '' : `?${urlParams.toString()}`;
 }
-type CollectionItem = {
-  id: string;
-  [key: string]: any;
-};
 
-export function collectionWithKeyToObject(
-  collection: CollectionItem[]
-): Record<string, Omit<CollectionItem, 'id'>> {
-  return chain(collection)
-    .map(({ id, ...attributes }) => [id, attributes])
-    .fromPairs()
-    .value();
+export function collectionWithKeyToObject(collection) {
+  return (
+    chain(collection)
+      // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
+      .map(({ id, ...attributes }) => [id, attributes])
+      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
+      .fromPairs()
+      // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
+      .value()
+  );
 }
 
 export const getStateFromUrlParams = (defaultState = {}) => {
@@ -391,10 +355,10 @@ export const setUrlParamsFromState = (state = {}) => {
 };
 
 export const findModifiedFields = (
-  demarcheState: Record<string, any> = {},
-  enrollmentState: Record<string, any> = {}
-): string[] => {
-  const modified: string[] = [];
+  demarcheState = {},
+  enrollmentState = {}
+) => {
+  const modified = [];
   Object.keys(demarcheState).forEach((key) => {
     const initialValue = demarcheState[key];
     const value = enrollmentState[key];
@@ -410,14 +374,14 @@ export const findModifiedFields = (
 };
 
 export const findModifiedScopes = (
-  demarcheState: Record<string, any> = {},
-  enrollmentState: Record<string, any> = {}
+  demarcheState = {},
+  enrollmentState = {}
 ) => {
   if (!findModifiedFields(demarcheState, enrollmentState).includes('scopes')) {
     return {};
   }
 
-  return omitBy(enrollmentState?.scopes, function (v, k) {
+  return omitBy(enrollmentState.scopes, function (v, k) {
     return (
       isUndefined(demarcheState.scopes[k]) || demarcheState.scopes[k] === v
     );
@@ -427,7 +391,7 @@ export const findModifiedScopes = (
 /*
  * duplicated from : moncomptepro/src/services/security.js
  */
-export const isEmailValid = (email: string) => {
+export const isEmailValid = (email) => {
   if (!isString(email) || isEmpty(email)) {
     return false;
   }
@@ -464,7 +428,7 @@ export const isEmailValid = (email: string) => {
   return true;
 };
 
-export const isIndividualEmailAddress = (email: string) => {
+export const isIndividualEmailAddress = (email) => {
   if (!isEmailValid(email)) {
     return false;
   }
@@ -513,7 +477,7 @@ export const isIndividualEmailAddress = (email: string) => {
   return !forbiddenEmailWords.some((w) => firstEmailPart.includes(w));
 };
 
-export const isValidPhoneNumber = (phoneNumber: string) => {
+export const isValidPhoneNumber = (phoneNumber) => {
   if (!isString(phoneNumber)) {
     return false;
   }
@@ -524,7 +488,7 @@ export const isValidPhoneNumber = (phoneNumber: string) => {
   return !!phoneNumber.match(phone_number_regex);
 };
 
-export const isValidMobilePhoneNumber = (phoneNumber: string) => {
+export const isValidMobilePhoneNumber = (phoneNumber) => {
   if (!isValidPhoneNumber(phoneNumber)) {
     return false;
   }
@@ -534,8 +498,8 @@ export const isValidMobilePhoneNumber = (phoneNumber: string) => {
 };
 
 export const stackLowUseAndUnpublishedApi = (
-  publishedApis: string[],
-  enrollmentByTargetApi: { name: string; count: number }[],
+  publishedApis,
+  enrollmentByTargetApi,
   maxApiToDisplay = 13
 ) => {
   const publishedEnrollmentByTargetApi = enrollmentByTargetApi.filter(
@@ -564,9 +528,7 @@ export const stackLowUseAndUnpublishedApi = (
   return filteredEnrollmentByTargetApi;
 };
 
-export const dataProviderConfigurationsToContactInfo = (
-  parameters: { [k: string]: DataProviderConfiguration } | null
-) =>
+export const dataProviderConfigurationsToContactInfo = (parameters) =>
   chain(parameters)
     .map(({ label, ...rest }) =>
       label.endsWith(' (Bac à sable)')
@@ -590,7 +552,7 @@ export const dataProviderConfigurationsToContactInfo = (
     .map(([email, label]) => ({ email, label }))
     .value();
 
-export const getScopesFromEnrollments = (enrollments: Enrollment[]) =>
+export const getScopesFromEnrollments = (enrollments) =>
   chain(enrollments)
     .map(({ scopes }) =>
       chain(scopes)
@@ -602,13 +564,7 @@ export const getScopesFromEnrollments = (enrollments: Enrollment[]) =>
     .uniq()
     .value();
 
-export const isUserADemandeur = ({
-  team_members = [],
-  user_email,
-}: {
-  team_members: TeamMember[];
-  user_email: string;
-}) =>
+export const isUserADemandeur = ({ team_members = [], user_email }) =>
   team_members
     .filter(({ type }) => type === 'demandeur')
     .map(({ email }) => email)
