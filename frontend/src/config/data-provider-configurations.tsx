@@ -27,16 +27,16 @@ import ApiEnsuDocumentsSandbox from '../pages/DgfipPages/ApiEnsuDocumentsSandbox
 import ApiEProProduction from '../pages/DgfipPages/ApiEProProduction';
 import ApiEProSandbox from '../pages/DgfipPages/ApiEProSandbox';
 import ApiFicobaProduction from '../pages/DgfipPages/ApiFicobaProduction';
-// import ApiFicobaUnique from '../pages/DgfipPages/ApiFicobaUnique';
+import ApiFicobaUnique from '../pages/DgfipPages/ApiFicobaUnique';
 import ApiFicobaSandbox from '../pages/DgfipPages/ApiFicobaSandbox';
 import ApiHermesProduction from '../pages/DgfipPages/ApiHermesProduction';
 import ApiHermesSandbox from '../pages/DgfipPages/ApiHermesSandbox';
 import ApiImpotParticulierFcProduction from '../pages/DgfipPages/ApiImpotParticulierFcProduction';
 import ApiImpotParticulierFcSandbox from '../pages/DgfipPages/ApiImpotParticulierFcSandbox';
-// import ApiImpotParticulierFcUnique from '../pages/DgfipPages/ApiImpotParticulierFcUnique';
+import ApiImpotParticulierFcUnique from '../pages/DgfipPages/ApiImpotParticulierFcUnique';
 import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
-// import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
+import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
 import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
 import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
 import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
@@ -47,14 +47,14 @@ import ApiOpaleProduction from '../pages/DgfipPages/ApiOpaleProduction';
 import ApiOpaleSandbox from '../pages/DgfipPages/ApiOpaleSandbox';
 import ApiR2PProduction from '../pages/DgfipPages/ApiR2PProduction';
 import ApiR2PSandbox from '../pages/DgfipPages/ApiR2PSandbox';
-// import ApiR2PUnique from '../pages/DgfipPages/ApiR2PUnique';
+import ApiR2PUnique from '../pages/DgfipPages/ApiR2PUnique';
 import ApiRobfProduction from '../pages/DgfipPages/ApiRobfProduction';
 import ApiRobfSandbox from '../pages/DgfipPages/ApiRobfSandbox';
 import ApiSatelitProduction from '../pages/DgfipPages/ApiSatelitProduction';
 import ApiSatelitSandbox from '../pages/DgfipPages/ApiSatelitSandbox';
 import ApiSfipProduction from '../pages/DgfipPages/ApiSfipProduction';
 import ApiSfipSandbox from '../pages/DgfipPages/ApiSfipSandbox';
-// import ApiSfipUnique from '../pages/DgfipPages/ApiSfipUnique';
+import ApiSfipUnique from '../pages/DgfipPages/ApiSfipUnique';
 import FranceConnect from '../pages/FranceConnect';
 import HubeePortail from '../pages/HubeePortail';
 import HubeePortailDila from '../pages/HubeePortailDila';
@@ -231,7 +231,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
-    // component: ApiImpotParticulierUnique,
+    component: ApiImpotParticulierUnique,
   },
   [TargetAPI.api_impot_particulier_fc_sandbox]: {
     label: 'API Impôt particulier (FC) (Bac à sable)',
@@ -252,7 +252,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
-    // component: ApiImpotParticulierFcUnique,
+    component: ApiImpotParticulierFcUnique,
   },
   [TargetAPI.api_r2p_sandbox]: {
     label: 'API R2P (Bac à sable)',
@@ -273,7 +273,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
-    // component: ApiR2PUnique,
+    component: ApiR2PUnique,
   },
   [TargetAPI.api_hermes_sandbox]: {
     label: 'API Hermes (Bac à sable)',
@@ -420,7 +420,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
-    // component: ApiFicobaUnique,
+    component: ApiFicobaUnique,
   },
   [TargetAPI.api_droits_cnam]: {
     label: 'API Droits CNAM',
@@ -616,7 +616,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     icon: 'logo-dgfip-with-label.png',
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
-    // component: ApiSfipUnique,
+    component: ApiSfipUnique,
   },
 };
 
