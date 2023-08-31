@@ -31,6 +31,16 @@ jobs:
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
+          - env: production1
+            back_host: https://back.production1.datapass.api.gouv.fr
+            api_gouv_host: https://api.gouv.fr
+            piwik_url: https://stats.data.gouv.fr
+            piwik_site_id: "53"
+          - env: production2
+            back_host: https://back.production2.datapass.api.gouv.fr
+            api_gouv_host: https://api.gouv.fr
+            piwik_url: https://stats.data.gouv.fr
+            piwik_site_id: "53"
           - env: production
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
