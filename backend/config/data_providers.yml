@@ -67,7 +67,7 @@ api_particulier:
       helper: Délivre le quotient familial CAF.
     - value: complementaire_sante_solidaire
       label: Complémentaire Santé Solidaire
-      helper: Délivre le status et le montant du droit à la complémentaire santé solidaire.
+      helper: Délivre le statut et le montant du droit à la complémentaire santé solidaire.
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
