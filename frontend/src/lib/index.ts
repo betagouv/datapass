@@ -354,7 +354,9 @@ export function collectionWithKeyToObject(
     .value();
 }
 
-export const getStateFromUrlParams = (defaultState = {}) => {
+export function getStateFromUrlParams(
+  defaultState: Record<string, any>
+): Record<string, any> {
   const urlParams = new URLSearchParams(window.location.search);
 
   return mapValues(defaultState, (value, key) => {
@@ -378,7 +380,7 @@ export const getStateFromUrlParams = (defaultState = {}) => {
 
     return param[0];
   });
-};
+}
 
 export const setUrlParamsFromState = (state = {}) => {
   const newQueryString = hashToQueryParams(state, window.location.search);

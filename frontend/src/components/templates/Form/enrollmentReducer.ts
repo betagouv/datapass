@@ -82,17 +82,13 @@ export const eventUpdateFactory =
     return futureEnrollment;
   };
 
-type Event = {
-  target: { type: string; checked: boolean; value: any; name: string };
-};
-
 // Fonction de garde de type
 function isEvent(obj: Enrollment | Event): obj is Event {
   return (obj as Event).target !== undefined;
 }
 
 export const enrollmentReducerFactory =
-  (demarches = null) =>
+  (demarches: Demarche[] | null) =>
   (
     previousEnrollment: Enrollment,
     eventOrFutureEnrollment: Enrollment | Event | string

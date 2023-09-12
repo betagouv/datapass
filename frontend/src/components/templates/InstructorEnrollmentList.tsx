@@ -80,7 +80,7 @@ export enum TeamMemberType {
 }
 
 export type TeamMember = {
-  email?: string;
+  email?: string | null;
   family_name?: string;
   given_name?: string;
   id: number;

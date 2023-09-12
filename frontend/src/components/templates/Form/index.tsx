@@ -86,10 +86,12 @@ export const Form: React.FC<FormProps> = ({
     }).filter(Boolean);
   }, [children]);
 
+  type Action = Enrollment | Event | string;
+
   const enrollmentReducer = useMemo(
     () => enrollmentReducerFactory(demarches),
     [demarches]
-  );
+  ) as (state: Enrollment, action: Action) => Enrollment;
 
   const [enrollment, dispatchSetEnrollment] = useReducer<
     (state: Enrollment, action: Enrollment | Event | string) => Enrollment
@@ -102,7 +104,7 @@ export const Form: React.FC<FormProps> = ({
     events: [],
     target_api,
     additional_content: {},
-  });
+  } as unknown as Enrollment);
 
   const { label } = useDataProvider(target_api);
 
@@ -135,7 +137,7 @@ export const Form: React.FC<FormProps> = ({
           () =>
             dispatchSetEnrollment({
               target: { name: 'demarche', value: demarche },
-            }),
+            } as unknown as Event),
           500
         );
       }
@@ -154,7 +156,10 @@ export const Form: React.FC<FormProps> = ({
   }, [enrollment.id, enrollment.intitule, label]);
 
   useEffect(() => {
-    if (enrollment.id && !window.location.pathname.includes(enrollment.id)) {
+    if (
+      enrollment.id &&
+      !window.location.pathname.includes(enrollment.id.toString())
+    ) {
       navigate(`${enrollment.id}`, {
         replace: true,
         state: { noScroll: true },
@@ -198,7 +203,7 @@ export const Form: React.FC<FormProps> = ({
         <OpenMessagePromptContextProvider>
           <FormContext.Provider
             value={{
-              disabled: !enrollment.acl.submit,
+              disabled: !enrollment?.acl?.submit,
               onChange: dispatchSetEnrollment,
               enrollment,
               isUserEnrollmentLoading,
