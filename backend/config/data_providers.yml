@@ -24,7 +24,7 @@ franceconnect:
 api_particulier:
   label: API Particulier
   mailer: *shared_mailer
-  url: https://particulier.api.gouv.fr/compte
+  url: <%= ENV.fetch("API_PARTICULIER_ACCOUNT_URL") { "https://particulier.api.gouv.fr/compte" } %>
   reply_to: contact@particulier.api.gouv.fr
   configure_from_backend: true
   icon: logo-beta-gouv.svg
