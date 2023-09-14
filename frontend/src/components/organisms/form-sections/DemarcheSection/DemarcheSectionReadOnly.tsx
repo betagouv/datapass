@@ -7,6 +7,7 @@ import { findModifiedFields, findModifiedScopes } from '../../../../lib';
 import './DemarcheSectionReadOnly.css';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 import { ScopeConfiguration } from '../DonneesSection/Scopes';
+import { Demarche } from '../../../../config';
 
 const valueToLabel = (
   key: string,
@@ -38,14 +39,15 @@ export const DemarcheSectionReadOnly: React.FC<
 
   useEffect(() => {
     if (
+      demarches &&
       demarches[selectedDemarcheId] &&
       demarches[selectedDemarcheId].state &&
       enrollment
     ) {
       const demarcheState = merge(
         {},
-        get(demarches, 'default', {}).state,
-        get(demarches, selectedDemarcheId, {}).state
+        get(demarches, 'default', {} as Demarche).state,
+        get(demarches, selectedDemarcheId, {} as Demarche).state
       );
       setModifiedFields(findModifiedFields(demarcheState, enrollment));
       setModifiedScopes(findModifiedScopes(demarcheState, enrollment));
@@ -65,7 +67,7 @@ export const DemarcheSectionReadOnly: React.FC<
               <p>
                 Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
                 <i>
-                  {get(demarches, selectedDemarcheId, {}).label ||
+                  {get(demarches, selectedDemarcheId, {} as Demarche).label ||
                     selectedDemarcheId}
                 </i>
               </p>

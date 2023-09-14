@@ -28,7 +28,7 @@ export type ScopeConfiguration = {
 type Props = {
   title?: string;
   scopesConfiguration: ScopeConfiguration[];
-  scopes: { [k: string]: boolean };
+  scopes: Record<string, boolean>;
   disabled: boolean;
   handleChange: ChangeEventHandler<HTMLInputElement>;
 };

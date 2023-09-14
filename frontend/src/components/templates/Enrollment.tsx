@@ -49,23 +49,18 @@ const Enrollment: FunctionComponent<Props> = ({
   return (
     <Form
       target_api={target_api}
-      /* @ts-ignore */
       demarches={demarches}
-      contactEmail={email}
+      contactEmail={email as string}
       documentationUrl={getDefaultDocumentationUrl(target_api)}
     >
-      {/* @ts-ignore */}
       <OrganisationSection editorList={editeurs} />
-      {/* @ts-ignore */}
       <DemarcheSection scopesConfiguration={scopesConfiguration} />
       <DescriptionSection />
-      {/* @ts-ignore */}
       <DonneesSection
         scopesConfiguration={scopesConfiguration}
         groups={groups}
         DonneesDescription={DonneesDescription}
       />
-      {/* @ts-ignore */}
       <CadreJuridiqueSection
         CadreJuridiqueDescription={CadreJuridiqueDescription}
       />

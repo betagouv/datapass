@@ -15,9 +15,7 @@ export const useFormSubmission = (
 ) => {
   const [pendingEvent, setPendingEvent] = useState<EnrollmentEvent>();
   const [loading, setLoading] = useState<boolean>(false);
-  const { setOnClick: setOnOpenMessagePromptClick } = useContext(
-    OpenMessagePromptContext
-  );
+  const messageContext = useContext(OpenMessagePromptContext);
 
   const onEventButtonClick = useCallback(
     async (event: EnrollmentEvent) => {
@@ -43,10 +41,10 @@ export const useFormSubmission = (
   );
 
   useEffect(() => {
-    setOnOpenMessagePromptClick(() => () => {
+    messageContext!.setOnClick(() => () => {
       onEventButtonClick(EnrollmentEvent.notify);
     });
-  }, [setOnOpenMessagePromptClick, onEventButtonClick]);
+  }, [messageContext, onEventButtonClick]);
 
   const onPromptConfirmationFactory =
     (event: EnrollmentEvent) => async (message?: string) => {

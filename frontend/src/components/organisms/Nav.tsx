@@ -13,8 +13,8 @@ export const DEFAULT_CONTACT_EMAIL = 'datapass@api.gouv.fr';
 type NavProps = {
   target_api: string;
   sectionLabels: string[];
-  contactEmail: string;
-  documentationUrl: string;
+  contactEmail?: string | null;
+  documentationUrl?: string;
 };
 
 const Nav: React.FC<NavProps> = ({

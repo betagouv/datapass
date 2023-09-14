@@ -6,6 +6,7 @@ import CopyToClipboardButton from '../../../molecules/CopyToClipboardButton';
 import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import { DisconnectionModal } from './DisconnectionModal';
+import { TeamMember } from '../../../../config';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -17,19 +18,14 @@ export const PersonalInformationCard = () => {
 
   const { isLoading } = useAuth();
 
-  const [personalInformation, setPersonalInformation] = useState<{
-    given_name: string;
-    family_name: string;
-    email: string;
-    phone_number: string;
-    job: string;
-  } | null>(null);
+  const [personalInformation, setPersonalInformation] =
+    useState<TeamMember | null>(null);
   const [showDisconnectionPrompt, setShowDisconnectionPrompt] = useState(false);
 
   useEffect(() => {
     const firstDemandeur =
       !isEmpty(team_members) &&
-      team_members.find(({ type }: { type: string }) => type === 'demandeur');
+      team_members?.find(({ type }) => type === 'demandeur');
     if (firstDemandeur) {
       // note that they might be more than one demandeur
       // for now we just display the first demandeur found

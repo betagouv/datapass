@@ -47,6 +47,26 @@ export type User = {
   ];
 };
 
+export type Demarche = {
+  label: string;
+  about?: string;
+  state: {
+    intitule?: string;
+    description?: string;
+    fondement_juridique_title?: string;
+    fondement_juridique_url?: string;
+    data_retention_period?: string;
+    data_recipients?: string;
+    scopes: { [key: string]: boolean };
+    [key: string]: any;
+  };
+  team_members?: {
+    [key in TeamMemberType]: TeamMember;
+  };
+};
+
+export type Demarches = Record<string, Demarche>;
+
 export type Event = {
   comment: string;
   created_at: string;
@@ -106,7 +126,7 @@ export type Enrollment = {
   responsable_traitement_given_name?: string;
   responsable_traitement_family_name?: string;
   acl?: Partial<Record<EnrollmentEvent, boolean>>;
-  additional_content?: Record<string, unknown>;
+  additional_content?: any;
   cgu_approved?: boolean;
   copied_from_enrollment_id?: number;
   data_recipients?: any;
@@ -123,7 +143,7 @@ export type Enrollment = {
   linked_token_manager_id?: number | null;
   organization_id?: number;
   previous_enrollment_id?: number;
-  scopes?: Record<string, unknown>;
+  scopes?: Record<string, boolean>;
   team_members?: TeamMember[];
   technical_team_type?: any;
   technical_team_value?: any;

@@ -1,37 +1,5 @@
 import fs from 'fs';
-
-// Typage pour la structure de demarches.json basé sur l'exemple que vous avez fourni précédemment.
-type Demarche = {
-  label: string;
-  about?: string;
-  state: {
-    intitule?: string;
-    description?: string;
-    fondement_juridique_title?: string;
-    fondement_juridique_url?: string;
-    data_retention_period?: string;
-    data_recipients?: string;
-    scopes: { [key: string]: boolean };
-    [key: string]: any; // pour permettre des clés supplémentaires
-  };
-  team_members?: {
-    responsable_technique?: {
-      given_name: string;
-      family_name: string;
-      email: string;
-      phone_number: string;
-    };
-    contact_metier?: {
-      given_name: string;
-      family_name: string;
-      email: string;
-      phone_number: string;
-    };
-  };
-  [key: string]: any; // pour permettre des clés supplémentaires
-};
-
-type Demarches = { [directory: string]: Demarche };
+import { Demarches } from '../config';
 
 const getDemarchesFiles = function (
   dir: string,
@@ -92,17 +60,17 @@ describe('demarches', () => {
 
   Object.entries(allDemarches).forEach((apiDemarcheskVp) => {
     it(`should have a default demarche in ${apiDemarcheskVp[0]}`, () => {
-      expect(apiDemarcheskVp[1]['default']).toBeDefined();
+      expect((apiDemarcheskVp[1] as any)['default']).toBeDefined();
     });
   });
 
   Object.entries(allDemarches).forEach((apiDemarcheskVp) => {
-    const defaultDemarche = apiDemarcheskVp[1]['default'];
+    const defaultDemarche = (apiDemarcheskVp[1] as any)['default'];
 
     it(`default demarche' state should contain every fields that appear in other demarches ${apiDemarcheskVp[0]}`, () => {
       let everyFields = true;
       Object.entries(apiDemarcheskVp[1]).forEach((keyValue) => {
-        Object.keys(keyValue[1].state).forEach((field) => {
+        Object.keys((keyValue[1] as any).state).forEach((field) => {
           if (
             defaultDemarche.state[field] === undefined &&
             !['technical_team_type', 'technical_team_value'].includes(field)
@@ -119,19 +87,21 @@ describe('demarches', () => {
   });
 
   Object.entries(allDemarches).forEach((apiDemarcheskVp) => {
-    const defaultDemarche = apiDemarcheskVp[1]['default'];
+    const defaultDemarche = (apiDemarcheskVp[1] as any)['default'];
 
     it(`default demarche' scope should contain every scope's field that appear in other demarches ${apiDemarcheskVp[0]}`, () => {
       let everyScopeFields = true;
       Object.entries(apiDemarcheskVp[1]).forEach((keyValue) => {
-        Object.keys(keyValue[1].state.scopes || []).forEach((field) => {
-          if (defaultDemarche.state.scopes[field] === undefined) {
-            console.log(
-              `field ${field} not present in default demarche's scope of ${apiDemarcheskVp[0]}`
-            );
-            everyScopeFields = false;
+        Object.keys((keyValue[1] as any).state.scopes || []).forEach(
+          (field) => {
+            if (defaultDemarche.state.scopes[field] === undefined) {
+              console.log(
+                `field ${field} not present in default demarche's scope of ${apiDemarcheskVp[0]}`
+              );
+              everyScopeFields = false;
+            }
           }
-        });
+        );
       });
       expect(everyScopeFields).toEqual(true);
     });

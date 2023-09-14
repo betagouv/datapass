@@ -1,7 +1,7 @@
-import { Enrollment, TeamMemberType } from '../../../config';
+import { Demarches, Enrollment, TeamMemberType } from '../../../config';
 import { EnrollmentEvent } from '../../../config/event-configuration';
 import { EnrollmentStatus } from '../../../config/status-parameters';
-import enrollmentReducerFactory, { Demarche } from './enrollmentReducer';
+import enrollmentReducerFactory from './enrollmentReducer';
 
 describe('enrollmentReducerFactory', () => {
   const previousEnrollment = {
@@ -219,7 +219,7 @@ describe('enrollmentReducerFactory', () => {
           },
         },
       },
-    } as unknown as Demarche[];
+    } as unknown as Demarches;
 
     const enrollmentReducer = enrollmentReducerFactory(demarches);
 

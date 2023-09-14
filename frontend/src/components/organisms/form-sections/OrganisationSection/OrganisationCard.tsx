@@ -218,7 +218,7 @@ export const OrganisationCard = () => {
 
       {!disabled && !isLoading && showOrganizationPrompt && (
         <OrganizationPrompt
-          selectedOrganizationId={organization_id}
+          selectedOrganizationId={organization_id as number}
           onSelect={onOrganizationChange}
           onJoinOrganization={onJoinOrganization}
           onClose={() => setShowOrganizationPrompt(false)}

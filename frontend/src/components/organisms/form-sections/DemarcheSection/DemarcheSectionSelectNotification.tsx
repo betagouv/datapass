@@ -4,12 +4,12 @@ import { get, isEmpty } from 'lodash';
 import Alert from '../../../atoms/Alert';
 import HighVoltageEmoji from '../../../atoms/icons/HighVoltageEmoji';
 import Link from '../../../atoms/hyperTexts/Link';
-import { Demarche } from '../../../templates/Form/enrollmentReducer';
+import { Demarches } from '../../../../config';
 
 type DemarcheSectionNotificationProps = {
   isLoading: boolean;
   selectedDemarcheId: string;
-  demarches: Record<string, Demarche>;
+  demarches: Demarches;
 };
 
 const DemarcheSectionNotification: React.FC<

@@ -36,9 +36,11 @@ const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
   } = useContext(FormContext)!;
 
   // disable fetch if not disabled or is loading
-  const hasAccessToPreviousEnrollment = useAccessToEnrollment(
+  const enrollmentValue =
     disabled && !isUserEnrollmentLoading && previous_enrollment_id
-  );
+      ? previous_enrollment_id
+      : 0;
+  const hasAccessToPreviousEnrollment = useAccessToEnrollment(enrollmentValue);
 
   const [validatedEnrollments, setValidatedEnrollments] = useState<
     Enrollment[]
@@ -101,7 +103,7 @@ const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
           </p>
           <Stepper
             steps={steps}
-            currentStep={!isValidatedEnrollmentsLoading && target_api}
+            currentStep={!isValidatedEnrollmentsLoading ? target_api : null}
             previousStepNotCompleted={
               !isValidatedEnrollmentsLoading &&
               !!previousTargetApi &&

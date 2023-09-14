@@ -91,25 +91,12 @@ const eventToDisplayableContent = {
   },
 };
 
-type EventItemProps = {
-  comment: string;
-  name: EnrollmentEvent;
-  created_at?: string;
-  processed_at?: string;
-  family_name?: string;
-  given_name?: string;
-  email?: string;
-  diff?: any;
-};
-
-export const EventItem: React.FC<EventItemProps> = ({
+export const EventItem: React.FC<Event> = ({
   comment,
   name,
   created_at,
   processed_at,
-  email,
-  family_name,
-  given_name,
+  user,
   diff,
 }) => {
   const [showDiff, setShowDiff] = useState(false);
@@ -122,17 +109,17 @@ export const EventItem: React.FC<EventItemProps> = ({
 
   let eventCommentClass = 'event-comment';
 
-  if (isUserADemandeur({ team_members, user_email: email as string })) {
+  if (isUserADemandeur({ team_members, user_email: user?.email as string })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
   const userLabel = useMemo(() => {
-    return given_name && family_name
-      ? `${given_name} ${family_name}`
-      : given_name || family_name || email || 'DataPass';
-  }, [given_name, family_name, email]);
+    return user.given_name && user.family_name
+      ? `${user.given_name} ${user.family_name}`
+      : user.given_name || user.family_name || user?.email || 'DataPass';
+  }, [user]);
 
-  const isUserAnInstructor = getIsUserAnInstructor(target_api);
+  const isUserAnInstructor = getIsUserAnInstructor(target_api as string);
 
   let notifyIcon = eventToDisplayableContent[name].icon;
 
@@ -199,16 +186,25 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({ events }) => {
     <div>
       <ExpandableSection title="Historique de la demande">
         {eventsToDisplay.map(
-          ({ id, comment, name, created_at, processed_at, user, diff }) => (
+          ({
+            id,
+            comment,
+            name,
+            created_at,
+            updated_at,
+            processed_at,
+            user,
+            diff,
+          }) => (
             <EventItem
+              id={id}
               key={id}
               comment={comment}
               name={name}
               created_at={created_at}
+              updated_at={updated_at}
               processed_at={processed_at}
-              email={user?.email}
-              family_name={user?.family_name}
-              given_name={user?.given_name}
+              user={user}
               diff={diff}
             />
           )

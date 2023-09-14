@@ -1,12 +1,10 @@
 import { cloneDeep, get, isEmpty, isObject, merge, omitBy, set } from 'lodash';
-import { Enrollment } from '../../../config';
-
-export type Demarche = {
-  label: string;
-  about: string;
-  state: any;
-  team_members: any;
-};
+import {
+  Demarche,
+  Demarches,
+  Enrollment,
+  TeamMemberType,
+} from '../../../config';
 
 export const globalUpdate = ({
   previousEnrollment,
@@ -22,7 +20,7 @@ export const globalUpdate = ({
   );
 
 export const eventUpdateFactory =
-  (demarches: Demarche[] | null) =>
+  (demarches: Demarches | null) =>
   ({
     previousEnrollment,
     event: {
@@ -49,22 +47,26 @@ export const eventUpdateFactory =
         futureTeamMembers = futureEnrollment?.team_members?.map(
           (futureTeamMember) => {
             if (
-              !defaultDemarche.team_members[futureTeamMember.type as string]
+              !defaultDemarche!.team_members![
+                futureTeamMember.type as TeamMemberType
+              ]
             ) {
               return futureTeamMember;
             }
 
             if (
               !selectedDemarche.team_members ||
-              !selectedDemarche.team_members[futureTeamMember.type as string]
+              !selectedDemarche.team_members[
+                futureTeamMember.type as TeamMemberType
+              ]
             ) {
-              return defaultDemarche.team_members[
-                futureTeamMember.type as string
+              return defaultDemarche!.team_members![
+                futureTeamMember.type as TeamMemberType
               ];
             }
 
             return selectedDemarche.team_members[
-              futureTeamMember.type as string
+              futureTeamMember.type as TeamMemberType
             ];
           }
         );
@@ -88,7 +90,7 @@ function isEvent(obj: Enrollment | Event): obj is Event {
 }
 
 export const enrollmentReducerFactory =
-  (demarches: Demarche[] | null) =>
+  (demarches: Demarches | null) =>
   (
     previousEnrollment: Enrollment,
     eventOrFutureEnrollment: Enrollment | Event | string
