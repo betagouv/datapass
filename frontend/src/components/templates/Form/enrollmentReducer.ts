@@ -1,5 +1,5 @@
 import { cloneDeep, get, isEmpty, isObject, merge, omitBy, set } from 'lodash';
-import { Enrollment } from '../InstructorEnrollmentList';
+import { Enrollment } from '../../../config';
 
 export type Demarche = {
   label: string;

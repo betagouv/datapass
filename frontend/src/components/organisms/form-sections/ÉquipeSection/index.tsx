@@ -8,11 +8,7 @@ import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
 import Link from '../../../atoms/hyperTexts/Link';
-import {
-  TeamMember,
-  TeamMemberType,
-  User,
-} from '../../../templates/InstructorEnrollmentList';
+import { TeamMember, TeamMemberType, User } from '../../../../config';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

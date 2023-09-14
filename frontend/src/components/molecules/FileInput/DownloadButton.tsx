@@ -2,8 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import Label from '../../atoms/inputs/Label';
 import Button from '../../atoms/hyperTexts/Button';
 import ConfirmationModal from '../../organisms/ConfirmationModal';
-import { Document } from './index';
 import useFileDownloader from '../../templates/hooks/use-file-downloader';
+import { Document } from '../../../config';
 
 type Props = {
   id: string;

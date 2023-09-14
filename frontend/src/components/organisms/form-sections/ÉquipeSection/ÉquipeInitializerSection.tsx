@@ -3,7 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { isEmpty } from 'lodash';
-import { User } from '../../../templates/InstructorEnrollmentList';
+import { User } from '../../../../config';
 
 export const ÉquipeInitializerSection = () => {
   const {

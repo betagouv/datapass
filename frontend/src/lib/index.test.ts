@@ -19,8 +19,8 @@ import {
 } from './index';
 import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
 import { transform } from 'lodash';
-import { Enrollment } from '../components/templates/InstructorEnrollmentList';
 import { DataProviderConfiguration } from '../config/data-provider-configurations';
+import { Enrollment } from '../config';
 
 describe('utils', () => {
   describe('getErrorMessages', () => {

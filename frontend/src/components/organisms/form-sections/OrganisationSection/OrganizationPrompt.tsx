@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 import ConfirmationModal from '../../ConfirmationModal';
-import { User } from '../../../templates/InstructorEnrollmentList';
+import { User } from '../../../../config';
 
 type OrganizationPromptProps = {
   selectedOrganizationId: number;

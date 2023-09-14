@@ -20,11 +20,8 @@ import {
 } from 'lodash';
 import flatten from 'flat';
 import { AxiosError, AxiosResponse } from 'axios';
-import {
-  Enrollment,
-  TeamMember,
-} from '../components/templates/InstructorEnrollmentList';
 import { DataProviderConfiguration } from '../config/data-provider-configurations';
+import { Enrollment, TeamMember } from '../config';
 
 interface ExtendedData {
   title?: string;

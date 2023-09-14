@@ -20,7 +20,7 @@ import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
 import ExpandableSection from '../../../molecules/ExpandableSection';
 import { EnrollmentEvent } from '../../../../config/event-configuration';
-import { Event } from '../../../templates/InstructorEnrollmentList';
+import { Event } from '../../../../config';
 
 const eventToDisplayableContent = {
   [EnrollmentEvent.request_changes]: {
@@ -122,7 +122,7 @@ export const EventItem: React.FC<EventItemProps> = ({
 
   let eventCommentClass = 'event-comment';
 
-  if (isUserADemandeur({ team_members, user_email: email })) {
+  if (isUserADemandeur({ team_members, user_email: email as string })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 

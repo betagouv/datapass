@@ -1,6 +1,6 @@
+import { Enrollment, TeamMemberType } from '../../../config';
 import { EnrollmentEvent } from '../../../config/event-configuration';
 import { EnrollmentStatus } from '../../../config/status-parameters';
-import { Enrollment, TeamMemberType } from '../InstructorEnrollmentList';
 import enrollmentReducerFactory, { Demarche } from './enrollmentReducer';
 
 describe('enrollmentReducerFactory', () => {

@@ -7,7 +7,7 @@ import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { StatusBadge } from '../../molecules/StatusBadge';
 import NextStepButton from '../../molecules/NextStepButton';
-import { Enrollment as EnrollmentType } from '../InstructorEnrollmentList';
+import { Enrollment as EnrollmentType } from '../../../config';
 
 type EnrollmentProps = {
   id: EnrollmentType['id'];

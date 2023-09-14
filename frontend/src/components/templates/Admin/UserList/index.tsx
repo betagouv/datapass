@@ -15,7 +15,7 @@ import TagContainer from '../../../atoms/TagContainer';
 import Tag from '../../../atoms/hyperTexts/Tag';
 import Table from '../../../organisms/Table';
 import { debounce } from 'lodash';
-import { User } from '../../InstructorEnrollmentList';
+import { User } from '../../../../config';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(false);

@@ -7,7 +7,7 @@ import {
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert, { AlertType } from '../../atoms/Alert';
 import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
-import { Enrollment } from '../InstructorEnrollmentList';
+import { Enrollment } from '../../../config';
 
 type ActivityFeedWrapperProps = {
   events: Enrollment['events'];

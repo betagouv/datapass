@@ -1,11 +1,7 @@
 import { useMemo } from 'react';
 import { chain, uniqueId } from 'lodash';
-import {
-  TeamMember,
-  TeamMemberType,
-  User,
-} from '../../../templates/InstructorEnrollmentList';
 import { ContactConfigurationType } from '.';
+import { TeamMember, TeamMemberType, User } from '../../../../config';
 
 type useNewTeamMembersProps = {
   user: User;
