@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getMostUsedComments } from '../../../../../services/enrollments';
 import { useAuth } from '../../../../organisms/AuthContext';
 
-const useMostUsedComments = (event, targetApi) => {
+const useMostUsedComments = (event: string, targetApi: string) => {
   const [comments, setComments] = useState([]);
 
   const { getIsUserAnInstructor } = useAuth();

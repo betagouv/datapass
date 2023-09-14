@@ -35,7 +35,7 @@ export const TechnicalTeamCard: React.FC<TechnicalTeamCardProps> = ({
     onChange,
     isUserEnrollmentLoading,
     enrollment: { technical_team_type, technical_team_value },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   const { setReadyForNextSteps, setLastIndexToShow } =
     useContext(HideSectionsContext);

@@ -1,7 +1,7 @@
 import { EnrollmentEvent } from '../../../config/event-configuration';
 import { EnrollmentStatus } from '../../../config/status-parameters';
-import { TeamMemberType } from '../InstructorEnrollmentList';
-import enrollmentReducerFactory from './enrollmentReducer';
+import { Enrollment, TeamMemberType } from '../InstructorEnrollmentList';
+import enrollmentReducerFactory, { Demarche } from './enrollmentReducer';
 
 describe('enrollmentReducerFactory', () => {
   const previousEnrollment = {
@@ -54,7 +54,7 @@ describe('enrollmentReducerFactory', () => {
           type: 'text',
           value: newIntitule,
         },
-      };
+      } as unknown as Event;
 
       expect(enrollmentReducer(previousEnrollment, event).intitule).toEqual(
         newIntitule
@@ -71,7 +71,7 @@ describe('enrollmentReducerFactory', () => {
           type: 'checkbox',
           value: 'on',
         },
-      };
+      } as unknown as Event;
 
       expect(
         enrollmentReducer(previousEnrollment, event)?.scopes
@@ -90,7 +90,7 @@ describe('enrollmentReducerFactory', () => {
           type: 'email',
           value: newEmail,
         },
-      };
+      } as unknown as Event;
 
       // we clone the previousEnrollment as updating a collection mutate the collection in the original enrollment
       expect(enrollmentReducer(previousEnrollment, event).team_members).toEqual(
@@ -153,21 +153,22 @@ describe('enrollmentReducerFactory', () => {
         ],
         intitule:
           'Calcul de la tarification pour la facturation des services périscolaires',
-      };
+      } as unknown as Enrollment;
 
       const newEnrollment = { ...savedEnrollment };
+      // @ts-ignore
       delete newEnrollment.demarches;
       delete newEnrollment.cgu_approved;
       newEnrollment.team_members = [
         {
           id: 525,
-          type: 'demandeur',
+          type: TeamMemberType.demandeur,
           email: 'datapass@yopmail.com',
           tmp_id: 'tmp_31',
         },
         {
           id: 528,
-          type: 'responsable_technique',
+          type: TeamMemberType.responsable_technique,
           email: null,
           tmp_id: 'tmp_34',
         },
@@ -218,7 +219,7 @@ describe('enrollmentReducerFactory', () => {
           },
         },
       },
-    };
+    } as unknown as Demarche[];
 
     const enrollmentReducer = enrollmentReducerFactory(demarches);
 
@@ -229,7 +230,7 @@ describe('enrollmentReducerFactory', () => {
           name: 'demarche',
           value: 'editeur',
         },
-      };
+      } as unknown as Event;
       it('should return an updated intitule', () => {
         expect(enrollmentReducer(previousEnrollment, event).intitule).toEqual(
           'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.'
@@ -268,7 +269,7 @@ describe('enrollmentReducerFactory', () => {
           name: 'demarche',
           value: 'editeur_without_resp_tech',
         },
-      };
+      } as unknown as Event;
       it('should return the default collection', () => {
         expect(
           enrollmentReducer(previousEnrollment, event).team_members
@@ -298,12 +299,18 @@ describe('enrollmentReducerFactory', () => {
         },
       };
       it('should return an updated intitule', () => {
-        expect(enrollmentReducer({}, event).intitule).toEqual(
+        expect(
+          enrollmentReducer({} as Enrollment, event as unknown as Event)
+            .intitule
+        ).toEqual(
           'Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.'
         );
       });
       it('should return an empty collections', () => {
-        expect(enrollmentReducer({}, event).team_members).toEqual(undefined);
+        expect(
+          enrollmentReducer({} as Enrollment, event as unknown as Event)
+            .team_members
+        ).toEqual(undefined);
       });
     });
 
@@ -314,14 +321,14 @@ describe('enrollmentReducerFactory', () => {
           name: 'demarche',
           value: 'editeur',
         },
-      };
+      } as unknown as Event;
       const event2 = {
         currentTarget: null,
         target: {
           name: 'demarche',
           value: 'editeur_without_resp_tech',
         },
-      };
+      } as unknown as Event;
       it('should return the default collection', () => {
         expect(
           enrollmentReducer(

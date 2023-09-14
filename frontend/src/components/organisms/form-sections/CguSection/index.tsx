@@ -29,7 +29,7 @@ export const CguSection: CguSectionType = ({
       dpo_is_informed = false,
       additional_content,
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

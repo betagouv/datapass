@@ -1,4 +1,4 @@
-import { getErrorMessages } from '.';
+import { NetworkError, getErrorMessages } from '.';
 import {
   EnrollmentEvent,
   EventConfiguration,
@@ -29,7 +29,7 @@ export const processEvent = async (
   };
 
   try {
-    let comment = null;
+    let comment: string | null | undefined = null;
     let enrollmentId = enrollment.id;
 
     if (
@@ -89,7 +89,9 @@ export const processEvent = async (
 
     return resultMessages;
   } catch (error) {
-    resultMessages.errorMessages.push(...getErrorMessages(error));
+    resultMessages.errorMessages.push(
+      ...(getErrorMessages(error as NetworkError) as string[])
+    );
 
     return resultMessages;
   }

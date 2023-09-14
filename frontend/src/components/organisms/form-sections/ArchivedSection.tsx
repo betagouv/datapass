@@ -7,7 +7,7 @@ const SECTION_LABEL = 'Données JSON';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const ArchivedSection = () => {
-  const { enrollment } = useContext(FormContext);
+  const { enrollment } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

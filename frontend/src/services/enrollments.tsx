@@ -237,7 +237,21 @@ export function getMostUsedComments({
     );
 }
 
-export function getEmailTemplates({ id }: { id: number }) {
+type EmailTemplate = {
+  event: string;
+  sender_email: string;
+  user_email: string;
+  subject: string;
+  plain_text_content: string;
+  responsable_metier_email: string;
+  scopes: string;
+};
+
+export function getEmailTemplates({
+  id,
+}: {
+  id: number;
+}): Promise<EmailTemplate[]> {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/${id}/email_templates`, {
       headers: { 'Content-type': 'application/json' },

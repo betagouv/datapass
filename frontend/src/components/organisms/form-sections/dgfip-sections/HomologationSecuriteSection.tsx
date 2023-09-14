@@ -23,7 +23,7 @@ const HomologationSecuriteSection = () => {
         date_fin_homologation = '',
       },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

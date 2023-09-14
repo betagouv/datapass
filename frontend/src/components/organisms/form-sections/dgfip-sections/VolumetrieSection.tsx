@@ -15,7 +15,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
     enrollment: {
       additional_content: { volumetrie_appels_par_minute = '' },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   useEffect(() => {
     // initialize volumetrie_appels_par_minute if needed

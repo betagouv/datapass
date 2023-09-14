@@ -13,7 +13,7 @@ import NotificationSubSection from './NotificationSubSection';
 export const HeadSection = () => {
   const {
     enrollment: { id, target_api, status, copied_from_enrollment_id, events },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   const { label } = useDataProvider(target_api);
 

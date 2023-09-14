@@ -21,7 +21,8 @@ export const DemarcheSectionSelect = ({
   body: React.ReactNode;
   scrollableId: string;
 }) => {
-  const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
+  const { disabled, onChange, enrollment, demarches } =
+    useContext(FormContext)!;
   const { demarche: selectedDemarcheId } = enrollment;
 
   const [isLoading, setIsLoading] = useState(false);

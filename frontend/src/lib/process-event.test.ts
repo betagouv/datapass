@@ -1,5 +1,6 @@
 import {
   EnrollmentEvent,
+  EventConfiguration,
   eventConfigurations,
 } from '../config/event-configuration';
 jest.mock('../services/enrollments');
@@ -29,11 +30,10 @@ describe('When submitting the enrollment form', () => {
 
       const output = await processEvent(
         event,
-        eventConfiguration,
+        eventConfiguration as EventConfiguration,
         enrollment,
         updateEnrollment,
-        userMessage,
-        false
+        userMessage
       );
 
       expect(changeEnrollmentState).toHaveBeenCalledWith({
@@ -52,7 +52,7 @@ describe('When submitting the enrollment form', () => {
     it('calls the delete endpoint', async () => {
       const output = await processEvent(
         event,
-        eventConfiguration,
+        eventConfiguration as EventConfiguration,
         enrollment,
         updateEnrollment
       );
@@ -71,27 +71,39 @@ describe('When submitting the enrollment form', () => {
     const enrollmentToUpdate = { ...enrollment, acl: { update: true } };
 
     it('calls the update endpoint', async () => {
-      createOrUpdateEnrollment.mockResolvedValue(enrollmentToUpdate);
+      (
+        createOrUpdateEnrollment as jest.MockedFunction<
+          typeof createOrUpdateEnrollment
+        >
+      ).mockResolvedValue(enrollmentToUpdate);
 
       const output = await processEvent(
         event,
-        eventConfiguration,
+        eventConfiguration as EventConfiguration,
         enrollmentToUpdate,
         updateEnrollment
       );
 
-      expect(createOrUpdateEnrollment).toHaveBeenCalledWith({
+      expect(
+        createOrUpdateEnrollment as jest.MockedFunction<
+          typeof createOrUpdateEnrollment
+        >
+      ).toHaveBeenCalledWith({
         enrollment: enrollmentToUpdate,
       });
       expect(output).toMatchSnapshot();
     });
 
     it('displays an error if update fails', async () => {
-      createOrUpdateEnrollment.mockRejectedValue("Pas d'update désolé");
+      (
+        createOrUpdateEnrollment as jest.MockedFunction<
+          typeof createOrUpdateEnrollment
+        >
+      ).mockRejectedValue("Pas d'update désolé");
 
       const output = await processEvent(
         event,
-        eventConfiguration,
+        eventConfiguration as EventConfiguration,
         enrollmentToUpdate,
         updateEnrollment
       );

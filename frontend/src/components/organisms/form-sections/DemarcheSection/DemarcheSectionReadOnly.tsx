@@ -28,7 +28,7 @@ type DemarcheSectionReadOnlyProps = {
 export const DemarcheSectionReadOnly: React.FC<
   DemarcheSectionReadOnlyProps
 > = ({ scrollableId, scopesConfiguration }) => {
-  const { enrollment, demarches } = useContext(FormContext);
+  const { enrollment, demarches } = useContext(FormContext)!;
 
   const { demarche: selectedDemarcheId } = enrollment;
   const { user } = useAuth();

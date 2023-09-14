@@ -103,7 +103,7 @@ const ÉquipeSection = ({
     disabled,
     onChange,
     enrollment: { team_members = [] },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
   const { user } = useAuth();
   const contactConfiguration: ContactConfigurationType = useMemo(() => {
     const defaultInitialContacts: ContactConfigurationType = {

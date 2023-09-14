@@ -1,4 +1,5 @@
 import {
+  NetworkError,
   collectionWithKeyToObject,
   dataProviderConfigurationsToContactInfo,
   findModifiedFields,
@@ -18,6 +19,8 @@ import {
 } from './index';
 import groupEmailAddresses from '../../mock/group_email_addresses_samples.json';
 import { transform } from 'lodash';
+import { Enrollment } from '../components/templates/InstructorEnrollmentList';
+import { DataProviderConfiguration } from '../config/data-provider-configurations';
 
 describe('utils', () => {
   describe('getErrorMessages', () => {
@@ -30,7 +33,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'Une erreur est survenue. Le code de l’erreur est 502 (Bad Gateway). Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à datapass@api.gouv.fr.',
       ]);
     });
@@ -52,7 +55,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'Vous devez renseigner la description de la démarche avant de continuer',
         'Vous devez renseigner un prénom pour le contact technique avant de continuer',
         'Vous devez renseigner un nom pour le contact technique avant de continuer',
@@ -64,7 +67,7 @@ describe('utils', () => {
         message: 'Network Error',
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'Une erreur de connexion au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à l’administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à datapass@api.gouv.fr.',
       ]);
     });
@@ -81,7 +84,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'La validation a échoué : Copied from enrollment n’est pas disponible',
       ]);
     });
@@ -97,7 +100,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'Vous n’êtes pas autorisé à modifier cette ressource',
       ]);
     });
@@ -114,7 +117,7 @@ describe('utils', () => {
         },
       };
 
-      expect(getErrorMessages(errorObject)).toEqual([
+      expect(getErrorMessages(errorObject as NetworkError)).toEqual([
         'Vous devez vous connecter ou vous inscrire pour continuer.',
       ]);
     });
@@ -272,7 +275,7 @@ describe('utils', () => {
       const diff = {
         updated_at: ['2021-12-28T15:51:35.552Z', '2021-12-28T15:51:35.565Z'],
       };
-      const changelog = [];
+      const changelog: [] = [];
       expect(getChangelog(diff)).toEqual(changelog);
     });
   });
@@ -489,7 +492,7 @@ describe('utils', () => {
     });
 
     it('should return empty object for undefined', () => {
-      expect(collectionWithKeyToObject(undefined)).toStrictEqual({});
+      expect(collectionWithKeyToObject(undefined as any)).toStrictEqual({});
     });
 
     it('should turn collection with key into object', () => {
@@ -505,21 +508,23 @@ describe('utils', () => {
   });
 
   describe('getStateFromUrlParams', () => {
-    let location = null;
+    let originalWindow: typeof window;
 
     beforeEach(() => {
-      location = global.window.location;
-      delete global.window.location;
-      global.window = Object.create(window);
-      global.window.location = {
-        protocol: 'http:',
-        hostname: 'localhost',
-      };
+      originalWindow = window;
+
+      (global as any).window = Object.create(window);
+      Object.defineProperty(window, 'location', {
+        value: {
+          protocol: 'http:',
+          hostname: 'localhost',
+        },
+        writable: true,
+      });
     });
 
     afterEach(() => {
-      global.window.location = location;
-      location = null;
+      (global as any).window = originalWindow;
     });
 
     it('should return a hash from filtered enrollment list url', () => {
@@ -724,7 +729,7 @@ describe('utils', () => {
    */
   describe('isEmailValid', () => {
     it('should return false for undefined value', () => {
-      expect(isEmailValid(undefined)).toStrictEqual(false);
+      expect(isEmailValid(undefined as any)).toStrictEqual(false);
     });
 
     it('should return false for empty string', () => {
@@ -786,10 +791,11 @@ describe('utils', () => {
 
   describe('isValidPhoneNumber', () => {
     it('should return false for empty phone number', () => {
-      expect(isValidPhoneNumber()).toStrictEqual(false);
+      expect(isValidPhoneNumber(undefined as any)).toStrictEqual(false);
     });
+
     it('should return false for non string value', () => {
-      expect(isValidPhoneNumber([])).toStrictEqual(false);
+      expect(isValidPhoneNumber([] as any)).toStrictEqual(false);
     });
     it('should return true for valid phone number no spaces', () => {
       expect(isValidPhoneNumber('0123456789')).toStrictEqual(true);
@@ -804,10 +810,10 @@ describe('utils', () => {
 
   describe('isIndividualEmailAddress', () => {
     it('should return false for empty phone number', () => {
-      expect(isIndividualEmailAddress()).toStrictEqual(false);
+      expect(isIndividualEmailAddress(undefined as any)).toStrictEqual(false);
     });
     it('should return false for non string value', () => {
-      expect(isIndividualEmailAddress([])).toStrictEqual(false);
+      expect(isIndividualEmailAddress([] as any)).toStrictEqual(false);
     });
     it('should return true for individual email address', () => {
       expect(
@@ -831,10 +837,10 @@ describe('utils', () => {
 
   describe('isValidMobilePhoneNumber', () => {
     it('should return false for empty phone number', () => {
-      expect(isValidMobilePhoneNumber()).toStrictEqual(false);
+      expect(isValidMobilePhoneNumber(undefined as any)).toStrictEqual(false);
     });
     it('should return false for non string value', () => {
-      expect(isValidMobilePhoneNumber([])).toStrictEqual(false);
+      expect(isValidMobilePhoneNumber([] as any)).toStrictEqual(false);
     });
     it('should return false for valid phone number no spaces', () => {
       expect(isValidMobilePhoneNumber('0123456789')).toStrictEqual(false);
@@ -934,7 +940,9 @@ describe('utils', () => {
         { label: 'API 2', email: 'contact@api2.fr' },
       ];
 
-      const result = dataProviderConfigurationsToContactInfo(parameters);
+      const result = dataProviderConfigurationsToContactInfo(
+        parameters as unknown as { [k: string]: DataProviderConfiguration }
+      );
 
       expect(result).toStrictEqual(expected);
     });
@@ -961,7 +969,9 @@ describe('utils', () => {
         { label: 'API 1, API 2, API 3, API 4, etc.', email: 'contact@api1.fr' },
       ];
 
-      const result = dataProviderConfigurationsToContactInfo(parameters);
+      const result = dataProviderConfigurationsToContactInfo(
+        parameters as unknown as { [k: string]: DataProviderConfiguration }
+      );
 
       expect(result).toStrictEqual(expected);
     });
@@ -990,8 +1000,9 @@ describe('utils', () => {
           },
         },
       ];
-
-      const result = getScopesFromEnrollments(enrollments);
+      const result = getScopesFromEnrollments(
+        enrollments as unknown as Enrollment[]
+      );
 
       expect(result).toStrictEqual(['scope1', 'scope3']);
     });

@@ -21,7 +21,7 @@ const DescriptionSection = () => {
       documents = [],
       documents_attributes = [],
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

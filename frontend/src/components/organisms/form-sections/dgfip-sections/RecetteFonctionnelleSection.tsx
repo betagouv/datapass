@@ -14,7 +14,7 @@ const RecetteFonctionnelleSection = () => {
     enrollment: {
       additional_content: { recette_fonctionnelle = false },
     },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

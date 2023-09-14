@@ -13,7 +13,7 @@ export const PersonalInformationCard = () => {
   const {
     disabled,
     enrollment: { team_members },
-  } = useContext(FormContext);
+  } = useContext(FormContext)!;
 
   const { isLoading } = useAuth();
 
