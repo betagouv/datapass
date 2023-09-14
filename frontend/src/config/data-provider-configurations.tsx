@@ -39,6 +39,7 @@ import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierS
 // import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
 import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
 import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
+import ApiInfinoeUnique from '../pages/DgfipPages/ApiInfinoeUnique';
 import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
 import ApiMireSandbox from '../pages/DgfipPages/ApiMireSandbox';
 import ApiOcfiProduction from '../pages/DgfipPages/ApiOcfiProduction';
@@ -137,6 +138,7 @@ export const TargetAPI = {
   api_cpr_pro_production: 'api_cpr_pro_production',
   api_infinoe_sandbox: 'api_infinoe_sandbox',
   api_infinoe_production: 'api_infinoe_production',
+  api_infinoe_unique: 'api_infinoe_unique',
   api_ficoba_sandbox: 'api_ficoba_sandbox',
   api_ficoba_production: 'api_ficoba_production',
   api_ficoba_unique: 'api_ficoba_unique',
@@ -400,6 +402,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiInfinoeProduction,
+  },
+  [TargetAPI.api_infinoe_unique]: {
+    label: 'API INFINOE (Formulaire unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiInfinoeUnique,
   },
   [TargetAPI.api_ficoba_sandbox]: {
     label: 'API FICOBA (Bac à sable)',
@@ -671,6 +680,7 @@ export const APISDGFIP = [
   'api_cpr_pro_production',
   'api_infinoe_sandbox',
   'api_infinoe_production',
+  'api_infinoe_unique',
   'api_ficoba_sandbox',
   'api_ficoba_production',
   'api_ficoba_unique',

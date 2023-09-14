@@ -1152,6 +1152,10 @@ api_infinoe_production:
   label: API INFINOE (Production)
   mailer: *shared_mailer
 
+api_infinoe_unique:
+  label: API INFINOE (Formulaire Unique)
+  mailer: *shared_mailer
+
 api_declaration_auto_entrepreneur:
   label: API Tierce Déclaration auto-entrepreneur
   mailer: *shared_mailer
