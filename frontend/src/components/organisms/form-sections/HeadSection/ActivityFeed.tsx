@@ -20,7 +20,6 @@ import { useAuth } from '../../AuthContext';
 import './ActivityFeed.css';
 import ExpandableSection from '../../../molecules/ExpandableSection';
 import { EnrollmentEvent } from '../../../../config/event-configuration';
-import { Event } from '../../../templates/InstructorEnrollmentList';
 
 const eventToDisplayableContent = {
   [EnrollmentEvent.request_changes]: {
@@ -122,7 +121,7 @@ export const EventItem: React.FC<EventItemProps> = ({
 
   let eventCommentClass = 'event-comment';
 
-  if (isUserADemandeur({ team_members, user_email: email })) {
+  if (isUserADemandeur({ team_members, user_email: email as string })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
@@ -132,7 +131,7 @@ export const EventItem: React.FC<EventItemProps> = ({
       : given_name || family_name || email || 'DataPass';
   }, [given_name, family_name, email]);
 
-  const isUserAnInstructor = getIsUserAnInstructor(target_api);
+  const isUserAnInstructor = getIsUserAnInstructor(target_api as string);
 
   let notifyIcon = eventToDisplayableContent[name].icon;
 
@@ -182,7 +181,7 @@ export const EventItem: React.FC<EventItemProps> = ({
 };
 
 type ActivityFeedProps = {
-  events: Event[];
+  events: LocalEvent[];
 };
 
 const ActivityFeed: React.FC<ActivityFeedProps> = ({ events }) => {

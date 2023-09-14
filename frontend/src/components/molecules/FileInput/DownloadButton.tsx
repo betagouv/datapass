@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import Label from '../../atoms/inputs/Label';
 import Button from '../../atoms/hyperTexts/Button';
 import ConfirmationModal from '../../organisms/ConfirmationModal';
-import { Document } from './index';
 import useFileDownloader from '../../templates/hooks/use-file-downloader';
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
   label: string | React.ReactNode;
   disabled?: boolean;
   onReplaceFile: () => void;
-  uploadedDocuments: Document[];
+  uploadedDocuments: LocalDocument[];
   documentType: string;
 };
 
@@ -23,9 +22,8 @@ export const DownloadButton: FunctionComponent<Props> = ({
   documentType,
 }) => {
   const [showWarningModal, setShowWarningModal] = useState(false);
-  const [uploadedDocument, setUploadedDocument] = useState<Document | null>(
-    null
-  );
+  const [uploadedDocument, setUploadedDocument] =
+    useState<LocalDocument | null>(null);
 
   useEffect(() => {
     setUploadedDocument(

@@ -22,10 +22,7 @@ import {
   DataProviderConfiguration,
   HIDDEN_DATA_PROVIDER_KEYS,
 } from '../../config/data-provider-configurations';
-import {
-  EnrollmentStatus,
-  STATUS_LABELS,
-} from '../../config/status-parameters';
+import { STATUS_LABELS } from '../../config/status-parameters';
 import { stackLowUseAndUnpublishedApi } from '../../lib';
 import { getAPIStats } from '../../services/stats';
 import Helper from '../atoms/Helper';

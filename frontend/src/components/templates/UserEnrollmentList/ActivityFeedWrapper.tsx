@@ -1,13 +1,9 @@
 import { chain } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
-import {
-  EnrollmentStatus,
-  STATUS_LABELS,
-} from '../../../config/status-parameters';
+import { STATUS_LABELS } from '../../../config/status-parameters';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert, { AlertType } from '../../atoms/Alert';
 import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
-import { Enrollment } from '../InstructorEnrollmentList';
 
 type ActivityFeedWrapperProps = {
   events: Enrollment['events'];

@@ -6,12 +6,11 @@ import React, {
 } from 'react';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 import ConfirmationModal from '../../ConfirmationModal';
-import { User } from '../../../templates/InstructorEnrollmentList';
 
 type OrganizationPromptProps = {
   selectedOrganizationId: number;
   onSelect: Function;
-  onClose: (event: Event | SyntheticEvent<Element, Event>) => void;
+  onClose: (event: LocalEvent | SyntheticEvent<Element, Event>) => void;
   onJoinOrganization: MouseEventHandler<HTMLButtonElement>;
   organizations: User['organizations'];
 };

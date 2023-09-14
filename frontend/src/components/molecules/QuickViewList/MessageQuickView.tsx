@@ -1,5 +1,4 @@
 import React from 'react';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import { StatusBadge } from '../StatusBadge';
 import './styles.css';
 import { Link } from 'react-router-dom';

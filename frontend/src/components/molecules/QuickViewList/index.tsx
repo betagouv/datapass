@@ -1,5 +1,4 @@
 import React from 'react';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import EnrollmentQuickView from './EnrollmentQuickView';
 import MessageQuickView from './MessageQuickView';
 

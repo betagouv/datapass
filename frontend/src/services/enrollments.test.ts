@@ -8,7 +8,6 @@ import * as UserContext from '../components/organisms/AuthContext';
 import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment.json';
 import ENROLLMENTS from '../../mock/api/get-user-enrollments-response.json';
 import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment.json';
-import { Enrollment } from '../components/templates/InstructorEnrollmentList';
 
 declare module '../components/organisms/AuthContext' {
   interface UserContext {
@@ -61,7 +60,7 @@ describe('serializeEnrollment', () => {
   describe('When there is a response', () => {
     it('should return a 200 status', () => {
       const enrollment: Enrollment =
-        FIRST_ENROLLMENT_1.enrollment as Enrollment;
+        FIRST_ENROLLMENT_1.enrollment as unknown as Enrollment;
 
       const formData = serializeEnrollment(enrollment);
       expect(formData.getAll('enrollment[status]')).toEqual(['draft']);

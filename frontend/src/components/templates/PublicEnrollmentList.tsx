@@ -13,7 +13,6 @@ import { useDataProviderConfigurations } from './hooks/use-data-provider-configu
 import useQueryString from './hooks/use-query-string';
 import { debounce } from 'lodash';
 import { HIDDEN_DATA_PROVIDER_KEYS } from '../../config/data-provider-configurations';
-import { Enrollment } from './InstructorEnrollmentList';
 
 const columnHelper = createColumnHelper<Enrollment>();
 

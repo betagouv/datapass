@@ -5,7 +5,6 @@ import { Linkify } from '../../../molecules/Linkify';
 import Alert from '../../../atoms/Alert';
 import IndexPointingRightEmoji from '../../../atoms/icons/IndexPointingRightEmoji';
 import { useDataProviderConfigurations } from '../../../templates/hooks/use-data-provider-configurations';
-import { Enrollment } from '../../../templates/InstructorEnrollmentList';
 
 const HasNextEnrollmentsNotification = ({
   enrollmentId,

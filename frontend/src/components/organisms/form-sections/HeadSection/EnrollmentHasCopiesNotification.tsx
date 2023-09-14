@@ -3,7 +3,6 @@ import { getEnrollmentCopies } from '../../../../services/enrollments';
 import { isEmpty } from 'lodash';
 import { Linkify } from '../../../molecules/Linkify';
 import Alert, { AlertType } from '../../../atoms/Alert';
-import { Enrollment } from '../../../templates/InstructorEnrollmentList';
 
 const EnrollmentHasCopiesNotification = ({
   enrollmentId,

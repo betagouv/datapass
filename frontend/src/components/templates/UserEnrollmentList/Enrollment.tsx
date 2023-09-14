@@ -7,15 +7,14 @@ import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/hyperTexts/Button';
 import { StatusBadge } from '../../molecules/StatusBadge';
 import NextStepButton from '../../molecules/NextStepButton';
-import { Enrollment as EnrollmentType } from '../InstructorEnrollmentList';
 
 type EnrollmentProps = {
-  id: EnrollmentType['id'];
-  events: EnrollmentType['events'];
-  target_api: EnrollmentType['target_api'];
-  intitule: EnrollmentType['intitule'];
-  description: EnrollmentType['description'];
-  status: EnrollmentType['status'];
+  id: Enrollment['id'];
+  events: Enrollment['events'];
+  target_api: Enrollment['target_api'];
+  intitule: Enrollment['intitule'];
+  description: Enrollment['description'];
+  status: Enrollment['status'];
   onSelect: (
     target_api: string,
     id: number,

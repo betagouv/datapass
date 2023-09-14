@@ -10,19 +10,8 @@ import FileInput, { FileInputProps } from './FileInput';
 
 export type DocumentToUpload = { attachment: File; type: string };
 
-export type Document = {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  attachment: {
-    url: string;
-  };
-  type: string;
-  filename: string;
-};
-
 interface IndexProps extends FileInputProps {
-  uploadedDocuments: Document[];
+  uploadedDocuments: LocalDocument[];
   disabled?: boolean;
 }
 

@@ -26,8 +26,6 @@ import './style.css';
 import StickyActions from '../../molecules/StickyActions';
 import SubmissionPanel from './SubmissionPanel';
 import { AxiosError } from 'axios';
-import { Enrollment } from '../InstructorEnrollmentList';
-import { EnrollmentStatus } from '../../../config/status-parameters';
 
 type FormContextType = {
   disabled: boolean;

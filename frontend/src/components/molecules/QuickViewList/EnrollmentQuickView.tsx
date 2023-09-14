@@ -1,5 +1,4 @@
 import React from 'react';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import Badge from '../StatusBadge';
 import './styles.css';
 import { useLocation } from 'react-router-dom';

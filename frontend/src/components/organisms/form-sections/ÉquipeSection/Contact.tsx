@@ -14,7 +14,6 @@ import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
-import { TeamMember } from '../../../templates/InstructorEnrollmentList';
 
 interface ContactProps extends TeamMember {
   sectionLabel?: string;

@@ -1,7 +1,3 @@
-import {
-  Enrollment,
-  TeamMember,
-} from '../components/templates/InstructorEnrollmentList';
 import { EnrollmentEvent } from '../config/event-configuration';
 import { hashToQueryParams } from '../lib';
 import httpClient from '../lib/http-client';

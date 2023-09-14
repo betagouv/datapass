@@ -11,7 +11,6 @@ import ButtonGroup from '../../../molecules/ButtonGroup';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import useEmailTemplate from './hooks/use-email-template';
 import useMostUsedComments from './hooks/use-most-used-comments';
-import { Enrollment } from '../../InstructorEnrollmentList';
 import {
   EnrollmentEvent,
   EventConfiguration,

@@ -1,4 +1,3 @@
-import { EnrollmentStatus } from '../../../config/status-parameters';
 import Button from '../../atoms/hyperTexts/Button';
 import { useDataProvider } from '../../templates/hooks/use-data-provider';
 

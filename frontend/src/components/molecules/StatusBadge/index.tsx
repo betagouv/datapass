@@ -1,5 +1,4 @@
 import {
-  EnrollmentStatus,
   STATUS_TO_BADGE_TYPE,
   STATUS_LABELS,
 } from '../../../config/status-parameters';

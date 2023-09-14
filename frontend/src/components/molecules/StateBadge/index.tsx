@@ -1,6 +1,5 @@
 import Badge, { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { RecycleIcon } from '../../atoms/icons/fr-fi-icons';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 
 type Props = {
   enrollment: Enrollment;

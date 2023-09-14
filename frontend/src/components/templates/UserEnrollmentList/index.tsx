@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { groupBy, isEmpty } from 'lodash';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
-import Enrollment from './Enrollment';
+import EnrollmentComponent from './Enrollment';
 import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
-import { Enrollment as EnrollmentType } from '../InstructorEnrollmentList';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] =
-    useState<Record<string, EnrollmentType[]>>();
+    useState<Record<string, Enrollment[]>>();
   const [showAlert, setShowAlert] = useState(false);
 
   const { state } = useLocation();
@@ -71,7 +70,7 @@ const UserEnrollmentList = () => {
                 {enrollmentsByOrganization[group][0].nom_raison_sociale}
               </div>
               {enrollmentsByOrganization[group].map((enrollment) => (
-                <Enrollment
+                <EnrollmentComponent
                   key={enrollment.id}
                   onSelect={goToItem}
                   id={enrollment.id}

@@ -11,7 +11,6 @@ import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import Link from '../../../atoms/hyperTexts/Link';
-import { Enrollment } from '../../../templates/InstructorEnrollmentList';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
