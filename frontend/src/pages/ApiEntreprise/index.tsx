@@ -113,6 +113,11 @@ const scopesConfiguration = [
     link: 'https://entreprise.api.gouv.fr/catalogue/cnetp/attestations_cotisations_conges_payes_chomage_intemperies',
   },
   {
+    value: 'certifications_qualiopi_france_competences',
+    label: 'Certifications Qualiopi & habilitations France compétences',
+    link: 'https://entreprise.api.gouv.fr/catalogue/carif_oref/certifications_qualiopi_france_competences',
+  },
+  {
     value: 'open_data',
     label:
       'Données des unités légales et établissements diffusibles - Insee ; Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Bénéficiaires effectifs - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Certification Qualifelec - Qualifelec ; Brevets, marques et modèles déposés - Inpi.',

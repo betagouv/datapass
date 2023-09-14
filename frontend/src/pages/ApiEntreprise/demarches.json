@@ -22,6 +22,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     },
@@ -59,6 +60,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": true,
         "open_data": true
       }
     }
@@ -80,6 +82,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": true,
         "open_data": true
       }
     }
@@ -101,6 +104,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -126,6 +130,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -151,6 +156,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -173,6 +179,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": true,
         "open_data": true
       }
     }
@@ -200,6 +207,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": false
       }
     }
@@ -239,6 +247,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": true,
         "open_data": true
       }
     }
@@ -278,6 +287,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -317,6 +327,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -357,6 +368,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -396,6 +408,7 @@
         "cotisations_msa": false,
         "cotisations_probtp": false,
         "certification_cnetp": false,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
@@ -435,6 +448,7 @@
         "cotisations_msa": true,
         "cotisations_probtp": true,
         "certification_cnetp": true,
+        "certifications_qualiopi_france_competences": false,
         "open_data": true
       }
     }
