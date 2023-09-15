@@ -114,7 +114,7 @@ const scopesConfiguration = [
   },
   {
     value: 'certifications_qualiopi_france_competences',
-    label: 'Certifications Qualiopi & France Compétences',
+    label: 'Qualiopi & habilitations France compétences - CARIF-OREF',
     link: 'https://entreprise.api.gouv.fr/catalogue/carif_oref/certifications_qualiopi_france_competences',
   },
   {
