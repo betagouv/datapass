@@ -21,6 +21,14 @@ psql -f db/setup.local.sql
 rails db:schema:load
 ```
 
+## Configuration
+
+Modifier le fichier `.env.development` pour y ajouter le client ID de
+MonComptePro de test (clé `DATAPASS_OAUTH_CLIENT_ID`), le client id se trouve
+dans le fichier [fixture de
+MonComptePro](https://github.com/betagouv/moncomptepro/blob/master/scripts/fixtures.sql)
+(lien dans le fichier `.env` aussi)
+
 ## Tests
 
 ```sh
