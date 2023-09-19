@@ -11,7 +11,7 @@ import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configu
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 
-const target_api = 'api_infinoe_sandbox';
+const target_api = 'api_infinoe_unique';
 
 const ApiInfinoeUnique = () => (
   <Form
