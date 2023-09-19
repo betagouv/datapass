@@ -152,9 +152,7 @@ const groups = {
   },
   certifications: {
     label: '🔐 Certifications :',
-    scopes: [
-      'certifications_qualiopi_france_competences',
-    ],
+    scopes: ['certifications_qualiopi_france_competences'],
   },
   informations_open_data: {
     label: 'Données en open data disponibles avec API Entreprise :',
