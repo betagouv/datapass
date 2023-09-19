@@ -6,6 +6,7 @@ import React, {
   useReducer,
   useState,
   useRef,
+  JSXElementConstructor,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getStateFromUrlParams } from '../../../lib';
@@ -41,10 +42,10 @@ export const FormContext = React.createContext<FormContextType | undefined>(
   undefined
 );
 
-type ChildWithSectionLabel = React.ReactElement & {
+type ChildWithSectionLabel = {
   type: {
-    sectionLabel: string;
-  };
+    sectionLabel?: string;
+  } & (string | JSXElementConstructor<any>);
 };
 
 type FormProps = {
@@ -73,17 +74,20 @@ export const Form: React.FC<FormProps> = ({
   const { goBackToList } = useListItemNavigation();
   const alertRef: React.RefObject<HTMLDivElement> = useRef(null);
 
-  const hasSectionLabel = (child: any): child is ChildWithSectionLabel => {
-    return typeof child.type === 'object' && 'sectionLabel' in child.type;
-  };
-
   const sectionLabels = useMemo(() => {
-    return React.Children.map(children, (child) => {
-      if (hasSectionLabel(child)) {
-        return child.type.sectionLabel;
-      }
-      return null;
-    }).filter(Boolean);
+    return React.Children.toArray(children)
+      .map((child) => {
+        if (
+          React.isValidElement(child) &&
+          typeof child.type !== 'string' &&
+          'sectionLabel' in child.type &&
+          typeof child.type.sectionLabel === 'string'
+        ) {
+          return child.type.sectionLabel;
+        }
+        return null;
+      })
+      .filter((label): label is string => typeof label === 'string');
   }, [children]);
 
   type Action = Enrollment | Event | string;
