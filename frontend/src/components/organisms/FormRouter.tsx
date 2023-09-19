@@ -5,14 +5,13 @@ import Loader from '../atoms/Loader';
 import Enrollment from '../templates/Enrollment';
 import { useFullDataProvider } from '../templates/hooks/use-full-data-provider';
 import NotFound from './NotFound';
-import { TargetAPI } from '../../config/data-provider-configurations';
 
 const FormRouter = () => {
   const { targetApi: targetApiFromUrl } = useParams();
-  const targetApi = (targetApiFromUrl as TargetAPI).replace(/-/g, '_');
+  const targetApi = (targetApiFromUrl as string).replace(/-/g, '_');
 
   const { Component, configuration, notFound } = useFullDataProvider({
-    targetApi: targetApi as TargetAPI,
+    targetApi: targetApi as string,
   });
 
   if (notFound) {
