@@ -122,7 +122,7 @@ const scopesConfiguration = [
   {
     value: 'open_data',
     label:
-      'Données des unités légales et établissements diffusibles - Insee ; Extrait RCS - Infogreffe ; Données associations en open data - DJEPVA ; Bénéficiaires effectifs - Inpi ; N°TVA intracommunautaire français - Commission européenne ; Conventions collectives - FabNum ; Données du RNM d’une entreprise artisanale - CMA ; Immatriculation EORI - Douanes ; Carte professionnelles des travaux publics - FNTP ; Certification en BIO - Agence BIO ; Certification RGE - ADEME ; Certification Qualibat - Qualibat ; Certification Qualifelec - Qualifelec ; Brevets, marques et modèles déposés - Inpi.',
+      'Accès à toutes les données ouvertes&nbsp;:<ul><li>Données des unités légales et établissements diffusibles - Insee ;<li/><li>Extrait RCS - Infogreffe ;</li><li>Données associations en open data - DJEPVA ;</li><li>Bénéficiaires effectifs - Inpi ;</li><li>N°TVA intracommunautaire français - Commission européenne ;</li><li>Conventions collectives - FabNum ;</li><li>Données du RNM d’une entreprise artisanale - CMA ;</li><li>Immatriculation EORI - Douanes ;</li><li>Carte professionnelles des travaux publics - FNTP ;</li><li>Certification en BIO - Agence BIO ;</li><li>Certification RGE - ADEME ;</li><li>Certification Qualibat - Qualibat ;</li><li>Certification Qualifelec - Qualifelec ;</li><li>Brevets, marques et modèles déposés - Inpi.</li><li></ul>',
     link: 'https://entreprise.api.gouv.fr/catalogue',
     checkedByDefault: true,
   },
