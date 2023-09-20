@@ -24,7 +24,7 @@ module DgfipValidationMethods
     errors.add(:additional_content, :invalid, message: "Vous devez renseigner la fonction de l’autorité d’homologation ou du signataire du questionnaire de sécurité avant de continuer") unless additional_content&.fetch("autorite_homologation_fonction", false)&.present?
     date_regex = /^\d{4}-\d{2}-\d{2}$/
     errors.add(:additional_content, :invalid, message: "Vous devez renseigner la date de début de l’homologation ou de signature du questionnaire de sécurité au format AAAA-MM-JJ avant de continuer") unless date_regex.match?(additional_content&.fetch("date_homologation", ""))
-    errors.add(:additional_content, :invalid, message: "Vous devez renseigner la date de fin de l’homologation ou de signature du questionnaire de sécurité au format AAAA-MM-JJ avant de continuer") unless date_regex.match?(additional_content&.fetch("date_fin_homologation", ""))
+    errors.add(:additional_content, :invalid, message: "Vous devez renseigner la date de fin de l’homologation au format AAAA-MM-JJ avant de continuer") unless date_regex.match?(additional_content&.fetch("date_fin_homologation", ""))
     errors.add(:documents, :invalid, message: "Vous devez joindre le document de décision d’homologation ou le questionnaire de sécurité avant de continuer") unless documents.where(type: "Document::DecisionHomologation").present?
 
     # Volumétrie
