@@ -65,12 +65,17 @@ class EnrollmentEmailTemplatesRetriever
       enrollment: enrollment,
       instructor: instructor,
       responsable_metier_email: enrollment.responsable_metier_email,
-      scopes: enrollment.scopes
+      scopes: enrollment.scopes,
+      api_manager_url: api_manager_url
     }
   end
 
   def enrollment_url
     "#{front_host}/#{enrollment.target_api.tr("_", "-")}/#{enrollment.id}"
+  end
+
+  def api_manager_url
+    target_api_data["api_manager_url"]
   end
 
   def target_api_label

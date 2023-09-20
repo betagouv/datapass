@@ -114,6 +114,20 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
           expect(subject.plain_text_content).to include("L’équipe API Entreprise")
         end
       end
+
+      describe "a specific template : API Particulier validate" do
+        let(:target_api) { "api_particulier" }
+
+        subject do
+          described_class.new(enrollment, instructor).perform.find do |template|
+            template.event == "validate"
+          end
+        end
+
+        it "includes API manager link" do
+          expect(subject.plain_text_content).to include("particulier.api.gouv.fr/compte")
+        end
+      end
     end
 
     context "with a target api which has custom templates" do

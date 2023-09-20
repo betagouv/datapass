@@ -25,7 +25,7 @@ shared:
   api_particulier:
     label: API Particulier
     mailer: *shared_mailer
-    api_manager_url: <%= ENV.fetch("API_PARTICULIER_ACCOUNT_URL") { "https://particulier.api.gouv.fr/compte" } %>
+    api_manager_url: <%= ENV.fetch("API_PARTICULIER_MANAGER_URL") { "https://particulier.api.gouv.fr/compte" } %>
     reply_to: contact@particulier.api.gouv.fr
     configure_from_backend: true
     icon: logo-beta-gouv.svg
