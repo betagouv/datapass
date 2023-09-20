@@ -10,7 +10,7 @@ RSpec.describe "Providers config", type: :acceptance do
   end
 
   it "has valid fields" do
-    YAML.load_file(config_file, aliases: true).each do |provider, config|
+    YAML.load_file(config_file, aliases: true)["shared"].each do |provider, config|
       next if provider == "shared"
 
       %w[
@@ -42,7 +42,7 @@ RSpec.describe "Providers config", type: :acceptance do
 
   it "scopes affectation to groups should be a bijection" do
     # ie. all scopes in groups has only one corresponding scope in scopes
-    YAML.load_file(config_file, aliases: true).each do |provider, config|
+    YAML.load_file(config_file, aliases: true)["shared"].each do |provider, config|
       next if provider == "shared"
 
       if config["scopes"]

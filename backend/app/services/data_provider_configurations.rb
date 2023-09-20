@@ -23,10 +23,6 @@ class DataProviderConfigurations
   private
 
   def config
-    @config ||= YAML.load_file(config_file, aliases: true)
-  end
-
-  def config_file
-    Rails.root.join("config/data_providers.yml")
+    @config ||= Rails.application.config_for("data_providers").to_h.deep_stringify_keys
   end
 end
