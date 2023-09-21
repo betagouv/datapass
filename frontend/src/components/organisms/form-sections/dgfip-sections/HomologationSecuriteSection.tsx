@@ -42,7 +42,7 @@ const HomologationSecuriteSection = () => {
         </p>
       </ExpandableQuote>
       <TextInput
-        label="Nom de l’autorité d’homologation ou du signataire du questionnaire de sécurité"
+        label="Nom de l’autorité d’homologation"
         name="additional_content.autorite_homologation_nom"
         value={autorite_homologation_nom}
         disabled={disabled}
@@ -50,7 +50,7 @@ const HomologationSecuriteSection = () => {
         required
       />
       <TextInput
-        label="Fonction de l’autorité d’homologation ou du signataire du questionnaire de sécurité"
+        label="Fonction de l’autorité d’homologation"
         name="additional_content.autorite_homologation_fonction"
         value={autorite_homologation_fonction}
         disabled={disabled}
@@ -58,7 +58,7 @@ const HomologationSecuriteSection = () => {
         required
       />
       <DateInput
-        label="Date de début de l’homologation ou de signature du questionnaire de sécurité"
+        label="Date de début de l’homologation"
         name="additional_content.date_homologation"
         value={date_homologation}
         disabled={disabled}
@@ -74,7 +74,7 @@ const HomologationSecuriteSection = () => {
         required
       />
       <FileInput
-        label="Joindre la décision d’homologation ou le questionnaire de sécurité"
+        label="Joindre la décision d’homologation"
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
