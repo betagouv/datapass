@@ -63,6 +63,7 @@ import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationA
 import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
 import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
 import { ScopeConfiguration } from '../components/organisms/form-sections/DonneesSection/Scopes';
+import ApiInfinoeUnique from '../pages/DgfipPages/ApiInfinoeUnique';
 
 export type FullDataProviderConfiguration = {
   label: string;
@@ -137,6 +138,7 @@ export const TargetAPI = {
   api_cpr_pro_production: 'api_cpr_pro_production',
   api_infinoe_sandbox: 'api_infinoe_sandbox',
   api_infinoe_production: 'api_infinoe_production',
+  api_infinoe_unique: 'api_infinoe_unique',
   api_ficoba_sandbox: 'api_ficoba_sandbox',
   api_ficoba_production: 'api_ficoba_production',
   api_ficoba_unique: 'api_ficoba_unique',
@@ -400,6 +402,13 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiInfinoeProduction,
+  },
+  [TargetAPI.api_infinoe_unique]: {
+    label: 'API INFINOE (Formulaire unique)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiInfinoeUnique,
   },
   [TargetAPI.api_ficoba_sandbox]: {
     label: 'API FICOBA (Bac à sable)',
@@ -671,6 +680,7 @@ export const APISDGFIP = [
   'api_cpr_pro_production',
   'api_infinoe_sandbox',
   'api_infinoe_production',
+  'api_infinoe_unique',
   'api_ficoba_sandbox',
   'api_ficoba_production',
   'api_ficoba_unique',
