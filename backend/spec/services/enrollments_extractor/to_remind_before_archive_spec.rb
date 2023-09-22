@@ -3,12 +3,19 @@
 RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
   subject { described_class.new }
 
+  before do
+    [
+      Enrollment,
+      Event
+    ].each do |klass|
+      klass.destroy_all
+    end
+  end
+
   describe "enrollments not included in #call with only changes_requested status and request_changes, update or reminder events" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
-    end
 
-    before do
       enrollment = create(:enrollment, :api_entreprise, :changes_requested, created_at: 7.months.ago, updated_at: 6.months.ago)
       create(:event, :request_changes, enrollment: enrollment, created_at: (6.months.ago + 5.days), updated_at: (6.months.ago + 5.days))
       create(:event, :update, enrollment: enrollment, created_at: 6.months.ago, updated_at: 6.months.ago)
@@ -32,9 +39,7 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
   describe "enrollments included in #call with only changes_requested status and request_changes, update or reminder events" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
-    end
 
-    before do
       enrollment = create(:enrollment, :api_entreprise, :validated, created_at: (9.months.ago + 5.days), updated_at: (8.months.ago + 28.days))
       create(:event, :create, enrollment: enrollment, created_at: (9.months.ago + 5.days), updated_at: (9.months.ago + 5.days))
       create(:event, :update, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
@@ -71,9 +76,7 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
   context "#filter_enrollments" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
-    end
 
-    before do
       enrollment = create(:enrollment, :franceconnect, :changes_requested, created_at: (8.months.ago - 25.days), updated_at: 8.months.ago)
       create(:event, :create, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
       create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
@@ -113,8 +116,7 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
       result = subject.filter_events_by_extract_criteria(filtered_by_last_events)
 
       expect(result.count).to eq(2)
-      expect(result[0].name).to include("update")
-      expect(result[1].name).to include("request_changes")
+      expect(result.map { |r| r.name }.sort).to eq(["update", "request_changes"].sort)
     end
   end
 end
