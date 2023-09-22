@@ -74,9 +74,14 @@ module DataPass
       enable_starttls_auto: true
     }
 
-    if ENV.fetch("FORCE_COOKIES_SAME_SITE_PROTECTION", "False") != "True" &&
-        ENV.fetch("ALLOWED_ORIGINS", "").include?("localhost")
+    if Rails.env.local?
       Rails.application.config.action_dispatch.cookies_same_site_protection = :none
+
+      config.session_store :cookie_store, key: "_data_pass_session",
+        domain: :all,
+        same_site: :none,
+        secure: false,
+        httponly: true
     end
 
     config.middleware.insert_before Rack::Head, ValidateRequestParams
