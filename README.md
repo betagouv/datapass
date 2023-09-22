@@ -118,28 +118,14 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 ./bin/install.sh
 ```
 
-### DataPass front only
+### Run
 
-This first installation method use the remote backend available
-at https://back.datapass-test.api.gouv.fr. This is the simplest and fastest
-installation method, but you will not be able to make development on the
-backend.
-
-First, install NodeJs version 16.
-
-Then, clone the repository and install npm dependencies:
-
-```
-git clone git@github.com:betagouv/datapass.git
-cd datapass/frontend
-npm i
+```sh
+./bin/local_dev.sh
 ```
 
-Last, launch the server:
-
-```
-npm run dev-with-remote-backend
-```
+Check [frontend/README.md] and [backend/README.md] if you need to run only one
+of them
 
 ### DataPass back & front with Docker
 
