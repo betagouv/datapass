@@ -3,19 +3,19 @@ shared:
   shared:
     mailer: &shared_mailer
       submit: &shared_submit_mailer
-        subject: "Nous avons bien reçu votre demande d’habilitation"
+        subject: 'Nous avons bien reçu votre demande d’habilitation'
       validate: &shared_validate_mailer
-        subject: "Votre habilitation a été validée"
+        subject: 'Votre habilitation a été validée'
       request_changes: &shared_request_changes_mailer
-        subject: "Votre demande d’habilitation requiert des modifications"
+        subject: 'Votre demande d’habilitation requiert des modifications'
       refuse: &shared_refuse_mailer
-        subject: "Votre habilitation a été refusée"
+        subject: 'Votre habilitation a été refusée'
       revoke: &shared_revoke_mailer
-        subject: "Votre habilitation a été révoquée"
+        subject: 'Votre habilitation a été révoquée'
       create: &shared_create_mailer
-        subject: "Votre demande d’habilitation a été enregistrée"
+        subject: 'Votre demande d’habilitation a été enregistrée'
       notify: &shared_notify_mailer
-        subject: "Vous avez un nouveau message concernant votre demande d’habilitation"
+        subject: 'Vous avez un nouveau message concernant votre demande d’habilitation'
 
   franceconnect:
     label: FranceConnect
@@ -1035,17 +1035,17 @@ shared:
     mailer:
       <<: *shared_mailer
       create:
-        subject: "💾 Le brouillon de votre demande d’habilitation a bien été enregistré"
+        subject: '💾 Le brouillon de votre demande d’habilitation a bien été enregistré'
       submit:
-        subject: "📬 Votre demande d’habilitation a bien été reçue par API Entreprise"
+        subject: '📬 Votre demande d’habilitation a bien été reçue par API Entreprise'
       request_changes:
-        subject: "✒️ Votre demande d’habilitation requiert des modifications"
+        subject: '✒️ Votre demande d’habilitation requiert des modifications'
       validate:
         subject: "✅ Votre habilitation à l'API Entreprise a été validée"
       refuse:
-        subject: "🚫 Votre habilitation à l’API Entreprise a été refusée"
+        subject: '🚫 Votre habilitation à l’API Entreprise a été refusée'
       revoke:
-        subject: "🚫 Votre habilitation à l’API Entreprise a été révoquée"
+        subject: '🚫 Votre habilitation à l’API Entreprise a été révoquée'
 
   le_taxi:
     label: API le.Taxi
@@ -1151,6 +1151,10 @@ shared:
 
   api_infinoe_production:
     label: API INFINOE (Production)
+    mailer: *shared_mailer
+
+  api_infinoe_unique:
+    label: API INFINOE (Formulaire Unique)
     mailer: *shared_mailer
 
   api_declaration_auto_entrepreneur:
