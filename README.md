@@ -103,7 +103,20 @@ Vous pouvez également utiliser les comptes de tests suivants :
 Ce dépôt de code vous permet d’instancier un environnement de développement local pour DataPass.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
-## Installation
+## Development
+
+### Requirements
+
+- ruby 3.2.2
+- node ~16
+- redis
+- postgresql 12.11
+
+### Installation
+
+```sh
+./bin/install.sh
+```
 
 ### DataPass front only
 
