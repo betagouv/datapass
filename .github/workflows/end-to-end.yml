@@ -10,24 +10,9 @@ jobs:
   quality-control:
     runs-on: ubuntu-20.04
     env:
-      REACT_APP_BACK_HOST: http://localhost:3001
-      BACK_HOST: http://localhost:3001
-      FRONT_HOST: http://localhost:3000
-      OAUTH_HOST: https://app-test.moncomptepro.beta.gouv.fr
-      ALLOWED_ORIGINS: http://localhost:3000
-      PG_USER: back
-      PG_PASSWORD: back
-      PG_HOST: localhost
+      PG_USER: datapass
+      PG_PASSWORD: datapass
       PG_DATABASE: datapass
-      SECRET_KEY_BASE: croute
-      RAILS_ENV: production
-      DATAPASS_OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-      DATAPASS_OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
-      INSEE_HOST: https://api.insee.fr
-      INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
-      INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
-      DO_NOT_VALIDATE_MAIL: "True"
-      FORCE_COOKIES_SAME_SITE_PROTECTION: "True"
 
     services:
       redis:
@@ -47,71 +32,97 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v3
+
+      - name: Override INSEE dotenv info
+        run: |
+          echo "INSEE_HOST=https://api.insee.fr" >> .env
+          echo "INSEE_CONSUMER_KEY=${{ secrets.INSEE_CONSUMER_KEY }}" >> .env
+          echo "INSEE_CONSUMER_SECRET=${{ secrets.INSEE_CONSUMER_SECRET }}" >> .env
+
+      - name: Load dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          log-variables: true
+          export-variables: true
+          keys-case: bypass
+
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
           node-version: "16.x"
-      - name: Setup Ruby and install gems
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
           bundler-cache: true
+          working-directory: backend
+
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
       - name: Link libffi7 to libffi6 since the version 6 is not available anymore in Ubuntu 20.04
         run: sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6
-      - name: Cache Gems
+
+      - name: Cache backend dependencies
         uses: actions/cache@v3
         with:
           path: backend/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-      - name: Install backend vendors
+      - name: Install backend dependencies
         run: |
           gem install bundler
           bundle config path vendor/bundle
           bundler install --jobs 4 --retry 3
         working-directory: backend
-      - name: Cache node modules
+
+      - name: Cache frontend dependencies
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - run: npm install
-      - name: Migrate database
-        run: bin/rails db:migrate
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Create and seed database
+        run: bin/rails db:create:all db:schema:load db:seed
         working-directory: backend
-      - name: Seed database
-        run: bin/rails db:seed
-        working-directory: backend
+
       - name: Install Cypress
         run: npm install cypress@12
         working-directory: .
-      - name: Run backend application
-        run: bundle exec puma -C ./config/puma.rb &
-        working-directory: backend
+
+      - name: Install foreman to run local app
+        run: gem install foreman
+        working-directory: .
+
+      - name: Run applications
+        run: ./bin/local_dev.sh &
+        working-directory: .
         env:
-          PORT: 3001
-      - name: Run frontend application
-        run: npm run dev &
+          INSEE_HOST: https://api.insee.fr
+          INSEE_CONSUMER_KEY: ${{ secrets.INSEE_CONSUMER_KEY }}
+          INSEE_CONSUMER_SECRET: ${{ secrets.INSEE_CONSUMER_SECRET }}
+
       - name: Wait for backend application to run
         run: npx wait-on tcp:3001 -t 30000
       - name: Wait for frontend application to run
         run: npx wait-on tcp:3000 -t 30000
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           browser: chrome
           install: false
           working-directory: .
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
