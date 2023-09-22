@@ -148,8 +148,11 @@ const groups = {
       'cotisations_msa',
       'cotisations_probtp',
       'certification_cnetp',
-      'certifications_qualiopi_france_competences',
     ],
+  },
+  certifications: {
+    label: '🔐 Certifications :',
+    scopes: ['certifications_qualiopi_france_competences'],
   },
   informations_open_data: {
     label: 'Données en open data disponibles avec API Entreprise :',
