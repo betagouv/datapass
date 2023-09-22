@@ -64,8 +64,8 @@ shared:
       délibération](https://api.gouv.fr/guides/deliberation-api-part).
     scopesConfiguration:
       - value: cnaf_quotient_familial
-        label: Quotient familial CAF
-        helper: Délivre le quotient familial CAF.
+        label: Quotient familial CAF & MSA
+        helper: Délivre le quotient familial CAF & MSA, ainsi que la composition familiale des allocataires
       - value: complementaire_sante_solidaire
         label: Complémentaire Santé Solidaire
         helper: Délivre le statut et le montant du droit à la complémentaire santé solidaire.
