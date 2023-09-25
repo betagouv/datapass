@@ -257,7 +257,8 @@ Devise.setup do |config|
   config.omniauth(
     :api_gouv,
     ENV["DATAPASS_OAUTH_CLIENT_ID"],
-    ENV["DATAPASS_OAUTH_CLIENT_SECRET"]
+    ENV["DATAPASS_OAUTH_CLIENT_SECRET"],
+    provider_ignores_state: Rails.env.development?
   )
 
   # ==> Warden configuration

@@ -11,15 +11,12 @@ Pour le développement en local, suivez les instructions ci-dessous:
 ## Dépendances
 
 - ruby 3.2.2
+- redis
 - postgresql 12.11
 
 ## Installation
 
-```sh
-bundle install
-psql -f db/setup.local.sql
-rails db:schema:load
-```
+Run `../bin/install.sh`
 
 ## Tests
 

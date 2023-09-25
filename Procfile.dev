@@ -1,0 +1,3 @@
+backend: cd backend ; bundle exec bundle exec puma -C ./config/puma.rb
+frontend: cd frontend ; PORT=3000 npm run dev
+worker: cd backend ;  bundle exec sidekiq -C config/sidekiq.yml

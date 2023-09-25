@@ -103,30 +103,29 @@ Vous pouvez également utiliser les comptes de tests suivants :
 Ce dépôt de code vous permet d’instancier un environnement de développement local pour DataPass.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
-## Installation
+## Development
 
-### DataPass front only
+### Requirements
 
-This first installation method use the remote backend available
-at https://back.datapass-test.api.gouv.fr. This is the simplest and fastest
-installation method, but you will not be able to make development on the
-backend.
+- ruby 3.2.2
+- node ~16
+- redis
+- postgresql 12.11
 
-First, install NodeJs version 16.
+### Installation
 
-Then, clone the repository and install npm dependencies:
-
-```
-git clone git@github.com:betagouv/datapass.git
-cd datapass/frontend
-npm i
+```sh
+./bin/install.sh
 ```
 
-Last, launch the server:
+### Run
 
+```sh
+./bin/local_dev.sh
 ```
-npm run dev-with-remote-backend
-```
+
+Check [frontend/README.md] and [backend/README.md] if you need to run only one
+of them
 
 ### DataPass back & front with Docker
 
