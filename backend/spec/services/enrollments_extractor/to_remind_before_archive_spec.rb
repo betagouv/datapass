@@ -3,15 +3,6 @@
 RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
   subject { described_class.new }
 
-  before do
-    [
-      Enrollment,
-      Event
-    ].each do |klass|
-      klass.destroy_all
-    end
-  end
-
   describe "enrollments not included in #call with only changes_requested status and request_changes, update or reminder events" do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
