@@ -1,6 +1,4 @@
 class Enrollment::ApiEContactsSandbox < Enrollment::SandboxEnrollment
-  include DgfipValidationMethods
-
   protected
 
   def submit_validation

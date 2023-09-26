@@ -1,6 +1,4 @@
 class Enrollment::ApiEnsuDocumentsSandbox < Enrollment::SandboxEnrollment
-  include DgfipValidationMethods
-
   protected
 
   def submit_validation

@@ -1,6 +1,4 @@
 class Enrollment::ApiR2pSandbox < Enrollment::SandboxEnrollment
-  include DgfipValidationMethods
-
   protected
 
   def submit_validation

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Enrollment::ApiImpotParticulierUnique < Enrollment::UniqueEnrollment
-  include DgfipValidationMethods
-
   protected
 
   def submit_validation
