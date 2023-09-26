@@ -88,9 +88,9 @@ module DgfipPolicyMethods
     ]
   end
 
-  def impot_particulier_specific_need_expression
+  def impot_particulier_specific_requirements
     [
-      :specific_need_expression
+      :specific_requirements
     ]
   end
 end

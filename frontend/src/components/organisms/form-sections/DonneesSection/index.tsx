@@ -178,7 +178,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
                 onChange({
                   target: {
                     value: !isFileInputExpanded,
-                    name: 'additional_content.specific_need_expression',
+                    name: 'additional_content.specific_requirements',
                   },
                 });
               }}
