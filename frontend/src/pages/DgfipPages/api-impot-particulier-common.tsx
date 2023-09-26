@@ -151,9 +151,6 @@ export const fcDemarches = {
         'Veuillez obligatoirement compléter les informations ci-dessous :\r\nLa référence (numéro DataPass) de votre accès actuel à l’API Particulier  :\r\nLe cas d’usage concerné : Sa description ou bien choisir parmi la liste (stationnement résidentiel, place en crèche, activités périscolaires, cantine scolaire, aides sociales facultatives, carte de transport) :\r\nLes coordonnées de votre éditeur de logiciel (si vous en avez) ou préciser si c’est un développement interne :',
       fondement_juridique_title:
         'Si pas disponible, à justifier dans un délai de 6 mois (décret, loi, délibération, autre fondement juridique)',
-      scopes: {
-        dgfip_annee_n_moins_2_si_indispo_n_moins_1: true,
-      },
     },
   },
 };
