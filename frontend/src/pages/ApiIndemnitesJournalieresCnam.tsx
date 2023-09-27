@@ -13,7 +13,8 @@ import PreviousEnrollmentSection from '../components/organisms/form-sections/Pre
 const scopesConfiguration = [
   {
     value: 'cnam_PaiementIndemnitesJournalieres',
-    label: 'Paiements dʼindemnités journalières versées par lʼAssurance Maladie',
+    label:
+      'Paiements dʼindemnités journalières versées par lʼAssurance Maladie',
     required: true,
   },
 ];
