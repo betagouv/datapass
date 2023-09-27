@@ -3,6 +3,7 @@ import FileInput from '../../../molecules/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../molecules/ExpandableQuote';
+import Link from '../../../atoms/hyperTexts/Link';
 import TextInput from '../../../atoms/inputs/TextInput';
 import DateInput from '../../../atoms/inputs/DateInput';
 
@@ -39,6 +40,18 @@ const HomologationSecuriteSection = () => {
           Complétez les informations relatives à l’homologation et déposez la
           décision formelle d’homologation (également appelée attestation
           formelle).
+        </p>
+        <p>
+          Toutefois, si votre organisme n’est pas soumis au RGS, vous pouvez
+          remplir un questionnaire de sécurité à récupérer auprès de la DTNum à
+          l’adresse mail suivante :{' '}
+          <Link
+            inline
+            href="mailto:dtnum.donnees.demande-acces@dgfip.finances.gouv.fr"
+          >
+            dtnum.donnees.demande-acces@dgfip.finances.gouv.fr
+          </Link>
+          , et à joindre dans le formulaire ci-dessous.
         </p>
       </ExpandableQuote>
       <TextInput
