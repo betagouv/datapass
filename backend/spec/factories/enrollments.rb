@@ -6,8 +6,8 @@ Dir[Rails.root.join("app/models/enrollment/dgfip_deprecated/*.rb")].sort.each do
   require file
 end
 
-def generate_traits(array_of_strings)
-  array_of_strings.each do |string_name|
+def generate_api_traits(api_list)
+  api_list.each do |string_name|
     trait_name = string_name.to_sym
     class_name = "Enrollment::#{string_name.camelize}".constantize
 
@@ -434,7 +434,7 @@ FactoryBot.define do
       end
     end
 
-    generate_traits([
+    generate_api_traits([
       "hubee_portail_dila",
       "api_r2p_unique",
       "api_cpr_pro_sandbox",
