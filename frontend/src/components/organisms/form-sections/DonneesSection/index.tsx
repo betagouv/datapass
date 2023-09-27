@@ -177,12 +177,6 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
               value={isFileInputExpanded}
               onChange={() => {
                 setFileInputExpanded(!isFileInputExpanded);
-                onChange({
-                  target: {
-                    value: !isFileInputExpanded,
-                    name: 'additional_content.specific_requirements',
-                  },
-                });
               }}
               disabled={disabled}
             />
@@ -199,7 +193,15 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
                 uploadedDocuments={documents}
                 documentsToUpload={documents_attributes}
                 documentType={'Document::ExpressionBesoinSpecifique'}
-                onChange={onChange}
+                onChange={(value) => {
+                  onChange({
+                    target: {
+                      value: !!value,
+                      name: 'additional_content.specific_requirements',
+                    },
+                  });
+                  onChange(value);
+                }}
               />
             </>
           )}
