@@ -34,6 +34,13 @@ class Enrollment < ActiveRecord::Base
   accepts_nested_attributes_for :team_members
   has_many :users, through: :team_members
 
+  validates :data_retention_period, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 999,
+    allow_nil: true
+  }
+
   state_machine :status, initial: :draft, namespace: "status" do
     state :draft
     state :submitted
