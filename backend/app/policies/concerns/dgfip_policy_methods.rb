@@ -87,4 +87,10 @@ module DgfipPolicyMethods
       :acces_etat_civil
     ]
   end
+
+  def impot_particulier_specific_requirements
+    [
+      :specific_requirements
+    ]
+  end
 end

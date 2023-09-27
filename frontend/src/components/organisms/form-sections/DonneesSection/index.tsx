@@ -173,7 +173,15 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
             <CheckboxInput
               label="J’ai une expression de besoin spécifique"
               value={isFileInputExpanded}
-              onChange={() => setFileInputExpanded(!isFileInputExpanded)}
+              onChange={() => {
+                setFileInputExpanded(!isFileInputExpanded);
+                onChange({
+                  target: {
+                    value: !isFileInputExpanded,
+                    name: 'additional_content.specific_requirements',
+                  },
+                });
+              }}
               disabled={disabled}
             />
           </ExpandableQuote>

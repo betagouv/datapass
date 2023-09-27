@@ -3,7 +3,13 @@
 module DgfipValidationMethods
   protected
 
+  def no_need_to_select_scopes?
+    additional_content&.fetch("specific_requirements", false)
+  end
+
   def api_impot_particulier_scope_validation
+    return if no_need_to_select_scopes?
+
     if (scopes & %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3 dgfip_annee_n_moins_2_si_indispo_n_moins_1]).empty?
       errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une année de revenus souhaitée avant de continuer")
     end
