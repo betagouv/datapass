@@ -16,6 +16,7 @@ const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 type Props = {
+  donneesTitle?: string;
   DonneesDescription?: ComponentType;
   scopesConfiguration?: ScopeConfiguration[];
   groups?: { [k: string]: { label: string; scopes: string[] } };
@@ -25,6 +26,7 @@ type Props = {
 };
 
 const DonneesSection: FunctionSectionComponent<Props> = ({
+  donneesTitle = 'À quelles données souhaitez-vous avoir accès ?',
   DonneesDescription,
   scopesConfiguration = [],
   groups,
@@ -108,7 +110,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       {ScopesDescription && <ScopesDescription />}
       {!isEmpty(scopesConfiguration) && (
         <>
-          <h3>À quelles données souhaitez-vous avoir accès ?</h3>
+          <h3>{donneesTitle}</h3>
           {!isEmpty(groups) ? (
             Object.entries(groups!).map(
               ([key, { label, scopes: scopesInGroup }]) => {
