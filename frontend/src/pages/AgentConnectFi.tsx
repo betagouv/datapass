@@ -11,6 +11,12 @@ import { DATA_PROVIDER_CONFIGURATIONS } from '../config/data-provider-configurat
 
 export const scopesConfiguration = [
   {
+    value: 'uid',
+    label: 'Identifiant technique',
+    required: true,
+    helper: '« sub » de l’utilisateur au format OpenIDConnect',
+  },
+  {
     value: 'usual_name',
     label: 'Nom de l’agent',
     required: true,
@@ -26,40 +32,13 @@ export const scopesConfiguration = [
     required: true,
   },
   {
-    value: 'uid',
-    label: 'Identifiant technique',
-    required: true,
-    helper: '« sub » de l’utilisateur au format OpenIDConnect',
-  },
-  {
     value: 'phone',
     label: 'Numéro de téléphone professionnel de l’agent',
     required: false,
   },
   {
-    value: 'siren',
-    label: 'Numéro SIREN de l’organisation de rattachement',
-    required: false,
-  },
-  {
     value: 'siret',
     label: 'Numéro SIRET de l’organisation de rattachement',
-    required: false,
-  },
-  {
-    value: 'organizational_unit',
-    label: 'Unité d’affectation de l’agent',
-    required: false,
-  },
-  {
-    value: 'belonging_population',
-    label: 'Population d’appartenance de l’agent',
-    required: false,
-    helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
-  },
-  {
-    value: 'chorusdt',
-    label: 'Identifiant unique créé par l’application ChorusDT',
     required: false,
   },
 ];
@@ -74,7 +53,10 @@ const AgentConnectFi = () => (
   >
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection scopesConfiguration={scopesConfiguration} />
+    <DonneesSection
+      donneesTitle="Quelles données souhaitez vous mettre à disposition ?"
+      scopesConfiguration={scopesConfiguration}
+    />
     <AgentConnectNetworkSection />
     <CadreJuridiqueSection
       defaultFondementJuridiqueTitle="La décision n°DINUM-202106-01 du 1er juin 2021"
@@ -89,14 +71,8 @@ const AgentConnectFi = () => (
           label: (
             <>
               J’autorise tous les fournisseurs de services de la fonction
-              publique d’État (administrations centrales et services
-              déconcentrés) et tous les fournisseurs de services des opérateurs
-              de l’État à utiliser les données transmises par AgentConnect pour
-              procéder à l’authentification de leurs agents utilisateurs. Si je
-              n'autorise l'accès qu'à certains fournisseurs de service,
-              j’indique à la DINUM par email :
-              agentconnect.supportpartenaires@modernisation.gouv.fr le nom des
-              fournisseurs de services sélectionnés.
+              publique à utiliser les données transmises par AgentConnect pour
+              procéder à l’authentification de leurs agents utilisateurs.
             </>
           ),
         },

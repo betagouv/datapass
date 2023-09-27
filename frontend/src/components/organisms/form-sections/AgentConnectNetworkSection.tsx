@@ -4,6 +4,7 @@ import { ScrollablePanel } from '../Scrollable';
 import ExpandableQuote from '../../molecules/ExpandableQuote';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
 import { FunctionSectionComponent } from '../../../types/fonction-section-component';
+import Link from '../../atoms/hyperTexts/Link';
 
 const SECTION_LABEL = 'Le mode d’accès';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -25,6 +26,17 @@ export const AgentConnectNetworkSection: FunctionSectionComponent = () => {
           Précisez si votre projet sera accessible depuis le Réseau
           Interministériel de l’État (RIE), depuis Internet, ou à la fois depuis
           le RIE et Internet.
+        </p>
+        <p>
+          Vous trouverez plus d’information sur
+          <Link
+            inline
+            newTab
+            href="https://github.com/france-connect/Documentation-AgentConnect/blob/main/doc_fi/pilotage_fca/plateformes_fi.md"
+          >
+            notre documentation en ligne
+          </Link>
+          .
         </p>
       </ExpandableQuote>
       {/*@ts-ignore*/}
