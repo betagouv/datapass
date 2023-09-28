@@ -61,7 +61,6 @@ import HubeePortailDila from '../pages/HubeePortailDila';
 import LeTaxi from '../pages/LeTaxi';
 import ApiDeclarationAutoEntrepreneur from '../pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
-import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
 import { ScopeConfiguration } from '../components/organisms/form-sections/DonneesSection/Scopes';
 import ApiInfinoeUnique from '../pages/DgfipPages/ApiInfinoeUnique';
 
@@ -146,7 +145,6 @@ export const TargetAPI = {
   le_taxi: 'le_taxi',
   cartobio: 'cartobio',
   api_service_national: 'api_service_national',
-  api_tiers_de_prestation: 'api_tiers_de_prestation',
   api_pro_sante_connect: 'api_pro_sante_connect',
   api_declaration_auto_entrepreneur: 'api_declaration_auto_entrepreneur',
   api_indemnites_journalieres_cnam: 'api_indemnites_journalieres_cnam',
@@ -458,13 +456,6 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     email: 'dsnj-api.contact.fct@intradef.gouv.fr',
     type: DataProviderType.api,
     component: ApiServiceNational,
-  },
-  [TargetAPI.api_tiers_de_prestation]: {
-    label: 'API Tiers de prestation',
-    icon: 'logo-urssaf.png',
-    email: 'habilitation-api@urssaf.fr',
-    type: DataProviderType.api,
-    component: ApiTiersDePrestation,
   },
   [TargetAPI.api_pro_sante_connect]: {
     label: 'API Pro Santé Connect',
