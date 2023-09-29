@@ -18,8 +18,7 @@ class Enrollment::AgentConnectFsPolicy < EnrollmentPolicy
       ],
       additional_content: [
         :acces_rie,
-        :acces_internet,
-        :accept_agentconnect_implementation_alternative
+        :acces_internet
       ]
     ])
 
