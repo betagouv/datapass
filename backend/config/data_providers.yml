@@ -1161,6 +1161,10 @@ shared:
     label: API Tierce Déclaration auto-entrepreneur
     mailer: *shared_mailer
 
+  api_tiers_de_prestation:
+    label: API Tiers de prestation
+    mailer: *shared_mailer
+
   api_declaration_cesu:
     label: API Tierce Déclaration CESU
     mailer: *shared_mailer
