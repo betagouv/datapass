@@ -1,10 +1,10 @@
 import React from 'react';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import { StatusBadge } from '../StatusBadge';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { MailIconFill } from '../../atoms/icons/fr-fi-icons';
 import moment from 'moment';
+import { Enrollment } from '../../../config';
 
 type Props = {
   enrollment: Enrollment;

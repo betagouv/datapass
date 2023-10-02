@@ -2,7 +2,7 @@ import React from 'react';
 import httpClient from '../../lib/http-client';
 import { getErrorMessages } from '../../lib';
 import { Login } from '../templates/Login';
-import { User } from '../templates/InstructorEnrollmentList';
+import { User } from '../../config';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

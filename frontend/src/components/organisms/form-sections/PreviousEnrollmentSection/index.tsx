@@ -11,7 +11,7 @@ import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import Link from '../../../atoms/hyperTexts/Link';
-import { Enrollment } from '../../../templates/InstructorEnrollmentList';
+import { Enrollment } from '../../../../config';
 
 const SECTION_LABEL = 'Habilitation associée';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -36,9 +36,11 @@ const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
   } = useContext(FormContext)!;
 
   // disable fetch if not disabled or is loading
-  const hasAccessToPreviousEnrollment = useAccessToEnrollment(
+  const enrollmentValue =
     disabled && !isUserEnrollmentLoading && previous_enrollment_id
-  );
+      ? previous_enrollment_id
+      : 0;
+  const hasAccessToPreviousEnrollment = useAccessToEnrollment(enrollmentValue);
 
   const [validatedEnrollments, setValidatedEnrollments] = useState<
     Enrollment[]
@@ -101,7 +103,7 @@ const PreviousEnrollmentSection: PreviousEnrollmentSectionType = ({
           </p>
           <Stepper
             steps={steps}
-            currentStep={!isValidatedEnrollmentsLoading && target_api}
+            currentStep={!isValidatedEnrollmentsLoading ? target_api : null}
             previousStepNotCompleted={
               !isValidatedEnrollmentsLoading &&
               !!previousTargetApi &&

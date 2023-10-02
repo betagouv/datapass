@@ -10,12 +10,27 @@ import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 const SECTION_LABEL = 'Démarches en ligne';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const DemarcheEnLigneSection = ({ demarchesHubee = [] }) => {
+type DemarcheEnLigneSectionProps = {
+  demarchesHubee: {
+    id: string;
+    label: string;
+    description: any;
+  }[];
+};
+
+interface DemarcheEnLigneSectionType
+  extends React.FC<DemarcheEnLigneSectionProps> {
+  sectionLabel: string;
+}
+
+export const DemarcheEnLigneSection: DemarcheEnLigneSectionType = ({
+  demarchesHubee = [],
+}) => {
   const {
     disabled,
     onChange,
     isUserEnrollmentLoading,
-    enrollment: { scopes = {}, siret },
+    enrollment: { scopes = {}, siret = '' },
   } = useContext(FormContext)!;
 
   const subscribedDemarcheEnLigne = useGetSubscribedDemarcheEnLigne({

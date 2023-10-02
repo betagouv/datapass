@@ -20,22 +20,22 @@ import Nav from '../../organisms/Nav';
 import NotFound from '../../organisms/NotFound';
 import { useDataProvider } from '../hooks/use-data-provider';
 import useListItemNavigation from '../hooks/use-list-item-navigation';
-import { Demarche, enrollmentReducerFactory } from './enrollmentReducer';
+import { enrollmentReducerFactory } from './enrollmentReducer';
 import HideSectionsContainer from './HideSectionsContainer';
 import OpenMessagePromptContextProvider from './OpenMessagePromptContextProvider';
 import './style.css';
 import StickyActions from '../../molecules/StickyActions';
 import SubmissionPanel from './SubmissionPanel';
 import { AxiosError } from 'axios';
-import { Enrollment } from '../InstructorEnrollmentList';
 import { EnrollmentStatus } from '../../../config/status-parameters';
+import { Demarches, Enrollment } from '../../../config';
 
 type FormContextType = {
   disabled: boolean;
   onChange: (value: any) => void;
   enrollment: Enrollment;
   isUserEnrollmentLoading: boolean;
-  demarches: Demarche[] | null;
+  demarches: Demarches | null;
 };
 
 export const FormContext = React.createContext<FormContextType | undefined>(
@@ -54,8 +54,8 @@ type FormProps = {
   children:
     | React.ReactElement<ChildWithSectionLabel>[]
     | React.ReactElement<ChildWithSectionLabel>;
-  documentationUrl: string;
-  contactEmail: string;
+  documentationUrl?: string;
+  contactEmail?: string | null;
 };
 
 export const Form: React.FC<FormProps> = ({

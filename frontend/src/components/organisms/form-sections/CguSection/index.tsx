@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
@@ -10,7 +10,7 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 type CguSectionProps = {
   cguLink: string;
-  additionalTermsOfUse: { id: string; label: string }[];
+  additionalTermsOfUse?: { id: string; label: string | ReactNode }[];
 };
 
 interface CguSectionType extends React.FC<CguSectionProps> {

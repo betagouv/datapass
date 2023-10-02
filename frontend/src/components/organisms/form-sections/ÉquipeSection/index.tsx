@@ -8,11 +8,7 @@ import { useAuth } from '../../AuthContext';
 import useNewTeamMembers from './useNewTeamMembers';
 import { AddCard, CardContainer } from '../../../molecules/Card';
 import Link from '../../../atoms/hyperTexts/Link';
-import {
-  TeamMember,
-  TeamMemberType,
-  User,
-} from '../../../templates/InstructorEnrollmentList';
+import { TeamMember, TeamMemberType, User } from '../../../../config';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -212,8 +208,7 @@ const ÉquipeSection = ({
   useEffect(() => {
     if (!isUserEnrollmentLoading && !disabled && !isEmpty(team_members)) {
       const currentDemandeurIndex = team_members.findIndex(
-        ({ type, email }: { type: TeamMemberType; email: string }) =>
-          type === 'demandeur' && email === user?.email
+        ({ type, email }) => type === 'demandeur' && email === user?.email
       );
 
       if (currentDemandeurIndex !== -1) {

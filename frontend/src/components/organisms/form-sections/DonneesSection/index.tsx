@@ -7,7 +7,7 @@ import ExpandableQuote from '../../../molecules/ExpandableQuote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
-import FileInput, { DocumentToUpload } from '../../../molecules/FileInput';
+import FileInput from '../../../molecules/FileInput';
 import Link from '../../../atoms/hyperTexts/Link';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import { FunctionSectionComponent } from '../../../../types/fonction-section-component';
@@ -78,7 +78,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
   const [isFileInputExpanded, setFileInputExpanded] = useState(
     enableFileSubmissionForScopeSelection &&
       !isEmpty(
-        (documents as DocumentToUpload[]).filter(
+        documents.filter(
           ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
         )
       )
@@ -86,7 +86,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
 
   useEffect(() => {
     const hasDocument = !isEmpty(
-      (documents as DocumentToUpload[]).filter(
+      documents.filter(
         ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
       )
     );
@@ -263,7 +263,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
         onChange={onChange}
         required
       />
-      {data_retention_period > 36 && (
+      {Number(data_retention_period) > 36 && (
         <>
           <Alert type={AlertType.warning} title="Attention">
             Cette durée excède la durée communément constatée (36 mois).

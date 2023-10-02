@@ -14,7 +14,7 @@ import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 import { Card, CardHead } from '../../../molecules/Card';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
-import { TeamMember } from '../../../templates/InstructorEnrollmentList';
+import { TeamMember } from '../../../../config';
 
 interface ContactProps extends TeamMember {
   sectionLabel?: string;
@@ -132,15 +132,15 @@ export const Contact: React.FC<ContactProps> = ({
           : 'Email'
       }
       name={`team_members[${index}].email`}
-      value={email}
+      value={email as string}
       disabled={disabled}
       onChange={onChange}
       ariaLabel={`Email du ${heading}`}
       required
     />
     {displayIndividualEmailLabel &&
-      isEmailValid(email) &&
-      !isIndividualEmailAddress(email) && (
+      isEmailValid(email as string) &&
+      !isIndividualEmailAddress(email as string) && (
         <div className="fr-mb-3w">
           <Alert type={AlertType.warning}>
             Merci d’utiliser un email nominatif.
@@ -148,8 +148,8 @@ export const Contact: React.FC<ContactProps> = ({
         </div>
       )}
     {displayGroupEmailLabel &&
-      isEmailValid(email) &&
-      isIndividualEmailAddress(email) && (
+      isEmailValid(email as string) &&
+      isIndividualEmailAddress(email as string) && (
         <div className="fr-mb-3w">
           <Alert type={AlertType.info}>
             Merci de préférer une adresse générique pérenne

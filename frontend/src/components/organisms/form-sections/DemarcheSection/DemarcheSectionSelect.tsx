@@ -13,6 +13,7 @@ import { FormContext } from '../../../templates/Form';
 import ConfirmationModal from '../../ConfirmationModal';
 import { ScrollablePanel } from '../../Scrollable';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
+import { Demarche, Demarches } from '../../../../config';
 
 export const DemarcheSectionSelect = ({
   body,
@@ -57,8 +58,8 @@ export const DemarcheSectionSelect = ({
 
     const preFilledEnrollment = merge(
       {},
-      get(demarches, 'default', {}).state,
-      get(demarches, selectedDemarcheId, {}).state
+      get(demarches, 'default', {} as unknown as Demarche).state,
+      get(demarches, selectedDemarcheId, {} as unknown as Demarche).state
     );
 
     // we compare current enrollment with prefilled associated with selectedDemarcheId
@@ -104,7 +105,7 @@ export const DemarcheSectionSelect = ({
           name="demarche"
           options={Object.keys(filteredDemarches).map((demarcheId) => ({
             id: demarcheId,
-            label: get(demarches, demarcheId, {}).label,
+            label: get(demarches, demarcheId, {} as Demarche).label,
           }))}
           value={selectedDemarcheId}
           disabled={disabled}
@@ -130,7 +131,7 @@ export const DemarcheSectionSelect = ({
           <DemarcheSectionSelectNotification
             isLoading={isLoading}
             selectedDemarcheId={selectedDemarcheId}
-            demarches={demarches}
+            demarches={demarches as Demarches}
           />
         )}
       </ScrollablePanel>

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, SyntheticEvent } from 'react';
+import React from 'react';
 import AriaModal from '@justfixnyc/react-aria-modal';
 import Button from '../atoms/hyperTexts/Button';
 import ButtonGroup from '../molecules/ButtonGroup';
@@ -7,9 +7,9 @@ import { InfoIcon } from '../atoms/icons/fr-fi-icons';
 import './ConfirmationModal.css';
 
 type ConfirmationModalProps = {
-  handleConfirm: MouseEventHandler<HTMLButtonElement>;
+  handleConfirm: any;
   confirmLabel?: string;
-  handleCancel: (event: Event | SyntheticEvent<Element, Event>) => void;
+  handleCancel: any;
   cancelLabel?: string;
   title: string;
   children: React.ReactNode;

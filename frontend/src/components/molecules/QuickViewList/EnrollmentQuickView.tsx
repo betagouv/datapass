@@ -1,5 +1,4 @@
 import React from 'react';
-import { Enrollment } from '../../templates/InstructorEnrollmentList';
 import Badge from '../StatusBadge';
 import './styles.css';
 import { useLocation } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import StateBadge from '../StateBadge';
+import { Enrollment } from '../../../config';
 
 type Props = {
   enrollment: Enrollment;

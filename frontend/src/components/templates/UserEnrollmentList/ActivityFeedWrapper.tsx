@@ -7,7 +7,7 @@ import {
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../../services/stats';
 import Alert, { AlertType } from '../../atoms/Alert';
 import { EventItem } from '../../organisms/form-sections/HeadSection/ActivityFeed';
-import { Enrollment } from '../InstructorEnrollmentList';
+import { Enrollment } from '../../../config';
 
 type ActivityFeedWrapperProps = {
   events: Enrollment['events'];
@@ -46,6 +46,8 @@ const ActivityFeedWrapper: React.FC<ActivityFeedWrapperProps> = ({
     user,
     diff,
     created_at,
+    updated_at,
+    id,
   } = useMemo(
     () => chain(events).sortBy('updated_at').last().value() || {},
     [events]
@@ -65,12 +67,17 @@ const ActivityFeedWrapper: React.FC<ActivityFeedWrapperProps> = ({
         modifications suivantes :
         <div style={{ margin: '1rem 0' }}>
           <EventItem
+            id={id}
+            updated_at={updated_at}
             comment={comment}
             name={lastEventName}
             created_at={created_at}
-            email={email}
-            given_name={given_name}
-            family_name={family_name}
+            user={{
+              id: user.id,
+              email,
+              given_name,
+              family_name,
+            }}
             diff={diff}
           />
         </div>

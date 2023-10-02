@@ -9,6 +9,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
+import { Event } from '../../../../config';
 
 export const HeadSection = () => {
   const {
@@ -33,7 +34,7 @@ export const HeadSection = () => {
         </div>
       </div>
       <div className="feed-sub-section fr-py-3w">
-        {!isEmpty(events) && <ActivityFeed events={events} />}
+        {!isEmpty(events) && <ActivityFeed events={events as Event[]} />}
       </div>
       <div className="fr-pt-3w">
         <NotificationSubSection />

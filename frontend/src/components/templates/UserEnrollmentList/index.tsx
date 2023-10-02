@@ -9,7 +9,7 @@ import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
-import { Enrollment as EnrollmentType } from '../InstructorEnrollmentList';
+import { Enrollment as EnrollmentType } from '../../../config';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);

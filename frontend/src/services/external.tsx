@@ -1,7 +1,7 @@
 import { RateLimiter } from 'limiter';
 import { memoize } from 'lodash';
 import httpClient from '../lib/http-client';
-import { Enrollment } from '../components/templates/InstructorEnrollmentList';
+import { Enrollment } from '../config';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

@@ -7,19 +7,9 @@ import React, {
 import { isEmpty, uniqueId } from 'lodash';
 import DownloadButton from './DownloadButton';
 import FileInput, { FileInputProps } from './FileInput';
+import { Document } from '../../../config';
 
 export type DocumentToUpload = { attachment: File; type: string };
-
-export type Document = {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  attachment: {
-    url: string;
-  };
-  type: string;
-  filename: string;
-};
 
 interface IndexProps extends FileInputProps {
   uploadedDocuments: Document[];
