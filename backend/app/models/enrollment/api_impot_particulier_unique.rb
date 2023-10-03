@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Enrollment::ApiImpotParticulierUnique < Enrollment::UniqueEnrollment
+class Enrollment::ApiImpotParticulierUnique < Enrollment::AbstractDgfipUniqueEnrollment
   protected
 
   def submit_validation

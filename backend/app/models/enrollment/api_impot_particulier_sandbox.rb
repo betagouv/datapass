@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierSandbox < Enrollment::SandboxEnrollment
+class Enrollment::ApiImpotParticulierSandbox < Enrollment::AbstractDgfipSandboxEnrollment
   include RequireRgpdGeneralAgreement
 
   protected

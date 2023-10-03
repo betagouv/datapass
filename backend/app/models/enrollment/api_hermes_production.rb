@@ -1,2 +1,2 @@
-class Enrollment::ApiHermesProduction < Enrollment::ProductionEnrollment
+class Enrollment::ApiHermesProduction < Enrollment::AbstractDgfipProductionEnrollment
 end

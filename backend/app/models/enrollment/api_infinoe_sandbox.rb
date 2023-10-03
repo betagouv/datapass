@@ -1,3 +1,3 @@
-class Enrollment::ApiInfinoeSandbox < Enrollment::SandboxEnrollment
+class Enrollment::ApiInfinoeSandbox < Enrollment::AbstractDgfipSandboxEnrollment
   include RequireRgpdGeneralAgreement
 end

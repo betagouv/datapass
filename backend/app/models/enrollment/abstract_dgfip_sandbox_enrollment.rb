@@ -1,4 +1,4 @@
-class Enrollment::SandboxEnrollment < Enrollment
+class Enrollment::AbstractDgfipSandboxEnrollment < Enrollment
   include DgfipValidationMethods
 
   protected

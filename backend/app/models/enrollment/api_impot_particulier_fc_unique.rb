@@ -1,4 +1,4 @@
-class Enrollment::ApiImpotParticulierFcUnique < Enrollment::UniqueEnrollment
+class Enrollment::ApiImpotParticulierFcUnique < Enrollment::AbstractDgfipUniqueEnrollment
   protected
 
   def submit_validation
