@@ -140,7 +140,7 @@ shared:
         helper: Nom, prénom, date de naissance, lieu de naissance, genre
     groups:
       cnaf:
-        label: API Quotient familial CAF
+        label: API Quotient familial CAF & MSA
         scopes:
           - cnaf_quotient_familial
           - cnaf_allocataires
