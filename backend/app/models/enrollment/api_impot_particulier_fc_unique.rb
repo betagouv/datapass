@@ -1,6 +1,4 @@
-class Enrollment::ApiImpotParticulierFcUnique < Enrollment::UniqueEnrollment
-  include DgfipValidationMethods
-
+class Enrollment::ApiImpotParticulierFcUnique < Enrollment::AbstractDgfipUniqueEnrollment
   protected
 
   def submit_validation

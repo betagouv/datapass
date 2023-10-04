@@ -1,5 +1,4 @@
 # frozen_string_literal: true
 
-class Enrollment::ApiInfinoeUnique < Enrollment::UniqueEnrollment
-  include DgfipValidationMethods
+class Enrollment::ApiInfinoeUnique < Enrollment::AbstractDgfipUniqueEnrollment
 end

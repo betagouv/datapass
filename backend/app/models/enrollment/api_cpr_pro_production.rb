@@ -1,2 +1,2 @@
-class Enrollment::ApiCprProProduction < Enrollment::ProductionEnrollment
+class Enrollment::ApiCprProProduction < Enrollment::AbstractDgfipProductionEnrollment
 end

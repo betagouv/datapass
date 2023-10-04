@@ -443,5 +443,24 @@ FactoryBot.define do
         ]
       end
     end
+
+    trait :api_e_contacts_sandbox do
+      initialize_with do
+        Enrollment::ApiEContactsSandbox.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
   end
 end

@@ -1,4 +1,4 @@
-class Enrollment::ProductionEnrollment < Enrollment
+class Enrollment::AbstractDgfipProductionEnrollment < Enrollment
   include DgfipValidationMethods
 
   before_save :set_info_from_previous_enrollment, if: :will_save_change_to_previous_enrollment_id?

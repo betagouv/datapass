@@ -7,6 +7,12 @@ module DgfipValidationMethods
     additional_content&.fetch("specific_requirements", false)
   end
 
+  def rgpd_general_agreement_validation
+    unless additional_content&.fetch("rgpd_general_agreement", false)
+      errors.add(:additional_content, :invalid, message: "Vous devez attester que votre organisation déclarera à la DGFiP l'accomplissement des formalités en terme de protection des données")
+    end
+  end
+
   def api_impot_particulier_scope_validation
     return if no_need_to_select_scopes?
 

@@ -1,5 +1,5 @@
-class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::SandboxEnrollment
-  include DgfipValidationMethods
+class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::AbstractDgfipSandboxEnrollment
+  include RequireRgpdGeneralAgreement
 
   protected
 
@@ -7,7 +7,6 @@ class Enrollment::ApiImpotParticulierFcSandbox < Enrollment::SandboxEnrollment
     super
 
     previous_enrollment_id_validation
-
     api_impot_particulier_scope_validation
   end
 end
