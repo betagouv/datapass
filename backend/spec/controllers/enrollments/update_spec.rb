@@ -68,9 +68,11 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
   describe "update" do
     let(:user) { create(:user) }
     let(:enrollment_creator) { user }
+    let(:base_notifier) { instance_double("BaseNotifier", update: nil) }
 
     before do
       login(user)
+      allow(BaseNotifier).to receive(:new).and_return(base_notifier)
     end
 
     context "when updating franceconnect enrollment" do
@@ -93,6 +95,12 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
 
         expect(latest_user_event.name).to eq("update")
         expect(latest_user_event.enrollment).to eq(latest_user_enrollment)
+      end
+
+      it "calls Notifier#update" do
+        update_enrollment
+
+        expect(base_notifier).to have_received(:update)
       end
     end
 
