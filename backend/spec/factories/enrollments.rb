@@ -6,34 +6,6 @@ Dir[Rails.root.join("app/models/enrollment/dgfip_deprecated/*.rb")].sort.each do
   require file
 end
 
-def generate_api_traits(api_list)
-  api_list.each do |string_name|
-    trait_name = string_name.to_sym
-    class_name = "Enrollment::#{string_name.camelize}".constantize
-
-    FactoryBot.define do
-      trait trait_name do
-        initialize_with do
-          class_name.new(attributes)
-        end
-
-        team_members do
-          [
-            {
-              type: "responsable_metier",
-              email: "user-metier@clamart.fr",
-              phone_number: "0626656565",
-              job: "Directeur",
-              given_name: "Jean",
-              family_name: "Dupont"
-            }
-          ]
-        end
-      end
-    end
-  end
-end
-
 FactoryBot.define do
   factory :enrollment do
     status { "draft" }
@@ -434,25 +406,61 @@ FactoryBot.define do
       end
     end
 
-    generate_api_traits([
-      "hubee_portail_dila",
-      "api_r2p_unique",
-      "api_cpr_pro_sandbox",
-      "api_e_contacts_sandbox",
-      "api_e_pro_sandbox",
-      "api_ensu_documents_sandbox",
-      "api_ficoba_sandbox",
-      "api_hermes_sandbox",
-      "api_impot_particulier_fc_sandbox",
-      "api_impot_particulier_sandbox",
-      "api_infinoe_sandbox",
-      "api_mire_sandbox",
-      "api_ocfi_sandbox",
-      "api_opale_sandbox",
-      "api_r2p_sandbox",
-      "api_robf_sandbox",
-      "api_satelit_sandbox",
-      "api_sfip_sandbox"
-    ])
+    trait :hubee_portail_dila do
+      initialize_with do
+        Enrollment::HubeePortailDila.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
+
+    trait :api_r2p_unique do
+      initialize_with do
+        Enrollment::ApiR2pUnique.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
+
+    trait :api_e_contacts_sandbox do
+      initialize_with do
+        Enrollment::ApiEContactsSandbox.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0626656565",
+            job: "Directeur",
+            given_name: "Jean",
+            family_name: "Dupont"
+          }
+        ]
+      end
+    end
   end
 end
