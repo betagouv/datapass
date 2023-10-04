@@ -114,25 +114,27 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     onPromptCancellation();
   };
 
+  const instructionAuthorizedEvents = authorizedEvents.filter(
+    (event) => event !== EnrollmentEvent.notify
+  );
+
   const getEventButtonList = () =>
-    authorizedEvents
-      .filter((event) => event !== EnrollmentEvent.notify)
-      .map((event) => {
-        const eventConfiguration = eventConfigurations[event];
+    instructionAuthorizedEvents.map((event) => {
+      const eventConfiguration = eventConfigurations[event];
 
-        if (eventConfiguration) {
-          return (
-            <EventButton
-              key={event}
-              disabled={!!pendingEvent || loading}
-              onClick={() => onEventButtonClick(event)}
-              {...eventConfiguration.displayProps}
-            />
-          );
-        }
+      if (eventConfiguration) {
+        return (
+          <EventButton
+            key={event}
+            disabled={!!pendingEvent || loading}
+            onClick={() => onEventButtonClick(event)}
+            {...eventConfiguration.displayProps}
+          />
+        );
+      }
 
-        return null;
-      });
+      return null;
+    });
 
   const isUserAnInstructor = useMemo(() => {
     return getIsUserAnInstructor(enrollment.target_api);
@@ -290,7 +292,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         {user &&
           user.roles &&
           user.roles.length > 1 &&
-          authorizedEvents.length > 1 && (
+          !!instructionAuthorizedEvents.length && (
             <div className="datapass-sticky-actions-container">
               <EventButton
                 onClick={() => handleActionChange(EnrollmentEvent.instruct)}
