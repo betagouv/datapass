@@ -141,7 +141,7 @@ const groups = {
     scopes: ['chiffre_affaires_dgfip', 'bilans_bdf', 'liasses_fiscales_dgfip'],
   },
   attestations_sociales_et_fiscales: {
-    label: '🔐 Informations protégées de régularité sociale et fiscale :',
+    label: '🔐 Informations protégées de régularité',
     scopes: [
       'attestation_fiscale_dgfip',
       'attestation_sociale_urssaf',
