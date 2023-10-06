@@ -28,13 +28,13 @@ export const AgentConnectNetworkSection: FunctionSectionComponent = () => {
           le RIE et Internet.
         </p>
         <p>
-          Vous trouverez plus d’information sur
+          Vous trouverez plus d’information sur notre{' '}
           <Link
             inline
             newTab
             href="https://github.com/france-connect/Documentation-AgentConnect/blob/main/doc_fi/pilotage_fca/plateformes_fi.md"
           >
-            notre documentation en ligne
+            documentation en ligne
           </Link>
           .
         </p>

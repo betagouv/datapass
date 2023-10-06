@@ -9,11 +9,7 @@ class Enrollment::AgentConnectFiPolicy < EnrollmentPolicy
         :email,
         :uid,
         :phone,
-        :siren,
-        :siret,
-        :organizational_unit,
-        :belonging_population,
-        :chorusdt
+        :siret
       ],
       additional_content: [
         :acces_rie,

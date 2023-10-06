@@ -86,21 +86,7 @@ const AgentConnectFs = () => (
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/05/20210601-dinum-ac-creation_agentconnect-vf.pdf"
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
-    <CguSection
-      cguLink="/docs/cgu_agentconnect_fs.pdf"
-      additionalTermsOfUse={[
-        {
-          id: 'accept_agentconnect_implementation_alternative',
-          label: (
-            <>
-              J’atteste que mon service propose une alternative à la connexion
-              avec AgentConnect, et que cette alternative permet l’accès, dans
-              des conditions analogues, au même service.
-            </>
-          ),
-        },
-      ]}
-    />
+    <CguSection cguLink="/docs/cgu_agentconnect_fs.pdf" />
   </Form>
 );
 
