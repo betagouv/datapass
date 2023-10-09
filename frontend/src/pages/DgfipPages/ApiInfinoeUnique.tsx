@@ -22,7 +22,10 @@ const ApiInfinoeUnique = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection ScopesDescription={DataAreInTermsOfUseDescription} />
-    <CadreJuridiqueSection />
+    <CadreJuridiqueSection
+      defaultFondementJuridiqueTitle="Décret n°2012-1246 du 7 novembre 2012 relatif à la gestion budgétaire et comptable publique"
+      defaultFondementJuridiqueUrl="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000026597003/"
+    />
     <ÉquipeSection />
     <HomologationSecuriteSection />
     <VolumetrieSection />
