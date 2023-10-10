@@ -102,7 +102,6 @@ export const EventItem: React.FC<Event> = ({
   const [showDiff, setShowDiff] = useState(false);
   const changelog = getChangelog(diff);
   const { getIsUserAnInstructor } = useAuth();
-  const { given_name, family_name, email } = user;
 
   const {
     enrollment: { team_members = [], target_api },
@@ -110,15 +109,15 @@ export const EventItem: React.FC<Event> = ({
 
   let eventCommentClass = 'event-comment';
 
-  if (isUserADemandeur({ team_members, user_email: email as string })) {
+  if (isUserADemandeur({ team_members, user_email: user?.email as string })) {
     eventCommentClass += ' event-comment-demandeurs';
   }
 
   const userLabel = useMemo(() => {
-    return given_name && family_name
-      ? `${given_name} ${family_name}`
-      : given_name || family_name || email || 'DataPass';
-  }, [given_name, family_name, email]);
+    return user?.given_name && user?.family_name
+      ? `${user?.given_name} ${user?.family_name}`
+      : user?.given_name || user?.family_name || user?.email || 'DataPass';
+  }, [user]);
 
   const isUserAnInstructor = getIsUserAnInstructor(target_api as string);
 
