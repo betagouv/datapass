@@ -57,7 +57,7 @@ const CopyEnrollment = () => {
   if (copiedEnrollmentId && copiedTargetApi) {
     return (
       <Navigate
-        to={`/${copiedTargetApi.replace(/_/g, '-')} /${copiedEnrollmentId}`}
+        to={`/${copiedTargetApi.replace(/_/g, '-')}/${copiedEnrollmentId}`}
         state={{ source: 'copy-authorization-request' }}
         replace
       />
