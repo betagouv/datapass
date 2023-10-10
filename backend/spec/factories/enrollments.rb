@@ -234,6 +234,8 @@ FactoryBot.define do
       fondement_juridique_title { "Arrêté du 8 novembre 2018" }
       fondement_juridique_url { "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460" }
 
+      additional_content { {has_alternative_authentication_methods: true} }
+
       scopes do
         [
           "email",
