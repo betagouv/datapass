@@ -901,6 +901,32 @@ shared:
             cnaf_allocataires: false
             cnaf_enfants: false
             cnaf_adresse: false
+      technocarte:
+        label: ILE, Tarification service enfance, Données CNAF
+        about: https://api.gouv.fr/guides/portail-famille-tarification
+        state:
+          intitule: >-
+            Récupération du Quotient Familial pour le service Enfance (Périscolaire, centre de loisirs)
+          description: "Notre commune module la facturation des services liés à l’enfance en fonction des QF. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel ILE, édité par la Société Technocarte."
+          data_recipients: >-
+            Agents instructeurs des dossiers au guichet unique, Agents instructeurs des dossiers d’inscription en accueil périscolaire et centre de loisirs
+          data_retention_period: 36
+          fondement_juridique_title: >-
+            L'article L114-8 du code des relations entre le public et l'administration fixe le cadre général des échanges de données au sein de l'administration. En tant que collectivité territoriale, la délibération ci-jointe précise l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices, et précise les données nécessaires à son fonctionnement
+          technical_team_type: software_company
+          technical_team_value: '38873581300056'
+          scopes:
+            cnaf_quotient_familial: true
+            cnaf_allocataires: true
+            cnaf_enfants: true
+            cnaf_adresse: true
+        team_members:
+          responsable_technique:
+            given_name: David
+            family_name: Chabert
+            job: Développeur
+            email: dev@technocarte.fr
+            phone_number: '0442490800'
       waigeo:
         label: >-
           MyPerischool, Tarification services municipaux / Portail Famille, Données
