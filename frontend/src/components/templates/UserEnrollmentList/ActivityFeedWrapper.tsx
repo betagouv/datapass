@@ -53,10 +53,6 @@ const ActivityFeedWrapper: React.FC<ActivityFeedWrapperProps> = ({
     [events]
   );
 
-  const email = user?.email;
-  const given_name = user?.given_name;
-  const family_name = user?.family_name;
-
   if (
     ['draft', 'changes_requested'].includes(status) &&
     ['request_changes'].includes(lastEventName)
@@ -72,12 +68,7 @@ const ActivityFeedWrapper: React.FC<ActivityFeedWrapperProps> = ({
             comment={comment}
             name={lastEventName}
             created_at={created_at}
-            user={{
-              id: user.id,
-              email,
-              given_name,
-              family_name,
-            }}
+            user={user}
             diff={diff}
           />
         </div>
