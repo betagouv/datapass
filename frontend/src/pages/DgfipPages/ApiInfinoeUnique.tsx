@@ -59,7 +59,7 @@ const ApiInfinoeUnique = () => (
     <ÉquipeSection />
     <HomologationSecuriteSection />
     <VolumetrieSection />
-    <CguSection cguLink="/docs/cgu_api_infinoe_sandbox_v1.pdf" />
+    <CguSection cguLink="/docs/cgu_infinoe_production_v_2023_10.pdf" />
   </Form>
 );
 

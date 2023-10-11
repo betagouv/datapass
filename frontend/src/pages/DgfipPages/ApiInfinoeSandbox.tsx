@@ -59,7 +59,7 @@ const ApiInfinoeSandbox = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="/docs/cgu_api_infinoe_sandbox_v1.pdf"
+      cguLink="/docs/cgu_infinoe_bac_a_sable_v_2023_10.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>
