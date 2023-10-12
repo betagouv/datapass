@@ -12,7 +12,14 @@ class Document < ActiveRecord::Base
   default_scope -> { where(archive: false) }
 
   def file_content
-    File.open(attachment.file.file, "r")
+    if attachment.class.storage == CarrierWave::Storage::AWS
+      tempfile = Tempfile.new
+      tempfile.write(attachment.read)
+      tempfile.rewind
+      tempfile
+    else
+      File.open(attachment.file.file, "r")
+    end
   end
 
   private
