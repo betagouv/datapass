@@ -3,8 +3,8 @@ name: End to end testing
 on:
   push:
     branches:
-      - "**"
-      - "!master"
+      - '**'
+      - '!master'
 
 jobs:
   quality-control:
@@ -49,7 +49,7 @@ jobs:
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: '16.x'
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -92,7 +92,7 @@ jobs:
         working-directory: frontend
 
       - name: Create and seed database
-        run: bin/rails db:create:all db:schema:load db:seed
+        run: bin/rails db:create:all db:schema:load db:fixtures:load
         working-directory: backend
 
       - name: Install Cypress

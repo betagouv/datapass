@@ -1,6 +1,10 @@
 # keep these email addresses synchronised with the corresponding addresses in moncomptepro/scripts/fixtures.sql
 user:
   email: user@yopmail.com
+  organizations:
+    - id: 211
+      siret: "83906810300010"
+
 
 alternative_demandeur:
   email: demandeuralternatif@yopmail.com

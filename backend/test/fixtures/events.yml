@@ -31,16 +31,16 @@ event_enrollment_draft_3_notify:
 
 event_enrollment_validated_create:
   <<: *DEFAULTS
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
 
 event_enrollment_validated_submit:
   <<: *DEFAULTS
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
   name: "submit"
 
 event_enrollment_validated_validate:
   <<: *DEFAULTS
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
   name: "validate"
 
 # ❌ REFUSED ENROLLMENT EVENTS

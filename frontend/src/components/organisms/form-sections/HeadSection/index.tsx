@@ -28,7 +28,9 @@ export const HeadSection = () => {
           <StatusBadge status={status} />
           {copied_from_enrollment_id && (
             <Link href={`/authorization-request/${copied_from_enrollment_id}`}>
-              <span>Copie de n°{copied_from_enrollment_id}</span>
+              <span id="original-copy-number">
+                Copie de n°{copied_from_enrollment_id}
+              </span>
             </Link>
           )}
         </div>
