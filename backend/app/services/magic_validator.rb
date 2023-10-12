@@ -4,7 +4,7 @@ class MagicValidator
   attr_reader :starting_signature, :trailing_signature
 
   def initialize(file)
-    raise "Expecting a file object as an argument" unless file.is_a?(File)
+    raise "Expecting a file object as an argument" unless [File, Tempfile].any? { |klass| file.is_a?(klass) }
 
     # Ensure there are sufficient number of bytes to determine the
     # signatures. If this check is not present, an empty text file

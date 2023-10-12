@@ -1,4 +1,4 @@
-class TeamMemberWithProfileSerializer < ActiveModel::Serializer
+class TeamMemberWithProfileSerializer < ApplicationSerializer
   attributes :id, :type, :email, :given_name, :family_name, :phone_number, :job
 
   attribute :uid do

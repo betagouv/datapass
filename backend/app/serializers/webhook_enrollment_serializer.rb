@@ -1,4 +1,4 @@
-class WebhookEnrollmentSerializer < ActiveModel::Serializer
+class WebhookEnrollmentSerializer < ApplicationSerializer
   attributes :id,
     :intitule,
     :description,

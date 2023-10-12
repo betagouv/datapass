@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     get "/insee/categories_juridiques/:id", to: "insee#categories_juridiques", id: /[0-9]{1,4}/
 
     get "/api_gouv/apis", to: "api_gouv#apis"
+
+    resources :documents, only: :show
   end
 
   devise_scope :api do
@@ -53,8 +55,6 @@ Rails.application.routes.draw do
       sessions: "devise/sessions"
     }
   end
-
-  get "/uploads/:model/:type/:mounted_as/:id/:filename", to: "documents#show", constraints: {filename: /[^\/]+/}
 
   authenticate :user, lambda { |u| u.is_administrator? } do
     mount Sidekiq::Web => "/sidekiq"

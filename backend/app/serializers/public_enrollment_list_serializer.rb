@@ -1,4 +1,4 @@
-class PublicEnrollmentListSerializer < ActiveModel::Serializer
+class PublicEnrollmentListSerializer < ApplicationSerializer
   attributes :target_api, :siret, :nom_raison_sociale, :updated_at, :intitule
 
   attribute :responsable_traitement_family_name do

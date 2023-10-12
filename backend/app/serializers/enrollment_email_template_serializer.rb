@@ -1,4 +1,4 @@
-class EnrollmentEmailTemplateSerializer < ActiveModel::Serializer
+class EnrollmentEmailTemplateSerializer < ApplicationSerializer
   attributes :event,
     :sender_email,
     :user_email,

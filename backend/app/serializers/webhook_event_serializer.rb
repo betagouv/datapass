@@ -1,4 +1,4 @@
-class WebhookEventSerializer < ActiveModel::Serializer
+class WebhookEventSerializer < ApplicationSerializer
   attributes :id,
     :name,
     :comment,

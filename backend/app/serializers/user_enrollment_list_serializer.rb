@@ -1,4 +1,4 @@
-class UserEnrollmentListSerializer < ActiveModel::Serializer
+class UserEnrollmentListSerializer < ApplicationSerializer
   attributes :id,
     :description,
     :nom_raison_sociale,

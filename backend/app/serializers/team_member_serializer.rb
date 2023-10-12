@@ -1,3 +1,3 @@
-class TeamMemberSerializer < ActiveModel::Serializer
+class TeamMemberSerializer < ApplicationSerializer
   attributes :id, :type, :email
 end

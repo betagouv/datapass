@@ -1,4 +1,4 @@
-class EnrollmentHubeeValidatedSerializer < ActiveModel::Serializer
+class EnrollmentHubeeValidatedSerializer < ApplicationSerializer
   attributes :id, :siret, :scopes, :status, :target_api, :updated_at
 
   attribute :scopes do
