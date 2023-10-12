@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
     if @document.attachment.present?
       send_file(
         @document.file_content,
-        filename: @document.attachment.file.filename,
+        filename: @document.attachment.file.filename
       )
     else
       render json: {}, status: :not_found

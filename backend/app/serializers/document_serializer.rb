@@ -11,7 +11,7 @@ class DocumentSerializer < ApplicationSerializer
 
   attribute :attachment do
     {
-      url: document_path(object),
+      url: document_path(object)
     }
   end
 end
