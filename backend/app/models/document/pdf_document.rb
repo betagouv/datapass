@@ -4,7 +4,7 @@ class Document::PdfDocument < Document
   private
 
   def content_type_validation
-    if attachment&.file && !MagicPdfValidator.new(File.new(attachment.file.file, "r")).valid?
+    if attachment&.file && !MagicPdfValidator.new(file_content).valid?
       errors.add("attachment", :invalid, message: "Format de fichier invalide. Merci de joindre uniquement des documents au format pdf.")
     end
   rescue RuntimeError

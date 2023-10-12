@@ -11,6 +11,10 @@ class Document < ActiveRecord::Base
 
   default_scope -> { where(archive: false) }
 
+  def file_content
+    File.open(attachment.file.file, "r")
+  end
+
   private
 
   def content_type_validation
