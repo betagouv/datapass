@@ -1,4 +1,4 @@
-class DocumentSerializer < ActiveModel::Serializer
+class DocumentSerializer < ApplicationSerializer
   attributes :id, :created_at, :updated_at, :attachment
 
   attribute :type do

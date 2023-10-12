@@ -1,4 +1,4 @@
-class EnrollmentSerializer < ActiveModel::Serializer
+class EnrollmentSerializer < ApplicationSerializer
   attributes :updated_at, :created_at, :id, :target_api, :previous_enrollment_id, :copied_from_enrollment_id,
     :cgu_approved, :scopes, :team_members, :organization_id, :siret, :nom_raison_sociale, :status, :linked_token_manager_id,
     :additional_content, :intitule, :description, :fondement_juridique_title, :fondement_juridique_url,

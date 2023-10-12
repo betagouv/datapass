@@ -1,4 +1,4 @@
-class LightEnrollmentSerializer < ActiveModel::Serializer
+class LightEnrollmentSerializer < ApplicationSerializer
   attributes :id, :updated_at, :nom_raison_sociale, :intitule, :target_api, :status, :demandeurs, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :consulted_by_instructor, :requested_changes_have_been_done
 
   attribute :acl do
