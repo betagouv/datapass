@@ -58,7 +58,7 @@ const ApiInfinoeUnique = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection />
+    <VolumetrieSection options={[200, 500, 1000]} />
     <CguSection cguLink="/docs/cgu_infinoe_production_v_2023_10.pdf" />
   </Form>
 );
