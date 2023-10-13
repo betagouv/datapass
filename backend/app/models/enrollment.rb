@@ -41,6 +41,9 @@ class Enrollment < ApplicationRecord
     allow_nil: true
   }
 
+  has_many :opinions, dependent: :destroy
+  has_one :active_opinion, -> { where(status: "active") }, class_name: "Opinion"
+
   state_machine :status, initial: :draft, namespace: "status" do
     state :draft
     state :submitted

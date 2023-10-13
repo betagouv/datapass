@@ -72,6 +72,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "opinions", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "enrollment_id", null: false
+    t.boolean "open", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "siret", null: false
     t.jsonb "mon_compte_pro_payload", default: {}
@@ -136,6 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
   add_foreign_key "enrollments", "enrollments", column: "previous_enrollment_id"
   add_foreign_key "events", "enrollments"
   add_foreign_key "events", "users"
+  add_foreign_key "opinions", "enrollments"
   add_foreign_key "team_members", "enrollments"
   add_foreign_key "team_members", "users"
 end
