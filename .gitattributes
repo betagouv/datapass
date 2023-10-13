@@ -1,0 +1,2 @@
+backend/config/credentials/*.yml.enc diff=rails_credentials
+backend/config/credentials.yml.enc diff=rails_credentials

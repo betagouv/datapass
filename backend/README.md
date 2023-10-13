@@ -49,6 +49,55 @@ suivante:
 bundle exec brakeman -Iconfig/brakeman.ignore
 ```
 
+## Gestion des credentials
+
+Il existe un service `Credentials` permettant de récupérer des infos sensibles
+basé sur 2 systèmes:
+
+1. Les [Rails credentials](https://edgeguides.rubyonrails.org/security.html#custom-credentials)
+   pour la production (sandbox, staging et production)
+2. Un fichier [`config/local.yml`](./config/local.yml) pour le développement
+   local, avec des fausses données avec les mêmes clés.
+
+Le fichier de credentials est architecturé de la manière suivante:
+
+```yaml
+sandbox:
+  key1: value1
+  key2: value2
+staging:
+  key1: value1
+  key2: value2
+production:
+  key1: value1
+  key2: value2
+```
+
+Le fichier local lui est architecturé de la manière suivante:
+
+```yaml
+key1: value1
+key2: value2
+```
+
+Les clés sont iso.
+
+Le fichier de credentials possède 3 clés correspondant à des
+sous-environnements, sous-environnements correspondant aux 3 apps
+sur les serveurs. Étant donné que l'environnement rails est `production` pour
+les 3, la disjonction se fait à l'aide de cette clé.
+
+Pour éditer ce fichier, il faut récupérer la master key dans le dépôt
+[very\_ansible](https://github.com/etalab/very_ansible). Il n'est pas nécessaire
+d'avoir cette master key pour faire des itérations fonctionnelles, uniquement
+pour ajouter/changer des valeurs.
+
+La commande à lancer:
+
+```sh
+rails credentials:edit --environment production
+```
+
 ## Documentation
 
 - [Implémentation des webhooks](./docs/webhooks.md)
