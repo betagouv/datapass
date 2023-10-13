@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   EVENT_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder reminder_before_archive].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 

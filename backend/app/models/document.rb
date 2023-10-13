@@ -1,4 +1,4 @@
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
   mount_uploader :attachment, DocumentUploader
 
   belongs_to :attachable, polymorphic: true, optional: true

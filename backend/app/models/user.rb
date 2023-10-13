@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:api_gouv]
   has_paper_trail on: [:update], only: [:roles]
 
