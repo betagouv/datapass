@@ -34,10 +34,11 @@ class HubeePortailBridge < ApplicationBridge
     code_commune = response[:code_commune]
     libelle_commune = response[:libelle_commune]
 
-    api_host = ENV.fetch("HUBEE_HOST")
-    hubee_auth_url = ENV.fetch("HUBEE_AUTH_URL")
-    client_id = ENV.fetch("HUBEE_CLIENT_ID")
-    client_secret = ENV.fetch("HUBEE_CLIENT_SECRET")
+    hubee_configuration = Credentials.get(:hubee)
+    api_host = hubee_configuration[:host]
+    hubee_auth_url = hubee_configuration[:auth_url]
+    client_id = hubee_configuration[:client_id]
+    client_secret = hubee_configuration[:client_secret]
 
     # 1. get token
     token_response = Http.instance.post({
