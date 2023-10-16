@@ -254,7 +254,7 @@ class Enrollment < ActiveRecord::Base
     )
     documents.each do |document|
       copied_document = document.dup
-      copied_document.attachment = File.open(document.attachment.file.file)
+      copied_document.attachment = File.open(document.file_content)
       copied_enrollment.documents << copied_document
     end
 
