@@ -7,8 +7,9 @@ class Event < ApplicationRecord
   belongs_to :user, optional: true
   validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive].exclude?(event.name) }
 
+  validates :name, presence: true, inclusion: {in: VALID_NAMES}
+
   validate :validate_comment
-  validate :validate_name
 
   before_create :mark_as_notify_from_demandeur
 
@@ -21,15 +22,6 @@ class Event < ApplicationRecord
   def validate_comment
     if (name.in?(EVENTS_WITH_COMMENT_AS_EMAIL_BODY) || name == "notify") && !comment.present?
       errors.add(:comment, :invalid, message: "Vous devez renseigner un commentaire")
-    end
-  end
-
-  # We rather use this validation to control the number of events rather than an enum type because it raises:
-  # ArgumentError:
-  #   You tried to define an enum named "name" on the model "Event", but this will generate a class method "create", which is already defined by Active Record.
-  def validate_name
-    unless name.in?(VALID_NAMES)
-      errors.add(:name, :invalid, message: "Une erreur inattendue est survenue: nom d’évènement inconnu")
     end
   end
 
