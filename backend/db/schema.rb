@@ -81,6 +81,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
     t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 
+  create_table "opinion_comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "opinion_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opinion_id"], name: "index_opinion_comments_on_opinion_id"
+    t.index ["user_id", "opinion_id"], name: "index_opinion_comments_on_user_id_and_opinion_id", unique: true
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "siret", null: false
     t.jsonb "mon_compte_pro_payload", default: {}
@@ -145,6 +155,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
   add_foreign_key "enrollments", "enrollments", column: "previous_enrollment_id"
   add_foreign_key "events", "enrollments"
   add_foreign_key "events", "users"
+  add_foreign_key "opinion_comments", "opinions"
+  add_foreign_key "opinion_comments", "users"
   add_foreign_key "opinions", "enrollments"
   add_foreign_key "team_members", "enrollments"
   add_foreign_key "team_members", "users"
