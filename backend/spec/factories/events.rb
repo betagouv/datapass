@@ -63,9 +63,5 @@ FactoryBot.define do
     trait :archive do
       name { "archive" }
     end
-
-    trait :delete do
-      name { "delete" }
-    end
   end
 end

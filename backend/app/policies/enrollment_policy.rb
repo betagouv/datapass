@@ -23,10 +23,6 @@ class EnrollmentPolicy < ApplicationPolicy
       user.is_demandeur?(record)
   end
 
-  def destroy?
-    false
-  end
-
   def notify?
     record.can_notify_status? &&
       (user.is_instructor?(record.target_api) ||

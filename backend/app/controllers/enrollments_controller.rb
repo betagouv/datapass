@@ -220,15 +220,6 @@ class EnrollmentsController < ApplicationController
     render json: @enrollment
   end
 
-  def destroy
-    @enrollment = authorize Enrollment.find(params[:id])
-    @enrollment.events.create(name: "delete", user_id: current_user.id)
-    @enrollment.notify_event("delete")
-    @enrollment.destroy
-
-    render status: :ok
-  end
-
   private
 
   def pundit_params_for(_record)
