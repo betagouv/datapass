@@ -13,7 +13,6 @@ RSpec.describe Event, type: :model do
       reminder
       reminder_before_archive
       archive
-      delete
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -122,7 +121,6 @@ RSpec.describe Event, type: :model do
         reminder
         reminder_before_archive
         archive
-        delete
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }
@@ -157,7 +155,6 @@ RSpec.describe Event, type: :model do
         refuse
         revoke
         request_changes
-        delete
       ].each do |name|
         context "when name '#{name}'" do
           let(:name) { name }
