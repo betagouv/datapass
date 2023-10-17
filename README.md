@@ -127,6 +127,20 @@ Pour ce faire merci de prendre connaissance de la suite du document (en anglais)
 Check [frontend/README.md] and [backend/README.md] if you need to run only one
 of them
 
+### Run cypress
+
+Install cypress if not installed:
+
+```sh
+npm install -g cypress
+```
+
+Then:
+
+```sh
+cypress open
+```
+
 ### DataPass back & front with Docker
 
 This installation method use a backend launched locally with docker. This method
