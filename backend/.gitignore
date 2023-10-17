@@ -36,3 +36,8 @@ rspec_results.html
 
 .env.local
 .env.test.local
+
+/config/master.key
+/config/credentials/sandbox.key
+/config/credentials/staging.key
+/config/credentials/production.key

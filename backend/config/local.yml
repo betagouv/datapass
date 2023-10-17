@@ -1,0 +1,5 @@
+hubee:
+  host: 'https://api.hubee.fr'
+  auth_url: 'https://auth.api.hubee.fr'
+  client_id: 'hubee_client_id'
+  client_secret: 'hubee_client_secret'
