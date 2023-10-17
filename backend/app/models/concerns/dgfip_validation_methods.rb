@@ -16,8 +16,19 @@ module DgfipValidationMethods
   def api_impot_particulier_scope_validation
     return if no_need_to_select_scopes?
 
+    incompatible_scopes = %w[
+      dgfip_indiIFI dgfip_RevDecl_Cat1_Tspr dgfip_RevDecl_Cat5_NonSal
+      dgfip_RevNets_Cat1_Tspr dgfip_RevNets_Cat1_RentOn dgfip_RevNets_Cat2_Rcm
+      dgfip_RevNets_Cat3_PMV dgfip_RevNets_Cat4_Ref dgfip_RevNets_Cat5_NonSal
+      dgfip_PaDeduc_EnfMaj dgfip_PaDeduc_Autres dgfip_EpargRetrDeduc dgfip_IndLep
+    ]
+
     if (scopes & %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3 dgfip_annee_n_moins_2_si_indispo_n_moins_1]).empty?
       errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une année de revenus souhaitée avant de continuer")
+    end
+
+    if (scopes & %w[dgfip_annee_n_moins_2_si_indispo_n_moins_1 dgfip_annee_df_au_3112_si_deces_ctb_mp]).present? && (scopes & incompatible_scopes).present?
+      errors.add(:scopes, :invalid, message: "Des données incompatibles entre elles ont été cochées. Pour connaître les modalités d’appel et de réponse de l’API Impôt particulier ainsi que les données proposées, vous pouvez consulter le guide de présentation de cet API dans la rubrique « Les données nécessaires > Comment choisir les données »")
     end
   end
 
