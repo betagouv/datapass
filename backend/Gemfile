@@ -44,7 +44,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "simplecov"
   gem "standard"
-  gem "vcr", "~> 6.1"
+  gem "vcr", "~> 6.2"
   gem "webmock"
 end
 
