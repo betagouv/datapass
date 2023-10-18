@@ -103,6 +103,10 @@ Vous pouvez également utiliser les comptes de tests suivants :
 Ce dépôt de code vous permet d’instancier un environnement de développement local pour DataPass.
 Pour ce faire merci de prendre connaissance de la suite du document (en anglais).
 
+## Ajouter une nouvelle source de données
+
+Se référer à [Ajout d'un nouveau fournisseur](./backend/docs/new_enrollment.md)
+
 ## Development
 
 ### Requirements

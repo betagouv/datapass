@@ -1,4 +1,6 @@
 class Enrollment::HubeePortail < Enrollment
+  include EnrollmentValidators::ValidateAtLeastOneScopePresence
+
   protected
 
   def hubee_certdc_status_validated
@@ -25,9 +27,9 @@ class Enrollment::HubeePortail < Enrollment
     errors.add(:dpo_is_informed, :invalid, message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer") unless dpo_is_informed?
     team_members_validation("responsable_metier", "administrateur métier")
     no_hubee_certdc_validation
+  end
 
-    if scopes.empty?
-      errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une démarche en ligne avant de continuer")
-    end
+  def no_scopes_present_error_message
+    "Vous devez cocher au moins un périmètre de données avant de continuer"
   end
 end

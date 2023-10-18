@@ -523,13 +523,6 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
-  def scopes_validation
-    if scopes.empty?
-      errors.add(:scopes, :invalid,
-        message: "Vous devez cocher au moins un périmètre de données avant de continuer")
-    end
-  end
-
   def previous_enrollment_id_validation
     unless previous_enrollment_id.present?
       errors.add(:previous_enrollment_id, :invalid,
