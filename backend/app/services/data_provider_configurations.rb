@@ -23,6 +23,16 @@ class DataProviderConfigurations
   private
 
   def config
-    @config ||= Rails.application.config_for("data_providers").to_h.deep_stringify_keys
+    @config ||= YAML.load(config_raw, aliases: true)
+  end
+
+  def config_raw
+    data_providers_files.inject("") do |final_payload, file|
+      final_payload << File.read(file)
+    end
+  end
+
+  def data_providers_files
+    Dir["#{Rails.root}/config/data_providers/*.yml"].sort
   end
 end
