@@ -1259,7 +1259,7 @@ shared:
     label: API Satelit (Production)
     mailer: *shared_mailer
 
-  mon_compte_pro:
+  moncomptepro:
     label: MonComptePro
     mailer: *shared_mailer
     reply_to: contact@moncomptepro.beta.gouv.fr

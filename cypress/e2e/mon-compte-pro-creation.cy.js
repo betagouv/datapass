@@ -8,7 +8,7 @@ describe('DataPass', () => {
   // to stay logged in and run several 'it block' without being logged out.
 
   it('lets the user fill a MonComptePro form', () => {
-    cy.visit('http://localhost:3000/mon_compte_pro');
+    cy.visit('http://localhost:3000/moncomptepro');
 
     cy.fillField('intitule', 'Test de soumission de formulaire');
     cy.fillField(

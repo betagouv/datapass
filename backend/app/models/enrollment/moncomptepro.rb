@@ -1,3 +1,3 @@
-class Enrollment::MonComptePro < Enrollment
+class Enrollment::Moncomptepro < Enrollment
   include EnrollmentValidators::ValidateAtLeastOneScopePresence
 end
