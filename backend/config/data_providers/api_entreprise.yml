@@ -1,0 +1,20 @@
+api_entreprise:
+  label: API Entreprise
+  api_manager_label: dashboard API Entreprise
+  reply_to: support@entreprise.api.gouv.fr
+  mailer:
+    <<: *shared_mailer
+    create:
+      subject: '💾 Le brouillon de votre demande d’habilitation a bien été enregistré'
+    submit:
+      subject: '📬 Votre demande d’habilitation a bien été reçue par API Entreprise'
+    request_changes:
+      subject: '✒️ Votre demande d’habilitation requiert des modifications'
+    validate:
+      subject: "✅ Votre habilitation à l'API Entreprise a été validée"
+    refuse:
+      subject: '🚫 Votre habilitation à l’API Entreprise a été refusée'
+    revoke:
+      subject: '🚫 Votre habilitation à l’API Entreprise a été révoquée'
+
+
