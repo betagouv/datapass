@@ -55,9 +55,7 @@ export const eventConfigurations: {
     },
     prompt: PromptType.notify,
     request: RequestType.change_state,
-    redirectToHome: true,
-    successMessage:
-      'Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.',
+    successMessage: 'Votre message a été envoyé.',
   },
   [EnrollmentEvent.destroy]: {
     displayProps: {
