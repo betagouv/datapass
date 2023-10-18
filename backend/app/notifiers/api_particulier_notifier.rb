@@ -6,13 +6,4 @@ class ApiParticulierNotifier < BaseNotifier
 
     deliver_event_webhook(__method__)
   end
-
-  private
-
-  def webhook_payload_for(event)
-    WebhookSerializer.new(
-      @enrollment,
-      event.to_s
-    ).serializable_hash
-  end
 end

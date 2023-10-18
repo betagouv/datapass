@@ -4,9 +4,11 @@ require "openssl"
 class DeliverEnrollmentWebhookWorker < ApplicationWorker
   sidekiq_options queue: "webhooks"
 
-  def perform(target_api, payload, enrollment_id, tries_count = 0)
+  def perform(target_api, json, enrollment_id, tries_count = 0)
     return if webhook_url(target_api).blank?
     return if verify_token(target_api).blank?
+
+    payload = JSON.parse(json)
 
     response = request(target_api, payload)
 
