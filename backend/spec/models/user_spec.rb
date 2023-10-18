@@ -78,7 +78,10 @@ RSpec.describe User, type: :model do
           "given_name" => "Jean",
           "phone_number" => "0636656565",
           "job" => "Administrator",
-          "organizations" => %w[DINUM]
+          "organizations" => [
+            build(:organization_hash_from_mon_compte_pro, :dinum),
+            build(:organization_hash_from_mon_compte_pro, :clamart)
+          ]
         }
       end
 
@@ -90,6 +93,12 @@ RSpec.describe User, type: :model do
         external_user_info.except("sub").each do |key, value|
           expect(user.public_send(key)).to eq(value), "##{key} is not valid"
         end
+      end
+
+      it "calls RetrieveOrganizationFromMonCompteProPayload for each organization payload" do
+        expect(RetrieveOrganizationFromMonCompteProPayload).to receive(:call).twice
+
+        reconcile
       end
     end
   end

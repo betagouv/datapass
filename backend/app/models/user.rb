@@ -36,6 +36,12 @@ class User < ApplicationRecord
     )
     user.save
 
+    (external_user_info["organizations"] || []).each do |organization_payload|
+      RetrieveOrganizationFromMonCompteProPayload.call(
+        mon_compte_pro_organization_payload: organization_payload
+      )
+    end
+
     user
   end
 
