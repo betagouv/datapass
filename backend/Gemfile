@@ -33,6 +33,7 @@ gem "state_machines-activerecord"
 group :test do
   gem "db-query-matchers"
   gem "timecop"
+  gem "faker"
 end
 
 group :development, :test do
