@@ -1,0 +1,30 @@
+moncomptepro:
+  label: MonComptePro
+  mailer: *shared_mailer
+  reply_to: contact@moncomptepro.beta.gouv.fr
+  configure_from_backend: true
+  icon: logo_moncomptepro_label.svg
+  email: contact@moncomptepro.beta.gouv.fr
+  type: api
+  cguLink: https://docs.google.com/document/d/e/2PACX-1vQpVwT6Fk7YrYmcoXtM6r3dvZMLg1A8hmnw7jLwHdzCK-fiJFI2JbabRK13APXoTxLwzx2ymndyqXTA/pub
+  cadreJuridiqueDescription: >-
+    Conformément aux dispositions de l'article L114-8 du code des relations entre le public et l'administration, seules les administrations sont habilitées à échanger entre elles des informations ou données strictement nécessaires pour traiter une démarche.
+  defaultFondementJuridiqueTitle: L'article L114-8 du code des relations entre le public et l'administration
+  defaultFondementJuridiqueUrl: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000031366350&idArticle=LEGIARTI000031367412&dateTexte=&categorieLien=cid
+  scopesConfiguration:
+    - value: openid
+      label: OpenID
+      required: true
+    - value: email
+      label: Email
+    - value: profile
+      label: Information de profil
+      helper: Nom, prénom, fonction, dernière date de dernière mise à jour
+    - value: organization
+      label: Organisation de rattachement
+      helper: Label, numéro SIRET, tag collectivité, tag administration, tag externe
+    - value: phone
+      label: Numéro de téléphone
+      helper: Cette information n'est pas fournie systématiquement
+      triggerWarning: true
+

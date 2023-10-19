@@ -1,0 +1,254 @@
+franceconnect:
+  label: FranceConnect
+  mailer: *shared_mailer
+  reply_to: support.partenaires@franceconnect.gouv.fr
+
+api_impot_particulier_sandbox:
+  label: API Impôt particulier (Bac à sable)
+  mailer: *shared_mailer
+
+api_impot_particulier_production:
+  label: API Impôt particulier (Production)
+  mailer: *shared_mailer
+
+api_impot_particulier_unique:
+  label: API Impôt particulier (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_sandbox:
+  label: API Impôt particulier (FC) (Bac à sable)
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_production:
+  label: API Impôt particulier (FC) (Production)
+  mailer: *shared_mailer
+
+api_impot_particulier_fc_unique:
+  label: API Impôt particulier (FC) (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_sfip_sandbox:
+  label: API Courtier fonctionnel SFiP (Bac à sable)
+  mailer: *shared_mailer
+
+api_sfip_production:
+  label: API Courtier fonctionnel SFiP (Production)
+  mailer: *shared_mailer
+
+api_sfip_unique:
+  label: API Courtier fonctionnel SFiP (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_r2p_sandbox:
+  label: API R2P (Bac à sable)
+  mailer: *shared_mailer
+
+api_r2p_production:
+  label: API R2P (Production)
+  mailer: *shared_mailer
+
+api_r2p_unique:
+  label: API R2P (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_ficoba_sandbox:
+  label: API FICOBA (Bac à sable)
+  mailer: *shared_mailer
+
+api_ficoba_production:
+  label: API FICOBA (Production)
+  mailer: *shared_mailer
+
+api_ficoba_unique:
+  label: API FICOBA (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_droits_cnam:
+  label: API Droits CNAM
+  mailer: *shared_mailer
+
+le_taxi:
+  label: API le.Taxi
+  mailer: *shared_mailer
+
+cartobio:
+  label: CartoBio - Territoires
+  mailer: *shared_mailer
+
+aidants_connect:
+  label: Aidants Connect
+  mailer: *shared_mailer
+
+api_service_national:
+  label: API Service National
+  mailer: *shared_mailer
+
+api_hermes_sandbox:
+  label: API Hermes (Bac à sable)
+  mailer: *shared_mailer
+
+api_hermes_production:
+  label: API Hermes (Production)
+  mailer: *shared_mailer
+
+hubee_portail:
+  label: Portail HubEE - Démarche CertDC
+  mailer: *shared_mailer
+  reply_to: dgs-certdc@sante.gouv.fr
+
+hubee_portail_dila:
+  label: Portail HubEE - Démarches DILA
+  mailer: *shared_mailer
+  reply_to: support.partenaires@service-public.fr
+
+api_pro_sante_connect:
+  label: API Pro Santé Connect
+  mailer: *shared_mailer
+
+api_indemnites_journalieres_cnam:
+  label: API Indemnités Journalières (CNAM)
+  mailer: *shared_mailer
+
+api_e_contacts_sandbox:
+  label: API E-Contacts (Bac à sable)
+  mailer: *shared_mailer
+
+api_e_contacts_production:
+  label: API E-Contacts (Production)
+  mailer: *shared_mailer
+
+api_opale_sandbox:
+  label: API OPALE (Bac à sable)
+  mailer: *shared_mailer
+
+api_opale_production:
+  label: API OPALE (Production)
+  mailer: *shared_mailer
+
+api_mire_sandbox:
+  label: API MIRE (Bac à sable)
+  mailer: *shared_mailer
+
+api_mire_production:
+  label: API MIRE (Production)
+  mailer: *shared_mailer
+
+api_ocfi_sandbox:
+  label: API OCFI (Bac à sable)
+  mailer: *shared_mailer
+
+api_ocfi_production:
+  label: API OCFI (Production)
+  mailer: *shared_mailer
+
+api_e_pro_sandbox:
+  label: API E-PRO (Bac à sable)
+  mailer: *shared_mailer
+
+api_e_pro_production:
+  label: API E-PRO (Production)
+  mailer: *shared_mailer
+
+api_robf_sandbox:
+  label: API ROBF (Bac à sable)
+  mailer: *shared_mailer
+
+api_robf_production:
+  label: API ROBF (Production)
+  mailer: *shared_mailer
+
+api_cpr_pro_sandbox:
+  label: API CPR PRO - ADELIE (Bac à sable)
+  mailer: *shared_mailer
+
+api_cpr_pro_production:
+  label: API CPR PRO - ADELIE (Production)
+  mailer: *shared_mailer
+
+api_infinoe_sandbox:
+  label: API INFINOE (Bac à sable)
+  mailer: *shared_mailer
+
+api_infinoe_production:
+  label: API INFINOE (Production)
+  mailer: *shared_mailer
+
+api_infinoe_unique:
+  label: API INFINOE (Formulaire Unique)
+  mailer: *shared_mailer
+
+api_declaration_auto_entrepreneur:
+  label: API Tierce Déclaration auto-entrepreneur
+  mailer: *shared_mailer
+
+api_tiers_de_prestation:
+  label: API Tiers de prestation
+  mailer: *shared_mailer
+
+api_declaration_cesu:
+  label: API Tierce Déclaration CESU
+  mailer: *shared_mailer
+
+api_ensu_documents_sandbox:
+  label: API ENSU Documents (Bac à sable)
+  mailer: *shared_mailer
+
+api_ensu_documents_production:
+  label: API ENSU Documents (Production)
+  mailer: *shared_mailer
+
+api_histovec:
+  label: API Historique d’un véhicule
+  mailer: *shared_mailer
+
+api_ingres:
+  label: API INGRES
+  mailer: *shared_mailer
+
+api_prestations_sociales:
+  label: API prestations sociales
+  mailer: *shared_mailer
+
+api_prestations_sociales_fc:
+  label: API prestations sociales (FC)
+  mailer: *shared_mailer
+
+api_statut_etudiant:
+  label: API Statut étudiant
+  mailer: *shared_mailer
+
+api_statut_demandeur_emploi:
+  label: API statut demandeur d’emploi
+  mailer: *shared_mailer
+
+api_captchetat:
+  label: API CaptchEtat
+  mailer: *shared_mailer
+
+api_statut_etudiant_boursier:
+  label: API Statut étudiant boursier
+  mailer: *shared_mailer
+
+api_scolarite:
+  label: API Scolarité
+  mailer: *shared_mailer
+
+api_indemnisation_pole_emploi:
+  label: API Indemnisation Pôle emploi
+  mailer: *shared_mailer
+
+agent_connect_fi:
+  label: AgentConnect - fournisseur d’identité
+  mailer: *shared_mailer
+
+agent_connect_fs:
+  label: AgentConnect - fournisseur de service
+  mailer: *shared_mailer
+
+api_satelit_sandbox:
+  label: API Satelit (Bac à sable)
+  mailer: *shared_mailer
+
+api_satelit_production:
+  label: API Satelit (Production)
+  mailer: *shared_mailer

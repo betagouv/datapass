@@ -1,17 +1,13 @@
 RSpec.describe "Providers config", type: :acceptance do
-  let(:config_file) do
-    Rails.root.join("config/data_providers.yml")
-  end
-
   it "is a valid YAML file" do
     expect {
-      YAML.load_file(config_file, aliases: true)
+      DataProviderConfigurations.instance.send(:config)
     }.not_to raise_error
   end
 
   it "has valid fields" do
-    YAML.load_file(config_file, aliases: true)["shared"].each do |provider, config|
-      next if provider == "shared"
+    DataProviderConfigurations.instance.send(:config).each do |provider, config|
+      next if provider == "00_shared"
 
       %w[
         label
@@ -41,9 +37,8 @@ RSpec.describe "Providers config", type: :acceptance do
   end
 
   it "scopes affectation to groups should be a bijection" do
-    # ie. all scopes in groups has only one corresponding scope in scopes
-    YAML.load_file(config_file, aliases: true)["shared"].each do |provider, config|
-      next if provider == "shared"
+    DataProviderConfigurations.instance.send(:config).each do |provider, config|
+      next if provider == "00_shared"
 
       if config["scopes"]
         scopes_defined_in_scopes = config["scopes"].map { |s| s["value"] }

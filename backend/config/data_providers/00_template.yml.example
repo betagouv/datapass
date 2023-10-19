@@ -1,0 +1,4 @@
+your_api_path:
+  label: Your API Name
+  mailer: *shared_mailer
+

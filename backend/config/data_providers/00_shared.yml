@@ -1,0 +1,19 @@
+---
+00_shared:
+  mailer: &shared_mailer
+    submit: &shared_submit_mailer
+      subject: 'Nous avons bien reçu votre demande d’habilitation'
+    validate: &shared_validate_mailer
+      subject: 'Votre habilitation a été validée'
+    request_changes: &shared_request_changes_mailer
+      subject: 'Votre demande d’habilitation requiert des modifications'
+    refuse: &shared_refuse_mailer
+      subject: 'Votre habilitation a été refusée'
+    revoke: &shared_revoke_mailer
+      subject: 'Votre habilitation a été révoquée'
+    create: &shared_create_mailer
+      subject: 'Votre demande d’habilitation a été enregistrée'
+    notify: &shared_notify_mailer
+      subject: 'Vous avez un nouveau message concernant votre demande d’habilitation'
+
+
