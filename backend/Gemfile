@@ -26,7 +26,7 @@ gem "rails-i18n"
 gem "sentry-ruby"
 gem "sentry-rails"
 gem "sib-api-v3-sdk"
-gem "sidekiq", "~> 6.5"
+gem "sidekiq", "~> 7.1"
 gem "sidekiq-scheduler", "~> 5.0"
 gem "state_machines-activerecord"
 

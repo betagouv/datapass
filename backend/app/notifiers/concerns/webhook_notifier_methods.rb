@@ -15,6 +15,6 @@ module WebhookNotifierMethods
     WebhookSerializer.new(
       @enrollment,
       event.to_s
-    ).serializable_hash
+    ).to_json
   end
 end

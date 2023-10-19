@@ -20,7 +20,7 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
           WebhookSerializer.new(
             enrollment,
             event
-          ).serializable_hash,
+          ).to_json,
           enrollment.id
         )
 

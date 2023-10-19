@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
-  subject { described_class.perform_async(target_api, payload, enrollment.id) }
+  subject { described_class.perform_async(target_api, payload.to_json, enrollment.id) }
 
   let(:target_api) { "api_entreprise" }
   let(:payload) do
@@ -83,7 +83,7 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
     end
 
     describe "target's api webhook url status" do
-      subject { described_class.perform_async(target_api, payload, enrollment.id, tries_count) }
+      subject { described_class.perform_async(target_api, payload.to_json, enrollment.id, tries_count) }
 
       before do
         allow(described_class).to receive(:perform_in)
