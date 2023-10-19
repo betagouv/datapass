@@ -165,6 +165,14 @@ api_cpr_pro_production:
   label: API CPR PRO - ADELIE (Production)
   mailer: *shared_mailer
 
+api_imprimfip_sandbox:
+  label: API IMPRIM’FIP (Bac à sable)
+  mailer: *shared_mailer
+
+api_imprimfip_production:
+  label: API IMPRIM’FIP (Production)
+  mailer: *shared_mailer
+
 api_infinoe_sandbox:
   label: API INFINOE (Bac à sable)
   mailer: *shared_mailer

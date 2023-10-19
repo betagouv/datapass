@@ -37,6 +37,8 @@ import ApiImpotParticulierFcUnique from '../pages/DgfipPages/ApiImpotParticulier
 import ApiImpotParticulierProduction from '../pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiImpotParticulierSandbox from '../pages/DgfipPages/ApiImpotParticulierSandbox';
 import ApiImpotParticulierUnique from '../pages/DgfipPages/ApiImpotParticulierUnique';
+import ApiImprimfipProduction from '../pages/DgfipPages/ApiImprimfipProduction';
+import ApiImprimfipSandbox from '../pages/DgfipPages/ApiImprimfipSandbox';
 import ApiInfinoeProduction from '../pages/DgfipPages/ApiInfinoeProduction';
 import ApiInfinoeSandbox from '../pages/DgfipPages/ApiInfinoeSandbox';
 import ApiMireProduction from '../pages/DgfipPages/ApiMireProduction';
@@ -136,6 +138,8 @@ export const TargetAPI = {
   api_robf_production: 'api_robf_production',
   api_cpr_pro_sandbox: 'api_cpr_pro_sandbox',
   api_cpr_pro_production: 'api_cpr_pro_production',
+  api_imprimfip_sandbox: 'api_imprimfip_sandbox',
+  api_imprimfip_production: 'api_imprimfip_production',
   api_infinoe_sandbox: 'api_infinoe_sandbox',
   api_infinoe_production: 'api_infinoe_production',
   api_infinoe_unique: 'api_infinoe_unique',
@@ -388,6 +392,20 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
     type: DataProviderType.api,
     component: ApiCprProProduction,
+  },
+  [TargetAPI.api_imprimfip_sandbox]: {
+    label: 'API IMPRIM’FIP (Bac à sable)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiImprimfipSandbox,
+  },
+  [TargetAPI.api_imprimfip_production]: {
+    label: 'API IMPRIM’FIP (Production)',
+    icon: 'logo-dgfip-with-label.png',
+    email: 'dtnum.donnees.demande-acces@dgfip.finances.gouv.fr',
+    type: DataProviderType.api,
+    component: ApiImprimfipProduction,
   },
   [TargetAPI.api_infinoe_sandbox]: {
     label: 'API INFINOE (Bac à sable)',
@@ -678,6 +696,8 @@ export const APISDGFIP = [
   'api_robf_production',
   'api_cpr_pro_sandbox',
   'api_cpr_pro_production',
+  'api_imprimfip_sandbox',
+  'api_imprimfip_production',
   'api_infinoe_sandbox',
   'api_infinoe_production',
   'api_infinoe_unique',
