@@ -1,10 +1,7 @@
 import axios from 'axios';
-import httpAdapter from 'axios/lib/adapters/http';
 import { resetAuthContext } from '../components/organisms/AuthContext';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
-
-axios.defaults.adapter = httpAdapter;
 
 axios.interceptors.request.use((config) => {
   if (config.url) {
