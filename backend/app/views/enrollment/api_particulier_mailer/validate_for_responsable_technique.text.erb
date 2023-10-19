@@ -1,0 +1,8 @@
+Bonjour <%= "#{@responsable_technique.given_name} #{@responsable_technique.family_name}" %>,
+
+Vous avez été désigné comme responsable technique pour l'habilitation n°<%= @enrollment.id %> " <%= @enrollment.intitule %> ".
+Celle-ci vient d'être validée par le service juridique d'API Particulier.
+
+Le jeton d’accès a été créé 🔑 et est disponible dans le portail API Particulier à l’adresse suivante https://particulier.api.gouv.fr/compte
+
+Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @enrollment_show_url %>
