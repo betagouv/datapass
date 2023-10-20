@@ -5,6 +5,7 @@ export enum ScopeWarningModalType {
   fc_incomplete = 'fc_incomplete',
   apientreprise_sensitive = 'apientreprise_sensitive',
   apientreprise_sensitive_effectifs = 'apientreprise_sensitive_effectifs',
+  apientreprise_sensitive_effectifs = 'apientreprise_sensitive_mandataires',
 }
 
 export type ScopeWarningModalConfiguration = {
@@ -55,6 +56,15 @@ export const ScopeWarningModalConfigurations: {
       'Une donnée moins précise est disponible avec les API "Données de référence d’une entité - INSEE & Infogreffe" ' +
       'et "Données de référence d’un établissement - INSEE & Infogreffe" (premières API cochables dans la liste). ' +
       'Il s’agit des tranches d’effectifs au sens de l’INSEE . Si vous n’avez pas besoin de l’effectif exact, ces API sont suffisantes.',
+  },
+  apientreprise_sensitive_mandataires: {
+    title: 'Avez-vous vraiment besoin de cette API ?',
+    body:
+      'Cette API permet d’accéder à des données protégées, telles que le lieu de naissance, le jour de naissance et la nationalité du mandataire social' +
+      'Pour que votre demande d’accès à cette donnée aboutisse, ' +
+      'vous devez justifier dans ce formulaire d’un cadre légal adéquat et d’un contexte d’usage attestant de l’utilité de cette donnée pour votre service. ' +
+      'Une donnée moins précise est disponible avec l’API "Extrait RCS - Infogreffe" ' +
+      'Elle vous permet d’accéder aux nom, prénoms, mois et année de naissance et fonction des mandataires.',
   },
 };
 
