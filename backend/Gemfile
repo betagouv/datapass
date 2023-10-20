@@ -13,6 +13,7 @@ gem "carrierwave-aws"
 gem "devise"
 gem "dotenv-rails"
 gem "http"
+gem "interactor"
 gem "kaminari"
 gem "omniauth-oauth2"
 gem "paper_trail"
@@ -33,6 +34,7 @@ gem "state_machines-activerecord"
 group :test do
   gem "db-query-matchers"
   gem "timecop"
+  gem "faker"
 end
 
 group :development, :test do

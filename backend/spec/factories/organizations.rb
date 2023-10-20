@@ -1,23 +1,13 @@
 FactoryBot.define do
-  factory :organization, class: Hash do
-    initialize_with { attributes.stringify_keys }
+  factory :organization do
+    siret { Faker::Company.french_siret_number }
 
-    trait :dinum do
-      id { 1 }
-      siret { "13002526500013" }
-      is_external { false }
-    end
+    last_mon_compte_pro_update_at { DateTime.now }
+    last_insee_update_at { DateTime.now }
 
-    trait :clamart do
-      id { 2 }
-      siret { "21920023500014" }
-      is_external { false }
-    end
-
-    trait :region_reunion do
-      id { 3 }
-      siret { "23974001200012" }
-      is_external { false }
+    after(:build) do |organization|
+      organization.insee_payload ||= build(:sirene_service_payload, siret: organization.siret)
+      organization.mon_compte_pro_payload ||= build(:organization_hash_from_mon_compte_pro, siret: organization.siret)
     end
   end
 end

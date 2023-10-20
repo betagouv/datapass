@@ -142,6 +142,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -190,6 +192,7 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    interactor (3.1.2)
     jmespath (1.6.2)
     json (2.6.3)
     jsonapi-renderer (0.2.2)
@@ -463,10 +466,12 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  faker
   foreman
   guard-rspec
   guard-standardrb
   http
+  interactor
   kaminari
   listen (>= 3.0.5, < 3.9)
   omniauth-oauth2

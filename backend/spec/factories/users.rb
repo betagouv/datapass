@@ -10,7 +10,7 @@ FactoryBot.define do
 
     after(:build) do |user, evaluator|
       if evaluator.organization_kind
-        user.organizations << build(:organization, evaluator.organization_kind)
+        user.organizations << build(:organization_hash_from_mon_compte_pro, evaluator.organization_kind)
       end
     end
 
@@ -43,7 +43,7 @@ FactoryBot.define do
 
       organizations do
         [
-          build(:organization, :dinum)
+          build(:organization_hash_from_mon_compte_pro, :dinum)
         ]
       end
     end

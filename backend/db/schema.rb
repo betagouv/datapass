@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_092959) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
@@ -70,6 +70,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_092959) do
     t.index ["enrollment_id"], name: "index_events_on_enrollment_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "siret", null: false
+    t.jsonb "mon_compte_pro_payload", default: {}
+    t.jsonb "insee_payload", default: {}
+    t.datetime "last_mon_compte_pro_update_at"
+    t.datetime "last_insee_update_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["siret"], name: "index_organizations_on_siret", unique: true
+  end
+
+  create_table "organizations_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_organizations_users_on_organization_id"
+    t.index ["user_id"], name: "index_organizations_users_on_user_id"
   end
 
   create_table "team_members", force: :cascade do |t|

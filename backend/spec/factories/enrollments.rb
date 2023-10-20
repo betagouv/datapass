@@ -27,7 +27,7 @@ FactoryBot.define do
     end
 
     after(:build) do |enrollment, evaluator|
-      organization = build(:organization, evaluator.organization_kind)
+      organization = build(:organization_hash_from_mon_compte_pro, evaluator.organization_kind)
 
       enrollment.siret = organization["siret"]
 

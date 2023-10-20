@@ -1,4 +1,4 @@
-class TeamMember < ActiveRecord::Base
+class TeamMember < ApplicationRecord
   # enable Single Table Inheritance with a snake_case value as discriminatory field
   class << self
     # ex: 'responsable_technique' => TeamMember::ResponsableTechnique

@@ -2,7 +2,7 @@
 
 require "csv"
 
-class Enrollment < ActiveRecord::Base
+class Enrollment < ApplicationRecord
   self.inheritance_column = "target_api"
 
   # enable Single Table Inheritance with target_api as discriminatory field
