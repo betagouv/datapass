@@ -5,7 +5,7 @@ export enum ScopeWarningModalType {
   fc_incomplete = 'fc_incomplete',
   apientreprise_sensitive = 'apientreprise_sensitive',
   apientreprise_sensitive_effectifs = 'apientreprise_sensitive_effectifs',
-  apientreprise_sensitive_effectifs = 'apientreprise_sensitive_mandataires',
+  apientreprise_sensitive_mandataires = 'apientreprise_sensitive_mandataires',
 }
 
 export type ScopeWarningModalConfiguration = {

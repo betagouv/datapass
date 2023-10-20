@@ -66,6 +66,8 @@ const scopesConfiguration = [
     value: 'mandataires_sociaux_infogreffe',
     label: 'Mandataires sociaux - Infogreffe',
     link: 'https://entreprise.api.gouv.fr/catalogue/infogreffe/mandataires_sociaux',
+    triggerWarning: true,
+    warningType: ScopeWarningModalType.apientreprise_sensitive_mandataires,
   },
   {
     value: 'chiffre_affaires_dgfip',
