@@ -2,6 +2,8 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   scope :api do
+    get "ping", to: "ping#show"
+
     resources :enrollments do
       collection do
         get :public
