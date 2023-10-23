@@ -24,7 +24,7 @@
     "@craco/craco": "^7.1.0",
     "@datapunt/matomo-tracker-js": "^0.5.1",
     "@datapunt/matomo-tracker-react": "^0.5.1",
-    "@gouvfr/dsfr": "1.7.2",
+    "@gouvfr/dsfr": "1.10.2",
     "@justfixnyc/react-aria-modal": "^5.1.7-alpha.0",
     "@sentry/react": "^7.17.4",
     "@tanstack/react-table": "^8.10.0",
