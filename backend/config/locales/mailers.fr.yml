@@ -1,0 +1,15 @@
+fr:
+  opinion_mailer:
+    create:
+      subject: "Votre avis sur une habilitation est attendu"
+      body: |+
+        Bonjour %{reporter_full_name}
+
+        Nous avons besoin de vous pour donner un avis sur l'habilitation %{enrollment_intitule}:
+
+        %{opinion_content}
+
+        Vous pouvez y répondre en vous rendant sur le lien suivant: %{enrollment_url}
+
+        Cordialement.
+
