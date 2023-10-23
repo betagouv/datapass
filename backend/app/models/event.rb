@@ -16,6 +16,7 @@ class Event < ApplicationRecord
     reminder_before_archive
 
     opinion_created
+    opinion_comment_created
   ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
@@ -58,7 +59,9 @@ class Event < ApplicationRecord
   def entity_presence
     return if name.blank?
 
-    if name.start_with?("opinion_")
+    if name.start_with?("opinion_comment_")
+      errors.add(:entity, "doit être un commentaire d'avis") unless entity.is_a?(OpinionComment)
+    elsif name.start_with?("opinion_")
       errors.add(:entity, "doit être un avis") unless entity.is_a?(Opinion)
     end
   end

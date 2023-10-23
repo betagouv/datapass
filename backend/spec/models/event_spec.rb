@@ -14,6 +14,7 @@ RSpec.describe Event, type: :model do
       reminder_before_archive
       archive
       opinion_created
+      opinion_comment_created
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -111,6 +112,30 @@ RSpec.describe Event, type: :model do
 
         context "when entity is an Opinion" do
           let(:entity) { build(:opinion) }
+
+          it { is_expected.to be_valid }
+        end
+      end
+    end
+
+    context "when event has a name related to opinions comments" do
+      let(:event) { build(:event, name: "opinion_comment_created", entity:) }
+
+      context "when entity is not present" do
+        let(:entity) { nil }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when entity is present" do
+        context "when entity is not an OpinionComment" do
+          let(:entity) { build(:enrollment) }
+
+          it { is_expected.to be_invalid }
+        end
+
+        context "when entity is an OpinionComment" do
+          let(:entity) { build(:opinion_comment) }
 
           it { is_expected.to be_valid }
         end
