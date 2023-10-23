@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_071655) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
@@ -67,18 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
     t.jsonb "diff"
     t.datetime "processed_at"
     t.boolean "is_notify_from_demandeur", default: false
+    t.string "entity_type"
+    t.bigint "entity_id"
     t.index ["enrollment_id"], name: "index_events_on_enrollment_id"
+    t.index ["entity_type", "entity_id"], name: "index_events_on_entity"
     t.index ["name"], name: "index_events_on_name"
     t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "opinions", force: :cascade do |t|
-    t.text "content", null: false
-    t.bigint "enrollment_id", null: false
-    t.boolean "open", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 
   create_table "opinion_comments", force: :cascade do |t|
@@ -89,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_082628) do
     t.datetime "updated_at", null: false
     t.index ["opinion_id"], name: "index_opinion_comments_on_opinion_id"
     t.index ["user_id", "opinion_id"], name: "index_opinion_comments_on_user_id_and_opinion_id", unique: true
+  end
+
+  create_table "opinions", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "enrollment_id", null: false
+    t.boolean "open", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 
   create_table "organizations", force: :cascade do |t|

@@ -18,6 +18,7 @@ class Event < ApplicationRecord
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
+  belongs_to :entity, polymorphic: true, optional: true
 
   belongs_to :user, optional: true
   validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive].exclude?(event.name) }
