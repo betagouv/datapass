@@ -24,7 +24,10 @@ const InstructorHome: React.FC = () => {
 
   useEffect(() => {
     const defaultFilter = [
-      { id: 'status', value: ['submitted', 'changes_requested'] },
+      {
+        id: 'status',
+        value: ['submitted', 'changes_requested', 'opinion_comment_created'],
+      },
     ];
     const formattedApiFilter = [{ id: 'target_api', value: targetApis }];
     const formattedMessagesFilter = [
