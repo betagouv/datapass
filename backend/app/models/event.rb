@@ -1,5 +1,20 @@
 class Event < ApplicationRecord
-  VALID_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder reminder_before_archive].freeze
+  VALID_NAMES = %w[
+    create
+    update_contacts
+    update
+    archive
+    request_changes
+    notify
+    submit
+    import
+    validate
+    copy
+    refuse
+    revoke
+    reminder
+    reminder_before_archive
+  ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
