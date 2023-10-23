@@ -3,8 +3,12 @@ updates:
   - package-ecosystem: "bundler"
     directory: "/backend"
     schedule:
+      day: "monday"
+      time: "02:00"
       interval: "weekly"
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
+      day: "monday"
+      time: "02:00"
       interval: "weekly"
