@@ -16,7 +16,7 @@ class EnrollmentMailer < ActionMailer::Base
       @responsable_metier_email = params[:responsable_metier_email]
     end
 
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
     @front_host = ENV.fetch("FRONT_HOST")
 
     @majority_percentile_processing_time_in_days = nil
@@ -41,7 +41,7 @@ class EnrollmentMailer < ActionMailer::Base
     @demandeur_given_name = @enrollment.demandeurs.first.given_name
     @demadeur_family_name = @enrollment.demandeurs.first.family_name
     @message = params[:message]
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
@@ -56,7 +56,7 @@ class EnrollmentMailer < ActionMailer::Base
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
     @demandeur_email = @enrollment.demandeurs.pluck(:email).first
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
@@ -71,7 +71,7 @@ class EnrollmentMailer < ActionMailer::Base
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
     @demandeur_email = @enrollment.demandeurs.pluck(:email).first
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
 
     mail(
       to: @enrollment.subscribers.pluck(:email),
@@ -87,7 +87,7 @@ class EnrollmentMailer < ActionMailer::Base
     @nom_raison_sociale = params[:nom_raison_sociale]
     @previous_enrollment_id = params[:previous_enrollment_id]
     @scopes = params[:scopes]
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
 
     mail(
       to: "support.partenaires@franceconnect.gouv.fr",
@@ -102,7 +102,7 @@ class EnrollmentMailer < ActionMailer::Base
   def notification_email_unknown_software
     @target_api_label = data_provider_config["label"]
     @enrollment = Enrollment.find(params[:enrollment_id])
-    @url = "#{ENV.fetch("FRONT_HOST")}/#{params[:target_api].tr("_", "-")}/#{params[:enrollment_id]}"
+    @url = @enrollment.link
 
     mail(
       to: "equipe-datapass@api.gouv.fr",
