@@ -22,7 +22,9 @@ Rails.application.routes.draw do
         get :email_templates, to: "enrollments_email_templates#index"
       end
 
-      resources :opinions, only: [:create]
+      resources :opinions, only: [:create] do
+        resources :opinion_comments, path: "comments", only: [:create]
+      end
     end
 
     get "enrollments/:target_api/available_reporters", to: "available_reporters#index"
