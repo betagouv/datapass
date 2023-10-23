@@ -85,6 +85,10 @@ const eventToDisplayableContent = {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a supprimé l’habilitation',
   },
+  [EnrollmentEvent.create_opinion]: {
+    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
+    label: 'a demandé un avis',
+  },
 };
 
 export const EventItem: React.FC<Event> = ({

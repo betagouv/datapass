@@ -63,5 +63,13 @@ FactoryBot.define do
     trait :archive do
       name { "archive" }
     end
+
+    trait :opinion_created do
+      name { "opinion_created" }
+
+      after(:build) do |event|
+        event.entity ||= build(:opinion, enrollment: event.enrollment)
+      end
+    end
   end
 end

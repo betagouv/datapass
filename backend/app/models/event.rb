@@ -14,6 +14,8 @@ class Event < ApplicationRecord
     revoke
     reminder
     reminder_before_archive
+
+    opinion_created
   ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
@@ -26,6 +28,7 @@ class Event < ApplicationRecord
   validates :name, presence: true, inclusion: {in: VALID_NAMES}
 
   validate :validate_comment
+  validate :entity_presence
 
   before_create :mark_as_notify_from_demandeur
 
@@ -49,6 +52,14 @@ class Event < ApplicationRecord
       if demandeurs_ids.include?(user.id)
         self.is_notify_from_demandeur = true
       end
+    end
+  end
+
+  def entity_presence
+    return if name.blank?
+
+    if name.start_with?("opinion_")
+      errors.add(:entity, "doit être un avis") unless entity.is_a?(Opinion)
     end
   end
 end
