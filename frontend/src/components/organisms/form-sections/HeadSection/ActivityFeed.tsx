@@ -85,10 +85,6 @@ const eventToDisplayableContent = {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a supprimé l’habilitation',
   },
-  [EnrollmentEvent.instruct]: {
-    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
-    label: 'a instruit l’habilitation',
-  },
 };
 
 export const EventItem: React.FC<Event> = ({
