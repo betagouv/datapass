@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_23_071655) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_122739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_071655) do
     t.boolean "open", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reporter_id", null: false
     t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 
