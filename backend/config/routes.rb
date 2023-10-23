@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       resources :opinions, only: [:create]
     end
 
+    get "enrollments/:target_api/available_reporters", to: "available_reporters#index"
+
     get "/data_provider_configurations", to: "data_provider_configurations#index"
     get "/data_provider_configurations/:target_api", to: "data_provider_configurations#show"
 
