@@ -10,6 +10,7 @@ class OpinionComment < ApplicationRecord
   validate :user_is_reporter_or_instructor
 
   def user_is_reporter_or_instructor
+    return if user.nil?
     return if user.is_reporter?(enrollment) || user.is_instructor?(enrollment.target_api)
 
     errors.add(:user, "doit être un reporteur ou un instructeur de la demande")
