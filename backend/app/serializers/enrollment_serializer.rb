@@ -15,7 +15,9 @@ class EnrollmentSerializer < ApplicationSerializer
   end
 
   has_many :documents
-  has_many :events
+  has_many :events do
+    EnrollmentEventsForUserQuery.new(object, scope).perform
+  end
 
   attribute :scopes do
     object.scopes.map { |scope| [scope.to_sym, true] }.to_h
