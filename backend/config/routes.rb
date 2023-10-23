@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
         get :email_templates, to: "enrollments_email_templates#index"
       end
+
+      resources :opinions, only: [:create]
     end
 
     get "/data_provider_configurations", to: "data_provider_configurations#index"
