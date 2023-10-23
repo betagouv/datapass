@@ -1,5 +1,5 @@
-class DataProviderConfigurationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+class DataProviderConfigurationsController < AuthenticatedUserController
+  skip_before_action :authenticate_user!, only: [:index]
 
   # GET /data_provider_configurations
   def index

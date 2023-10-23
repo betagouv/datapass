@@ -1,6 +1,4 @@
-class EnrollmentsHubeeValidatedController < ApplicationController
-  before_action :authenticate_user!
-
+class EnrollmentsHubeeValidatedController < AuthenticatedUserController
   def index
     # note that this controller use a custom policy scope based on the siret
     @enrollments = EnrollmentPolicy::OrganizationScope.new(current_user, Enrollment).resolve

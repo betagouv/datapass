@@ -1,6 +1,4 @@
-class TeamMembersController < ApplicationController
-  before_action :authenticate_user!
-
+class TeamMembersController < AuthenticatedUserController
   def update
     @team_member = authorize TeamMember.find(params[:id])
 

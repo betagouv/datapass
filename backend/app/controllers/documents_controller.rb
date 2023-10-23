@@ -1,6 +1,4 @@
-class DocumentsController < ApplicationController
-  before_action :authenticate_user!
-
+class DocumentsController < AuthenticatedUserController
   def show
     @document = Document.find(params[:id])
 

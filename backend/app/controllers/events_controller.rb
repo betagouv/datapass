@@ -1,7 +1,4 @@
-class EventsController < ApplicationController
-  before_action :authenticate_user!
-
-  # GET /events/most-used-comments
+class EventsController < AuthenticatedUserController
   def most_used_comments
     event = params.fetch(:event, "")
     target_api = params.fetch(:target_api, "")

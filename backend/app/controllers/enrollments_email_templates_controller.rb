@@ -1,6 +1,4 @@
-class EnrollmentsEmailTemplatesController < ApplicationController
-  before_action :authenticate_user!
-
+class EnrollmentsEmailTemplatesController < AuthenticatedUserController
   def index
     @enrollment = Enrollment.find(params[:id])
     authorize @enrollment, :get_email_templates?
