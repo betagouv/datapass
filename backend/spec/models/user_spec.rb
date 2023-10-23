@@ -148,4 +148,26 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe ".reporters scope" do
+    subject { described_class.reporters(target_api) }
+
+    let(:target_api) { "api_particulier" }
+
+    let!(:valid_reporters) do
+      [
+        create(:user, roles: ["api_particulier:reporter"]),
+        create(:user, roles: ["api_particulier:cnaf:reporter"])
+      ]
+    end
+
+    let!(:invalid_reporters) do
+      [
+        create(:user, roles: ["api_particulier:instructor", "api_entreprise:reporter"]),
+        create(:user, roles: ["api_entreprise:reporter"])
+      ]
+    end
+
+    it { is_expected.to contain_exactly(*valid_reporters) }
+  end
 end
