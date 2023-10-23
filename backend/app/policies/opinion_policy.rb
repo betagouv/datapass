@@ -1,4 +1,8 @@
 class OpinionPolicy < ApplicationPolicy
+  def show?
+    comment?
+  end
+
   def create?
     user.is_instructor?(record.target_api)
   end
