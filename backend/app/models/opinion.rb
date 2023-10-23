@@ -5,6 +5,8 @@ class Opinion < ApplicationRecord
   validates :content, presence: true
   validates :enrollment, presence: true
 
+  has_many :comments, class_name: "OpinionComment", dependent: :destroy
+
   validate :only_one_open_opinion_per_enrollment
 
   def only_one_open_opinion_per_enrollment
