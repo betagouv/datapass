@@ -43,4 +43,54 @@ RSpec.describe OpinionsController, type: :controller do
       it { is_expected.to have_http_status(:forbidden) }
     end
   end
+
+  describe "GET #show" do
+    subject(:get_opinion) do
+      get :show, params: {
+        enrollment_id: enrollment.id,
+        id: opinion.id
+      }
+    end
+
+    let(:enrollment) { create(:enrollment, :api_particulier) }
+    let(:opinion) { create(:opinion, enrollment: enrollment) }
+
+    context "when user is an instructor for the target api" do
+      let(:user) { create(:instructor, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when user is a reporter for the target api" do
+      let(:user) { create(:reporter, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    describe "payload" do
+      subject(:payload) do
+        get_opinion
+        JSON.parse(response.body)
+      end
+
+      before do
+        create(:opinion_comment, opinion: opinion)
+      end
+
+      let(:user) { create(:instructor, target_api: :api_particulier) }
+
+      it "contains opinion attributes" do
+        expect(payload).to include("id" => opinion.id)
+        expect(payload).to include("content" => opinion.content)
+
+        expect(payload["comments"].count).to eq(1)
+      end
+    end
+
+    context "when user is not an instructor nor a reporter for the target api" do
+      let(:user) { create(:instructor, target_api: :api_entreprise) }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
 end

@@ -1,4 +1,12 @@
 class OpinionsController < AuthenticatedUserController
+  def show
+    opinion = Opinion.includes(:comments).find(params[:id])
+
+    authorize(opinion)
+
+    render json: opinion, status: :ok
+  end
+
   def create
     authorize(enrollment, policy_class: OpinionPolicy)
 
