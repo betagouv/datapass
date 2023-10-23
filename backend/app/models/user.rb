@@ -77,6 +77,10 @@ class User < ApplicationRecord
     roles.include?("administrator")
   end
 
+  def full_name
+    "#{given_name} #{family_name}".strip
+  end
+
   protected
 
   def downcase_email
