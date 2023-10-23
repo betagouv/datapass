@@ -89,6 +89,10 @@ const eventToDisplayableContent = {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a demandé un avis',
   },
+  [EnrollmentEvent.create_opinion_comment]: {
+    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
+    label: 'a répondu à un avis',
+  },
 };
 
 export const EventItem: React.FC<Event> = ({
