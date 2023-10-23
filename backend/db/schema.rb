@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_122739) do
     t.boolean "open", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reporter_id", null: false
     t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 
