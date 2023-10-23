@@ -1,0 +1,34 @@
+name: Manual sandbox deployment
+
+on:
+  workflow_dispatch: ~
+
+jobs:
+  deployment:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - environment: production
+            host: production1.datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            host: production2.datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+    environment:
+      url: https://${{ matrix.host }}
+      name: ${{ matrix.environment }}
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets[matrix.ssh_key] }}
+      SSH_HOST: ${{ matrix.host }}
+      APP_USER: ${{secrets.APP_USER}}
+    steps:
+      - name: Setup private SSH deployment key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
+          sudo chmod 600 ~/.ssh/private.key
+          ssh-keyscan -t rsa -H "$SSH_HOST" > ~/.ssh/known_hosts
+        shell: bash
+      - name: Deploy application
+        run: ssh -i ~/.ssh/private.key "$APP_USER@$SSH_HOST" $GITHUB_REF
