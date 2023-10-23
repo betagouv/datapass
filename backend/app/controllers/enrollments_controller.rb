@@ -1,8 +1,8 @@
-class EnrollmentsController < ApplicationController
+class EnrollmentsController < AuthenticatedUserController
   RESPONSABLE_TRAITEMENT_LABEL = "responsable de traitement"
   DELEGUE_PROTECTION_DONNEES_LABEL = "délégué à la protection des données"
 
-  before_action :authenticate_user!, except: [:public]
+  skip_before_action :authenticate_user!, only: [:public]
 
   # GET /enrollments
   def index

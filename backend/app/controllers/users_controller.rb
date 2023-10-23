@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!, except: %w[join_organization personal_information]
+class UsersController < AuthenticatedUserController
+  skip_before_action :authenticate_user!, only: %w[join_organization personal_information]
 
   def index
     @users = policy_scope(User).order(:email)
