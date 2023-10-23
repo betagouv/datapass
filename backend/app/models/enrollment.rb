@@ -42,7 +42,7 @@ class Enrollment < ApplicationRecord
   }
 
   has_many :opinions, dependent: :destroy
-  has_one :active_opinion, -> { where(status: "active") }, class_name: "Opinion"
+  has_one :active_opinion, -> { where(open: true) }, class_name: "Opinion"
 
   state_machine :status, initial: :draft, namespace: "status" do
     state :draft
