@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Badge, { BadgeType } from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { StatusBadge } from '../../../molecules/StatusBadge';
@@ -10,6 +10,8 @@ import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
+import OpinionButton from '../../../molecules/OpinionButton';
+import OpinionContainer from '../../../molecules/OpinionContainer';
 
 export const HeadSection = () => {
   const {
@@ -17,12 +19,18 @@ export const HeadSection = () => {
   } = useContext(FormContext)!;
 
   const { label } = useDataProvider(target_api);
+  const [activated, setActivated] = useState(false);
 
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>Vous demandez l’accès à</>
-        <h1>{label}</h1>
+        <div className="datapass-title-group">
+          <h1>{label}</h1>
+          <div>
+            <OpinionButton activated={activated} setActivated={setActivated} />
+          </div>
+        </div>
         <div className="datapass-badge-group">
           {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
           <StatusBadge status={status} />
@@ -33,6 +41,7 @@ export const HeadSection = () => {
           )}
         </div>
       </div>
+      <OpinionContainer setActivated={setActivated} activated={activated} />
       <div className="feed-sub-section fr-py-3w">
         {!isEmpty(events) && <ActivityFeed events={events as Event[]} />}
       </div>

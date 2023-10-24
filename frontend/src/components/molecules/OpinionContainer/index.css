@@ -1,0 +1,39 @@
+.opinion-container {
+  margin: 20px 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.opinion-container.expanded {
+  max-height: 500px;
+}
+
+.opinion-wrapper {
+  background-color: #f5f5ff;
+  padding: 30px 20px;
+}
+
+.opinion-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.opinion-title h5 {
+  margin: 0;
+}
+
+.opinion-form {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.opinion-form-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
