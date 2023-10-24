@@ -107,6 +107,24 @@ export type Contact = {
   phone_number?: string;
 };
 
+export interface OpinionComment {
+  id: number;
+  content: string;
+  updated_at: string;
+  created_at: string;
+  user: User;
+}
+
+export interface Opinion {
+  id: number;
+  open: boolean;
+  content: string;
+  updated_at: string;
+  created_at: string;
+  reporter: User;
+  comments: OpinionComment[];
+}
+
 export type Enrollment = {
   updated_at: string;
   created_at: string;

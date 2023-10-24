@@ -15,6 +15,11 @@ class OpinionsController < AuthenticatedUserController
     render json: opinion, status: :ok
   end
 
+  def index
+    opinions = @enrollment.opinions
+    render json: opinions, status: :ok
+  end
+
   def create
     authorize(enrollment, policy_class: OpinionPolicy)
 
