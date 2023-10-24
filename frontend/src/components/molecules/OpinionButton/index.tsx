@@ -2,11 +2,13 @@ import React from 'react';
 import Button from '../../atoms/hyperTexts/Button';
 
 import './index.css';
+import { OpinionIcon } from '../../atoms/OpinionIcon';
 
 const OpinionButton: React.FC<{
   activated: boolean;
   setActivated: Function;
-}> = ({ activated, setActivated }) => {
+  disabled?: boolean;
+}> = ({ activated, setActivated, disabled = false }) => {
   let classNames = 'opinion-button';
   if (activated) {
     classNames += ' activated';
@@ -16,9 +18,13 @@ const OpinionButton: React.FC<{
     <Button
       className={classNames}
       quaternary
+      disabled={disabled}
       onClick={() => setActivated(true)}
     >
-      <img src="/images/opinion.svg" alt="Demande d'avis" />
+      <OpinionIcon
+        bullColor={disabled ? '#929292' : '#000091'}
+        heartColor={disabled ? '#929292' : '#0063CB'}
+      />
       Demander un avis
     </Button>
   );

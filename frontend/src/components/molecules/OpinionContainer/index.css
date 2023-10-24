@@ -9,6 +9,10 @@
   max-height: 500px;
 }
 
+.opinion-wrapper.has-opinions {
+  background-color: #f6f6f6;
+}
+
 .opinion-wrapper {
   background-color: #f5f5ff;
   padding: 30px 20px;

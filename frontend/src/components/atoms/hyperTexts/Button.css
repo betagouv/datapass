@@ -7,3 +7,7 @@
 .fr-btn--quaternary:hover {
   background-color: var(--info-950-100-hover) !important;
 }
+
+.fr-btn--quaternary:disabled {
+  border: none;
+}

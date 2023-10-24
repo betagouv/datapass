@@ -6,7 +6,11 @@
   transition: box-shadow 0.2s ease-in-out, opacity 0.4s ease-in-out 0.2s;
 }
 
-.opinion-button img {
+.opinion-button:disabled {
+  box-shadow: none;
+}
+
+.opinion-button svg {
   margin-right: 5px;
 }
 
