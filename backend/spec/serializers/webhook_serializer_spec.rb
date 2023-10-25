@@ -14,7 +14,7 @@ RSpec.describe WebhookSerializer, type: :serializer do
     end
 
     after do
-      Timecop.freeze
+      Timecop.return
     end
 
     it do
