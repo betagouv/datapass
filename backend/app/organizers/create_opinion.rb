@@ -3,7 +3,8 @@ class CreateOpinion < ApplicationOrganizer
     context.event_name = "opinion_created"
   end
 
-  organize Opinion::CreateModel,
+  organize Opinion::CloseActiveOpinion,
+    Opinion::CreateModel,
     CreateEvent,
     Opinion::NotifyReporter
 end
