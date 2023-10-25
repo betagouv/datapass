@@ -55,7 +55,7 @@ class DeliverEnrollmentWebhookWorker < ApplicationWorker
     self.class.perform_in(
       extract_waiting_time(tries_count),
       target_api,
-      payload,
+      payload.to_json,
       enrollment_id,
       tries_count + 1
     )
