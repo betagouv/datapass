@@ -11,6 +11,10 @@ class Opinion < ApplicationRecord
   validate :only_one_open_opinion_per_enrollment
   validate :enrollment_reporter_is_valid
 
+  def closed?
+    !open
+  end
+
   def only_one_open_opinion_per_enrollment
     return unless open
 
