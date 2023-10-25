@@ -1,4 +1,11 @@
 class OpinionPolicy < ApplicationPolicy
+  def index?
+    enrollment = record
+
+    user.is_instructor?(record.target_api) ||
+      user.is_reporter?(enrollment)
+  end
+
   def show?
     comment?
   end
