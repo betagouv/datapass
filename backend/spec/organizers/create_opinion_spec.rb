@@ -62,4 +62,24 @@ RSpec.describe CreateOpinion, type: :organizer do
       expect(mail.to).to eq([reporter.email])
     end
   end
+
+  context "when there is already an active opinion" do
+    let!(:previous_open_opinion) { create(:opinion, open: true, enrollment: enrollment) }
+
+    it { is_expected.to be_success }
+
+    it "closes the previous active opinion" do
+      expect { create_opinion }.to change { previous_open_opinion.reload.closed? }.from(false).to(true)
+    end
+
+    context "when params are not valid" do
+      let(:opinion_params) { {content: nil} }
+
+      it { is_expected.to be_a_failure }
+
+      it "does not close the previous active opinion" do
+        expect { create_opinion }.not_to change { previous_open_opinion.reload.closed? }
+      end
+    end
+  end
 end
