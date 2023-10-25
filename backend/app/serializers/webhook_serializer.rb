@@ -20,6 +20,10 @@ class WebhookSerializer
     }
   end
 
+  def to_json
+    serializable_hash.to_json
+  end
+
   private
 
   def now

@@ -128,7 +128,7 @@ RSpec.describe DeliverEnrollmentWebhookWorker, type: :worker do
           expect(described_class).to receive(:perform_in).with(
             instance_of(Integer),
             target_api,
-            payload,
+            payload.to_json,
             enrollment.id,
             tries_count + 1
           )
