@@ -93,4 +93,53 @@ RSpec.describe OpinionsController, type: :controller do
       it { is_expected.to have_http_status(:forbidden) }
     end
   end
+
+  describe "#GET index" do
+    subject(:get_opinions) do
+      get :index, params: {
+        enrollment_id: enrollment.id
+      }
+    end
+
+    let(:enrollment) { create(:enrollment, :api_particulier) }
+    let!(:valid_opinions) do
+      [
+        create(:opinion, enrollment: enrollment),
+        create(:opinion, open: false, enrollment: enrollment)
+      ]
+    end
+    let!(:invalid_opinion) { create(:opinion) }
+
+    context "when user is an instructor for the target api" do
+      let(:user) { create(:instructor, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when user is a reporter for the target api" do
+      let(:user) { create(:reporter, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    describe "payload" do
+      subject(:payload) do
+        get_opinions
+        JSON.parse(response.body)
+      end
+
+      let(:user) { create(:instructor, target_api: :api_particulier) }
+
+      it "contains valid opinions" do
+        expect(payload.count).to eq(2)
+        expect(payload.map { |opinion_payload| opinion_payload["id"] }).to match_array(valid_opinions.map(&:id))
+      end
+    end
+
+    context "when user is not an instructor nor a reporter for the target api" do
+      let(:user) { create(:instructor, target_api: :api_entreprise) }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
 end
