@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { useContext, useState } from 'react';
+import { useContext, useMemo } from 'react';
 import Badge, { BadgeType } from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { StatusBadge } from '../../../molecules/StatusBadge';
@@ -10,8 +10,8 @@ import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
-import OpinionButton from '../../../molecules/OpinionButton';
-import OpinionContainer from '../../../molecules/OpinionContainer';
+import { useAuth } from '../../AuthContext';
+import { useOpinions } from '../../OpinionsContext';
 
 export const HeadSection = () => {
   const {
@@ -19,7 +19,14 @@ export const HeadSection = () => {
   } = useContext(FormContext)!;
 
   const { label } = useDataProvider(target_api);
-  const [activated, setActivated] = useState(false);
+
+  const { getOpinionButton, getOpinionContainer } = useOpinions();
+
+  const { getIsUserAnInstructor } = useAuth();
+
+  const isUserAnInstructor = useMemo(() => {
+    return getIsUserAnInstructor(target_api);
+  }, [getIsUserAnInstructor, target_api]);
 
   return (
     <ScrollablePanel scrollableId="head">
@@ -27,9 +34,7 @@ export const HeadSection = () => {
         <>Vous demandez l’accès à</>
         <div className="datapass-title-group">
           <h1>{label}</h1>
-          <div>
-            <OpinionButton activated={activated} setActivated={setActivated} />
-          </div>
+          <div>{isUserAnInstructor && getOpinionButton()}</div>
         </div>
         <div className="datapass-badge-group">
           {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
@@ -41,7 +46,7 @@ export const HeadSection = () => {
           )}
         </div>
       </div>
-      <OpinionContainer setActivated={setActivated} activated={activated} />
+      {getOpinionContainer()}
       <div className="feed-sub-section fr-py-3w">
         {!isEmpty(events) && <ActivityFeed events={events as Event[]} />}
       </div>

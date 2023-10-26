@@ -9,7 +9,7 @@
   max-height: 500px;
 }
 
-.opinion-wrapper.has-opinions {
+.opinion-wrapper.asking-opinion {
   background-color: #f6f6f6;
 }
 
@@ -40,4 +40,28 @@
   display: flex;
   gap: 1rem;
   margin-left: auto;
+}
+
+/* OPINION BUTTON 🕹 */
+
+.opinion-button {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  border-radius: 5px;
+  opacity: 1;
+  transition: box-shadow 0.2s ease-in-out, opacity 0.4s ease-in-out 0.2s;
+}
+
+.opinion-button:disabled {
+  box-shadow: none;
+}
+
+.opinion-button svg {
+  margin-right: 5px;
+}
+
+.opinion-button.activated {
+  box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
 }

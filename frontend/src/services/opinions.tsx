@@ -20,11 +20,11 @@ export function getEnrollmentOpinions(enrollmentId: number) {
 
 export function createOpinion({
   content,
-  reporterId,
+  reporterId = 991330301,
   enrollmentId,
 }: {
   content: string;
-  reporterId: number;
+  reporterId?: number;
   enrollmentId: number;
 }) {
   const config = {
