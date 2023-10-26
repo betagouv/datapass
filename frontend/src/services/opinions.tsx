@@ -17,6 +17,24 @@ export function getEnrollmentOpinions(enrollmentId: number) {
     })
     .then(({ data: opinions }) => opinions);
 }
+export function deleteOpinion({
+  opinionId,
+  enrollmentId,
+}: {
+  opinionId: number;
+  enrollmentId: number;
+}) {
+  return httpClient
+    .delete(
+      `${BACK_HOST}/api/enrollments/${enrollmentId}/opinions/${opinionId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    .then(({ data }) => data);
+}
 
 export function createOpinion({
   content,

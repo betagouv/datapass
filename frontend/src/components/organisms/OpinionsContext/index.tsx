@@ -6,6 +6,7 @@ import { Opinion } from '../../../config';
 import { OpinionIcon } from '../../atoms/OpinionIcon';
 import {
   createOpinion,
+  deleteOpinion,
   getEnrollmentOpinions,
 } from '../../../services/opinions';
 
@@ -86,7 +87,7 @@ const OpinionsContainer: React.FC<{
 }> = ({ children }) => {
   const { targetApi, enrollmentId: rawEnrollmentId } = useParams();
   const sanitizedEnrollmentId = Number(rawEnrollmentId);
-  const [opinions, setOpinions] = useState([]);
+  const [opinions, setOpinions] = useState<Opinion[]>([]);
   const [isAskingOpinion, setIsAskingOpinion] = useState(false);
   const canAskOpinion = opinions.length === 0;
   const { getIsUserAnInstructor } = useAuth();
@@ -115,7 +116,22 @@ const OpinionsContainer: React.FC<{
       }
 
       if (isUserAnInstructor) {
-        return <div>Hey</div>;
+        return opinions.map(({ content, reporter, id }) => (
+          <div>
+            <div>Demande d'avis à {reporter.email}</div>
+            {content}
+            <Button
+              onClick={() =>
+                deleteOpinion({
+                  opinionId: id,
+                  enrollmentId: sanitizedEnrollmentId,
+                })
+              }
+            >
+              Supprimer
+            </Button>
+          </div>
+        ));
       }
     };
 
