@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import Input from '../../atoms/inputs/Input';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import Button from '../../atoms/hyperTexts/Button';
@@ -11,6 +11,7 @@ import {
 
 import './index.css';
 import { useParams } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 type OpinionsContextType = {
   isAskingOpinion: boolean;
@@ -83,11 +84,16 @@ const OpinionForm: React.FC<{
 const OpinionsContainer: React.FC<{
   children: React.ReactNode | React.ReactNode[];
 }> = ({ children }) => {
-  const { enrollmentId: rawEnrollmentId } = useParams();
+  const { targetApi, enrollmentId: rawEnrollmentId } = useParams();
   const sanitizedEnrollmentId = Number(rawEnrollmentId);
   const [opinions, setOpinions] = useState([]);
   const [isAskingOpinion, setIsAskingOpinion] = useState(false);
   const canAskOpinion = opinions.length === 0;
+  const { getIsUserAnInstructor } = useAuth();
+
+  const isUserAnInstructor = useMemo(() => {
+    return getIsUserAnInstructor(targetApi!);
+  }, [getIsUserAnInstructor, targetApi]);
 
   useEffect(() => {
     if (sanitizedEnrollmentId) {
@@ -107,26 +113,36 @@ const OpinionsContainer: React.FC<{
           />
         );
       }
+
+      if (isUserAnInstructor) {
+        return <div>Hey</div>;
+      }
     };
 
-    return (
-      <div className={`opinion-container ${isAskingOpinion ? 'expanded' : ''}`}>
-        <div
-          className={`opinion-wrapper ${
-            isAskingOpinion ? 'asking-opinion' : ''
-          }`}
-        >
-          <div className="opinion-title">
-            <img src="/images/opinion.svg" alt="Demande d'avis" />
-            <h5>Demande d'avis</h5>
+    if (opinions.length > 0 || isAskingOpinion) {
+      return (
+        <div className="opinion-container">
+          <div
+            className={`opinion-wrapper ${
+              isAskingOpinion ? 'asking-opinion' : ''
+            }`}
+          >
+            <div className="opinion-title">
+              <img src="/images/opinion.svg" alt="Demande d'avis" />
+              <h5>Demande d'avis</h5>
+            </div>
+            {getBody()}
           </div>
-          {getBody()}
         </div>
-      </div>
-    );
+      );
+    }
   };
 
   const getOpinionButton = () => {
+    if (!isUserAnInstructor) {
+      return null;
+    }
+
     let classNames = 'opinion-button';
     if (isAskingOpinion) {
       classNames += ' activated';

@@ -1,12 +1,5 @@
 .opinion-container {
   margin: 20px 0;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s ease-in-out;
-}
-
-.opinion-container.expanded {
-  max-height: 500px;
 }
 
 .opinion-wrapper.asking-opinion {

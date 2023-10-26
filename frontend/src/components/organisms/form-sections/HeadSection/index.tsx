@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import Badge, { BadgeType } from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { StatusBadge } from '../../../molecules/StatusBadge';
@@ -10,7 +10,6 @@ import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
-import { useAuth } from '../../AuthContext';
 import { useOpinions } from '../../OpinionsContext';
 
 export const HeadSection = () => {
@@ -22,19 +21,13 @@ export const HeadSection = () => {
 
   const { getOpinionButton, getOpinionContainer } = useOpinions();
 
-  const { getIsUserAnInstructor } = useAuth();
-
-  const isUserAnInstructor = useMemo(() => {
-    return getIsUserAnInstructor(target_api);
-  }, [getIsUserAnInstructor, target_api]);
-
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>Vous demandez l’accès à</>
         <div className="datapass-title-group">
           <h1>{label}</h1>
-          <div>{isUserAnInstructor && getOpinionButton()}</div>
+          <div>{getOpinionButton()}</div>
         </div>
         <div className="datapass-badge-group">
           {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
