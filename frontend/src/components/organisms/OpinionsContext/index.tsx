@@ -12,14 +12,14 @@ import {
 import './index.css';
 import { useParams } from 'react-router-dom';
 
-export type OpinionsContextType = {
+type OpinionsContextType = {
   isAskingOpinion: boolean;
   opinions: Opinion[];
   getOpinionButton: Function;
   getOpinionContainer: Function;
 };
 
-export const OpinionsContext = createContext<OpinionsContextType>({
+const OpinionsContext = createContext<OpinionsContextType>({
   isAskingOpinion: false,
   opinions: [],
   getOpinionButton: () => null,
