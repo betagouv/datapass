@@ -9,11 +9,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - environment: production
-            host: production1.datapass.api.gouv.fr
+          - environment: sandbox
+            host: sandbox1.datapass.api.gouv.fr
             ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
-          - environment: production
-            host: production2.datapass.api.gouv.fr
+          - environment: sandbox
+            host: sandbox2.datapass.api.gouv.fr
             ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
     environment:
       url: https://${{ matrix.host }}
