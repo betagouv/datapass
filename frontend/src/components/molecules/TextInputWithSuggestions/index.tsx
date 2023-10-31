@@ -8,11 +8,22 @@ import { InputProps } from '../../atoms/inputs/Input';
 
 export interface TextInputWithSuggestionsProps extends InputProps {
   options: { id: string; label: string }[];
+  onOptionChange?: Function;
 }
 
 export const TextInputWithSuggestions: React.FC<
   TextInputWithSuggestionsProps
-> = ({ label, name, options = [], value, disabled, onChange, required }) => {
+> = ({
+  label,
+  name,
+  options = [],
+  value,
+  disabled,
+  onChange,
+  required,
+  onOptionChange = null,
+  placeholder,
+}) => {
   // id will be set once when the component initially renders, but never again
   // we generate a unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
@@ -131,6 +142,7 @@ export const TextInputWithSuggestions: React.FC<
         value={value}
         required={required}
         onKeyDown={onKeyDown}
+        placeholder={placeholder}
         onClick={() => setIsDropDownOpen(true)}
         onInput={() => setIsDropDownOpen(true)}
       />
@@ -144,7 +156,12 @@ export const TextInputWithSuggestions: React.FC<
                   ? 'datapass-text-input-active-suggestion'
                   : ''
               }`}
-              onClick={() => handleChange(label)}
+              onClick={() => {
+                if (onOptionChange) {
+                  onOptionChange({ id, label });
+                }
+                handleChange(label);
+              }}
             >
               {label}
             </div>

@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import Input from '../../atoms/inputs/Input';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import Button from '../../atoms/hyperTexts/Button';
 import { Opinion } from '../../../config';
@@ -13,6 +12,7 @@ import {
 import './index.css';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import TeamMembersSearch from '../TeamMembersSearch';
 
 type OpinionsContextType = {
   isAskingOpinion: boolean;
@@ -37,19 +37,16 @@ const OpinionForm: React.FC<{
   setIsAskingOpinion: Function;
 }> = ({ enrollmentId, setIsAskingOpinion }) => {
   const [content, setContent] = useState('');
-  const [reporterId, setReporterId] = useState('');
+  const [reporterId, setReporterId] = useState<null | string>(null);
 
   const disabledSubmit = content.length === 0 || !reporterId;
 
   return (
     <div className="opinion-form">
       <div className="opinion-form-fields">
-        <Input
-          label="Vous souhaitez contacter"
-          type="text"
-          value={reporterId}
-          onChange={(event) => setReporterId(event.target.value)}
-          placeholder="Vous pouvez saisir un nom, un poste, une organisation"
+        <TeamMembersSearch
+          onReporterIdChange={setReporterId}
+          reporterId={reporterId}
         />
         <TextAreaInput
           onChange={(event) => setContent(event.target.value)}
