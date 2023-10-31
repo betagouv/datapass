@@ -66,6 +66,11 @@ const Footer = () => (
             </Link>
           </li>
           <li className="fr-footer__bottom-item">
+            <Link footerBottom href="https://status.datapass.api.gouv.fr">
+              Page de statut
+            </Link>
+          </li>
+          <li className="fr-footer__bottom-item">
             <Link footerBottom href="/faq">
               Aide
             </Link>
