@@ -7,6 +7,7 @@ import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import { DisconnectionModal } from './DisconnectionModal';
 import { TeamMember } from '../../../../config';
+import Alert, { AlertType } from '../../../atoms/Alert';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -65,6 +66,19 @@ export const PersonalInformationCard = () => {
           handleCancel={() => setShowDisconnectionPrompt(false)}
           disconnectionUrl={`${BACK_HOST}/api/users/personal_information`}
         />
+      )}
+
+      {!personalInformation?.phone_number && (
+        <Alert type={AlertType.warning}>
+          Un numéro de téléphone est nécessaire : compléter sur{' '}
+          <a
+            href="https://moncomptepro.beta.gouv.fr/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Mon Compte Pro
+          </a>
+        </Alert>
       )}
     </Card>
   );

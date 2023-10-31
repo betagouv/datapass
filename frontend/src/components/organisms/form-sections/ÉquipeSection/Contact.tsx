@@ -51,6 +51,7 @@ export const Contact: React.FC<ContactProps> = ({
   onDelete,
   onUpdateWithUserInformation,
   canUpdatePersonalInformation = false,
+  type = '',
 }) => (
   <Card>
     <CardHead>
@@ -174,6 +175,18 @@ export const Contact: React.FC<ContactProps> = ({
         }du ${heading}`}
         required
       />
+    )}
+    {type === 'demandeur' && !phone_number && (
+      <Alert type={AlertType.warning}>
+        Un numéro de téléphone est nécessaire : compléter sur{' '}
+        <a
+          href="https://moncomptepro.beta.gouv.fr/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Mon Compte Pro
+        </a>
+      </Alert>
     )}
     {displayMobilePhoneLabel &&
       isValidPhoneNumber(phone_number) &&

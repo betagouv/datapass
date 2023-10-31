@@ -29,6 +29,7 @@ import SubmissionPanel from './SubmissionPanel';
 import { AxiosError } from 'axios';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import { Demarches, Enrollment } from '../../../config';
+import ConfirmationModal from '../../organisms/ConfirmationModal';
 
 type FormContextType = {
   disabled: boolean;
@@ -65,6 +66,8 @@ export const Form: React.FC<FormProps> = ({
   documentationUrl,
   contactEmail,
 }) => {
+  const [demandeurPhoneNumberWarning, setDemandeurPhoneNumberWarning] =
+    useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
@@ -191,6 +194,21 @@ export const Form: React.FC<FormProps> = ({
     }
   }, [successMessages, errorMessages, alertRef]);
 
+  // Display a warning popup if the demandeur does not have a phone number 📞
+  useEffect(() => {
+    if (!isEmpty(enrollment.team_members)) {
+      const firstDemandeur = enrollment.team_members?.find(
+        ({ type }) => type === 'demandeur'
+      );
+
+      if (firstDemandeur?.phone_number) {
+        setDemandeurPhoneNumberWarning(false);
+      } else {
+        setDemandeurPhoneNumberWarning(true);
+      }
+    }
+  }, [enrollment]);
+
   if (hasNotFoundError) {
     return <NotFound />;
   }
@@ -231,6 +249,27 @@ export const Form: React.FC<FormProps> = ({
             </HideSectionsContainer>
           </FormContext.Provider>
         </OpenMessagePromptContextProvider>
+
+        {demandeurPhoneNumberWarning && (
+          <ConfirmationModal
+            handleCancel={() => setDemandeurPhoneNumberWarning(false)}
+            handleConfirm={() =>
+              window.open('https://moncomptepro.beta.gouv.fr/', '_blank')
+            }
+            confirmLabel="Compléter sur Mon Compte Pro"
+            cancelLabel="Fermer"
+            title="Nous avons besoin d’information"
+          >
+            <p>
+              Afin de compléter votre demande d’habilitation, nous avons besoin
+              que vous nous indiquiez votre <b>numéro de téléphone</b>.
+            </p>
+            <p>
+              Vous pouvez le compléter dès à présent sur votre profil Mon Compte
+              Pro.
+            </p>
+          </ConfirmationModal>
+        )}
 
         {(!isEmpty(errorMessages) || !isEmpty(successMessages)) && (
           <div ref={alertRef}>
