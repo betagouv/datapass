@@ -8,6 +8,16 @@ export function serializeOpinion(opinion: Opinion) {
   return jsonToFormData({ opinion });
 }
 
+export function getAvailableReporters(targetApi: string) {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/${targetApi}/available_reporters`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data: reporters }) => reporters);
+}
+
 export function getEnrollmentOpinions(enrollmentId: number) {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/${enrollmentId}/opinions`, {

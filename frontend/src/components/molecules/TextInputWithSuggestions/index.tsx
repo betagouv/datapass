@@ -7,7 +7,7 @@ import './style.css';
 import { InputProps } from '../../atoms/inputs/Input';
 
 export interface TextInputWithSuggestionsProps extends InputProps {
-  options: { id: string; label: string }[];
+  options: { id: string | number; label: string }[];
   onOptionChange?: Function;
 }
 
@@ -29,7 +29,7 @@ export const TextInputWithSuggestions: React.FC<
   const [id] = useState(uniqueId(name));
 
   const [suggestions, setSuggestions] = useState<
-    { id: string; label: string }[]
+    { id: string | number; label: string }[]
   >([]);
 
   // from https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript

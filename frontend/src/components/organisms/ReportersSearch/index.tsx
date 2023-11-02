@@ -1,26 +1,31 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import TextInputWithSuggestions from '../../molecules/TextInputWithSuggestions';
+import { TeamMember } from '../../../config';
+import { getAvailableReporters } from '../../../services/opinions';
 
-type TeamMembersSearchProps = {
+type ReportersSearchProps = {
   onReporterIdChange: Function;
   reporterId: string | null;
+  targetApi: string;
 };
 
-export const TeamMembersSearch: React.FC<TeamMembersSearchProps> = ({
+export const ReportersSearch: React.FC<ReportersSearchProps> = ({
   onReporterIdChange,
   reporterId,
+  targetApi,
 }) => {
+  const [reporters, setReporters] = useState<TeamMember[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  const reporters = [
-    { id: '991330301', name: 'Sophie Marceau' },
-    { id: '480187396', name: 'Johnny Hallyday' },
-    { id: '417269330', name: 'Francis Cabrel' },
-    { id: '227792459', name: 'Georges Brassens' },
-  ];
-  const reporterOptions = reporters.map(({ id, name }) => ({
+  useEffect(() => {
+    getAvailableReporters(targetApi).then((reporters) =>
+      setReporters(reporters)
+    );
+  }, [targetApi]);
+
+  const reporterOptions = reporters.map(({ id, given_name, family_name }) => ({
     id: id,
-    label: name,
+    label: given_name + ' ' + family_name,
   }));
 
   const onValueChange: ChangeEventHandler<HTMLInputElement> = ({
@@ -46,4 +51,4 @@ export const TeamMembersSearch: React.FC<TeamMembersSearchProps> = ({
   );
 };
 
-export default TeamMembersSearch;
+export default ReportersSearch;
