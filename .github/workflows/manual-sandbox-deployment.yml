@@ -9,10 +9,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - environment: sandbox
+          - environment: test
             host: sandbox1.datapass.api.gouv.fr
             ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
-          - environment: sandbox
+          - environment: test
             host: sandbox2.datapass.api.gouv.fr
             ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
     environment:
