@@ -15,6 +15,7 @@ import { Card, CardHead } from '../../../molecules/Card';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import { RefreshIcon } from '../../../atoms/icons/fr-fi-icons';
 import { TeamMember } from '../../../../config';
+import AlertMissingPhoneNumber from '../../../molecules/AlertMissingPhoneNumber';
 
 interface ContactProps extends TeamMember {
   sectionLabel?: string;
@@ -176,18 +177,7 @@ export const Contact: React.FC<ContactProps> = ({
         required
       />
     )}
-    {type === 'demandeur' && !phone_number && (
-      <Alert type={AlertType.warning}>
-        Un numéro de téléphone est nécessaire : compléter sur{' '}
-        <a
-          href="https://moncomptepro.beta.gouv.fr/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Mon Compte Pro
-        </a>
-      </Alert>
-    )}
+    {type === 'demandeur' && !phone_number && <AlertMissingPhoneNumber />}
     {displayMobilePhoneLabel &&
       isValidPhoneNumber(phone_number) &&
       !isValidMobilePhoneNumber(phone_number) && (
