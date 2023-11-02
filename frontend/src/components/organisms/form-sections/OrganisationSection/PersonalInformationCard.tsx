@@ -7,6 +7,7 @@ import { FormContext } from '../../../templates/Form';
 import { useAuth } from '../../AuthContext';
 import { DisconnectionModal } from './DisconnectionModal';
 import { TeamMember } from '../../../../config';
+import AlertMissingPhoneNumber from '../../../molecules/AlertMissingPhoneNumber';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -66,6 +67,8 @@ export const PersonalInformationCard = () => {
           disconnectionUrl={`${BACK_HOST}/api/users/personal_information`}
         />
       )}
+
+      {!personalInformation?.phone_number && <AlertMissingPhoneNumber />}
     </Card>
   );
 };

@@ -275,6 +275,7 @@ const ÉquipeSection = ({
                 .filter(({ type: t }) => t === type)
                 .map(({ id, tmp_id, ...team_member }) => (
                   <Contact
+                    type={team_member.type}
                     heading={header!}
                     key={id || tmp_id}
                     id={id}
