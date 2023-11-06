@@ -327,7 +327,7 @@ GEM
       ffi (~> 1.0)
     redis (5.0.8)
       redis-client (>= 0.17.0)
-    redis-client (0.17.0)
+    redis-client (0.18.0)
       connection_pool
     regexp_parser (2.8.2)
     request_store (1.5.1)
@@ -388,7 +388,7 @@ GEM
       addressable (~> 2.3, >= 2.3.0)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
-    sidekiq (7.1.6)
+    sidekiq (7.2.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -489,7 +489,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sib-api-v3-sdk
-  sidekiq (~> 7.1)
+  sidekiq (~> 7.2)
   sidekiq-scheduler (~> 5.0)
   simplecov
   standard
