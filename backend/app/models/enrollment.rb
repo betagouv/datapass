@@ -155,8 +155,8 @@ class Enrollment < ApplicationRecord
     events.any? { |event| event.name == "request_changes" }
   end
 
-  def notify_event(event, **args)
-    notifier_class.new(self).public_send(event, **args)
+  def notify_event(event, **)
+    notifier_class.new(self).public_send(event, **)
   end
 
   def notifier_class
