@@ -33,40 +33,8 @@ export const scopesConfiguration = [
     required: false,
   },
   {
-    value: 'uid',
-    label: 'Identifiant technique',
-    required: false,
-    helper: '« sub » de l’utilisateur au format OpenIDConnect',
-  },
-  {
-    value: 'phone',
-    label: 'Numéro de téléphone professionnel de l’agent',
-    required: false,
-  },
-  {
-    value: 'siren',
-    label: 'Numéro SIREN de l’organisation de rattachement',
-    required: false,
-  },
-  {
     value: 'siret',
     label: 'Numéro SIRET de l’organisation de rattachement',
-    required: false,
-  },
-  {
-    value: 'organizational_unit',
-    label: 'Unité d’affectation de l’agent',
-    required: false,
-  },
-  {
-    value: 'belonging_population',
-    label: 'Population d’appartenance de l’agent',
-    required: false,
-    helper: 'Agent fonctionnaire, agent contractuel, prestataire, stagiaire, …',
-  },
-  {
-    value: 'chorusdt',
-    label: 'Identifiant unique créé par l’application ChorusDT',
     required: false,
   },
 ];
@@ -85,7 +53,7 @@ const AgentConnectFs = () => (
       defaultFondementJuridiqueTitle="La décision n°DINUM-202106-01 du 1er juin 2021"
       defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/05/20210601-dinum-ac-creation_agentconnect-vf.pdf"
     />
-    <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
+    <ÉquipeSection />
     <CguSection cguLink="/docs/cgu_agentconnect_fs.pdf" />
   </Form>
 );
