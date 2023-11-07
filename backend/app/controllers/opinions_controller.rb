@@ -15,6 +15,16 @@ class OpinionsController < AuthenticatedUserController
     render json: opinion, status: :ok
   end
 
+  def destroy
+    opinion = Opinion.find(params[:id])
+
+    if opinion.destroy
+      render json: {message: "Opinion deleted successfully."}, status: :ok
+    else
+      render json: opinion.errors, status: :unprocessable_entity
+    end
+  end
+
   def create
     authorize(enrollment, policy_class: OpinionPolicy)
 

@@ -15,6 +15,16 @@ class OpinionCommentsController < AuthenticatedUserController
     end
   end
 
+  def destroy
+    opinion_comment = OpinionComment.find(params[:id])
+
+    if opinion_comment.destroy
+      render json: {message: "Opinion Comment deleted successfully."}, status: :ok
+    else
+      render json: {message: "Error."}, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def opinion
