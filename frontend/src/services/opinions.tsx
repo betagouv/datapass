@@ -84,3 +84,52 @@ export function getOpinion(id: number) {
     })
     .then(({ data: opinion }) => opinion);
 }
+
+export function createOpinionComment({
+  opinionId,
+  content,
+  enrollmentId,
+}: {
+  opinionId: number;
+  content: string;
+  enrollmentId: number;
+}) {
+  const formData = jsonToFormData({
+    opinion_comment: {
+      content,
+    },
+  });
+
+  return httpClient
+    .post(
+      `${BACK_HOST}/api/enrollments/${enrollmentId}/opinions/${opinionId}/comments`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
+    .then(({ data }) => data);
+}
+
+export function deleteOpinionComment({
+  opinionId,
+  commentId,
+  enrollmentId,
+}: {
+  opinionId: number;
+  commentId: number;
+  enrollmentId: number;
+}) {
+  return httpClient
+    .delete(
+      `${BACK_HOST}/api/enrollments/${enrollmentId}/opinions/${opinionId}/comments/${commentId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    .then(({ data }) => data);
+}

@@ -1,10 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import Button from '../../atoms/hyperTexts/Button';
 import { Opinion, TeamMember } from '../../../config';
-import { OpinionIcon } from '../../atoms/OpinionIcon';
 import {
   createOpinion,
+  createOpinionComment,
   deleteOpinion,
   getAvailableReporters,
   getEnrollmentOpinions,
@@ -13,8 +12,10 @@ import {
 import './index.css';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import ReportersSearch from '../ReportersSearch';
 import moment from 'moment';
+import AnswerButton from '../../molecules/AnswerButton';
+import InstructorOpinionForm from './InstructorOpinionForm';
+import ReporterOpinionForm from './ReporterOpinionForm';
 
 type OpinionsContextType = {
   isAskingOpinion: boolean;
@@ -23,6 +24,7 @@ type OpinionsContextType = {
   getOpinionContainer: Function;
   handleDeleteOpinion: Function;
   handleCreateOpinion: Function;
+  handleCreateOpinionComment: Function;
 };
 
 const OpinionsContext = createContext<OpinionsContextType>({
@@ -32,55 +34,11 @@ const OpinionsContext = createContext<OpinionsContextType>({
   getOpinionContainer: () => null,
   handleDeleteOpinion: () => null,
   handleCreateOpinion: () => null,
+  handleCreateOpinionComment: () => null,
 });
 
 export const useOpinions = () => {
   return useContext(OpinionsContext);
-};
-
-const OpinionForm: React.FC<{
-  setIsAskingOpinion: Function;
-  targetApi: string;
-}> = ({ setIsAskingOpinion, targetApi }) => {
-  const { handleCreateOpinion } = useOpinions();
-  const [content, setContent] = useState('');
-  const [reporterId, setReporterId] = useState<null | string>(null);
-
-  const disabledSubmit = content.length === 0 || !reporterId;
-
-  return (
-    <div className="opinion-form">
-      <div className="opinion-form-fields">
-        <ReportersSearch
-          targetApi={targetApi}
-          onReporterIdChange={setReporterId}
-          reporterId={reporterId}
-        />
-        <TextAreaInput
-          onChange={(event) => setContent(event.target.value)}
-          rows={5}
-          value={content}
-          label="Votre message"
-          placeholder="Tapez ici votre message"
-        />
-      </div>
-      <div className="opinion-form-buttons">
-        <Button onClick={() => setIsAskingOpinion(false)} secondary>
-          Annuler
-        </Button>
-        <Button
-          onClick={() => {
-            handleCreateOpinion({ content, reporterId });
-          }}
-          icon="send-plane"
-          iconFill
-          disabled={disabledSubmit}
-        >
-          Envoyer
-        </Button>
-      </div>
-    </div>
-  );
 };
 
 const OpinionsContainer: React.FC<{
@@ -93,6 +51,9 @@ const OpinionsContainer: React.FC<{
   const [isAskingOpinion, setIsAskingOpinion] = useState(false);
   const canAskOpinion = opinions.length === 0;
   const { user, getIsUserAnInstructor } = useAuth();
+  const isUserPartOfReporters = reporters.some(
+    ({ email }) => email === user!.email
+  );
 
   const isUserAnInstructor = useMemo(() => {
     return getIsUserAnInstructor(targetApi!);
@@ -130,6 +91,22 @@ const OpinionsContainer: React.FC<{
     setIsAskingOpinion(false);
   };
 
+  const handleCreateOpinionComment = async ({
+    content,
+  }: {
+    content: string;
+  }) => {
+    await createOpinionComment({
+      opinionId: opinions[opinions.length - 1].id,
+      content,
+      enrollmentId: sanitizedEnrollmentId,
+    });
+
+    const newOpinions = await getEnrollmentOpinions(sanitizedEnrollmentId);
+    setOpinions(newOpinions);
+    setIsAskingOpinion(false);
+  };
+
   useEffect(() => {
     getAvailableReporters(targetApi!).then((reporters) =>
       setReporters(reporters)
@@ -140,16 +117,12 @@ const OpinionsContainer: React.FC<{
     const getBody = () => {
       if (opinions.length === 0) {
         return (
-          <OpinionForm
+          <InstructorOpinionForm
             setIsAskingOpinion={setIsAskingOpinion}
             targetApi={targetApi!}
           />
         );
       }
-
-      const isUserPartOfReporters = reporters.some(
-        ({ email }) => email === user!.email
-      );
 
       if (isUserAnInstructor || isUserPartOfReporters) {
         const { content, reporter, id, comments, created_at } =
@@ -178,10 +151,10 @@ const OpinionsContainer: React.FC<{
               </div>
             </div>
             {comments.length === 0 && (
-              <Button quaternary onClick={() => setIsAskingOpinion(true)}>
-                <OpinionIcon bullColor="#000091" heartColor="#0063CB" />
-                Répondre
-              </Button>
+              <ReporterOpinionForm
+                isAskingOpinion={isAskingOpinion}
+                setIsAskingOpinion={setIsAskingOpinion}
+              />
             )}
           </div>
         );
@@ -212,24 +185,14 @@ const OpinionsContainer: React.FC<{
       return null;
     }
 
-    let classNames = 'opinion-button';
-    if (isAskingOpinion) {
-      classNames += ' activated';
-    }
-
     return (
-      <Button
-        className={classNames}
-        quaternary
+      <AnswerButton
+        hidden={isAskingOpinion}
         disabled={!canAskOpinion}
         onClick={() => setIsAskingOpinion(true)}
       >
-        <OpinionIcon
-          bullColor={!canAskOpinion ? '#929292' : '#000091'}
-          heartColor={!canAskOpinion ? '#929292' : '#0063CB'}
-        />
         Demander un avis
-      </Button>
+      </AnswerButton>
     );
   };
 
@@ -242,6 +205,7 @@ const OpinionsContainer: React.FC<{
         getOpinionContainer,
         handleCreateOpinion,
         handleDeleteOpinion,
+        handleCreateOpinionComment,
       }}
     >
       {children}
