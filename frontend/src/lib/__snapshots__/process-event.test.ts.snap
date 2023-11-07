@@ -13,9 +13,9 @@ Object {
 exports[`When submitting the enrollment form with the notify event calls for the enrollment state update 1`] = `
 Object {
   "errorMessages": Array [],
-  "redirectToHome": true,
+  "redirectToHome": false,
   "successMessages": Array [
-    "Votre message a été envoyé. Vous recevrez une notification dans votre boite mail lorsqu’il sera traité.",
+    "Votre message a été envoyé.",
   ],
 }
 `;

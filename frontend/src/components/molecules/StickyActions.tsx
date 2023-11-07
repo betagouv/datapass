@@ -24,6 +24,7 @@ import { chain } from 'lodash';
 import moment from 'moment';
 import { useAuth } from '../organisms/AuthContext';
 import { markEventAsRead } from '../../services/enrollments';
+import { Event } from '../../config';
 
 export const listAuthorizedEvents = (acl: Record<string, boolean>) =>
   (Object.keys(eventConfigurations) as EnrollmentEvent[]).filter(
@@ -97,8 +98,17 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
     enrollment.acl
   );
 
+  const [messages, setMessages] = useState<Event[]>([]);
+
+  const extractMessagesFromEvents = (events: Event[]) =>
+    chain(events)
+      .sortBy('created_at')
+      .filter(({ name }) => name === EnrollmentEvent.notify)
+      .value();
+
   useEffect(() => {
     if (enrollment) {
+      setMessages(extractMessagesFromEvents(enrollment.events));
       setHasUnprocessedMessage(
         enrollment.unprocessed_notify_events_from_demandeurs_count > 0
       );
@@ -217,11 +227,6 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
         };
 
       case EnrollmentEvent.notify:
-        let messages = chain(enrollment.events)
-          .sortBy('created_at')
-          .filter(({ name }) => name === EnrollmentEvent.notify)
-          .value();
-
         return {
           title: `Écrire ${
             isUserAnInstructor ? 'au demandeur' : 'à l’instructeur'
@@ -257,7 +262,19 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
                     inputValue={notifyPrompt}
                     setInputValue={setNotifyPrompt}
                     alignButtons="right"
-                    onAccept={onPromptConfirmation}
+                    onAccept={(inputValue: string) => {
+                      onPromptConfirmation(inputValue);
+                      setNotifyPrompt('');
+                      const fakeNotifyEvent: Event = {
+                        id: 1234,
+                        name: EnrollmentEvent.notify,
+                        comment: inputValue,
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString(),
+                        user: user!,
+                      };
+                      setMessages((prev) => [...prev, fakeNotifyEvent]);
+                    }}
                     displayProps={
                       eventConfigurations[pendingEvent!]
                         ?.displayProps as EventConfiguration['displayProps']
