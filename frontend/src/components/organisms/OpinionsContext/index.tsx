@@ -142,11 +142,13 @@ const OpinionsContainer: React.FC<{
       if (isUserAnInstructor || isUserPartOfReporters) {
         const { content, reporter, id, comments, created_at } =
           opinions[opinions.length - 1];
+        const canDeleteOpinion =
+          comments.length === 0 && reporter.id === user!.id;
         return (
           <div className="opinion-events">
             <OpinionEvent
               handleDelete={
-                comments.length === 0 ? () => handleDeleteOpinion(id) : null
+                canDeleteOpinion ? () => handleDeleteOpinion(id) : null
               }
               content={content}
               titlePrefix="Demande d'avis à"
@@ -161,21 +163,25 @@ const OpinionsContainer: React.FC<{
               />
             )}
 
-            {comments.map((comment) => (
-              <OpinionEvent
-                key={comment.id}
-                handleDelete={
-                  comments.length === 1
-                    ? () =>
-                        handleDeleteOpinionComment({ commentId: comment.id })
-                    : null
-                }
-                content={comment.content}
-                titlePrefix="Réponse de"
-                title={comment.user.email!}
-                created_at={comment.created_at}
-              />
-            ))}
+            {comments.map((comment) => {
+              const canDeleteComment =
+                comments.length === 1 && comment.user.id === user!.id;
+              return (
+                <OpinionEvent
+                  key={comment.id}
+                  handleDelete={
+                    canDeleteComment
+                      ? () =>
+                          handleDeleteOpinionComment({ commentId: comment.id })
+                      : null
+                  }
+                  content={comment.content}
+                  titlePrefix="Réponse de"
+                  title={comment.user.email!}
+                  created_at={comment.created_at}
+                />
+              );
+            })}
           </div>
         );
       }
