@@ -54,11 +54,11 @@ const Prompt: React.FC<PromptProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!inputValue && emailTemplate) {
+    if (emailTemplate) {
       setInputValue(emailTemplate);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [emailTemplate]);
+  }, [emailTemplate, selectedEvent]);
 
   const handleInputChange: ChangeEventHandler<HTMLTextAreaElement> = (
     event
