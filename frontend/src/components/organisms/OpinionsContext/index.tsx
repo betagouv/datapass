@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import Button from '../../atoms/hyperTexts/Button';
 import { Opinion, TeamMember } from '../../../config';
 import {
   createOpinion,
   createOpinionComment,
   deleteOpinion,
+  deleteOpinionComment,
   getAvailableReporters,
   getEnrollmentOpinions,
 } from '../../../services/opinions';
@@ -12,10 +12,10 @@ import {
 import './index.css';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import moment from 'moment';
 import AnswerButton from '../../molecules/AnswerButton';
 import InstructorOpinionForm from './InstructorOpinionForm';
 import ReporterOpinionForm from './ReporterOpinionForm';
+import OpinionEvent from './OpinionEvent';
 
 type OpinionsContextType = {
   isAskingOpinion: boolean;
@@ -107,6 +107,21 @@ const OpinionsContainer: React.FC<{
     setIsAskingOpinion(false);
   };
 
+  const handleDeleteOpinionComment = async ({
+    commentId,
+  }: {
+    commentId: number;
+  }) => {
+    await deleteOpinionComment({
+      opinionId: opinions[opinions.length - 1].id,
+      commentId,
+      enrollmentId: sanitizedEnrollmentId,
+    });
+
+    const newOpinions = await getEnrollmentOpinions(sanitizedEnrollmentId);
+    setOpinions(newOpinions);
+  };
+
   useEffect(() => {
     getAvailableReporters(targetApi!).then((reporters) =>
       setReporters(reporters)
@@ -129,33 +144,38 @@ const OpinionsContainer: React.FC<{
           opinions[opinions.length - 1];
         return (
           <div className="opinion-events">
-            <div className="opinion-event">
-              <div className="opinion-event-title">
-                <div className="opinion-event-title-prefix">
-                  Demande d'avis à
-                </div>
-                <div className="opinion-event-title-name">{reporter.email}</div>
-              </div>
-              <div className="opinion-event-content">
-                <div className="opinion-event-content-body">{content}</div>
-                <div className="opinion-event-content-footer">
-                  <div className="opinion-event-content-date">
-                    Le {moment(created_at).format('DD/MM/YY à HH:mm')}
-                  </div>
-                  {comments.length === 0 && (
-                    <Button onClick={() => handleDeleteOpinion(id)}>
-                      Supprimer
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
+            <OpinionEvent
+              handleDelete={
+                comments.length === 0 ? () => handleDeleteOpinion(id) : null
+              }
+              content={content}
+              titlePrefix="Demande d'avis à"
+              title={reporter.email!}
+              created_at={created_at}
+            />
+
             {comments.length === 0 && (
               <ReporterOpinionForm
                 isAskingOpinion={isAskingOpinion}
                 setIsAskingOpinion={setIsAskingOpinion}
               />
             )}
+
+            {comments.map((comment) => (
+              <OpinionEvent
+                key={comment.id}
+                handleDelete={
+                  comments.length === 1
+                    ? () =>
+                        handleDeleteOpinionComment({ commentId: comment.id })
+                    : null
+                }
+                content={comment.content}
+                titlePrefix="Réponse de"
+                title={comment.user.email!}
+                created_at={comment.created_at}
+              />
+            ))}
           </div>
         );
       }
