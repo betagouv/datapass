@@ -164,8 +164,10 @@ const OpinionsContainer: React.FC<{
             )}
 
             {comments.map((comment) => {
+              const isLastComment =
+                comments[comments.length - 1].id === comment.id;
               const canDeleteComment =
-                comments.length === 1 && comment.user.id === user!.id;
+                isLastComment && comment.user.id === user!.id;
               return (
                 <OpinionEvent
                   key={comment.id}
