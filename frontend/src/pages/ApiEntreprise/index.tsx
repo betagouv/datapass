@@ -45,33 +45,33 @@ const DonneesDescription = () => (
 // Then edited by API Entreprise UX team
 const scopesConfiguration = [
   {
-    value: 'unites_legales_etablissements_insee',
+    value: 'unites_legales_etablissements_insee | 🔐',
     label:
       'Données unités légales et établissements du répertoire Sirene - Insee (diffusibles et non-diffusibles)',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee',
   },
   {
     value: 'associations_djepva',
-    label: 'Données associations - DJEPVA',
+    label: 'Données associations - DJEPVA | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/djepva/associations',
   },
   {
     value: 'effectifs_urssaf',
-    label: 'Effectifs - GIP-MDS',
+    label: 'Effectifs - GIP-MDS | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/?APIEntreprise_Endpoint%5Bquery%5D=effectif%20gip',
     triggerWarning: true,
     warningType: ScopeWarningModalType.apientreprise_sensitive_effectifs,
   },
   {
     value: 'mandataires_sociaux_infogreffe',
-    label: 'Mandataires sociaux - Infogreffe',
+    label: 'Mandataires sociaux - Infogreffe | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/infogreffe/mandataires_sociaux',
     triggerWarning: true,
     warningType: ScopeWarningModalType.apientreprise_sensitive_mandataires,
   },
   {
     value: 'chiffre_affaires_dgfip',
-    label: 'Chiffre d’affaires - DGFIP',
+    label: 'Chiffre d’affaires - DGFIP | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/chiffres_affaires',
   },
   {
@@ -83,82 +83,164 @@ const scopesConfiguration = [
   },
   {
     value: 'liasses_fiscales_dgfip',
-    label: 'Liasses fiscales - DGFIP',
+    label: 'Liasses fiscales - DGFIP | 🔐',
     triggerWarning: true,
     warningType: ScopeWarningModalType.apientreprise_sensitive,
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/liasses_fiscales',
   },
   {
     value: 'attestation_fiscale_dgfip',
-    label: 'Attestation fiscale - DGFIP',
+    label: 'Attestation fiscale - DGFIP | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/dgfip/attestations_fiscales',
   },
   {
     value: 'attestation_sociale_urssaf',
-    label: 'Attestation de vigilance - Urssaf',
+    label: 'Attestation de vigilance - Urssaf | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/urssaf/attestation_vigilance',
   },
   {
     value: 'cotisations_msa',
-    label: 'Conformité cotisations de sécurité sociale agricole  - MSA',
+    label: 'Conformité cotisations de sécurité sociale agricole - MSA | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/msa/conformites_cotisations',
   },
   {
     value: 'cotisations_probtp',
-    label: 'Conformité cotisations retraite complémentaire - ProBTP',
+    label: 'Conformité cotisations retraite complémentaire - ProBTP | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/probtp/conformites_cotisations_retraite',
   },
   {
     value: 'certification_cnetp',
     label:
-      'Attestation de cotisations congés payés & chômage-intempéries - CNETP',
+      'Attestation de cotisations congés payés & chômage-intempéries - CNETP | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/cnetp/attestations_cotisations_conges_payes_chomage_intemperies',
   },
   {
     value: 'certifications_qualiopi_france_competences',
-    label: 'Qualiopi & habilitations France compétences - CARIF-OREF',
+    label: 'Qualiopi & habilitations France compétences - CARIF-OREF | 🔐',
     link: 'https://entreprise.api.gouv.fr/catalogue/carif_oref/certifications_qualiopi_france_competences',
   },
   {
-    value: 'open_data',
-    label:
-      'Accès à toutes les données ouvertes&nbsp;:<ul><li>Données des unités légales et établissements diffusibles - Insee ;<li/><li>Extrait RCS - Infogreffe ;</li><li>Données associations en open data - DJEPVA ;</li><li>Bénéficiaires effectifs - Inpi ;</li><li>N°TVA intracommunautaire français - Commission européenne ;</li><li>Conventions collectives - FabNum ;</li><li>Données du RNM d’une entreprise artisanale - CMA ;</li><li>Immatriculation EORI - Douanes ;</li><li>Carte professionnelles des travaux publics - FNTP ;</li><li>Certification en BIO - Agence BIO ;</li><li>Certification RGE - ADEME ;</li><li>Certification Qualibat - Qualibat ;</li><li>Certification Qualifelec - Qualifelec ;</li><li>Brevets, marques et modèles déposés - Inpi.</li><li></ul>',
-    link: 'https://entreprise.api.gouv.fr/catalogue',
-    checkedByDefault: true,
+    value: 'open_data_unites_legales_etablissements_insee',
+    label: 'Données des unités légales et établissements diffusibles - Insee | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee%20diffusible',
+    required: true,
+  },
+  {
+    value: 'open_data_extrait_rcs_infogreffe',
+    label: 'Extrait RCS - Infogreffe | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/infogreffe/rcs/extrait',
+    required: true,
+  },
+  {
+    value: 'open_data_associations_djepva',
+    label: 'Données associations - DJEPVA | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/infogreffe/rcs/extrait',
+    required: true,
+  },
+  {
+    value: 'open_data_beneficiaires_effectifs_inpi',
+    label: 'Bénéficiaires effectifs - Inpi | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/inpi/rne/beneficiaires_effectifs',
+    required: true,
+  },
+  {
+    value: 'open_data_numero_tva_commission_europeenne',
+    label: 'N°TVA intracommunautaire français - Commission européenne | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/commission_europeenne/numero_tva',
+    required: true,
+  },
+  {
+    value: 'open_data_conventions_collectives_fabnum',
+    label: 'Conventions collectives - FabNum | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/fabrique_numerique_ministeres_sociaux/conventions_collectives',
+    required: true,
+  },
+  {
+    value: 'open_data_immatriculation_eori_douanes',
+    label: 'Immatriculation EORI - Douanes | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/douanes/immatriculation_eori',
+    required: true,
+  },
+  {
+    value: 'open_data_carte_pro_travaux_publics_fntp',
+    label: 'Carte professionnelles des travaux publics - FNTP | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/fntp/carte_professionnelle_travaux_public',
+    required: true,
+  },
+  {
+    value: 'open_data_certifications_bio_agence_bio',
+    label: 'Certification en BIO - Agence BIO | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/agence_bio/certifications_bio',
+    required: true,
+  },
+  {
+    value: 'open_data_certifications_rge_ademe',
+    label: 'Certification RGE - ADEME | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/ademe/certifications_rge',
+    required: true,
+  },
+  {
+    value: 'open_data_certifications_batiment_qualibat',
+    label: 'Certification Qualibat - Qualibat | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/qualibat/certifications_batiment',
+    required: true,
+  },
+  {
+    value: 'open_data_certifications_qualifelec',
+    label: 'Certification Qualifelec - Qualifelec | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/qualifelec/certificats',
+    required: true,
+  },
+  {
+    value: 'open_data_brevets_marques_modeles_deposes_inpi',
+    label: 'Brevets, marques et modèles déposés - Inpi | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=inpi%20d%C3%A9pos%C3%A9',
+    required: true,
   },
 ];
 
 const groups = {
   informations_generales: {
-    label: '🔐 Informations protégées générales :',
+    label: 'Informations générales :',
     scopes: [
       'unites_legales_etablissements_insee',
+      'open_data_unites_legales_etablissements_insee',
+      'open_data_extrait_rcs_infogreffe',
+      'open_data_beneficiaires_effectifs_inpi',
+      'mandataires_sociaux_infogreffe',
+      'open_data_associations_djepva',
       'associations_djepva',
       'effectifs_urssaf',
-      'mandataires_sociaux_infogreffe',
+      'open_data_numero_tva_commission_europeenne',
+      'open_data_conventions_collectives_fabnum',
+      'open_data_immatriculation_eori_douanes',
     ],
   },
   informations_financieres: {
-    label: '🔐 Informations protégées financières :',
+    label: 'Informations financières :',
     scopes: ['chiffre_affaires_dgfip', 'bilans_bdf', 'liasses_fiscales_dgfip'],
   },
   attestations_sociales_et_fiscales: {
-    label: '🔐 Informations protégées de régularité',
+    label: 'Informations de régularité',
     scopes: [
       'attestation_fiscale_dgfip',
       'attestation_sociale_urssaf',
       'cotisations_msa',
       'cotisations_probtp',
+      'open_data_carte_pro_travaux_publics_fntp',
       'certification_cnetp',
     ],
   },
   certifications: {
-    label: '🔐 Certifications :',
-    scopes: ['certifications_qualiopi_france_competences'],
-  },
-  informations_open_data: {
-    label: 'Données en open data disponibles avec API Entreprise :',
-    scopes: ['open_data'],
+    label: 'Certifications :',
+    scopes: [
+      'certifications_qualiopi_france_competences',
+      'open_data_certifications_bio_agence_bio',
+      'open_data_certifications_rge_ademe',
+      'open_data_certifications_batiment_qualibat',
+      'open_data_certifications_qualifelec',
+      'open_data_brevets_marques_modeles_deposes_inpi',
+    ],
   },
 };
 
