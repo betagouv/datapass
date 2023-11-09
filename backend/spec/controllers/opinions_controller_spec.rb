@@ -142,4 +142,40 @@ RSpec.describe OpinionsController, type: :controller do
       it { is_expected.to have_http_status(:forbidden) }
     end
   end
+
+  describe "#DELETE destroy" do
+    subject(:delete_opinion) do
+      delete :destroy, params: {
+        enrollment_id: enrollment.id,
+        id: opinion.id
+      }
+    end
+
+    let(:enrollment) { create(:enrollment, :api_particulier) }
+    let(:opinion) { create(:opinion, enrollment: enrollment) }
+
+    context "when user is an instructor for the target api" do
+      let(:user) { create(:instructor, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+
+    context "when user is a reporter for the target api" do
+      let(:user) { create(:reporter, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+
+    context "when user is the reporter's opinion" do
+      let(:user) { opinion.reporter }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+
+    context "when user is not an instructor nor a reporter for the target api" do
+      let(:user) { create(:instructor, target_api: :api_entreprise) }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
 end

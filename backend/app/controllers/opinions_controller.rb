@@ -31,6 +31,16 @@ class OpinionsController < AuthenticatedUserController
     end
   end
 
+  def destroy
+    opinion = Opinion.includes(:comment).find(params[:id])
+
+    authorize(opinion)
+
+    opinion.destroy
+
+    render json: opinion, status: :ok
+  end
+
   private
 
   def enrollment
