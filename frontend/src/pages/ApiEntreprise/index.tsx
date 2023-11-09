@@ -121,7 +121,8 @@ const scopesConfiguration = [
   },
   {
     value: 'open_data_unites_legales_etablissements_insee',
-    label: 'Données des unités légales et établissements diffusibles - Insee | Open Data',
+    label:
+      'Données des unités légales et établissements diffusibles - Insee | Open Data',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee%20diffusible',
     required: true,
   },
@@ -145,7 +146,8 @@ const scopesConfiguration = [
   },
   {
     value: 'open_data_numero_tva_commission_europeenne',
-    label: 'N°TVA intracommunautaire français - Commission européenne | Open Data',
+    label:
+      'N°TVA intracommunautaire français - Commission européenne | Open Data',
     link: 'https://entreprise.api.gouv.fr/catalogue/commission_europeenne/numero_tva',
     required: true,
   },
