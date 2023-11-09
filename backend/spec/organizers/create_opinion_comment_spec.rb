@@ -38,4 +38,10 @@ RSpec.describe CreateOpinionComment, type: :organizer do
       expect(last_event.user).to eq(user)
     end
   end
+
+  context "when there is already a comment" do
+    let!(:opinion_comment) { create(:opinion_comment, opinion: opinion, user: user, content: "This is an advice") }
+
+    it { is_expected.to be_a_failure }
+  end
 end
