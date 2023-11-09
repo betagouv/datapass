@@ -7,6 +7,8 @@ class OpinionComment < ApplicationRecord
   validates_uniqueness_of :user_id, scope: :opinion_id
   validates :content, presence: true
 
+  has_many :events, as: :entity, dependent: :destroy
+
   validate :user_is_opinion_reporter
 
   def user_is_opinion_reporter

@@ -8,6 +8,8 @@ class Opinion < ApplicationRecord
 
   has_one :comment, class_name: "OpinionComment", dependent: :destroy
 
+  has_many :events, as: :entity, dependent: :destroy
+
   validate :only_one_open_opinion_per_enrollment
   validate :enrollment_reporter_is_valid
 
