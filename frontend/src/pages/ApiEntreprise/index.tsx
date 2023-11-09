@@ -45,7 +45,7 @@ const DonneesDescription = () => (
 // Then edited by API Entreprise UX team
 const scopesConfiguration = [
   {
-    value: 'unites_legales_etablissements_insee | 🔐',
+    value: 'unites_legales_etablissements_insee',
     label:
       'Données unités légales et établissements du répertoire Sirene - Insee (diffusibles et non-diffusibles)',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee',
