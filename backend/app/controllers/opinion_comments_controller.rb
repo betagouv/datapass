@@ -15,6 +15,16 @@ class OpinionCommentsController < AuthenticatedUserController
     end
   end
 
+  def destroy
+    opinion_comment = OpinionComment.where(id: params[:id], opinion_id: opinion.id).first
+
+    authorize(opinion_comment, :destroy_comment?, policy_class: OpinionPolicy)
+
+    opinion_comment.destroy!
+
+    render json: opinion
+  end
+
   private
 
   def opinion

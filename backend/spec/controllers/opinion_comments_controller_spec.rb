@@ -28,4 +28,27 @@ RSpec.describe OpinionCommentsController, type: :controller do
       it { is_expected.to have_http_status(:forbidden) }
     end
   end
+
+  describe "DELETE #destroy" do
+    subject(:destroy_opinion_comment) do
+      delete :destroy, params: {
+        enrollment_id: opinion.enrollment_id,
+        opinion_id: opinion.id,
+        id: opinion_comment.id
+      }
+    end
+
+    let(:user) { opinion_comment.user }
+    let(:enrollment) { create(:enrollment, :api_particulier) }
+    let(:opinion) { create(:opinion, enrollment: enrollment) }
+    let(:opinion_comment) { create(:opinion_comment, opinion: opinion) }
+
+    it { is_expected.to have_http_status(:success) }
+
+    context "when user is not the creator" do
+      let(:user) { create(:reporter, target_api: :api_particulier) }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+  end
 end
