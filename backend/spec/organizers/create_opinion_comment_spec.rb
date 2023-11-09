@@ -1,4 +1,6 @@
 RSpec.describe CreateOpinionComment, type: :organizer do
+  include ActiveJob::TestHelper
+
   subject(:create_opinion_comment) { described_class.call(params) }
 
   let(:params) do
@@ -36,6 +38,18 @@ RSpec.describe CreateOpinionComment, type: :organizer do
       expect(last_event.enrollment).to eq(enrollment)
       expect(last_event.entity).to be_a(OpinionComment)
       expect(last_event.user).to eq(user)
+    end
+
+    it "notifies instructor" do
+      perform_enqueued_jobs do
+        create_opinion_comment
+      end
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+
+      mail = ActionMailer::Base.deliveries.last
+
+      expect(mail.to).to eq([opinion.instructor.email])
     end
   end
 

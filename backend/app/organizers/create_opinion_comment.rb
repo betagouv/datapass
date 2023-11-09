@@ -5,5 +5,6 @@ class CreateOpinionComment < ApplicationOrganizer
   end
 
   organize OpinionComment::CreateModel,
-    CreateEvent
+    CreateEvent,
+    OpinionComment::NotifyInstructor
 end
