@@ -14,10 +14,16 @@ class OpinionPolicy < ApplicationPolicy
   end
 
   def create?
-    user.is_instructor?(record.target_api)
+    enrollment = record
+
+    user.is_instructor?(enrollment.target_api)
   end
 
   def comment?
     user == record.reporter
+  end
+
+  def destroy?
+    user.is_instructor?(record.enrollment.target_api)
   end
 end

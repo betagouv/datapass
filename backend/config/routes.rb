@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         get :email_templates, to: "enrollments_email_templates#index"
       end
 
-      resources :opinions, only: [:index, :create, :show] do
+      resources :opinions, only: [:index, :create, :show, :destroy] do
         resources :opinion_comments, path: "comments", only: [:create]
       end
     end
