@@ -26,4 +26,10 @@ class OpinionPolicy < ApplicationPolicy
   def destroy?
     user.is_instructor?(record.enrollment.target_api)
   end
+
+  def destroy_comment?
+    opinion_comment = record
+
+    opinion_comment.user == user
+  end
 end

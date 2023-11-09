@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
 
       resources :opinions, only: [:index, :create, :show, :destroy] do
-        resources :opinion_comments, path: "comments", only: [:create]
+        resources :opinion_comments, path: "comments", only: [:create, :destroy]
       end
     end
 
