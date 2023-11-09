@@ -89,6 +89,8 @@ export const DemarcheSectionSelect = ({
     [demarches, selectedDemarcheId]
   );
 
+  if (!demarches) return null;
+
   return (
     <>
       <ScrollablePanel scrollableId={scrollableId}>

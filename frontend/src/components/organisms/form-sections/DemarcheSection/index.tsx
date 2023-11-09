@@ -22,10 +22,6 @@ export const DemarcheSection: DemarcheSectionType = ({
 }) => {
   const { disabled } = useContext(FormContext)!;
 
-  if (!body) {
-    return null;
-  }
-
   return (
     <>
       {disabled ? (
