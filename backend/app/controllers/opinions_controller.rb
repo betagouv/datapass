@@ -2,13 +2,13 @@ class OpinionsController < AuthenticatedUserController
   def index
     authorize(enrollment, policy_class: OpinionPolicy)
 
-    opinions = Opinion.includes(:comments).where(enrollment_id: params[:enrollment_id])
+    opinions = Opinion.includes(:comment).where(enrollment_id: params[:enrollment_id])
 
     render json: opinions, status: :ok
   end
 
   def show
-    opinion = Opinion.includes(:comments).find(params[:id])
+    opinion = Opinion.includes(:comment).find(params[:id])
 
     authorize(opinion)
 

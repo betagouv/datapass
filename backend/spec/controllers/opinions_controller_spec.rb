@@ -83,7 +83,7 @@ RSpec.describe OpinionsController, type: :controller do
         expect(payload).to include("id" => opinion.id)
         expect(payload).to include("content" => opinion.content)
 
-        expect(payload["comments"].count).to eq(1)
+        expect(payload["comment"]).to include("id" => opinion.comment.id)
       end
     end
 
