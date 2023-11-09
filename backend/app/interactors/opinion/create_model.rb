@@ -13,6 +13,8 @@ class Opinion::CreateModel < ApplicationInteractor
   end
 
   def opinion_params
-    context.opinion_params
+    context.opinion_params.merge(
+      instructor_id: context.current_user.id
+    )
   end
 end
