@@ -8,4 +8,15 @@ class OpinionMailer < ActionMailer::Base
       subject: t(".subject")
     )
   end
+
+  def comment
+    @opinion_comment = params[:opinion_comment]
+    @opinion = @opinion_comment.opinion
+
+    mail(
+      to: [@opinion.instructor.email],
+      from: "notifications@api.gouv.fr",
+      subject: t(".subject", enrollment_intitule: @opinion.enrollment.intitule)
+    )
+  end
 end
