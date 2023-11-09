@@ -5,6 +5,7 @@ FactoryBot.define do
 
     after(:build) do |opinion|
       opinion.reporter ||= build(:reporter, target_api: opinion.enrollment.target_api)
+      opinion.instructor ||= build(:instructor, target_api: opinion.enrollment.target_api)
     end
   end
 end

@@ -1,5 +1,7 @@
 class Opinion < ApplicationRecord
   belongs_to :enrollment, required: true
+
+  belongs_to :instructor, class_name: "User", required: true
   belongs_to :reporter, class_name: "User", required: true
 
   validates :open, inclusion: {in: [true, false]}
@@ -31,5 +33,13 @@ class Opinion < ApplicationRecord
     return if reporter.is_reporter?(enrollment)
 
     errors.add(:reporter, "n'est pas autorisé à donner un avis sur cette demande")
+  end
+
+  def enrollment_instructor_is_valid
+    return unless instructor
+    return unless enrollment
+    return if instructor.is_instructor?(enrollment.target_api)
+
+    errors.add(:instructor, "n'est pas autorisé à créer un avis pour cette demande")
   end
 end

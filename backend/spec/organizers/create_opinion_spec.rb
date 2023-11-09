@@ -35,6 +35,7 @@ RSpec.describe CreateOpinion, type: :organizer do
       last_opinion = Opinion.last
 
       expect(last_opinion.reporter).to eq(reporter)
+      expect(last_opinion.instructor).to eq(user)
       expect(last_opinion.enrollment).to eq(enrollment)
       expect(last_opinion.content).to eq("Give me an advice plz")
     end
