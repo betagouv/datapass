@@ -7,12 +7,12 @@ class OpinionComment < ApplicationRecord
   validates_uniqueness_of :user_id, scope: :opinion_id
   validates :content, presence: true
 
-  validate :user_is_reporter_or_instructor
+  validate :user_is_opinion_reporter
 
-  def user_is_reporter_or_instructor
+  def user_is_opinion_reporter
     return if user.nil?
-    return if user.is_reporter?(enrollment) || user.is_instructor?(enrollment.target_api)
+    return if user == opinion.reporter
 
-    errors.add(:user, "doit être un reporteur ou un instructeur de la demande")
+    errors.add(:user, "doit être le rapporteur renseigné sur la demande d'opinion")
   end
 end

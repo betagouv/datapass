@@ -12,7 +12,7 @@ RSpec.describe OpinionCommentsController, type: :controller do
       }
     end
 
-    let(:user) { create(:reporter, target_api: user_target_api) }
+    let(:user) { opinion.reporter }
     let(:enrollment) { create(:enrollment, :api_particulier) }
     let(:opinion) { create(:opinion, enrollment: enrollment) }
     let(:opinion_comment_attributes) { attributes_for(:opinion_comment) }
@@ -20,14 +20,10 @@ RSpec.describe OpinionCommentsController, type: :controller do
     let(:user_target_api) { :api_particulier }
     let(:opinion_attributes) { attributes_for(:opinion_comment) }
 
-    context "when user is a reporter for the target api" do
-      let(:user_target_api) { :api_particulier }
+    it { is_expected.to have_http_status(:success) }
 
-      it { is_expected.to have_http_status(:created) }
-    end
-
-    context "when user is not a reporter for the target api" do
-      let(:user_target_api) { :api_entreprise }
+    context "when user is not the opinion's reporter" do
+      let(:user) { create(:reporter, target_api: :api_particulier) }
 
       it { is_expected.to have_http_status(:forbidden) }
     end

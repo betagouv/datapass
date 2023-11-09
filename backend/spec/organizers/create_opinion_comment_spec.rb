@@ -12,7 +12,7 @@ RSpec.describe CreateOpinionComment, type: :organizer do
   let(:opinion) { create(:opinion, enrollment:) }
   let(:opinion_comment_params) { {content: "This is an advice"} }
   let(:enrollment) { create(:enrollment, :api_particulier) }
-  let(:user) { create(:user, roles: ["api_particulier:reporter"]) }
+  let(:user) { opinion.reporter }
 
   context "with valid params" do
     it { is_expected.to be_success }
@@ -41,6 +41,12 @@ RSpec.describe CreateOpinionComment, type: :organizer do
 
   context "when there is already a comment" do
     let!(:opinion_comment) { create(:opinion_comment, opinion: opinion, user: user, content: "This is an advice") }
+
+    it { is_expected.to be_a_failure }
+  end
+
+  context "when the user is not a reporter" do
+    let(:user) { create(:user) }
 
     it { is_expected.to be_a_failure }
   end
