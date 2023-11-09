@@ -42,6 +42,8 @@ class DataProviderConfigurationsController < ApplicationController
         "cguLink",
         "donneesDescription",
         "cadreJuridiqueDescription",
+        "defaultFondementJuridiqueTitle",
+        "defaultFondementJuridiqueUrl",
         "scopesConfiguration",
         "groups",
         "editeurs",

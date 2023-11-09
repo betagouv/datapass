@@ -22,6 +22,8 @@ const Enrollment: FunctionComponent<Props> = ({
   configuration: {
     email,
     scopesConfiguration,
+    defaultFondementJuridiqueTitle,
+    defaultFondementJuridiqueUrl,
     groups,
     editeurs,
     demarches,
@@ -62,6 +64,8 @@ const Enrollment: FunctionComponent<Props> = ({
         DonneesDescription={DonneesDescription}
       />
       <CadreJuridiqueSection
+        defaultFondementJuridiqueTitle={defaultFondementJuridiqueTitle}
+        defaultFondementJuridiqueUrl={defaultFondementJuridiqueUrl}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
       />
       <ÉquipeSection />

@@ -89,6 +89,8 @@ export type FullDataProviderConfiguration = {
   cguLink: string;
   donneesDescription: string;
   cadreJuridiqueDescription: string;
+  defaultFondementJuridiqueTitle: string;
+  defaultFondementJuridiqueUrl: string;
 };
 
 export enum DataProviderType {
