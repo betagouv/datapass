@@ -105,7 +105,8 @@ GEM
     carrierwave-aws (1.6.0)
       aws-sdk-s3 (~> 1.0)
       carrierwave (>= 2.0, < 4)
-    carrierwave-i18n (0.2.0)
+    carrierwave-i18n (3.0.0)
+      carrierwave (>= 3.0.0, < 4)
     case_transform (0.2)
       activesupport
     coderay (1.1.3)
