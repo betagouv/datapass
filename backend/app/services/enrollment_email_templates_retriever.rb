@@ -58,7 +58,7 @@ class EnrollmentEmailTemplatesRetriever
 
   def variables
     @variables ||= {
-      url: enrollment_url,
+      url: enrollment.link,
       target_api_label: target_api_label,
       front_host: front_host,
       user: user,
@@ -68,10 +68,6 @@ class EnrollmentEmailTemplatesRetriever
       scopes: enrollment.scopes,
       api_manager_url: api_manager_url
     }
-  end
-
-  def enrollment_url
-    "#{front_host}/#{enrollment.target_api.tr("_", "-")}/#{enrollment.id}"
   end
 
   def api_manager_url

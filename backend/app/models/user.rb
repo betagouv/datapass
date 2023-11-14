@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   scope :with_at_least_one_role, -> { where("roles <> '{}'") }
 
+  scope :reporters, ->(target_api) { from("users, unnest(roles) role").where("role = :main_role or role like :sub_role", main_role: "#{target_api}:reporter", sub_role: "#{target_api}:%:reporter") }
+
   def self.reconcile(external_user_info)
     user = where(
       email: external_user_info["email"].downcase.strip
@@ -75,6 +77,10 @@ class User < ApplicationRecord
 
   def is_administrator?
     roles.include?("administrator")
+  end
+
+  def full_name
+    "#{given_name} #{family_name}".strip
   end
 
   protected

@@ -1,14 +1,35 @@
 class Event < ApplicationRecord
-  EVENT_NAMES = %w[create update_contacts update archive request_changes notify submit import validate copy refuse revoke reminder reminder_before_archive].freeze
+  VALID_NAMES = %w[
+    create
+    update_contacts
+    update
+    archive
+    request_changes
+    notify
+    submit
+    import
+    validate
+    copy
+    refuse
+    revoke
+    reminder
+    reminder_before_archive
+
+    opinion_created
+    opinion_comment_created
+  ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
   belongs_to :enrollment
+  belongs_to :entity, polymorphic: true, optional: true
 
   belongs_to :user, optional: true
   validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive].exclude?(event.name) }
 
+  validates :name, presence: true, inclusion: {in: VALID_NAMES}
+
   validate :validate_comment
-  validate :validate_name
+  validate :entity_presence
 
   before_create :mark_as_notify_from_demandeur
 
@@ -24,15 +45,6 @@ class Event < ApplicationRecord
     end
   end
 
-  # We rather use this validation to control the number of events rather than an enum type because it raises:
-  # ArgumentError:
-  #   You tried to define an enum named "name" on the model "Event", but this will generate a class method "create", which is already defined by Active Record.
-  def validate_name
-    unless name.in?(EVENT_NAMES)
-      errors.add(:name, :invalid, message: "Une erreur inattendue est survenue: nom d’évènement inconnu")
-    end
-  end
-
   private
 
   def mark_as_notify_from_demandeur
@@ -41,6 +53,16 @@ class Event < ApplicationRecord
       if demandeurs_ids.include?(user.id)
         self.is_notify_from_demandeur = true
       end
+    end
+  end
+
+  def entity_presence
+    return if name.blank?
+
+    if name.start_with?("opinion_comment_")
+      errors.add(:entity, "doit être un commentaire d'avis") unless entity.is_a?(OpinionComment)
+    elsif name.start_with?("opinion_")
+      errors.add(:entity, "doit être un avis") unless entity.is_a?(Opinion)
     end
   end
 end

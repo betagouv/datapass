@@ -3,14 +3,21 @@ class EnrollmentSerializer < ApplicationSerializer
     :cgu_approved, :scopes, :team_members, :organization_id, :siret, :nom_raison_sociale, :status, :linked_token_manager_id,
     :additional_content, :intitule, :description, :fondement_juridique_title, :fondement_juridique_url,
     :data_recipients, :data_retention_period, :data_retention_comment, :demarche, :technical_team_type, :technical_team_value, :demandeurs,
-    :type_projet, :date_mise_en_production, :volumetrie_approximative, :dpo_is_informed, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :consulted_by_instructor, :requested_changes_have_been_done
+    :type_projet, :date_mise_en_production, :volumetrie_approximative, :dpo_is_informed, :notify_events_from_demandeurs_count, :unprocessed_notify_events_from_demandeurs_count, :zip_code, :consulted_by_instructor, :requested_changes_have_been_done,
+    :active_opinion_id
 
   has_many :team_members, serializer: TeamMemberWithProfileSerializer do
     object.team_members.order(:id)
   end
 
+  def active_opinion_id
+    object.active_opinion&.id
+  end
+
   has_many :documents
-  has_many :events
+  has_many :events do
+    EnrollmentEventsForUserQuery.new(object, scope).perform
+  end
 
   attribute :scopes do
     object.scopes.map { |scope| [scope.to_sym, true] }.to_h

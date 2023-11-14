@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_23_122739) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_09_165754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
@@ -67,7 +67,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_122739) do
     t.jsonb "diff"
     t.datetime "processed_at"
     t.boolean "is_notify_from_demandeur", default: false
+    t.string "entity_type"
+    t.bigint "entity_id"
     t.index ["enrollment_id"], name: "index_events_on_enrollment_id"
+    t.index ["entity_type", "entity_id"], name: "index_events_on_entity"
     t.index ["name"], name: "index_events_on_name"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -88,6 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_122739) do
     t.boolean "open", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reporter_id", null: false
+    t.integer "instructor_id", null: false
     t.index ["enrollment_id"], name: "index_opinions_on_enrollment_id"
   end
 

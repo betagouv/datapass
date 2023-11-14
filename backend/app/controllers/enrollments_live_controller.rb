@@ -1,7 +1,4 @@
-class EnrollmentsLiveController < ApplicationController
-  before_action :authenticate_user!
-
-  # GET /enrollments/export
+class EnrollmentsLiveController < AuthenticatedUserController
   def export
     @enrollments = policy_scope(Enrollment)
 

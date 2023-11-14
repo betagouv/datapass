@@ -85,9 +85,13 @@ const eventToDisplayableContent = {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a supprimé l’habilitation',
   },
-  [EnrollmentEvent.instruct]: {
+  [EnrollmentEvent.create_opinion]: {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
-    label: 'a instruit l’habilitation',
+    label: 'a demandé un avis',
+  },
+  [EnrollmentEvent.create_opinion_comment]: {
+    icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
+    label: 'a répondu à un avis',
   },
 };
 

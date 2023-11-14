@@ -13,6 +13,8 @@ RSpec.describe Event, type: :model do
       reminder
       reminder_before_archive
       archive
+      opinion_created
+      opinion_comment_created
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -79,6 +81,64 @@ RSpec.describe Event, type: :model do
         subject.mark_as_processed
 
         expect(subject.processed_at).to_not be(nil)
+      end
+    end
+  end
+
+  describe "entity validation" do
+    subject { event }
+
+    context "when event does not require an entity" do
+      let(:event) { build(:event, name: "archive") }
+
+      it { is_expected.to be_valid }
+    end
+
+    context "when event has a name related to opinions" do
+      let(:event) { build(:event, name: "opinion_created", entity:) }
+
+      context "when entity is not present" do
+        let(:entity) { nil }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when entity is present" do
+        context "when entity is not an Opinion" do
+          let(:entity) { build(:enrollment) }
+
+          it { is_expected.to be_invalid }
+        end
+
+        context "when entity is an Opinion" do
+          let(:entity) { build(:opinion) }
+
+          it { is_expected.to be_valid }
+        end
+      end
+    end
+
+    context "when event has a name related to opinions comments" do
+      let(:event) { build(:event, name: "opinion_comment_created", entity:) }
+
+      context "when entity is not present" do
+        let(:entity) { nil }
+
+        it { is_expected.to be_invalid }
+      end
+
+      context "when entity is present" do
+        context "when entity is not an OpinionComment" do
+          let(:entity) { build(:enrollment) }
+
+          it { is_expected.to be_invalid }
+        end
+
+        context "when entity is an OpinionComment" do
+          let(:entity) { build(:opinion_comment) }
+
+          it { is_expected.to be_valid }
+        end
       end
     end
   end
