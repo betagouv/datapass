@@ -122,7 +122,7 @@ export interface Opinion {
   updated_at: string;
   created_at: string;
   reporter: User;
-  comments: OpinionComment[];
+  comment: OpinionComment;
 }
 
 export type Enrollment = {
