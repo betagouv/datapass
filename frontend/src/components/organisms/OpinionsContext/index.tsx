@@ -140,10 +140,9 @@ const OpinionsContainer: React.FC<{
       }
 
       if (isUserAnInstructor || isUserPartOfReporters) {
-        const { content, reporter, id, comments, created_at } =
+        const { content, reporter, id, comment, created_at } =
           opinions[opinions.length - 1];
-        const canDeleteOpinion =
-          comments.length === 0 && reporter.id === user!.id;
+        const canDeleteOpinion = !comment && reporter.id === user!.id;
         return (
           <div className="opinion-events">
             <OpinionEvent
@@ -156,34 +155,25 @@ const OpinionsContainer: React.FC<{
               created_at={created_at}
             />
 
-            {comments.length === 0 && (
+            {!comment && (
               <ReporterOpinionForm
                 isAskingOpinion={isAskingOpinion}
                 setIsAskingOpinion={setIsAskingOpinion}
               />
             )}
 
-            {comments.map((comment) => {
-              const isLastComment =
-                comments[comments.length - 1].id === comment.id;
-              const canDeleteComment =
-                isLastComment && comment.user.id === user!.id;
-              return (
-                <OpinionEvent
-                  key={comment.id}
-                  handleDelete={
-                    canDeleteComment
-                      ? () =>
-                          handleDeleteOpinionComment({ commentId: comment.id })
-                      : null
-                  }
-                  content={comment.content}
-                  titlePrefix="Réponse de"
-                  title={comment.user.email!}
-                  created_at={comment.created_at}
-                />
-              );
-            })}
+            {!!comment && (
+              <OpinionEvent
+                key={comment.id}
+                handleDelete={() =>
+                  handleDeleteOpinionComment({ commentId: comment.id })
+                }
+                content={comment.content}
+                titlePrefix="Réponse de"
+                title={comment.user.email!}
+                created_at={comment.created_at}
+              />
+            )}
           </div>
         );
       }
