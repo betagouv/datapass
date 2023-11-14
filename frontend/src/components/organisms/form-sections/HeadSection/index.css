@@ -3,6 +3,12 @@
   gap: 0.5rem;
 }
 
+.datapass-title-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .feed-sub-section {
   border-top: 1px solid var(--border-default-grey);
   border-bottom: 1px solid var(--border-default-grey);

@@ -29,6 +29,7 @@ import SubmissionPanel from './SubmissionPanel';
 import { AxiosError } from 'axios';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import { Demarches, Enrollment } from '../../../config';
+import OpinionsContainer from '../../organisms/OpinionsContext';
 
 type FormContextType = {
   disabled: boolean;
@@ -214,7 +215,9 @@ export const Form: React.FC<FormProps> = ({
               demarches,
             }}
           >
-            <HeadSection />
+            <OpinionsContainer>
+              <HeadSection />
+            </OpinionsContainer>
             <StepperSection />
             <HideSectionsContainer>
               {children}
