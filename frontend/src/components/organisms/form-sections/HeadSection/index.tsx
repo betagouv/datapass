@@ -10,6 +10,7 @@ import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
+import { useOpinions } from '../../OpinionsContext';
 
 export const HeadSection = () => {
   const {
@@ -17,12 +18,16 @@ export const HeadSection = () => {
   } = useContext(FormContext)!;
 
   const { label } = useDataProvider(target_api);
+  const { getOpinionButton, getOpinionContainer } = useOpinions();
 
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>Vous demandez l’accès à</>
-        <h1>{label}</h1>
+        <div className="datapass-title-group">
+          <h1>{label}</h1>
+          <div>{getOpinionButton()}</div>
+        </div>
         <div className="datapass-badge-group">
           {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
           <StatusBadge status={status} />
@@ -33,6 +38,7 @@ export const HeadSection = () => {
           )}
         </div>
       </div>
+      {getOpinionContainer()}
       <div className="feed-sub-section fr-py-3w">
         {!isEmpty(events) && <ActivityFeed events={events as Event[]} />}
       </div>
