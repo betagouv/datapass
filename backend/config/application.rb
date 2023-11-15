@@ -82,6 +82,8 @@ module DataPass
         same_site: :none,
         secure: false,
         httponly: true
+    else
+      config.force_ssl = true
     end
 
     config.middleware.insert_before Rack::Head, ValidateRequestParams
