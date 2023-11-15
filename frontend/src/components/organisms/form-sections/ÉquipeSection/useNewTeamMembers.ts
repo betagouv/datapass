@@ -31,11 +31,13 @@ export const useNewTeamMembers = ({
             type: TeamMemberType;
             tmp_id: string | number;
             email?: string;
+            phone_number?: string;
           };
           if (type === 'demandeur') {
             newTeamMember = {
               ...newTeamMember,
               email: user.email,
+              phone_number: user.phone_number,
             };
           }
           return newTeamMember;
