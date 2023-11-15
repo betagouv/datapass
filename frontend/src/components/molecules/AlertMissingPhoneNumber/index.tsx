@@ -1,8 +1,8 @@
 import React from 'react';
-import Alert, { AlertType } from '../../atoms/Alert';
+import SoftAlert from '../SoftAlert';
 
 export const AlertMissingPhoneNumber: React.FC = () => (
-  <Alert type={AlertType.warning}>
+  <SoftAlert>
     Un numéro de téléphone est nécessaire : compléter sur{' '}
     <a
       href="https://moncomptepro.beta.gouv.fr/"
@@ -11,7 +11,7 @@ export const AlertMissingPhoneNumber: React.FC = () => (
     >
       Mon Compte Pro
     </a>
-  </Alert>
+  </SoftAlert>
 );
 
 export default AlertMissingPhoneNumber;

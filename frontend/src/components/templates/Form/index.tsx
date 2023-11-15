@@ -30,6 +30,7 @@ import { AxiosError } from 'axios';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import { Demarches, Enrollment } from '../../../config';
 import ConfirmationModal from '../../organisms/ConfirmationModal';
+import { useAuth } from '../../organisms/AuthContext';
 
 type FormContextType = {
   disabled: boolean;
@@ -68,6 +69,7 @@ export const Form: React.FC<FormProps> = ({
 }) => {
   const [demandeurPhoneNumberWarning, setDemandeurPhoneNumberWarning] =
     useState(false);
+  const [hasCheckedPhoneNumber, setHasCheckedPhoneNumber] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
@@ -76,6 +78,7 @@ export const Form: React.FC<FormProps> = ({
   const navigate = useNavigate();
   const { goBackToList } = useListItemNavigation();
   const alertRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const { user } = useAuth();
 
   const sectionLabels = useMemo(() => {
     return React.Children.toArray(children)
@@ -196,18 +199,24 @@ export const Form: React.FC<FormProps> = ({
 
   // Display a warning popup if the demandeur does not have a phone number 📞
   useEffect(() => {
-    if (!isEmpty(enrollment.team_members)) {
+    if (hasCheckedPhoneNumber) return;
+
+    if (!isEmpty(enrollment.team_members) && !!user) {
       const firstDemandeur = enrollment.team_members?.find(
         ({ type }) => type === 'demandeur'
       );
+      const isUserFirstDemandeur = user.email === firstDemandeur?.email;
 
-      if (firstDemandeur?.phone_number) {
-        setDemandeurPhoneNumberWarning(false);
-      } else {
-        setDemandeurPhoneNumberWarning(true);
+      if (isUserFirstDemandeur) {
+        if (!firstDemandeur?.phone_number) {
+          setDemandeurPhoneNumberWarning(true);
+        } else {
+          setDemandeurPhoneNumberWarning(false);
+        }
+        setHasCheckedPhoneNumber(true);
       }
     }
-  }, [enrollment]);
+  }, [enrollment.team_members, user, hasCheckedPhoneNumber]);
 
   if (hasNotFoundError) {
     return <NotFound />;
