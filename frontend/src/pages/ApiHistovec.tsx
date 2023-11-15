@@ -16,7 +16,7 @@ const DonneesDescription = () => (
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
     </p>
-    <p>L’article 6 précise :</p>
+    <p>L’article 4 précise :</p>
     <ul>
       <li>
         3° [les données] sont adéquates, pertinentes et non excessives au regard
