@@ -263,7 +263,10 @@ export const Form: React.FC<FormProps> = ({
           <ConfirmationModal
             handleCancel={() => setDemandeurPhoneNumberWarning(false)}
             handleConfirm={() =>
-              window.open('https://moncomptepro.beta.gouv.fr/', '_blank')
+              window.open(
+                'https://app.moncomptepro.beta.gouv.fr/personal-information',
+                '_blank'
+              )
             }
             confirmLabel="Compléter sur Mon Compte Pro"
             cancelLabel="Fermer"
