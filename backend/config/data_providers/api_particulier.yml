@@ -965,5 +965,37 @@ api_particulier:
           job: Directeur R&D
           email: laurent.delattre@3douest.com
           phone_number: '0256662007'
-
-
+    coexya:
+      label: >-
+        ICAR
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Tarification sociale et solidaires des transports
+        description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n Nous sommes accompagnés par Agora."
+        data_recipients: Adresse du foyer
+        data_retention_period: 12
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement
+        technical_team_type: software_company
+        technical_team_value: '48017088500010'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_adresse: true
+          men_statut_scolarite: true
+          men_statut_boursier: true
+          men_echelon_bourse: true
+          complementaire_sante_solidaire: true
+      team_members:
+        responsable_technique:
+          given_name: Damien
+          family_name: CHANAS
+          email: damien.chanas@coexya.eu
+          given_name: eric
+          family_name: ROZANSKI
+          email: Eric.ROZANSKI@coexya.eu
