@@ -1,4 +1,6 @@
 require "singleton"
+require "erb"
+require "yaml"
 
 class DataProviderConfigurations
   include Singleton
@@ -23,7 +25,11 @@ class DataProviderConfigurations
   private
 
   def config
-    @config ||= YAML.load(config_raw, aliases: true)
+    @config ||= YAML.load(config_interpolated, aliases: true)
+  end
+
+  def config_interpolated
+    ERB.new(config_raw).result
   end
 
   def config_raw
