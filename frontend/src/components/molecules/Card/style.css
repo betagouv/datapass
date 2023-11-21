@@ -6,10 +6,6 @@
   align-content: stretch;
 }
 
-.datapass_card.third-card {
-  flex: 30% !important;
-}
-
 .datapass_card_container .datapass_card {
   flex: 1;
 }

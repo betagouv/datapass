@@ -7,7 +7,7 @@ import ListHeader from '../../molecules/ListHeader';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
-import { Enrollment as EnrollmentType } from '../../../config';
+import { Enrollment, Enrollment as EnrollmentType } from '../../../config';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import EnrollmentSection from '../../organisms/EnrollmentSection';
 
@@ -43,6 +43,31 @@ const UserEnrollmentList = () => {
     }
   }, [state?.message]);
 
+  const groupEnrollmentsByStatus = (enrollments: Enrollment[]) =>
+    enrollments.reduce(
+      (
+        acc: {
+          draft: Enrollment[];
+          validated: Enrollment[];
+          other: Enrollment[];
+        },
+        enrollment
+      ) => {
+        switch (enrollment.status) {
+          case EnrollmentStatus.draft:
+            acc.draft.push(enrollment);
+            break;
+          case EnrollmentStatus.validated:
+            acc.validated.push(enrollment);
+            break;
+          default:
+            acc.other.push(enrollment);
+        }
+        return acc;
+      },
+      { draft: [], validated: [], other: [] }
+    );
+
   return (
     <main className="list-page list-page-white">
       <ListHeader title="Accueil">
@@ -65,19 +90,8 @@ const UserEnrollmentList = () => {
             </Alert>
           )}
           {Object.keys(enrollmentsByOrganization).map((group) => {
-            const draftEnrollments = enrollmentsByOrganization[group].filter(
-              ({ status }) => status === EnrollmentStatus.draft
-            );
-
-            const validatedEnrollments = enrollmentsByOrganization[
-              group
-            ].filter(({ status }) => status === EnrollmentStatus.validated);
-
-            const otherEnrollments = enrollmentsByOrganization[group].filter(
-              ({ status }) =>
-                ![EnrollmentStatus.draft, EnrollmentStatus.validated].includes(
-                  status
-                )
+            const { draft, validated, other } = groupEnrollmentsByStatus(
+              enrollmentsByOrganization[group]
             );
 
             return (
@@ -85,26 +99,26 @@ const UserEnrollmentList = () => {
                 <div className="list-title fr-text--lead">
                   {enrollmentsByOrganization[group][0].nom_raison_sociale}
                 </div>
-                {validatedEnrollments.length > 0 && (
+                {validated.length > 0 && (
                   <EnrollmentSection
                     title="Mes habilitations"
-                    icon="target"
-                    enrollments={validatedEnrollments}
+                    icon="validated"
+                    enrollments={validated}
                     cardSize="large"
                   />
                 )}
-                {draftEnrollments.length > 0 && (
+                {draft.length > 0 && (
                   <EnrollmentSection
                     title="Demandes en brouillon"
-                    icon="target"
-                    enrollments={draftEnrollments}
+                    icon="draft"
+                    enrollments={draft}
                   />
                 )}
-                {otherEnrollments.length > 0 && (
+                {other.length > 0 && (
                   <EnrollmentSection
                     title="En cours d’instruction"
-                    icon="target"
-                    enrollments={otherEnrollments}
+                    icon="pending"
+                    enrollments={other}
                   />
                 )}
               </React.Fragment>

@@ -7,7 +7,10 @@ export type NoDSFRIcons =
   | 'validation'
   | 'calendar'
   | 'mail'
-  | 'target';
+  | 'target'
+  | 'draft'
+  | 'validated'
+  | 'pending';
 
 type Props = {
   title: string;
