@@ -70,11 +70,19 @@ footer {
   background-color: var(--datapass-background-grey);
 }
 
+.list-page.list-page-white {
+  background-color: white;
+}
+
 .list-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+}
+
+.list-group-container {
+  width: 100%;
 }
 
 .list-title {

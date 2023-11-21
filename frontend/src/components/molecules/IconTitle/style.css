@@ -15,3 +15,7 @@
 .icon-title.no-border {
   border-bottom: 1px solid transparent;
 }
+
+.icon-title.small h3 {
+  font-size: 1.25rem;
+}
