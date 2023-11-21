@@ -4,15 +4,12 @@ import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
 import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
-import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
 import { Enrollment as EnrollmentType } from '../../../config';
-import IconTitle from '../../molecules/IconTitle';
-import { CardContainer } from '../../molecules/Card';
-import EnrollmentCard from '../../molecules/EnrollmentCard';
 import { EnrollmentStatus } from '../../../config/status-parameters';
+import EnrollmentSection from '../../organisms/EnrollmentSection';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +18,6 @@ const UserEnrollmentList = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const { state } = useLocation();
-  const { goToItem } = useListItemNavigation();
 
   useEffect(() => {
     const onFetchData = async () => {
@@ -90,64 +86,26 @@ const UserEnrollmentList = () => {
                   {enrollmentsByOrganization[group][0].nom_raison_sociale}
                 </div>
                 {validatedEnrollments.length > 0 && (
-                  <div className="list-group-container">
-                    <IconTitle
-                      title="Mes habilitations"
-                      icon="target"
-                      noBorder
-                      small
-                    />
-                    <CardContainer>
-                      {validatedEnrollments.map((enrollment) => {
-                        return (
-                          <EnrollmentCard
-                            onSelect={goToItem}
-                            enrollment={enrollment}
-                          />
-                        );
-                      })}
-                    </CardContainer>
-                  </div>
+                  <EnrollmentSection
+                    title="Mes habilitations"
+                    icon="target"
+                    enrollments={validatedEnrollments}
+                    cardSize="large"
+                  />
                 )}
                 {draftEnrollments.length > 0 && (
-                  <div className="list-group-container">
-                    <IconTitle
-                      title="Demandes en brouillon"
-                      icon="target"
-                      noBorder
-                      small
-                    />
-                    <CardContainer>
-                      {draftEnrollments.map((enrollment) => {
-                        return (
-                          <EnrollmentCard
-                            onSelect={goToItem}
-                            enrollment={enrollment}
-                          />
-                        );
-                      })}
-                    </CardContainer>
-                  </div>
+                  <EnrollmentSection
+                    title="Demandes en brouillon"
+                    icon="target"
+                    enrollments={draftEnrollments}
+                  />
                 )}
                 {otherEnrollments.length > 0 && (
-                  <div className="list-group-container">
-                    <IconTitle
-                      title="En cours d’instruction"
-                      icon="target"
-                      noBorder
-                      small
-                    />
-                    <CardContainer>
-                      {otherEnrollments.map((enrollment) => {
-                        return (
-                          <EnrollmentCard
-                            onSelect={goToItem}
-                            enrollment={enrollment}
-                          />
-                        );
-                      })}
-                    </CardContainer>
-                  </div>
+                  <EnrollmentSection
+                    title="En cours d’instruction"
+                    icon="target"
+                    enrollments={otherEnrollments}
+                  />
                 )}
               </React.Fragment>
             );

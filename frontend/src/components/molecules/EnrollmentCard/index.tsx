@@ -13,9 +13,14 @@ type Props = {
     id: number,
     e: React.MouseEvent<HTMLElement>
   ) => void;
+  cardSize?: 'small' | 'large';
 };
 
-export const EnrollmentCard: React.FC<Props> = ({ enrollment, onSelect }) => {
+export const EnrollmentCard: React.FC<Props> = ({
+  enrollment,
+  onSelect,
+  cardSize,
+}) => {
   const { label, icon } = useDataProvider(enrollment.target_api);
 
   const handleClick = useCallback(
@@ -30,7 +35,7 @@ export const EnrollmentCard: React.FC<Props> = ({ enrollment, onSelect }) => {
       <Badge>n°{enrollment.id}</Badge>
       <div>{label}</div>
 
-      {icon && (
+      {icon && cardSize === 'large' && (
         <div>
           <img src={`/images/${icon}`} alt={`logo ${label}`} />
         </div>
