@@ -6,6 +6,8 @@ import { Enrollment } from '../../../config';
 import { useDataProvider } from '../../templates/hooks/use-data-provider';
 import Button from '../../atoms/hyperTexts/Button';
 
+import './style.css';
+
 type Props = {
   enrollment: Enrollment;
   onSelect: (
@@ -30,23 +32,33 @@ export const EnrollmentCard: React.FC<Props> = ({
     [enrollment, onSelect]
   );
 
+  let className = 'enrollment-card';
+
+  if (cardSize === 'large') {
+    className += ' large';
+  }
+
   return (
-    <Card className="third-card">
-      <Badge>n°{enrollment.id}</Badge>
-      <div>{label}</div>
-
-      {icon && cardSize === 'large' && (
-        <div>
-          <img src={`/images/${icon}`} alt={`logo ${label}`} />
+    <Card className={className}>
+      <div className="enrollment-card-header">
+        <Badge>n°{enrollment.id}</Badge>
+        <StatusBadge status={enrollment.status} />
+      </div>
+      <div className="enrollment-card-body">
+        {icon && cardSize === 'large' && (
+          <div className="enrollment-card-image">
+            <img src={`/images/${icon}`} alt={`logo ${label}`} />
+          </div>
+        )}
+        <div className="enrollment-card-content">
+          <div className="enrollment-card-subtitle">{label}</div>
+          <div className="enrollment-card-title">{enrollment.intitule}</div>
+          <p className="enrollment-card-description">
+            {enrollment.description}
+          </p>
+          <Button onClick={handleClick}>Continuer</Button>
         </div>
-      )}
-
-      <div>{enrollment.intitule}</div>
-      <StatusBadge status={enrollment.status} />
-      <p>{enrollment.description}</p>
-      <Button large onClick={handleClick}>
-        Continuer
-      </Button>
+      </div>
     </Card>
   );
 };
