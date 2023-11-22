@@ -61,7 +61,7 @@ un json qui est sous le format ci-dessous :
 {
   "event": "refuse",
   "fired_at": 1628253953,
-  "model_type": "Pass",
+  "model_type": "franceconnect",
   "data": {
     "pass": pass_data
   }
@@ -86,8 +86,9 @@ Avec:
   - `delete`: l'habilitation a été supprimée soit par un utilisateur (si la demande étant en draft ou en changes_requested), soit par un administrateur ;
 - `fired_at`, `timestamp`: timestamp correspondant au moment où le webhook a été
   déclenché ;
-- `model_type`, `string`: correspond au modèle de donnée. Pour le moment il n'y
-  a que `Pass` comme valeur
+- `model_type`, `string`: correspond au modèle de donnée. Il s'agit de la nom de
+    du model sous format " underscore ". Par exemple pour
+    `Enrollment::ApiParticulier` il s'agit de `api_particulier`
 - `data`, `json`: données ayant à minima les informations de l’habilitation dans la
   clé `pass`, d'autres clés peuvent être présentes.
   `pass_data` utilise le serializer

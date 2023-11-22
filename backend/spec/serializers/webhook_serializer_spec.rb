@@ -22,7 +22,7 @@ RSpec.describe WebhookSerializer, type: :serializer do
         {
           event: event,
           fired_at: Time.now.to_i,
-          model_type: "Pass",
+          model_type: "franceconnect",
           data: {
             pass: enrollment_serialized
           }.merge(extra_data)
@@ -37,7 +37,7 @@ RSpec.describe WebhookSerializer, type: :serializer do
         {
           event: event,
           fired_at: Time.now.to_i,
-          model_type: "Pass",
+          model_type: "franceconnect",
           data: {
             pass: enrollment_serialized
           }.merge(extra_data)

@@ -13,7 +13,7 @@ class WebhookSerializer
     {
       event: event,
       fired_at: now.to_i,
-      model_type: "Pass",
+      model_type:,
       data: {
         pass: enrollment_serialized
       }.merge(extra_data)
@@ -25,6 +25,10 @@ class WebhookSerializer
   end
 
   private
+
+  def model_type
+    enrollment.class.name.gsub("Enrollment::", "").underscore
+  end
 
   def now
     @now ||= Time.now
