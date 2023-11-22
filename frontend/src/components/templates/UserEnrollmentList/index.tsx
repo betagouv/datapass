@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { groupBy, isEmpty } from 'lodash';
 import { getUserEnrollments } from '../../../services/enrollments';
 import Loader from '../../atoms/Loader';
-import Enrollment from './Enrollment';
 import Alert, { AlertType } from '../../atoms/Alert';
 import ListHeader from '../../molecules/ListHeader';
-import useListItemNavigation from '../hooks/use-list-item-navigation';
 import { NewEnrollmentButton } from '../../molecules/NewEnrollmentButton';
 import { useLocation } from 'react-router-dom';
 import NoEnrollments from './NoEnrollments';
-import { Enrollment as EnrollmentType } from '../../../config';
+import { Enrollment, Enrollment as EnrollmentType } from '../../../config';
+import { EnrollmentStatus } from '../../../config/status-parameters';
+import EnrollmentSection from '../../organisms/EnrollmentSection';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,6 @@ const UserEnrollmentList = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const { state } = useLocation();
-  const { goToItem } = useListItemNavigation();
 
   useEffect(() => {
     const onFetchData = async () => {
@@ -44,9 +43,34 @@ const UserEnrollmentList = () => {
     }
   }, [state?.message]);
 
+  const groupEnrollmentsByStatus = (enrollments: Enrollment[]) =>
+    enrollments.reduce(
+      (
+        acc: {
+          draft: Enrollment[];
+          validated: Enrollment[];
+          other: Enrollment[];
+        },
+        enrollment
+      ) => {
+        switch (enrollment.status) {
+          case EnrollmentStatus.draft:
+            acc.draft.push(enrollment);
+            break;
+          case EnrollmentStatus.validated:
+            acc.validated.push(enrollment);
+            break;
+          default:
+            acc.other.push(enrollment);
+        }
+        return acc;
+      },
+      { draft: [], validated: [], other: [] }
+    );
+
   return (
-    <main className="list-page">
-      <ListHeader title="Toutes mes habilitations">
+    <main className="list-page list-page-white">
+      <ListHeader title="Accueil">
         <NewEnrollmentButton />
       </ListHeader>
 
@@ -65,25 +89,41 @@ const UserEnrollmentList = () => {
               {state?.message}
             </Alert>
           )}
-          {Object.keys(enrollmentsByOrganization).map((group) => (
-            <React.Fragment key={group}>
-              <div className="list-title fr-text--lead">
-                {enrollmentsByOrganization[group][0].nom_raison_sociale}
-              </div>
-              {enrollmentsByOrganization[group].map((enrollment) => (
-                <Enrollment
-                  key={enrollment.id}
-                  onSelect={goToItem}
-                  id={enrollment.id}
-                  events={enrollment.events}
-                  target_api={enrollment.target_api}
-                  intitule={enrollment.intitule}
-                  description={enrollment.description}
-                  status={enrollment.status}
-                />
-              ))}
-            </React.Fragment>
-          ))}
+          {Object.keys(enrollmentsByOrganization).map((group) => {
+            const { draft, validated, other } = groupEnrollmentsByStatus(
+              enrollmentsByOrganization[group]
+            );
+
+            return (
+              <React.Fragment key={group}>
+                <div className="list-title fr-text--lead">
+                  {enrollmentsByOrganization[group][0].nom_raison_sociale}
+                </div>
+                {validated.length > 0 && (
+                  <EnrollmentSection
+                    title="Mes habilitations"
+                    icon="validated"
+                    enrollments={validated}
+                    cardSize="large"
+                  />
+                )}
+                {draft.length > 0 && (
+                  <EnrollmentSection
+                    title="Demandes en brouillon"
+                    icon="draft"
+                    enrollments={draft}
+                  />
+                )}
+                {other.length > 0 && (
+                  <EnrollmentSection
+                    title="En cours d’instruction"
+                    icon="pending"
+                    enrollments={other}
+                  />
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
       )}
     </main>

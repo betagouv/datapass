@@ -1,0 +1,64 @@
+.enrollment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: none !important;
+  width: 30%;
+}
+
+.enrollment-card.large {
+  width: 45%;
+}
+
+.enrollment-card.large .enrollment-card-body {
+  display: flex;
+}
+
+.enrollment-card.large .enrollment-card-body .enrollment-card-image {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enrollment-card.large .enrollment-card-body .enrollment-card-content {
+  width: 50%;
+}
+
+.enrollment-card-image img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.enrollment-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.enrollment-card-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.enrollment-card-subtitle {
+  font-size: small;
+  font-style: italic;
+  color: var(--text-mention-grey);
+}
+
+.enrollment-card-title {
+  font-size: large;
+  font-weight: bolder;
+}
+
+.enrollment-card-description {
+  margin-bottom: 0.5rem;
+}
+
+@media all and (max-width: 992px) {
+  .enrollment-card {
+    width: 45%;
+  }
+}

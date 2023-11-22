@@ -7,23 +7,32 @@ export type NoDSFRIcons =
   | 'validation'
   | 'calendar'
   | 'mail'
-  | 'target';
+  | 'target'
+  | 'draft'
+  | 'validated'
+  | 'pending';
 
 type Props = {
   title: string;
   icon: NoDSFRIcons;
   noBorder?: boolean;
+  small?: boolean;
 };
 
 export const IconTitle: React.FC<Props> = ({
   title,
   icon,
   noBorder = false,
+  small = false,
 }) => {
   let className = 'icon-title ';
 
   if (noBorder) {
     className += 'no-border ';
+  }
+
+  if (small) {
+    className += 'small ';
   }
 
   return (

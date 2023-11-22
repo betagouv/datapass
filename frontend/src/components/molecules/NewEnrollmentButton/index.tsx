@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import Button from '../../atoms/hyperTexts/Button';
 import Dropdown from '../Dropdown';
 import Link from '../../atoms/hyperTexts/Link';
@@ -9,7 +9,12 @@ export const NewEnrollmentButton: FunctionComponent = () => {
 
   return (
     <div>
-      <Button large icon="add" onClick={() => setShowDataProviderList(true)}>
+      <Button
+        secondary
+        large
+        icon="add"
+        onClick={() => setShowDataProviderList(true)}
+      >
         Demander une habilitation
       </Button>
       {showDataProviderList && (
