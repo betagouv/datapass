@@ -61,7 +61,7 @@ un json qui est sous le format ci-dessous :
 {
   "event": "refuse",
   "fired_at": 1628253953,
-  "model_type": "franceconnect",
+  "model_type": "enrollment/franceconnect",
   "data": {
     "pass": pass_data
   }

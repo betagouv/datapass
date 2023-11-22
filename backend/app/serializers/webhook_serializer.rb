@@ -27,7 +27,7 @@ class WebhookSerializer
   private
 
   def model_type
-    enrollment.class.name.gsub("Enrollment::", "").underscore
+    enrollment.class.name.underscore
   end
 
   def now
