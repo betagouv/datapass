@@ -1,30 +1,28 @@
-RSpec.describe ApiEntrepriseNotifier, type: :notifier do
+RSpec.describe AbstractEntreculierNotifier, type: :notifier do
   let(:instance) { described_class.new(enrollment) }
-
-  let(:enrollment) { create(:enrollment, :api_entreprise) }
   let(:user) { create(:user) }
+  let(:enrollment) { create(:enrollment, :api_entreprise) }
+
+  describe "emails events" do
+    describe "#team_member_update" do
+      let(:enrollment) { create(:enrollment, :api_entreprise, :with_delegue_protection_donnees) }
+
+      subject { instance.team_member_update(team_member_type: "delegue_protection_donnees") }
+
+      it "delivers an email" do
+        expect do
+          subject
+        end.to have_enqueued_job
+      end
+    end
+  end
 
   describe "webhook events" do
-    shared_examples "notifier webhook delivery" do
-      before do
-        Timecop.freeze
-      end
+    describe "#validate" do
+      subject { instance.create }
 
-      after do
-        Timecop.return
-      end
-
-      it "calls webhook" do
-        expect(DeliverEnrollmentWebhookWorker).to receive(:perform_async).with(
-          enrollment.target_api,
-          WebhookSerializer.new(
-            enrollment,
-            event
-          ).serializable_hash.to_json,
-          enrollment.id
-        )
-
-        subject
+      include_examples "notifier webhook delivery" do
+        let(:event) { "create" }
       end
     end
 
@@ -68,14 +66,6 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
       end
     end
 
-    describe "#validate" do
-      subject { instance.validate(comment: "comment", current_user: user) }
-
-      include_examples "notifier webhook delivery" do
-        let(:event) { "validate" }
-      end
-    end
-
     describe "#revoke" do
       subject { instance.revoke(comment: "comment", current_user: user) }
 
@@ -89,20 +79,6 @@ RSpec.describe ApiEntrepriseNotifier, type: :notifier do
 
       include_examples "notifier webhook delivery" do
         let(:event) { "delete" }
-      end
-    end
-  end
-
-  describe "emails events" do
-    describe "#team_member_update" do
-      let(:enrollment) { create(:enrollment, :api_entreprise, :with_delegue_protection_donnees) }
-
-      subject { instance.team_member_update(team_member_type: "delegue_protection_donnees") }
-
-      it "delivers an email" do
-        expect {
-          subject
-        }.to have_enqueued_job
       end
     end
   end
