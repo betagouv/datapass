@@ -189,7 +189,12 @@ class EnrollmentsController < AuthenticatedUserController
   def copy
     @enrollment = authorize Enrollment.find(params[:id])
     copied_enrollment = @enrollment.copy current_user
-    render json: copied_enrollment
+
+    if copied_enrollment.valid?
+      render json: copied_enrollment
+    else
+      render_model_errors(title: "Cette demande a déjà été copiée", model: copied_enrollment)
+    end
   end
 
   # GET enrollments/1/copies

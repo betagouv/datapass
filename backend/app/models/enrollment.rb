@@ -27,7 +27,12 @@ class Enrollment < ApplicationRecord
   accepts_nested_attributes_for :documents, allow_destroy: true
   has_many :events, dependent: :destroy
   belongs_to :copied_from_enrollment, class_name: :Enrollment, foreign_key: :copied_from_enrollment_id, optional: true
-  validates :copied_from_enrollment, uniqueness: true, if: -> { copied_from_enrollment.present? }
+  validates :copied_from_enrollment, uniqueness: {
+    scope: :copied_from_enrollment,
+    conditions: -> { where.not(status: "archived") },
+    allow_blank: true,
+    message: "L’action que vous essayez de faire est impossible, car une copie de l’habilitation existe déjà. Pour continuer, veuillez utiliser cette copie."
+  }
   belongs_to :previous_enrollment, class_name: :Enrollment, foreign_key: :previous_enrollment_id, optional: true
 
   has_many :team_members, dependent: :destroy
@@ -198,10 +203,6 @@ class Enrollment < ApplicationRecord
     User.where("roles && ARRAY[?]::varchar[]", roles)
   end
 
-  def already_been_copied?
-    Enrollment.where(copied_from_enrollment_id: id).any?
-  end
-
   def demandeurs
     team_members.where(type: "demandeur")
   end
@@ -249,16 +250,17 @@ class Enrollment < ApplicationRecord
       copied_team_member = team_member.dup
       copied_enrollment.team_members << copied_team_member
     end
-    copied_enrollment.save!
-    copied_enrollment.events.create(
-      name: "copy",
-      user_id: current_user.id,
-      comment: "Habilitation d’origine : ##{id}"
-    )
-    documents.each do |document|
-      copied_document = document.dup
-      copied_document.attachment = File.open(document.file_content)
-      copied_enrollment.documents << copied_document
+    if copied_enrollment.save
+      copied_enrollment.events.create(
+        name: "copy",
+        user_id: current_user.id,
+        comment: "Habilitation d’origine : ##{id}"
+      )
+      documents.each do |document|
+        copied_document = document.dup
+        copied_document.attachment = File.open(document.file_content)
+        copied_enrollment.documents << copied_document
+      end
     end
 
     copied_enrollment

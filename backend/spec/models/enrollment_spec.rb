@@ -21,6 +21,27 @@ RSpec.describe Enrollment, type: :model do
     end
   end
 
+  describe "copy validations" do
+    let(:enrollment_creator) { create(:user, organization_kind: :clamart) }
+    let(:enrollment) {
+      create(:enrollment, :franceconnect, status: "validated", organization_kind: :clamart, user: enrollment_creator)
+    }
+
+    it "can't create 2 copies for the same enrollment" do
+      create(:enrollment, :franceconnect, status: "validated", copied_from_enrollment_id: enrollment.id, organization_kind: :clamart, user: enrollment_creator)
+      copy_enrollment = enrollment.copy enrollment_creator
+
+      expect(copy_enrollment).not_to be_valid
+    end
+
+    it "can create a copy if first copy enrollment has status archived" do
+      create(:enrollment, :franceconnect, status: "archived", copied_from_enrollment_id: enrollment.id, organization_kind: :clamart, user: enrollment_creator)
+      copy_enrollment = enrollment.copy enrollment_creator
+
+      expect(copy_enrollment).to be_valid
+    end
+  end
+
   describe "state_machine" do
     let(:states) { [:draft, :submitted, :changes_requested, :validated, :refused, :revoked, :archived] }
 

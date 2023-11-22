@@ -88,13 +88,7 @@ class ApplicationController < ActionController::API
 
   rescue_from ActiveRecord::ActiveRecordError do |e|
     if e.is_a?(ActiveRecord::RecordInvalid)
-      if e.message.to_s.include? "Copied from enrollment"
-        render status: :unprocessable_entity, json: {
-          message: "Copie impossible, une copie de cette habilitation existe déjà."
-        }
-      else
-        render status: :unprocessable_entity, json: e.record.errors
-      end
+      render status: :unprocessable_entity, json: e.record.errors
     elsif e.is_a?(ActiveRecord::RecordNotFound)
       render status: :not_found, json: {
         message: "Enregistrement introuvable."
@@ -106,6 +100,13 @@ class ApplicationController < ActionController::API
     else
       throw e
     end
+  end
+
+  def render_model_errors(title:, model:)
+    render status: :unprocessable_entity, json: {
+      title: title,
+      message: model.errors.full_messages.join("\n")
+    }
   end
 
   protected
