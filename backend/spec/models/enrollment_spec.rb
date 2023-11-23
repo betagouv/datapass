@@ -175,6 +175,11 @@ RSpec.describe Enrollment, type: :model do
                 job: tm[1]["job"],
                 given_name: tm[1]["given_name"],
                 family_name: tm[1]["family_name"]
+              },
+              {
+                id: tm[2]["id"],
+                type: "bidule",
+                phone_number: "0136656666",
               }
             ]
           )
@@ -190,6 +195,10 @@ RSpec.describe Enrollment, type: :model do
             },
             "1" => {
               "phone_number" => ["0636656565", "0136656565"]
+            },
+            "2" => {
+              "type"=>["contact_metier", "bidule"],
+              "phone_number" => ["0636656565", "0136656666"]
             },
             "_t" => "a"
           })
@@ -232,7 +241,7 @@ RSpec.describe Enrollment, type: :model do
         end
 
         it "returns a diff for added field in associated model" do
-          expect(subject["team_members"]["2"]["email"]).to eq(["hoho@santa.claus"])
+          expect(subject["team_members"]["2"]["email"]).to eq(["user-metier@clamart.fr"])
         end
       end
 

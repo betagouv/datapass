@@ -218,6 +218,11 @@ FactoryBot.define do
             type: "responsable_technique",
             email: "user-technique@clamart.fr",
             phone_number: "0636656565"
+          },
+          {
+            type: "contact_metier",
+            email: "user-metier@clamart.fr",
+            phone_number: "0636656565"
           }
         ]
       end

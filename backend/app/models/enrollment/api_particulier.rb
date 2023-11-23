@@ -8,5 +8,6 @@ class Enrollment::ApiParticulier < Enrollment
 
     technical_team_validation
     responsable_technique_validation
+    team_members_validation("contact_metier", "contact métier")
   end
 end
