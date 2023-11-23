@@ -6,6 +6,10 @@ class TeamMember < ApplicationRecord
       "TeamMember::#{type.underscore.classify}".constantize
     end
 
+    def sti_class_for(type)
+      find_sti_class(type)
+    end
+
     # ex: > TeamMember::ResponsableTechnique => 'responsable_technique'
     def sti_name
       name.demodulize.underscore
