@@ -57,6 +57,22 @@ RSpec.describe Enrollment, type: :model do
     let(:enrollment) { create(:enrollment, target_api, :submitted) }
     let(:params) { {user_id: user.id, comment: "whatever"} }
 
+    describe "snapshotting" do
+      let(:target_api) { :api_entreprise }
+
+      it "updates last_validated_at" do
+        expect {
+          subject
+        }.to change { enrollment.reload.last_validated_at }
+      end
+
+      it "creates a snapshot of this model " do
+        expect {
+          subject
+        }.to change { enrollment.reload.snapshots.count }.by(1)
+      end
+    end
+
     context "with aidants_connect as target api" do
       let(:target_api) { :aidants_connect }
 

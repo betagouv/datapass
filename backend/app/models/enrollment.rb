@@ -12,6 +12,10 @@ class Enrollment < ApplicationRecord
       "Enrollment::#{target_api.underscore.classify}".constantize
     end
 
+    def sti_class_for(type)
+      find_sti_class(type)
+    end
+
     # ex: Enrollment::ApiParticulier => 'api_particulier'
     def sti_name
       name.demodulize.underscore
@@ -121,6 +125,21 @@ class Enrollment < ApplicationRecord
         )
       end
     end
+
+    after_transition from: :submitted, to: :validated do |enrollment|
+      enrollment.snapshot!
+    end
+  end
+
+  def snapshot!
+    self.last_validated_at = DateTime.now
+    save
+
+    create_snapshot!
+  end
+
+  def last_snapshot
+    snapshots.order(created_at: :desc).limit(1).first
   end
 
   def mark_event_as_processed(event_name)
