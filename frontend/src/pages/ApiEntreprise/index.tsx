@@ -188,6 +188,12 @@ const scopesConfiguration = [
     required: true,
   },
   {
+    value: 'open_data_certifications_ingenierie_opqibi',
+    label: 'Certification d’ingénierie - OPQIBI | Open Data',
+    link: 'https://entreprise.api.gouv.fr/catalogue/opqibi/qualifications_ingenierie',
+    required: true,
+  },
+  {
     value: 'open_data_certifications_qualifelec',
     label: 'Certification Qualifelec - Qualifelec | Open Data',
     link: 'https://entreprise.api.gouv.fr/catalogue/qualifelec/certificats',
@@ -240,6 +246,7 @@ const groups = {
       'open_data_certifications_bio_agence_bio',
       'open_data_certifications_rge_ademe',
       'open_data_certifications_batiment_qualibat',
+      'open_data_certifications_ingenierie_opqibi',
       'open_data_certifications_qualifelec',
       'open_data_brevets_marques_modeles_deposes_inpi',
     ],
