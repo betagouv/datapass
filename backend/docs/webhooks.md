@@ -199,7 +199,47 @@ La requête HTTP possède comme `Application-Type` la valeur
 `application/json`
 
 Votre serveur doit obligatoirement répondre avec un status de succès. Les codes
-HTTP considérés comme étant un succès sont `200`, `201` et `204`.
+HTTP considérés comme étant un succès sont `200`, `201` et `204`. Le cas
+contraire, DataPass continuera d'essayer d'envoyer le webhook jusqu'à obtenir
+un code de succes. Les temps d'attentes sont exponentiels entre chaque
+tentatives. Ci-dessous un tableau avec des valeurs plausibles:
+
+<details>
+<summary>Tableau des essais (cliquez pour ouvrir).</summary>
+<pre>
+ # | Prochain essai     | Temps d'attente total
+ -------------------------------------------
+ 1 |       0d 0h 0m 20s |       0d 0h 0m 20s
+ 2 |       0d 0h 0m 26s |       0d 0h 0m 46s
+ 3 |       0d 0h 0m 46s |       0d 0h 1m 32s
+ 4 |       0d 0h 1m 56s |       0d 0h 3m 28s
+ 5 |       0d 0h 4m 56s |       0d 0h 8m 24s
+ 6 |      0d 0h 11m 10s |      0d 0h 19m 34s
+ 7 |      0d 0h 22m 26s |       0d 0h 42m 0s
+ 8 |      0d 0h 40m 56s |      0d 1h 22m 56s
+ 9 |       0d 1h 9m 16s |      0d 2h 32m 12s
+10 |      0d 1h 50m 26s |      0d 4h 22m 38s
+11 |      0d 2h 47m 50s |      0d 7h 10m 28s
+12 |       0d 4h 5m 16s |     0d 11h 15m 44s
+13 |      0d 5h 46m 56s |      0d 17h 2m 40s
+14 |      0d 7h 57m 26s |        1d 1h 0m 6s
+15 |     0d 10h 41m 46s |     1d 11h 41m 52s
+16 |      0d 14h 5m 20s |      2d 1h 47m 12s
+17 |     0d 18h 13m 56s |       2d 20h 1m 8s
+18 |     0d 23h 13m 46s |     3d 19h 14m 54s
+19 |      1d 5h 11m 26s |      5d 0h 26m 20s
+20 |     1d 12h 13m 56s |     6d 12h 40m 16s
+21 |     1d 20h 28m 40s |       8d 9h 8m 56s
+22 |       2d 6h 3m 26s |    10d 15h 12m 22s
+23 |      2d 17h 6m 26s |     13d 8h 18m 48s
+24 |      3d 5h 46m 16s |      16d 14h 5m 4s
+25 |     3d 20h 11m 56s |     20d 10h 17m 0s
+</pre>
+</details>
+
+Si au bout de 5 essais le serveur distant n'a toujours pas répondu positivement,
+un email d'erreur est envoyé aux instructeurs du type d'habilitation avec
+l'erreur exacte du serveur distant.
 
 Niveau sécurité, afin de garantir que la payload envoyée est bien émise par
 DataPass, 2 headers sont ajoutés à la requête :
