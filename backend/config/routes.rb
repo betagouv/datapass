@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :reopen_enrollments, only: [:update]
+
     get "enrollments/:target_api/available_reporters", to: "available_reporters#index"
 
     get "/data_provider_configurations", to: "data_provider_configurations#index"
