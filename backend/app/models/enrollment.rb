@@ -90,6 +90,10 @@ class Enrollment < ApplicationRecord
       transition from: :submitted, to: :validated
     end
 
+    event :reopen do
+      transition from: :validated, to: :draft
+    end
+
     before_transition do |enrollment, transition|
       enrollment.valid?(transition.event.to_sym)
     end
