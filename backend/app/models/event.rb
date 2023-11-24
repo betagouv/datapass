@@ -15,6 +15,8 @@ class Event < ApplicationRecord
     reminder
     reminder_before_archive
 
+    reopen
+
     opinion_created
     opinion_comment_created
   ].freeze
