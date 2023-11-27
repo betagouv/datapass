@@ -87,6 +87,7 @@ class EnrollmentMailer < ActionMailer::Base
     @nom_raison_sociale = params[:nom_raison_sociale]
     @previous_enrollment_id = params[:previous_enrollment_id]
     @scopes = params[:scopes]
+    @enrollment = Enrollment.find(params[:enrollment_id])
     @url = @enrollment.link
 
     mail(
