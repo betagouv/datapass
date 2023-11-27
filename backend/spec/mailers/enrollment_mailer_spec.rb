@@ -169,4 +169,24 @@ RSpec.describe EnrollmentMailer, type: :mailer do
       expect(mail.body.encoded).to include(enrollment.demandeurs.first.email)
     end
   end
+
+  describe "#notify_support_franceconnect" do
+    let(:enrollment) { create(:enrollment, :franceconnect) }
+
+    subject(:mail) do
+      described_class.with(
+        enrollment_id: enrollment.id,
+        template_name: "new_franceconnect_plus",
+        target_api: "franceconnect",
+        nom_raison_sociale: "UMAD Corp",
+        scopes: ["what", "ever"]
+      ).notify_support_franceconnect
+    end
+
+    it "works" do
+      expect {
+        mail.body
+      }.not_to raise_error
+    end
+  end
 end
