@@ -142,6 +142,11 @@ class Enrollment < ApplicationRecord
     snapshots.order(created_at: :desc).limit(1).first
   end
 
+  def reopening?
+    last_validated_at.present? &&
+      status != "validated"
+  end
+
   def mark_event_as_processed(event_name)
     unless ["notify", "submit"].include?(event_name)
       raise ArgumentError.new("Invalid event_name. Must be either 'notify' or 'submit'.")
