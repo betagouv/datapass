@@ -26,7 +26,7 @@ const ApiEnsuDocumentsSandbox = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="/docs/cgu_pcr_v1/cgu_api_ensu_documents_bas.pdf"
+      cguLink="/docs/cgu_pcr_v1/cgu_bas_ensu_doc_v.2023_11.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>

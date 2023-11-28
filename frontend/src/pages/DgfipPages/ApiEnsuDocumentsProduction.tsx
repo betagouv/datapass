@@ -24,7 +24,7 @@ const ApiEnsuDocumentsProduction = () => (
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[500]} />
-    <CguSection cguLink="/docs/cgu_pcr_v1/cgu_api_ensu_documents_production.pdf" />
+    <CguSection cguLink="/docs/cgu_pcr_v1/cgu_prod_ensu_doc_v.2023_11.pdf" />
   </Form>
 );
 
