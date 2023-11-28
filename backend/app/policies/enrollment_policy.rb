@@ -45,11 +45,6 @@ class EnrollmentPolicy < ApplicationPolicy
       return false
     end
 
-    if record.already_been_copied?
-      @error_message_key = :copy_enrollment_has_already_been_copied
-      return false
-    end
-
     true
   end
 

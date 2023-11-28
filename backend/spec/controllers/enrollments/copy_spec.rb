@@ -54,15 +54,18 @@ RSpec.describe EnrollmentsController, "#copy", type: :controller do
 
             it { is_expected.to have_http_status(:ok) }
 
-            context "when enrollment has already been copied" do
+            context "when enrollment has already been copied and copy is not archived" do
               before do
                 enrollment.copy user
               end
 
-              it { is_expected.to have_http_status(:forbidden) }
+              it { is_expected.to have_http_status(:unprocessable_entity) }
 
-              it "should render :copy_enrollment_has_already_been_copied" do
-                expect(copy_enrollment.body).to match(I18n.t("enrollment_errors.copy_enrollment_has_already_been_copied").to_json)
+              it "returns a JSON response with the error message" do
+                expect(JSON.parse(copy_enrollment.body, symbolize_names: true)).to match({
+                  title: "Cette demande a déjà été copiée",
+                  message: "L’action que vous essayez de faire est impossible, car une copie de l’habilitation existe déjà. Pour continuer, veuillez utiliser cette copie."
+                })
               end
             end
           end
