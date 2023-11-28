@@ -187,6 +187,9 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
+    hubspot-api-client (17.1.1)
+      json (~> 2.1, >= 2.1.0)
+      typhoeus (~> 1.4.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -474,6 +477,7 @@ DEPENDENCIES
   guard-rspec
   guard-standardrb
   http
+  hubspot-api-client
   interactor
   kaminari
   listen (>= 3.0.5, < 3.9)
