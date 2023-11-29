@@ -98,14 +98,6 @@ class Enrollment < ApplicationRecord
       enrollment.valid?(transition.event.to_sym)
     end
 
-    before_transition do |enrollment, transition|
-      enrollment.events.create!(
-        name: transition.event.to_s,
-        user_id: transition.args[0][:user_id],
-        comment: transition.args[0][:comment]
-      )
-    end
-
     before_transition from: %i[draft changes_requested], to: :submitted do |enrollment|
       if enrollment.technical_team_type == "software_company" && !enrollment.technical_team_value.match?(/^\d{14}$/)
         enrollment.notify_administrators_for_unknown_software_enrollment
@@ -132,6 +124,14 @@ class Enrollment < ApplicationRecord
 
     after_transition from: :submitted, to: :validated do |enrollment|
       enrollment.snapshot!
+    end
+
+    after_transition do |enrollment, transition|
+      enrollment.events.create!(
+        name: transition.event.to_s,
+        user_id: transition.args[0][:user_id],
+        comment: transition.args[0][:comment]
+      )
     end
   end
 
