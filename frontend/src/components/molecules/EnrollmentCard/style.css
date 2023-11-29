@@ -15,7 +15,7 @@
 }
 
 .enrollment-card.large .enrollment-card-body .enrollment-card-image {
-  width: 50%;
+  width: 33%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +23,8 @@
 }
 
 .enrollment-card.large .enrollment-card-body .enrollment-card-content {
-  width: 50%;
+  width: 66%;
+  margin-left: 20px;
 }
 
 .enrollment-card-image img {
