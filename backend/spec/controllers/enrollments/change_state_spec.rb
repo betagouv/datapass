@@ -410,7 +410,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         expect(FranceconnectBridge).to have_received(:call)
       end
 
-      it "tracks event as validate for this enrollment" do
+      it "tracks event as validate for this enrollment, and associate snapshot record for history" do
         expect {
           make_request
         }.to change { enrollment.events.reload.count }.by(1)
@@ -419,6 +419,7 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
 
         expect(last_enrollment_event.user).to eq(user)
         expect(last_enrollment_event.name).to eq("validate")
+        expect(last_enrollment_event.entity).to be_a(ActiveSnapshot::Snapshot)
       end
 
       describe "emails send" do
