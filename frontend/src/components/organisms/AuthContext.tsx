@@ -13,6 +13,7 @@ type AuthContextType = {
   login: () => void;
   logout: () => void;
   getIsUserAnInstructor: (target_api: string) => boolean;
+  getIsUserAnAdministrator: () => boolean;
 };
 
 export const AuthContext = React.createContext<AuthContextType>({
@@ -22,6 +23,7 @@ export const AuthContext = React.createContext<AuthContextType>({
   login: () => {},
   logout: () => {},
   getIsUserAnInstructor: (target_api) => false,
+  getIsUserAnAdministrator: () => false,
 });
 
 export const useAuth = () => {
@@ -110,6 +112,12 @@ export class AuthStore extends React.Component<{ children: React.ReactNode }> {
     return this.state.user.roles.includes(targetApiInstructorRole);
   };
 
+  getIsUserAnAdministrator = () => {
+    const administratorRole = 'administrator';
+
+    return this.state.user.roles.includes(administratorRole);
+  };
+
   render() {
     const { children }: { children?: React.ReactNode } = this.props;
     const { user, isLoading, connectionError } = this.state;
@@ -123,6 +131,7 @@ export class AuthStore extends React.Component<{ children: React.ReactNode }> {
           login: this.login,
           logout: this.logout,
           getIsUserAnInstructor: this.getIsUserAnInstructor,
+          getIsUserAnAdministrator: this.getIsUserAnAdministrator,
         }}
       >
         {children}

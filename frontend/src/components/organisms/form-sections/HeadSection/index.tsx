@@ -10,6 +10,8 @@ import ActivityFeed from './ActivityFeed';
 import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
+import Button from '../../../atoms/hyperTexts/Button';
+import { useAuth } from '../../AuthContext';
 
 export const HeadSection = () => {
   const {
@@ -17,12 +19,24 @@ export const HeadSection = () => {
   } = useContext(FormContext)!;
 
   const { label } = useDataProvider(target_api);
+  const { getIsUserAnAdministrator } = useAuth();
+
+  const isUserAnAdministrator = getIsUserAnAdministrator();
 
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>Vous demandez l’accès à</>
-        <h1>{label}</h1>
+        <div className="admin-unarchive-section">
+          <h1>{label}</h1>
+          <div>
+            {isUserAnAdministrator && (
+              <Button secondary large icon="arrow-go-back">
+                Désarchiver
+              </Button>
+            )}
+          </div>
+        </div>
         <div className="datapass-badge-group">
           {id && <Badge type={BadgeType.info}>Habilitation n°{id}</Badge>}
           <StatusBadge status={status} />
