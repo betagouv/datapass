@@ -26,7 +26,7 @@ const ApiHermesSandbox = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_4_05-05-2021_cdc.pdf"
+      cguLink="/docs/cgu_bas_hermes_v.2023_11.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>

@@ -26,7 +26,7 @@ const ApiOpaleSandbox = () => (
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      cguLink="/docs/cgu_pcr_v1/cgu_api_opale_pcr_bas_2021_v1.0.pdf"
+      cguLink="/docs/cgu_pcr_v1/cgu_bas_opale_v.2023_11.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>

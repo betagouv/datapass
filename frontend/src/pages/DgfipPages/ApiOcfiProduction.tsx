@@ -24,7 +24,7 @@ const ApiOcfiProduction = () => (
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[500]} />
-    <CguSection cguLink="/docs/cgu_pcr_v1/cgu_api_ocfi_pcr_prod_2021_v1.0.pdf" />
+    <CguSection cguLink="/docs/cgu_pcr_v1/cgu_prod_ocfi_v.2023_11.pdf" />
   </Form>
 );
 
