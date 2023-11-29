@@ -50,6 +50,7 @@ const UserEnrollmentList = () => {
           draft: Enrollment[];
           validated: Enrollment[];
           other: Enrollment[];
+          changes_requested: Enrollment[];
         },
         enrollment
       ) => {
@@ -60,12 +61,15 @@ const UserEnrollmentList = () => {
           case EnrollmentStatus.validated:
             acc.validated.push(enrollment);
             break;
+          case EnrollmentStatus.changes_requested:
+            acc.changes_requested.push(enrollment);
+            break;
           default:
             acc.other.push(enrollment);
         }
         return acc;
       },
-      { draft: [], validated: [], other: [] }
+      { draft: [], validated: [], changes_requested: [], other: [] }
     );
 
   return (
@@ -83,22 +87,26 @@ const UserEnrollmentList = () => {
       {!isLoading && isEmpty(enrollmentsByOrganization) && <NoEnrollments />}
 
       {!isLoading && !isEmpty(enrollmentsByOrganization) && (
-        <div className="page-container list-container">
+        <div className="list-container">
           {showAlert && (
             <Alert type={AlertType.success} onAlertClose={handleClose}>
               {state?.message}
             </Alert>
           )}
           {Object.keys(enrollmentsByOrganization).map((group) => {
-            const { draft, validated, other } = groupEnrollmentsByStatus(
-              enrollmentsByOrganization[group]
-            );
+            const { draft, validated, changes_requested, other } =
+              groupEnrollmentsByStatus(enrollmentsByOrganization[group]);
 
             return (
               <React.Fragment key={group}>
-                <div className="list-title fr-text--lead">
-                  {enrollmentsByOrganization[group][0].nom_raison_sociale}
-                </div>
+                {changes_requested.length > 0 && (
+                  <EnrollmentSection
+                    highlighted
+                    title="Demandes à modifier"
+                    icon="changes_requested"
+                    enrollments={changes_requested}
+                  />
+                )}
                 {validated.length > 0 && (
                   <EnrollmentSection
                     title="Mes habilitations"

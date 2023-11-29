@@ -12,6 +12,7 @@ type EnrollmentSectionProps = {
   title: string;
   icon: NoDSFRIcons;
   cardSize?: 'small' | 'large';
+  highlighted?: boolean;
 };
 
 const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
@@ -19,23 +20,32 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
   title,
   icon,
   cardSize = 'small',
+  highlighted = false,
 }) => {
+  let classNames = 'enrollment-section';
+
+  if (highlighted) {
+    classNames += ' highlighted';
+  }
+
   const { goToItem } = useListItemNavigation();
 
   return (
-    <div className="enrollment-section">
-      <IconTitle title={title} icon={icon} noBorder small />
-      <CardContainer>
-        {enrollments.map((enrollment) => {
-          return (
-            <EnrollmentCard
-              cardSize={cardSize}
-              onSelect={goToItem}
-              enrollment={enrollment}
-            />
-          );
-        })}
-      </CardContainer>
+    <div className={classNames}>
+      <div className="page-container">
+        <IconTitle title={title} icon={icon} noBorder small />
+        <CardContainer>
+          {enrollments.map((enrollment) => {
+            return (
+              <EnrollmentCard
+                cardSize={cardSize}
+                onSelect={goToItem}
+                enrollment={enrollment}
+              />
+            );
+          })}
+        </CardContainer>
+      </div>
     </div>
   );
 };

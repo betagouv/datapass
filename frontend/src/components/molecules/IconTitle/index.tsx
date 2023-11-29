@@ -4,6 +4,7 @@ import './style.css';
 export type NoDSFRIcons =
   | 'activity'
   | 'change'
+  | 'changes_requested'
   | 'validation'
   | 'calendar'
   | 'mail'
