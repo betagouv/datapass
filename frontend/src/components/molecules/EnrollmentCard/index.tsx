@@ -38,6 +38,21 @@ export const EnrollmentCard: React.FC<Props> = ({
     className += ' large';
   }
 
+  const adjustTextToDesiredLength = (
+    text: string | undefined,
+    length: number
+  ) => {
+    if (!text) {
+      return null;
+    }
+
+    if (text.length > length) {
+      return text.slice(0, length) + '…';
+    }
+
+    return text;
+  };
+
   return (
     <Card className={className}>
       <div className="enrollment-card-header">
@@ -52,9 +67,14 @@ export const EnrollmentCard: React.FC<Props> = ({
         )}
         <div className="enrollment-card-content">
           <div className="enrollment-card-subtitle">{label}</div>
-          <div className="enrollment-card-title">{enrollment.intitule}</div>
-          <p className="enrollment-card-description">
-            {enrollment.description}
+          <div className="enrollment-card-title" title={enrollment.intitule}>
+            {adjustTextToDesiredLength(enrollment.intitule, 60)}
+          </div>
+          <p
+            className="enrollment-card-description"
+            title={enrollment.description}
+          >
+            {adjustTextToDesiredLength(enrollment.description, 120)}
           </p>
           <Button onClick={handleClick}>Continuer</Button>
         </div>
