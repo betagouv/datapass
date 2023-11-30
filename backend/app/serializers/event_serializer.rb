@@ -6,6 +6,8 @@ class EventSerializer < ApplicationSerializer
     :created_at,
     :diff,
     :name,
+    :entity_id,
+    :entity_type,
     :processed_at,
     :updated_at
 
