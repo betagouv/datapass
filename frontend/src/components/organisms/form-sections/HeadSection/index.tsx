@@ -17,7 +17,7 @@ import {
   EnrollmentEvent,
 } from '../../../../config/event-configuration';
 import { processEvent } from '../../../../lib/process-event';
-import { createOrUpdateEnrollment } from '../../../../services/enrollments';
+import Enrollment from '../../../templates/Enrollment';
 
 export const HeadSection = () => {
   const {
@@ -32,16 +32,18 @@ export const HeadSection = () => {
   const handleUnarchiveClick = async () => {
     const event = EnrollmentEvent.unarchive;
     const eventConfiguration = eventConfigurations[event];
+    const enrollment = Enrollment;
+    const updateEnrollment = Function;
 
     try {
-      const result = await processEvent(
+      await processEvent(
         event,
         eventConfiguration,
         enrollment,
         updateEnrollment
       );
     } catch (error) {
-      console.error('Errur lors du désarchivage:', error);
+      console.error('Erreur lors du désarchivage:', error);
     }
   };
 

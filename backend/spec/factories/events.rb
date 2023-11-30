@@ -64,6 +64,10 @@ FactoryBot.define do
       name { "archive" }
     end
 
+    trait :unarchive do
+      name { "unarchive" }
+    end
+
     trait :opinion_created do
       name { "opinion_created" }
 
