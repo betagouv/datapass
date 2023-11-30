@@ -12,6 +12,12 @@ import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
 import Button from '../../../atoms/hyperTexts/Button';
 import { useAuth } from '../../AuthContext';
+import {
+  eventConfigurations,
+  EnrollmentEvent,
+} from '../../../../config/event-configuration';
+import { processEvent } from '../../../../lib/process-event';
+import { createOrUpdateEnrollment } from '../../../../services/enrollments';
 
 export const HeadSection = () => {
   const {
@@ -23,6 +29,22 @@ export const HeadSection = () => {
 
   const isUserAnAdministrator = getIsUserAnAdministrator();
 
+  const handleUnarchiveClick = async () => {
+    const event = EnrollmentEvent.unarchive;
+    const eventConfiguration = eventConfigurations[event];
+
+    try {
+      const result = await processEvent(
+        event,
+        eventConfiguration,
+        enrollment,
+        updateEnrollment
+      );
+    } catch (error) {
+      console.error('Errur lors du désarchivage:', error);
+    }
+  };
+
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
@@ -31,7 +53,12 @@ export const HeadSection = () => {
           <h1>{label}</h1>
           <div>
             {isUserAnAdministrator && (
-              <Button secondary large icon="arrow-go-back">
+              <Button
+                secondary
+                large
+                icon="arrow-go-back"
+                onClick={handleUnarchiveClick}
+              >
                 Désarchiver
               </Button>
             )}

@@ -1,4 +1,4 @@
-import { NetworkError, getErrorMessages } from '.';
+import { getErrorMessages, NetworkError } from '.';
 import {
   EnrollmentEvent,
   EventConfiguration,
