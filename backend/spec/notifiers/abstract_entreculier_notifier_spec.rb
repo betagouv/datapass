@@ -19,10 +19,10 @@ RSpec.describe AbstractEntreculierNotifier, type: :notifier do
 
   describe "webhook events" do
     describe "#validate" do
-      subject { instance.create }
+      subject { instance.validate }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "create" }
+        let(:event) { "validate" }
       end
     end
 
