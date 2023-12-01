@@ -19,6 +19,7 @@ FactoryBot.define do
 
     transient do
       organization_kind { :clamart }
+      create_organization { false }
       team_members { [] }
 
       user { nil }
@@ -42,6 +43,10 @@ FactoryBot.define do
       demandeur.user.organizations << organization
 
       demandeur.user.save!
+
+      if evaluator.create_organization
+        create(:organization, siret: enrollment.siret, mon_compte_pro_payload: organization)
+      end
 
       if evaluator.team_members.any?
         evaluator.team_members.each do |team_member_payload|
