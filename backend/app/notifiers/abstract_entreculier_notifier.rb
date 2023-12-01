@@ -7,6 +7,8 @@ class AbstractEntreculierNotifier < AbstractNotifier
 
     deliver_rgpd_email_for("responsable_traitement") if enrollment.team_members.exists?(type: "responsable_traitement")
 
+    RegisterOrganizationWithContactsOnHubspotWorker.perform_async(enrollment.id)
+
     return unless enrollment.team_members.exists?(type: "delegue_protection_donnees")
 
     deliver_rgpd_email_for("delegue_protection_donnees")
