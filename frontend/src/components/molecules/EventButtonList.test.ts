@@ -14,7 +14,6 @@ describe('StickyActions', () => {
       show: true,
       update: true,
       validate: false,
-      unarchive: false,
     };
 
     expect(listAuthorizedEvents(acl)).toMatchSnapshot();

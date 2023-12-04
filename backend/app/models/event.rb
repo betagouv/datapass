@@ -14,10 +14,11 @@ class Event < ApplicationRecord
     revoke
     reminder
     reminder_before_archive
-    unarchive
 
     opinion_created
     opinion_comment_created
+
+    unarchive
   ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 

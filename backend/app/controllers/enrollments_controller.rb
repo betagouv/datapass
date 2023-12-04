@@ -225,6 +225,17 @@ class EnrollmentsController < AuthenticatedUserController
     render json: @enrollment
   end
 
+  # GET enrollment/1/unarchive
+  def unarchive
+    @enrollment = authorize Enrollment.find(params[:id])
+    if @enrollment.status == "archived"
+      @enrollment.unarchive!
+      render json: @enrollment
+    else
+      render status: :unprocessable_entity, json: @enrollment.errors
+    end
+  end
+
   private
 
   def pundit_params_for(_record)

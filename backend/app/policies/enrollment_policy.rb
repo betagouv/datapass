@@ -74,6 +74,10 @@ class EnrollmentPolicy < ApplicationPolicy
     record.can_archive_status? && (demandeur_rights || instructor_right || administrator_right)
   end
 
+  def unarchive?
+    record.status_archived? && user.is_administrator?
+  end
+
   def refuse?
     record.can_refuse_status? && user.is_instructor?(record.target_api)
   end

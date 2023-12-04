@@ -24,7 +24,6 @@ export enum PromptType {
   confirm_deletion = 'confirm_deletion',
   confirm_archive = 'confirm_archive',
   submit_instead = 'submit_instead',
-  confirm_unarchive = 'confirm_unarchive',
 }
 
 export enum RequestType {
@@ -138,16 +137,5 @@ export const eventConfigurations: {
     prompt: PromptType.comment,
     request: RequestType.change_state,
     redirectToHome: true,
-  },
-  [EnrollmentEvent.unarchive]: {
-    displayProps: {
-      label: 'Désarchiver',
-      icon: 'arrow-go-back-full',
-      secondary: true,
-    },
-    prompt: PromptType.confirm_unarchive,
-    request: RequestType.change_state,
-    redirectToHome: true,
-    successMessage: 'L’habilitation a été désarchivée.',
   },
 };

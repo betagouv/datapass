@@ -291,3 +291,11 @@ export function markEventAsRead({
     )
     .then(({ data }) => data);
 }
+
+export function unarchiveEnrollment({ id }: { id: number }) {
+  return httpClient
+    .patch(`${BACK_HOST}/api/enrollments/${id}/unarchive`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data);
+}

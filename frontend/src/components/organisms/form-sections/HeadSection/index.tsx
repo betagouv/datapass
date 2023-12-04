@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Badge, { BadgeType } from '../../../atoms/hyperTexts/Badge';
 import Link from '../../../atoms/hyperTexts/Link';
 import { StatusBadge } from '../../../molecules/StatusBadge';
@@ -12,12 +12,10 @@ import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
 import Button from '../../../atoms/hyperTexts/Button';
 import { useAuth } from '../../AuthContext';
-import {
-  eventConfigurations,
-  EnrollmentEvent,
-} from '../../../../config/event-configuration';
-import { processEvent } from '../../../../lib/process-event';
-import Enrollment from '../../../templates/Enrollment';
+import { unarchiveEnrollment } from '../../../../services/enrollments';
+import ConfirmationModal from '../../ConfirmationModal';
+import Alert, { AlertType } from '../../../atoms/Alert';
+import { Linkify } from '../../../molecules/Linkify';
 
 export const HeadSection = () => {
   const {
@@ -28,24 +26,31 @@ export const HeadSection = () => {
   const { getIsUserAnAdministrator } = useAuth();
 
   const isUserAnAdministrator = getIsUserAnAdministrator();
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const isArchived = status === 'archived';
+  const [showAlert, setShowAlert] = useState(false);
+  const alertRef = useRef(null);
 
-  const handleUnarchiveClick = async () => {
-    const event = EnrollmentEvent.unarchive;
-    const eventConfiguration = eventConfigurations[event];
-    const enrollment = Enrollment;
-    const updateEnrollment = Function;
-
-    try {
-      await processEvent(
-        event,
-        eventConfiguration,
-        enrollment,
-        updateEnrollment
-      );
-    } catch (error) {
-      console.error('Erreur lors du désarchivage:', error);
-    }
+  const openConfirmationModal = () => {
+    setIsConfirmationModalOpen(true);
   };
+
+  const closeConfirmationModal = () => {
+    setIsConfirmationModalOpen(false);
+  };
+
+  const handleUnarchive = () => {
+    unarchiveEnrollment({ id: id });
+    closeConfirmationModal();
+    setShowAlert(true);
+  };
+
+  useEffect(() => {
+    // Scroll to the alert when it is displayed
+    if (showAlert && alertRef.current) {
+      alertRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [showAlert]);
 
   return (
     <ScrollablePanel scrollableId="head">
@@ -54,15 +59,23 @@ export const HeadSection = () => {
         <div className="admin-unarchive-section">
           <h1>{label}</h1>
           <div>
-            {isUserAnAdministrator && (
+            {!showAlert && isUserAnAdministrator && isArchived && (
               <Button
                 secondary
                 large
                 icon="arrow-go-back"
-                onClick={handleUnarchiveClick}
+                onClick={() => openConfirmationModal()}
               >
                 Désarchiver
               </Button>
+            )}
+
+            {showAlert && (
+              <div ref={alertRef}>
+                <Alert type={AlertType.success}>
+                  <Linkify message={"L'habilitation a bien été désarchivée"} />
+                </Alert>
+              </div>
             )}
           </div>
         </div>
@@ -82,6 +95,20 @@ export const HeadSection = () => {
       <div className="fr-pt-3w">
         <NotificationSubSection />
       </div>
+
+      {/* Render the ConfirmationModal */}
+      {isConfirmationModalOpen && (
+        <ConfirmationModal
+          title="Voulez-vous décarchiver l'habilitation ?"
+          handleConfirm={handleUnarchive}
+          handleCancel={closeConfirmationModal}
+        >
+          <p>
+            Vous êtes sur le point de désarchiver cette habilitation, elle
+            reprendra son statut initial dans votre liste d'habilitations.
+          </p>
+        </ConfirmationModal>
+      )}
     </ScrollablePanel>
   );
 };
