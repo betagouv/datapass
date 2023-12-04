@@ -26,7 +26,7 @@ RSpec.describe AbstractEntreculierNotifier, type: :notifier do
       end
 
       it "calls hubspot registration" do
-        expect(RegisterOrganizationWithContactsOnHubspotWorker).to receive(:perform_async).with(enrollment.id)
+        expect(RegisterOrganizationWithContactsOnCrmWorker).to receive(:perform_async).with(enrollment.id)
 
         subject
       end

@@ -1,4 +1,4 @@
-RSpec.describe RegisterOrganizationWithContactsOnHubspotWorker, type: :worker do
+RSpec.describe RegisterOrganizationWithContactsOnCrmWorker, type: :worker do
   subject { described_class.perform_async(enrollment_id) }
 
   let(:hubspot_api) { instance_double(HubspotApi) }
