@@ -7,8 +7,16 @@ export const useListItemNavigation = () => {
   const navigate = useNavigate();
 
   const goToItem = useCallback(
-    (target_api: string, id: number, clickEvent?: React.MouseEvent) => {
-      const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
+    (
+      target_api: string,
+      id: number,
+      clickEvent?: React.MouseEvent,
+      snapshotId?: number
+    ) => {
+      const targetUrlBase = `/${target_api.replace(/_/g, '-')}/${id}`;
+      const targetUrl = snapshotId
+        ? `${targetUrlBase}/${snapshotId}`
+        : targetUrlBase;
 
       if (clickEvent?.ctrlKey || clickEvent?.metaKey) {
         // metaKey is cmd on Mac
