@@ -1,4 +1,7 @@
 .enrollment-section {
   width: 100%;
-  margin: 25px 0;
+}
+
+.enrollment-section.highlighted {
+  background-color: rgba(232, 237, 255, 1);
 }
