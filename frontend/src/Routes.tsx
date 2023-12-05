@@ -101,7 +101,16 @@ export const Routes = () => {
               <FormRouter />
             </AuthRequired>
           }
-        />
+        >
+          <Route
+            path=":snapshotId"
+            element={
+              <AuthRequired>
+                <FormRouter />
+              </AuthRequired>
+            }
+          />
+        </Route>
       </Route>
     </ReactRouterRoutes>
   );
