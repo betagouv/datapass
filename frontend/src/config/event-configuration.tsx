@@ -15,6 +15,9 @@ export enum EnrollmentEvent {
   instruct = 'instruct',
   update_contacts = 'update_contacts',
   copy = 'copy',
+  create_opinion = 'create_opinion',
+  create_opinion_comment = 'create_opinion_comment',
+  reopen = 'reopen',
 }
 
 export enum PromptType {
