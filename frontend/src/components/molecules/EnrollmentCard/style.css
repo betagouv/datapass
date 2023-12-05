@@ -63,6 +63,10 @@
   gap: 15px;
 }
 
+.enrollment-card-footer {
+  background-color: aquamarine;
+}
+
 @media all and (max-width: 992px) {
   .enrollment-card {
     width: 45%;

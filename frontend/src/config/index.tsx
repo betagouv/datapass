@@ -76,6 +76,8 @@ export type Event = {
   processed_at?: string;
   updated_at: string;
   user: User;
+  entity_id: number;
+  entity_type: string;
 };
 
 export enum TeamMemberType {
