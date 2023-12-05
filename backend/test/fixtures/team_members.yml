@@ -9,7 +9,7 @@ DEMANDEUR: &DEMANDEUR
   family_name: Demandeur
   type: demandeur
   job: Demandeur
-  phone_number: 0103821213
+  phone_number: 0603821213
   user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
 
 ALTERNATIVE_DEMANDEUR: &ALTERNATIVE_DEMANDEUR
@@ -18,7 +18,7 @@ ALTERNATIVE_DEMANDEUR: &ALTERNATIVE_DEMANDEUR
   family_name: Demandeur Alternatif
   type: demandeur
   job: Demandeur
-  phone_number: 0103821215
+  phone_number: 0603821215
   user_id: <%= ActiveRecord::FixtureSet.identify(:alternative_demandeur) %>
 
 RESPONSABLE_TRAITEMENT: &RESPONSABLE_TRAITEMENT
@@ -27,7 +27,7 @@ RESPONSABLE_TRAITEMENT: &RESPONSABLE_TRAITEMENT
   family_name: Responsable Traitement
   type: responsable_traitement
   job: Responsable Traitement
-  phone_number: 0103821214
+  phone_number: 0603821214
   user_id: <%= ActiveRecord::FixtureSet.identify(:responsable_traitement) %>
 
 DELEGUE_PROTECTION_DONNEES: &DELEGUE_PROTECTION_DONNEES
@@ -36,7 +36,7 @@ DELEGUE_PROTECTION_DONNEES: &DELEGUE_PROTECTION_DONNEES
   family_name: Délégué à la protection des données
   type: delegue_protection_donnees
   job: Délégué à la protection des données
-  phone_number: 0103821215
+  phone_number: 0603821215
   user_id: <%= ActiveRecord::FixtureSet.identify(:delegue_protection_donnees) %>
 
 RESPONSABLE_TECHNIQUE: &RESPONSABLE_TECHNIQUE
@@ -45,7 +45,7 @@ RESPONSABLE_TECHNIQUE: &RESPONSABLE_TECHNIQUE
   family_name: Responsable Technique
   type: responsable_technique
   job: Responsable Technique
-  phone_number: 0103821216
+  phone_number: 0603821216
   user_id: <%= ActiveRecord::FixtureSet.identify(:responsable_technique) %>
 
 CONTACT_METIER: &CONTACT_METIER
@@ -54,7 +54,7 @@ CONTACT_METIER: &CONTACT_METIER
   family_name: Contact Métier
   type: contact_metier
   job: Contact Métier
-  phone_number: 0103821217
+  phone_number: 0603821217
   user_id: <%= ActiveRecord::FixtureSet.identify(:contact_metier) %>
 
 # 📝 DRAFT ENROLLMENTS TEAM MEMBERS

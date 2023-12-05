@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Card from '../Card';
 import Badge, { StatusBadge } from '../StatusBadge';
 import { Enrollment } from '../../../config';
@@ -6,16 +6,18 @@ import { useDataProvider } from '../../templates/hooks/use-data-provider';
 import Button from '../../atoms/hyperTexts/Button';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import { reopenEnrollment } from '../../../services/enrollments';
-import useListItemNavigation from '../../templates/hooks/use-list-item-navigation';
 
 import './style.css';
+import { isReopenned } from '../../../lib';
+import { EnrollmentEvent } from '../../../config/event-configuration';
 
 type Props = {
   enrollment: Enrollment;
   onSelect: (
     target_api: string,
     id: number,
-    e: React.MouseEvent<HTMLElement>
+    e: React.MouseEvent<HTMLElement>,
+    snapshotId?: number
   ) => void;
   cardSize?: 'small' | 'large';
 };
@@ -25,15 +27,12 @@ export const EnrollmentCard: React.FC<Props> = ({
   onSelect,
   cardSize,
 }) => {
-  const { goToItem } = useListItemNavigation();
   const { label, icon } = useDataProvider(enrollment.target_api);
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      onSelect(enrollment.target_api, enrollment.id, e);
-    },
-    [enrollment, onSelect]
-  );
+  const isEnrollmentReopenned = isReopenned(enrollment);
+  const lastSnapshotId = enrollment.events?.find(
+    ({ name }) => name === EnrollmentEvent.validate
+  )?.entity_id;
 
   let className = 'enrollment-card';
 
@@ -41,9 +40,9 @@ export const EnrollmentCard: React.FC<Props> = ({
     className += ' large';
   }
 
-  const onReopenClick = async (event: React.MouseEvent) => {
+  const onReopenClick = async (event: React.MouseEvent<HTMLElement>) => {
     const reopenedEnrollment = await reopenEnrollment({ id: enrollment.id });
-    goToItem(reopenedEnrollment.target_api, reopenedEnrollment.id, event);
+    onSelect(reopenedEnrollment.target_api, reopenedEnrollment.id, event);
   };
 
   const adjustTextToDesiredLength = (
@@ -65,7 +64,13 @@ export const EnrollmentCard: React.FC<Props> = ({
     <Card className={className}>
       <div className="enrollment-card-header">
         <Badge>n°{enrollment.id}</Badge>
-        <StatusBadge status={enrollment.status} />
+        <StatusBadge
+          status={
+            isEnrollmentReopenned
+              ? EnrollmentStatus.validated
+              : enrollment.status
+          }
+        />
       </div>
       <div className="enrollment-card-body">
         {icon && cardSize === 'large' && (
@@ -85,7 +90,18 @@ export const EnrollmentCard: React.FC<Props> = ({
             {adjustTextToDesiredLength(enrollment.description, 120)}
           </p>
           <div className="enrollment-card-actions">
-            <Button onClick={handleClick}>Continuer</Button>
+            <Button
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                onSelect(
+                  enrollment.target_api,
+                  enrollment.id,
+                  e,
+                  lastSnapshotId
+                );
+              }}
+            >
+              Consulter
+            </Button>
             {enrollment.status === EnrollmentStatus.validated && (
               <Button secondary onClick={onReopenClick}>
                 Mettre à jour
@@ -94,6 +110,19 @@ export const EnrollmentCard: React.FC<Props> = ({
           </div>
         </div>
       </div>
+      {isReopenned(enrollment) && (
+        <div className="enrollment-card-footer">
+          <div>Demande de mise à jour</div>
+          <Button
+            tertiaryNoOutline
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
+              onSelect(enrollment.target_api, enrollment.id, e);
+            }}
+          >
+            Consulter
+          </Button>
+        </div>
+      )}
     </Card>
   );
 };

@@ -10,6 +10,7 @@ import NoEnrollments from './NoEnrollments';
 import { Enrollment, Enrollment as EnrollmentType } from '../../../config';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import EnrollmentSection from '../../organisms/EnrollmentSection';
+import { isReopenned } from '../../../lib';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,6 +69,25 @@ const UserEnrollmentList = () => {
       { draft: [], validated: [], other: [] }
     );
 
+  const groupEnrollmentsByReopen = (enrollments: Enrollment[]) =>
+    enrollments.reduce(
+      (
+        acc: {
+          reopenned: Enrollment[];
+          notReopenned: Enrollment[];
+        },
+        enrollment
+      ) => {
+        if (isReopenned(enrollment)) {
+          acc.reopenned.push(enrollment);
+        } else {
+          acc.notReopenned.push(enrollment);
+        }
+        return acc;
+      },
+      { reopenned: [], notReopenned: [] }
+    );
+
   return (
     <main className="list-page list-page-white">
       <ListHeader title="Accueil">
@@ -90,20 +110,22 @@ const UserEnrollmentList = () => {
             </Alert>
           )}
           {Object.keys(enrollmentsByOrganization).map((group) => {
-            const { draft, validated, other } = groupEnrollmentsByStatus(
+            const { reopenned, notReopenned } = groupEnrollmentsByReopen(
               enrollmentsByOrganization[group]
             );
+            const { draft, validated, other } =
+              groupEnrollmentsByStatus(notReopenned);
 
             return (
               <React.Fragment key={group}>
                 <div className="list-title fr-text--lead">
                   {enrollmentsByOrganization[group][0].nom_raison_sociale}
                 </div>
-                {validated.length > 0 && (
+                {[...reopenned, ...validated].length > 0 && (
                   <EnrollmentSection
                     title="Mes habilitations"
                     icon="validated"
-                    enrollments={validated}
+                    enrollments={[...reopenned, ...validated]}
                     cardSize="large"
                   />
                 )}

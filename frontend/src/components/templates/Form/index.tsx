@@ -10,7 +10,10 @@ import React, {
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getStateFromUrlParams } from '../../../lib';
-import { getUserEnrollment } from '../../../services/enrollments';
+import {
+  getUserEnrollment,
+  getUserEnrollmentSnapshot,
+} from '../../../services/enrollments';
 import Alert, { AlertType } from '../../atoms/Alert';
 import WarningEmoji from '../../atoms/icons/WarningEmoji';
 import { Linkify } from '../../molecules/Linkify';
@@ -73,7 +76,7 @@ export const Form: React.FC<FormProps> = ({
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
-  const { enrollmentId } = useParams();
+  const { enrollmentId, snapshotId } = useParams();
   const [hasNotFoundError, setHasNotFoundError] = useState(false);
   const navigate = useNavigate();
   const { goBackToList } = useListItemNavigation();
@@ -121,7 +124,16 @@ export const Form: React.FC<FormProps> = ({
   useEffect(() => {
     async function fetchUserEnrollment() {
       try {
-        const userEnrollment = await getUserEnrollment(Number(enrollmentId));
+        let userEnrollment = null;
+
+        if (enrollmentId && !snapshotId) {
+          userEnrollment = await getUserEnrollment(Number(enrollmentId));
+        } else if (enrollmentId && snapshotId) {
+          userEnrollment = await getUserEnrollmentSnapshot({
+            enrollmentId: Number(enrollmentId),
+            snapshotId: Number(snapshotId),
+          });
+        }
         dispatchSetEnrollment(userEnrollment);
         setIsUserEnrollmentLoading(false);
       } catch (error) {
@@ -132,7 +144,7 @@ export const Form: React.FC<FormProps> = ({
       }
     }
 
-    if (enrollmentId) {
+    if (enrollmentId || snapshotId) {
       fetchUserEnrollment();
     } else {
       const { demarche } = getStateFromUrlParams({
@@ -153,7 +165,7 @@ export const Form: React.FC<FormProps> = ({
       }
       setIsUserEnrollmentLoading(false);
     }
-  }, [enrollmentId, goBackToList]);
+  }, [enrollmentId, snapshotId, goBackToList]);
 
   useEffect(() => {
     if (label) {
