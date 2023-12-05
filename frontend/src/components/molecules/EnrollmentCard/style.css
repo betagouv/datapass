@@ -58,6 +58,11 @@
   margin-bottom: 0.5rem;
 }
 
+.enrollment-card-actions {
+  display: flex;
+  gap: 15px;
+}
+
 @media all and (max-width: 992px) {
   .enrollment-card {
     width: 45%;
