@@ -131,6 +131,20 @@ Se référer à [Ajout d'un nouveau fournisseur](./backend/docs/new_enrollment.m
 Check [frontend/README.md] and [backend/README.md] if you need to run only one
 of them
 
+### Run cypress
+
+Install cypress if not installed:
+
+```sh
+npm install -g cypress
+```
+
+Then:
+
+```sh
+cypress open
+```
+
 ### DataPass back & front with Docker
 
 This installation method use a backend launched locally with docker. This method

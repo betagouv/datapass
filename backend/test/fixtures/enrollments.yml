@@ -42,6 +42,7 @@ enrollment_draft_alternative:
 
 enrollment_validated:
   <<: *DEFAULTS
+  id: 12345
   status: "validated"
   target_api: "franceconnect"
   intitule: "Demande d'habilitation FranceConnect"

@@ -108,23 +108,23 @@ contact_metier_draft_alternative:
 
 demandeur_validated:
   <<: *DEMANDEUR
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
 
 responsable_traitement_validated:
   <<: *RESPONSABLE_TRAITEMENT
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
   
 delegue_protection_donnees_validated:
   <<: *DELEGUE_PROTECTION_DONNEES
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
   
 responsable_technique_validated:
   <<: *RESPONSABLE_TECHNIQUE
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
   
 contact_metier_validated:
   <<: *CONTACT_METIER
-  enrollment_id: <%= ActiveRecord::FixtureSet.identify(:enrollment_validated) %>
+  enrollment_id: 12345
 
 # ❌ REFUSED ENROLLMENT TEAM MEMBERS
 
