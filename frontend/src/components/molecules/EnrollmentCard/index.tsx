@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
-import './style.css';
 import Card from '../Card';
 import Badge, { StatusBadge } from '../StatusBadge';
 import { Enrollment } from '../../../config';
 import { useDataProvider } from '../../templates/hooks/use-data-provider';
 import Button from '../../atoms/hyperTexts/Button';
+import { EnrollmentStatus } from '../../../config/status-parameters';
+import { reopenEnrollment } from '../../../services/enrollments';
+import useListItemNavigation from '../../templates/hooks/use-list-item-navigation';
 
 import './style.css';
 
@@ -23,6 +25,7 @@ export const EnrollmentCard: React.FC<Props> = ({
   onSelect,
   cardSize,
 }) => {
+  const { goToItem } = useListItemNavigation();
   const { label, icon } = useDataProvider(enrollment.target_api);
 
   const handleClick = useCallback(
@@ -37,6 +40,11 @@ export const EnrollmentCard: React.FC<Props> = ({
   if (cardSize === 'large') {
     className += ' large';
   }
+
+  const onReopenClick = async (event: React.MouseEvent) => {
+    const reopenedEnrollment = await reopenEnrollment({ id: enrollment.id });
+    goToItem(reopenedEnrollment.target_api, reopenedEnrollment.id, event);
+  };
 
   const adjustTextToDesiredLength = (
     text: string | undefined,
@@ -76,7 +84,14 @@ export const EnrollmentCard: React.FC<Props> = ({
           >
             {adjustTextToDesiredLength(enrollment.description, 120)}
           </p>
-          <Button onClick={handleClick}>Continuer</Button>
+          <div className="enrollment-card-actions">
+            <Button onClick={handleClick}>Continuer</Button>
+            {enrollment.status === EnrollmentStatus.validated && (
+              <Button secondary onClick={onReopenClick}>
+                Mettre à jour
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </Card>

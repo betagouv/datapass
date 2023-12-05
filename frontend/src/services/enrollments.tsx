@@ -291,3 +291,11 @@ export function markEventAsRead({
     )
     .then(({ data }) => data);
 }
+
+export function reopenEnrollment({ id }: { id: number }) {
+  return httpClient
+    .patch(`${BACK_HOST}/api/reopen_enrollments/${id}/`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data);
+}
