@@ -93,6 +93,10 @@ const eventToDisplayableContent = {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a répondu à un avis',
   },
+  [EnrollmentEvent.reopen]: {
+    icon: <InfoFillIcon color={'var(--text-default-info)'} />,
+    label: 'a réouvert l’habilitation',
+  },
 };
 
 export const EventItem: React.FC<Event> = ({
