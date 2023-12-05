@@ -370,3 +370,18 @@ export const RecycleIcon: React.FC<IconProps> = ({
     title={title}
   />
 );
+
+export const UnarchiveIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="archive-fill"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
+);

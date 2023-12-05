@@ -13,6 +13,7 @@ import {
   MailOpenIcon,
   InfoFillIcon,
   WarningIcon,
+  UnarchiveIcon,
 } from '../../../atoms/icons/fr-fi-icons';
 import FileCopyIcon from '../../../atoms/icons/fileCopy';
 import { Linkify } from '../../../molecules/Linkify';
@@ -92,6 +93,10 @@ const eventToDisplayableContent = {
   [EnrollmentEvent.create_opinion_comment]: {
     icon: <InfoFillIcon color={'var(--text-default-warning)'} />,
     label: 'a répondu à un avis',
+  },
+  [EnrollmentEvent.unarchive]: {
+    icon: <UnarchiveIcon color={'var(--text-default-info)'} />,
+    label: 'a désarchivé l’habilitation',
   },
 };
 

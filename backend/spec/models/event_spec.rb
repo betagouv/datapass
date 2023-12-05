@@ -15,6 +15,7 @@ RSpec.describe Event, type: :model do
       archive
       opinion_created
       opinion_comment_created
+      unarchive
     ].each do |trait|
       expect(build(:event, trait)).to be_valid
     end
@@ -181,6 +182,7 @@ RSpec.describe Event, type: :model do
         reminder
         reminder_before_archive
         archive
+        unarchive
       ].each do |name|
         context "when name is '#{name}'" do
           let(:name) { name }
@@ -239,6 +241,8 @@ RSpec.describe Event, type: :model do
       %w[
         reminder
         reminder_before_archive
+        archive
+        unarchive
       ].each do |name|
         context "when name '#{name}'" do
           let(:name) { name }

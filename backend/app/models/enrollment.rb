@@ -271,6 +271,34 @@ class Enrollment < ApplicationRecord
     events.create!(name: "archive")
   end
 
+  def unarchive!
+    included_events = %w[create request_changes submit validate refuse revoke]
+    last_event = events.where(name: included_events).last
+
+    last_event_name = last_event.name
+
+    status_to_update =
+      case last_event_name
+      when "created"
+        "draft"
+      when "submit"
+        "submitted"
+      when "request_changes"
+        "changes_requested"
+      when "validate"
+        "validated"
+      when "refuse"
+        "refused"
+      when "revoke"
+        "revoked"
+      else
+        raise "Unexpected last event: #{last_event_name}"
+      end
+
+    update(status: status_to_update)
+    events.create!(name: "unarchive", enrollment_id: id)
+  end
+
   def team_members_json
     team_members
       .to_a.sort_by { |tm| tm.id }

@@ -17,6 +17,8 @@ class Event < ApplicationRecord
 
     opinion_created
     opinion_comment_created
+
+    unarchive
   ].freeze
   EVENTS_WITH_COMMENT_AS_EMAIL_BODY = %w[refuse request_changes validate revoke].freeze
 
@@ -24,7 +26,7 @@ class Event < ApplicationRecord
   belongs_to :entity, polymorphic: true, optional: true
 
   belongs_to :user, optional: true
-  validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive].exclude?(event.name) }
+  validates :user, presence: true, if: proc { |event| %w[reminder reminder_before_archive archive unarchive].exclude?(event.name) }
 
   validates :name, presence: true, inclusion: {in: VALID_NAMES}
 

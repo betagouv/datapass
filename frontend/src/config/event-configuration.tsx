@@ -15,6 +15,7 @@ export enum EnrollmentEvent {
   instruct = 'instruct',
   update_contacts = 'update_contacts',
   copy = 'copy',
+  unarchive = 'unarchive',
 }
 
 export enum PromptType {

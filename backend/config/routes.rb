@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         get :copies
         get :next_enrollments
         patch :mark_event_as_processed
+        patch :unarchive
 
         get :email_templates, to: "enrollments_email_templates#index"
       end
