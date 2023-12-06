@@ -991,9 +991,6 @@ api_particulier:
           complementaire_sante_solidaire: true
       team_members:
         responsable_technique:
-          given_name: Damien
-          family_name: CHANAS
-          email: damien.chanas@coexya.eu
           given_name: eric
           family_name: ROZANSKI
           email: Eric.ROZANSKI@coexya.eu
