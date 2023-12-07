@@ -767,6 +767,7 @@ api_particulier:
         responsable_technique:
           given_name:  Alexis
           family_name: Cesar
+          job: responsable produit et technique
           email: alexis.cesar@libreair.fr
           phone_number: '+33622856317'
     nfi-grc:
