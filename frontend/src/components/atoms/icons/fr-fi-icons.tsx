@@ -221,6 +221,21 @@ export const ArrowRightIcon: React.FC<IconProps> = ({
   />
 );
 
+export const ArrowWithTailRightIcon: React.FC<IconProps> = ({
+  color,
+  large,
+  small,
+  title,
+}) => (
+  <FrFiIcon
+    type="arrow-right-line"
+    color={color}
+    large={large}
+    small={small}
+    title={title}
+  />
+);
+
 export const CheckCircleIcon: React.FC<IconProps> = ({
   color,
   large,
