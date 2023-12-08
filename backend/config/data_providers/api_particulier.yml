@@ -98,6 +98,9 @@ api_particulier:
     - value: cnous_echelon_bourse
       label: Échelon de la bourse
       helper: échelon de 0bis à 8
+    - value: cnous_identite
+      label: Identité
+      helper: Nom, prénom, date de naissance, lieu de naissance, genre
     - value: cnous_email
       label: E-mail
     - value: cnous_periode_versement
@@ -109,11 +112,8 @@ api_particulier:
       label: Statut définitif de la bourse
       helper: O si définitif, >=1 si provisoire (conditionnel)
     - value: cnous_ville_etudes
-      label: Ville d‘étude et établissement
+      label: Ville d‘études et établissement
       helper: Libellé de la ville d‘études et de l‘établissement
-    - value: cnous_identite
-      label: Identité
-      helper: Nom, prénom, date de naissance, lieu de naissance, genre
   groups:
     cnaf:
       label: API Quotient familial CAF & MSA
@@ -152,11 +152,11 @@ api_particulier:
       scopes:
         - cnous_statut_boursier
         - cnous_echelon_bourse
+        - cnous_identite
         - cnous_email
         - cnous_periode_versement
         - cnous_statut_bourse
         - cnous_ville_etudes
-        - cnous_identite
     css:
       label: API Complémentaire Santé Solidaire
       scopes:
