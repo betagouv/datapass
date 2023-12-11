@@ -24,7 +24,8 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
       firstname: team_member.given_name,
       lastname: team_member.family_name,
       phone: team_member.phone_number,
-      type_de_contact: humanize_contact_type(team_member.type)
+      type_de_contact: humanize_contact_type(team_member.type),
+      bouquet_s__associe_s_: extract_bouquet(:contact)
     )
   end
 
@@ -33,7 +34,8 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
       siret: organization.siret,
       name: organization.insee_payload["nom_raison_sociale"],
       categorie_juridique: organization.insee_payload["categorie_juridique"],
-      n_datapass: enrollment.id.to_s
+      n_datapass: enrollment.id.to_s,
+      bouquets_utilises: extract_bouquet(:company)
     )
   end
 
@@ -41,7 +43,7 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
     crm_company = crm_client.find_company_by_siret(organization.siret, properties_to_include: company_properties_to_retrieve)
 
     if crm_company
-      add_datapass_to_company(crm_company)
+      update_multi_attributes_on_company(crm_company)
     end
 
     crm_company ||
@@ -52,7 +54,7 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
     crm_contact = crm_client.find_contact_by_email(team_member.email, properties_to_include: contact_properties_to_retrieve)
 
     if crm_contact
-      add_type_to_contact(crm_contact, team_member)
+      update_multi_attributes_on_contact(crm_contact, team_member)
     end
 
     crm_contact ||
@@ -75,7 +77,7 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
     )
   end
 
-  def add_datapass_to_company(crm_company)
+  def update_multi_attributes_on_company(crm_company)
     datapass_ids = crm_company.properties["n_datapass"]
 
     datapass_ids = if datapass_ids.present? && datapass_ids.split(";").map(&:to_i).exclude?(enrollment.id)
@@ -84,14 +86,23 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
       enrollment.id.to_s
     end
 
+    bouquets_utilises = crm_company.properties["bouquets_utilises"]
+
+    if bouquets_utilises.present? && !bouquets_utilises.include?(extract_bouquet(:company))
+      bouquets_utilises << "; #{extract_bouquet(:company)}"
+    else
+      bouquets_utilises = extract_bouquet(:company)
+    end
+
     crm_client.update_company(
       crm_company, {
-        n_datapass: datapass_ids
+        n_datapass: datapass_ids,
+        bouquets_utilises: bouquets_utilises
       }
     )
   end
 
-  def add_type_to_contact(crm_contact, team_member)
+  def update_multi_attributes_on_contact(crm_contact, team_member)
     contact_type = crm_contact.properties["type_de_contact"]
 
     if contact_type.present? && !contact_type.include?(humanize_contact_type(team_member.type))
@@ -100,9 +111,18 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
       contact_type = humanize_contact_type(team_member.type)
     end
 
+    bouquets_utilises = crm_contact.properties["bouquet_s__associe_s_"]
+
+    if bouquets_utilises.present? && !bouquets_utilises.include?(extract_bouquet(:contact))
+      bouquets_utilises << "; #{extract_bouquet(:contact)}"
+    else
+      bouquets_utilises = extract_bouquet(:contact)
+    end
+
     crm_client.update_contact(
       crm_contact, {
-        type_de_contact: contact_type
+        type_de_contact: contact_type,
+        bouquet_s__associe_s_: bouquets_utilises
       }
     )
   end
@@ -110,12 +130,14 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
   def company_properties_to_retrieve
     %w[
       n_datapass
+      bouquet_s__associe_s_
     ]
   end
 
   def contact_properties_to_retrieve
     %w[
       type_de_contact
+      bouquets_utilises
     ]
   end
 
@@ -131,6 +153,29 @@ class RegisterOrganizationWithContactsOnCrmWorker < ApplicationWorker
       "Demandeur"
     when "responsable_traitement"
       "Responsable de traitement"
+    end
+  end
+
+  def extract_bouquet(kind)
+    case enrollment.target_api
+    when "api_entreprise"
+      if kind == :company
+        "ENTREPRISE"
+      else
+        "API Entreprise"
+      end
+    when "api_particulier"
+      if kind == :company
+        "PARTICULIER"
+      else
+        "API Particulier"
+      end
+    when "franceconnect"
+      if kind == :company
+        "FRANCE_CONNECT"
+      else
+        "FranceConnect"
+      end
     end
   end
 
