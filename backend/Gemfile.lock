@@ -194,7 +194,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     interactor (3.1.2)
     jmespath (1.6.2)
-    json (2.6.3)
+    json (2.7.1)
     jsonapi-renderer (0.2.2)
     jwt (2.7.0)
     kaminari (1.2.2)
@@ -330,7 +330,7 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
-    regexp_parser (2.8.2)
+    regexp_parser (2.8.3)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.1.1)
@@ -409,7 +409,7 @@ GEM
       hashie
       version_gem (~> 1.1, >= 1.1.1)
     ssrf_filter (1.1.2)
-    standard (1.32.0)
+    standard (1.32.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.57.2)
