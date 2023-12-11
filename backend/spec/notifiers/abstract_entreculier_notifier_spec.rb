@@ -19,10 +19,16 @@ RSpec.describe AbstractEntreculierNotifier, type: :notifier do
 
   describe "webhook events" do
     describe "#validate" do
-      subject { instance.create }
+      subject { instance.validate }
 
       include_examples "notifier webhook delivery" do
-        let(:event) { "create" }
+        let(:event) { "validate" }
+      end
+
+      it "calls hubspot registration" do
+        expect(RegisterOrganizationWithContactsOnCrmWorker).to receive(:perform_async).with(enrollment.id)
+
+        subject
       end
     end
 
