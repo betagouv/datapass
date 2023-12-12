@@ -969,7 +969,7 @@ api_particulier:
           phone_number: '0256662007'
     coexya:
       label: >-
-        Coexya, solution portail familles ICAR
+        Coexya, solution portail tarification sociale et solidaire ICAR
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
@@ -979,8 +979,8 @@ api_particulier:
         data_retention_period: 
         fondement_juridique_title: >-
           l'Article L114-8 du Code des relations entre le public et l'administration fixe le cadre général qui oblige l’administration à échanger des données lors d’une démarche d’un usager.
-        technical_team_type: 
-        technical_team_value: 
+        technical_team_type: software_company
+        technical_team_value: '43362470700017'
         scopes:
           cnaf_quotient_familial: true
           cnaf_allocataires: true
