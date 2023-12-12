@@ -31,6 +31,8 @@ gem "sib-api-v3-sdk"
 gem "sidekiq", "~> 7.2"
 gem "sidekiq-scheduler", "~> 5.0"
 gem "state_machines-activerecord"
+gem "caxlsx"
+gem "caxlsx_rails"
 
 group :test do
   gem "db-query-matchers"
