@@ -969,7 +969,7 @@ api_particulier:
           phone_number: '0256662007'
     coexya:
       label: >-
-        ICAR
+        Coexya, solution portail familles ICAR
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
