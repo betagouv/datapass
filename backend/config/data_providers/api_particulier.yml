@@ -991,7 +991,7 @@ api_particulier:
           complementaire_sante_solidaire: true
       team_members:
         responsable_technique:
-          given_name: eric
+          given_name: Éric
           family_name: ROZANSKI
           job: Directeur Business Unit adjoint 
           email: eric.rozanski@coexya.eu
