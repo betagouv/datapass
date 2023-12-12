@@ -20,6 +20,7 @@ import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
 import Stats from './components/templates/Stats';
 import UserEnrollmentList from './components/templates/UserEnrollmentList';
 import InstructorHome from './components/templates/InstructorHome';
+import ReopenEnrollment from './components/templates/ReopenEnrollment';
 
 export const Routes = () => {
   const { user } = useAuth();
@@ -51,6 +52,11 @@ export const Routes = () => {
       <Route
         path="copy-authorization-request/:enrollmentId"
         element={<AuthRequired children={<CopyEnrollment />} />}
+      />
+
+      <Route
+        path="reopen-enrollment-request/:enrollmentId"
+        element={<AuthRequired children={<ReopenEnrollment />} />}
       />
 
       <Route
