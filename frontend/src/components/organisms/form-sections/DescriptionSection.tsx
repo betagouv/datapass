@@ -22,6 +22,10 @@ const DescriptionSection = () => {
       documents_attributes = [],
     },
   } = useContext(FormContext)!;
+  const queryParams = new URLSearchParams(window.location.search);
+  const { highlightedSections = '' } = Object.fromEntries(
+    queryParams.entries()
+  );
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -37,6 +41,7 @@ const DescriptionSection = () => {
         required
       />
       <TextAreaInput
+        highlighted={highlightedSections.split(',').includes('description')}
         label="Description du projet (à quoi va-t-il servir ? qui l’utilisera ?)"
         name="description"
         value={description}

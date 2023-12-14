@@ -31,6 +31,7 @@ interface ContactProps extends TeamMember {
   canUpdatePersonalInformation: boolean;
   heading: string;
   index: number;
+  highlighted?: boolean;
 }
 
 export const Contact: React.FC<ContactProps> = ({
@@ -47,6 +48,7 @@ export const Contact: React.FC<ContactProps> = ({
   displayMobilePhoneLabel = false,
   contactByEmailOnly = false,
   displayIdForAdministrator = false,
+  highlighted = false,
   disabled,
   onChange,
   onDelete,
@@ -54,7 +56,7 @@ export const Contact: React.FC<ContactProps> = ({
   canUpdatePersonalInformation = false,
   type = '',
 }) => (
-  <Card>
+  <Card className={highlighted ? 'highlighted' : ''}>
     <CardHead>
       <h3>
         {heading}
