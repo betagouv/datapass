@@ -131,6 +131,11 @@ const ÉquipeSection = ({
       .value();
   }, [initialContacts, responsableTechniqueNeedsMobilePhone]);
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const { highlightedSections = '' } = Object.fromEntries(
+    queryParams.entries()
+  );
+
   const newTeamMembers = useNewTeamMembers({
     user: user as User,
     team_members,
@@ -275,6 +280,9 @@ const ÉquipeSection = ({
                 .filter(({ type: t }) => t === type)
                 .map(({ id, tmp_id, ...team_member }) => (
                   <Contact
+                    highlighted={highlightedSections
+                      .split(',')
+                      .includes(team_member.type!)}
                     type={team_member.type}
                     heading={header!}
                     key={id || tmp_id}

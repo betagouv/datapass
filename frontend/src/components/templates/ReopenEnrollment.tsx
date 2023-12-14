@@ -57,13 +57,15 @@ const ReopenEnrollment = () => {
   }, [enrollmentId]);
 
   if (reopennedEnrollmentId && reopennedTargetApi) {
+    const queryParams = window.location.search;
+
     return (
       <Navigate
         to={`/${reopennedTargetApi.replace(
           /_/g,
           '-'
         )}/${reopennedEnrollmentId}`}
-        state={{ source: 'reopen-enrollment-request' }}
+        state={{ source: 'reopen-enrollment-request', search: queryParams }}
         replace
       />
     );
