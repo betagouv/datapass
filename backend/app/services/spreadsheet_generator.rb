@@ -5,22 +5,23 @@ class SpreadsheetGenerator
     @enrollments = enrollments
   end
 
-  def generator
-    @generator ||= Axlsx::Package.new
-  end
-
   def perform
     sheet = create_sheet
 
+    add_headers(sheet)
+
     enrollments.find_each do |enrollment|
-      sheet.add_row(enrollment_attributes.map { |attr| enrollment.send(attr.to_sym) })
-      # sheet.add_row(build_row(enrollment))
+      sheet.add_row(build_row(enrollment))
     end
 
-    generator.to_stream.read
+    render_xlsx_as_binary
   end
 
   private
+
+  def generator
+    @generator ||= Axlsx::Package.new
+  end
 
   def enrollment_attributes
     %w[id target_api created_at updated_at status organization_id siret nom_raison_sociale zip_code
@@ -33,9 +34,18 @@ class SpreadsheetGenerator
 
   def create_sheet
     workbook = generator.workbook
-    workbook.add_worksheet(name: "DataPass Habilitations") do |sheet|
-      sheet.add_row(enrollment_attributes)
-      sheet
-    end
+    workbook.add_worksheet(name: "DataPass Habilitations")
+  end
+
+  def add_headers(sheet)
+    sheet.add_row(enrollment_attributes)
+  end
+
+  def build_row(enrollment)
+    enrollment_attributes.map { |attr| enrollment.send(attr) }
+  end
+
+  def render_xlsx_as_binary
+    generator.to_stream.read
   end
 end

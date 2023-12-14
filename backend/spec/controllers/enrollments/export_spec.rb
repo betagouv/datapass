@@ -27,14 +27,14 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
     end
 
     let(:user) { create(:instructor, target_api: "franceconnect") }
-    let!(:enrollment) { create(:enrollment, :franceconnect) }
-    let!(:foreign_enrollment) { create(:enrollment, :api_entreprise) }
+    let!(:enrollment_1) { create(:enrollment, :franceconnect) }
+    let!(:enrollment_2) { create(:enrollment, :api_entreprise) }
 
     before do
       login(user)
     end
 
-    context "when xlsx files contains enrollments"  do
+    context "when there is enrollments" do
       it "should return an XLSX file" do
         get :export, format: :xlsx
 
@@ -49,16 +49,14 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
       end
     end
 
-    context "when xlsx files is empty" do
-      let(:enrollment) { nil }
+    context "when there is no enrollment" do
+      let(:enrollment_1) { nil }
 
       it "should return a not found error" do
         get :export, format: :xlsx
 
         expect(response).to have_http_status(:not_found)
       end
-
     end
-
   end
 end
