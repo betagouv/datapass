@@ -8,6 +8,7 @@ interface TextAreaInputProps
   helper?: string;
   meta?: string;
   ariaLabel?: string;
+  highlighted?: boolean;
 }
 
 export const TextAreaInput: React.FC<TextAreaInputProps> = ({
@@ -17,6 +18,7 @@ export const TextAreaInput: React.FC<TextAreaInputProps> = ({
   name,
   placeholder = '',
   value = undefined,
+  highlighted = false,
   disabled,
   onChange,
   ariaLabel,
@@ -27,8 +29,14 @@ export const TextAreaInput: React.FC<TextAreaInputProps> = ({
   // we generate a unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
+  let classNames = 'fr-input-group';
+
+  if (highlighted) {
+    classNames += ' highlighted';
+  }
+
   return (
-    <div className="fr-input-group">
+    <div className={classNames}>
       <Label
         id={id}
         label={label}
