@@ -9,7 +9,8 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
     end
 
     context "with user" do
-      let(:user) { create(:user) }
+      let(:user) { create(:instructor, target_api: "franceconnect") }
+      let!(:enrollment) { create(:enrollment, :franceconnect) }
 
       before do
         login(user)
@@ -33,17 +34,31 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
       login(user)
     end
 
-    it "should return an XLSX file" do
-      get :export, format: :xlsx
+    context "when xlsx files contains enrollments"  do
+      it "should return an XLSX file" do
+        get :export, format: :xlsx
 
-      expect(response).to have_http_status(:success)
-      expect(response.headers["Content-Type"]).to include("application/xlsx")
+        expect(response).to have_http_status(:success)
+        expect(response.headers["Content-Type"]).to include("application/xlsx")
+      end
+
+      it "should return an XLSX file name" do
+        get :export, format: :xlsx
+
+        expect(response.headers["Content-Disposition"]).to include("attachment; filename=\"export-datapass-#{Date.today}.xlsx")
+      end
     end
 
-    it "should return an XLSX file name" do
-      get :export, format: :xlsx
+    context "when xlsx files is empty" do
+      let(:enrollment) { nil }
 
-      expect(response.headers["Content-Disposition"]).to include("attachment; filename=\"export-datapass-#{Date.today}.xlsx")
+      it "should return a not found error" do
+        get :export, format: :xlsx
+
+        expect(response).to have_http_status(:not_found)
+      end
+
     end
+
   end
 end

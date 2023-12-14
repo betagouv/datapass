@@ -7,7 +7,5 @@ class EnrollmentsLiveController < AuthenticatedUserController
     else
       head :not_found
     end
-
-    # send_data spreadsheet, filename: "export-datapass-#{Date.today}.xlsx", type: "application/xlsx"
   end
 end
