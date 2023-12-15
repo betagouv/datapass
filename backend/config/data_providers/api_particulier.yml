@@ -218,6 +218,8 @@ api_particulier:
       siret: '80321944300014'
     - name: 3D Ouest
       siret: '44973625500018'
+    - name: Coexya
+      siret: '43362470700017'
   demarches:
     default:
       label: Demande Libre
@@ -965,5 +967,32 @@ api_particulier:
           job: Directeur R&D
           email: laurent.delattre@3douest.com
           phone_number: '0256662007'
-
-
+    coexya:
+      label: >-
+        Coexya, solution portail tarification sociale et solidaire ICAR
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Tarification sociale et solidaires des transports
+        description: "Aide à l'accès aux transports"
+        data_recipients:
+        data_retention_period: 
+        fondement_juridique_title: >-
+          l'Article L114-8 du Code des relations entre le public et l'administration fixe le cadre général qui oblige l’administration à échanger des données lors d’une démarche d’un usager.
+        technical_team_type: software_company
+        technical_team_value: '43362470700017'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_adresse: true
+          men_statut_scolarite: true
+          men_statut_boursier: true
+          men_echelon_bourse: true
+          complementaire_sante_solidaire: true
+      team_members:
+        responsable_technique:
+          given_name: Éric
+          family_name: ROZANSKI
+          job: Directeur Business Unit adjoint 
+          email: eric.rozanski@coexya.eu
+          phone_number: '0487915823'
