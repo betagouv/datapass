@@ -468,7 +468,7 @@ api_particulier:
           cnaf_adresse: true
       team_members:
         responsable_technique:
-          email: contact@jdealise.fr
+          email: support@cantine-de-france.fr
           phone_number: '0972473612'
     ccas-ArcheMC2:
       label: >-
