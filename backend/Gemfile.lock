@@ -120,8 +120,8 @@ GEM
       rexml
     crass (1.0.6)
     date (3.3.3)
-    db-query-matchers (0.11.0)
-      activesupport (>= 4.0, < 7.1)
+    db-query-matchers (0.12.0)
+      activesupport (>= 4.0, < 7.2)
       rspec (>= 3.0)
     devise (4.9.3)
       bcrypt (~> 3.0)
