@@ -1,8 +1,11 @@
 class EnrollmentsLiveController < AuthenticatedUserController
   def export
-    @enrollments = policy_scope(Enrollment)
+    enrollments = policy_scope(Enrollment)
 
-    send_data @enrollments.to_csv,
-      filename: "export-datapass-#{Date.today}.csv"
+    if enrollments.any?
+      send_data SpreadsheetGenerator.new(enrollments).perform, filename: "export-datapass-#{Date.today}.xlsx", type: "application/xlsx"
+    else
+      head :not_found
+    end
   end
 end

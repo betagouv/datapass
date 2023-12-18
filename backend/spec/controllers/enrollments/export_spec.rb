@@ -1,5 +1,3 @@
-require "csv"
-
 RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
   describe "authorization" do
     subject do
@@ -11,7 +9,8 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
     end
 
     context "with user" do
-      let(:user) { create(:user) }
+      let(:user) { create(:instructor, target_api: "franceconnect") }
+      let!(:enrollment) { create(:enrollment, :franceconnect) }
 
       before do
         login(user)
@@ -28,39 +27,36 @@ RSpec.describe EnrollmentsLiveController, "#export", type: :controller do
     end
 
     let(:user) { create(:instructor, target_api: "franceconnect") }
-    let!(:enrollment) { create(:enrollment, :franceconnect) }
-    let!(:foreign_enrollment) { create(:enrollment, :api_entreprise) }
+    let!(:enrollment_1) { create(:enrollment, :franceconnect) }
+    let!(:enrollment_2) { create(:enrollment, :api_entreprise) }
 
     before do
       login(user)
     end
 
-    it "is a valid csv, only on target apis" do
-      csv = CSV.parse(subject, headers: true)
+    context "when there is enrollments" do
+      it "should return an XLSX file" do
+        get :export, format: :xlsx
 
-      expect(csv.count).to eq(1)
+        expect(response).to have_http_status(:success)
+        expect(response.headers["Content-Type"]).to include("application/xlsx")
+      end
 
-      first_entry = csv.first
+      it "should return an XLSX file name" do
+        get :export, format: :xlsx
 
-      expect(first_entry["id"]).to eq(enrollment.id.to_s)
-      expect(first_entry["target_api"]).to eq("franceconnect")
-    end
-  end
-
-  describe "payload" do
-    subject do
-      get :export
+        expect(response.headers["Content-Disposition"]).to include("attachment; filename=\"export-datapass-#{Date.today}.xlsx")
+      end
     end
 
-    let(:user) { create(:instructor, target_api: "franceconnect") }
-    let!(:foreign_enrollment) { create_list(:enrollment, 10, :franceconnect) }
+    context "when there is no enrollment" do
+      let(:enrollment_1) { nil }
 
-    before do
-      login(user)
-    end
+      it "should return a not found error" do
+        get :export, format: :xlsx
 
-    it "does not make database queries" do
-      expect { subject }.to make_database_queries(count: 3)
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 end
