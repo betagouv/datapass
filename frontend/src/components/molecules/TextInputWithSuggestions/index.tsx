@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { chain, isEmpty, isNull, isNumber, max, min, uniqueId } from 'lodash';
+import { chain, isNull, isNumber, max, min, uniqueId } from 'lodash';
 // @ts-ignore
 import * as levenshtein from 'damerau-levenshtein';
 import Dropdown from '../Dropdown';
@@ -146,26 +146,28 @@ export const TextInputWithSuggestions: React.FC<
         onClick={() => setIsDropDownOpen(true)}
         onInput={() => setIsDropDownOpen(true)}
       />
-      {!disabled && isDropDownOpen && !isEmpty(suggestions) && (
+      {!disabled && isDropDownOpen && (
         <Dropdown onOutsideClick={closeDropDown} fillWidth>
-          {suggestions.map(({ id, label }, index) => (
-            <div
-              key={id}
-              className={`datapass-text-input-suggestion ${
-                activeSuggestion === index
-                  ? 'datapass-text-input-active-suggestion'
-                  : ''
-              }`}
-              onClick={() => {
-                if (onOptionChange) {
-                  onOptionChange({ id, label });
-                }
-                handleChange(label);
-              }}
-            >
-              {label}
-            </div>
-          ))}
+          {(suggestions.length ? suggestions : options).map(
+            ({ id, label }, index) => (
+              <div
+                key={id}
+                className={`datapass-text-input-suggestion ${
+                  activeSuggestion === index
+                    ? 'datapass-text-input-active-suggestion'
+                    : ''
+                }`}
+                onClick={() => {
+                  if (onOptionChange) {
+                    onOptionChange({ id, label });
+                  }
+                  handleChange(label);
+                }}
+              >
+                {label}
+              </div>
+            )
+          )}
         </Dropdown>
       )}
     </div>
