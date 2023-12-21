@@ -1,10 +1,11 @@
 import { get } from 'lodash';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Alert, { AlertType } from '../../../atoms/Alert';
 import { FormContext } from '../../../templates/Form';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import HasNextEnrollmentsNotification from './HasNextEnrollmentsNotification';
+import { pingInsee } from '../../../../services/external';
 
 export const NotificationSubSection = () => {
   const location = useLocation();
@@ -13,6 +14,14 @@ export const NotificationSubSection = () => {
     isUserEnrollmentLoading,
     enrollment: { id, acl = {} },
   } = useContext(FormContext)!;
+
+  const [isApiAvailable, setIsApiAvailable] = useState(true);
+
+  useEffect(() => {
+    pingInsee().then((response) => {
+      setIsApiAvailable(response);
+    });
+  }, []);
 
   return (
     <>
@@ -33,6 +42,14 @@ export const NotificationSubSection = () => {
             </Alert>
           )}
         </>
+      )}
+
+      {!isApiAvailable && (
+        <Alert type={AlertType.warning}>
+          L'API Sirene de l'INSEE est actuellement indisponible, nous empêchant
+          de réaliser certaines vérifications de sécurité. Merci de soumettre
+          votre demande ultérieurement.
+        </Alert>
       )}
     </>
   );
