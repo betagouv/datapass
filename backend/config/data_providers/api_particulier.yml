@@ -747,7 +747,7 @@ api_particulier:
       state:
         intitule: >-
           Démarches citoyennes
-        description: "Le logiciel sert au citoyen a effectué ces démarches en lignes : inscription cantines, activités périscolaires, aides sociales, cartes de bus, acte d'état civil etc."
+        description: "Le logiciel sert au citoyen à effectuer ces démarches en lignes : inscription cantines, activités périscolaires, aides sociales, cartes de bus, acte d'état civil etc."
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
           fixe le cadre général des échanges de données au sein de l'administration.
