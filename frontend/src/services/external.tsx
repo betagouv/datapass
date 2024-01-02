@@ -38,6 +38,18 @@ const getOrganizationInformation = async (siret: Enrollment['siret']) => {
   };
 };
 
+export const pingInsee = async () => {
+  try {
+    await httpClient.get(`${BACK_HOST}/api/insee/etablissements/ping`, {
+      headers: { 'Content-type': 'application/json' },
+      timeout: 5000,
+    });
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 const memoizedGetOrganizationInformation = memoize(getOrganizationInformation);
 
 export const getCachedOrganizationInformation = async (
