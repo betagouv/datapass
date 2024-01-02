@@ -18,6 +18,7 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 type Props = {
   donneesTitle?: string;
   DonneesDescription?: ComponentType;
+  DonneesDocumentation?: ComponentType;
   scopesConfiguration?: ScopeConfiguration[];
   groups?: { [k: string]: { label: string; scopes: string[] } };
   ScopesDescription?: ComponentType;
@@ -28,6 +29,7 @@ type Props = {
 const DonneesSection: FunctionSectionComponent<Props> = ({
   donneesTitle = 'À quelles données souhaitez-vous avoir accès ?',
   DonneesDescription,
+  DonneesDocumentation,
   scopesConfiguration = [],
   groups,
   ScopesDescription,
@@ -102,6 +104,11 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les données nécessaires</h2>
+      {DonneesDocumentation && (
+        <div style={{ marginBottom: '30px' }}>
+          <DonneesDocumentation />
+        </div>
+      )}
       {DonneesDescription && (
         <ExpandableQuote title="Comment choisir les données ?">
           <DonneesDescription />

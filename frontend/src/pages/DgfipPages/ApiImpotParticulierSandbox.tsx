@@ -1,3 +1,4 @@
+import ImpotPartDocumentationAlert from '../../components/molecules/ImpotPartDocumentationAlert';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
@@ -66,6 +67,7 @@ const ApiImpotParticulierSandbox = () => (
       groups={groups}
       accessModes={accessModes}
       enableFileSubmissionForScopeSelection={true}
+      DonneesDocumentation={ImpotPartDocumentationAlert}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
