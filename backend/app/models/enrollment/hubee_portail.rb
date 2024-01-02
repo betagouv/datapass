@@ -27,6 +27,7 @@ class Enrollment::HubeePortail < Enrollment
     errors.add(:dpo_is_informed, :invalid, message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer") unless dpo_is_informed?
     team_members_validation("responsable_metier", "administrateur métier")
     no_hubee_certdc_validation
+    validate_at_least_one_scope_is_present
   end
 
   def no_scopes_present_error_message

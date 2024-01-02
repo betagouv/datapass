@@ -6,6 +6,7 @@ class Enrollment::HubeePortailDila < Enrollment::HubeePortail
     errors.add(:cgu_approved, :invalid, message: "Vous devez valider les modalités d’utilisation avant de continuer") unless cgu_approved?
     errors.add(:dpo_is_informed, :invalid, message: "Vous devez confirmer avoir informé le DPD de votre organisation avant de continuer") unless dpo_is_informed?
     team_members_validation("responsable_metier", "administrateur métier")
+    validate_at_least_one_scope_is_present
   end
 
   protected
