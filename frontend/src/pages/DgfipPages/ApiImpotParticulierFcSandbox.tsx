@@ -16,6 +16,7 @@ import {
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ImpotPartDocumentationAlert from '../../components/molecules/ImpotPartDocumentationAlert';
 
 export const CadreJuridiqueDescription = () => (
   <>
@@ -66,6 +67,7 @@ const ApiImpotParticulierFcSandbox = () => (
       scopesConfiguration={scopesConfiguration}
       groups={groups}
       enableFileSubmissionForScopeSelection={true}
+      DonneesDocumentation={ImpotPartDocumentationAlert}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}

@@ -18,6 +18,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierFcSandbox';
+import ImpotPartDocumentationAlert from '../../components/molecules/ImpotPartDocumentationAlert';
 
 const target_api = 'api_impot_particulier_fc_unique';
 const steps = ['franceconnect', target_api];
@@ -38,6 +39,7 @@ const ApiImpotParticulierFcUnique = () => (
       scopesConfiguration={scopesConfiguration}
       groups={groups}
       enableFileSubmissionForScopeSelection={true}
+      DonneesDocumentation={ImpotPartDocumentationAlert}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
