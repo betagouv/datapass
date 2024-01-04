@@ -337,7 +337,7 @@ export const StickyActions: FunctionComponent<StickyActionsProps> = ({
               quaternary={currentAction !== EnrollmentEvent.notify}
               iconFill
             />
-            {hasUnprocessedMessages && isUserAnInstructor ? (
+            {hasUnprocessedMessages ? (
               <div className="red-dot datapass-sticky-actions-notification"></div>
             ) : null}
           </div>
