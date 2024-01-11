@@ -424,7 +424,7 @@ api_particulier:
           l'API sert à la mise à jour du quotient familial pour proposer un tarfif au plus juste à chaque famille.
         data_recipients: >-
           Agents instructeurs des dossiers d’inscription en accueil périscolaire et/ou extrascolaire.
-        data_retention_period: 
+        data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
           fixe le cadre général des échanges de données au sein de l'administration.
