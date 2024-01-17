@@ -38,14 +38,10 @@ class ApiSirene < ApplicationService
     etablissement = response.parse["etablissement"]
     is_diffusable = etablissement["statutDiffusionEtablissement"] == "O"
 
-    unless is_diffusable
-      return nil
-    end
-
     last_periode_etablissement = etablissement["periodesEtablissement"][0]
     etat_administratif = last_periode_etablissement["etatAdministratifEtablissement"]
 
-    if etat_administratif != "A"
+    if etat_administratif != "A" || !is_diffusable
       return {
         nom_raison_sociale: nil,
         siret: @siret,
