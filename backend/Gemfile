@@ -37,7 +37,7 @@ group :test do
   gem "db-query-matchers"
   gem "timecop"
   gem "faker"
-  gem "roo", "~> 2.10.0"
+  gem "roo", "~> 2.10.1"
 end
 
 group :development, :test do

@@ -347,7 +347,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
-    roo (2.10.0)
+    roo (2.10.1)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
     rspec (3.12.0)
@@ -502,7 +502,7 @@ DEPENDENCIES
   rails (~> 7.0)
   rails-i18n
   redis
-  roo (~> 2.10.0)
+  roo (~> 2.10.1)
   rspec-rails
   rubocop
   sentry-rails
