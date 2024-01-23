@@ -44,7 +44,9 @@ export const useOpinions = () => {
 const OpinionsContainer: React.FC<{
   children: React.ReactNode | React.ReactNode[];
 }> = ({ children }) => {
-  const { targetApi, enrollmentId: rawEnrollmentId } = useParams();
+  const { targetApi: rawTargetApi, enrollmentId: rawEnrollmentId } =
+    useParams();
+  const targetApi = (rawTargetApi as string).replace(/-/g, '_');
   const sanitizedEnrollmentId = Number(rawEnrollmentId);
   const [opinions, setOpinions] = useState<Opinion[]>([]);
   const [reporters, setReporters] = useState<TeamMember[]>([]);
