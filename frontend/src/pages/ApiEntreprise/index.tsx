@@ -165,7 +165,8 @@ const scopesConfiguration = [
   },
   {
     value: 'open_data_carte_pro_travaux_publics_fntp',
-    label: 'Carte professionnelles des travaux publics - FNTP | API incluse par défaut',
+    label:
+      'Carte professionnelles des travaux publics - FNTP | API incluse par défaut',
     link: 'https://entreprise.api.gouv.fr/catalogue/fntp/carte_professionnelle_travaux_public',
     required: true,
   },
@@ -201,7 +202,8 @@ const scopesConfiguration = [
   },
   {
     value: 'open_data_brevets_marques_modeles_deposes_inpi',
-    label: 'Brevets, marques et modèles déposés - Inpi | API incluse par défaut',
+    label:
+      'Brevets, marques et modèles déposés - Inpi | API incluse par défaut',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=inpi%20d%C3%A9pos%C3%A9',
     required: true,
   },
