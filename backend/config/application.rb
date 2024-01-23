@@ -86,10 +86,6 @@ module DataPass
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
 
     config.after_initialize do
-      ActiveSnapshot.config do |config|
-        config.storage_method = "native_json"
-      end
-
       Dir[Rails.root.join("app/models/enrollment/*.rb")].each do |file|
         load file
       end
