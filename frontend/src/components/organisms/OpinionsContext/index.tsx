@@ -52,14 +52,14 @@ const OpinionsContainer: React.FC<{
   const [reporters, setReporters] = useState<TeamMember[]>([]);
   const [isAskingOpinion, setIsAskingOpinion] = useState(false);
   const canAskOpinion = opinions.length === 0;
-  const { user, getIsUserAnInstructor } = useAuth();
+  const { user, getIsUserAReporter, getIsUserAnInstructor } = useAuth();
   const isUserPartOfReporters = reporters.some(
     ({ email }) => email === user!.email
   );
 
-  const isUserAnInstructor = useMemo(() => {
-    return getIsUserAnInstructor(targetApi!);
-  }, [getIsUserAnInstructor, targetApi]);
+  const isUserAllowed = useMemo(() => {
+    return getIsUserAReporter(targetApi!) || getIsUserAnInstructor(targetApi!);
+  }, [getIsUserAReporter, getIsUserAnInstructor, targetApi]);
 
   useEffect(() => {
     if (sanitizedEnrollmentId) {
@@ -141,7 +141,7 @@ const OpinionsContainer: React.FC<{
         );
       }
 
-      if (isUserAnInstructor || isUserPartOfReporters) {
+      if (isUserAllowed || isUserPartOfReporters) {
         const { content, reporter, id, comment, created_at } =
           opinions[opinions.length - 1];
         const canDeleteOpinion = !comment && reporter.id === user!.id;
@@ -201,7 +201,7 @@ const OpinionsContainer: React.FC<{
   };
 
   const getOpinionButton = () => {
-    if (!isUserAnInstructor) {
+    if (!isUserAllowed) {
       return null;
     }
 

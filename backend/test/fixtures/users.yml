@@ -70,6 +70,19 @@ administrator:
     - franceconnect:instructor
     - api_particulier:instructor
 
+administrator_test:
+  given_name: Admin
+  family_name: Test
+  email: datapass-test@yopmail.com
+  roles:
+    - administrator
+    - api_entreprise:reporter
+    - franceconnect:reporter
+    - api_particulier:reporter
+    - api_entreprise:instructor
+    - franceconnect:instructor
+    - api_particulier:instructor
+
 <% 1.upto(50) do |i| %>
 user_test_<%= i %>:
   email: "user_test_<%= i %>@yopmail.com"
