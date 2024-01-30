@@ -17,7 +17,7 @@ class ValidatedEnrollmentSnapshotsController < AuthenticatedUserController
       scope_name: :current_user
     ).serializable_hash
       .merge(
-        team_members: reified_models[1]['team_members'].map do |team_member|
+        team_members: reified_models[1]["team_members"].map do |team_member|
           TeamMemberSerializer.new(team_member).serializable_hash
         end
       )
