@@ -8,8 +8,7 @@ import { EnrollmentStatus } from '../../../config/status-parameters';
 import { reopenEnrollment } from '../../../services/enrollments';
 
 import './style.css';
-import { isReopenned } from '../../../lib';
-import { EnrollmentEvent } from '../../../config/event-configuration';
+import { getLastSnapshotId, isReopenned } from '../../../lib';
 import moment from 'moment';
 import { ArrowWithTailRightIcon } from '../../atoms/icons/fr-fi-icons';
 
@@ -32,9 +31,7 @@ export const EnrollmentCard: React.FC<Props> = ({
   const { label, icon } = useDataProvider(enrollment.target_api);
 
   const isEnrollmentReopenned = isReopenned(enrollment);
-  const lastSnapshotId = enrollment.events?.find(
-    ({ name }) => name === EnrollmentEvent.validate
-  )?.entity_id;
+  const lastSnapshotId = getLastSnapshotId(enrollment.events!);
 
   let className = 'enrollment-card';
 
