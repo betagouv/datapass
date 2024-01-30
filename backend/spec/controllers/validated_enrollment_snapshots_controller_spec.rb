@@ -102,6 +102,8 @@ RSpec.describe ValidatedEnrollmentSnapshotsController, type: :controller, versio
     it "renders the snapshot version" do
       expect(show_enrollment_payload["intitule"]).not_to eq("new intitule")
       expect(show_enrollment_payload["team_members"][0]["given_name"]).not_to eq("new given name")
+
+      expect(show_enrollment_payload["team_members"][0]["type"]).to eq("demandeur")
     end
   end
 end
