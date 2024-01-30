@@ -21,7 +21,7 @@ import {
 import flatten from 'flat';
 import { AxiosError, AxiosResponse } from 'axios';
 import { DataProviderConfiguration } from '../config/data-provider-configurations';
-import { Enrollment, TeamMember } from '../config';
+import { Enrollment, Event, TeamMember } from '../config';
 import { EnrollmentEvent } from '../config/event-configuration';
 import { EnrollmentStatus } from '../config/status-parameters';
 
@@ -618,3 +618,6 @@ export const isUserADemandeur = ({
 export const isReopenned = (enrollment: Enrollment) =>
   enrollment.events?.some(({ name }) => name === EnrollmentEvent.reopen) &&
   enrollment.status !== EnrollmentStatus.validated;
+
+export const getLastSnapshotId = (events: Event[]) =>
+  events?.find(({ name }) => name === EnrollmentEvent.validate)?.entity_id;
