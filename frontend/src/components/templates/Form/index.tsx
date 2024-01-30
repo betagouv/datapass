@@ -271,7 +271,7 @@ export const Form: React.FC<FormProps> = ({
           </FormContext.Provider>
         </OpenMessagePromptContextProvider>
 
-        {demandeurPhoneNumberWarning && (
+        {demandeurPhoneNumberWarning && !snapshotId && (
           <ConfirmationModal
             handleCancel={() => setDemandeurPhoneNumberWarning(false)}
             handleConfirm={() =>
