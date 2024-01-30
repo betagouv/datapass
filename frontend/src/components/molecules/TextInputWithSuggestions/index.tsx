@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { chain, isEmpty, isNull, isNumber, max, min, uniqueId } from 'lodash';
+import { chain, isNull, isNumber, max, min, uniqueId } from 'lodash';
 // @ts-ignore
 import * as levenshtein from 'damerau-levenshtein';
 import Dropdown from '../Dropdown';
@@ -7,18 +7,29 @@ import './style.css';
 import { InputProps } from '../../atoms/inputs/Input';
 
 export interface TextInputWithSuggestionsProps extends InputProps {
-  options: { id: string; label: string }[];
+  options: { id: string | number; label: string }[];
+  onOptionChange?: Function;
 }
 
 export const TextInputWithSuggestions: React.FC<
   TextInputWithSuggestionsProps
-> = ({ label, name, options = [], value, disabled, onChange, required }) => {
+> = ({
+  label,
+  name,
+  options = [],
+  value,
+  disabled,
+  onChange,
+  required,
+  onOptionChange = null,
+  placeholder,
+}) => {
   // id will be set once when the component initially renders, but never again
   // we generate a unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
   const [suggestions, setSuggestions] = useState<
-    { id: string; label: string }[]
+    { id: string | number; label: string }[]
   >([]);
 
   // from https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
@@ -129,26 +140,34 @@ export const TextInputWithSuggestions: React.FC<
         id={id}
         readOnly={disabled}
         value={value}
+        placeholder={placeholder}
         required={required}
         onKeyDown={onKeyDown}
         onClick={() => setIsDropDownOpen(true)}
         onInput={() => setIsDropDownOpen(true)}
       />
-      {!disabled && isDropDownOpen && !isEmpty(suggestions) && (
+      {!disabled && isDropDownOpen && (
         <Dropdown onOutsideClick={closeDropDown} fillWidth>
-          {suggestions.map(({ id, label }, index) => (
-            <div
-              key={id}
-              className={`datapass-text-input-suggestion ${
-                activeSuggestion === index
-                  ? 'datapass-text-input-active-suggestion'
-                  : ''
-              }`}
-              onClick={() => handleChange(label)}
-            >
-              {label}
-            </div>
-          ))}
+          {(suggestions.length ? suggestions : options).map(
+            ({ id, label }, index) => (
+              <div
+                key={id}
+                className={`datapass-text-input-suggestion ${
+                  activeSuggestion === index
+                    ? 'datapass-text-input-active-suggestion'
+                    : ''
+                }`}
+                onClick={() => {
+                  if (onOptionChange) {
+                    onOptionChange({ id, label });
+                  }
+                  handleChange(label);
+                }}
+              >
+                {label}
+              </div>
+            )
+          )}
         </Dropdown>
       )}
     </div>

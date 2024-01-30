@@ -25,6 +25,8 @@ api_particulier_instructor:
     - api_particulier:subscriber
 
 franceconnect_instructor:
+  given_name: France
+  family_name: Connect
   email: franceconnect@yopmail.com
   roles:
     - franceconnect:instructor
@@ -56,7 +58,22 @@ api_impot_particulier_instructor:
     - api_impot_particulier_production:subscriber
 
 administrator:
+  given_name: Admin
+  family_name: Istrator
   email: datapass@yopmail.com
+  roles:
+    - administrator
+    - api_entreprise:reporter
+    - franceconnect:reporter
+    - api_particulier:reporter
+    - api_entreprise:instructor
+    - franceconnect:instructor
+    - api_particulier:instructor
+
+administrator_test:
+  given_name: Admin
+  family_name: Test
+  email: datapass-test@yopmail.com
   roles:
     - administrator
     - api_entreprise:reporter

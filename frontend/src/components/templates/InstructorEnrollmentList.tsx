@@ -52,6 +52,7 @@ const InstructorEnrollmentList: React.FC = () => {
         page: pagination.pageIndex,
         sortBy: sorted,
         filter: filtered,
+        detailed: true,
       }).then(({ enrollments, meta: { total_pages } }) => {
         setLoading(false);
         setEnrollments(enrollments);
@@ -71,7 +72,7 @@ const InstructorEnrollmentList: React.FC = () => {
       id: 'state',
       enableSorting: false,
       enableColumnFilter: false,
-      size: 70,
+      size: 120,
       cell: ({ getValue }) => {
         const enrollment = getValue();
         return <StateBadge enrollment={enrollment} />;
