@@ -752,7 +752,12 @@ api_particulier:
           données n’est pas autorisée ni permise aux agents n’ayant pas rapport au
           service.
         data_retention_period: 24
-        fondement_juridique_title: Délibération de la commune au format PDF en pièce jointe
+        fondement_juridique_title: 
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement.
         technical_team_type: software_company
         technical_team_value: '37996323400032'
         scopes:
