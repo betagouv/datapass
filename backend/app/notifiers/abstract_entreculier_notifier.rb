@@ -32,8 +32,15 @@ class AbstractEntreculierNotifier < AbstractNotifier
     deliver_event_webhook(__method__)
   end
 
-  def notify(*)
-    deliver_event_webhook(__method__)
+  def notify(comment:, current_user:)
+    demandeurs_ids = enrollment.demandeurs.pluck(:user_id)
+    if demandeurs_ids.include?(current_user.id)
+      deliver_message_to_enrollment_instructor(comment)
+    end
+
+    if current_user.is_instructor?(enrollment.target_api)
+      deliver_event_mailer(__method__, comment)
+    end
   end
 
   def request_changes(*)

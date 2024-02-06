@@ -49,10 +49,12 @@ RSpec.describe AbstractEntreculierNotifier, type: :notifier do
     end
 
     describe "#notify" do
-      subject { instance.notify(comment: "comment", current_user: user) }
+      subject { instance.notify(comment: "comment", current_user: enrollment.demandeurs.first.user) }
 
-      include_examples "notifier webhook delivery" do
-        let(:event) { "notify" }
+      it "delivers an email" do
+        expect do
+          subject
+        end.to have_enqueued_job
       end
     end
 
