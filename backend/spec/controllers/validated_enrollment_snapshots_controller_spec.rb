@@ -85,25 +85,33 @@ RSpec.describe ValidatedEnrollmentSnapshotsController, type: :controller, versio
     end
 
     let(:enrollment) do
+      original_enrollment.update!(intitule: "old intitule")
+      original_enrollment.team_members.first.update!(given_name: "old given name")
+
       original_enrollment.snapshot!
+
       original_enrollment.update!(intitule: "new intitule")
       original_enrollment.team_members.first.update!(given_name: "new given name")
+
       original_enrollment
     end
 
     let(:snapshot) { enrollment.last_snapshot }
-    let(:original_enrollment) { create(:enrollment, :franceconnect, user: user) }
+    let(:original_enrollment) { create(:enrollment, :franceconnect, :validated, user: user) }
     let(:user) { create(:user) }
 
     before do
       login(user)
     end
 
-    it "renders the snapshot version" do
+    it "renders the snapshot version, with team members with full profile" do
       expect(show_enrollment_payload["intitule"]).not_to eq("new intitule")
       expect(show_enrollment_payload["team_members"][0]["given_name"]).not_to eq("new given name")
 
-      expect(show_enrollment_payload["team_members"][0]["type"]).to eq("demandeur")
+      expect(show_enrollment_payload["intitule"]).to eq("old intitule")
+      expect(show_enrollment_payload["team_members"][0]["given_name"]).to eq("old given name")
+
+      expect(show_enrollment_payload["team_members"][0]["type"]).to be_present
     end
   end
 end
