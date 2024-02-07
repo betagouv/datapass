@@ -6,6 +6,6 @@ class ScheduleEnrollmentsArchiveableWorker < ApplicationWorker
   sidekiq_options queue: "archive"
 
   def perform
-    EnrollmentsExtractor::ToArchive.new.call.map(&:archive!)
+    EnrollmentsExtractor::ToArchive.new.call.map(&:archive_status)
   end
 end

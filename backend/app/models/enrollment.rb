@@ -83,7 +83,7 @@ class Enrollment < ApplicationRecord
     end
 
     event :archive do
-      transition from: all - [:archived, :validated], to: :archived
+      transition from: all - %i[archived validated], to: :archived
     end
 
     event :validate do
@@ -295,11 +295,6 @@ class Enrollment < ApplicationRecord
     end
 
     copied_enrollment
-  end
-
-  def archive!
-    update!(status: "archived")
-    events.create!(name: "archive")
   end
 
   def team_members_json
