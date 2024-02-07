@@ -41,3 +41,5 @@ rspec_results.html
 /config/credentials/sandbox.key
 /config/credentials/staging.key
 /config/credentials/production.key
+
+.tool-versions
