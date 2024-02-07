@@ -10,6 +10,7 @@ FactoryBot.define do
   factory :enrollment do
     status { "draft" }
     intitule { "Intitulé" }
+    siret { "12345678901234" }
 
     trait :draft
 
