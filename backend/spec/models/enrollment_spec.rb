@@ -55,6 +55,37 @@ RSpec.describe Enrollment, type: :model do
     end
   end
 
+  describe "archive transition" do
+    subject { enrollment.archive_status }
+
+    context "when it is in draft" do
+      let(:enrollment) { create(:enrollment, :franceconnect, :draft) }
+
+      it { is_expected.to be_truthy }
+      it "changes status to archived" do
+        subject
+
+        expect(enrollment.reload.status).to eq("archived")
+      end
+    end
+
+    context "when enrollment has been previously validated and in draft mode" do
+      let(:enrollment) { create(:enrollment, :franceconnect, :validated) }
+
+      before do
+        ReopenEnrollment.call(enrollment:, user: enrollment.demandeurs.first.user)
+      end
+
+      it { is_expected.to be_falsy }
+
+      it "does not change status to archived" do
+        subject
+
+        expect(enrollment.reload.status).to eq("draft")
+      end
+    end
+  end
+
   describe "validate transition" do
     subject { enrollment.validate_status(params) }
 
