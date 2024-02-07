@@ -148,6 +148,7 @@ FactoryBot.define do
 
     trait :validated do
       status { "validated" }
+      last_validated_at { DateTime.now }
 
       with_delegue_protection_donnees
       with_responsable_traitement
