@@ -131,8 +131,8 @@ class Enrollment < ApplicationRecord
 
       enrollment.events.create!(
         name: transition.event.to_s,
-        user_id: transition.args[0][:user_id],
-        comment: transition.args[0][:comment],
+        user_id: transition.args.try(:[], 0).try(:[], :user_id),
+        comment: transition.args.try(:[], 0).try(:[], :comment),
         entity:
       )
     end
