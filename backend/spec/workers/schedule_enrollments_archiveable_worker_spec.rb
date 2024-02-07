@@ -10,30 +10,23 @@ RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
       Timecop.freeze(Time.now.change(year: 2023, month: 2))
     end
 
-    before do
-      enrollment = create(:enrollment, :api_particulier, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago)
-      create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago)
-    end
-
     after do
       Timecop.return
     end
 
+    let!(:enrollment) { create(:enrollment, :api_particulier, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago) }
+    let!(:event) { create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago) }
+
     context "When there is enrollments to archive" do
       it "archive enrollments" do
-        result = subject.perform
-        enrollment = Enrollment.find(result[0].enrollment_id)
-
-        expect(enrollment.status).to eq("archived")
+        expect { subject.perform }.to change { enrollment.reload.status }.from("changes_requested").to("archived")
       end
     end
 
     context "#create_archive_event" do
       it "create an event archive when enrollment change to archived status" do
-        result = subject.perform
-        expect(result[0].name).to eq("archive")
-
-        enrollment = Enrollment.find(result[0].enrollment_id)
+        expect { subject.perform }.to change { Event.count }.by(1)
+        expect(Event.last.name).to eq("archive")
         expect(enrollment.events.count).to eq(2)
       end
     end

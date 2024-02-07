@@ -44,9 +44,14 @@ RSpec.describe Enrollment, type: :model do
 
   describe "state_machine" do
     let(:states) { [:draft, :submitted, :changes_requested, :validated, :refused, :revoked, :archived] }
+    let(:enrollment_validated) { create(:enrollment, :franceconnect, status: "validated") }
 
     it "has valid states in state_machine" do
       expect(Enrollment.state_machine.states.map(&:name)).to eq(states)
+    end
+
+    it "cannot transition from submitted to archived" do
+      expect(enrollment_validated.can_archive_status?).to be_falsey
     end
   end
 
