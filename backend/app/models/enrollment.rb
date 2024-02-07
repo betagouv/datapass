@@ -83,7 +83,7 @@ class Enrollment < ApplicationRecord
     end
 
     event :archive do
-      transition from: all - %i[archived validated], to: :archived
+      transition from: all - %i[archived validated], to: :archived, if: ->(enrollment) { !enrollment.reopening? }
     end
 
     event :validate do

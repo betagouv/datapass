@@ -856,6 +856,18 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         it { is_expected.to have_http_status(:ok) }
       end
 
+      context "when enrollment has been reopened" do
+        let(:enrollment_status) { :validated }
+
+        before do
+          login(user)
+
+          ReopenEnrollment.call(enrollment:, user: enrollment.demandeurs.first.user)
+        end
+
+        it { is_expected.to have_http_status(:forbidden) }
+      end
+
       context "for a revoked enrollment" do
         let(:enrollment_status) { :revoked }
 
