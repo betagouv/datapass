@@ -1,5 +1,4 @@
 import { Enrollment } from '../../../config';
-import { EnrollmentStatus } from '../../../config/status-parameters';
 import { isReopenned } from '../../../lib';
 import Badge, { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { RecycleIcon } from '../../atoms/icons/fr-fi-icons';
@@ -9,13 +8,10 @@ type Props = {
 };
 
 const StateBadge: React.FC<Props> = ({ enrollment }) => {
-  if (
-    isReopenned(enrollment) &&
-    enrollment.status !== EnrollmentStatus.validated
-  ) {
+  if (isReopenned(enrollment)) {
     return (
       <Badge type={BadgeType.purple} small={true}>
-        Demande de mise à jour
+        Mise à jour
       </Badge>
     );
   }
