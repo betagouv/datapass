@@ -1,5 +1,4 @@
 import { Enrollment } from '../../../config';
-import { isReopenned } from '../../../lib';
 import Badge, { BadgeType } from '../../atoms/hyperTexts/Badge';
 import { RecycleIcon } from '../../atoms/icons/fr-fi-icons';
 
@@ -8,7 +7,7 @@ type Props = {
 };
 
 const StateBadge: React.FC<Props> = ({ enrollment }) => {
-  if (isReopenned(enrollment)) {
+  if (enrollment.reopening) {
     return (
       <Badge type={BadgeType.purple} small={true}>
         Mise à jour
