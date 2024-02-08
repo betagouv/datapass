@@ -11,7 +11,6 @@ import './index.css';
 import NotificationSubSection from './NotificationSubSection';
 import { Event } from '../../../../config';
 import Alert from '../../../atoms/Alert';
-import { isReopenned } from '../../../../lib';
 import useListItemNavigation from '../../../templates/hooks/use-list-item-navigation';
 import { EnrollmentStatus } from '../../../../config/status-parameters';
 import { useParams } from 'react-router-dom';
@@ -23,13 +22,11 @@ export const HeadSection = () => {
   const { goToItem } = useListItemNavigation();
   const { label } = useDataProvider(enrollment.target_api);
 
-  const isEnrollmentReopenned = isReopenned(enrollment);
-
   return (
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>
-          {isEnrollmentReopenned && !snapshotId
+          {enrollment.reopening && !snapshotId
             ? 'Mise à jour des informations'
             : 'Vous demandez l’accès à'}
         </>
@@ -38,7 +35,7 @@ export const HeadSection = () => {
           {enrollment.id && (
             <Badge type={BadgeType.info}>Habilitation n°{enrollment.id}</Badge>
           )}
-          {isEnrollmentReopenned && (
+          {enrollment.reopening && (
             <Badge type={BadgeType.purple}>Demande de mise à jour</Badge>
           )}
           <StatusBadge status={enrollment.status} />
@@ -51,7 +48,7 @@ export const HeadSection = () => {
           )}
         </div>
       </div>
-      {isEnrollmentReopenned && enrollment.status === EnrollmentStatus.draft && (
+      {enrollment.reopening && enrollment.status === EnrollmentStatus.draft && (
         <div className="fr-py-5w">
           <Alert title="Pas de panique">
             <p>

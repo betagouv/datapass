@@ -154,4 +154,5 @@ export type Enrollment = {
   zip_code?: string;
   contacts?: Contact[];
   user?: User;
+  reopening?: boolean;
 };

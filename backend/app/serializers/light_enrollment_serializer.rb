@@ -24,4 +24,8 @@ class LightEnrollmentSerializer < ApplicationSerializer
   attribute :requested_changes_have_been_done do
     object.requested_changes_have_been_done?
   end
+
+  attribute :reopening do
+    object.reopening?
+  end
 end
