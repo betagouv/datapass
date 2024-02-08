@@ -29,9 +29,7 @@ export const HeadSection = () => {
     <ScrollablePanel scrollableId="head">
       <div className="badge-sub-section fr-mb-3w">
         <>
-          {isEnrollmentReopenned &&
-          !snapshotId &&
-          enrollment.status !== EnrollmentStatus.validated
+          {isEnrollmentReopenned && !snapshotId
             ? 'Mise à jour des informations'
             : 'Vous demandez l’accès à'}
         </>
