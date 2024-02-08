@@ -40,6 +40,9 @@ export const HeadSection = () => {
           {enrollment.id && (
             <Badge type={BadgeType.info}>Habilitation n°{enrollment.id}</Badge>
           )}
+          {isEnrollmentReopenned && (
+            <Badge type={BadgeType.purple}>Demande de mise à jour</Badge>
+          )}
           <StatusBadge status={enrollment.status} />
           {enrollment.copied_from_enrollment_id && (
             <Link
