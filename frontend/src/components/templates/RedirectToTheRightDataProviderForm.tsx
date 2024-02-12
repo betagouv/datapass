@@ -10,6 +10,7 @@ const RedirectToTheRightDataProviderForm = () => {
   const [fetchEnrollmentError, setFetchEnrollmentError] = useState(false);
   const [fetchEnrollmentNotFound, setFetchEnrollmentNotFound] = useState(false);
   const [targetApi, setTargetApi] = useState<string | null>(null);
+  const queryParameters = new URLSearchParams(window.location.search);
 
   const fetchEnrollment = async ({
     enrollmentId,
@@ -42,6 +43,7 @@ const RedirectToTheRightDataProviderForm = () => {
       <Navigate
         to={{
           pathname: `/${targetApi.replace(/_/g, '-')}/${enrollmentId}`,
+          search: queryParameters.toString(),
         }}
         replace
       />
