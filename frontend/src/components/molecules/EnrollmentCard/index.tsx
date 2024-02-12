@@ -8,7 +8,7 @@ import { EnrollmentStatus } from '../../../config/status-parameters';
 import { reopenEnrollment } from '../../../services/enrollments';
 
 import './style.css';
-import { getLastSnapshotId, isReopenned } from '../../../lib';
+import { getLastSnapshotId } from '../../../lib';
 import moment from 'moment';
 import { ArrowWithTailRightIcon } from '../../atoms/icons/fr-fi-icons';
 
@@ -30,7 +30,6 @@ export const EnrollmentCard: React.FC<Props> = ({
 }) => {
   const { label, icon } = useDataProvider(enrollment.target_api);
 
-  const isEnrollmentReopenned = isReopenned(enrollment);
   const lastSnapshotId = getLastSnapshotId(enrollment.events!);
 
   let className = 'enrollment-card';
@@ -79,7 +78,7 @@ export const EnrollmentCard: React.FC<Props> = ({
           <Badge>n°{enrollment.id}</Badge>
           <StatusBadge
             status={
-              isEnrollmentReopenned
+              enrollment.reopening
                 ? EnrollmentStatus.validated
                 : enrollment.status
             }
@@ -124,7 +123,7 @@ export const EnrollmentCard: React.FC<Props> = ({
           </div>
         </div>
       </Card>
-      {isReopenned(enrollment) && (
+      {enrollment.reopening && (
         <div className="enrollment-card-footer">
           <div className="enrollment-card-footer-details">
             <div className="enrollment-card-footer-details-title">
