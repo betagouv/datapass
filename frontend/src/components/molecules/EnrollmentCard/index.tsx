@@ -109,7 +109,7 @@ export const EnrollmentCard: React.FC<Props> = ({
                     enrollment.target_api,
                     enrollment.id,
                     e,
-                    lastSnapshotId
+                    isEnrollmentReopenned ? lastSnapshotId : undefined
                   );
                 }}
               >
