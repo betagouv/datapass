@@ -10,6 +10,7 @@ import NoEnrollments from './NoEnrollments';
 import { Enrollment, Enrollment as EnrollmentType } from '../../../config';
 import { EnrollmentStatus } from '../../../config/status-parameters';
 import EnrollmentSection from '../../organisms/EnrollmentSection';
+import { isReopenned } from '../../../lib';
 
 const UserEnrollmentList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -81,7 +82,7 @@ const UserEnrollmentList = () => {
         },
         enrollment
       ) => {
-        if (enrollment.reopening) {
+        if (isReopenned(enrollment)) {
           acc.reopenned.push(enrollment);
         } else {
           acc.notReopenned.push(enrollment);
