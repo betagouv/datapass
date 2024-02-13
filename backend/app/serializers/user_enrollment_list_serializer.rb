@@ -18,4 +18,8 @@ class UserEnrollmentListSerializer < ApplicationSerializer
   attribute :reopening do
     object.reopening?
   end
+
+  attribute :can_reopen do
+    object.can_reopen?
+  end
 end

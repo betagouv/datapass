@@ -91,7 +91,7 @@ class Enrollment < ApplicationRecord
     end
 
     event :reopen do
-      transition from: :validated, to: :draft
+      transition from: :validated, to: :draft, if: ->(enrollment) { enrollment.can_reopen? }
     end
 
     before_transition do |enrollment, transition|
@@ -152,6 +152,11 @@ class Enrollment < ApplicationRecord
   def reopening?
     last_validated_at.present? &&
       status != "validated"
+  end
+
+  def can_reopen?
+    bridge.blank? ||
+      ["franceconnect"].include?(target_api)
   end
 
   def mark_event_as_processed(event_name)

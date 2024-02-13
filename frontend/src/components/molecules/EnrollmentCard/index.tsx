@@ -56,6 +56,10 @@ export const EnrollmentCard: React.FC<Props> = ({
     return lastReopenEvent?.created_at;
   };
 
+  const canReopen = () => {
+    return enrollment.can_reopen || false;
+  };
+
   const adjustTextToDesiredLength = (
     text: string | undefined,
     length: number
@@ -114,7 +118,7 @@ export const EnrollmentCard: React.FC<Props> = ({
               >
                 Consulter
               </Button>
-              {enrollment.status === EnrollmentStatus.validated && (
+              {canReopen() && (
                 <Button secondary onClick={onReopenClick}>
                   Mettre à jour
                 </Button>
