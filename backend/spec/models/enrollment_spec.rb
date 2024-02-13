@@ -70,7 +70,7 @@ RSpec.describe Enrollment, type: :model do
     end
 
     context "when enrollment has been previously validated and in draft mode" do
-      let(:enrollment) { create(:enrollment, :franceconnect, :validated) }
+      let(:enrollment) { create(:enrollment, :api_entreprise, :validated) }
 
       before do
         ReopenEnrollment.call(enrollment:, user: enrollment.demandeurs.first.user)
