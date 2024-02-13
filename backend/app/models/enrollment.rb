@@ -155,8 +155,12 @@ class Enrollment < ApplicationRecord
   end
 
   def can_reopen?
-    bridge.blank? ||
-      ["franceconnect"].include?(target_api)
+    %w[
+      franceconnect
+      hubee_portail
+      hubee_portail_dila
+      api_captchetat
+    ].exclude?(target_api)
   end
 
   def mark_event_as_processed(event_name)
