@@ -36,4 +36,12 @@ class EnrollmentSerializer < ApplicationSerializer
   attribute :requested_changes_have_been_done do
     object.requested_changes_have_been_done?
   end
+
+  attribute :reopening do
+    object.reopening?
+  end
+
+  attribute :can_reopen do
+    object.can_reopen?
+  end
 end
