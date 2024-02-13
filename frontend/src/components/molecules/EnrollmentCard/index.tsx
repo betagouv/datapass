@@ -57,7 +57,9 @@ export const EnrollmentCard: React.FC<Props> = ({
   };
 
   const canReopen = () => {
-    return enrollment.can_reopen || false;
+    return (
+      enrollment.can_reopen && enrollment.status === EnrollmentStatus.validated
+    );
   };
 
   const adjustTextToDesiredLength = (
