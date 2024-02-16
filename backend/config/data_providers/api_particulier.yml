@@ -55,16 +55,16 @@ api_particulier:
       label: Adresse du foyer
     - value: pole_emploi_identite
       label: Statut demandeur d'emploi et identité
-      helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur Pôle emploi, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
+      helper: Indique si le particulier est demandeur d'emploi, et le cas échéant transmet nom d'utilisateur France Travail, noms, prénom, sexe, civilité, date de naissance et statut de certification d'identité CNAV.
     - value: pole_emploi_paiements
-      label: Montants et dates des paiements Pôle emploi
+      label: Montants et dates des paiements France Travail
       helper: Paiements de type allocations, aides complémentaires aux allocations et autres
     - value: pole_emploi_contact
       label: Téléphones et e-mail
     - value: pole_emploi_adresse
       label: Adresse
     - value: pole_emploi_inscription
-      label: Données d'inscription Pôle emploi
+      label: Données d'inscription France Travail
       helper: Date d'inscription, de cessation, et catégorie d'inscription du demandeur d'emploi
     - value: men_statut_scolarite
       label: Statut élève scolarisé et identité
@@ -130,7 +130,7 @@ api_particulier:
         - pole_emploi_adresse
         - pole_emploi_inscription
     pole_emploi_indemnites:
-      label: API Paiements Pôle emploi
+      label: API Paiements France Travail
       scopes:
         - pole_emploi_paiements
     men:
