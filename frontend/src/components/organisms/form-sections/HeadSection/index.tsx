@@ -50,11 +50,13 @@ export const HeadSection = () => {
       </div>
       {enrollment.reopening && enrollment.status === EnrollmentStatus.draft && (
         <div className="fr-py-5w">
-          <Alert title="Pas de panique">
+          <Alert title="Mettez à jour votre habilitation sereinement">
             <p>
-              Ne vous inquiétez pas, vos demandes de modifications n’auront pas
-              d’impact sur votre habilitation initialement validée. Nous
-              mettrons à jour vos informations et conserverons les anciennes.
+              Votre demande de mise à jour n’aura pas d’impact sur votre
+              habilitation initialement validée. Nous mettrons à jour vos
+              informations et conserverons les anciennes. De plus, dans le cas
+              où cette demande de mise à jour est refusée, votre habilitation
+              initiale reste bien évidemment valide !
             </p>
           </Alert>
         </div>
