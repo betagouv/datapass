@@ -112,16 +112,6 @@ class Enrollment < ApplicationRecord
       enrollment.notify_subscribers_for_enrollment_submission_after_changes_requested
     end
 
-    before_transition from: :submitted, to: :validated do |enrollment|
-      bridge_disable = ENV.fetch("DISABLE_#{enrollment.target_api.upcase}_BRIDGE", "") == "True"
-
-      if !bridge_disable && enrollment.bridge
-        enrollment.bridge.call(
-          enrollment
-        )
-      end
-    end
-
     after_transition from: :submitted, to: :validated do |enrollment|
       enrollment.snapshot!
     end
@@ -135,6 +125,16 @@ class Enrollment < ApplicationRecord
         comment: transition.args.try(:[], 0).try(:[], :comment),
         entity:
       )
+    end
+
+    after_transition from: :submitted, to: :validated do |enrollment|
+      bridge_disable = ENV.fetch("DISABLE_#{enrollment.target_api.upcase}_BRIDGE", "") == "True"
+
+      if !bridge_disable && enrollment.bridge
+        enrollment.bridge.call(
+          enrollment
+        )
+      end
     end
   end
 
