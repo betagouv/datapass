@@ -73,7 +73,7 @@ RSpec.describe EnrollmentEmailTemplatesRetriever, type: :service do
             third_line_of_plain_text = subject.plain_text_content.split("\n")[2]
 
             expect(first_line_of_plain_text).to eq(default_request_changes_first_line)
-            expect(third_line_of_plain_text).to eq(default_request_changes_third_line)
+            expect(third_line_of_plain_text).to eq("Votre demande d'habilitation est incomplète et requiert les modifications suivantes :")
           end
 
           it "includes valid url to datapass" do

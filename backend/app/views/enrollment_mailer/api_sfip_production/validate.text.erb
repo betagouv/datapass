@@ -1,10 +1,10 @@
 Bonjour,
 
-Votre habilitation a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.
+Votre <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.
 
 
 
-Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe <%= @target_api_label %>
 

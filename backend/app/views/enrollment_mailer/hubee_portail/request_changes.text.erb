@@ -12,7 +12,7 @@ La Direction interministérielle du numérique (DINUM) qui porte le Hub d’Éch
 
 Nous vous invitons, si plusieurs agents doivent traiter les télédossiers, à vous rapprocher de votre service informatique pour la création de boîtes mails nominatives. 
 
-Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 Bien cordialement,
 L’équipe <%= @target_api_label %>

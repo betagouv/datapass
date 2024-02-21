@@ -1,10 +1,10 @@
 Bonjour,
 
-Votre demande d’habilitation a bien été enregistrée.
-Notre équipe d’accompagnement pourra la consulter lorsque vous cliquerez sur « Soumettre la demande d’habilitation ».
+Votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> a bien été enregistrée.
+Notre équipe d’accompagnement pourra la consulter lorsque vous cliquerez sur « Soumettre la demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> ».
 
-Pour apporter des précisions à votre demande d’habilitation et pour le suivi de celle-ci, l’adresse mail habilitation-api@urssaf.fr est à votre disposition.
+Pour apporter des précisions à votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> et pour le suivi de celle-ci, l’adresse mail habilitation-api@urssaf.fr est à votre disposition.
 
-Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe d’accompagnement

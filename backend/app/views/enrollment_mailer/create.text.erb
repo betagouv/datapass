@@ -1,7 +1,7 @@
 Bonjour,
 
-Votre demande d’habilitation a bien été enregistrée.
-Notre service juridique pourra la consulter lorsque vous cliquerez sur "Soumettre la demande d’habilitation".
-Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> a bien été enregistrée.
+Notre service juridique pourra la consulter lorsque vous cliquerez sur "Soumettre la demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>".
+Pour consulter cette demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe <%= @target_api_label %>
