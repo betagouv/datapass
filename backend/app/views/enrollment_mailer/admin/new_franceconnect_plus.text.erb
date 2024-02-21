@@ -1,6 +1,6 @@
 Bonjour,
 
-Une habilitation FranceConnect plus vient d’être validée pour le FS <%= @nom_raison_sociale %>.
+Une <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> FranceConnect plus vient d’être validée pour le FS <%= @nom_raison_sociale %>.
 
 En conséquence, merci d’autoriser les scopes suivant pour le sus-mentionné FS :
 
@@ -10,6 +10,6 @@ En conséquence, merci d’autoriser les scopes suivant pour le sus-mentionné F
 
 Merci de nous prévenir quand la tâche est terminée de votre côté afin que nous puissions clôturer le ticket de notre côté.
 
-Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe DataPass

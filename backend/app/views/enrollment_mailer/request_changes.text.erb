@@ -1,14 +1,14 @@
 Bonjour,
 
-Votre demande d’habilitation est incomplète et requiert les modifications suivantes :
+Votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> est incomplète et requiert les modifications suivantes :
 
 
 
-Merci d’apporter ces modifications directement sur votre demande d’habilitation en ligne.
+Merci d’apporter ces modifications directement sur votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> en ligne.
 Sans retour de votre part concernant cette demande de modifications dans les 6 prochains mois, nous archiverons votre demande et vous ne pourrez plus y accéder.
 
 Une fois les modifications faites, n’oubliez pas de soumettre à nouveau votre demande à validation, en bas de page.
-Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 Cordialement,
 L’équipe <%= @target_api_label %>

@@ -1,6 +1,6 @@
 Bonjour,
 
-Une habilitation <%= @target_api_label %> pour le FS <%= @nom_raison_sociale %> (identifiant DataPass de l’habilitation FranceConnect associée : <%= @previous_enrollment_id %>) vient d’être validée.
+Une <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> <%= @target_api_label %> pour le FS <%= @nom_raison_sociale %> (identifiant DataPass de l’<%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> FranceConnect associée : <%= @previous_enrollment_id %>) vient d’être validée.
 
 En conséquence, merci d’autoriser les scopes suivant pour le sus-mentionné FS :
 
@@ -8,6 +8,6 @@ En conséquence, merci d’autoriser les scopes suivant pour le sus-mentionné F
 - <%= scope %>
 <% end %>
 
-Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe DataPass

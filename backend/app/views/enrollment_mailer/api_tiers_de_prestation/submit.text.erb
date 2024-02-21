@@ -18,6 +18,6 @@ N’oubliez pas d’indiquer votre numéro de dossier
 --------------------------------------------------------------------------------
 
 Pour toute question, contactez directement habilitation-api@urssaf.fr
-Pour accéder à votre demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour accéder à votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe d’accompagnement

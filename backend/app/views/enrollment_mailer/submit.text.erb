@@ -1,6 +1,6 @@
 Bonjour,
 
-Notre service juridique va prendre en charge votre demande d’habilitation au plus vite. La majorité des demande d’habilitations des 6 derniers mois reçoivent une réponse en moins de <%= @majority_percentile_processing_time_in_days %> jours.
-Pour consulter cette demande d’habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Notre service juridique va prendre en charge votre demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %> au plus vite. La majorité des demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>s des 6 derniers mois reçoivent une réponse en moins de <%= @majority_percentile_processing_time_in_days %> jours.
+Pour consulter cette demande <%= @enrollment.reopening? ? 'de mise à jour' : 'd\'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe <%= @target_api_label %>

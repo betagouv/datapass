@@ -1,9 +1,9 @@
 Bonjour,
 
-Votre habilitation a été refusée pour la raison suivante :
+Votre <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> a été refusée pour la raison suivante :
 
 
 
-Pour consulter cette habilitation, veuillez cliquer sur le lien suivant <%= @url %> .
+Pour consulter cette <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
 
 L’équipe <%= @target_api_label %>
