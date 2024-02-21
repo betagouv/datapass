@@ -156,13 +156,53 @@ class Enrollment < ApplicationRecord
 
   def can_reopen?
     %w[
+      api_captchetat
+      api_cpr_pro_production
+      api_cpr_pro_sandbox
+      api_e_contacts_production
+      api_e_contacts_sandbox
+      api_e_pro_production
+      api_e_pro_sandbox
+      api_ensu_documents_production
+      api_ensu_documents_sandbox
+      api_ficoba_production
+      api_ficoba_sandbox
+      api_ficoba_unique
+      api_hermes_production
+      api_hermes_sandbox
+      api_impot_particulier_fc_production
+      api_impot_particulier_fc_sandbox
+      api_impot_particulier_fc_unique
+      api_impot_particulier_production
+      api_impot_particulier_sandbox
+      api_impot_particulier_unique
+      api_imprimfip_production
+      api_imprimfip_sandbox
+      api_infinoe_production
+      api_infinoe_sandbox
+      api_infinoe_unique
+      api_mire_production
+      api_mire_sandbox
+      api_ocfi_production
+      api_ocfi_sandbox
+      api_opale_production
+      api_opale_sandbox
+      api_r2p_production
+      api_r2p_sandbox
+      api_r2p_unique
+      api_robf_production
+      api_robf_sandbox
+      api_satelit_production
+      api_satelit_sandbox
+      api_sfip_production
+      api_sfip_sandbox
+      api_sfip_unique
+      api_tiers_de_prestation
       franceconnect
       hubee_portail
       hubee_portail_dila
-      api_captchetat
     ].exclude?(target_api)
   end
-
   def mark_event_as_processed(event_name)
     unless ["notify", "submit"].include?(event_name)
       raise ArgumentError.new("Invalid event_name. Must be either 'notify' or 'submit'.")
