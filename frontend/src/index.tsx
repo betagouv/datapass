@@ -8,7 +8,7 @@ import App from './App';
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({
-    dsn: 'https://e4fa0296c334474a88ea019173659b2b@errors.data.gouv.fr/19',
+    dsn: 'https://734f9d63f50f23785ff2321cf06a37f2@o4506784314490880.ingest.sentry.io/4506784465354752',
     ignoreErrors: ['Error: Request failed with status code 401'],
   });
 }
