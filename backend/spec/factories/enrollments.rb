@@ -10,6 +10,7 @@ FactoryBot.define do
   factory :enrollment do
     status { "draft" }
     intitule { "Intitulé" }
+    siret { "12345678901234" }
 
     trait :draft
 
@@ -147,6 +148,7 @@ FactoryBot.define do
 
     trait :validated do
       status { "validated" }
+      last_validated_at { DateTime.now }
 
       with_delegue_protection_donnees
       with_responsable_traitement

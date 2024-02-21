@@ -1,6 +1,7 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useContext } from 'react';
 import { EventConfiguration } from '../../config/event-configuration';
 import Button from './hyperTexts/Button';
+import { FormContext } from '../templates/Form';
 
 type Props = EventConfiguration['displayProps'] & {
   disabled?: boolean;
@@ -11,24 +12,31 @@ type Props = EventConfiguration['displayProps'] & {
 
 const EventButton: React.FC<Props> = ({
   label,
+  getLabel = undefined,
   icon,
   disabled,
   onClick,
   secondary = false,
   quaternary = false,
   iconFill = false,
-}) => (
-  // @ts-ignore
-  <Button
-    icon={icon}
-    iconFill={iconFill}
-    secondary={secondary}
-    quaternary={quaternary}
-    onClick={onClick}
-    disabled={disabled}
-  >
-    {label}
-  </Button>
-);
+}) => {
+  const { enrollment } = useContext(FormContext)!;
+
+  return (
+    // @ts-ignore
+    <Button
+      icon={icon}
+      iconFill={iconFill}
+      secondary={secondary}
+      quaternary={quaternary}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {getLabel !== undefined && enrollment !== undefined
+        ? getLabel(enrollment)
+        : label}
+    </Button>
+  );
+};
 
 export default EventButton;

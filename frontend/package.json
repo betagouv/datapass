@@ -14,7 +14,7 @@
     "test": "CI=true craco test",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "eslint src/**/*.{js,ts,tsx} --max-warnings=0",
+    "lint": "eslint src/**/*.{js,ts,tsx} --max-warnings=0 --fix",
     "start": "serve -s build"
   },
   "keywords": [],

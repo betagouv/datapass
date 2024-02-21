@@ -1,3 +1,5 @@
+import { Enrollment } from './index';
+
 export enum EnrollmentEvent {
   notify = 'notify',
   create = 'create',
@@ -15,6 +17,9 @@ export enum EnrollmentEvent {
   instruct = 'instruct',
   update_contacts = 'update_contacts',
   copy = 'copy',
+  create_opinion = 'create_opinion',
+  create_opinion_comment = 'create_opinion_comment',
+  reopen = 'reopen',
 }
 
 export enum PromptType {
@@ -34,6 +39,7 @@ export enum RequestType {
 
 export type EventConfiguration = {
   displayProps: {
+    getLabel(enrollment: Enrollment): string;
     label: string;
     icon?: string;
     secondary?: boolean;
@@ -80,6 +86,10 @@ export const eventConfigurations: {
   },
   [EnrollmentEvent.submit]: {
     displayProps: {
+      getLabel: (enrollment: Enrollment) =>
+        enrollment.reopening
+          ? 'Soumettre la demande de mise à jour'
+          : 'Soumettre la demande d’habilitation',
       label: 'Soumettre la demande d’habilitation',
       icon: 'checkbox',
     },

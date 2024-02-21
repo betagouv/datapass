@@ -84,6 +84,26 @@ module DataPass
 
     # fix paper_trail error: "Tried to load unspecified class: ActiveSupport::TimeWithZone"
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
+
+    config.after_initialize do
+      Dir[Rails.root.join("app/models/enrollment/*.rb")].each do |file|
+        load file
+      end
+
+      Enrollment.descendants.each do |klass|
+        klass.include ActiveSnapshot
+
+        klass.class_eval do
+          has_snapshot_children do
+            instance = self.class.includes(:team_members).find(id)
+
+            {
+              team_members: instance.team_members
+            }
+          end
+        end
+      end
+    end
   end
 end
 

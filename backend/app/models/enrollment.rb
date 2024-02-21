@@ -12,6 +12,10 @@ class Enrollment < ApplicationRecord
       "Enrollment::#{target_api.underscore.classify}".constantize
     end
 
+    def sti_class_for(type)
+      find_sti_class(type)
+    end
+
     # ex: Enrollment::ApiParticulier => 'api_particulier'
     def sti_name
       name.demodulize.underscore
@@ -79,23 +83,19 @@ class Enrollment < ApplicationRecord
     end
 
     event :archive do
-      transition from: all - [:archived, :validated], to: :archived
+      transition from: all - %i[archived validated], to: :archived, if: ->(enrollment) { !enrollment.reopening? }
     end
 
     event :validate do
       transition from: :submitted, to: :validated
     end
 
-    before_transition do |enrollment, transition|
-      enrollment.valid?(transition.event.to_sym)
+    event :reopen do
+      transition from: :validated, to: :draft, if: ->(enrollment) { enrollment.can_reopen? }
     end
 
     before_transition do |enrollment, transition|
-      enrollment.events.create!(
-        name: transition.event.to_s,
-        user_id: transition.args[0][:user_id],
-        comment: transition.args[0][:comment]
-      )
+      enrollment.valid?(transition.event.to_sym)
     end
 
     before_transition from: %i[draft changes_requested], to: :submitted do |enrollment|
@@ -121,6 +121,46 @@ class Enrollment < ApplicationRecord
         )
       end
     end
+
+    after_transition from: :submitted, to: :validated do |enrollment|
+      enrollment.snapshot!
+    end
+
+    after_transition do |enrollment, transition|
+      entity = (transition.event.to_s == "validate") ? enrollment.last_snapshot : nil
+
+      enrollment.events.create!(
+        name: transition.event.to_s,
+        user_id: transition.args.try(:[], 0).try(:[], :user_id),
+        comment: transition.args.try(:[], 0).try(:[], :comment),
+        entity:
+      )
+    end
+  end
+
+  def snapshot!
+    self.last_validated_at = DateTime.now
+    save
+
+    create_snapshot!
+  end
+
+  def last_snapshot
+    snapshots.order(created_at: :desc).limit(1).first
+  end
+
+  def reopening?
+    last_validated_at.present? &&
+      status != "validated"
+  end
+
+  def can_reopen?
+    %w[
+      franceconnect
+      hubee_portail
+      hubee_portail_dila
+      api_captchetat
+    ].exclude?(target_api)
   end
 
   def mark_event_as_processed(event_name)
@@ -264,11 +304,6 @@ class Enrollment < ApplicationRecord
     end
 
     copied_enrollment
-  end
-
-  def archive!
-    update!(status: "archived")
-    events.create!(name: "archive")
   end
 
   def team_members_json

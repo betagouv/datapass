@@ -22,10 +22,14 @@ Rails.application.routes.draw do
         get :email_templates, to: "enrollments_email_templates#index"
       end
 
+      resources :validated_enrollment_snapshots, only: [:show], path: "validated"
+
       resources :opinions, only: [:index, :create, :show, :destroy] do
         resources :opinion_comments, path: "comments", only: [:create, :destroy]
       end
     end
+
+    resources :reopen_enrollments, only: [:update]
 
     get "enrollments/:target_api/available_reporters", to: "available_reporters#index"
 

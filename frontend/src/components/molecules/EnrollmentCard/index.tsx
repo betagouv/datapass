@@ -1,19 +1,24 @@
-import React, { useCallback } from 'react';
-import './style.css';
+import React from 'react';
 import Card from '../Card';
 import Badge, { StatusBadge } from '../StatusBadge';
-import { Enrollment } from '../../../config';
+import { Enrollment, Event } from '../../../config';
 import { useDataProvider } from '../../templates/hooks/use-data-provider';
 import Button from '../../atoms/hyperTexts/Button';
+import { EnrollmentStatus } from '../../../config/status-parameters';
+import { reopenEnrollment } from '../../../services/enrollments';
 
 import './style.css';
+import { getLastSnapshotId } from '../../../lib';
+import moment from 'moment';
+import { ArrowWithTailRightIcon } from '../../atoms/icons/fr-fi-icons';
 
 type Props = {
   enrollment: Enrollment;
   onSelect: (
     target_api: string,
     id: number,
-    e: React.MouseEvent<HTMLElement>
+    e: React.MouseEvent<HTMLElement>,
+    snapshotId?: number
   ) => void;
   cardSize?: 'small' | 'large';
 };
@@ -25,18 +30,37 @@ export const EnrollmentCard: React.FC<Props> = ({
 }) => {
   const { label, icon } = useDataProvider(enrollment.target_api);
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      onSelect(enrollment.target_api, enrollment.id, e);
-    },
-    [enrollment, onSelect]
-  );
+  const lastSnapshotId = getLastSnapshotId(enrollment.events!);
 
   let className = 'enrollment-card';
 
   if (cardSize === 'large') {
     className += ' large';
   }
+
+  const onReopenClick = async (event: React.MouseEvent<HTMLElement>) => {
+    const reopenedEnrollment = await reopenEnrollment({ id: enrollment.id });
+    onSelect(reopenedEnrollment.target_api, reopenedEnrollment.id, event);
+  };
+
+  const getLastReopenDate = () => {
+    let reopenEvents =
+      enrollment?.events?.filter((event) => event.name === 'reopen') || [];
+
+    let lastReopenEvent = reopenEvents.reduce((maxDateEvent, currentEvent) => {
+      return !maxDateEvent || currentEvent.created_at > maxDateEvent.created_at
+        ? currentEvent
+        : maxDateEvent;
+    }, null as Event | null);
+
+    return lastReopenEvent?.created_at;
+  };
+
+  const canReopen = () => {
+    return (
+      enrollment.can_reopen && enrollment.status === EnrollmentStatus.validated
+    );
+  };
 
   const adjustTextToDesiredLength = (
     text: string | undefined,
@@ -54,32 +78,83 @@ export const EnrollmentCard: React.FC<Props> = ({
   };
 
   return (
-    <Card className={className}>
-      <div className="enrollment-card-header">
-        <Badge>n°{enrollment.id}</Badge>
-        <StatusBadge status={enrollment.status} />
-      </div>
-      <div className="enrollment-card-body">
-        {icon && cardSize === 'large' && (
-          <div className="enrollment-card-image">
-            <img src={`/images/${icon}`} alt={`logo ${label}`} />
-          </div>
-        )}
-        <div className="enrollment-card-content">
-          <div className="enrollment-card-subtitle">{label}</div>
-          <div className="enrollment-card-title" title={enrollment.intitule}>
-            {adjustTextToDesiredLength(enrollment.intitule, 60)}
-          </div>
-          <p
-            className="enrollment-card-description"
-            title={enrollment.description}
-          >
-            {adjustTextToDesiredLength(enrollment.description, 120)}
-          </p>
-          <Button onClick={handleClick}>Continuer</Button>
+    <div className={className}>
+      <Card>
+        <div className="enrollment-card-header">
+          <Badge>n°{enrollment.id}</Badge>
+          <StatusBadge
+            status={
+              enrollment.reopening
+                ? EnrollmentStatus.validated
+                : enrollment.status
+            }
+          />
         </div>
-      </div>
-    </Card>
+        <div className="enrollment-card-body">
+          {icon && cardSize === 'large' && (
+            <div className="enrollment-card-image">
+              <img src={`/images/${icon}`} alt={`logo ${label}`} />
+            </div>
+          )}
+          <div className="enrollment-card-content">
+            <div className="enrollment-card-subtitle">{label}</div>
+            <div className="enrollment-card-title" title={enrollment.intitule}>
+              {adjustTextToDesiredLength(enrollment.intitule, 60)}
+            </div>
+            <p
+              className="enrollment-card-description"
+              title={enrollment.description}
+            >
+              {adjustTextToDesiredLength(enrollment.description, 120)}
+            </p>
+            <div className="enrollment-card-actions">
+              <Button
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
+                  onSelect(
+                    enrollment.target_api,
+                    enrollment.id,
+                    e,
+                    enrollment.reopening ? lastSnapshotId : undefined
+                  );
+                }}
+              >
+                Consulter
+              </Button>
+              {canReopen() && (
+                <Button secondary onClick={onReopenClick}>
+                  Mettre à jour
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </Card>
+      {enrollment.reopening && (
+        <div className="enrollment-card-footer">
+          <div className="enrollment-card-footer-details">
+            <div className="enrollment-card-footer-details-title">
+              Demande de mise à jour
+            </div>
+            <div>
+              Faite le {moment(getLastReopenDate()).format('DD/MM/YYYY')}
+            </div>
+            <Button
+              className="enrollment-card-footer-details-button"
+              tertiaryNoOutline
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                onSelect(enrollment.target_api, enrollment.id, e);
+              }}
+            >
+              Consulter
+              <ArrowWithTailRightIcon small />
+            </Button>
+          </div>
+          <div className="enrollment-card-footer-status">
+            <StatusBadge status={enrollment.status} />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

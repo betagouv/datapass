@@ -21,7 +21,8 @@ import {
 import flatten from 'flat';
 import { AxiosError, AxiosResponse } from 'axios';
 import { DataProviderConfiguration } from '../config/data-provider-configurations';
-import { Enrollment, TeamMember } from '../config';
+import { Enrollment, Event, TeamMember } from '../config';
+import { EnrollmentEvent } from '../config/event-configuration';
 
 interface ExtendedData {
   title?: string;
@@ -612,3 +613,6 @@ export const isUserADemandeur = ({
     .filter(({ type }) => type === 'demandeur')
     .map(({ email }) => email)
     .includes(user_email);
+
+export const getLastSnapshotId = (events: Event[]) =>
+  events?.find(({ name }) => name === EnrollmentEvent.validate)?.entity_id;

@@ -14,4 +14,12 @@ class UserEnrollmentListSerializer < ApplicationSerializer
       [method.to_s.delete("?"), object.policy.new(current_user, object).send(method)]
     }.to_h
   end
+
+  attribute :reopening do
+    object.reopening?
+  end
+
+  attribute :can_reopen do
+    object.can_reopen?
+  end
 end

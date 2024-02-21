@@ -55,6 +55,25 @@ export function getUserEnrollment(id: number) {
   );
 }
 
+export function getUserEnrollmentSnapshot({
+  enrollmentId,
+  snapshotId,
+}: {
+  enrollmentId: number;
+  snapshotId: number;
+}) {
+  return httpClient
+    .get(
+      `${BACK_HOST}/api/enrollments/${enrollmentId}/validated/${snapshotId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    .then(({ data: enrollment }) => enrollment);
+}
+
 export function hasAccessToEnrollment(id: number) {
   return getUserEnrollment(id)
     .then(() => true)
@@ -289,5 +308,13 @@ export function markEventAsRead({
         headers: { 'Content-type': 'application/json' },
       }
     )
+    .then(({ data }) => data);
+}
+
+export function reopenEnrollment({ id }: { id: number }) {
+  return httpClient
+    .patch(`${BACK_HOST}/api/reopen_enrollments/${id}/`, {
+      headers: { 'Content-type': 'application/json' },
+    })
     .then(({ data }) => data);
 }

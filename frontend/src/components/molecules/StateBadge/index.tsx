@@ -7,6 +7,14 @@ type Props = {
 };
 
 const StateBadge: React.FC<Props> = ({ enrollment }) => {
+  if (enrollment.reopening) {
+    return (
+      <Badge type={BadgeType.purple} small={true}>
+        Mise à jour
+      </Badge>
+    );
+  }
+
   if (enrollment.requested_changes_have_been_done) {
     return (
       <p className="fr-badge fr-badge--sm fr-badge--blue-cumulus">
