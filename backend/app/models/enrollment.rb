@@ -203,6 +203,7 @@ class Enrollment < ApplicationRecord
       hubee_portail_dila
     ].exclude?(target_api)
   end
+
   def mark_event_as_processed(event_name)
     unless ["notify", "submit"].include?(event_name)
       raise ArgumentError.new("Invalid event_name. Must be either 'notify' or 'submit'.")
