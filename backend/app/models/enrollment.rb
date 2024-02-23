@@ -324,6 +324,7 @@ class Enrollment < ApplicationRecord
 
   def copy(current_user)
     copied_enrollment = dup
+    copied_enrollment.last_validated_at = nil
     copied_enrollment.status = :draft
     copied_enrollment.linked_token_manager_id = nil
     copied_enrollment.copied_from_enrollment = self

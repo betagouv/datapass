@@ -21,6 +21,22 @@ RSpec.describe Enrollment, type: :model do
     end
   end
 
+  describe "#copy" do
+    let(:enrollment) { create(:enrollment, :franceconnect, :validated) }
+
+    it "creates a new enrollment" do
+      new_enrollment = enrollment.copy(User.first)
+
+      expect(new_enrollment).to be_persisted
+    end
+
+    it "resets last_validated_at" do
+      new_enrollment = enrollment.copy(User.first)
+
+      expect(new_enrollment.last_validated_at).to be_nil
+    end
+  end
+
   describe "copy validations" do
     let(:enrollment_creator) { create(:user, organization_kind: :clamart) }
     let(:enrollment) {
