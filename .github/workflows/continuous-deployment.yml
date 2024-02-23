@@ -22,6 +22,15 @@ jobs:
           - environment: staging
             host: staging2.datapass.api.gouv.fr
             ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: staging
+            host: staging3.datapass.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: staging
+            host: staging4.datapass.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: staging
+            host: staging5.datapass.api.gouv.fr
+            ssh_key: FRONT_DEPLOYMENT_PRIVATE_SSH_KEY
     environment:
       url: https://${{ matrix.host }}
       name: ${{ matrix.environment }}

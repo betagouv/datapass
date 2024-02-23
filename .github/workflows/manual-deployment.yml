@@ -15,6 +15,15 @@ jobs:
           - environment: production
             host: production2.datapass.api.gouv.fr
             ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            host: production3.datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            host: production4.datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
+          - environment: production
+            host: production5.datapass.api.gouv.fr
+            ssh_key: BACK_DEPLOYMENT_PRIVATE_SSH_KEY
     environment:
       url: https://${{ matrix.host }}
       name: ${{ matrix.environment }}
