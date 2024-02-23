@@ -21,6 +21,21 @@ jobs:
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
+          - env: sandbox3
+            back_host: https://back.sandbox3.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
+          - env: sandbox4
+            back_host: https://back.sandbox4.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
+          - env: sandbox5
+            back_host: https://back.sandbox5.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
           - env: staging1
             back_host: https://back.staging1.datapass.api.gouv.fr
             api_gouv_host: https://staging.api.gouv.fr
@@ -31,6 +46,21 @@ jobs:
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
+          - env: staging3
+            back_host: https://back.staging3.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
+          - env: staging4
+            back_host: https://back.staging4.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
+          - env: staging5
+            back_host: https://back.staging5.datapass.api.gouv.fr
+            api_gouv_host: https://staging.api.gouv.fr
+            piwik_url: ""
+            piwik_site_id: ""
           - env: production1
             back_host: https://back.production1.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -38,6 +68,21 @@ jobs:
             piwik_site_id: "53"
           - env: production2
             back_host: https://back.production2.datapass.api.gouv.fr
+            api_gouv_host: https://api.gouv.fr
+            piwik_url: https://stats.data.gouv.fr
+            piwik_site_id: "53"
+          - env: production3
+            back_host: https://back.production3.datapass.api.gouv.fr
+            api_gouv_host: https://api.gouv.fr
+            piwik_url: https://stats.data.gouv.fr
+            piwik_site_id: "53"
+          - env: production4
+            back_host: https://back.production4.datapass.api.gouv.fr
+            api_gouv_host: https://api.gouv.fr
+            piwik_url: https://stats.data.gouv.fr
+            piwik_site_id: "53"
+          - env: production5
+            back_host: https://back.production5.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
             piwik_url: https://stats.data.gouv.fr
             piwik_site_id: "53"
