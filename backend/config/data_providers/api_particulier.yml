@@ -439,11 +439,11 @@ api_particulier:
           cnaf_adresse: true
       team_members:
         responsable_technique:
-          given_name: Jean-François
-          family_name: Pommier
+          given_name: Camille
+          family_name: Laure
           job: Produit
-          email: jf.pommier@berger-levrault.com
-          phone_number: '0628770862'
+          email: camille.laur@berger-levrault.com
+          phone_number: '0603266304'
     cantine-de-france:
       label: >-
         Cantines-de-France, Tarification services municipaux / Portail Famille,
