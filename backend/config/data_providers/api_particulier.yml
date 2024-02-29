@@ -75,23 +75,23 @@ api_particulier:
     - value: men_echelon_bourse
       label: Échelon de la bourse
       helper: Indique l’échelon de l’élève boursier
-    - value: mesri_identite
-      label: Statut étudiant inscrit et identité
-      helper: Indique si le particulier est étudiant "inscrit", et le cas échéant transmet nom, prénom et date de naissance de l'étudiant. Pour accéder aux étudiants "admis", cocher la case "Périmètre étudiants admis".
+    - value: mesri_inscription_etudiant
+      label: Statut étudiant inscrit | Périmètre formation initiale
+      helper: >-
+        Permet de savoir si l'étudiant, dont le régime de formation est la formation initiale, est inscrit dans un établissement. 
+    - value: mesri_inscription_autre
+      label: Statut étudiant inscrit | Périmètre formation continue
+      helper: >-
+        Permet de savoir si l'étudiant, dont le régime de formation est la formation continue, est inscrit dans un établissement. 
     - value: mesri_admission
-      label: Périmètre étudiants admis
-      helper: Permet d’interroger les données des étudiants au statut d'inscription "admis".
+      label: Statut étudiant "admis"
+      helper: Permet de savoir si l'étudiant est "admis". Ce statut, préalable au statut "inscrit", signifie que l'étudiant est pré-inscrit dans l'établissement mais que la procédure complète d'inscription et le règlement des droits d'inscription ne sont pas terminés.
+    - value: mesri_identite
+      label: Identité de l'étudiant 
+      helper: Transmet le nom, prénom et date de naissance de l'étudiant si celui-ci fait partie du périmètre sélectionné (statut inscrit formation initiale / formation continue et statut admis).
     - value: mesri_etablissements
       label: Liste des établissements
-      helper: Permet de connaitre le nom et l'identifiant UAI du ou des établissements de l'étudiant.
-    - value: mesri_inscription_autre
-      label: Périmètre étudiants en formation continue
-      helper: >-
-        Permet d’interroger les données des étudiants dont le régime de formation est la formation continue.
-    - value: mesri_inscription_etudiant
-      label: Périmètre étudiants en formation initiale
-      helper: >-
-        Permet d’interroger les données des étudiants dont le régime de formation est la formation initiale.
+      helper: Permet de connaitre le nom et l'identifiant UAI du ou des établissements de l'étudiant si celui-ci fait partie du périmètre sélectionné (statut inscrit formation initiale / formation continue et statut admis).
     - value: cnous_statut_boursier
       label: Statut étudiant boursier
       helper: Indique si l’étudiant est boursier au moment de l’interrogation (réponse oui/non)
