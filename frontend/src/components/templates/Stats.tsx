@@ -203,17 +203,8 @@ export const Stats = () => {
               <div className="card__meta">
                 <Link
                   inline
-                  href={`/public${`?${qs.stringify({
-                    filtered: JSON.stringify([
-                      {
-                        id: 'target_api',
-                        value: getApisList(
-                          targetApi,
-                          dataProviderConfigurations
-                        ),
-                      },
-                    ]),
-                  })}`}`}
+                  href="https://www.data.gouv.fr/fr/datasets/habilitations-datapass-validees/"
+                  newTab
                 >
                   voir la liste détaillée
                 </Link>
