@@ -319,7 +319,11 @@ class Enrollment < ApplicationRecord
   end
 
   def validated_at
-    events.where(name: "validate").order("created_at").last["created_at"]
+    validated_events = events.where(name: "validate").order("created_at").limit(1)
+
+    return if validated_events.empty?
+
+    validated_events.last["created_at"]
   end
 
   def copy(current_user)
