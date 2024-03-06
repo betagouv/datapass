@@ -21,7 +21,7 @@ RSpec.describe SpreadsheetGenerator do
     end
 
     it "generates a spreadsheet with an header row" do
-      expect(spreadsheet.sheet(0).row(1)).to include("id", "target_api")
+      expect(spreadsheet.sheet(0).row(1)).to include("id", "target_api", "validated_at")
     end
 
     it "generates a spreadsheet with enrollments" do
