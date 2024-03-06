@@ -47,7 +47,7 @@ const scopesConfiguration = [
   {
     value: 'unites_legales_etablissements_insee',
     label:
-      'Données unités légales et établissements du répertoire Sirene - Insee (diffusibles et non-diffusibles)',
+      'Données unités légales et établissements du répertoire Sirene - Insee (y compris les données non-diffusibles)',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee',
   },
   {
@@ -122,7 +122,7 @@ const scopesConfiguration = [
   {
     value: 'open_data_unites_legales_etablissements_insee',
     label:
-      'Données des unités légales et établissements diffusibles - Insee | API incluse par défaut',
+      'Données des unités légales et établissements en open data - Insee | API incluse par défaut',
     link: 'https://entreprise.api.gouv.fr/catalogue?APIEntreprise_Endpoint%5Bquery%5D=insee%20diffusible',
     required: true,
   },

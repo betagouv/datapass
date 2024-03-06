@@ -53,8 +53,8 @@ export const ScopeWarningModalConfigurations: {
       'Cette donnée est particulièrement sensible. ' +
       'Pour que votre demande d’accès à cette donnée aboutisse, ' +
       'vous devez justifier dans ce formulaire d’un cadre légal adéquat et d’un contexte d’usage attestant de l’utilité de cette donnée pour votre service. ' +
-      'Une donnée moins précise est disponible avec les API "Données unité légale diffusible  - INSEE" ' +
-      'et "Données établissement diffusible - INSEE". ' +
+      'Une donnée moins précise est disponible avec les API "Données unité légale en open data  - INSEE" ' +
+      'et "Données établissement en open data - INSEE". ' +
       'Il s’agit des tranches d’effectifs au sens de l’INSEE . Si vous n’avez pas besoin de l’effectif exact, ces API sont suffisantes.',
   },
   apientreprise_sensitive_mandataires: {
