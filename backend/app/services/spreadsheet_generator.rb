@@ -42,7 +42,17 @@ class SpreadsheetGenerator
   end
 
   def build_row(enrollment)
-    enrollment_attributes.map { |attr| enrollment.send(attr) }
+    enrollment_attributes.map do |attr|
+      enrollment_attribute_to_value(enrollment, attr)
+    end
+  end
+
+  def enrollment_attribute_to_value(enrollment, attr)
+    final_attribute = {
+      "updated_at" => "latest_event_date"
+    }[attr] || attr
+
+    enrollment.send(final_attribute)
   end
 
   def render_xlsx_as_binary
