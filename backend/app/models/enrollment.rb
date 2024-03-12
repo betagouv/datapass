@@ -326,6 +326,14 @@ class Enrollment < ApplicationRecord
     validated_events.last["created_at"]
   end
 
+  def latest_event_date
+    latest_event = events.order("created_at").limit(1).last
+
+    return if latest_event.nil?
+
+    latest_event["created_at"]
+  end
+
   def copy(current_user)
     copied_enrollment = dup
     copied_enrollment.last_validated_at = nil

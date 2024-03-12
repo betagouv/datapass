@@ -24,7 +24,7 @@ class SpreadsheetGenerator
   end
 
   def enrollment_attributes
-    %w[id target_api validated_at created_at updated_at status organization_id siret nom_raison_sociale zip_code
+    %w[id target_api created_at updated_at status organization_id siret nom_raison_sociale zip_code
       technical_team_type technical_team_value demarche intitule description type_projet
       date_mise_en_production volumetrie_approximative scopes data_recipients data_retention_period
       data_retention_comment fondement_juridique_title fondement_juridique_url demandeur_email
@@ -42,7 +42,17 @@ class SpreadsheetGenerator
   end
 
   def build_row(enrollment)
-    enrollment_attributes.map { |attr| enrollment.send(attr) }
+    enrollment_attributes.map do |attr|
+      enrollment_attribute_to_value(enrollment, attr)
+    end
+  end
+
+  def enrollment_attribute_to_value(enrollment, attr)
+    final_attribute = {
+      "updated_at" => "latest_event_date"
+    }[attr] || attr
+
+    enrollment.send(final_attribute)
   end
 
   def render_xlsx_as_binary
