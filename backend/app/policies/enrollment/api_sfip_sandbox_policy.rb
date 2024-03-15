@@ -9,7 +9,7 @@ class Enrollment::ApiSfipSandboxPolicy < Enrollment::SandboxPolicy
     res.concat([
       scopes: impot_particulier_permitted_scopes
     ])
-    augment_permitted_attributes(res, :additional_content, *impot_particulier_permitted_acces, :specific_requirements)
+    augment_permitted_attributes(res, :additional_content, *impot_particulier_permitted_acces, *impot_particulier_permitted_scopes)
 
     res
   end
