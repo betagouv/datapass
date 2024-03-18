@@ -327,7 +327,7 @@ class Enrollment < ApplicationRecord
   end
 
   def latest_event_date
-    latest_event = events.order("created_at").limit(1).last
+    latest_event = events.order(created_at: :desc).limit(1).last
 
     return if latest_event.nil?
 
