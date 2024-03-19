@@ -4,8 +4,8 @@ RSpec.describe FilterService, type: :service do
       @enrollment_franceconnect = create(:enrollment, :franceconnect, :draft)
       create(:event, :create, enrollment: @enrollment_franceconnect)
 
-      @enrollment_api_entreprise = create(:enrollment, :api_entreprise, :draft)
-      create(:event, :create, enrollment: @enrollment_api_entreprise)
+      @enrollment_aidants_connect = create(:enrollment, :aidants_connect, :draft)
+      create(:event, :create, enrollment: @enrollment_aidants_connect)
     end
 
     context "with a filter set on target_api" do
@@ -53,7 +53,7 @@ RSpec.describe FilterService, type: :service do
       subject { FilterService.call(params, enrollments) }
 
       it "returns items even when the search term is not exact" do
-        expect(subject.map(&:id)).to match_array([@enrollment_franceconnect.id, @enrollment_api_entreprise.id])
+        expect(subject.map(&:id)).to match_array([@enrollment_franceconnect.id, @enrollment_aidants_connect.id])
       end
     end
 

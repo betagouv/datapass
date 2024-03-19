@@ -1,7 +1,7 @@
 RSpec.describe CreateEvent, type: :interactor do
   subject { described_class.call(enrollment:, current_user:, event_name:) }
 
-  let(:enrollment) { create(:enrollment, :api_entreprise) }
+  let(:enrollment) { create(:enrollment, :aidants_connect) }
   let(:current_user) { create(:user) }
   let(:event_name) { "create" }
 

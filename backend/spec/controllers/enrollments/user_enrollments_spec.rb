@@ -53,15 +53,15 @@ RSpec.describe EnrollmentsController, "#user", type: :controller do
       end
 
       context "when user is a reporter for some target api" do
-        let(:user) { create(:user, roles: ["franceconnect:reporter", "api_entreprise:reporter"]) }
+        let(:user) { create(:user, roles: ["franceconnect:reporter", "aidants_connect:reporter"]) }
 
         let!(:franceconnect_enrollment) { create(:enrollment, :franceconnect) }
-        let!(:api_entreprise_enrollment) { create(:enrollment, :api_entreprise) }
+        let!(:aidants_connect_enrollment) { create(:enrollment, :aidants_connect) }
         let!(:api_particulier_enrollment) { create(:enrollment, :api_particulier) }
 
         it "includes enrollments associated to these target api only" do
           expect(user_enrollment_ids_payload).to include(franceconnect_enrollment.id)
-          expect(user_enrollment_ids_payload).to include(api_entreprise_enrollment.id)
+          expect(user_enrollment_ids_payload).to include(aidants_connect_enrollment.id)
 
           expect(user_enrollment_ids_payload).not_to include(api_particulier_enrollment.id)
         end

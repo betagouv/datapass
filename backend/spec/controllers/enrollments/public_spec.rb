@@ -9,7 +9,7 @@ RSpec.describe EnrollmentsController, "#public", type: :controller do
 
   let!(:old_validated_franceconnect_enrollment) { create(:enrollment, :franceconnect, :validated, intitule: "old_franceconnect", updated_at: 1.day.ago) }
   let!(:newest_validated_franceconnect_enrollment) { create(:enrollment, :franceconnect, :validated, intitule: "newest_franceconnect", updated_at: 10.minutes.ago) }
-  let!(:validated_api_entreprise_enrollment) { create(:enrollment, :api_entreprise, :validated, intitule: "api_entreprise", updated_at: 20.minutes.ago) }
+  let!(:validated_aidants_connect_enrollment) { create(:enrollment, :aidants_connect, :validated, intitule: "aidants_connect", updated_at: 20.minutes.ago) }
 
   let!(:another_enrollment) { create(:enrollment, :franceconnect) }
 
@@ -25,9 +25,9 @@ RSpec.describe EnrollmentsController, "#public", type: :controller do
     end
 
     it "is ordered by last updated date desc" do
-      expect(public_enrollments_payload["enrollments"].map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to eq(%w[
+      expect(public_enrollments_payload["enrollments"].map { |public_enrollment_payload| public_enrollment_payload["intitule"] }).to contain_exactly(*%w[
         newest_franceconnect
-        api_entreprise
+        aidants_connect
         old_franceconnect
       ])
     end

@@ -4,7 +4,7 @@ require "tempfile"
 RSpec.describe SpreadsheetGenerator do
   describe "#perform" do
     let(:enrollment) { create(:enrollment, :franceconnect) }
-    let(:enrollment_2) { create(:enrollment, :api_entreprise) }
+    let(:enrollment_2) { create(:enrollment, :api_particulier) }
     let(:enrollments) { Enrollment.where(id: [enrollment.id, enrollment_2.id]) }
     let(:file) { Tempfile.new("spreadsheet") }
 

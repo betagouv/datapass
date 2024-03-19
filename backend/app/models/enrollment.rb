@@ -5,6 +5,8 @@ require "csv"
 class Enrollment < ApplicationRecord
   self.inheritance_column = "target_api"
 
+  default_scope { where.not(target_api: "api_entreprise") }
+
   # enable Single Table Inheritance with target_api as discriminatory field
   class << self
     # ex: 'api_particulier' => Enrollment::ApiParticulier
