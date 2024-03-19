@@ -2,7 +2,6 @@ RSpec.describe Enrollment, type: :model do
   it "has valid factories" do
     %i[
       franceconnect
-      api_entreprise
       api_particulier
       api_droits_cnam
       api_impot_particulier_fc_sandbox
@@ -110,7 +109,7 @@ RSpec.describe Enrollment, type: :model do
     let(:params) { {user_id: user.id, comment: "whatever"} }
 
     describe "snapshotting" do
-      let(:target_api) { :api_entreprise }
+      let(:target_api) { :api_particulier }
 
       it "updates last_validated_at" do
         expect {
