@@ -354,7 +354,7 @@ api_particulier:
           given_name: Fabrice
           family_name: Biollet
           job: CEO
-          email: fabrice.biollet@free.fr
+          email: api-particulier@aiga.fr
           phone_number: '0472532200'
     amiciel-malice:
       label: Malice, Tarification services municipaux / Portail Famille, Données CNAF
