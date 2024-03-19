@@ -78,16 +78,16 @@ api_particulier:
     - value: mesri_inscription_etudiant
       label: Statut étudiant inscrit | Périmètre formation initiale
       helper: >-
-        Permet de savoir si l'étudiant, dont le régime de formation est la formation initiale, est inscrit dans un établissement. 
+        Permet de savoir si l'étudiant, dont le régime de formation est la formation initiale, est inscrit dans un établissement.
     - value: mesri_inscription_autre
       label: Statut étudiant inscrit | Périmètre formation continue
       helper: >-
-        Permet de savoir si l'étudiant, dont le régime de formation est la formation continue, est inscrit dans un établissement. 
+        Permet de savoir si l'étudiant, dont le régime de formation est la formation continue, est inscrit dans un établissement.
     - value: mesri_admission
       label: Statut étudiant "admis"
       helper: Permet de savoir si l'étudiant est "admis". Ce statut, préalable au statut "inscrit", signifie que l'étudiant est pré-inscrit dans l'établissement mais que la procédure complète d'inscription et le règlement des droits d'inscription ne sont pas terminés.
     - value: mesri_identite
-      label: Identité de l'étudiant 
+      label: Identité de l'étudiant
       helper: Transmet le nom, prénom et date de naissance de l'étudiant si celui-ci fait partie du périmètre sélectionné (statut inscrit formation initiale / formation continue et statut admis).
     - value: mesri_etablissements
       label: Liste des établissements
@@ -354,7 +354,7 @@ api_particulier:
           given_name: Fabrice
           family_name: Biollet
           job: CEO
-          email: fabrice.biollet@free.fr
+          email: api-particulier@aiga.fr
           phone_number: '0472532200'
     amiciel-malice:
       label: Malice, Tarification services municipaux / Portail Famille, Données CNAF
@@ -976,7 +976,7 @@ api_particulier:
           Tarification sociale et solidaires des transports
         description: "Aide à l'accès aux transports"
         data_recipients:
-        data_retention_period: 
+        data_retention_period:
         fondement_juridique_title: >-
           l'Article L114-8 du Code des relations entre le public et l'administration fixe le cadre général qui oblige l’administration à échanger des données lors d’une démarche d’un usager.
         technical_team_type: software_company
@@ -993,6 +993,6 @@ api_particulier:
         responsable_technique:
           given_name: Éric
           family_name: ROZANSKI
-          job: Directeur Business Unit adjoint 
+          job: Directeur Business Unit adjoint
           email: eric.rozanski@coexya.eu
           phone_number: '0487915823'
