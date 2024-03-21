@@ -28,7 +28,7 @@ module DgfipValidationMethods
     end
 
     if (scopes & %w[dgfip_annee_n_moins_2_si_indispo_n_moins_1 dgfip_annee_df_au_3112_si_deces_ctb_mp]).present? && (scopes & incompatible_scopes).present?
-      errors.add(:scopes, :invalid, message: "Des données incompatibles entre elles ont été cochées. Pour connaître les modalités d’appel et de réponse de l’API Impôt particulier ainsi que les données proposées, vous pouvez consulter le guide de présentation de cet API dans la rubrique « Les données nécessaires > Comment choisir les données »")
+      errors.add(:scopes, :invalid, message: "Des données incompatibles entre elles ont été cochées. Pour connaître les modalités d’appel et de réponse de l’API Impôt particulier ainsi que les données proposées, vous pouvez consulter le guide de présentation de cette API dans la rubrique « Les données nécessaires > Comment choisir les données »")
     end
   end
 
