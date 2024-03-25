@@ -7,6 +7,7 @@ import { useFullDataProvider } from '../templates/hooks/use-full-data-provider';
 import NotFound from './NotFound';
 import ExternalRedirect from '../atoms/ExternalRedirect';
 import { TargetAPI } from '../../config/data-provider-configurations';
+const { NODE_ENV: CURRENT_ENV } = process.env;
 
 const FormRouter = () => {
   const { targetApi: targetApiFromUrl, enrollmentId } = useParams();
@@ -20,6 +21,22 @@ const FormRouter = () => {
     return (
       <ExternalRedirect url="https://www.demarches-simplifiees.fr/commencer/api-tiers-de-prestations" />
     );
+  }
+
+  if (targetApi === TargetAPI.api_entreprise) {
+    let redirectUri;
+
+    if (CURRENT_ENV === 'production') {
+      redirectUri = 'https://api-entreprise.v2.datapass.gouv.fr';
+    } else {
+      redirectUri = 'https://staging.api-entreprise.v2.datapass.api.gouv.fr';
+    }
+
+    if (enrollmentId) {
+      redirectUri += '/demandes/' + enrollmentId;
+    }
+
+    return <ExternalRedirect url={`${redirectUri}`} />;
   }
 
   if (notFound) {
