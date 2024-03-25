@@ -23,7 +23,7 @@ const FormRouter = () => {
     );
   }
 
-  if (targetApi === TargetAPI.api_entreprise) {
+  if (targetApi === TargetAPI.api_entreprise && CURRENT_ENV !== 'production') {
     let redirectUri;
 
     if (CURRENT_ENV === 'production') {
