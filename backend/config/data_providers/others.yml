@@ -242,7 +242,7 @@ api_scolarite:
   mailer: *shared_mailer
 
 api_indemnisation_pole_emploi:
-  label: API Indemnisation Pôle emploi
+  label: API Indemnisation France Travail
   mailer: *shared_mailer
 
 agent_connect_fi:

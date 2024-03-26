@@ -116,7 +116,7 @@ export const StructureSection = () => {
           {
             id: 'guichet-accueil-osp',
             label:
-              'Guichet d’accueil d’opérateur de service public (CAF, Pôle Emploi, etc.)',
+              'Guichet d’accueil d’opérateur de service public (CAF, France Travail, etc.)',
           },
           {
             id: 'association',

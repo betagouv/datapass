@@ -63,8 +63,8 @@ http_interactions:
         Accès libre","tagline":"Savoir si un établissement recevant du public est
         accessible aux personnes en situation de handicap","path":"/les-api/api-acces-libre","slug":"api-acces-libre","openness":"open","owner":"Ministère
         de la Transition écologique et solidaire","owner_acronym":"MTES","logo":"/images/api-logo/mtes.png","datagouv_uuid":["60a528e8b656ce01b4c0c0a6"]},{"title":"API
-        Référentiel des agences Pôle emploi","tagline":"Trouver rapidement les agences
-        et points relais Pôle emploi partout en France","path":"/les-api/api-agences-pole-emploi","slug":"api-agences-pole-emploi","openness":"semi_open","owner":"Pôle
+        Référentiel des agences France Travail","tagline":"Trouver rapidement les agences
+        et points relais France Travail partout en France","path":"/les-api/api-agences-pole-emploi","slug":"api-agences-pole-emploi","openness":"semi_open","owner":"Pôle
         Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
         Aides Territoires","tagline":"Faciliter la recherche d''aides des collectivités
         territoriales et de leurs partenaires locaux","path":"/les-api/api-aides-territoires","slug":"api-aides-territoires","openness":"open","owner":"Direction
@@ -146,8 +146,8 @@ http_interactions:
         entreprises et des associations en récupérant pour elles leurs informations
         administratives.","path":"/les-api/api-entreprise","slug":"api-entreprise","openness":"closed","owner":"Direction
         Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/api-entreprise"},{"title":"API
-        Evénements Pôle emploi","tagline":"Retrouvez en un coup d’œil tous les événements
-        liés à l’emploi sélectionnés par Pôle emploi","path":"/les-api/api-evenements-pole-emploi","slug":"api-evenements-pole-emploi","openness":"semi_open","owner":"Pôle
+        Evénements France Travail","tagline":"Retrouvez en un coup d’œil tous les événements
+        liés à l’emploi sélectionnés par France Travail","path":"/les-api/api-evenements-pole-emploi","slug":"api-evenements-pole-emploi","openness":"semi_open","owner":"Pôle
         Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg"},{"title":"API
         FANTOIR","tagline":"Retrouvez les informations sur les communes et les lieux-dits","path":"/les-api/api-fantoir","slug":"api-fantoir","openness":"open","owner":"Institut
         national de l’information géographique et forestière","owner_acronym":"IGN","logo":"/images/api-logo/logo-ign.png","datagouv_uuid":["53699580a3a729239d204738"]},{"title":"API
@@ -168,7 +168,7 @@ http_interactions:
         (IdRef)","tagline":"Récupérer les notices d''autorités du Système Universitaire
         de Documentation (Sudoc) de l''Enseignement Supérieur et de la Recherche.","path":"/les-api/api-idref","slug":"api-idref","openness":"open","owner":"Agence
         bibliographique de l''enseignement supérieur","owner_acronym":null,"logo":"/images/api-logo/abes.png"},{"title":"API
-        Indemnisation Pôle emploi","tagline":"Connaitre la situation d’indemnisation
+        Indemnisation France Travail","tagline":"Connaitre la situation d’indemnisation
         d’un demandeur d’emploi","path":"/les-api/api-indemnisation-pole-emploi","slug":"api-indemnisation-pole-emploi","openness":"closed","owner":"Pôle
         Emploi","owner_acronym":null,"logo":"/images/api-logo/logo_pole_emploi.jpg","datapass_link":"https://datapass.api.gouv.fr/api-indemnisation-pole-emploi"},{"title":"API
         Indemnités Journalières de la CNAM","tagline":"Accédez au montant des indemnités

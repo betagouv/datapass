@@ -43,8 +43,8 @@ export const DonneesDescription = () => (
 export const CadreJuridiqueDescription = () => (
   <>
     <p>
-      Pour pouvoir bénéficier du raccordement à l’API Indemnisation Pôle Emploi,
-      le cadre réglementaire des fournisseurs de service doit permettre au
+      Pour pouvoir bénéficier du raccordement à l’API Indemnisation France
+      Travail, le cadre réglementaire des fournisseurs de service doit permettre
       Ministère de de l'Enseignement Supérieur, de la Recherche et de
       l'Innovation de transmettre des données personnelles à votre entité
       administrative.
@@ -73,7 +73,7 @@ export const CadreJuridiqueDescription = () => (
 export const scopesConfiguration = [
   {
     value: 'api_fc-liste-paiementsv1',
-    label: 'Indemnités de Pôle emploi',
+    label: 'Indemnités de France Travail',
     required: true,
   },
 ];
