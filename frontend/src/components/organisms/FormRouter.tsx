@@ -7,11 +7,12 @@ import { useFullDataProvider } from '../templates/hooks/use-full-data-provider';
 import NotFound from './NotFound';
 import ExternalRedirect from '../atoms/ExternalRedirect';
 import { TargetAPI } from '../../config/data-provider-configurations';
-const { NODE_ENV: CURRENT_ENV } = process.env;
 
 const FormRouter = () => {
   const { targetApi: targetApiFromUrl, enrollmentId } = useParams();
   const targetApi = (targetApiFromUrl as string).replace(/-/g, '_');
+  const potentialRedirectToV2Host =
+    process.env[`REACT_APP_${targetApi.toUpperCase()}_REDIRECT_TO_V2_HOST`];
 
   const { Component, configuration, notFound } = useFullDataProvider({
     targetApi: targetApi as string,
@@ -23,14 +24,8 @@ const FormRouter = () => {
     );
   }
 
-  if (targetApi === TargetAPI.api_entreprise && CURRENT_ENV !== 'production') {
-    let redirectUri;
-
-    if (CURRENT_ENV === 'production') {
-      redirectUri = 'https://api-entreprise.v2.datapass.gouv.fr';
-    } else {
-      redirectUri = 'https://staging.api-entreprise.v2.datapass.api.gouv.fr';
-    }
+  if (potentialRedirectToV2Host) {
+    let redirectUri = potentialRedirectToV2Host;
 
     if (enrollmentId) {
       redirectUri += '/demandes/' + enrollmentId;
