@@ -1,7 +1,7 @@
 ## Implémentation d'un webhook
 
 DataPass possède un système de webhooks permettant de souscrire aux différents
-changement d'état d'une habilitation. Par défaut ce système est désactivé (en faveur
+événements liés à une habilitation. Par défaut ce système est désactivé (en faveur
 d'emails de notifications et d'un appel via un bridge (code spécifique au
 fournisseur de service) lors d'une validation d'une habilitation).
 
