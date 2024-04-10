@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from '../../components/templates/Form';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
@@ -22,7 +21,6 @@ const ApiInfinoeProduction = () => (
     <PreviousEnrollmentSection steps={steps} />
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
-    <HomologationSecuriteSection />
     <VolumetrieSection options={[200, 500, 1000]} />
     <CguSection cguLink="/docs/cgu_infinoe_production_v_2023_10.pdf" />
   </Form>
