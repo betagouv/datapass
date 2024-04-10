@@ -11,6 +11,15 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 const target_api = 'api_infinoe_production';
 const steps = ['api_infinoe_sandbox', target_api];
 
+const cadre_juridique = {
+  default: {
+    fondement_juridique_title:
+      'Décret n°2012-1246 du 7 novembre 2012 relatif à la gestion budgétaire et comptable publique',
+    fondement_juridique_url:
+      'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000026597003/',
+  },
+};
+
 const ApiInfinoeProduction = () => (
   <Form
     target_api={target_api}
@@ -20,7 +29,14 @@ const ApiInfinoeProduction = () => (
     <ÉquipeInitializerSection />
     <PreviousEnrollmentSection steps={steps} />
     <RecetteFonctionnelleSection />
-    <CadreJuridiqueSection />
+    <CadreJuridiqueSection
+      defaultFondementJuridiqueTitle={
+        cadre_juridique.default.fondement_juridique_title
+      }
+      defaultFondementJuridiqueUrl={
+        cadre_juridique.default.fondement_juridique_url
+      }
+    />
     <VolumetrieSection options={[200, 500, 1000]} />
     <CguSection cguLink="/docs/cgu_infinoe_production_v_2023_10.pdf" />
   </Form>
