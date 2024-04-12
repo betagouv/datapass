@@ -11,7 +11,7 @@ export const DonneesDescription = () => (
       <Link
         inline
         newTab
-        href="/docs/presentation_de_l_api_impot_particulier_v2.6.pdf"
+        href="/docs/presentation_de_l_api_impot_particulier_v2.7.pdf"
         aria-label="Présentation de l’API Impôt particulier (PDF)"
       >
         Présentation de l’API Impôt particulier (PDF)
