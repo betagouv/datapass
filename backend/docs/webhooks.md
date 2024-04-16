@@ -1,3 +1,8 @@
+# ⚠️ Une nouvelle version (V2) est en cours de développement
+
+Si vous envisagez d'exploiter les webhooks de DataPass, merci de contacter le
+support.
+
 ## Implémentation d'un webhook
 
 DataPass possède un système de webhooks permettant de souscrire aux différents
