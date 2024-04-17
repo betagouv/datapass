@@ -32,12 +32,6 @@ module DgfipValidationMethods
     end
   end
 
-  def api_impot_particulier_acces_validation
-    unless additional_content.any? { |k, v| v && %w[acces_spi acces_etat_civil].include?(k) }
-      errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une modalité d’accès avant de continuer")
-    end
-  end
-
   def production_form_validation
     # Cadre juridique
     cadre_juridique_validation
