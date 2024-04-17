@@ -88,22 +88,32 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       )
   );
 
-  const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
-
-  useEffect(() => {
+  function shouldDisplayAccessImpotPart(
+    created_at: string,
+    target_api: string
+  ): boolean {
     const targetDate = new Date('2024-04-17');
     const createdDate = new Date(created_at);
 
     if (
       isEmpty(created_at) ||
-      ((target_api === 'api_impot_particulier_sandbox' ||
-        target_api === 'api_impot_particulier_unique') &&
+      ([
+        'api_impot_particulier_sandbox',
+        'api_impot_particulier_unique',
+      ].includes(target_api) &&
         targetDate < createdDate)
     ) {
-      setDisplayAccessImpotPart(false);
-    } else {
-      setDisplayAccessImpotPart(true);
+      return false;
     }
+    return true;
+  }
+
+  const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
+
+  useEffect(() => {
+    setDisplayAccessImpotPart(
+      shouldDisplayAccessImpotPart(created_at, target_api)
+    );
   }, [created_at, target_api]);
 
   useEffect(() => {
