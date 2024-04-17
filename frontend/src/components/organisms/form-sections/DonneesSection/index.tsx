@@ -47,6 +47,8 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       additional_content = {},
       documents = [],
       documents_attributes = [],
+      created_at = '',
+      target_api = '',
     },
   } = useContext(FormContext)!;
 
@@ -85,6 +87,24 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
         )
       )
   );
+
+  const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
+
+  useEffect(() => {
+    const targetDate = new Date('2024-04-17');
+    const createdDate = new Date(created_at);
+
+    if (
+      isEmpty(created_at) ||
+      ((target_api === 'api_impot_particulier_sandbox' ||
+        target_api === 'api_impot_particulier_unique') &&
+        targetDate < createdDate)
+    ) {
+      setDisplayAccessImpotPart(false);
+    } else {
+      setDisplayAccessImpotPart(true);
+    }
+  }, [created_at, target_api]);
 
   useEffect(() => {
     const hasDocument = !isEmpty(
@@ -214,7 +234,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
           )}
         </>
       )}
-      {!isEmpty(accessModes) && (
+      {displayAccessImpotPart && !isEmpty(accessModes) && (
         <>
           <h3>Comment souhaitez-vous y accéder ?</h3>
           {accessModes!.map(({ id, label }) => (
