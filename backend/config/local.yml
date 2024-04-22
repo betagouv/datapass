@@ -9,3 +9,4 @@ responsable_traitement_attributes_idf:
   email: "prenom.nom@iledefrance.fr"
   phone_number: "0636656565"
   job: "Directeur de la donnée"
+  user_id: 9001
