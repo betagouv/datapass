@@ -19,5 +19,7 @@ class ChangeResponsabeTraitementForOrganizationRegionIdf < ActiveRecord::Migrati
 
   def responsable_traitement_attributes
     Credentials.get(:responsable_traitement_attributes_idf)
+  rescue KeyError
+    nil
   end
 end
