@@ -36,7 +36,7 @@ footer {
 }
 
 .dark-background {
-  background-color: #f5f5ff;
+  background-color: var(--blue-france-975-75);
 }
 
 @media all and (max-width: 1248px) {
