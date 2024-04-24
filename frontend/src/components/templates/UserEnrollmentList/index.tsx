@@ -116,7 +116,7 @@ const UserEnrollmentList = () => {
             const { reopenned, notReopenned } = groupEnrollmentsByReopen(
               enrollmentsByOrganization[group]
             );
-            const { draft, validated, other } =
+            const { draft, validated, changes_requested, other } =
               groupEnrollmentsByStatus(notReopenned);
 
             return (
@@ -124,6 +124,14 @@ const UserEnrollmentList = () => {
                 <div className="list-title fr-text--lead">
                   {enrollmentsByOrganization[group][0].nom_raison_sociale}
                 </div>
+                {[...changes_requested].length > 0 && (
+                  <EnrollmentSection
+                    highlighted
+                    title="Demandes à modifier"
+                    icon="changes_requested"
+                    enrollments={changes_requested}
+                  />
+                )}
                 {[...reopenned, ...validated].length > 0 && (
                   <EnrollmentSection
                     title="Mes habilitations"
