@@ -7,6 +7,5 @@ class Enrollment::ApiImpotParticulierSandbox < Enrollment::AbstractDgfipSandboxE
     super
 
     api_impot_particulier_scope_validation
-    api_impot_particulier_acces_validation
   end
 end
