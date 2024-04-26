@@ -26,8 +26,8 @@ const Footer = () => (
               </Link>
             </li>
             <li className="fr-footer__content-item">
-              <Link footerContent href="https://gouvernement.fr">
-                gouvernement.fr
+              <Link footerContent href="https://info.gouv.fr">
+                info.gouv.fr
               </Link>
             </li>
             <li className="fr-footer__content-item">

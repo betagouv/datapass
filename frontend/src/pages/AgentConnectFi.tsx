@@ -60,7 +60,7 @@ const AgentConnectFi = () => (
     <AgentConnectNetworkSection />
     <CadreJuridiqueSection
       defaultFondementJuridiqueTitle="La décision n°DINUM-202106-01 du 1er juin 2021"
-      defaultFondementJuridiqueUrl="https://www.gouvernement.fr/sites/default/files/contenu/piece-jointe/2021/05/20210601-dinum-ac-creation_agentconnect-vf.pdf"
+      defaultFondementJuridiqueUrl="https://www.info.gouv.fr/sites/default/files/contenu/piece-jointe/2021/05/20210601-dinum-ac-creation_agentconnect-vf.pdf"
     />
     <ÉquipeSection responsableTechniqueNeedsMobilePhone={true} />
     <CguSection
