@@ -592,7 +592,7 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     component: ApiScolarite,
   },
   [TargetAPI.api_indemnisation_pole_emploi]: {
-    label: 'API Indemnisation Pôle emploi',
+    label: 'API Indemnisation France Travail',
     icon: 'logo-pole-emploi.png',
     email: 'support@pole-emploi.io',
     type: DataProviderType.api,
