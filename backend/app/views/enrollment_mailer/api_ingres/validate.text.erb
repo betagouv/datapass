@@ -1,0 +1,11 @@
+Bonjour,
+
+Votre <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %> a été validée. Les accès se font désormais de façon sécurisée via l’application PISTE de l’AIFE : https://piste.gouv.fr/
+
+Il faut vous créer un compte, créer votre application puis sélectionner la ou les API qui vous conviennent et demander un accès.
+
+Une fois cet accès validé, vous pourrez recevoir les identifiants techniques à utiliser pour appeler nos APIs.
+
+Pour consulter cette <%= @enrollment.reopening? ? 'mise à jour' : 'habilitation' %>, veuillez cliquer sur le lien suivant <%= @url %> .
+
+L’équipe <%= @target_api_label %>
