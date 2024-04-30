@@ -92,7 +92,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
     created_at: string,
     target_api: string
   ): boolean {
-    const targetDate = new Date('2024-04-17');
+    const targetDate = new Date('2024-05-02');
     const createdDate = new Date(created_at);
 
     if (
