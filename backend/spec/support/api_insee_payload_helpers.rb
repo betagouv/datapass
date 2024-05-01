@@ -10,7 +10,7 @@ module ApiInseePayloadHelpers
       body: api_insee_token_payload.to_json
     )
 
-    stub_request(:get, "#{insee_host}/entreprises/sirene/V3/siret/#{siret}").to_return(
+    stub_request(:get, "#{insee_host}/entreprises/sirene/V3.11/siret/#{siret}").to_return(
       status: if siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012])
                 200
               elsif siret == "30002490800026"
