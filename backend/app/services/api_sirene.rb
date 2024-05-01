@@ -20,7 +20,7 @@ class ApiSirene < ApplicationService
 
     begin
       response = Http.instance.get({
-        url: "#{insee_host}/entreprises/sirene/V3/siret/#{@siret}",
+        url: "#{insee_host}/entreprises/sirene/V3.11/siret/#{@siret}",
         api_key: cached_access_token,
         tag: "API Insee",
         timeout: 5
