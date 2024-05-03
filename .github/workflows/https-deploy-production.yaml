@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         host: [watchdoge1, watchdoge2, watchdoge3, watchdoge4, watchdoge5]
+      fail-fast: false
     environment: production
     env:
       DEPLOY_HTTPS_LOGIN: ${{ secrets.DEPLOY_HTTPS_LOGIN }}
