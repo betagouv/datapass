@@ -1,38 +1,11 @@
 class FranceconnectBridge < ApplicationBridge
   def call
     nom_raison_sociale = @enrollment.nom_raison_sociale
-    intitule = @enrollment.intitule
-    email = @enrollment.team_members.where(type: "responsable_technique").pluck(:email).first
     scopes = @enrollment.scopes
     eidas_level = @enrollment.additional_content&.fetch("eidas_level", "")
-    copied_from_enrollment_id = @enrollment.copied_from_enrollment_id
-    create_enrollment_in_token_manager(@enrollment.id, intitule, nom_raison_sociale, email, scopes, eidas_level, copied_from_enrollment_id)
-  end
+    id = @enrollment.id
 
-  private
-
-  def create_enrollment_in_token_manager(id, intitule, nom_raison_sociale, email, scopes, eidas_level, copied_from_enrollment_id)
-    if eidas_level == "1"
-      # note that the FC team test this call with this bash script: https://gitlab.com/france-connect/FranceConnect/snippets/1828712
-      response = Http.instance.post({
-        url: "#{ENV.fetch("FRANCECONNECT_PARTICULIER_HOST")}/api/v2/service-provider/integration/create",
-        body: {
-          name: "#{nom_raison_sociale} - #{id}",
-          service_name: intitule,
-          corporate_name: nom_raison_sociale,
-          authorized_emails: [email],
-          signup_id: id,
-          datapass_id: id,
-          scopes: scopes,
-          copied_from_datapass_id: copied_from_enrollment_id
-        },
-        api_key: ENV.fetch("FRANCECONNECT_PARTICULIER_API_KEY"),
-        tag: "Espace Partenaire FranceConnect"
-      })
-
-      # The id returned here is the DataPass id. It is not a generated id from "espace partenaires".
-      response.parse["_id"]
-    else
+    if eidas_level == "2"
       # there is no espace partenaire for fc+ yet so we just notify fc support team
       EnrollmentMailer.with(
         target_api: "franceconnect",
