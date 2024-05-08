@@ -78,11 +78,11 @@ api_particulier:
     - value: mesri_inscription_etudiant
       label: Statut étudiant inscrit | Périmètre formation initiale
       helper: >-
-        Permet de savoir si l'étudiant, dont le régime de formation est la formation initiale, est inscrit dans un établissement. 
+        Permet de savoir si l'étudiant est inscrit dans un établissement. Donne accès uniquement au périmètre des étudiants en formation initiale (y compris reprise d'études non financées sans convention et contrat d'apprentissage). Pour avoir le périmètre exhaustif, cocher aussi "Périmètre formation continue".
     - value: mesri_inscription_autre
       label: Statut étudiant inscrit | Périmètre formation continue
       helper: >-
-        Permet de savoir si l'étudiant, dont le régime de formation est la formation continue, est inscrit dans un établissement. 
+        Permet de savoir si l'étudiant est inscrit dans un établissement. Donne accès uniquement au périmètre des étudiants en formation continue (y compris contrat de professionnalisation). Pour avoir le périmètre exhaustif, cocher aussi "Périmètre formation initiale".
     - value: mesri_admission
       label: Statut étudiant "admis"
       helper: Permet de savoir si l'étudiant est "admis". Ce statut, préalable au statut "inscrit", signifie que l'étudiant est pré-inscrit dans l'établissement mais que la procédure complète d'inscription et le règlement des droits d'inscription ne sont pas terminés.
