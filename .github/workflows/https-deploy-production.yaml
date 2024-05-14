@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         host: [watchdoge1, watchdoge2, watchdoge3, watchdoge4, watchdoge5]
+        deploy_env: [staging, production]
       fail-fast: false
     environment: production
     env:
@@ -18,7 +19,7 @@ jobs:
       DEPLOY_HTTPS_REQUEST_URL: ${{ vars.DEPLOY_HTTPS_REQUEST_URL }}
       DEPLOY_HTTPS_RESPONSE_URL: ${{ vars.DEPLOY_HTTPS_RESPONSE_URL }}
       DEPLOY_HOST: host_${{ matrix.host }}
-      DEPLOY_APP: datapass_production
+      DEPLOY_APP: datapass_${{ matrix.deploy_env }}
     steps:
       - name: Download and run deploy script
         shell: bash
