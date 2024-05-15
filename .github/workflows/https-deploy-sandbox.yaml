@@ -1,7 +1,9 @@
 name: Deployment via HTTPS (sandbox)
 
 on:
-  workflow_dispatch: ~
+  workflow_dispatch:
+    branches:
+      - '*'
 
 jobs:
   deployment:
@@ -19,6 +21,7 @@ jobs:
       DEPLOY_HTTPS_RESPONSE_URL: ${{ vars.DEPLOY_HTTPS_RESPONSE_URL }}
       DEPLOY_HOST: host_${{ matrix.host }}
       DEPLOY_APP: datapass_sandbox
+      DEPLOY_BRANCH: ${{ github.ref_name }}
     steps:
       - name: Download and run deploy script
         shell: bash
