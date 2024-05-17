@@ -2,14 +2,14 @@ class RemoveCnousRolesToSubInstructorApiParticulier < ActiveRecord::Migration[7.
   def up
     remove_roles(
       [subinstructor_email],
-      ["api_particulier:cnous:subscriber","api_particulier:cnous:reporter"]
+      ["api_particulier:cnous:subscriber", "api_particulier:cnous:reporter"]
     )
   end
 
   def down
     add_roles(
       [subinstructor_email],
-      ["api_particulier:cnous:subscriber","api_particulier:cnous:reporter"]
+      ["api_particulier:cnous:subscriber", "api_particulier:cnous:reporter"]
     )
   end
 
