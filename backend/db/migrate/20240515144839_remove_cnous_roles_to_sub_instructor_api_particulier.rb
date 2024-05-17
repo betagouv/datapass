@@ -1,14 +1,14 @@
 class RemoveCnousRolesToSubInstructorApiParticulier < ActiveRecord::Migration[7.0]
   def up
     remove_roles(
-      ["carine.burricand@enseignementsup.gouv.fr"],
+      [subinstructor_email],
       ["api_particulier:cnous:subscriber","api_particulier:cnous:reporter"]
     )
   end
 
   def down
     add_roles(
-      ["carine.burricand@enseignementsup.gouv.fr"],
+      [subinstructor_email],
       ["api_particulier:cnous:subscriber","api_particulier:cnous:reporter"]
     )
   end
@@ -31,4 +31,6 @@ class RemoveCnousRolesToSubInstructorApiParticulier < ActiveRecord::Migration[7.
       user.update(roles: updated_roles)
     end
   end
+
+  def subinstructor_email = Rails.application.credentials.enseignementsup_subinstructor.email
 end
