@@ -128,6 +128,7 @@ jobs:
           REACT_APP_API_GOUV_HOST: ${{ matrix.api_gouv_host }}
           REACT_APP_PIWIK_URL: ${{ matrix.piwik_url }}
           REACT_APP_PIWIK_SITE_ID: ${{ matrix.piwik_site_id }}
+          REACT_APP_API_ENTREPRISE_EXAMPLE_REDIRECT_TO_V2_HOST: ${{ matrix.react_app_api_entreprise_redirect_to_v2_host }}
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
