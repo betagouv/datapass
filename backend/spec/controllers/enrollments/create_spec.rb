@@ -28,6 +28,12 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
       it { is_expected.to have_http_status(:unprocessable_entity) }
     end
 
+    context "with migrated target api" do
+      let(:target_api) { "api_entreprise" }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
+
     context "with api particulier as target api" do
       let(:target_api) { "api_particulier" }
 
