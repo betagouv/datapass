@@ -16,8 +16,8 @@ class AbstractEnrollmentsExtractor
 
   def query_enrollments
     Enrollment
-      .where(status: extract_criteria[:statuses])
       .where.not(target_api: Enrollment.migrated_target_apis)
+      .where(status: extract_criteria[:statuses])
       .includes(:events)
       .where({
         events: {
