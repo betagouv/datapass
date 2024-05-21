@@ -19,7 +19,8 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def update?
-    (record.status_draft? || record.status_changes_requested?) &&
+    record.class.migrated_target_apis.exclude?(record.target_api) &&
+      (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
