@@ -1,5 +1,8 @@
 class RemoveCnousRolesToSubInstructorApiParticulier < ActiveRecord::Migration[7.0]
   def up
+
+    return unless subinstructor_exists?
+
     remove_roles(
       [subinstructor_email],
       ["api_particulier:cnous:subscriber", "api_particulier:cnous:reporter"]
@@ -33,4 +36,5 @@ class RemoveCnousRolesToSubInstructorApiParticulier < ActiveRecord::Migration[7.
   end
 
   def subinstructor_email = Rails.application.credentials.enseignementsup_subinstructor.email
+  def subinstructor_exists? = Rails.application.credentials.enseignementsup_subinstructor.present?
 end
