@@ -7,11 +7,11 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
 
-      enrollment = create(:enrollment, :api_entreprise, :changes_requested, created_at: 7.months.ago, updated_at: 6.months.ago)
+      enrollment = create(:enrollment, :api_impot_particulier_sandbox, :changes_requested, created_at: 7.months.ago, updated_at: 6.months.ago)
       create(:event, :request_changes, enrollment: enrollment, created_at: (6.months.ago + 5.days), updated_at: (6.months.ago + 5.days))
       create(:event, :update, enrollment: enrollment, created_at: 6.months.ago, updated_at: 6.months.ago)
 
-      enrollment = create(:enrollment, :api_entreprise, :changes_requested, created_at: 2.months.ago, updated_at: 1.month.ago)
+      enrollment = create(:enrollment, :api_impot_particulier_sandbox, :changes_requested, created_at: 2.months.ago, updated_at: 1.month.ago)
       create(:event, :request_changes, enrollment: enrollment, created_at: 1.month.ago, updated_at: 1.month.ago)
     end
 
@@ -31,7 +31,7 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
     before do
       Timecop.freeze(Time.now.change(year: 2023, month: 2, day: 1))
 
-      enrollment = create(:enrollment, :api_entreprise, :validated, created_at: (9.months.ago + 5.days), updated_at: (8.months.ago + 28.days))
+      enrollment = create(:enrollment, :api_impot_particulier_sandbox, :validated, created_at: (9.months.ago + 5.days), updated_at: (8.months.ago + 28.days))
       create(:event, :create, enrollment: enrollment, created_at: (9.months.ago + 5.days), updated_at: (9.months.ago + 5.days))
       create(:event, :update, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
       create(:event, :submit, enrollment: enrollment, created_at: 9.months.ago, updated_at: 9.months.ago)
@@ -80,7 +80,7 @@ RSpec.describe EnrollmentsExtractor::ToRemindBeforeArchive, type: :service do
       create(:event, :request_changes, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
       create(:event, :update, enrollment: enrollment, created_at: 7.months.ago, updated_at: 7.months.ago)
 
-      enrollment = create(:enrollment, :api_entreprise, :changes_requested, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 24.days))
+      enrollment = create(:enrollment, :api_impot_particulier_sandbox, :changes_requested, created_at: (6.months.ago - 25.days), updated_at: (6.months.ago - 24.days))
       create(:event, :create, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
       create(:event, :submit, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))
       create(:event, :notify, enrollment: enrollment, created_at: (8.months.ago - 25.days), updated_at: (8.months.ago - 25.days))

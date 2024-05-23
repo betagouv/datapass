@@ -20,6 +20,12 @@ class Enrollment < ApplicationRecord
     def sti_name
       name.demodulize.underscore
     end
+
+    def migrated_target_apis
+      %w[
+        api_entreprise
+      ]
+    end
   end
 
   validate :update_validation

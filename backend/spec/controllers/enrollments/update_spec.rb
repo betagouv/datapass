@@ -114,5 +114,12 @@ RSpec.describe EnrollmentsController, "#update", type: :controller do
         }.to change { api_r2p_enrollment.reload.additional_content }.to(api_r2p_attributes[:additional_content].transform_keys(&:to_s))
       end
     end
+
+    context "when updating migrated target api" do
+      let(:target_enrollment) { create(:enrollment, :api_entreprise, user: enrollment_creator) }
+      let(:target_enrollment_attributes) { {} }
+
+      it { is_expected.to have_http_status(:forbidden) }
+    end
   end
 end

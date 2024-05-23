@@ -12,13 +12,15 @@ class EnrollmentPolicy < ApplicationPolicy
     # note that we cannot use 'user.is_demandeur?(record)' here because team_members
     # are not persisted yet. We cannot use 'where' on team_members and we cannot
     # use team_member.user_id for comparaison since it has not been set yet.
-    record.status_draft? &&
+    record.class.migrated_target_apis.exclude?(record.target_api) &&
+      record.status_draft? &&
       user.belongs_to_organization?(record) &&
       record.team_members.any? { |t_m| t_m["type"] == "demandeur" && t_m.email == user.email }
   end
 
   def update?
-    (record.status_draft? || record.status_changes_requested?) &&
+    record.class.migrated_target_apis.exclude?(record.target_api) &&
+      (record.status_draft? || record.status_changes_requested?) &&
       user.belongs_to_organization?(record) &&
       user.is_demandeur?(record)
   end
