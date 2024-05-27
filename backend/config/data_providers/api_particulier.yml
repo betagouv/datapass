@@ -45,6 +45,18 @@ api_particulier:
     - value: complementaire_sante_solidaire
       label: Complémentaire Santé Solidaire
       helper: Délivre le statut et le montant du droit à la complémentaire santé solidaire.
+    - value: revenu_solidarite_active
+      label: Revenu de Solidarité Active
+      helper: Savoir si un particulier est bénéficiaire du Revenu de solidarité active (RSA) et si le montant du RSA est majoré ou non. Retourne également des informations sur les dates d'ouverture des droits.
+    - value: allocation_adulte_handicape
+      label: Allocation Adultes Handicapés
+      helper: Savoir si un particulier est bénéficiaire de l'Allocation Adulte Handicapé (AAH). Retourne également des informations sur les dates d'ouverture des droits.
+    - value: allocation_soutien_familial
+      label: Allocation de Soutien Familial
+      helper: Savoir si un particulier est bénéficiaire de l'Allocation de Soutien Familial (ASF). Retourne également des informations sur les dates d'ouverture et de fermeture des droits.
+    - value: prime_activite
+      label: Prime d'Activité
+      helper: Savoir si un particulier est bénéficiaire de la Prime d'Activité. Précise également si la PA est majorée. Retourne également des informations sur les dates d'ouverture et de fermeture des droits.
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
@@ -157,10 +169,14 @@ api_particulier:
         - cnous_periode_versement
         - cnous_statut_bourse
         - cnous_ville_etudes
-    css:
-      label: API Complémentaire Santé Solidaire
+    cnav:
+      label: APIs Prestations sociales
       scopes:
         - complementaire_sante_solidaire
+        - allocation_adulte_handicape
+        - revenu_solidarite_active
+        - allocation_soutien_familial
+        - prime_activite
   editeurs:
     - name: Abelium Collectivités
       siret: '42172024400050'
