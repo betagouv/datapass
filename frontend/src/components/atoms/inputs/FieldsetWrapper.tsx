@@ -25,7 +25,7 @@ export const FieldsetWrapper: React.FC<FieldsetWrapperProps> = ({
         }`}
       >
         {title && (
-          <legend className="fr-fieldset__legend fr-text--regular">
+          <legend className="fr-fieldset__legend">
             {title}
             {required && ' *'}
           </legend>
