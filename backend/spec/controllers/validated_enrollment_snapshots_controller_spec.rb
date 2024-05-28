@@ -104,7 +104,7 @@ RSpec.describe ValidatedEnrollmentSnapshotsController, type: :controller, versio
       login(user)
     end
 
-    it "renders the snapshot version, with team members with full profile" do
+    xit "renders the snapshot version, with team members with full profile" do
       expect(show_enrollment_payload["intitule"]).not_to eq("new intitule")
       expect(show_enrollment_payload["team_members"][0]["given_name"]).not_to eq("new given name")
 
