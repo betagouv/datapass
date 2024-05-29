@@ -43,20 +43,26 @@ api_particulier:
       label: Quotient familial CAF & MSA
       helper: Délivre le quotient familial CAF & MSA, ainsi que la composition familiale des allocataires
     - value: complementaire_sante_solidaire
-      label: Complémentaire Santé Solidaire
-      helper: Délivre le statut et le montant du droit à la complémentaire santé solidaire.
+      label: Statut C2S
+      helper: Indique si le particulier est bénéficiaire de la C2S avec ou sans participation et précise les dates d'ouverture et de fermeture du droit.
     - value: revenu_solidarite_active
-      label: Revenu de Solidarité Active
-      helper: Savoir si un particulier est bénéficiaire du Revenu de solidarité active (RSA) et si le montant du RSA est majoré ou non. Retourne également des informations sur les dates d'ouverture des droits.
+      label: Statut RSA
+      helper: Indique si le particulier est bénéficiaire du RSA et précise les dates d'ouverture et de fermeture du droit.
+    - value: revenu_solidarite_active_majoration
+      label: Majoration RSA
+      helper: Indique si le particulier est bénéficiaire du RSA majoré
     - value: allocation_adulte_handicape
-      label: Allocation Adultes Handicapés
-      helper: Savoir si un particulier est bénéficiaire de l'Allocation Adulte Handicapé (AAH). Retourne également des informations sur les dates d'ouverture des droits.
+      label: Statut AAH
+      helper: Indique si le particulier est bénéficiaire de l'AAH et précise la date d'ouverture du droit.
     - value: allocation_soutien_familial
-      label: Allocation de Soutien Familial
-      helper: Savoir si un particulier est bénéficiaire de l'Allocation de Soutien Familial (ASF). Retourne également des informations sur les dates d'ouverture et de fermeture des droits.
+      label: Statut ASF
+      helper: Indique si le particulier est bénéficiaire de l'ASF et précise les dates d'ouverture et de fermeture du droit.
     - value: prime_activite
-      label: Prime d'Activité
-      helper: Savoir si un particulier est bénéficiaire de la Prime d'Activité. Précise également si la PA est majorée. Retourne également des informations sur les dates d'ouverture et de fermeture des droits.
+      label: Statut Prime d'Activité
+      helper: Indique si le particulier est bénéficiaire de la prime d'activité et précise les dates d'ouverture et de fermeture du droit.
+    - value: prime_activite_majoration
+      label: Majoration Prime d'Activité
+      helper: Indique si le particulier est bénéficiaire de la prime d'activité majorée
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
       helper: Nom, prénoms, date de naissance et sexe de l'allocataire et du conjoint
@@ -169,14 +175,28 @@ api_particulier:
         - cnous_periode_versement
         - cnous_statut_bourse
         - cnous_ville_etudes
-    cnav:
-      label: APIs Prestations sociales
+    complementaire_sante_solidaire:
+      label: API Complémentaire santé solidaire
       scopes:
         - complementaire_sante_solidaire
+    allocation_adulte_handicape:
+      label: API Allocation adulte handicapé
+      scopes:
         - allocation_adulte_handicape
-        - revenu_solidarite_active
+    allocation_soutien_familial:
+      label: API Allocation de soutien familial
+      scopes:
         - allocation_soutien_familial
+    revenu_solidarite_active:
+      label: API Revenu de solidarité active
+      scopes:
+        - revenu_solidarite_active
+        - revenu_solidarite_active_majoration
+    prime_activite:
+      label: API Prime d'activité
+      scopes:
         - prime_activite
+        - prime_activite_majoration
   editeurs:
     - name: Abelium Collectivités
       siret: '42172024400050'
