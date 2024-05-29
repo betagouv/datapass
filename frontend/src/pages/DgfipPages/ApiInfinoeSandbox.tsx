@@ -6,7 +6,10 @@ import CguSection from '../../components/organisms/form-sections/CguSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
+import {
+  additionalTermsOfUseWithoutHomologation,
+  DataAreInTermsOfUseDescription,
+} from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
@@ -60,7 +63,7 @@ const ApiInfinoeSandbox = () => (
     <ÉquipeSection />
     <CguSection
       cguLink="/docs/cgu_infinoe_bac_a_sable_v_2023_10.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
+      additionalTermsOfUse={additionalTermsOfUseWithoutHomologation}
     />
   </Form>
 );
