@@ -1,4 +1,10 @@
-import React, { ComponentType, useContext, useEffect, useState } from 'react';
+import React, {
+  ComponentType,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { chain, difference, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes, { ScopeConfiguration } from './Scopes';
@@ -108,7 +114,22 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
     return true;
   }
 
+  const shouldDisplayExpandableQuoteImpotPartImpotSfipUnique =
+    useCallback(() => {
+      return ![
+        'api_impot_particulier_sandbox',
+        'api_impot_particulier_unique',
+      ].includes(target_api);
+    }, [target_api]);
+
   const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
+  const [displayExpandableQuote, setDisplayExpandableQuote] = useState(false);
+
+  useEffect(() => {
+    setDisplayExpandableQuote(
+      shouldDisplayExpandableQuoteImpotPartImpotSfipUnique
+    );
+  }, [target_api, shouldDisplayExpandableQuoteImpotPartImpotSfipUnique]);
 
   useEffect(() => {
     setDisplayAccessImpotPart(
@@ -139,7 +160,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
           <DonneesDocumentation />
         </div>
       )}
-      {DonneesDescription && (
+      {DonneesDescription && displayExpandableQuote && (
         <ExpandableQuote title="Comment choisir les données ?">
           <DonneesDescription />
         </ExpandableQuote>

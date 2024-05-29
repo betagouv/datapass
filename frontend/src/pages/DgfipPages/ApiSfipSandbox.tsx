@@ -16,6 +16,7 @@ import {
 } from './api-impot-particulier-common';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierSandbox';
 import { additionalTermsOfUse } from './common';
+import ImpotPartDocumentationAlert from '../../components/molecules/ImpotPartDocumentationAlert';
 
 const target_api = 'api_sfip_sandbox';
 const steps = [target_api, 'api_sfip_production'];
@@ -36,6 +37,7 @@ const ApiSfipSandbox = () => (
       scopesConfiguration={scopesConfiguration}
       groups={groups}
       enableFileSubmissionForScopeSelection={true}
+      DonneesDocumentation={ImpotPartDocumentationAlert}
     />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
