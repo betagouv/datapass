@@ -108,7 +108,26 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
     return true;
   }
 
+  function shouldDisplayExpandableQuoteImpotPartImpotSfipUnique(
+    target_api: any
+  ) {
+    return !(
+      isEmpty(created_at) ||
+      [
+        'api_impot_particulier_sandbox',
+        'api_impot_particulier_unique',
+      ].includes(target_api)
+    );
+  }
+
   const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
+  const [displayExpandableQuote, setDisplayExpandableQuote] = useState(false);
+
+  useEffect(() => {
+    setDisplayExpandableQuote(
+      shouldDisplayExpandableQuoteImpotPartImpotSfipUnique(target_api)
+    );
+  }, [target_api]);
 
   useEffect(() => {
     setDisplayAccessImpotPart(
@@ -139,11 +158,12 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
           <DonneesDocumentation />
         </div>
       )}
-      {DonneesDescription && (
-        <ExpandableQuote title="Comment choisir les données ?">
-          <DonneesDescription />
-        </ExpandableQuote>
-      )}
+      {DonneesDescription &&
+        shouldDisplayExpandableQuoteImpotPartImpotSfipUnique(target_api) && (
+          <ExpandableQuote title="Comment choisir les données ?">
+            <DonneesDescription />
+          </ExpandableQuote>
+        )}
       {ScopesDescription && <ScopesDescription />}
       {!isEmpty(scopesConfiguration) && (
         <>
