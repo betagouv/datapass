@@ -119,6 +119,8 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       return ![
         'api_impot_particulier_sandbox',
         'api_impot_particulier_unique',
+        'api_impot_particulier_fc_sandbox',
+        'api_impot_particulier_fc_unique',
       ].includes(target_api);
     }, [target_api]);
 
