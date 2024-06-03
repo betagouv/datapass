@@ -42,30 +42,35 @@ jobs:
             piwik_url: ""
             piwik_site_id: ""
             react_app_api_entreprise_redirect_to_v2_host: https://staging.api-entreprise.v2.datapass.api.gouv.fr
+            react_app_api_particulier_redirect_to_v2_host: https://staging.api-particulier.v2.datapass.api.gouv.fr
           - env: staging2
             back_host: https://back.staging2.datapass.api.gouv.fr
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
             react_app_api_entreprise_redirect_to_v2_host: https://staging.api-entreprise.v2.datapass.api.gouv.fr
+            react_app_api_particulier_redirect_to_v2_host: https://staging.api-particulier.v2.datapass.api.gouv.fr
           - env: staging3
             back_host: https://back.staging3.datapass.api.gouv.fr
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
             react_app_api_entreprise_redirect_to_v2_host: https://staging.api-entreprise.v2.datapass.api.gouv.fr
+            react_app_api_particulier_redirect_to_v2_host: https://staging.api-particulier.v2.datapass.api.gouv.fr
           - env: staging4
             back_host: https://back.staging4.datapass.api.gouv.fr
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
             react_app_api_entreprise_redirect_to_v2_host: https://staging.api-entreprise.v2.datapass.api.gouv.fr
+            react_app_api_particulier_redirect_to_v2_host: https://staging.api-particulier.v2.datapass.api.gouv.fr
           - env: staging5
             back_host: https://back.staging5.datapass.api.gouv.fr
             api_gouv_host: https://staging.api.gouv.fr
             piwik_url: ""
             piwik_site_id: ""
             react_app_api_entreprise_redirect_to_v2_host: https://staging.api-entreprise.v2.datapass.api.gouv.fr
+            react_app_api_particulier_redirect_to_v2_host: https://staging.api-particulier.v2.datapass.api.gouv.fr
           - env: production1
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -129,6 +134,7 @@ jobs:
           REACT_APP_PIWIK_URL: ${{ matrix.piwik_url }}
           REACT_APP_PIWIK_SITE_ID: ${{ matrix.piwik_site_id }}
           REACT_APP_API_ENTREPRISE_REDIRECT_TO_V2_HOST: ${{ matrix.react_app_api_entreprise_redirect_to_v2_host }}
+          REACT_APP_API_PARTICULIER_REDIRECT_TO_V2_HOST: ${{ matrix.react_app_api_particulier_redirect_to_v2_host }}
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
