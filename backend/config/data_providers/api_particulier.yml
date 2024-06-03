@@ -58,10 +58,10 @@ api_particulier:
       label: Statut ASF
       helper: Indique si le particulier est bénéficiaire de l'ASF et précise les dates d'ouverture et de fermeture du droit.
     - value: prime_activite
-      label: Statut Prime d'Activité
+      label: Statut prime d'activité
       helper: Indique si le particulier est bénéficiaire de la prime d'activité et précise les dates d'ouverture et de fermeture du droit.
     - value: prime_activite_majoration
-      label: Majoration Prime d'Activité
+      label: Majoration prime d'activité
       helper: Indique si le particulier est bénéficiaire de la prime d'activité majorée
     - value: cnaf_allocataires
       label: Identités allocataire et conjoint
