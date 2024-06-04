@@ -37,7 +37,7 @@ class ApiCaptchetatBridge < ApplicationBridge
       url: "#{api_host}/datapass/v1/approve",
       body: {
         requestor_email: responsable_technique_email,
-        api_name: "CaptchEtat",
+        api_name: "CaptchEtat V2",
         approval_id: id
       },
       api_key: access_token,
