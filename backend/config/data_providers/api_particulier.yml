@@ -184,7 +184,7 @@ api_particulier:
       scopes:
         - allocation_adulte_handicape
     allocation_soutien_familial:
-      label: API Statut allocation de soutien familial (ASS)
+      label: API Statut allocation de soutien familial (ASF)
       scopes:
         - allocation_soutien_familial
     revenu_solidarite_active:
