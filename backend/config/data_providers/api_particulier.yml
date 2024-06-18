@@ -256,6 +256,8 @@ api_particulier:
       siret: '44973625500018'
     - name: Coexya
       siret: '43362470700017'
+    - name: Agedi
+      siret: '25770538400044'   
   demarches:
     default:
       label: Demande Libre
@@ -1032,3 +1034,36 @@ api_particulier:
           job: Directeur Business Unit adjoint 
           email: eric.rozanski@coexya.eu
           phone_number: '0487915823'
+    agedi:
+      label: >-
+        Proxima.ENF, Tarification services municipaux / Portail Famille, Données
+        CNAF
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des
+          loisirs
+        description: >-
+          Le logiciel Proxima.ENF permet la mise à jour des données familles dans le cadre d'un logiciel de gestion de l'accueil de l'enfance.
+        data_recipients: 
+        data_retention_period: 
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement
+        technical_team_type: software_company
+        technical_team_value: '25770538400044'
+        scopes:
+          cnaf_quotient_familial: true
+          cnaf_allocataires: true
+          cnaf_enfants: true
+          cnaf_adresse: true
+      team_members:
+        responsable_technique:
+          given_name: Aurélien
+          family_name: Courchinoux
+          job: Co-directeur technique 
+          email: poleeneos@agedi.fr
+          phone_number: '0471630100'
