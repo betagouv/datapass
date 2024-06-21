@@ -1036,7 +1036,7 @@ api_particulier:
           phone_number: '0487915823'
     agedi:
       label: >-
-        Proxima.ENF, Tarification services municipaux / Portail Famille, Données
+        Proxima.ENF | Portail Famille
         CNAF
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
