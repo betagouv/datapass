@@ -1041,7 +1041,7 @@ api_particulier:
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des
+          Proxima.ENF | Portail Famille
           loisirs
         description: >-
           Le logiciel Proxima.ENF permet la mise à jour des données familles dans le cadre d'un logiciel de gestion de l'accueil de l'enfance.
