@@ -300,7 +300,7 @@ api_particulier:
     abelium:
       label: >-
         Domino web 2.0 | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Domino web 2.0 | Portail famille
@@ -334,7 +334,7 @@ api_particulier:
     agora-plus:
       label: >-
         Agora Famille Premium | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Agora Famille Premium | Portail famille
@@ -360,7 +360,7 @@ api_particulier:
           phone_number: '0184160095'
     aiga:
       label: iNoé | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           iNoé | Portail famille
@@ -391,7 +391,7 @@ api_particulier:
           phone_number: '0472532200'
     amiciel-malice:
       label: Malice | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Malice | Portail famille
@@ -415,7 +415,7 @@ api_particulier:
           cnaf_adresse: true
     arpege-concerto:
       label: Concerto | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Concerto | Portail famille
@@ -446,7 +446,7 @@ api_particulier:
           cnaf_adresse: false
     bl-enfance-berger-levrault-cnaf:
       label: BL Enfance | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           BL Enfance | Portail famille
@@ -478,7 +478,7 @@ api_particulier:
     cantine-de-france:
       label: >-
         Cantines de France - C2F | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Cantines de France - C2F | Portail famille
@@ -602,7 +602,7 @@ api_particulier:
     city-family-mushroom-software-cnaf:
       label: >-
         CityFamily de Mushroom Software | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           CityFamily de Mushroom Software | Portail famille
@@ -634,7 +634,7 @@ api_particulier:
           phone_number: '0674577622'
     civil-enfance-ciril-group:
       label: CIVIL Enfance | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           CIVIL Enfance | Portail famille
@@ -666,7 +666,7 @@ api_particulier:
     cosoluce-fluo:
       label: >-
         Fluo | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Fluo | Portail famille
@@ -694,7 +694,7 @@ api_particulier:
           phone_number: '0632656901'
     docaposte-fast:
       label: FAST-Famille | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           FAST-Famille | Portail famille
@@ -719,7 +719,7 @@ api_particulier:
     entrouvert-publik:
       label: >-
         Publik Famille | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Publik Famille | Portail famille
@@ -739,7 +739,7 @@ api_particulier:
           cnaf_enfants: true
     jvs-parascol:
       label: Parascol | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: Parascol | Portail famille
         description: "Facturation des familles pour les services périscolaires et loisirs. La commune/la structure intercommunale est chargée de la gestion de la facturation des services liés à l'Enfance.\r\nDans ce cadre, elle a besoin de récupérer des informations concernant la famille et ses éléments de revenus et de quotient familial.\r\nAfin d'avoir des informations fiables sur ces points et pour éviter de réclamer certains justificatifs, l'utilisation d'API Particulier semble adaptée.\r\nLe logiciel utilisé est Parascol, édité par JVS-MAIRISTEM.\r\nL'Espace Famille, proposé en complément de Parascol, permet aux familles (entre autres mises à jour de leur dossier ou inscription) de déclarer leurs ressources et calculer leur quotient familial, sans avoir à se déplacer en mairie. Là encore, l'utilisation d'API Particulier représente un véritable plus pour les familles."
@@ -762,7 +762,7 @@ api_particulier:
           cnaf_adresse: true
     nfi-grc:
       label: NFI | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: NFI | Portail famille
         description: "Gestion de la relation client sur le portail famille. Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\r\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\r\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\r\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI)."
@@ -790,10 +790,10 @@ api_particulier:
     odyssee-pandore:
       label: >-
         Pandore | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
-          Récupération des données CNAF pour les services municipaux
+          Pandore | Portail famille
         description: "Récupération des données CNAF pour les services municipaux. La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
         data_recipients: >-
           Service facturier de la collectivité
@@ -820,7 +820,7 @@ api_particulier:
           phone_number: '0555921383'
     qiis:
       label: eTicket | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           eTicket | Portail famille
@@ -850,7 +850,7 @@ api_particulier:
     sigec-maelis:
       label: >-
         Maelis Portail | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Maelis Portail | Portail famille
@@ -877,12 +877,11 @@ api_particulier:
           phone_number: '0442845580'
     teamnet:
       label: Axel | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
-          Déclaration des revenus et calcul du quotient familial pour actualiser les
-          tarifs appliqués aux différentes prestations facturées
-        description: "Le télé-service de déclaration des revenus est accessible sur le portail familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
+          Axel | Portail famille
+        description: "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées. Le télé-service de déclaration des revenus est accessible sur le portail familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
         data_recipients: >-
           Agents instructeurs qui gèrent la facturation des prestations de la Petite
           Enfance, du Scolaire et de l'extra-scolaire
@@ -899,7 +898,7 @@ api_particulier:
           cnaf_adresse: false
     technocarte:
       label: Gamme Informatique Loisirs Enfance | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Gamme Informatique Loisirs Enfance | Portail famille
@@ -926,7 +925,7 @@ api_particulier:
     waigeo:
       label: >-
         MyPerischool | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           MyPerischool | Portail famille
@@ -951,7 +950,7 @@ api_particulier:
           phone_number: '0970805210'
     3d-ouest:
       label: 3D Ouest | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           3D Ouest | Portail famille
@@ -1015,7 +1014,7 @@ api_particulier:
     agedi:
       label: >-
         Proxima.ENF | Portail famille
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/portail_famille
       state:
         intitule: >-
           Proxima.ENF | Portail famille
