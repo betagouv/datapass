@@ -299,13 +299,11 @@ api_particulier:
           phone_number: ''
     abelium:
       label: >-
-        Domino web 2.0, Tarification services municipaux / Portail Famille, Données
-        CNAF
+        Domino web 2.0 | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des
-          loisirs
+          Domino web 2.0 | Portail famille
         description: >-
           Le logiciel Domino 'Web 2.0 permet la facturation des prestations pour les
           services suivants : périscolaire (par exemple : tarifs garderie matin,
@@ -335,15 +333,12 @@ api_particulier:
           cnaf_adresse: false
     agora-plus:
       label: >-
-        Agora Famille Premium, Tarification services municipaux / Portail Famille,
-        Données CNAF
+        Agora Famille Premium | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Dématérialisation du calcul du quotient/taux d'effort pour les structures
-          gérés par les administrations/collectivités (petite enfance, enfance,
-          jeunesse et adultes)
-        description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n Nous sommes accompagnés par Agora."
+          Agora Famille Premium | Portail famille
+        description: "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes). Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n Nous sommes accompagnés par Agora."
         data_recipients: Adresse du foyer
         data_retention_period: 12
         fondement_juridique_title: >-
@@ -364,14 +359,14 @@ api_particulier:
           email: projet@agoraplus.fr
           phone_number: '0184160095'
     aiga:
-      label: iNoé, Tarification services municipaux / Portail Famille, Données CNAF
+      label: iNoé | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Facturation des familles inscrites aux CLSH, services périscolaires … des
-          collectivités
+          iNoé | Portail famille
         description: >-
-          iNoé permet la facturation des prestations des activités périscolaires,
+          Facturation des familles inscrites aux CLSH, services périscolaires … des
+          collectivités. iNoé permet la facturation des prestations des activités périscolaires,
           garderies et centres de loisirs des collectivités. La tarification aux
           familles est dépendante du quotient familial, au plus juste quand récupéré
           auprès de la CNAF.
@@ -395,14 +390,12 @@ api_particulier:
           email: fabrice.biollet@free.fr
           phone_number: '0472532200'
     amiciel-malice:
-      label: Malice, Tarification services municipaux / Portail Famille, Données CNAF
+      label: Malice | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération des données de la famille pour l'inscription et la
-          facturation en crèche, cantine, périscolaire, extrascolaire, transports
-          scolaires
-        description: "La collectivité utilisera les API Particulier dans les cas suivants :\r\n- Lors de l'inscription d'une nouvelle famille sur le portail familles : la famille pourra choisir le remplissage des informations déjà connues (Dites-le nous une fois).\r\n- Lors de l'inscription ou actualisation d'une famille sur le portail familles : les données actualisées via les API ne nécessiteront plus de justificatifs.\r\n- Lors du suivi du dossier par la collectivité, les données pourront être automatiquement vérifiées, contrôlées et actualisées\r\nL’utilisation de l’API Particulier se fait dans le cadre de l’utilisation du portail familles MALICE édité par la société AMICIEL."
+          Malice | Portail famille
+        description: "Récupération des données de la famille pour l'inscription et la facturation en crèche, cantine, périscolaire, extrascolaire, transports scolaires. La collectivité utilisera les API Particulier dans les cas suivants :\r\n- Lors de l'inscription d'une nouvelle famille sur le portail familles : la famille pourra choisir le remplissage des informations déjà connues (Dites-le nous une fois).\r\n- Lors de l'inscription ou actualisation d'une famille sur le portail familles : les données actualisées via les API ne nécessiteront plus de justificatifs.\r\n- Lors du suivi du dossier par la collectivité, les données pourront être automatiquement vérifiées, contrôlées et actualisées\r\nL’utilisation de l’API Particulier se fait dans le cadre de l’utilisation du portail familles MALICE édité par la société AMICIEL."
         data_recipients: >-
           Agents instructeurs gérant les inscriptions et les facturations des
           prestations Petite Enfance, Scolaire et Extra-Scolaire
@@ -421,12 +414,13 @@ api_particulier:
           cnaf_enfants: true
           cnaf_adresse: true
     arpege-concerto:
-      label: Concerto, Tarification services municipaux / Portail Famille, Données CNAF
+      label: Concerto | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
-        intitule: Récupération du Quotient Familial pour le service Périscolaire
+        intitule: >-
+          Concerto | Portail famille
         description: >-
-          Notre commune module la facturation des services liés à l’enfance en
+          Récupération du Quotient Familial pour le service Périscolaire. Notre commune module la facturation des services liés à l’enfance en
           fonction des QF. Dans un esprit de simplification et de sécurité, nous
           souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt
           nous baser sur les données proposées par API Particulier. Nous utilisons
@@ -451,13 +445,12 @@ api_particulier:
           cnaf_enfants: true
           cnaf_adresse: false
     bl-enfance-berger-levrault-cnaf:
-      label: BL Enfance, Tarification services municipaux / Portail Famille, Données CNAF
+      label: BL Enfance | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Calcul du quotient familial pour la facturation des activités scolaires,
-          périscolaires et loisirs
-        description: "La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\r\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault."
+          BL Enfance | Portail famille
+        description: "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs. La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\r\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault."
         data_recipients: >-
           Agent de la collectivité ( ou association) en charge de l’inscription des
           familles ou en charge de la facturation des activités, agent du service
@@ -484,14 +477,12 @@ api_particulier:
           phone_number: '0628770862'
     cantine-de-france:
       label: >-
-        Cantines-de-France, Tarification services municipaux / Portail Famille,
-        Données CNAF
+        Cantines de France - C2F | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération du Quotient Familial ainsi que les informations
-          administratives (CAF et Impôts) pour les services Cantine et Garderie
-        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\r\n\r\nLa consommation se fait le cadre de l'utilisation du logiciel Cantine de France de la société Jdéalise."
+          Cantines de France - C2F | Portail famille
+        description: "Récupération du Quotient Familial ainsi que les informations administratives (CAF et Impôts) pour les services Cantine et Garderie. La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\r\n\r\nLa consommation se fait le cadre de l'utilisation du logiciel Cantine de France de la société Jdéalise."
         data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
@@ -512,11 +503,10 @@ api_particulier:
           phone_number: '0972473612'
     ccas-ArcheMC2:
       label: >-
-        Arche MC2, Dématérialisation de l'instruction des dossiers dans un
-        CCAS/CIAS, Données CNAF
+        Millésime | Aides sociales des CCAS
       about: https://api.gouv.fr/guides/ccas
       state:
-        intitule: Instructions des dossiers d'aides sociales
+        intitule: Millésime | Aides sociales des CCAS
         description: >-
           Les agents sociaux de la collectivité (CCAS/CIAS) instruisent des dossiers
           de demande d'aides légales et/ou facultatives. Dans ce contexte, ils ont
@@ -547,13 +537,12 @@ api_particulier:
           cnaf_adresse: true
     ccas-arpege:
       label: >-
-        Arpege, Dématérialisation de l'instruction des dossiers dans un CCAS,
-        Données CNAF
+        Sonate | Aides sociales des CCAS
       about: https://api.gouv.fr/guides/ccas
       state:
         intitule: >-
-          Récupération du Quotient Familial pour les aides sociales facultatives et les services à la personne du CCAS
-        description: "Le CCAS de notre commune module le montant des aides octroyées et les tarifications des services à la personne en fonction du QF.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux usagers les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
+          Sonate | Aides sociales des CCAS
+        description: "Récupération du Quotient Familial pour les aides sociales facultatives et les services à la personne du CCAS. Le CCAS de notre commune module le montant des aides octroyées et les tarifications des services à la personne en fonction du QF.\r\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux usagers les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\r\nNous utilisons le logiciel Sonate édité par la Société Arpège."
         data_recipients: >-
           agents instructeurs des demandes d'aides, agents instructeurs des demandes
           d'inscriptions aux services à la personne, ...
@@ -569,13 +558,13 @@ api_particulier:
           cnaf_adresse: false
     ccas-Melissandre-afi:
       label: >-
-        AFI, Dématérialisation de l'instruction des dossiers dans un CCAS, Données
-        CNAF/MESRI/Pole Emploi/CROUS
+        Mélissande | Aides sociales des CCAS
       about: https://api.gouv.fr/guides/ccas
       state:
-        intitule: Instructions des dossiers d'aides sociales
+        intitule: Mélissande | Aides sociales des CCAS
         description: >-
-          Les agents du CCAS instruisent des dossiers de demandes d'aides légales et
+          AFI, Dématérialisation de l'instruction des dossiers dans un CCAS, Données
+          CNAF/MESRI/Pole Emploi/CROUS. Les agents du CCAS instruisent des dossiers de demandes d'aides légales et
           facultatives. Pour définir si un usager est éligible, les agents analysent
           la situation fiscal et familiale (toutes les ressources perçues, le
           quotient familial, la composition du ménage, si l'adresse est bien sur la
@@ -612,14 +601,12 @@ api_particulier:
           phone_number: '0614677910'
     city-family-mushroom-software-cnaf:
       label: >-
-        City Family, Tarification services municipaux / Portail Famille, Données
-        CNAF
+        CityFamily de Mushroom Software | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Calcul du quotient familial pour la facturations des crèches, du
-          périscolaire, du scolaire et de l’extrascolaire
-        description: "La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\r\nNous utilisons la solution CityFamily de Mushroom Software."
+          CityFamily de Mushroom Software | Portail famille
+        description: "Calcul du quotient familial pour la facturations des crèches, du périscolaire, du scolaire et de l’extrascolaire. La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\r\nNous utilisons la solution CityFamily de Mushroom Software."
         data_recipients: >-
           Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une
           facturation conforme à la délibération municipale. La consultation des
@@ -646,13 +633,12 @@ api_particulier:
           email: technique@mushroom-software.com
           phone_number: '0674577622'
     civil-enfance-ciril-group:
-      label: Civil, Tarification services municipaux / Portail Famille, Données CNAF
+      label: CIVIL Enfance | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Déclaration et calcul du quotient familial pour la facturation des
-          activités du portail famille
-        description: "Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\r\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]"
+          CIVIL Enfance | Portail famille
+        description: "Déclaration et calcul du quotient familial pour la facturation des activités du portail famille. Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\r\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]"
         data_recipients: >-
           Agents de la collectivité en charge des services enfance, petite enfance
           et jeunesse de la ville.
@@ -679,13 +665,12 @@ api_particulier:
           phone_number: '0472691680'
     cosoluce-fluo:
       label: >-
-        Fluo, Tarification services municipaux / Portail Famille,
-        Données CNAF
+        Fluo | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération des données CNAF pour les services municipaux
-        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
+          Fluo | Portail famille
+        description: "Récupération des données CNAF pour les services municipaux. La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
         data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
@@ -708,13 +693,12 @@ api_particulier:
           email: b-leblond@cosoluce.fr
           phone_number: '0632656901'
     docaposte-fast:
-      label: Docaposte, Tarification services municipaux / Portail Famille, Données CNAF
+      label: FAST-Famille | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération du Quotient Familial ainsi que les informations
-          administratives (CAF et Impôts) pour les services Cantine et Garderie
-        description: "Notre mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n - Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n - Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n - Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n - Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\r\n L’Utilisation de l’API Particulier se fait dans le cadre de l’utilisation du logiciel FAST-Famille  édité par la société DOCAPOSTE-FAST."
+          FAST-Famille | Portail famille
+        description: "Récupération du Quotient Familial ainsi que les informations administratives (CAF et Impôts) pour les services Cantine et Garderie. Notre mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n - Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n - Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n - Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n - Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\r\n L’Utilisation de l’API Particulier se fait dans le cadre de l’utilisation du logiciel FAST-Famille  édité par la société DOCAPOSTE-FAST."
         data_recipients: >-
           Agents instructeurs en charge de la tarification et de la facturation des
           prestations aux familles
@@ -734,13 +718,11 @@ api_particulier:
           cnaf_adresse: true
     entrouvert-publik:
       label: >-
-        Publik Famille, Tarification services municipaux / Portail Famille, Données
-        CNAF
+        Publik Famille | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Calcul du tarif des activités péri-extrascolaires, petite enfance,
-          socio-culturelles et sportives pour les enfants ou les adultes inscrits
+          Publik Famille | Portail famille
         description: >-
           Calculer le tarif des activités péri-extrascolaires, petite enfance,
           socio-culturelles et sportives pour la facturation des familles qui
@@ -756,11 +738,11 @@ api_particulier:
           cnaf_allocataires: true
           cnaf_enfants: true
     jvs-parascol:
-      label: Parascol, Tarification services municipaux / Portail Famille, Données CNAF
+      label: Parascol | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
-        intitule: Facturation des familles pour les services périscolaires et loisirs
-        description: "La commune/la structure intercommunale est chargée de la gestion de la facturation des services liés à l'Enfance.\r\nDans ce cadre, elle a besoin de récupérer des informations concernant la famille et ses éléments de revenus et de quotient familial.\r\nAfin d'avoir des informations fiables sur ces points et pour éviter de réclamer certains justificatifs, l'utilisation d'API Particulier semble adaptée.\r\nLe logiciel utilisé est Parascol, édité par JVS-MAIRISTEM.\r\nL'Espace Famille, proposé en complément de Parascol, permet aux familles (entre autres mises à jour de leur dossier ou inscription) de déclarer leurs ressources et calculer leur quotient familial, sans avoir à se déplacer en mairie. Là encore, l'utilisation d'API Particulier représente un véritable plus pour les familles."
+        intitule: Parascol | Portail famille
+        description: "Facturation des familles pour les services périscolaires et loisirs. La commune/la structure intercommunale est chargée de la gestion de la facturation des services liés à l'Enfance.\r\nDans ce cadre, elle a besoin de récupérer des informations concernant la famille et ses éléments de revenus et de quotient familial.\r\nAfin d'avoir des informations fiables sur ces points et pour éviter de réclamer certains justificatifs, l'utilisation d'API Particulier semble adaptée.\r\nLe logiciel utilisé est Parascol, édité par JVS-MAIRISTEM.\r\nL'Espace Famille, proposé en complément de Parascol, permet aux familles (entre autres mises à jour de leur dossier ou inscription) de déclarer leurs ressources et calculer leur quotient familial, sans avoir à se déplacer en mairie. Là encore, l'utilisation d'API Particulier représente un véritable plus pour les familles."
         data_recipients: >-
           Agents instructeurs des dossiers d’inscription (périscolaire,
           multi-accueil, guichet unique)
@@ -779,11 +761,11 @@ api_particulier:
           cnaf_enfants: true
           cnaf_adresse: true
     nfi-grc:
-      label: NFI, Tarification services municipaux / Portail Famille, Données CNAF
+      label: NFI | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
-        intitule: Gestion de la relation client sur le portail famille
-        description: "Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\r\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\r\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\r\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI)."
+        intitule: NFI | Portail famille
+        description: "Gestion de la relation client sur le portail famille. Permettre la récupération de quotient familial par les administrés eux-mêmes sur leur compte d'inscription en saisissant leur identifiant Caf et en demandant l'actualisation du quotient Familial.\r\nPermettre le même traitement en mairie pour le compte d'un administré spécifique dans le cas d'un administré n'ayant pas accès à Internet ou pour le compte de l'ensemble des administrés gérés dans le cadre du service et en cours de validité au moment du traitement afin d'actualiser la totalité des foyers et d'être conforme à la délibération municipale fixant les coût des prestations en fonction du Quotient Familial.\r\nIl s'agit également, vu que les données sont demandées aux administrés au moment de leur inscription, de récupérer les informations sur les enfants et les allocataires ainsi que l'adresse du foyer. En effet, cela permettra aux administrés non seulement de connaître la connaissance de la CAF sur la composition de leur foyer mais également de pré-saisir et donc d'éviter des erreurs de saisie sur l'adresse ainsi que sur les prénoms, sexe et date de naissance des enfants. Les données sont gardées en base de données le temps de l'activité au sein du service du portail famille. Les données peuvent être anonymisées dès que l'administré en fait la demande et qu'il ne fait plus parti des administrés actifs au service.\r\nNous utilisons la solution de GRC de l'éditeur Nord France Informatique (NFI)."
         data_recipients: >-
           Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une
           facturation conforme à la délibération municipale. La consultation des
@@ -807,13 +789,12 @@ api_particulier:
           phone_number: '0632362572'
     odyssee-pandore:
       label: >-
-        Pandore, Tarification services municipaux / Portail Famille,
-        Données CNAF
+        Pandore | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
           Récupération des données CNAF pour les services municipaux
-        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
+        description: "Récupération des données CNAF pour les services municipaux. La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
         data_recipients: >-
           Service facturier de la collectivité
         data_retention_period: 36
@@ -838,11 +819,11 @@ api_particulier:
           email: accueil@odyssee-informatique.fr
           phone_number: '0555921383'
     qiis:
-      label: eTicket, Tarification services municipaux / Portail Famille, Données CNAF
+      label: eTicket | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          eTicket - Portail Famille
+          eTicket | Portail famille
         description: "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\r\n  - Les allocataires\r\n  - Les revenus déclarés aux différents organisme\r\n  - Adresse du foyer\r\n "
         data_recipients: Adresse du foyer
         data_retention_period: 12
@@ -868,13 +849,12 @@ api_particulier:
           phone_number: '0646436364'
     sigec-maelis:
       label: >-
-        Maelis Portail, Tarification services municipaux / Portail Famille,
-        Données CNAF
+        Maelis Portail | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération des données CNAF pour les services municipaux
-        description: "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
+          Maelis Portail | Portail famille
+        description: "Récupération des données CNAF pour les services municipaux. La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\r\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\r\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\r\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\r\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers"
         data_retention_period: 36
         fondement_juridique_title: >-
           L'article L114-8 du code des relations entre le public et l'administration
@@ -896,13 +876,13 @@ api_particulier:
           email: laurent.dettori@sigec.fr
           phone_number: '0442845580'
     teamnet:
-      label: Axel, Tarification services municipaux / Portail Famille, Données CNAF
+      label: Axel | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
           Déclaration des revenus et calcul du quotient familial pour actualiser les
           tarifs appliqués aux différentes prestations facturées
-        description: "Le télé-service de déclaration des revenus est accessible sur le Portail Familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
+        description: "Le télé-service de déclaration des revenus est accessible sur le portail familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\r\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\r\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer."
         data_recipients: >-
           Agents instructeurs qui gèrent la facturation des prestations de la Petite
           Enfance, du Scolaire et de l'extra-scolaire
@@ -918,12 +898,12 @@ api_particulier:
           cnaf_enfants: false
           cnaf_adresse: false
     technocarte:
-      label: ILE, Tarification service enfance, Données CNAF
+      label: Gamme Informatique Loisirs Enfance | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Récupération du Quotient Familial pour le service Enfance (Périscolaire, centre de loisirs)
-        description: "Notre commune module la facturation des services liés à l’enfance en fonction des QF. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel ILE, édité par la Société Technocarte."
+          Gamme Informatique Loisirs Enfance | Portail famille
+        description: "Récupération du Quotient Familial pour le service Enfance (Périscolaire, centre de loisirs). Notre commune module la facturation des services liés à l’enfance en fonction des QF. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel ILE, édité par la Société Technocarte."
         data_recipients: >-
           Agents instructeurs des dossiers au guichet unique, Agents instructeurs des dossiers d’inscription en accueil périscolaire et centre de loisirs
         data_retention_period: 36
@@ -945,14 +925,12 @@ api_particulier:
           phone_number: '0442490800'
     waigeo:
       label: >-
-        MyPerischool, Tarification services municipaux / Portail Famille, Données
-        CNAF
+        MyPerischool | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Calcul de la tarification pour la facturation des services périscolaires,
-          restauration scolaire et des accueils de loisirs.
-        description: "Ce service permet aux familles de déclarer leurs ressources et de bénéficier d'une tarification en fonction de leur situation.\r\nMypérischool permet la facturation des prestations liées à la restauration scolaire, les activités périscolaires, les garderies et les centres de loisirsLa tarification se base sur le quotient familial récupéré auprès de la CNAF ou sur les revenus des familles récupérés directement auprès des services fiscaux à travers l'avis d'imposition."
+          MyPerischool | Portail famille
+        description: "Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs. Ce service permet aux familles de déclarer leurs ressources et de bénéficier d'une tarification en fonction de leur situation.\r\nMypérischool permet la facturation des prestations liées à la restauration scolaire, les activités périscolaires, les garderies et les centres de loisirsLa tarification se base sur le quotient familial récupéré auprès de la CNAF ou sur les revenus des familles récupérés directement auprès des services fiscaux à travers l'avis d'imposition."
         data_recipients: >-
           Agents de la collectivité en charge des services enfance et jeunesse de la
           ville.
@@ -972,14 +950,14 @@ api_particulier:
           email: technique@waigeo.fr
           phone_number: '0970805210'
     3d-ouest:
-      label: 3D Ouest, Tarification services municipaux / Portail Famille, Données CNAF
+      label: 3D Ouest | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Tarification Services Enfance et récupération des quotients familiaux avec
-          le logiciel Enfance 3D OUEST
+          3D Ouest | Portail famille
         description: >-
-          Dans un esprit de simplification et de sécurité, les collectivités
+          Tarification Services Enfance et récupération des quotients familiaux avec
+          le logiciel Enfance 3D OUEST. Dans un esprit de simplification et de sécurité, les collectivités
           pourront utiliser API Particulier pour récupérer les quotients familiaux
           des administrés afin de faciliter la facturation des services enfance et
           périscolaire. L’utilisation d’API Particulier est un vrai plus pour
@@ -1007,12 +985,12 @@ api_particulier:
           phone_number: '0256662007'
     coexya:
       label: >-
-        Coexya, solution portail tarification sociale et solidaire ICAR
+        ICAR | Tarification des transports
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Tarification sociale et solidaires des transports
-        description: "Aide à l'accès aux transports"
+          ICAR | Tarification des transports
+        description: "Tarification sociale et solidaires des transports. Aide à l'accès aux transports"
         data_recipients:
         data_retention_period: 
         fondement_juridique_title: >-
@@ -1036,13 +1014,11 @@ api_particulier:
           phone_number: '0487915823'
     agedi:
       label: >-
-        Proxima.ENF | Portail Famille
-        CNAF
+        Proxima.ENF | Portail famille
       about: https://api.gouv.fr/guides/portail-famille-tarification
       state:
         intitule: >-
-          Proxima.ENF | Portail Famille
-          loisirs
+          Proxima.ENF | Portail famille
         description: >-
           Le logiciel Proxima.ENF permet la mise à jour des données familles dans le cadre d'un logiciel de gestion de l'accueil de l'enfance.
         data_recipients: 
