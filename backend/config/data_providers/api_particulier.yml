@@ -7,7 +7,7 @@ api_particulier:
   icon: logo-beta-gouv.svg
   email: api-particulier@api.gouv.fr
   type: api
-  cguLink: https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf
+  cguLink: https://particulier.api.gouv.fr/cgu
   donneesDescription: >-
     L'API Particulier vous donne accès à [plusieurs API](https://particulier.api.gouv.fr/catalogue).
     Chaque API transmet **différentes données, regroupées dans des périmètres distincts**. En effet, afin de respecter les principes de
@@ -261,7 +261,7 @@ api_particulier:
   demarches:
     default:
       label: Demande Libre
-      about: https://api.gouv.fr/les-api/api-particulier
+      about: https://particulier.api.gouv.fr/
       state:
         intitule: ''
         description: ''
@@ -504,7 +504,7 @@ api_particulier:
     ccas-ArcheMC2:
       label: >-
         Millésime | Aides sociales des CCAS
-      about: https://api.gouv.fr/guides/ccas
+      about: https://particulier.api.gouv.fr/cas_usages/ccas
       state:
         intitule: Millésime | Aides sociales des CCAS
         description: >-
@@ -538,7 +538,7 @@ api_particulier:
     ccas-arpege:
       label: >-
         Sonate | Aides sociales des CCAS
-      about: https://api.gouv.fr/guides/ccas
+      about: https://particulier.api.gouv.fr/cas_usages/ccas
       state:
         intitule: >-
           Sonate | Aides sociales des CCAS
@@ -559,7 +559,7 @@ api_particulier:
     ccas-Melissandre-afi:
       label: >-
         Mélissande | Aides sociales des CCAS
-      about: https://api.gouv.fr/guides/ccas
+      about: https://particulier.api.gouv.fr/cas_usages/ccas
       state:
         intitule: Mélissande | Aides sociales des CCAS
         description: >-
@@ -985,7 +985,7 @@ api_particulier:
     coexya:
       label: >-
         ICAR | Tarification des transports
-      about: https://api.gouv.fr/guides/portail-famille-tarification
+      about: https://particulier.api.gouv.fr/cas_usages/tarification_transports
       state:
         intitule: >-
           ICAR | Tarification des transports
