@@ -1,4 +1,8 @@
 class Enrollment::HubeePortailDilaPolicy < EnrollmentPolicy
+  def revoke?
+    record.can_revoke_status? && (user.is_administrator? || user.is_instructor?(record.target_api))
+  end
+
   def permitted_attributes
     res = []
 
