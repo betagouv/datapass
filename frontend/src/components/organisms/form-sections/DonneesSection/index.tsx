@@ -53,7 +53,6 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       additional_content = {},
       documents = [],
       documents_attributes = [],
-      created_at = '',
       target_api = '',
     },
   } = useContext(FormContext)!;
@@ -94,26 +93,6 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       )
   );
 
-  function shouldDisplayAccessImpotPart(
-    created_at: string,
-    target_api: string
-  ): boolean {
-    const targetDate = new Date('2024-05-02');
-    const createdDate = new Date(created_at);
-
-    if (
-      isEmpty(created_at) ||
-      ([
-        'api_impot_particulier_sandbox',
-        'api_impot_particulier_unique',
-      ].includes(target_api) &&
-        targetDate < createdDate)
-    ) {
-      return false;
-    }
-    return true;
-  }
-
   const shouldDisplayExpandableQuoteImpotPartImpotSfipUnique =
     useCallback(() => {
       return ![
@@ -126,7 +105,6 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       ].includes(target_api);
     }, [target_api]);
 
-  const [displayAccessImpotPart, setDisplayAccessImpotPart] = useState(false);
   const [displayExpandableQuote, setDisplayExpandableQuote] = useState(false);
 
   useEffect(() => {
@@ -134,12 +112,6 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
       shouldDisplayExpandableQuoteImpotPartImpotSfipUnique
     );
   }, [target_api, shouldDisplayExpandableQuoteImpotPartImpotSfipUnique]);
-
-  useEffect(() => {
-    setDisplayAccessImpotPart(
-      shouldDisplayAccessImpotPart(created_at, target_api)
-    );
-  }, [created_at, target_api]);
 
   useEffect(() => {
     const hasDocument = !isEmpty(
@@ -269,7 +241,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
           )}
         </>
       )}
-      {displayAccessImpotPart && !isEmpty(accessModes) && (
+      {!isEmpty(accessModes) && (
         <>
           <h3>Comment souhaitez-vous y accéder ?</h3>
           {accessModes!.map(({ id, label }) => (
