@@ -1,6 +1,10 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  namespace :api do
+    resources :frontal, only: [:index]
+  end
+
   scope :api do
     get "ping", to: "ping#show"
 
