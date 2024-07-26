@@ -40,8 +40,8 @@ api_particulier:
     délibération](https://api.gouv.fr/guides/deliberation-api-part).
   scopesConfiguration:
     - value: cnaf_quotient_familial
-      label: Quotient familial CAF & MSA et composition familiale
-      helper: Délivre le quotient familial CAF & MSA, ainsi que la composition familiale des allocataires
+      label: Quotient familial CAF & MSA
+      helper: Délivre le quotient familial CAF & MSA
     - value: complementaire_sante_solidaire
       label: Statut bénéficiaire C2S
       helper: Indique si le particulier est bénéficiaire de la C2S avec ou sans participation et précise les dates d'ouverture et de fermeture du droit.
