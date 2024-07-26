@@ -41,7 +41,7 @@ api_particulier:
   scopesConfiguration:
     - value: cnaf_quotient_familial
       label: Quotient familial CAF & MSA
-      helper: Délivre le quotient familial CAF & MSA
+      helper: Délivre le quotient familial CAF & MSA.
     - value: complementaire_sante_solidaire
       label: Statut bénéficiaire C2S
       helper: Indique si le particulier est bénéficiaire de la C2S avec ou sans participation et précise les dates d'ouverture et de fermeture du droit.
