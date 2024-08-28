@@ -141,18 +141,6 @@ export const fcDemarches = {
         '- Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016, relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données (RGPD)\r\n- Les articles L. 114-8 et suivants du code des relations entre le public et l’administration (CRPA)\r\n- Délibération de la collectivité (ou autre fondement juridique)',
     },
   },
-  migration_api_particulier: {
-    label:
-      'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
-    state: {
-      intitule:
-        'Migration de l’API Particulier (DINUM) vers l’API Impôt Particulier (DGFiP)',
-      description:
-        'Veuillez obligatoirement compléter les informations ci-dessous :\r\nLa référence (numéro DataPass) de votre accès actuel à l’API Particulier  :\r\nLe cas d’usage concerné : Sa description ou bien choisir parmi la liste (stationnement résidentiel, place en crèche, activités périscolaires, cantine scolaire, aides sociales facultatives, carte de transport) :\r\nLes coordonnées de votre éditeur de logiciel (si vous en avez) ou préciser si c’est un développement interne :',
-      fondement_juridique_title:
-        'Si pas disponible, à justifier dans un délai de 6 mois (décret, loi, délibération, autre fondement juridique)',
-    },
-  },
 };
 
 export const demarches = fcDemarches;
