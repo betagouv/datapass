@@ -19,7 +19,7 @@ export const ImpotPartDocumentationAlert: React.FC = () => (
       iconRight
       target="_blank"
       rel="noreferrer noopener"
-      href="https://datapass.api.gouv.fr/docs/presentation_de_l_api_impot_particulier_v2.7.pdf"
+      href="https://datapass.api.gouv.fr/docs/presentation_de_l_api_impot_particulier_v2.8.pdf"
     >
       Voir la documentation de l’API Impôt particulier
     </Button>
