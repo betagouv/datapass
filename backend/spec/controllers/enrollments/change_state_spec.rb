@@ -303,10 +303,6 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
     let(:event) { "validate" }
     let(:comment) { "I like trains" }
 
-    before do
-      allow(FranceconnectBridge).to receive(:call)
-    end
-
     describe "authorization" do
       context "without user" do
         it { is_expected.to have_http_status(:unauthorized) }
@@ -402,12 +398,6 @@ RSpec.describe EnrollmentsController, "#change_state", type: :controller do
         expect {
           make_request
         }.to change { enrollment.reload.status }.to("validated")
-      end
-
-      it "calls FranceconnectBridge.call" do
-        make_request
-
-        expect(FranceconnectBridge).to have_received(:call)
       end
 
       it "tracks event as validate for this enrollment, and associate snapshot record for history" do
