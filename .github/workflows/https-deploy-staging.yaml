@@ -2,6 +2,13 @@ name: Deployment via HTTPS (staging)
 
 on:
   workflow_dispatch: ~
+  workflow_run:
+    workflows:
+      - Frontend build
+    branches:
+      - master
+    types:
+      - completed
 
 jobs:
   deployment:
