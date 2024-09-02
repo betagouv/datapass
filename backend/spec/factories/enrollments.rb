@@ -319,12 +319,43 @@ FactoryBot.define do
         }
       end
     end
+
     trait :api_impot_particulier_fc_sandbox do
       initialize_with do
         Enrollment::ApiImpotParticulierFcSandbox.new(attributes)
       end
 
       previous_enrollment { create(:enrollment, :franceconnect, :validated) }
+
+      team_members do
+        [
+          {
+            type: "responsable_technique",
+            email: "user-technique@clamart.fr",
+            phone_number: "0626656565",
+            given_name: "Jean",
+            family_name: "Martin"
+          }
+        ]
+      end
+
+      scopes do
+        [
+          "dgfip_annee_n_moins_1"
+        ]
+      end
+
+      additional_content do
+        {
+          rgpd_general_agreement: true
+        }
+      end
+    end
+
+    trait :api_sfip_sandbox do
+      initialize_with do
+        Enrollment::ApiSfipSandbox.new(attributes)
+      end
 
       team_members do
         [
