@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Enrollment::ApiImpotParticulierSandbox, type: :model do
+RSpec.describe Enrollment::ApiSfipSandbox, type: :model do
   let(:user) { create(:user) }
-  let(:enrollment) { create(:enrollment, :api_impot_particulier_sandbox, :draft, scopes: []) }
+  let(:enrollment) { create(:enrollment, :api_sfip_sandbox, :draft, scopes: []) }
 
-  describe "#api_impot_particulier_scope_validation" do
+  describe "#api_sfip_scope_validation" do
     context "when no scope is selected and no specific requirement is expressed" do
       it "is not valid" do
         enrollment.send(:submit_validation)
