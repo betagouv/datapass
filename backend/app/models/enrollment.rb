@@ -24,6 +24,7 @@ class Enrollment < ApplicationRecord
     def migrated_target_apis
       %w[
         api_entreprise
+        api_particulier
       ]
     end
   end
