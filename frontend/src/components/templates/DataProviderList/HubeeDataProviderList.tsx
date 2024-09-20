@@ -33,7 +33,7 @@ export const HubeeDataProviderList = () => {
               key={target_api}
               label={dataProviderConfigurations?.[target_api]?.label}
               iconPath={`/images/logo-hubee-small.png`}
-              passPath={`/${target_api}`}
+              passPath={`/${target_api.replace(/_/g, '-')}`}
               description={description}
               aboutLink="https://hubee.numerique.gouv.fr/"
             />
