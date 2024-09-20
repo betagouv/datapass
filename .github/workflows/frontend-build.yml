@@ -88,6 +88,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
           - env: production2
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -95,6 +97,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
           - env: production3
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -102,6 +106,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
           - env: production4
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -109,6 +115,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
           - env: production5
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -116,6 +124,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
           - env: production
             back_host: https://back.datapass.api.gouv.fr
             api_gouv_host: https://api.gouv.fr
@@ -123,6 +133,8 @@ jobs:
             piwik_site_id: "53"
             react_app_api_entreprise_redirect_to_v2_host: https://api-entreprise.v2.datapass.api.gouv.fr
             react_app_api_particulier_redirect_to_v2_host: https://api-particulier.v2.datapass.api.gouv.fr
+            react_app_hubee_portail_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-cert-dc/demande/nouveau
+            react_app_hubee_portail_dila_redirect_to_v2_host: https://hubee.v2.datapass.api.gouv.fr/formulaires/hubee-dila/demande/nouveau
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x
