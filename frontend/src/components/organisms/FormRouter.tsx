@@ -28,7 +28,11 @@ const FormRouter = () => {
     let redirectUri = potentialRedirectToV2Host;
 
     if (enrollmentId) {
-      redirectUri += '/demandes/' + enrollmentId;
+      const urlObject = new URL(redirectUri);
+
+      urlObject.pathname = '/';
+
+      redirectUri = urlObject.toString() + 'demandes/' + enrollmentId;
     }
 
     return <ExternalRedirect url={`${redirectUri}`} />;
