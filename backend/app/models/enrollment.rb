@@ -25,6 +25,8 @@ class Enrollment < ApplicationRecord
       %w[
         api_entreprise
         api_particulier
+        hubee_portail
+        hubee_portail_dila
       ]
     end
   end
