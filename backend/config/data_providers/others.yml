@@ -246,11 +246,11 @@ api_indemnisation_pole_emploi:
   mailer: *shared_mailer
 
 agent_connect_fi:
-  label: AgentConnect - fournisseur d’identité
+  label: ProConnect - fournisseur d’identité
   mailer: *shared_mailer
 
 agent_connect_fs:
-  label: AgentConnect - fournisseur de service
+  label: ProConnect - fournisseur de service
   mailer: *shared_mailer
 
 api_satelit_sandbox:

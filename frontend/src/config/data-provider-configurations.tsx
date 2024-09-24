@@ -599,14 +599,14 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     component: ApiIndemnisationPoleEmploi,
   },
   [TargetAPI.agent_connect_fi]: {
-    label: 'AgentConnect - fournisseur d’identité',
+    label: 'ProConnect - fournisseur d’identité',
     icon: 'logo-agentconnect.png',
     email: 'support.partenaires@agentconnect.gouv.fr',
     type: DataProviderType.api,
     component: AgentConnectFi,
   },
   [TargetAPI.agent_connect_fs]: {
-    label: 'AgentConnect - fournisseur de service',
+    label: 'ProConnect - fournisseur de service',
     icon: 'logo-agentconnect.png',
     email: 'support.partenaires@agentconnect.gouv.fr',
     type: DataProviderType.api,
