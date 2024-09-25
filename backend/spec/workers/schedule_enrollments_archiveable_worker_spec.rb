@@ -14,7 +14,7 @@ RSpec.describe ScheduleEnrollmentsArchiveableWorker, type: :worker do
       Timecop.return
     end
 
-    let!(:enrollment) { create(:enrollment, :api_particulier, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago) }
+    let!(:enrollment) { create(:enrollment, :aidants_connect, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago) }
     let!(:event) { create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago) }
 
     context "When there is enrollments to archive" do
