@@ -40,11 +40,11 @@ RSpec.describe EnrollmentsExtractor::ToArchive, type: :service do
       create(:event, :update, enrollment: enrollment, created_at: 2.months.ago, updated_at: 2.months.ago)
       create(:event, :submit, enrollment: enrollment, created_at: 2.months.ago, updated_at: 2.months.ago)
 
-      enrollment = create(:enrollment, :api_particulier, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago)
+      enrollment = create(:enrollment, :aidants_connect, :changes_requested, created_at: 60.days.ago, updated_at: 25.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 40.days.ago, updated_at: 40.days.ago)
       create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago)
 
-      enrollment = create(:enrollment, :hubee_portail, :changes_requested, created_at: 90.days.ago, updated_at: 20.days.ago)
+      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: 90.days.ago, updated_at: 20.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 40.days.ago, updated_at: 40.days.ago)
       create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 20.days.ago, updated_at: 20.days.ago)
 
