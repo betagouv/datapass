@@ -1,4 +1,4 @@
-import MonComptePro from '../../atoms/MonComptePro';
+import ProConnect from '../../atoms/ProConnect';
 import { useDataProvider } from '../hooks/use-data-provider';
 import './style.css';
 import WelcomeMessage from './WelcomeMessage';
@@ -152,7 +152,7 @@ export const Login = () => {
                 <div className="new-login-container">
                   <div className="login-button">
                     <p>Pour suivre vos demandes d’habilitation</p>
-                    <MonComptePro />
+                    <ProConnect />
                   </div>
                 </div>
               </div>
