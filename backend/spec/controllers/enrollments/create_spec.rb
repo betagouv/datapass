@@ -34,8 +34,8 @@ RSpec.describe EnrollmentsController, "#create", type: :controller do
       it { is_expected.to have_http_status(:forbidden) }
     end
 
-    context "with api particulier as target api" do
-      let(:target_api) { "api_particulier" }
+    context "with aidants connect as target api" do
+      let(:target_api) { "aidants_connect" }
 
       it { is_expected.to have_http_status(:ok) }
     end
