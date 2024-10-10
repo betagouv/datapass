@@ -53,9 +53,7 @@ http_interactions:
         Référentiel SANDRE Version 1","tagline":"L''API Sandre Référentiel version
         1 donne accès à l''ensemble des jeux de données de référence diffusé par le
         Service d''Administration Nationale des Données et Référentiels sur l''Eau
-        (SANDRE)","path":"/les-api/Sandre-Referentiel-V1_api","slug":"Sandre-Referentiel-V1_api","openness":"open","owner":"Eaufrance","owner_acronym":null,"logo":"/images/api-logo/eau-france.png"},{"title":"AgentConnect","tagline":"Simplifiez
-        le quotidien des agents publics de l''Etat en leur permettant d’utiliser un
-        même identifiant et mot de passe pour accéder à leurs services en ligne.","path":"/les-api/agent-connect","slug":"agent-connect","openness":"closed","owner":"Direction
+        (SANDRE)","path":"/les-api/Sandre-Referentiel-V1_api","slug":"Sandre-Referentiel-V1_api","openness":"open","owner":"Eaufrance","owner_acronym":null,"logo":"/images/api-logo/eau-france.png"},{"title":"ProConnect","tagline":"La solution officielle qui vous identifie en tant que professionnel.","path":"/les-api/agent-connect","slug":"agent-connect","openness":"closed","owner":"Direction
         Interministérielle du Numérique","owner_acronym":"DINUM","logo":"/images/api-logo/dinum.png","datapass_link":"https://datapass.api.gouv.fr/agent-connect-fs"},{"title":"API
         Accès à l''emploi","tagline":"Connaître les taux d''accès à l''emploi par
         métier recherché et par territoire.","path":"/les-api/api-acces-emploi","slug":"api-acces-emploi","openness":"semi_open","owner":"Pôle

@@ -71,8 +71,8 @@ const AgentConnectFi = () => (
           label: (
             <>
               J’autorise tous les fournisseurs de services de la fonction
-              publique à utiliser les données transmises par AgentConnect pour
-              procéder à l’authentification de leurs agents utilisateurs.
+              publique à utiliser les données transmises par ProConnect pour
+              procéder à l’authentification de leurs utilisateurs.
             </>
           ),
         },

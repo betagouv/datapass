@@ -44,7 +44,7 @@ RSpec.describe EnrollmentsExtractor::ToArchive, type: :service do
       create(:event, :update, enrollment: enrollment, created_at: 40.days.ago, updated_at: 40.days.ago)
       create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 25.days.ago, updated_at: 25.days.ago)
 
-      enrollment = create(:enrollment, :api_impot_particulier_fc_sandbox, :changes_requested, created_at: 90.days.ago, updated_at: 20.days.ago)
+      enrollment = create(:enrollment, :api_sfip_sandbox, :changes_requested, created_at: 90.days.ago, updated_at: 20.days.ago)
       create(:event, :update, enrollment: enrollment, created_at: 40.days.ago, updated_at: 40.days.ago)
       create(:event, :reminder_before_archive, enrollment: enrollment, created_at: 20.days.ago, updated_at: 20.days.ago)
 
