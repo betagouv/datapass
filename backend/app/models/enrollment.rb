@@ -31,7 +31,7 @@ class Enrollment < ApplicationRecord
     end
   end
 
-  default_scope { where.not(target_api: ["mon_compte_pro"]) }
+  default_scope { where.not(target_api: ["moncomptepro"]) }
 
   validate :update_validation
   validate :submit_validation, on: :submit
