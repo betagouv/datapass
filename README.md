@@ -71,7 +71,7 @@ disponibles aux demandeurs.
 
 Pour devenir instructeur, rapporteur ou abonné pour un type d’habilitation il faut :
 
-1. se créer un compte sur https://app.moncomptepro.beta.gouv.fr/
+1. s’identifier avec ProConnect (https://www.proconnect.gouv.fr/)
 2. rejoindre l’organisation que l’on représente en renseignant son numéro SIRET
 3. envoyer une demande écrite à datapass@api.gouv.fr
 
