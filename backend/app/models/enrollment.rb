@@ -209,7 +209,6 @@ class Enrollment < ApplicationRecord
       api_sfip_sandbox
       api_sfip_unique
       api_tiers_de_prestation
-      franceconnect
       hubee_portail
       hubee_portail_dila
     ].exclude?(target_api)
