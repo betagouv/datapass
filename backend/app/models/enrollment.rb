@@ -57,7 +57,7 @@ class Enrollment < ApplicationRecord
   validates :data_retention_period, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 0,
-    less_than_or_equal_to: 999,
+    less_than_or_equal_to: 1200,
     allow_nil: true
   }
 
