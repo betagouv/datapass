@@ -87,6 +87,16 @@ export const accessModes = [
     label:
       'Recherche par état civil complet - Restitution de l’identifiant fiscal (SPI)',
   },
+  {
+    id: 'acces_etat_civil_complet_adresse',
+    label:
+      'Recherche par état civil complet - Restitution de l’état civil complet, de l’adresse et du code postal',
+  },
+  {
+    id: 'acces_etat_civil_degrade_adresse',
+    label:
+      'Recherche par état civil dégradé et éléments d’adresse - Restitution de l’état civil complet, de l’adresse et du code postal',
+  },
 ];
 
 const target_api = 'api_r2p_sandbox';
