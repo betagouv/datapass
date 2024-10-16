@@ -11,7 +11,6 @@ module DgfipValidationMethods
     return if additional_content&.fetch("rgpd_general_agreement", false)
 
     errors.add(:additional_content, :invalid, message: "Vous devez attester que votre organisation déclarera à la DGFiP l'accomplissement des formalités en terme de protection des données")
-
   end
 
   def api_impot_particulier_scope_validation
@@ -33,7 +32,6 @@ module DgfipValidationMethods
     return if additional_content.any? { |k, v| v && %w[acces_spi acces_etat_civil].include?(k) }
 
     errors.add(:scopes, :invalid, message: "Vous devez cocher au moins une modalité d’accès avant de continuer")
-
   end
 
   def production_form_validation
@@ -60,8 +58,8 @@ module DgfipValidationMethods
 
   def validate_revenue_years_selection
     selected_years = %w[
-    dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3
-    dgfip_annee_n_moins_2_si_indispo_n_moins_1
+      dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3
+      dgfip_annee_n_moins_2_si_indispo_n_moins_1
     ]
 
     return unless (scopes & selected_years).empty?
@@ -71,18 +69,17 @@ module DgfipValidationMethods
 
   def validate_incompatible_scopes(incompatible_scopes)
     special_scopes = %w[
-    dgfip_annee_n_moins_2_si_indispo_n_moins_1 dgfip_annee_df_au_3112_si_deces_ctb_mp
+      dgfip_annee_n_moins_2_si_indispo_n_moins_1 dgfip_annee_df_au_3112_si_deces_ctb_mp
     ]
 
     return unless (scopes & special_scopes).present? && (scopes & incompatible_scopes).present?
 
     errors.add(:scopes, :invalid, message: "Des données incompatibles entre elles ont été cochées. Pour connaître les modalités d’appel et de réponse de l’API Impôt particulier ainsi que les données proposées, vous pouvez consulter le guide de présentation de cette API dans la rubrique « Les données nécessaires > Comment choisir les données »")
-
   end
 
   def validate_exclusive_years_scope_combination
     if (scopes & %w[dgfip_annee_n_moins_2_si_indispo_n_moins_1]).present? &&
-       (scopes & %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3]).present?
+        (scopes & %w[dgfip_annee_n_moins_1 dgfip_annee_n_moins_2 dgfip_annee_n_moins_3]).present?
       errors.add(:scopes, :invalid, message: "Vous ne pouvez pas sélectionner la donnée 'avant dernière année de revenu, si la dernière année de revenu est indisponible' avec d'autres années de revenus")
     end
   end

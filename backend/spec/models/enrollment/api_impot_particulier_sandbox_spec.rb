@@ -15,7 +15,7 @@ RSpec.describe Enrollment::ApiImpotParticulierSandbox, type: :model do
     context "when incompatible years combination years are selected" do
       before { enrollment.update(scopes: ["dgfip_annee_n_moins_2_si_indispo_n_moins_1", "dgfip_annee_n_moins_1"]) }
 
-      it 'is not valid' do
+      it "is not valid" do
         enrollment.send(:submit_validation)
         expect(enrollment.errors[:scopes]).to include("Vous ne pouvez pas sélectionner la donnée 'avant dernière année de revenu, si la dernière année de revenu est indisponible' avec d'autres années de revenus")
       end
@@ -24,7 +24,7 @@ RSpec.describe Enrollment::ApiImpotParticulierSandbox, type: :model do
     context "when exclusive years combination years are selected" do
       before { enrollment.update(scopes: ["dgfip_annee_n_moins_1", "dgfip_annee_n_moins_2"]) }
 
-      it 'is valid' do
+      it "is valid" do
         enrollment.send(:submit_validation)
         expect(enrollment).to be_valid
       end
