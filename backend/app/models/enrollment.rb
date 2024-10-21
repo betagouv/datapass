@@ -484,7 +484,7 @@ class Enrollment < ApplicationRecord
     # The only way to access this associations is through demandeur organizations.
     # Note that we cannot access team_member's 'user_id' property directly as team_member may not be persisted yet.
     demandeur_email = team_members.find { |tm| tm.type == "demandeur" }.email
-    demandeur = User.find_by(email: demandeur_email)
+    demandeur = User.find_by(email: demandeur_email.downcase)
 
     selected_organization = demandeur.organizations.find { |o| o["id"] == organization_id }
     siret = selected_organization["siret"]
