@@ -1,9 +1,13 @@
 Bonjour,
 
 <% if @enrollment.reopening? %>
-  La mise à jour de votre habilitation a été validée. Si vous avez modifié les données (scopes) auxquelles vous souhaitez avoir accès (et uniquement dans ce cas), nous vous invitons à demander la modification de votre fournisseur de service via le lien suivant :
+  La mise à jour de votre habilitation a été validée pour un accès au bac-à-sable uniquement, cette demande n'aboutira pas à un jeton FranceConnect.
+  Si vous avez modifié les données (scopes) auxquelles vous souhaitez avoir accès (et uniquement dans ce cas), nous vous invitons à demander la modification de votre fournisseur de service via le lien suivant :
   https://www.demarches-simplifiees.fr/commencer/demande-modification-fs-fc
 
+  Si vous avez fait cette mise à jour dans le cadre de la migration vers FranceConnect v2, nous vous invitons à demander la création de votre fournisseur de service sur le bac-à-sable v2 via le lien suivant :
+  https://www.demarches-simplifiees.fr/commencer/demande-creation-fs-fc
+  
   Vous trouverez toutes les informations sur les données des usagers sur la documentation :
   https://docs.partenaires.franceconnect.gouv.fr/fs/fs-pilotage/fs-projet-donnees-identites/
 <% else %>
