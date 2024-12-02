@@ -9,6 +9,44 @@ import { additionalTermsOfUse } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+
+export const demarches = {
+  default: {
+    label: 'Demande libre',
+    state: {
+      intitule: '',
+      description: '',
+      data_recipients: '',
+      fondement_juridique_title: '',
+      scopes: {
+        dgfip_ficoba_etat_civil_denomination: false,
+        dgfip_ficoba_adresse: false,
+        dgfip_ficoba_compte: true,
+        dgfip_ficoba_etablissement_bancaire: false,
+        dgfip_ficoba_date: false,
+      },
+      accessModes: {
+        acces_ficoba_iban: false,
+        acces_ficoba_spi: false,
+      },
+    },
+  },
+  dummy_demarche: {
+    label: 'dummy 2',
+    state: {
+      intitule: 'blabla',
+      description: 'dummy 2',
+      data_recipients:
+        'Agents instructeurs des demandes de carte de stationnement résidentiel',
+      fondement_juridique_title: '- texte de loi ici',
+      scopes: {
+        dgfip_ficoba_etat_civil_denomination: false,
+        dgfip_ficoba_adresse: true,
+      },
+    },
+  },
+};
 
 export const scopesConfiguration = [
   {
@@ -134,11 +172,13 @@ const steps = [target_api, 'api_ficoba_production'];
 const ApiFicobaSandbox = () => (
   <Form
     target_api={target_api}
+    demarches={demarches}
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
+    <DemarcheSection scopesConfiguration={scopesConfiguration} />
     <DescriptionSection />
     <DonneesSection
       DonneesDescription={DonneesDescription}
