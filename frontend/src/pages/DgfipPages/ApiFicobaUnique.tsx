@@ -40,7 +40,7 @@ const ApiFicobaUnique = () => (
     />
     <ÉquipeSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[50, 100, 200]} />
+    <VolumetrieSection options={[200, 500, 750]} />
     <CguSection cguLink="/docs/cgu_api_ficoba_production.pdf" />
   </Form>
 );
