@@ -16,6 +16,7 @@ import {
   demarches,
   DonneesDescription,
   scopesConfiguration,
+  groups,
 } from './ApiFicobaSandbox';
 
 const target_api = 'api_ficoba_unique';
@@ -33,6 +34,7 @@ const ApiFicobaUnique = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       scopesConfiguration={scopesConfiguration}
+      groups={groups}
       accessModes={accessModes}
     />
     <CadreJuridiqueSection
