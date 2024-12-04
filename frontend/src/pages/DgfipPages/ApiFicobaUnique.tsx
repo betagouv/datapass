@@ -16,7 +16,6 @@ import {
   demarches,
   DonneesDescription,
   scopesConfiguration,
-  groups,
 } from './ApiFicobaSandbox';
 
 const target_api = 'api_ficoba_unique';
@@ -34,7 +33,6 @@ const ApiFicobaUnique = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       scopesConfiguration={scopesConfiguration}
-      groups={groups}
       accessModes={accessModes}
     />
     <CadreJuridiqueSection
@@ -42,7 +40,7 @@ const ApiFicobaUnique = () => (
     />
     <ÉquipeSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[200, 500, 750]} />
+    <VolumetrieSection options={[50, 100, 200]} />
     <CguSection cguLink="/docs/cgu_api_ficoba_production.pdf" />
   </Form>
 );
