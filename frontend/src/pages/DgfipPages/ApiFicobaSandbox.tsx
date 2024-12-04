@@ -175,7 +175,7 @@ export const scopesConfiguration = [
 
 export const groups = {
   information: {
-    label: 'Informations',
+    label: 'Informations compte',
     scopes: [
       'dgfip_ficoba_numero_compte',
       'dgfip_ficoba_etablissement',
