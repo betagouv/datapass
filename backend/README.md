@@ -10,7 +10,7 @@ Pour le développement en local, suivez les instructions ci-dessous:
 
 ## Dépendances
 
-- ruby 3.2.2
+- ruby 3.3.6
 - redis
 - postgresql 12.11
 
