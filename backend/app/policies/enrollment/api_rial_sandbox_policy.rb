@@ -1,5 +1,5 @@
 class Enrollment::ApiRialSandboxPolicy < Enrollment::SandboxPolicy
-  include
+  include DgfipPolicyMethods
 
   def permitted_attributes
     super.tap do |res|
