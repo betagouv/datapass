@@ -55,7 +55,7 @@ export const demarches = {
         dgfip_ficoba_droit_compte: true,
         dgfip_ficoba_etat_civil_adresse: true,
       },
-      accessModes: {
+      additional_content: {
         acces_ficoba_iban: true,
         acces_ficoba_siren: true,
         acces_ficoba_personne_physique: true,
@@ -72,7 +72,7 @@ export const demarches = {
       scopes: {
         dgfip_ficoba_restitution_verification: true,
       },
-      accessModes: {
+      additional_content: {
         acces_ficoba_iban_siren: true,
         acces_ficoba_iban_personne_physique: true,
         acces_ficoba_iban_personne_morale: true,
@@ -88,7 +88,7 @@ export const demarches = {
       scopes: {
         dgfip_ficoba_restitution_verification: true,
       },
-      accessModes: {
+      additional_content: {
         acces_ficoba_iban: true,
       },
     },
@@ -105,7 +105,7 @@ export const demarches = {
         dgfip_ficoba_droit_compte: true,
         dgfip_ficoba_etat_civil_adresse: true,
       },
-      accessModes: {
+      additional_content: {
         acces_ficoba_iban: true,
         acces_ficoba_siren: true,
         acces_ficoba_personne_physique: true,
@@ -124,7 +124,7 @@ export const demarches = {
       scopes: {
         dgfip_ficoba_nombre_comptes: true,
       },
-      accessModes: {
+      additional_content: {
         acces_ficoba_siren: true,
         acces_ficoba_personne_physique: true,
         acces_ficoba_personne_morale: true,
