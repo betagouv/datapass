@@ -52,6 +52,6 @@ class RenameFicobaScopesInEnrollments < ActiveRecord::Migration[7.0]
   private
 
   def valid_enrollments
-    Enrollment.where(target_api: "api_ficoba").where("scopes is not null and id not in (?)")
+    Enrollment.where(target_api: "api_ficoba_sandbox").where("scopes is not null")
   end
 end
