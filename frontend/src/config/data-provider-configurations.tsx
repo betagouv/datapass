@@ -66,6 +66,8 @@ import ApiDeclarationCesu from '../pages/UrssafPages/ApiDeclarationCesu';
 import ApiTiersDePrestation from '../pages/UrssafPages/ApiTiersDePrestation';
 import { ScopeConfiguration } from '../components/organisms/form-sections/DonneesSection/Scopes';
 import ApiInfinoeUnique from '../pages/DgfipPages/ApiInfinoeUnique';
+import ApiRialSandbox from '../pages/DgfipPages/api-rial-sandbox';
+import ApiRialProduction from '../pages/DgfipPages/api-rial-production';
 
 export type FullDataProviderConfiguration = {
   label: string;
@@ -176,6 +178,8 @@ export const TargetAPI = {
   api_sfip_sandbox: 'api_sfip_sandbox',
   api_sfip_production: 'api_sfip_production',
   api_sfip_unique: 'api_sfip_unique',
+  api_rial_sandbox: 'api_rial_sandbox',
+  api_rial_production: 'api_rial_production',
 };
 
 export const DATA_PROVIDER_CONFIGURATIONS: Record<
@@ -647,6 +651,20 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     type: DataProviderType.api,
     component: ApiSfipUnique,
   },
+  [TargetAPI.api_rial_sandbox]: {
+    label: 'API RIAL (Répertoire Inter-Administratif des Locaux)',
+    icon: 'logo-dgfip.jpg',
+    email: `dtnum.donnees.demande-acces@dgfip.finances.gouv.fr, tapir.dgfip@dgfip.finances.gouv.fr`,
+    type: DataProviderType.api,
+    component: ApiRialSandbox,
+  },
+  [TargetAPI.api_rial_production]: {
+    label: 'API RIAL (Répertoire Inter-Administratif des Locaux)',
+    icon: 'logo-dgfip.jpg',
+    email: `dtnum.donnees.demande-acces@dgfip.finances.gouv.fr, tapir.dgfip@dgfip.finances.gouv.fr`,
+    type: DataProviderType.api,
+    component: ApiRialProduction,
+  },
 };
 
 export const HIDDEN_DATA_PROVIDER_KEYS = [
@@ -671,6 +689,8 @@ export const HIDDEN_DATA_PROVIDER_KEYS = [
   'api_sfip_sandbox',
   'api_sfip_production',
   'api_sfip_unique',
+  'api_rial_sandbox',
+  'api_rial_production',
 ];
 
 // Centralise this 2 Const for Login Page and WelcomeMessageRouter
@@ -708,6 +728,8 @@ export const APISDGFIP = [
   'api_satelit_production',
   'api_sfip_sandbox',
   'api_sfip_production',
+  'api_rial_sandbox',
+  'api_rial_production',
 ];
 
 export const APISFRANCECONNECTED = [
