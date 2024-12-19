@@ -95,10 +95,4 @@ module DgfipPolicyMethods
       :specific_requirements
     ]
   end
-
-  def api_rial_specific_requirements
-    [
-      :specific_requirements
-    ]
-  end
 end
