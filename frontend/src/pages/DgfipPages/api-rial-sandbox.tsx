@@ -9,6 +9,8 @@ import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
+import ImpotPartDocumentationAlert from '../../components/molecules/ImpotPartDocumentationAlert';
+import ApiRialDocumentationAlert from '../../components/molecules/ApiRialDocumentationAlert';
 
 const target_api = 'api_rial_sandbox';
 const steps = [target_api, 'api_rial_production'];
@@ -22,7 +24,10 @@ const ApiRialSandbox = () => (
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection ScopesDescription={DataAreInTermsOfUseDescription} />
+    <DonneesSection
+      ScopesDescription={DataAreInTermsOfUseDescription}
+      DonneesDocumentation={ApiRialDocumentationAlert}
+    />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection

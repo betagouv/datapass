@@ -23,7 +23,7 @@ const ApiRialProduction = () => (
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[500]} />
+    <VolumetrieSection options={[200, 500, 1000]} />
     <CguSection cguLink="/docs/cgu_api_rial.pdf" />
   </Form>
 );
