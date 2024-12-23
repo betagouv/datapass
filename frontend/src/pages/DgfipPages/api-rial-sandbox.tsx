@@ -33,7 +33,7 @@ const ApiRialSandbox = () => (
     <ÉquipeSection />
     <CguSection
       // A completer et corriger une fois que le lien sera disponible"
-      cguLink="/docs/cgu_pcr_v1/cgu_bas_e_pro_v.2023_11.pdf"
+      cguLink="/docs/cgu_bas_api_rial_v2024_11.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>

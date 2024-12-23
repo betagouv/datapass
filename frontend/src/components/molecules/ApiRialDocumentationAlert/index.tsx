@@ -15,7 +15,7 @@ export const ApiRialDocumentationAlert: React.FC = () => (
       iconRight
       target="_blank"
       rel="noreferrer noopener"
-      href="https://datapass.api.gouv.fr/docs/dgfip-api_rial_documentation_fonctionnelle_v2024_11.pdf"
+      href="https://datapass.api.gouv.fr/docs/documentation_api_rial_v2024_11-1.pdf"
     >
       Voir la documentation fonctionnelle de l’API Rial
     </Button>
