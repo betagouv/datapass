@@ -502,5 +502,29 @@ FactoryBot.define do
         ]
       end
     end
+
+    trait :api_rial_sandbox do
+      initialize_with do
+        Enrollment::ApiRialSandbox.new(attributes)
+      end
+
+      team_members do
+        [
+          {
+            type: "responsable_technique",
+            email: "user-technique@clamart.fr",
+            phone_number: "0626656565",
+            given_name: "Jean",
+            family_name: "Martin"
+          }
+        ]
+      end
+
+      additional_content do
+        {
+          rgpd_general_agreement: true
+        }
+      end
+    end
   end
 end
