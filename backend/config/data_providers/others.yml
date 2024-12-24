@@ -260,3 +260,11 @@ api_satelit_sandbox:
 api_satelit_production:
   label: API Satelit (Production)
   mailer: *shared_mailer
+
+api_rial_sandbox:
+  label: API Rial (Bac à sable)
+  mailer: *shared_mailer
+
+api_rial_production:
+  label: API Rial (Production)
+  mailer: *shared_mailer
