@@ -25,28 +25,19 @@ export const demarches = {
       fondement_juridique_title: '',
     },
   },
-  recherche_local_identifiant: {
-    label: 'Recherche d’un local par son identifiant fiscal',
+  fiabilisation_identifiants_locaux: {
+    label: 'Fiabilisation des identifiants des locaux',
     state: {
-      intitule: 'Recherche d’un local par son identifiant fiscal',
+      intitule: 'Fiabilisation des identifiants des locaux',
       description: '',
       data_recipients: '',
       fondement_juridique_title: '',
     },
   },
-  recherche_locaux_parcelle_cadastre: {
-    label: 'Recherche de locaux par une parcelle cadastrale',
+  recuperation_adresse_local: {
+    label: 'Récupération de l’adresse d’un local',
     state: {
-      intitule: 'Recherche de locaux par une parcelle cadastrale',
-      description: '',
-      data_recipients: '',
-      fondement_juridique_title: '',
-    },
-  },
-  recherche_locaux_adresse: {
-    label: 'Recherche de locaux par une adresse',
-    state: {
-      intitule: 'Recherche de locaux par une adresse',
+      intitule: 'Récupération de l’adresse d’un local',
       description: '',
       data_recipients: '',
       fondement_juridique_title: '',
