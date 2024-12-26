@@ -10,7 +10,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
 import ApiRialDocumentationAlert from '../../components/molecules/ApiRialDocumentationAlert';
-import { accessModes } from './api-impot-particulier-common';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 
 const target_api = 'api_rial_sandbox';
 const steps = [target_api, 'api_rial_production'];
@@ -78,6 +78,7 @@ const ApiRialSandbox = () => (
   >
     <PreviousEnrollmentSection steps={steps} />
     <OrganisationSection />
+    <DemarcheSection />
     <DescriptionSection />
     <DonneesSection
       ScopesDescription={DataAreInTermsOfUseDescription}
