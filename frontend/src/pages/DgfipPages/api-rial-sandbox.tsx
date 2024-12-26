@@ -80,15 +80,13 @@ const ApiRialSandbox = () => (
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection
-      // A retirer ou modifier selon les besoins
       ScopesDescription={DataAreInTermsOfUseDescription}
-      // Texte dans le composant ApiRialDocumentationAlert à modifier selon les besoins
       DonneesDocumentation={ApiRialDocumentationAlert}
+      accessModes={accessModes}
     />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
-      // A completer et corriger une fois que le lien sera disponible"
       cguLink="/docs/cgu_bas_api_rial_v2024-11.pdf"
       additionalTermsOfUse={additionalTermsOfUse}
     />
