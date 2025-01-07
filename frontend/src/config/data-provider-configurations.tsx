@@ -652,14 +652,14 @@ export const DATA_PROVIDER_CONFIGURATIONS: Record<
     component: ApiSfipUnique,
   },
   [TargetAPI.api_rial_sandbox]: {
-    label: 'API RIAL (Répertoire Inter-Administratif des Locaux)',
+    label: 'API RIAL (Bac à sable)',
     icon: 'logo-dgfip.jpg',
     email: `dtnum.donnees.demande-acces@dgfip.finances.gouv.fr, tapir.dgfip@dgfip.finances.gouv.fr`,
     type: DataProviderType.api,
     component: ApiRialSandbox,
   },
   [TargetAPI.api_rial_production]: {
-    label: 'API RIAL (Répertoire Inter-Administratif des Locaux)',
+    label: 'API RIAL (Production)',
     icon: 'logo-dgfip.jpg',
     email: `dtnum.donnees.demande-acces@dgfip.finances.gouv.fr, tapir.dgfip@dgfip.finances.gouv.fr`,
     type: DataProviderType.api,
