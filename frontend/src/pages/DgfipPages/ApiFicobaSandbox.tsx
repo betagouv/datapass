@@ -20,10 +20,11 @@ export const demarches = {
       data_recipients: '',
       fondement_juridique_title: '',
       scopes: {
-        dgfip_ficoba_numero_compte: false,
-        dgfip_ficoba_etablissement: false,
-        dgfip_ficoba_droit_compte: false,
-        dgfip_ficoba_etat_civil_adresse: false,
+        dgfip_ficoba_etat_civil_denomination: false,
+        dgfip_ficoba_adresse: false,
+        dgfip_ficoba_compte: false,
+        dgfip_ficoba_etablissement_bancaire: false,
+        dgfip_ficoba_date: false,
         dgfip_ficoba_restitution_verification: false,
         dgfip_ficoba_nombre_comptes: false,
         dgfip_ficoba_iban: false,
@@ -50,10 +51,11 @@ export const demarches = {
       description:
         'FICOBA permet de restituer la liste des comptes bancaires ouverts (sans date de clôture) dont le titulaire (personne physique ou personne morale) n’est pas à jour dans le paiement de ses impôts, taxes, amendes, cotisations… A partir des données restituées, le service peut enclencher une procédure de saisie administrative à tiers détenteur (SATD).',
       scopes: {
-        dgfip_ficoba_numero_compte: true,
-        dgfip_ficoba_etablissement: true,
-        dgfip_ficoba_droit_compte: true,
-        dgfip_ficoba_etat_civil_adresse: true,
+        dgfip_ficoba_etat_civil_denomination: true,
+        dgfip_ficoba_adresse: true,
+        dgfip_ficoba_compte: true,
+        dgfip_ficoba_etablissement_bancaire: true,
+        dgfip_ficoba_date: true,
       },
       additional_content: {
         acces_ficoba_iban: true,
@@ -100,10 +102,11 @@ export const demarches = {
       description:
         'FICOBA permet d’accéder à la liste des comptes détenus par un titulaire dans le cadre d’une enquête menée par une autorité compétente afin d’appréhender un fraudeur potentiel et de constituer des éléments permettant de prouver la fraude.',
       scopes: {
-        dgfip_ficoba_numero_compte: true,
-        dgfip_ficoba_etablissement: true,
-        dgfip_ficoba_droit_compte: true,
-        dgfip_ficoba_etat_civil_adresse: true,
+        dgfip_ficoba_etat_civil_denomination: true,
+        dgfip_ficoba_adresse: true,
+        dgfip_ficoba_compte: true,
+        dgfip_ficoba_etablissement_bancaire: true,
+        dgfip_ficoba_date: true,
       },
       additional_content: {
         acces_ficoba_iban: true,
@@ -136,20 +139,24 @@ export const demarches = {
 
 export const scopesConfiguration = [
   {
-    value: 'dgfip_ficoba_numero_compte',
+    value: 'dgfip_ficoba_etat_civil_denomination',
+    label: 'État civil / Raison sociale du titulaire du compte',
+  },
+  {
+    value: 'dgfip_ficoba_adresse',
+    label: 'Adresse',
+  },
+  {
+    value: 'dgfip_ficoba_compte',
     label: 'Numéro du compte ouvert et caractéristiques',
   },
   {
-    value: 'dgfip_ficoba_etablissement',
+    value: 'dgfip_ficoba_etablissement_bancaire',
     label: 'Etablissement / Guichet bancaire / Adresse',
   },
   {
-    value: 'dgfip_ficoba_droit_compte',
+    value: 'dgfip_ficoba_date',
     label: 'Droit sur le compte et date effective',
-  },
-  {
-    value: 'dgfip_ficoba_etat_civil_adresse',
-    label: 'État civil / Raison sociale du titulaire du compte & adresse',
   },
   {
     value: 'dgfip_ficoba_restitution_verification',
@@ -177,11 +184,11 @@ export const groups = {
   information: {
     label: 'Informations compte',
     scopes: [
-      'dgfip_ficoba_numero_compte',
-      'dgfip_ficoba_etablissement',
-      'dgfip_ficoba_droit_compte',
-      'dgfip_ficoba_etat_civil_adresse',
-      'dgfip_ficoba_restitution_verification',
+      'dgfip_ficoba_etat_civil_denomination',
+      'dgfip_ficoba_adresse',
+      'dgfip_ficoba_compte',
+      'dgfip_ficoba_etablissement_bancaire',
+      'dgfip_ficoba_date',
     ],
   },
   controle_multi_detention_per: {

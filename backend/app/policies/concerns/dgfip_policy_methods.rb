@@ -5,15 +5,17 @@ module DgfipPolicyMethods
 
   def ficoba_permitted_scopes
     [
-      :dgfip_ficoba_numero_compte,
-      :dgfip_ficoba_etablissement,
-      :dgfip_ficoba_droit_compte,
-      :dgfip_ficoba_etat_civil_adresse,
+      :dgfip_ficoba_etat_civil_denomination,
+      :dgfip_ficoba_adresse,
+      :dgfip_ficoba_compte,
+      :dgfip_ficoba_etablissement_bancaire,
+      :dgfip_ficoba_date,
       :dgfip_ficoba_restitution_verification,
       :dgfip_ficoba_nombre_comptes,
       :dgfip_ficoba_iban,
       :dgfip_ficoba_date_ouverture,
       :dgfip_ficoba_motif_ouverture
+
     ]
   end
 
