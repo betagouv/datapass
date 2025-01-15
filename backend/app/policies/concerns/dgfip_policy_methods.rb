@@ -15,7 +15,6 @@ module DgfipPolicyMethods
       :dgfip_ficoba_iban,
       :dgfip_ficoba_date_ouverture,
       :dgfip_ficoba_motif_ouverture
-
     ]
   end
 
