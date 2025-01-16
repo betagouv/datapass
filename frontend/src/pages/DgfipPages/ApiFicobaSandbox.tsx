@@ -189,6 +189,7 @@ export const groups = {
       'dgfip_ficoba_compte',
       'dgfip_ficoba_etablissement_bancaire',
       'dgfip_ficoba_date',
+      'dgfip_ficoba_restitution_verification',
     ],
   },
   controle_multi_detention_per: {
