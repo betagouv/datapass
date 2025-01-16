@@ -166,7 +166,7 @@ jobs:
           REACT_APP_HUBEE_PORTAIL_REDIRECT_TO_V2_HOST: ${{ matrix.react_app_hubee_portail_redirect_to_v2_host }}
           REACT_APP_HUBEE_PORTAIL_DILA_REDIRECT_TO_V2_HOST: ${{ matrix.react_app_hubee_portail_dila_redirect_to_v2_host }}
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.env }}-${{ github.sha }}-build
           path: |
