@@ -104,7 +104,7 @@ const ApiScolarite = () => (
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <ÉquipeSection />
-    <CguSection cguLink="/docs/cgu_api_statut_etudiant.pdf" />
+    <CguSection cguLink="/docs/cgu_api_scolarite.pdf" />
   </Form>
 );
 
