@@ -13,7 +13,7 @@ import PreviousEnrollmentSection from '../../components/organisms/form-sections/
 export const scopesConfiguration = [
   {
     value: 'dgfip_ficoba_etat_civil_denomination',
-    label: 'État civil / Raison sociale du titulaire du compte',
+    label: 'État civil ou dénomination',
   },
   {
     value: 'dgfip_ficoba_adresse',
@@ -21,35 +21,16 @@ export const scopesConfiguration = [
   },
   {
     value: 'dgfip_ficoba_compte',
-    label: 'Numéro du compte ouvert et caractéristiques',
+    label: 'Désignation du compte',
+    required: true,
   },
   {
     value: 'dgfip_ficoba_etablissement_bancaire',
-    label: 'Etablissement / Guichet bancaire / Adresse',
+    label: 'Établissement bancaire',
   },
   {
     value: 'dgfip_ficoba_date',
-    label: 'Droit sur le compte et date effective',
-  },
-  {
-    value: 'dgfip_ficoba_restitution_verification',
-    label: 'Restitution vérification (O/N) et date de clôture le cas échéant',
-  },
-  {
-    value: 'dgfip_ficoba_nombre_comptes',
-    label: 'Nombre de comptes trouvés',
-  },
-  {
-    value: 'dgfip_ficoba_iban',
-    label: 'IBAN',
-  },
-  {
-    value: 'dgfip_ficoba_date_ouverture',
-    label: 'Date dʼouverture',
-  },
-  {
-    value: 'dgfip_ficoba_motif_ouverture',
-    label: 'Motif dʼouverture',
+    label: 'Date',
   },
 ];
 
