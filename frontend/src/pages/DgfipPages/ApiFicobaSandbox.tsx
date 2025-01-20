@@ -68,27 +68,11 @@ export const accessModes = [
   },
   {
     id: 'acces_ficoba_personne_physique',
-    label: 'via lʼétat civil - personne physique',
+    label: 'via personne physique',
   },
   {
     id: 'acces_ficoba_personne_morale',
-    label: 'via la raison sociale - personne morale',
-  },
-  {
-    id: 'acces_ficoba_adresse',
-    label: 'via lʼadresse',
-  },
-  {
-    id: 'acces_ficoba_iban_siren',
-    label: 'via IBAN + SIREN/SIRET',
-  },
-  {
-    id: 'acces_ficoba_iban_personne_physique',
-    label: 'via IBAN + état civil - personne physique',
-  },
-  {
-    id: 'acces_ficoba_iban_personne_morale',
-    label: 'via IBAN + raison sociale - personne morale',
+    label: 'via personne morale',
   },
 ];
 
