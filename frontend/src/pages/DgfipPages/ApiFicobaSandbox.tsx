@@ -9,7 +9,6 @@ import { additionalTermsOfUse } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import { DATA_PROVIDER_CONFIGURATIONS } from '../../config/data-provider-configurations';
 import PreviousEnrollmentSection from '../../components/organisms/form-sections/PreviousEnrollmentSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 
 export const scopesConfiguration = [
   {
