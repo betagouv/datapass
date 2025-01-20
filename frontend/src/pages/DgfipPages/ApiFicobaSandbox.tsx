@@ -54,29 +54,6 @@ export const scopesConfiguration = [
   },
 ];
 
-export const groups = {
-  information: {
-    label: 'Informations compte',
-    scopes: [
-      'dgfip_ficoba_etat_civil_denomination',
-      'dgfip_ficoba_adresse',
-      'dgfip_ficoba_compte',
-      'dgfip_ficoba_etablissement_bancaire',
-      'dgfip_ficoba_date',
-      'dgfip_ficoba_restitution_verification',
-    ],
-  },
-  controle_multi_detention_per: {
-    label: 'Contrôles multi-détention PER',
-    scopes: [
-      'dgfip_ficoba_nombre_comptes',
-      'dgfip_ficoba_iban',
-      'dgfip_ficoba_date_ouverture',
-      'dgfip_ficoba_motif_ouverture',
-    ],
-  },
-};
-
 export const accessModes = [
   {
     id: 'acces_ficoba_iban',
@@ -202,7 +179,6 @@ const ApiFicobaSandbox = () => (
     <DonneesSection
       DonneesDescription={DonneesDescription}
       scopesConfiguration={scopesConfiguration}
-      groups={groups}
       accessModes={accessModes}
     />
     <CadreJuridiqueSection
