@@ -23,7 +23,7 @@ const ApiFicobaProduction = () => (
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[200, 500, 750]} />
+    <VolumetrieSection options={[50, 100, 200]} />
     <CguSection cguLink="/docs/cgu_api_ficoba_production.pdf" />
   </Form>
 );
