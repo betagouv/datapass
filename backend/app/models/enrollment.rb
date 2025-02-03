@@ -201,6 +201,8 @@ class Enrollment < ApplicationRecord
       api_r2p_production
       api_r2p_sandbox
       api_r2p_unique
+      api_rial_sandbox
+      api_rial_production
       api_robf_production
       api_robf_sandbox
       api_satelit_production
