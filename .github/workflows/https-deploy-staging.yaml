@@ -16,7 +16,10 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        host: [watchdoge1, watchdoge2, watchdoge3, watchdoge4]
+        host:
+          - watchdoge3
+          - watchdoge4
+          - watchdoge5
       fail-fast: false
     environment: staging
     env:
