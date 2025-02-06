@@ -40,7 +40,7 @@ const NextSteps: React.FC<NextStepsProps> = ({
           <div>
             <AuthIcon />
           </div>
-          <div>S’identifier avec MonComptePro</div>
+          <div>S’identifier avec ProConnect</div>
         </div>
         <div>
           <div>
