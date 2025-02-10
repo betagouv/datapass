@@ -5,11 +5,11 @@ export const AlertMissingPhoneNumber: React.FC = () => (
   <SoftAlert>
     Un numéro de téléphone est nécessaire : compléter sur{' '}
     <a
-      href="https://app.moncomptepro.beta.gouv.fr/personal-information"
+      href="https://identite.proconnect.gouv.fr/personal-information"
       target="_blank"
       rel="noreferrer"
     >
-      Mon Compte Pro
+      ProConnect
     </a>
   </SoftAlert>
 );

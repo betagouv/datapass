@@ -276,11 +276,11 @@ export const Form: React.FC<FormProps> = ({
             handleCancel={() => setDemandeurPhoneNumberWarning(false)}
             handleConfirm={() =>
               window.open(
-                'https://app.moncomptepro.beta.gouv.fr/personal-information',
+                'https://identite.proconnect.gouv.fr/personal-information',
                 '_blank'
               )
             }
-            confirmLabel="Compléter sur Mon Compte Pro"
+            confirmLabel="Compléter sur ProConnect"
             cancelLabel="Fermer"
             title="Nous avons besoin d’information"
           >
