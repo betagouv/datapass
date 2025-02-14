@@ -162,7 +162,7 @@ class Enrollment < ApplicationRecord
 
   def reopening?
     last_validated_at.present? &&
-      status != "validated"
+      %w[validated revoked refused].exclude?(status)
   end
 
   def can_reopen?
