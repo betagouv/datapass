@@ -20,7 +20,7 @@ class ApiSirene < ApplicationService
 
     begin
       response = Http.instance.get({
-        url: "#{insee_host}/entreprises/sirene/V3.11/siret/#{@siret}",
+        url: "https://api.insee.fr/api-sirene/prive/3.11/siret/#{@siret}",
         api_key: cached_access_token,
         tag: "API Insee",
         timeout: 5
@@ -107,16 +107,20 @@ class ApiSirene < ApplicationService
 
   private
 
-  def insee_host
-    ENV.fetch("INSEE_HOST")
+  def insee_client_id
+    ENV.fetch("INSEE_CLIENT_ID", Rails.application.credentials.insee_client_id)
   end
 
-  def insee_consumer_key
-    ENV.fetch("INSEE_CONSUMER_KEY")
+  def insee_client_secret
+    ENV.fetch("INSEE_CLIENT_SECRET", Rails.application.credentials.insee_client_secret)
   end
 
-  def insee_consumer_secret
-    ENV.fetch("INSEE_CONSUMER_SECRET")
+  def insee_username
+    ENV.fetch("INSEE_USERNAME", Rails.application.credentials.insee_username)
+  end
+
+  def insee_password
+    ENV.fetch("INSEE_PASSWORD", Rails.application.credentials.insee_password)
   end
 
   def codes_naf
@@ -129,10 +133,14 @@ class ApiSirene < ApplicationService
 
   def get_token
     token_response = Http.instance.post({
-      url: "#{insee_host}/token",
-      body: {grant_type: "client_credentials"},
-      api_key: Base64.strict_encode64("#{insee_consumer_key}:#{insee_consumer_secret}"),
-      use_basic_auth_method: true,
+      url: "https://auth.insee.net/auth/realms/apim-gravitee/protocol/openid-connect/token",
+      body: {
+        grant_type: "password",
+        client_id: insee_client_id,
+        client_secret: insee_client_secret,
+        username: insee_username,
+        password: insee_password
+      },
       use_form_content_type: true,
       tag: "API Insee",
       timeout: 5
