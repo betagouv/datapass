@@ -148,7 +148,7 @@ RSpec.describe ApiSirene, type: :service do
       it "subject is called twice but insee_host/token is called once" do
         subject
 
-        expect(a_request(:post, "#{ENV.fetch("INSEE_HOST")}/token"))
+        expect(a_request(:post, "https://auth.insee.net/auth/realms/apim-gravitee/protocol/openid-connect/token"))
           .to have_been_made.once
       end
     end
