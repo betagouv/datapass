@@ -2,7 +2,7 @@ module ApiInseePayloadHelpers
   include WebMock::API
 
   def stub_api_insee_etablissement_call(siret)
-    stub_request(:post, "#{insee_host}/token").to_return(
+    stub_request(:post, "https://auth.insee.net/auth/realms/apim-gravitee/protocol/openid-connect/token").to_return(
       status: 200,
       headers: {
         "Content-Type" => "application/json"
@@ -10,7 +10,7 @@ module ApiInseePayloadHelpers
       body: api_insee_token_payload.to_json
     )
 
-    stub_request(:get, "#{insee_host}/entreprises/sirene/V3.11/siret/#{siret}").to_return(
+    stub_request(:get, "https://api.insee.fr/api-sirene/prive/3.11/siret/#{siret}").to_return(
       status: if siret.in?(%w[21920023500014 88301031600015 83951732300011 13002526500013 23974001200012])
                 200
               elsif siret == "30002490800026"
