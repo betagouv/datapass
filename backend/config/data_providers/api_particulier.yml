@@ -208,6 +208,8 @@ api_particulier:
       siret: '39825361700045'
     - name: Amiciel
       siret: '44884396100021'
+    - name: Apidev
+      siret: '51435092500038'
     - name: Arche MC2
       siret: '38251931200088'
     - name: Arpège
@@ -444,6 +446,34 @@ api_particulier:
           cnaf_allocataires: true
           cnaf_enfants: true
           cnaf_adresse: false
+    Apidev:
+      label: Millibase.net, Tarification Accueil Périscolaire et/ou Extrasoclaire pour associations et collectivités.
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: Récupération du Quotient Familial pour le service Périscolaire et/ou extrascolaire.
+        description: >-
+          Les structures proposent une tarification aux séances d'accueils de loisirs et/ou à des activités en fonction du Quotient Familial. 
+          l'API sert à la mise à jour du quotient familial pour proposer un tarfif au plus juste à chaque famille.
+        data_recipients: >-
+          Agents instructeurs des dossiers d’inscription en accueil périscolaire et/ou extrascolaire.
+        data_retention_period: 36
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement
+        technical_team_type: software_company
+        technical_team_value: '51435092500038'
+        scopes:
+          cnaf_quotient_familial: true
+      team_members:
+        responsable_technique:
+          given_name: Luc
+          family_name: Jean
+          job: Développeur web
+          email: ljean@apidev.fr
+          phone_number: '0637257839'
     bl-enfance-berger-levrault-cnaf:
       label: BL Enfance | Portail famille
       about: https://particulier.api.gouv.fr/cas_usages/portail_famille
