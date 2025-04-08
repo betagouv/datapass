@@ -29,7 +29,7 @@ env:
 jobs:
   test:
     name: Tests (RSpec)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     defaults:
       run:
         working-directory: ./backend
@@ -109,7 +109,7 @@ jobs:
 
   # lint:
   #   name: Linter (StandardRB)
-  #   runs-on: ubuntu-20.04
+  #   runs-on: ubuntu-22.04
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
   #   steps:
   #     - name: Checkout code
@@ -124,7 +124,7 @@ jobs:
   # security:
   #   name: Brakeman
   #   if: "${{ github.actor != 'dependabot[bot]' }}"
-  #   runs-on: ubuntu-20.04
+  #   runs-on: ubuntu-22.04
   #   steps:
   #     - name: Checkout code
   #       uses: actions/checkout@v3

@@ -10,3 +10,8 @@ responsable_traitement_attributes_idf:
   phone_number: "0636656565"
   job: "Directeur de la donnée"
   user_id: 9001
+insee_client_id: insee_client_id
+insee_client_secret: insee_client_secret
+insee_username: insee_username
+insee_password: insee_password
+
