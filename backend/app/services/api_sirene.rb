@@ -108,19 +108,19 @@ class ApiSirene < ApplicationService
   private
 
   def insee_client_id
-    ENV.fetch("INSEE_CLIENT_ID", Rails.application.credentials.insee_client_id)
+    ENV.fetch("INSEE_CLIENT_ID", Credentials.get(:insee_client_id))
   end
 
   def insee_client_secret
-    ENV.fetch("INSEE_CLIENT_SECRET", Rails.application.credentials.insee_client_secret)
+    ENV.fetch("INSEE_CLIENT_SECRET", Credentials.get(:insee_client_secret))
   end
 
   def insee_username
-    ENV.fetch("INSEE_USERNAME", Rails.application.credentials.insee_username)
+    ENV.fetch("INSEE_USERNAME", Credentials.get(:insee_username))
   end
 
   def insee_password
-    ENV.fetch("INSEE_PASSWORD", Rails.application.credentials.insee_password)
+    ENV.fetch("INSEE_PASSWORD", Credentials.get(:insee_password))
   end
 
   def codes_naf
