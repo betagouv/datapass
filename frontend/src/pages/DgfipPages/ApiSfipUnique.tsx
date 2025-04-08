@@ -25,7 +25,7 @@ const ApiSfipUnique = () => (
     target_api={target_api}
     demarches={demarches}
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
-    documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
+    documentationUrl="https://api.gouv.fr/les-api/api-sfip"
   >
     <OrganisationSection />
     <DemarcheSection scopesConfiguration={scopesConfiguration} />
