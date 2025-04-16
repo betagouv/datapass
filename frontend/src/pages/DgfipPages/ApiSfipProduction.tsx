@@ -17,7 +17,7 @@ const ApiSfipProduction = () => (
   <Form
     target_api={target_api}
     contactEmail={DATA_PROVIDER_CONFIGURATIONS[target_api]?.email}
-    documentationUrl="https://api.gouv.fr/les-api/api-sfip"
+    documentationUrl="https://www.data.gouv.fr/fr/dataservices/api-service-finances-publiques-sfip/"
   >
     <ÉquipeInitializerSection />
     <PreviousEnrollmentSection steps={steps} />
