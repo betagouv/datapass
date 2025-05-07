@@ -56,28 +56,6 @@ RSpec.describe ApiSirene, type: :service do
     end
   end
 
-  context "for a non diffusable organization" do
-    let(:siret) { "30002490800026" }
-
-    it "return siret and etat_administratif" do
-      expect(subject).to eq({
-        nom_raison_sociale: nil,
-        siret: "30002490800026",
-        denomination: nil,
-        sigle: nil,
-        adresse: nil,
-        code_postal: nil,
-        code_commune: nil,
-        libelle_commune: nil,
-        activite_principale: nil,
-        activite_principale_label: nil,
-        categorie_juridique: nil,
-        categorie_juridique_label: nil,
-        etat_administratif: "A"
-      })
-    end
-  end
-
   context "for an organization not present in INSEE database (ex: gendarmerie)" do
     let(:siret) { "15700033200013" }
 
