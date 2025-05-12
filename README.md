@@ -79,8 +79,8 @@ Pour devenir instructeur, rapporteur ou abonné pour un type d’habilitation il
 
 Si vous avez besoin de faire le parcours de validation complet pour bien comprendre le fonctionnement
 de DataPass, vous pouvez utiliser notre plateforme de « staging ». Cette plateforme est disponible ici :
-https://datapass-staging.api.gouv.fr/ (lien direct vers une demande d’habilitation API Particulier :
-https://datapass-staging.api.gouv.fr/api-particulier).
+https://staging.api-entreprise.v2.datapass.api.gouv.fr/ (lien direct vers une demande d’habilitation API Particulier :
+https://staging.api-particulier.v2.datapass.api.gouv.fr/).
 
 Vous pouvez vous créer un compte utilisateur en entrant n’importe quel numéro SIRET.
 
