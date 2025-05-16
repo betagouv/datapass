@@ -24,6 +24,18 @@ csv_string = CSV.generate(force_quotes: true) do |csv|
   mapped_dates.each do |enr|
     csv << enr
   end
-end; puts csv_string
+end
+
+
+filename = "suivi_dtnum_dates.csv"
+File.open(filename, 'w') do |file|
+  file.write(csv_string)
+end
+
+puts "File #{filename} generated successfully.now do :"
+
+puts "sudo mv /opt/apps/datapass_production-backend/current/#{filename} ~caillou; sudo chown caillou:caillou ~caillou/#{filename}"
+puts "puis depuis ta machine:\nscp watchdoge:#{filename} bin/#{filename}"
+
 
 
