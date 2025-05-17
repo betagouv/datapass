@@ -8,13 +8,13 @@ v1_ids += [63070,63076,63077,63082,63085,63087,63089,63111,63118,63120,63124,631
 
 
 enrollments = Enrollment.where(id: v1_ids)
-enrollments = Enrollment.all
+# enrollments = Enrollment.all
 
 ## ALORS ##
 
 STATE_EVENTS = %w[request_changes submit validate refuse reopen]
 
-enrollments = enrollments.includes(:events)
+enrollments = enrollments.includes(:events).order(:id)
 
 mapped_dates = enrollments.map do |enrollment|
   date_reception = enrollment.events.select{|event|  %w[submit reopen].include? event.name}.map(&:created_at).min
