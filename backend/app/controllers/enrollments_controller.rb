@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 class EnrollmentsController < AuthenticatedUserController
   RESPONSABLE_TRAITEMENT_LABEL = "responsable de traitement"
   DELEGUE_PROTECTION_DONNEES_LABEL = "délégué à la protection des données"
 
   skip_before_action :authenticate_user!, only: [:public]
+  before_action :early_return, only: %i[create update change_state]
 
   # GET /enrollments
   def index
     @enrollments = policy_scope(Enrollment)
 
-    if params[:target_api].present?
-      @enrollments = @enrollments.where(target_api: params[:target_api])
-    end
+    @enrollments = @enrollments.where(target_api: params[:target_api]) if params[:target_api].present?
 
     begin
       sorted_by = JSON.parse(params[:sortedBy] || "[]")
@@ -39,9 +40,7 @@ class EnrollmentsController < AuthenticatedUserController
 
     serializer = LightEnrollmentSerializer
 
-    if params[:detailed].present?
-      serializer = EnrollmentSerializer
-    end
+    serializer = EnrollmentSerializer if params[:detailed].present?
 
     render json: @enrollments,
       each_serializer: serializer,
@@ -53,9 +52,7 @@ class EnrollmentsController < AuthenticatedUserController
   # GET /enrollments/1
   def show
     @enrollment = authorize Enrollment.find(params[:id])
-    unless @enrollment.consulted_by_instructor?
-      @enrollment.mark_event_as_processed("submit")
-    end
+    @enrollment.mark_event_as_processed("submit") unless @enrollment.consulted_by_instructor?
     render json: @enrollment
   end
 
@@ -97,8 +94,10 @@ class EnrollmentsController < AuthenticatedUserController
   def create
     target_api = params.fetch(:enrollment, {})["target_api"]
     unless DataProviderConfigurations.instance.exists?(target_api)
-      raise ApplicationController::UnprocessableEntity, "Une erreur inattendue est survenue: fournisseur de données inconnu. Aucun changement n’a été sauvegardé."
+      raise ApplicationController::UnprocessableEntity,
+        "Une erreur inattendue est survenue: fournisseur de données inconnu. Aucun changement n’a été sauvegardé."
     end
+
     enrollment_class = "Enrollment::#{target_api.underscore.classify}".constantize
     @enrollment = enrollment_class.new
 
@@ -146,16 +145,17 @@ class EnrollmentsController < AuthenticatedUserController
         refreshed_user = RefreshUser.call(session[:access_token])
 
         unless refreshed_user.email_verified
-          raise ApplicationController::Forbidden, "L’accès à votre adresse email n’a pas pu être vérifié. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/verify-email puis de cliquer sur 'Me renvoyer un code de confirmation'"
+          raise ApplicationController::Forbidden,
+            "L’accès à votre adresse email n’a pas pu être vérifié. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/verify-email puis de cliquer sur 'Me renvoyer un code de confirmation'"
         end
+
         selected_organization = refreshed_user.organizations.find { |o| o["id"] == @enrollment.organization_id }
         if selected_organization.nil?
-          raise ApplicationController::Forbidden, "Vous ne pouvez pas demander une habilitation pour une organisation à laquelle vous n’appartenez pas. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/join-organization?siret_hint=#{@enrollment.siret} puis de cliquer sur 'Rejoindre l’organisation'"
+          raise ApplicationController::Forbidden,
+            "Vous ne pouvez pas demander une habilitation pour une organisation à laquelle vous n’appartenez pas. Merci de vous rendre sur #{ENV.fetch("OAUTH_HOST")}/users/join-organization?siret_hint=#{@enrollment.siret} puis de cliquer sur 'Rejoindre l’organisation'"
         end
       rescue ApplicationController::BadGateway => e
-        if e.http_code != 401
-          raise
-        end
+        raise if e.http_code != 401
 
         # we force the logout so the token and user info can be refreshed.
         clear_user_session!
@@ -163,9 +163,7 @@ class EnrollmentsController < AuthenticatedUserController
       end
     end
 
-    if current_user.is_instructor?(@enrollment.target_api)
-      @enrollment.mark_event_as_processed("notify")
-    end
+    @enrollment.mark_event_as_processed("notify") if current_user.is_instructor?(@enrollment.target_api)
 
     if @enrollment.send(
       "#{event}_status".to_sym,
@@ -176,7 +174,7 @@ class EnrollmentsController < AuthenticatedUserController
         @enrollment.notify_event(
           event,
           comment: params[:comment],
-          current_user: current_user
+          current_user:
         )
       end
       render json: @enrollment
@@ -235,7 +233,7 @@ class EnrollmentsController < AuthenticatedUserController
     # we need to convert boolean values as it is send as string because of the
     # data-form serialisation then we convert scopes to array
     enrollment_param["scopes"] =
-      enrollment_param["scopes"].to_h.select { |k, v| v == "true" }.keys
+      enrollment_param["scopes"].to_h.select { |_k, v| v == "true" }.keys
     # in a similar way, format additional boolean content
     enrollment_param["additional_content"] =
       (enrollment_param["additional_content"] || {}).transform_values do |value|
@@ -250,5 +248,11 @@ class EnrollmentsController < AuthenticatedUserController
       end
 
     enrollment_param
+  end
+
+  def early_return
+    return unless Rails.env.production?
+
+    render json: {}, status: :gone
   end
 end
