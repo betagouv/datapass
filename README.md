@@ -1,3 +1,7 @@
+# ⚠️ Ce dépôt n'est plus maintenu, il est remplacé par une nouvelle version disponible sur: [etalab/data_pass](https://github.com/etalab/data_pass)
+
+---
+
 # DataPass [![Frontend build](https://github.com/betagouv/datapass/actions/workflows/front.yml/badge.svg)](https://github.com/betagouv/datapass/actions/workflows/front.yml) [![Backend CI](https://github.com/betagouv/datapass/actions/workflows/back.yml/badge.svg)](https://github.com/betagouv/datapass/actions/workflows/back.yml)
 
 L’outil de gestion des habilitations juridiques pour les données à accès restreint.
