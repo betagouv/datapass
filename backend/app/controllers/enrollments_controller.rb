@@ -133,7 +133,7 @@ class EnrollmentsController < AuthenticatedUserController
         message: ["event not permitted"]
       }
     end
-    @enrollment = authorize Enrollment.find(params[:id]), "#{event}?".to_sym
+    @enrollment = authorize Enrollment.find(params[:id]), :"#{event}?"
 
     # We update userinfo when "event" is "submit".
     # This is useful to prevent user that has been removed from organization, or has been deactivated
@@ -166,7 +166,7 @@ class EnrollmentsController < AuthenticatedUserController
     @enrollment.mark_event_as_processed("notify") if current_user.is_instructor?(@enrollment.target_api)
 
     if @enrollment.send(
-      "#{event}_status".to_sym,
+      :"#{event}_status",
       user_id: current_user.id,
       comment: params[:comment]
     )
