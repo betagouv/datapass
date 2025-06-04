@@ -2,6 +2,7 @@
 
 require_relative "boot"
 
+require "csv"
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -20,7 +21,7 @@ require "./app/middleware/validate_request_params"
 Bundler.require(*Rails.groups)
 
 require "dotenv/rails"
-Dotenv::Railtie.load
+Dotenv::Rails.load
 
 module DataPass
   class Application < Rails::Application

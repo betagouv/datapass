@@ -135,6 +135,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.5)
     date (3.4.1)
     db-query-matchers (0.14.0)
       activesupport (>= 4.0, < 8.1)
@@ -546,6 +547,7 @@ DEPENDENCIES
   carrierwave-aws
   carrierwave-i18n
   caxlsx
+  csv
   db-query-matchers
   devise
   dotenv-rails
