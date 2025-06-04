@@ -25,7 +25,7 @@ gem "pg"
 gem "puma"
 gem "pundit"
 gem "redis"
-gem "rack-cors"
+gem "rack-cors", "~> 2.0"
 gem "rails", "~> 7.0.8"
 gem "rails-i18n"
 gem "sentry-ruby"
@@ -34,6 +34,8 @@ gem "sib-api-v3-sdk"
 gem "sidekiq", "~> 7.2"
 gem "sidekiq-scheduler", "~> 5.0"
 gem "state_machines-activerecord"
+
+gem "fugit", "~> 1"
 
 group :test do
   gem "db-query-matchers"
