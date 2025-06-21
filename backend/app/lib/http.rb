@@ -1,4 +1,9 @@
 require "singleton"
+require "securerandom"
+
+# We want to track every HTTP call made by DataPass to help debugging api call with our partners.
+# We want homogeneous API to catch HTTP errors
+# We had a global Time Out for each API call
 
 class Http
   include Singleton
@@ -14,6 +19,7 @@ class Http
     end
     use_form_content_type = options.fetch(:use_form_content_type, false)
     api_key = options.fetch(:api_key, "") || ""
+    use_correlation_id = options.fetch(:use_correlation_id, false)
     body = options.fetch(:body, {})
     tag = options.fetch(:tag)
     timeout = options.fetch(:timeout, 30)
@@ -24,14 +30,16 @@ class Http
     http_with_auth = api_key.empty? ?
       http : http.headers(auth_header => "#{auth_method}#{api_key}")
 
+    http_with_correlation_id = use_correlation_id ? http_with_auth.headers("X-Correlation-ID" => SecureRandom.hex) : http_with_auth
+
     response = if body.empty?
-      http_with_auth
+      http_with_correlation_id
         .send(http_verb, url)
     elsif use_form_content_type
-      http_with_auth
+      http_with_correlation_id
         .send(http_verb, url, form: body)
     else
-      http_with_auth
+      http_with_correlation_id
         .send(http_verb, url, json: body)
     end
 
