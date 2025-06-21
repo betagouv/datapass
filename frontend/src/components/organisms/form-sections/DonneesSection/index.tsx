@@ -128,6 +128,14 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
     }
   }, [enableFileSubmissionForScopeSelection, isFileInputExpanded, documents]);
 
+  const predefinedLabelMap: Record<string, string> = {
+    dgfip_ficoba_etat_civil_denomination: 'État civil ou dénomination',
+    dgfip_ficoba_adresse: 'Adresse',
+    dgfip_ficoba_compte: 'Désignation du compte',
+    dgfip_ficoba_etablissement_bancaire: 'Établissement bancaire',
+    dgfip_ficoba_date: 'Date',
+  };
+
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les données nécessaires</h2>
@@ -178,7 +186,7 @@ const DonneesSection: FunctionSectionComponent<Props> = ({
               title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
               scopesConfiguration={outdatedScopes.map((value) => ({
                 value,
-                label: value,
+                label: predefinedLabelMap[value] || value,
               }))}
               scopes={zipObject(
                 outdatedScopes,
