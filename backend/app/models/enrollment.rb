@@ -22,12 +22,7 @@ class Enrollment < ApplicationRecord
     end
 
     def migrated_target_apis
-      %w[
-        api_entreprise
-        api_particulier
-        hubee_portail
-        hubee_portail_dila
-      ]
+      %w[]
     end
   end
 

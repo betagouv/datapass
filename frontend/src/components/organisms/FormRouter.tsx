@@ -11,8 +11,6 @@ import { TargetAPI } from '../../config/data-provider-configurations';
 const FormRouter = () => {
   const { targetApi: targetApiFromUrl, enrollmentId } = useParams();
   const targetApi = (targetApiFromUrl as string).replace(/-/g, '_');
-  const potentialRedirectToV2Host =
-    process.env[`REACT_APP_${targetApi.toUpperCase()}_REDIRECT_TO_V2_HOST`];
 
   const { Component, configuration, notFound } = useFullDataProvider({
     targetApi: targetApi as string,
@@ -22,20 +20,6 @@ const FormRouter = () => {
     return (
       <ExternalRedirect url="https://www.demarches-simplifiees.fr/commencer/api-tiers-de-prestations" />
     );
-  }
-
-  if (potentialRedirectToV2Host) {
-    let redirectUri = potentialRedirectToV2Host;
-
-    if (enrollmentId) {
-      const urlObject = new URL(redirectUri);
-
-      urlObject.pathname = '/';
-
-      redirectUri = urlObject.toString() + 'demandes/' + enrollmentId;
-    }
-
-    return <ExternalRedirect url={`${redirectUri}`} />;
   }
 
   if (notFound) {
