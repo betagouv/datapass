@@ -232,6 +232,8 @@ api_particulier:
       siret: '32855218700069'
     - name: Kosmos
       siret: '41922342500044'
+    - name: Libreair
+      siret: '95264495300012'
     - name: Mushroom Software
       siret: '81122842800017'
     - name: Nord France Informatique (NFI)
@@ -760,6 +762,36 @@ api_particulier:
           cnaf_allocataires: true
           cnaf_enfants: true
           cnaf_adresse: true
+     libreair:
+      label: >-
+        Airport
+      about: https://api.gouv.fr/guides/portail-famille-tarification
+      state:
+        intitule: >-
+          Démarches citoyennes
+        description: "Le logiciel sert au citoyen à effectuer ces démarches en lignes : inscription cantines, activités périscolaires, aides sociales, cartes de bus, acte d'état civil etc."
+        fondement_juridique_title: >-
+          L'article L114-8 du code des relations entre le public et l'administration
+          fixe le cadre général des échanges de données au sein de l'administration.
+          En tant que collectivité territoriale, la délibération ci-jointe précise
+          l'objet du téléservice, selon l'arrêté du 04/07/13 sur les téléservices,
+          et précise les données nécessaires à son fonctionnement
+        technical_team_type: software_company
+        technical_team_value: '95264495300012'
+        scopes:
+          cnaf_quotient_familial: true
+          pole_emploi_identite: true
+          men_statut_scolarite: true
+          men_statut_boursier: true
+          mesri_identite: true
+          complementaire_sante_solidaire: true
+      team_members:
+        responsable_technique:
+          given_name:  Alexis
+          family_name: Cesar
+          job: responsable produit et technique
+          email: alexis.cesar@libreair.fr
+          phone_number: '+33622856317'
     nfi-grc:
       label: NFI | Portail famille
       about: https://particulier.api.gouv.fr/cas_usages/portail_famille
